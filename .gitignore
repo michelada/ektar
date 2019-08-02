@@ -7,3 +7,6 @@ test/dummy/log/*.log
 test/dummy/storage/
 test/dummy/tmp/
 node_modules/
+tmp/*/*/*
+.ruby-version
+.DS_Store
