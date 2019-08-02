@@ -1,0 +1,12 @@
+{
+  "name": "ektar",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^4.0.7",
+    "bulma": "^0.7.5"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^3.7.2"
+  }
+}

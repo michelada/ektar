@@ -1,0 +1,17 @@
+<div class="columns">
+  <% list_attributes.each do |attribute| %>
+    <div class="column">
+      <%= model_name.human_attribute_name(attribute) %>
+    </div>
+  <% end %>
+</div>
+
+<div class="columns">
+  <% collection.each do |element| %>
+    <% list_attributes.each do |attribute| %>
+      <div class="column">
+        <%= element[attribute] %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
