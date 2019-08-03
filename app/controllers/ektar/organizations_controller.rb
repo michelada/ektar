@@ -18,6 +18,15 @@ module Ektar
     def list_attributes
       %w[id name enable]
     end
+
+    def form_new_attributes
+      { name: :text, enable: :checkbox }
+    end
+
+    def form_show_attributes
+      %w[name enable]
+    end
+
     helper_method :model_name, :list_attributes
   end
 end
