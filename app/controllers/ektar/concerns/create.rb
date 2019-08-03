@@ -3,15 +3,13 @@
 require "active_support/concern"
 
 module Ektar
-  module New
+  module Create
     extend ActiveSupport::Concern
 
     included do
-      def new(options = {}, &block)
-        resource
-        yield resource if block_given?
+      def create
       end
-      alias_method :new!, :new
+      alias create! create
     end
   end
 end
