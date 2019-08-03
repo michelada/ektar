@@ -1,0 +1,4 @@
+es:
+  new:
+    resource: "%{name}"
+    attribute: "%{attribute}"
