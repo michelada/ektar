@@ -3,7 +3,7 @@
   <% form_new_attributes.each do |attribute_name, attribute_type|%>
     <div class="field">
       <label class="label"><%= t("new.attribute", attribute: attribute_name.to_s.humanize) %></label>
-      <%= render partial: "form/#{attribute_type}" %>
+      <%= render partial: "#{attribute_type}", locals: { attribute_name: attribute_name} %>
     </div>
   <% end %>
 <% end %>

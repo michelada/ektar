@@ -2,3 +2,8 @@ es:
   new:
     resource: "%{name}"
     attribute: "%{attribute}"
+  forms:
+    choose_file: "Carga un archivo"
+    options_checkbox: "%{option}"
+    dropdown_select: "Selecciona %{name_option}"
+    dropdown_options: "%{option}"
