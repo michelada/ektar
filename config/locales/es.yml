@@ -9,3 +9,5 @@ es:
     dropdown_options: "%{option}"
     submit: "Guardar"
     cancel: "Cancelar"
+    edit: "Editar"
+    delete: "Eliminar"

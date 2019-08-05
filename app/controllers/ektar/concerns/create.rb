@@ -10,7 +10,6 @@ module Ektar
       def create(options = {}, &block)
         object = get_resource || create_resource
 
-        byebug
         options[:location] = collection_path if object.errors.empty?
 
         respond_with_dual(object, options, &block)

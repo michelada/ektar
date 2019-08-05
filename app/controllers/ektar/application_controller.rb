@@ -102,6 +102,6 @@ module Ektar
     # def destroy_resource(object)
     #   object.destroy
     # end
-    helper_method :collection, :resource, :create_resource, :respond_with_dual
+    helper_method :collection, :resource, :create_resource, :respond_with_dual, :collection_path, :class_name
   end
 end
