@@ -1,10 +1,12 @@
 <div class="control">
-  <label class="radio">
-    <input type="radio" name="question">
-    <%= t('forms.options_checkbox', option: "yes")%>
-  </label>
-  <label class="radio">
-    <input type="radio" name="question">
-    <%= t('forms.options_checkbox', option: "no")%>
-  </label>
+  <% attributes_options.each do |attri|%>
+    <% if attri.keys[0] == attribute_name %>
+      <% attri.values[0].split(',') do |option|%>
+        <label class="radio">
+          <input type="radio" name="question">
+          <%= t('forms.options_checkbox', option: option)%>
+        </label>
+      <% end %>
+    <%end%>
+  <% end %>
 </div>
