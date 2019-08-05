@@ -1,7 +1,7 @@
 <div class="control">
-  <% attributes_options.each do |attri|%>
-    <% if attri.keys[0] == attribute_name %>
-      <% attri.values[0].split(',') do |option|%>
+  <% attributes_options.each do |attribute|%>
+    <% if attribute.keys[0] == attribute_name %>
+      <% attribute.values[0].split(',') do |option|%>
         <label class="radio">
           <input type="radio" name="question">
           <%= t('forms.options_checkbox', option: option)%>

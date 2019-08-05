@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.0.rc2"
   spec.add_dependency "webpacker", "~> 4.0"
+  spec.add_development_dependency "standard"
 
   spec.add_development_dependency "pg"
 end

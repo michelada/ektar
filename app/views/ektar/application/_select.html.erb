@@ -2,7 +2,13 @@
   <div class="select">
     <select>
       <option><%= t('forms.dropdown_select', name_option: attribute_name) %></option>
-      <option><%= t("forms.dropdown_options", option: "pasar opciones disponibles") %></option>
+      <% attributes_options.each do |attribute| %>
+        <% if attribute.keys[0] == attribute_name %>
+          <% attribute.values[0].split(',') do |option| %>
+            <option><%= t("forms.dropdown_options", option: option) %></option>
+          <% end %>
+        <% end %>
+      <% end %>
     </select>
   </div>
 </div>

@@ -7,3 +7,5 @@ en:
     options_checkbox: "%{option}"
     dropdown_select: "Select %{name_option}"
     dropdown_options: "%{option}"
+    submit: "Save"
+    cancel: Cancel

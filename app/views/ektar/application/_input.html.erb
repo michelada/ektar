@@ -1,3 +1,4 @@
 <div class="control">
-  <input class="input" type="text" placeholder="<%= attribute_name %>">
+  <%# <input class="input" type="text" placeholder="<%= attribute_name %>"> %>
+  <%= form.text_field "#{attribute_name}".to_sym, class: 'input' %>
 </div>

@@ -7,3 +7,5 @@ es:
     options_checkbox: "%{option}"
     dropdown_select: "Selecciona %{name_option}"
     dropdown_options: "%{option}"
+    submit: "Guardar"
+    cancel: "Cancelar"
