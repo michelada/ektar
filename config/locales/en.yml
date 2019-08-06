@@ -11,4 +11,6 @@ en:
     dropdown_select: "Select %{name_option}"
     dropdown_options: "%{option}"
     submit: "Save"
-    cancel: Cancel
+    cancel: "Cancel"
+    edit: "Edit"
+    delete: "Eliminar"

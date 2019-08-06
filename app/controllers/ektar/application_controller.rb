@@ -81,6 +81,6 @@ module Ektar
         flash[:alert] = options[:alert]
       end
     end
-    helper_method :collection, :resource, :create_resource, :respond_with_dual
+    helper_method :collection, :resource, :create_resource, :respond_with_dual, :class_name
   end
 end

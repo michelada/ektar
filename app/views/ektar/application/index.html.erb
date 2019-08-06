@@ -1,17 +1,25 @@
-<div class="columns">
+<table class="table is-fullwidth is-hoverable">
+<tr>
   <% list_attributes.each do |attribute| %>
-    <div class="column">
+    <th>
       <%= model_name.human_attribute_name(attribute) %>
-    </div>
+    </th>
   <% end %>
-</div>
+    <th>Actions</th>
+</tr>
 
-<div class="columns">
-  <% collection.each do |element| %>
+  <tr>
+    <% collection.each do |element| %> 
     <% list_attributes.each do |attribute| %>
-      <div class="column">
+      <td>
         <%= element[attribute] %>
-      </div>
+      </td>
     <% end %>
+      <%byebug%>
+      <td>
+        <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
+        <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}"} %></td>
+      </td>
+  </tr>
   <% end %>
-</div>
+</table>
