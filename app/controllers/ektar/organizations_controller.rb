@@ -13,6 +13,7 @@ module Ektar
     include New
     include Create
     include Edit
+    include Update
 
 
     private
@@ -33,9 +34,10 @@ module Ektar
       %w[name enable]
     end
 
-    def create_secure_params
+    def secure_params
       params.require(:organization).permit(:name, :enable)
     end
-    helper_method :model_name, :list_attributes, :form_attributes, :create_secure_params
+
+    helper_method :model_name, :list_attributes, :form_attributes, :create_secure_params, :edit_secure_params
   end
 end

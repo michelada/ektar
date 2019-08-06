@@ -1,5 +1,5 @@
-<h2><%= t("new.resource", name: resource.model_name.human) %></h2>
-<%= form_with model: resource do |form| %>
+<h2><%= t("new.resource", name: resource_new.model_name.human) %></h2>
+<%= form_with model: resource_new do |form| %>
   <% form_attributes.each do |attribute_name, attribute_type|%>
     <div class="field">
       <label class="label"><%= t("new.attribute", attribute: attribute_name.to_s.humanize) %></label>

@@ -9,8 +9,12 @@ module Ektar
       @collection ||= model_name.all
     end
 
-    def resource
+    def resource_new
       @resource ||= model_name.new
+    end
+
+    def resource_edit
+      get_resource || find_resource
     end
 
     def resource_ivar
@@ -33,8 +37,15 @@ module Ektar
     end
 
     def find_resource
-      byebug
       set_resource_ivar class_name.find(params[:id])
+    end
+
+    def find_and_update_resource
+      model = class_name.find(params[:id])
+      model.tap do |m|
+        m.update get_secure_params
+        set_resource_ivar m
+      end
     end
 
     def collection_path
@@ -81,6 +92,6 @@ module Ektar
         flash[:alert] = options[:alert]
       end
     end
-    helper_method :collection, :resource, :create_resource, :respond_with_dual, :class_name
+    helper_method :collection, :resource_new, :create_resource, :respond_with_dual, :class_name, :resource_edit
   end
 end
