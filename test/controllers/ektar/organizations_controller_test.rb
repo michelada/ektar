@@ -16,13 +16,37 @@ module Ektar
       assert_response :success
     end
 
-    test 'should get update' do
-    end
-    
     test 'should get show' do
+      get organization_path
+
+      assert_response :success
     end
 
-    test 'should create new organization' do
+    test 'should get edit' do
+      get edit_organization_path
+
+      assert_response :success
+    end
+
+    test 'can create organization' do
+    end
+
+    test 'can show organization' do
+    end
+    
+    test 'can edit organization' do
+    end
+
+    test 'can delete organization' do
+    end
+
+    test 'can not show invalid organization' do
+    end
+
+    test 'can not edit invalid organization' do
+    end
+
+    test 'can not delete invalid organization' do
     end
   end
 end
