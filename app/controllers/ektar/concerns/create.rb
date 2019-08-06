@@ -9,13 +9,11 @@ module Ektar
     included do
       def create(options = {}, &block)
         object = get_resource || create_resource
-
-        byebug
         options[:location] = collection_path if object.errors.empty?
 
-        respond_with_dual(object, options, &block)
+        redirect_with(object, options, &block)
       end
-      alias create! create
+      alias :create! :create
     end
   end
 end

@@ -2,6 +2,9 @@ en:
   new:
     resource: "%{name}"
     attribute: "%{attribute}"
+  edit:
+    resource: "%{name}"
+    attribute: "%{attribute}"
   forms:
     choose_file: "Choose file"
     options_checkbox: "%{option}"
