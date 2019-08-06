@@ -10,7 +10,6 @@ module Ektar
       def destroy(options = {}, &block)
         object = get_resource || find_resource
 
-        byebug
         object.destroy
         options[:location] = collection_path
   

@@ -7,8 +7,10 @@ module Ektar
     extend ActiveSupport::Concern
 
     included do
-      def show
+      def show(options = {}, &block)
+        object = get_resource || find_resource
       end
+  
       alias show! show
     end
   end
