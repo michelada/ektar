@@ -8,8 +8,8 @@ module Ektar
 
     included do
       def new(options = {}, &block)
-        resource
-        yield resource if block_given?
+        resource_new
+        yield resource_new if block_given?
       end
       alias_method :new!, :new
     end

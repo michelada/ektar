@@ -1,3 +1,3 @@
 Ektar::Engine.routes.draw do
-  resources :organizations, only: [:index, :new, :create]
+  resources :organizations, only: [:index, :new, :create, :edit, :update]
 end

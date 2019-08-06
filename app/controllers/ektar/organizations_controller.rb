@@ -4,12 +4,17 @@ require_dependency "ektar/application_controller"
 require_dependency "ektar/concerns/index"
 require_dependency "ektar/concerns/new"
 require_dependency "ektar/concerns/create"
+require_dependency "ektar/concerns/edit"
+require_dependency "ektar/concerns/update"
 
 module Ektar
   class OrganizationsController < ApplicationController
     include Index
     include New
     include Create
+    include Edit
+    include Update
+
 
     private
 
@@ -21,7 +26,7 @@ module Ektar
       %w[id name enable]
     end
 
-    def form_new_attributes
+    def form_attributes
       { name: :input, enable: :checkbox }
     end
 
@@ -29,9 +34,10 @@ module Ektar
       %w[name enable]
     end
 
-    def create_secure_params
+    def secure_params
       params.require(:organization).permit(:name, :enable)
     end
-    helper_method :model_name, :list_attributes, :form_new_attributes, :create_secure_params
+
+    helper_method :model_name, :list_attributes, :form_attributes, :create_secure_params, :edit_secure_params
   end
 end

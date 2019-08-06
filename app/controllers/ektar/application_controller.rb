@@ -9,12 +9,23 @@ module Ektar
       @collection ||= model_name.all
     end
 
-    def resource
+    def resource_new
       @resource ||= model_name.new
+    end
+
+    def resource_edit
+      get_resource || find_resource
     end
 
     def resource_ivar
       "@#{class_name.model_name.singular}"
+    end
+
+    def create_resource
+      model_name.new(get_secure_params).tap do |model|
+        model.save
+        set_resource_ivar model
+      end
     end
 
     def get_resource
@@ -25,15 +36,25 @@ module Ektar
       instance_variable_set resource_ivar, object
     end
 
-    def create_resource
-      model_name.new(get_secure_params).tap do |model|
-        model.save
-        set_resource_ivar model
+    def find_resource
+      set_resource_ivar class_name.find(params[:id])
+    end
+
+    def find_and_update_resource
+      model = class_name.find(params[:id])
+      model.tap do |m|
+        m.update get_secure_params
+        set_resource_ivar m
       end
     end
 
     def collection_path
       send "#{class_name.model_name.route_key}_path"
+    end
+
+    def redirect_with(object, options, &block)
+      redirect_to options[:location]
+      set_flash options
     end
 
     def get_secure_params
@@ -64,29 +85,6 @@ module Ektar
       end
     end
 
-    def respond_with_dual(object, options, &block)
-      args = [object, options]
-      set_flash options
-
-      case block.try(:arity)
-      # when 2
-      #   respond_with(*args) do |responder|
-      #     dummy_responder = Restful::DummyResponder.new
-
-      #     if get_resource_ivar.errors.empty?
-      #       block.call responder, dummy_responder
-      #     else
-      #       block.call dummy_responder, responder
-      #     end
-      #   end
-      when 1
-        respond_with(*args, &block)
-      else
-        options[:location] = block.call if block
-        respond_with(*args)
-      end
-    end
-
     def set_flash(options = {})
       if options.key?(:notice)
         flash[:notice] = options[:notice]
@@ -94,14 +92,6 @@ module Ektar
         flash[:alert] = options[:alert]
       end
     end
-
-    # def update_resource(object, attributes)
-    #   object.update(*attributes)
-    # end
-
-    # def destroy_resource(object)
-    #   object.destroy
-    # end
-    helper_method :collection, :resource, :create_resource, :respond_with_dual, :collection_path, :class_name
+    helper_method :collection, :resource_new, :create_resource, :respond_with_dual, :class_name, :resource_edit
   end
 end
