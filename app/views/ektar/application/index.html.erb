@@ -17,7 +17,7 @@
     <% end %>
       <td class='has-text-right'>
         <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
-        <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}"} %></td>
+        <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %></td>
       </td>
   </tr>
   <% end %>

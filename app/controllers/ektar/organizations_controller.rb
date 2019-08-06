@@ -6,6 +6,7 @@ require_dependency "ektar/concerns/new"
 require_dependency "ektar/concerns/create"
 require_dependency "ektar/concerns/edit"
 require_dependency "ektar/concerns/update"
+require_dependency "ektar/concerns/destroy"
 
 module Ektar
   class OrganizationsController < ApplicationController
@@ -14,6 +15,7 @@ module Ektar
     include Create
     include Edit
     include Update
+    include Destroy
 
 
     private
