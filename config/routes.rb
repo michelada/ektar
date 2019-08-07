@@ -1,3 +1,4 @@
 Ektar::Engine.routes.draw do
-  resources :organizations#, except: :show
+  resources :organizations
+  resources :users
 end
