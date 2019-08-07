@@ -7,59 +7,59 @@ module Ektar
       @organization = ektar_organizations(:main_organization)
     end
 
-    test 'should get index' do
+    test "should get index" do
       get organizations_path
 
       assert_response :success
     end
 
-    test 'should get new' do
+    test "should get new" do
       get new_organization_path
 
       assert_response :success
     end
 
-    test 'should get show' do
+    test "should get show" do
       get organization_path(@organization.id)
 
       assert_response :success
-      assert_select 'h2', text: @organization.name
+      assert_select "h2", text: @organization.name
     end
 
-    test 'should get edit' do
+    test "should get edit" do
       get edit_organization_path(@organization.id)
 
       assert_response :success
-      assert_select 'h2', text: @organization.name
-      assert_select '.input'
+      assert_select "h2", text: @organization.name
+      assert_select ".input"
     end
 
-    test 'can create organization' do 
-      assert_difference 'Ektar::Organization.count', 1 do
+    test "can create organization" do
+      assert_difference "Ektar::Organization.count", 1 do
         post organizations_path(valid_organization)
       end
 
-      assert_equal 'Organization test', Ektar::Organization.last.name
+      assert_equal "Organization test", Ektar::Organization.last.name
     end
 
-    test 'can show organization' do
+    test "can show organization" do
       get organization_path(@organization.id)
 
-      assert_select 'form'
-      assert_select 'h2', text: @organization.name
+      assert_select "form"
+      assert_select "h2", text: @organization.name
     end
 
-    test 'can update organization' do
+    test "can update organization" do
       put organization_path(@organization.id), params: {organization: {name: "michelada"}}
       @organization.reload
 
       assert_equal "michelada", @organization.name
     end
 
-    test 'can delete organization' do
+    test "can delete organization" do
       organization_delete = ektar_organizations(:organization_delete)
 
-      assert_difference 'Ektar::Organization.count', -1 do
+      assert_difference "Ektar::Organization.count", -1 do
         delete organization_path(organization_delete.id)
       end
     end
@@ -74,7 +74,7 @@ module Ektar
     # end
 
     def valid_organization
-      {organization: { name: 'Organization test', enable: true}}
+      {organization: {name: "Organization test", enable: true}}
     end
   end
 end

@@ -13,7 +13,7 @@ module Ektar
 
         redirect_with(object, options, &block)
       end
-      alias :create! :create
+      alias_method :create!, :create
     end
   end
 end

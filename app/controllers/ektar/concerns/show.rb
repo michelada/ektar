@@ -10,8 +10,8 @@ module Ektar
       def show(options = {}, &block)
         object = get_resource || find_resource
       end
-  
-      alias show! show
+
+      alias_method :show!, :show
     end
   end
 end

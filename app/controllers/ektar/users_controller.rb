@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_dependency "ektar/application_controller"
 require_dependency "ektar/concerns/index"
 require_dependency "ektar/concerns/new"
@@ -10,7 +8,7 @@ require_dependency "ektar/concerns/destroy"
 require_dependency "ektar/concerns/show"
 
 module Ektar
-  class OrganizationsController < ApplicationController
+  class UsersController < ApplicationController
     include Index
     include New
     include Create
@@ -22,25 +20,29 @@ module Ektar
     private
 
     def model_name
-      Organization
+      User
     end
 
     def list_attributes
-      %w[id name enable]
+      %w[id email ektar_organization]
     end
 
     def form_attributes
-      {name: :input, enable: :checkbox}
+      {email: :input, encrypted_password: :input, organization: :select}
+    end
+
+    def attributes_options
+      [{organization: Ektar::Organization.list_name_available}]
     end
 
     def form_show_attributes
-      %w[name enable]
+      %w[email ektar_organization]
     end
 
     def secure_params
-      params.require(:organization).permit(:name, :enable)
+      params.require(:user).permit(:email, :encrypted_password)
     end
 
-    helper_method :model_name, :list_attributes, :form_attributes
+    helper_method :model_name, :list_attributes, :form_attributes, :attributes_options
   end
 end

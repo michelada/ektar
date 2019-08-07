@@ -3,7 +3,7 @@
 module Ektar
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
-    layout 'ektar/application'
+    layout "ektar/application"
 
     def collection
       @collection ||= model_name.all

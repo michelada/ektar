@@ -8,11 +8,10 @@ module Ektar
 
     included do
       def edit(options = {}, &block)
-        resource_edit 
+        resource_edit
         yield resource_edit if block_given?
-        #respond_with(object, options, &block)
       end
-      alias :edit! :edit
+      alias_method :edit!, :edit
     end
   end
 end

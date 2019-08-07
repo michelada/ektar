@@ -12,10 +12,10 @@ module Ektar
 
         object.destroy
         options[:location] = collection_path
-  
+
         redirect_with(object, options, &block)
       end
-      alias destroy! destroy
+      alias_method :destroy!, :destroy
     end
   end
 end
