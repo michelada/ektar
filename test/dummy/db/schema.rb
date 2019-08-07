@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_02_171315) do
+ActiveRecord::Schema.define(version: 2019_08_06_235122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,4 +23,16 @@ ActiveRecord::Schema.define(version: 2019_08_02_171315) do
     t.index ["name"], name: "index_ektar_organizations_on_name", unique: true
   end
 
+  create_table "ektar_users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
+    t.integer "role", default: 1
+    t.bigint "ektar_organizations_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ektar_organizations_id"], name: "index_ektar_users_on_ektar_organizations_id"
+    t.index ["email"], name: "index_ektar_users_on_email", unique: true
+  end
+
+  add_foreign_key "ektar_users", "ektar_organizations", column: "ektar_organizations_id"
 end
