@@ -24,23 +24,23 @@ module Ektar
     end
 
     def list_attributes
-      %w[id email ektar_organization]
+      %w[id email ektar_organization_id]
     end
 
     def form_attributes
-      {email: :input, encrypted_password: :input, organization: :select}
+      {email: :input, encrypted_password: :input, ektar_organization_id: :select}
     end
 
     def attributes_options
-      [{organization: Ektar::Organization.list_name_available}]
+      [{ektar_organization_id: Ektar::Organization.list_name_available}]
     end
 
     def form_show_attributes
-      %w[email ektar_organization]
+      %w[email ektar_organization_id]
     end
 
     def secure_params
-      params.require(:user).permit(:email, :encrypted_password)
+      params.require(:user).permit(:email, :encrypted_password, :ektar_organization_id)
     end
 
     helper_method :model_name, :list_attributes, :form_attributes, :attributes_options
