@@ -2,13 +2,13 @@
 
 first_user:
   email: first@example.com
-  encrypted_password: 123456789
+  encrypted_password: 'Password14'
   role: 1
   ektar_organization_id: 1
 
 second_user:
   email: second@example.com
   role: 1
-  encrypted_password: 234567890
+  encrypted_password: 'Password15'
   ektar_organization_id: 1
   

@@ -41,20 +41,20 @@ module Ektar
     def valid_params
       organization = ektar_organizations(:main_organization)
       {email: "mario@gmail.com",
-       encrypted_password: "12345678",
+       encrypted_password: "Password14",
        ektar_organization_id: organization.id,}
     end
 
     def invalid_params_organization
       {email: "user@example.example",
-       encrypted_password: "12345689",
+       encrypted_password: "Password14",
        ektar_organization_id: Ektar::Organization.last.id + 1,}
     end
 
     def invalid_params_email
       organization = ektar_organizations(:main_organization)
       {email: " ",
-       encrypted_password: "12345689",
+       encrypted_password: "Password14",
        ektar_organization_id: organization.id,}
     end
   end
