@@ -34,13 +34,13 @@ module Ektar
     end
 
     def form_show_attributes
-      %w[name enable]
+      {name: :input, enable: :checkbox}
     end
 
     def secure_params
       params.require(:organization).permit(:name, :enable)
     end
 
-    helper_method :model_name, :list_attributes, :form_attributes
+    helper_method :model_name, :list_attributes, :form_attributes, :form_show_attributes
   end
 end
