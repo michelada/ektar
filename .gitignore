@@ -11,3 +11,4 @@ node_modules/
 tmp/*/*/*
 .ruby-version
 .DS_Store
+.byebug_history

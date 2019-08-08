@@ -10,4 +10,5 @@ second_user:
   email: second@example.com
   role: 1
   encrypted_password: 234567890
- 
+  ektar_organization_id: 1
+  
