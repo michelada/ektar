@@ -1,4 +1,4 @@
-<h2><%= t("edit.resource", name: resource_edit.name) %></h2>
+<h2><%= t("edit.resource", name: resource_edit.model_name.human) %></h2>
 <%= form_for(resource_edit, as: resource_edit, html: { method: :put }) do |form| %>
   <% form_attributes.each do |attribute_name, attribute_type|%>
     <div class="field">
