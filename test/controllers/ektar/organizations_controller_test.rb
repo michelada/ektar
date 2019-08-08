@@ -23,14 +23,14 @@ module Ektar
       get organization_path(@organization.id)
 
       assert_response :success
-      assert_select "h2", text: @organization.name
+      assert_select ".input", value: @organization.name
     end
 
     test "should get edit" do
       get edit_organization_path(@organization.id)
 
       assert_response :success
-      assert_select "h2", text: @organization.name
+      assert_select ".input", value: @organization.name
       assert_select ".input"
     end
 
@@ -46,7 +46,7 @@ module Ektar
       get organization_path(@organization.id)
 
       assert_select "form"
-      assert_select "h2", text: @organization.name
+      assert_select ".input", value: @organization.name
     end
 
     test "can update organization" do
