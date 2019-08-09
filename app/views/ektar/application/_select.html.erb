@@ -1,14 +1,5 @@
 <div class="control">
   <div class="select">
-    <select>
-      <option><%= t('forms.dropdown_select', name_option: attribute_name) %></option>
-      <% attributes_options.each do |attribute| %>
-        <% if attribute.keys[0] == attribute_name %>
-          <% attribute.values[0].split(',') do |option| %>
-            <option><%= t("forms.dropdown_options", option: option) %></option>
-          <% end %>
-        <% end %>
-      <% end %>
-    </select>
+    <%= form.select "#{attribute_name}".to_sym, options_for_select(select_options(attribute_name)), {prompt: t('forms.dropdown_select', name_option: attribute_name) } %>
   </div>
 </div>
