@@ -59,19 +59,10 @@ module Ektar
     test "can delete organization" do
       organization_delete = ektar_organizations(:organization_delete)
 
-      assert_difference "Ektar::Organization.count", -1 do
+      assert_difference "Organization.count", -1 do
         delete organization_path(organization_delete.id)
       end
     end
-
-    # test 'can not show invalid organization' do
-    # end
-
-    # test 'can not edit invalid organization' do
-    # end
-
-    # test 'can not delete invalid organization' do
-    # end
 
     def valid_organization
       {organization: {name: "Organization test", enable: true}}

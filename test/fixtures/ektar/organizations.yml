@@ -3,6 +3,7 @@
 main_organization:
   name: "Main Organization"
   enable: true
+
 organization_delete:
   name: "Organization Delete"
   enable: true

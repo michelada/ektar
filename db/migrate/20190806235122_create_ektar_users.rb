@@ -4,7 +4,7 @@ class CreateEktarUsers < ActiveRecord::Migration[6.0]
       t.string :email, null: false
       t.string :encrypted_password, null: false
       t.integer :role, default: 1
-      t.belongs_to :ektar_organization, foreign_key: true, null: false
+      t.belongs_to :ektar_organization, foreign_key: true
 
       t.timestamps
     end

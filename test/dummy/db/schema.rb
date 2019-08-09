@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_001544) do
 
   create_table "ektar_profiles", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "ektar_user_id", null: false
+    t.bigint "ektar_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ektar_user_id"], name: "index_ektar_profiles_on_ektar_user_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_001544) do
     t.string "email", null: false
     t.string "encrypted_password", null: false
     t.integer "role", default: 1
-    t.bigint "ektar_organization_id", null: false
+    t.bigint "ektar_organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ektar_organization_id"], name: "index_ektar_users_on_ektar_organization_id"
