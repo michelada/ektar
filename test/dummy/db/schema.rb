@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_235122) do
+ActiveRecord::Schema.define(version: 2019_08_09_001544) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,16 +23,26 @@ ActiveRecord::Schema.define(version: 2019_08_06_235122) do
     t.index ["name"], name: "index_ektar_organizations_on_name", unique: true
   end
 
+  create_table "ektar_profiles", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "ektar_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ektar_user_id"], name: "index_ektar_profiles_on_ektar_user_id"
+    t.index ["name"], name: "index_ektar_profiles_on_name", unique: true
+  end
+
   create_table "ektar_users", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", null: false
     t.integer "role", default: 1
-    t.bigint "ektar_organization_id"
+    t.bigint "ektar_organization_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ektar_organization_id"], name: "index_ektar_users_on_ektar_organization_id"
     t.index ["email"], name: "index_ektar_users_on_email", unique: true
   end
 
+  add_foreign_key "ektar_profiles", "ektar_users"
   add_foreign_key "ektar_users", "ektar_organizations"
 end
