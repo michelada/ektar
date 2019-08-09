@@ -1,5 +1,6 @@
 module Ektar
   class Organization < ApplicationRecord
+    has_many :ektar_users, dependent: :destroy
     validates :name, presence: true, uniqueness: true
 
     scope :enable_organizations, -> { where(enable: true) }
