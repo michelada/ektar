@@ -3,7 +3,6 @@ require "test_helper"
 module Ektar
   class UserTest < ActiveSupport::TestCase
     test "is valid" do
-      ektar_users(:first_user)
       subject = User.new valid_params
 
       assert subject.valid?
