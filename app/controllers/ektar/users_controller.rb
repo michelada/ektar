@@ -36,13 +36,13 @@ module Ektar
     end
 
     def form_show_attributes
-      %w[email ektar_organization_id]
+      {email: :input, ektar_organization_id: :input}
     end
 
     def secure_params
       params.require(:user).permit(:email, :encrypted_password, :ektar_organization_id)
     end
 
-    helper_method :model_name, :list_attributes, :form_attributes, :attributes_options
+    helper_method :model_name, :list_attributes, :form_attributes, :attributes_options, :form_show_attributes
   end
 end
