@@ -31,7 +31,6 @@ module Ektar
 
       assert_response :success
       assert_select ".input", value: @organization.name
-      assert_select ".input"
     end
 
     test "can create organization" do
