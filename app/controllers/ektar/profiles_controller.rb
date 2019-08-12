@@ -22,15 +22,15 @@ module Ektar
     end
 
     def form_attributes
-      { name: :input, image_profile: :file}
+      { name: :input, image_profile: :file, ektar_user_id: :input}
     end
 
     def form_show_attributes
-      { name: :input, image_profile: :file}
+      { name: :input, image_profile: :file, ektar_user_id: :input}
     end
 
     def secure_params
-      params.require(:profile).permit(:name, :image_profile)
+      params.require(:profile).permit(:name, :image_profile, :ektar_user_id)
     end
 
     helper_method :model_name, :form_attributes, :form_show_attributes
