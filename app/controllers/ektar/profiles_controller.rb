@@ -24,7 +24,7 @@ module Ektar
     end
 
     def list_attributes
-      %w[id name image_profile ektar_user_id]
+      %w[id name image_profile ]
     end
 
     def form_attributes
