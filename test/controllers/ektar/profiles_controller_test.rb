@@ -8,12 +8,6 @@ module Ektar
       @profile = ektar_profiles(:first_profile)
     end
 
-    test "should get index" do
-      get profiles_path
-
-      assert :success
-    end
-
     test "should get new" do
       get new_profile_path
 
