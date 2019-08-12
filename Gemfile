@@ -14,3 +14,5 @@ gemspec
 # To use a debugger
 gem "byebug", group: [:development, :test]
 gem "webpacker"
+gem "mini_magick"
+gem "aws-sdk-s3", require: false

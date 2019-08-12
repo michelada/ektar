@@ -22,6 +22,9 @@ module Ektar
     end
 
     test "can create profile" do
+      assert_difference "Ektar::Profile.count", 1 do
+        post profile_path, params: {profile: valid_profile}
+      end
     end
     test "can show profile" do
     end
@@ -31,6 +34,10 @@ module Ektar
     end
 
     def valid_profile
+      profile = ektar_profile(:first_profile)
+      {name: "Full name",
+       ektar_user_id: 1,
+       image_profile: page.attach_file('profile[image_profile]', Rails.root + file_fixture('profile.jpg'), visible: false)}
     end
   end
 end

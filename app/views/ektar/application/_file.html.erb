@@ -1,13 +1,11 @@
-<div class="file">
-  <label class="file-label">
-    <input class="file-input" type="file" name="resume">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        <%= t('forms.choose_file') %>
-      </span>
+<label class="file-label">
+  <%= form.file_field "#{attribute_name}".to_sym,  accept: "image/png, image/jpg", multiple: false, data: { max_file_size: 1.megabytes }, class:'file-input'%>
+  <span class="file-cta">
+    <span class="file-icon">
+      <i class="fas fa-upload"></i>
     </span>
-  </label>
-</div>
+    <span class="file-label">
+      <%= t('forms.choose_file') %>
+    </span>
+  </span>
+</label>
