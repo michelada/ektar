@@ -22,11 +22,11 @@ module Ektar
     end
 
     def form_attributes
-      { name: :input, image_profile: :file, ektar_user_id: :input}
+      { image_profile: :file, name: :input, ektar_user_id: :input}
     end
 
     def form_show_attributes
-      { name: :input, image_profile: :file, ektar_user_id: :input}
+      { name: :input, image_profile: :image, ektar_user_id: :input}
     end
 
     def secure_params
