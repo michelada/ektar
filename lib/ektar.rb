@@ -1,4 +1,5 @@
 require "ektar/engine"
+require "ektar/dummy_responder"
 
 module Ektar
   ROOT_PATH = Pathname.new(File.join(__dir__, ".."))
