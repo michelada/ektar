@@ -1,5 +1,7 @@
 Ektar::Engine.routes.draw do
-  resources :organizations
-  resources :users
-  resources :profiles, except: :index
+  resources :organizations do
+    resources :users do
+      resource :profiles
+    end
+  end
 end
