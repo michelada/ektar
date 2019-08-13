@@ -48,13 +48,34 @@ module Ektar
       end
     end
 
-    def collection_path
-      send "#{class_name.model_name.route_key}_path"
+    def redirect_with(object, options, &block)
+      args = [object, options]
+      set_flash options
+
+      case block.try(:arity)
+      when 2
+        respond_with(*args) do |responder|
+          dummy_responder = Ektar::DummyResponder.new
+
+          if get_resource.errors.empty?
+            block.call responder, dummy_responder
+          else
+            block.call dummy_responder, responder
+          end
+        end
+      when 1
+        respond_with(*args, &block)
+      else
+         redirect_to options[:location]
+      end
     end
 
-    def redirect_with(object, options, &block)
-      redirect_to options[:location]
-      set_flash options
+    def set_flash(options = {})
+      if options.key?(:notice)
+        flash[:notice] = options[:notice]
+      elsif options.key?(:alert)
+        flash[:alert] = options[:alert]
+      end
     end
 
     def get_secure_params
@@ -92,6 +113,40 @@ module Ektar
         flash[:alert] = options[:alert]
       end
     end
-    helper_method :collection, :resource_new, :create_resource, :respond_with_dual, :class_name, :resource_edit
+    helper_method :collection, :resource_new, :create_resource, :class_name, :resource_edit, :edit_resource_path, :resource_path, :new_resource_path
+
+    ######################################################### no tenemos #####################################################################
+    def edit_resource_path(object)
+      send route_prefix_to_method_name("edit","#{class_name.model_name.singular_route_key}_path"),
+        object
+    end
+
+    def resource_path(object)
+      if route_prefix.present?
+        send "#{route_prefix}_#{class_name.model_name.singular_route_key}_path"
+      else
+        send "#{class_name.model_name.singular_route_key}_path"
+      end
+    end
+
+    def new_resource_path
+      send route_prefix_to_method_name("new","#{class_name.model_name.singular_route_key}_path")
+    end
+
+    def collection_path
+      send route_prefix_to_method_name('',"#{class_name.model_name.singular_route_key}_path")
+    end
+
+    def route_prefix_to_method_name(method, *path_ivar)
+      if route_prefix.present? && !method.blank?
+        "#{method}_#{route_prefix}_#{path_ivar[0]}"
+      elsif route_prefix.present?
+        "#{route_prefix}_#{path_ivar[0]}"
+      elsif path_ivar.present? && !method.blank?
+        "#{method}_#{path_ivar[0]}"
+      else
+       path_ivar[0]
+      end
+    end
   end
 end

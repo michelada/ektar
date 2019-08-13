@@ -23,6 +23,10 @@ module Ektar
       User
     end
 
+    def route_prefix
+      'organization'
+    end
+
     def list_attributes
       %w[id email ektar_organization_id]
     end
@@ -43,6 +47,6 @@ module Ektar
       params.require(:user).permit(:email, :encrypted_password, :ektar_organization_id)
     end
 
-    helper_method :model_name, :list_attributes, :form_attributes, :attributes_options, :form_show_attributes
+    helper_method :model_name, :list_attributes, :form_attributes, :attributes_options, :form_show_attributes, :route_prefix
   end
 end

@@ -24,6 +24,10 @@ module Ektar
     def model_name
       Organization
     end
+    
+    def route_prefix
+      ''
+    end
 
     def list_attributes
       %w[id name enable]
