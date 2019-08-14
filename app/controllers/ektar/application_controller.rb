@@ -9,8 +9,14 @@ module Ektar
       @collection ||= model_name.all
     end
 
-    def resource_new
-      @resource ||= model_name.new
+    def build_resource(options = {})
+      model_name.new options
+    end
+
+    def resource(find: false, options: {})
+      @resource ||= if find
+        class_name.find(params[:id])
+      end
     end
 
     def resource_edit
@@ -24,7 +30,7 @@ module Ektar
     def create_resource
       model_name.new(get_secure_params).tap do |model|
         model.save
-        set_resource_ivar model
+        @resource = model
       end
     end
 
@@ -45,6 +51,26 @@ module Ektar
       model.tap do |m|
         m.update get_secure_params
         set_resource_ivar m
+      end
+    end
+
+    def collection_path
+      send "#{class_name.model_name.route_key}_path"
+    end
+
+    def action_response_dual(object, options, &block)
+      invalid_resource = @resource&.errors&.any?
+
+      set_flash options.merge(
+        klass: class_name.model_name.element,
+        errors: invalid_resource
+      )
+
+      if invalid_resource
+        render :new
+      else
+        options[:location] = block.call if block_given?
+        redirect_to options[:location]
       end
     end
 
@@ -90,45 +116,12 @@ module Ektar
     end
 
     def set_flash(options = {})
-      if options.key?(:notice)
-        flash[:notice] = options[:notice]
-      elsif options.key?(:alert)
-        flash[:alert] = options[:alert]
-      end
-    end
-    helper_method :collection, :resource_new, :create_resource, :class_name, :resource_edit, :edit_resource_path, :resource_path, :new_resource_path
+      result = options[:errors] ? :alert : :notice
+      default_key = "flash.#{options[:action]}.#{result}"
+      resource_key = "flash.#{options[:action]}.#{options[:klass]}.#{result}"
 
-    def edit_resource_path(object)
-      send route_prefix_to_method_name("edit","#{class_name.model_name.singular_route_key}_path"),
-        object
+      flash[result] = I18n.t(resource_key, default: I18n.t(default_key))
     end
-
-    def resource_path(object)
-      if route_prefix.present?
-        send "#{route_prefix}_#{class_name.model_name.singular_route_key}_path"
-      else
-        send "#{class_name.model_name.singular_route_key}_path"
-      end
-    end
-
-    def new_resource_path
-      send route_prefix_to_method_name("new","#{class_name.model_name.singular_route_key}_path")
-    end
-
-    def collection_path
-      send route_prefix_to_method_name('',"#{class_name.model_name.singular_route_key}_path")
-    end
-
-    def route_prefix_to_method_name(method, *path_ivar)
-      if route_prefix.present? && !method.blank?
-        "#{method}_#{route_prefix}_#{path_ivar[0]}"
-      elsif route_prefix.present?
-        "#{route_prefix}_#{path_ivar[0]}"
-      elsif path_ivar.present? && !method.blank?
-        "#{method}_#{path_ivar[0]}"
-      else
-       path_ivar[0]
-      end
-    end
+    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :class_name, :resource_edit
   end
 end

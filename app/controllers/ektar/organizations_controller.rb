@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_dependency "ektar/application_controller"
+# require_dependency "ektar/application_controller"
 require_dependency "ektar/concerns/index"
 require_dependency "ektar/concerns/new"
 require_dependency "ektar/concerns/create"
@@ -18,6 +18,11 @@ module Ektar
     include Update
     include Destroy
     include Show
+
+    def create
+      create!
+      console
+    end
 
     private
 

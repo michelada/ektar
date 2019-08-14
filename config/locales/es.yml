@@ -11,3 +11,46 @@ es:
     cancel: "Cancelar"
     edit: "Editar"
     delete: "Eliminar"
+
+  flash:
+    create:
+      notice: "Creado"
+      alert: "Error al crear"
+
+      organization:
+        notice: "La organización ha sido registrada exitosamente"
+        alert: "Error al registrar la organización"
+      user:
+        notice: "El usuario ha sido registrado exitosamente"
+        alert: "Error al registrar el usuario"
+      profile:
+        notice: "El perfil ha sido registrado exitosamente"
+        alert: "Error al registrar el perfil"
+
+    update:
+      notice: "Actualizado"
+      alert: "Error al actualizar"
+
+      organization:
+        notice: "La organización ha sido actualizada exitosamente"
+        alert: "Error al actualizar la organización"
+      user:
+        notice: "El usuario ha sido actualizado exitosamente"
+        alert: "Error al actualizar el usuario"
+      profile:
+        notice: "El perfil ha sido actualizado exitosamente"
+        alert: "Error al actualizar el perfil"
+
+    delete:
+      notice: "Actualizado"
+      alert: "Error al eliminar"
+
+      organization:
+        notice: "La organización ha sido eliminada exitosamente"
+        alert: "Error al eliminar la organización"
+      user:
+        notice: "El usuario ha sido eliminado exitosamente"
+        alert: "Error al eliminar el usuario"
+      profile:
+        notice: "El perfil ha sido eliminado exitosamente"
+        alert: "Error al eliminar el perfil"

@@ -1,7 +1,7 @@
-<h2 class='subtitle'><%= t("new.resource", name: resource_new.model_name.human) %></h2>
+<h2 class='subtitle'><%= t("new.resource", name: resource.model_name.human) %></h2>
 <div class='columns'>
   <div class='column is-four-fifths'>
-    <%=form_for(resource_new, url: resource_path(resource_new), as: resource_new, html: { method: :post }) do |form|%>
+    <%=form_for(resource, as: resource, html: { method: :post }) do |form|%>
       <% form_attributes.each do |attribute_name, attribute_type|%>
         <div class="field column">
           <label class="label"><%= t("new.attribute", attribute: attribute_name.to_s.humanize) %></label>
