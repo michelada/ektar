@@ -9,6 +9,7 @@ require_dependency "ektar/concerns/show"
 
 module Ektar
   class UsersController < ApplicationController
+    # before_action :verify_role, only: [:create, :destroy]
     include Index
     include New
     include Create
@@ -45,6 +46,11 @@ module Ektar
 
     def secure_params
       params.require(:user).permit(:email, :encrypted_password, :ektar_organization_id)
+    end
+
+    def verify_role
+      redirect_to root_path unless @user.is_admin?
+      true
     end
 
     helper_method :model_name, :list_attributes, :form_attributes, :attributes_options, :form_show_attributes, :route_prefix

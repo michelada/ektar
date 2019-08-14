@@ -51,23 +51,6 @@ module Ektar
     def redirect_with(object, options, &block)
       args = [object, options]
       set_flash options
-
-      case block.try(:arity)
-      when 2
-        respond_with(*args) do |responder|
-          dummy_responder = Ektar::DummyResponder.new
-
-          if get_resource.errors.empty?
-            block.call responder, dummy_responder
-          else
-            block.call dummy_responder, responder
-          end
-        end
-      when 1
-        respond_with(*args, &block)
-      else
-         redirect_to options[:location]
-      end
     end
 
     def set_flash(options = {})
@@ -115,7 +98,6 @@ module Ektar
     end
     helper_method :collection, :resource_new, :create_resource, :class_name, :resource_edit, :edit_resource_path, :resource_path, :new_resource_path
 
-    ######################################################### no tenemos #####################################################################
     def edit_resource_path(object)
       send route_prefix_to_method_name("edit","#{class_name.model_name.singular_route_key}_path"),
         object
