@@ -8,10 +8,11 @@ module Ektar
 
     included do
       def create(options = {}, &block)
-        object = get_resource || create_resource
-        options[:location] = collection_path if object.errors.empty?
+        object = @resource || create_resource
+        options[:location] = collection_path
+        options[:action] = :create
 
-        redirect_with(object, options, &block)
+        action_response_dual object, options, &block
       end
       alias_method :create!, :create
     end

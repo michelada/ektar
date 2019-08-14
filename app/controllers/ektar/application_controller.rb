@@ -9,8 +9,14 @@ module Ektar
       @collection ||= model_name.all
     end
 
-    def resource_new
-      @resource ||= model_name.new
+    def build_resource(options = {})
+      model_name.new options
+    end
+
+    def resource(find: false, options: {})
+      @resource ||= if find
+        class_name.find(params[:id])
+      end
     end
 
     def resource_edit
@@ -24,7 +30,7 @@ module Ektar
     def create_resource
       model_name.new(get_secure_params).tap do |model|
         model.save
-        set_resource_ivar model
+        @resource = model
       end
     end
 
@@ -50,6 +56,33 @@ module Ektar
 
     def collection_path
       send "#{class_name.model_name.route_key}_path"
+    end
+
+    def action_response_dual(object, options, &block)
+      invalid_resource = @resource&.errors&.any?
+
+      set_flash options.merge(
+        klass: class_name.model_name.element,
+        errors: invalid_resource
+      )
+
+      if invalid_resource
+        render :new
+      else
+        options[:location] = block.call if block_given?
+        redirect_to options[:location]
+      end
+
+      # case block.try(:arity)
+      # when 2
+      #   if @resource&.errors&.empty?
+      #     redirect_to options[:location]
+      #   else
+      #     render :new
+      #   end
+      # when 1
+
+      # end
     end
 
     def redirect_with(object, options, &block)
@@ -86,12 +119,12 @@ module Ektar
     end
 
     def set_flash(options = {})
-      if options.key?(:notice)
-        flash[:notice] = options[:notice]
-      elsif options.key?(:alert)
-        flash[:alert] = options[:alert]
-      end
+      result = options[:errors] ? :alert : :notice
+      default_key = "flash.#{options[:action]}.#{result}"
+      resource_key = "flash.#{options[:action]}.#{options[:klass]}.#{result}"
+
+      flash[result] = I18n.t(resource_key, default: I18n.t(default_key))
     end
-    helper_method :collection, :resource_new, :create_resource, :respond_with_dual, :class_name, :resource_edit
+    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :class_name, :resource_edit
   end
 end

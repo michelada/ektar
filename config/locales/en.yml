@@ -14,3 +14,12 @@ en:
     cancel: "Cancel"
     edit: "Edit"
     delete: "Eliminar"
+
+  flash:
+    create:
+      notice: "Ok"
+      alert: "No"
+
+      organization:
+        notice: "Org"
+        alert: "No Org"
