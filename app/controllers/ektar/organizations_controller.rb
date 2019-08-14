@@ -19,11 +19,6 @@ module Ektar
     include Destroy
     include Show
 
-    def create
-      create!
-      console
-    end
-
     private
 
     def model_name
