@@ -9,15 +9,14 @@ module Ektar
     include Index
     include Show
 
-    def create
-      create!
-      console
-    end
-
     private
 
     def model_name
       Organization
+    end
+    
+    def route_prefix
+      ''
     end
 
     def list_attributes

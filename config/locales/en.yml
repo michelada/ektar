@@ -17,9 +17,43 @@ en:
 
   flash:
     create:
-      notice: "Ok"
-      alert: "No"
+      notice: "Created"
+      alert: "Error in action create"
 
       organization:
-        notice: "Org"
-        alert: "No Org"
+        notice: "The organization has been created succesfully"
+        alert: "Error creating the organization"
+      user:
+        notice: "The user has been created succesfully"
+        alert: "Error creating the user"
+      profile:
+        notice: "The profile has been created succesfully"
+        alert: "Error creating the profile"
+
+    update:
+      notice: "Updated"
+      alert: "Error in action update"
+
+      organization:
+        notice: "The organization has been updated succesfully"
+        alert: "Error updating the organization"
+      user:
+        notice: "The user has been updated succesfully"
+        alert: "Error updating the user"
+      profile:
+        notice: "The profile has been updated succesfully"
+        alert: "Error updating the profile"
+
+    delete:
+      notice: "Deleted"
+      alert: "Error in action delete"
+
+      organization:
+        notice: "The organization has been deleted succesfully"
+        alert: "Error deleting the organization"
+      user:
+        notice: "The user has been deleted succesfully"
+        alert: "Error deleting the user"
+      profile:
+        notice: "The profile has been deleted succesfully"
+        alert: "Error deleting the profile"
