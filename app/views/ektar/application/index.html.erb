@@ -5,7 +5,9 @@
       <%= model_name.human_attribute_name(attribute) %>
     </th>
   <% end %>
-    <th class='has-text-right'>Actions</th>
+    <% unless session[:admin]%>
+      <th class='has-text-right'>Actions</th>
+    <% end %>
 </tr>
 
   <tr>
@@ -15,10 +17,12 @@
         <%= element[attribute] %>
       </td>
     <% end %>
+    <% unless session[:admin]%>
       <td class='has-text-right'>
-        <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
-        <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %></td>
+          <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
+          <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %></td>
       </td>
+    <% end %>
   </tr>
   <% end %>
 </table>
