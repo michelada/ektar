@@ -79,6 +79,7 @@ GEM
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
+    bindex (0.8.1)
     builder (3.2.3)
     byebug (11.0.1)
     concurrent-ruby (1.1.5)
@@ -168,6 +169,11 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
+    web-console (4.0.0)
+      actionview (>= 6.0.0.a)
+      activemodel (>= 6.0.0.a)
+      bindex (>= 0.4.0)
+      railties (>= 6.0.0.a)
     webpacker (4.0.7)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -187,6 +193,7 @@ DEPENDENCIES
   mini_magick
   pg
   standard
+  web-console
   webpacker
 
 BUNDLED WITH
