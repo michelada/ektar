@@ -5,6 +5,16 @@ module Ektar
     protect_from_forgery with: :exception
     layout "ektar/application"
 
+    class ResourceResponse
+      def response(&block)
+        @block = block
+      end
+
+      def code
+        @block
+      end
+    end
+
     def collection
       @collection ||= model_name.all
     end
@@ -66,11 +76,36 @@ module Ektar
         errors: invalid_resource
       )
 
-      if invalid_resource
-        render :new
+      case block.try(:arity)
+      when 2
+        success = ResourceResponse.new
+        failure = ResourceResponse.new
+        block.call success, failure
+
+        if invalid_resource
+          failure.code.call
+        else
+          success.code.call
+        end
+
+      when 1
+        success = ResourceResponse.new
+        block.call success
+
+        if invalid_resource
+          render object.persisted? ? :edit : :new
+        elsif success.code.present?
+          success.code.call
+        else
+          redirect_to options[:location]
+        end
+
       else
-        options[:location] = block.call if block_given?
-        redirect_to options[:location]
+        if invalid_resource
+          render object.persisted? ? :edit : :new
+        else
+          redirect_to options[:location]
+        end
       end
     end
 
