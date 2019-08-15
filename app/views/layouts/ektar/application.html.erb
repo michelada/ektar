@@ -10,16 +10,13 @@
 
   </head>
   <body>
-
     <% if flash.alert.present? || flash.notice.present? %>
-      <article class="message <%= flash.alert.present? ? 'is-danger' : 'is-primary' %>">
-        <div class="message-header">
-          <p><%= flash.alert || flash.notice %></p>
-          <button class="delete" aria-label="delete"></button>
-        </div>
-      </article>
+      <div class="notification <%= flash.alert.present? ? 'is-danger' : 'is-primary' %>">
+        <button class="delete"></button>
+        <p><%= flash.alert || flash.notice %></p>
+      </div>
     <% end %>
-
+ 
     <div class="container">
       <%= yield %>
     </div>
