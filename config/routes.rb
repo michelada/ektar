@@ -2,8 +2,9 @@ Ektar::Engine.routes.draw do
   root to: "organizations#index"
 
   namespace :admin do
-    resources :organizations
-    resources :users
+    resources :organizations do
+      resources :users
+    end
   end
 
   resources :organizations do

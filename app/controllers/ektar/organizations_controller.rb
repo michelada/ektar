@@ -1,22 +1,16 @@
 # frozen_string_literal: true
 
-# require_dependency "ektar/application_controller"
-require_dependency "ektar/concerns/index"
+require_dependency "ektar/application_controller"
 require_dependency "ektar/concerns/show"
 
 module Ektar
   class OrganizationsController < ApplicationController
-    include Index
     include Show
 
     private
 
     def model_name
       Organization
-    end
-    
-    def route_prefix
-      ''
     end
 
     def list_attributes
