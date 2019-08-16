@@ -1,5 +1,5 @@
-<h2><%= t("edit.resource", name: resource_edit.model_name.human) %></h2>
-<%= form_for(resource_edit, url: resource_path(resource_edit), as: resource_edit, html: { method: :put }) do |form| %>
+<h2><%= t("edit.resource", name: resource.model_name.human) %></h2>
+<%= form_for(resource, as: resource, html: { method: :put }) do |form| %>
   <% form_attributes.each do |attribute_name, attribute_type|%>
     <div class="field">
       <label class="label"><%= t("new.attribute", attribute: attribute_name.to_s.humanize) %></label>

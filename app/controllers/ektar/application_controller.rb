@@ -29,7 +29,7 @@ module Ektar
       end
     end
 
-    def resource_edit
+    def resource_show
       get_resource || find_resource
     end
 
@@ -157,6 +157,6 @@ module Ektar
 
       flash[result] = I18n.t(resource_key, default: I18n.t(default_key))
     end
-    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :class_name, :resource_edit
+    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :class_name, :resource_show
   end
 end

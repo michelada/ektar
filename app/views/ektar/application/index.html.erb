@@ -20,7 +20,7 @@
     <% if session[:admin]%>
       <td class='has-text-right'>
         <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %>
-        <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %></td>
+        <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %>
       </td>
     <% end %>
   </tr>

@@ -8,8 +8,8 @@ module Ektar
 
     included do
       def edit(options = {}, &block)
-        resource_edit
-        yield resource_edit if block_given?
+        @resource ||= resource(find: true)
+        yield @resource if block_given?
       end
       alias_method :edit!, :edit
     end

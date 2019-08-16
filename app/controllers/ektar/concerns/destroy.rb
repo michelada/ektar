@@ -8,12 +8,12 @@ module Ektar
 
     included do
       def destroy(options = {}, &block)
-        object = get_resource || find_resource
-
+        object = @resource ||= resource(find: true)
         object.destroy
         options[:location] = collection_path
+        options[:action] = :delete
 
-        redirect_with(object, options, &block)
+        action_response_dual object, options, &block
       end
       alias_method :destroy!, :destroy
     end
