@@ -52,7 +52,7 @@ es:
         notice: "El perfil ha sido actualizado exitosamente"
         alert: "Error al actualizar el perfil"
 
-    delete:
+    destroy:
       notice: "Actualizado"
       alert: "Error al eliminar"
 

@@ -11,7 +11,7 @@ module Ektar
         object = @resource ||= resource(find: true)
         object.destroy
         options[:location] = collection_path
-        options[:action] = :delete
+        options[:action] = :destroy
 
         action_response_dual object, options, &block
       end
