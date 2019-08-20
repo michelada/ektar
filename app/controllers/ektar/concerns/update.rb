@@ -8,11 +8,12 @@ module Ektar
 
     included do
       def update(options = {}, &block)
-        object = get_resource || find_and_update_resource
+        object = get_resource ||= find_and_update_resource
 
         options[:location] = collection_path if object.errors.empty?
+        options[:action] = :update
 
-        redirect_with(object, options, &block)
+        action_response_dual object, options, &block
       end
       alias_method :update!, :update
     end

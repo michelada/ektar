@@ -10,14 +10,9 @@
 
   </head>
   <body>
-    <% if flash.alert.present? || flash.notice.present? %>
-      <div class="notification <%= flash.alert.present? ? 'is-danger' : 'is-primary' %>">
-        <button class="delete"></button>
-        <p><%= flash.alert || flash.notice %></p>
-      </div>
-    <% end %>
- 
     <div class="container">
+    <%= render "navbar" %>
+    <%= render "flash_notification" %>
       <%= yield %>
     </div>
 

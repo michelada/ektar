@@ -1,4 +1,12 @@
 en:
+  activerecord:
+    models:
+      organization:
+        one: Organization
+        others: Organizations
+  navbar:
+    add_org: Agregar organizacion
+    add_user: Agregar usuario
   new:
     resource: "%{name}"
     attribute: "%{attribute}"
@@ -18,17 +26,17 @@ en:
   flash:
     create:
       notice: "Created"
-      alert: "Error in action create"
+      alert: "Error on create"
 
-      organization:
-        notice: "The organization has been created succesfully"
-        alert: "Error creating the organization"
-      user:
-        notice: "The user has been created succesfully"
-        alert: "Error creating the user"
-      profile:
-        notice: "The profile has been created succesfully"
-        alert: "Error creating the profile"
+    organization:
+      notice: "The organization has been created succesfully"
+      alert: "Error creating the organization"
+    user:
+      notice: "The user has been created succesfully"
+      alert: "Error creating the user"
+    profile:
+      notice: "The profile has been created succesfully"
+      alert: "Error creating the profile"
 
     update:
       notice: "Updated"

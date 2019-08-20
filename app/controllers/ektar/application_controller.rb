@@ -73,7 +73,8 @@ module Ektar
 
       set_flash options.merge(
         klass: class_name.model_name.element,
-        errors: invalid_resource
+        errors: invalid_resource,
+        action: action_name
       )
 
       case block.try(:arity)
@@ -114,14 +115,6 @@ module Ektar
       set_flash options
     end
 
-    def set_flash(options = {})
-      if options.key?(:notice)
-        flash[:notice] = options[:notice]
-      elsif options.key?(:alert)
-        flash[:alert] = options[:alert]
-      end
-    end
-
     def get_secure_params
       params_method = "#{action_name}_secure_params".to_sym
 
@@ -157,6 +150,6 @@ module Ektar
 
       flash[result] = I18n.t(resource_key, default: I18n.t(default_key))
     end
-    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :class_name, :resource_show
+    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :class_name, :resource_show, :find_and_update_resource
   end
 end

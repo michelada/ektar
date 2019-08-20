@@ -1,5 +1,16 @@
 es:
+  activerecord:
+    models:
+      organization:
+        one: Organizacion
+        others: Organizaciones 
+  navbar:
+    add_org: Agregar organizacion
+    add_user: Agregar usuario
   new:
+    resource: "%{name}"
+    attribute: "%{attribute}"
+  edit:
     resource: "%{name}"
     attribute: "%{attribute}"
   forms:
@@ -18,7 +29,7 @@ es:
       alert: "Error al crear"
 
       organization:
-        notice: "La organización ha sido registrada exitosamente"
+        notice: "La organización se ha sido registrado exitosamente"
         alert: "Error al registrar la organización"
       user:
         notice: "El usuario ha sido registrado exitosamente"
