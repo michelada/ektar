@@ -12,19 +12,19 @@
         <% end %>
     </tr>
   </thead>
-  <tr>
-    <% collection.each do |element| %> 
-    <% list_attributes.each do |attribute| %>
-      <td>
-        <%= element[attribute] %>
-      </td>
-    <% end %>
-    <% unless session[:admin] %>
-      <td class='has-text-right'>
-        <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
-        <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %>
-      </td>
-    <% end %>
-  </tr>
+  <% collection.each do |element| %> 
+    <tr>
+      <% list_attributes.each do |attribute| %>
+        <td>
+          <%= element[attribute] %>
+        </td>
+      <% end %>
+      <% unless session[:admin] %>
+        <td class='has-text-right'>
+          <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
+          <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %>
+        </td>
+      <% end %>
+    </tr>
   <% end %>
 </table>
