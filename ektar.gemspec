@@ -7,8 +7,8 @@ require "ektar/version"
 Gem::Specification.new do |spec|
   spec.name        = "ektar"
   spec.version     = Ektar::VERSION
-  spec.authors     = ["Mario Alberto Chávez"]
-  spec.email       = ["mario@michelada.io"]
+  spec.authors     = ["Mario Alberto Chávez", "Galilea Lopez", "Nataly Silva"]
+  spec.email       = ["mario@michelada.io", "galilea.lopez@michelada.io", "nataly.silva@michelada.io"]
   spec.homepage    = "https://michelada.io"
   spec.summary     = "Summary of Ektar."
   spec.description = "Description of Ektar."
@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.0.rc2"
   spec.add_dependency "webpacker", "~> 4.0"
+  spec.add_development_dependency "standard"
 
   spec.add_development_dependency "pg"
 end

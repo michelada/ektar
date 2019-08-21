@@ -1,3 +1,9 @@
 Ektar::Engine.routes.draw do
-  resources :organizations, only: [:index, :new]
+  root to: "organizations#index"
+
+  resources :organizations do
+    resources :users do
+      resource :profiles
+    end
+  end
 end

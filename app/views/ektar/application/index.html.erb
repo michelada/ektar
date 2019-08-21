@@ -1,17 +1,30 @@
-<div class="columns">
-  <% list_attributes.each do |attribute| %>
-    <div class="column">
-      <%= model_name.human_attribute_name(attribute) %>
-    </div>
+<h2 class="title is-3"><%= t('activerecord.models.organization.others')%><h2>
+<table class="table is-fullwidth is-hoverable">
+  <thead>
+    <tr>
+      <% list_attributes.each do |attribute| %>
+        <th>
+          <%= model_name.human_attribute_name(attribute) %>
+        </th>
+      <% end %>
+        <% unless session[:admin]%>
+          <th class='has-text-right'>Actions</th>
+        <% end %>
+    </tr>
+  </thead>
+  <% collection.each do |element| %> 
+    <tr>
+      <% list_attributes.each do |attribute| %>
+        <td>
+          <%= element[attribute] %>
+        </td>
+      <% end %>
+      <% unless session[:admin] %>
+        <td class='has-text-right'>
+          <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
+          <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %>
+        </td>
+      <% end %>
+    </tr>
   <% end %>
-</div>
-
-<div class="columns">
-  <% collection.each do |element| %>
-    <% list_attributes.each do |attribute| %>
-      <div class="column">
-        <%= element[attribute] %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+</table>

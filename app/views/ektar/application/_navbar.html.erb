@@ -1,0 +1,17 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="">
+      <%= link_to image_tag('ektar.svg', heigth: 25, width: 128), {action: 'index', controller: 'organizations'} %>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-end">
+    <div class="navbar-start">
+      <%= link_to I18n.t('navbar.add_org'), new_organization_path(resource), class: 'navbar-item' %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,7 @@
+<figure class="image is-128x128">
+  <% if resource_edit.image_profile.attached?%>
+    <%= image_tag main_app.url_for(resource_edit.image_profile) %>
+  <% else%>
+    <%= image_tag "user.png" %>
+  <% end %>
+</figure>

@@ -1,0 +1,14 @@
+<h2 class='title is-4'><%= t("edit.resource", name: resource.model_name.human) %></h2>
+<div class='columns'>
+  <div class='column is-5'>
+    <%= form_for(resource, as: resource, html: { method: :put }) do |form| %>
+      <% form_attributes.each do |attribute_name, attribute_type|%>
+        <div class="field">
+          <label class="label"><%= t("new.attribute", attribute: attribute_name.to_s.humanize) %></label>
+          <%= render partial: "#{attribute_type}", locals: { attribute_name: attribute_name, form: form, disable: false} %>
+        </div>
+      <% end %>
+      <%= render partial: 'submit', locals: {form: form} %>
+    <% end %>
+  </div>
+</div>
