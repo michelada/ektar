@@ -25,14 +25,14 @@ module Ektar
 
     def authenticate_superadmin!
       session[:super_admin] = authenticate_or_request_with_http_basic("Restricted Access") { |username, password|
-        username == "superadmin" && password == "superadmin123"
+        username == Ektar.configuration.organization_username && password == Ektar.configuration.organization_password
       }
 
       return render status: :not_authorized unless super_admin?
     end
 
     def super_admin?
-      session[:super_admin]
+      @super_admin ||= session[:super_admin].present?
     end
 
     def model_name
@@ -40,7 +40,7 @@ module Ektar
     end
 
     def list_attributes
-      %w[id name enable]
+      %w[id name enable updated_at]
     end
 
     def form_attributes

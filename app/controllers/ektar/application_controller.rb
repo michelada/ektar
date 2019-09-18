@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
+require "pagy"
+
 module Ektar
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     layout "ektar/application"
+    include Pagy::Backend
 
     class ResourceResponse
       def response(&block)
@@ -16,8 +19,13 @@ module Ektar
     end
 
     def collection
-      @collection ||= model_name.all
+      @collection ||= begin
+                        @pagination, collection = pagy(model_name.order(updated_at: :desc))
+                        collection
+                      end
     end
+
+    attr_reader :pagination
 
     def build_resource(options = {})
       model_name.new options

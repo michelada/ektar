@@ -1,17 +1,31 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="">
-      <%= link_to image_tag('ektar.svg', heigth: 25, width: 128), {action: 'index', controller: 'organizations'} %>
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+        <img src="<%= asset_pack_path('media/images/ektar.svg') %>" heigth="25" width="128" />
+      <% end %>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
 
-  <div id="navbarBasicExample" class="navbar-end">
-    <div class="navbar-start">
-      <%= link_to I18n.t('navbar.add_org'), new_organization_path(resource), class: 'navbar-item' %>
+    <div id="navbarMain">
+      <% if super_admin? %>
+        <div class="navbar-item">
+          <%= link_to model_human_name(:organization), organizations_path, class: "navbar-item" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="navbar-end">
+      <% if super_admin? %>
+        <div class="navbar-item">
+          <span>Administrador</span>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>

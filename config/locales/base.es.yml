@@ -1,0 +1,86 @@
+es:
+  attributes:
+    id: "Id"
+    name: "Nombre"
+    enable: "Activo"
+    updated_at: "Modificado el"
+
+  activerecord:
+    models:
+      ektar/organization:
+        one: Organización
+        other: Organizaciones
+
+    attributes:
+      ektar/organization:
+
+  new_resource: "Nuevo(a) %{resource_name}"
+
+  table:
+    actions: "Acciones"
+    edit: "Modificar"
+    delete: "Eliminar"
+    true: "Sí"
+    false: "No"
+
+  navbar:
+    add_org: Agregar organizacion
+    add_user: Agregar usuario
+  new:
+    resource: "%{name}"
+    attribute: "%{attribute}"
+  edit:
+    resource: "%{name}"
+    attribute: "%{attribute}"
+  forms:
+    choose_file: "Carga un archivo"
+    options_checkbox: "%{option}"
+    dropdown_select: "Selecciona %{name_option}"
+    dropdown_options: "%{option}"
+    submit: "Guardar"
+    cancel: "Cancelar"
+    edit: "Editar"
+    delete: "Eliminar"
+
+  flash:
+    create:
+      notice: "Creado"
+      alert: "Error al crear"
+
+      organization:
+        notice: "La organización se ha sido registrado exitosamente"
+        alert: "Error al registrar la organización"
+      user:
+        notice: "El usuario ha sido registrado exitosamente"
+        alert: "Error al registrar el usuario"
+      profile:
+        notice: "El perfil ha sido registrado exitosamente"
+        alert: "Error al registrar el perfil"
+
+    update:
+      notice: "Actualizado"
+      alert: "Error al actualizar"
+
+      organization:
+        notice: "La organización ha sido actualizada exitosamente"
+        alert: "Error al actualizar la organización"
+      user:
+        notice: "El usuario ha sido actualizado exitosamente"
+        alert: "Error al actualizar el usuario"
+      profile:
+        notice: "El perfil ha sido actualizado exitosamente"
+        alert: "Error al actualizar el perfil"
+
+    destroy:
+      notice: "Actualizado"
+      alert: "Error al eliminar"
+
+      organization:
+        notice: "La organización ha sido eliminada exitosamente"
+        alert: "Error al eliminar la organización"
+      user:
+        notice: "El usuario ha sido eliminado exitosamente"
+        alert: "Error al eliminar el usuario"
+      profile:
+        notice: "El perfil ha sido eliminado exitosamente"
+        alert: "Error al eliminar el perfil"

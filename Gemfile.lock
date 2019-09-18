@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     ektar (0.1.2)
-      rails (~> 6.0.0.rc2)
-      webpacker (~> 4.0)
+      pagy (~> 3.5.1)
+      rails (~> 6.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -107,6 +107,7 @@ GEM
     nio4r (2.5.1)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    pagy (3.5.1)
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)

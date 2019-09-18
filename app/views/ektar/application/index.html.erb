@@ -1,4 +1,19 @@
-<h2 class="title is-3"><%= t('activerecord.models.organization.others')%><h2>
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2 class="title is-4"><%= model_human_name(model_name) %><h2>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <div class="level-item">
+      <% if super_admin? %>
+        <%= link_to t("new_resource", resource_name: model_human_name(model_name, plural: false)), new_organization_path(resource), class: "button is-primary" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
 <table class="table is-fullwidth is-hoverable">
   <thead>
     <tr>
@@ -7,24 +22,30 @@
           <%= model_name.human_attribute_name(attribute) %>
         </th>
       <% end %>
-        <% unless session[:admin]%>
-          <th class='has-text-right'>Actions</th>
-        <% end %>
+
+      <% if super_admin? %>
+        <th class='has-text-right'><%= t("table.actions") %></th>
+      <% end %>
     </tr>
   </thead>
-  <% collection.each do |element| %> 
+
+  <% collection.each do |element| %>
     <tr>
-      <% list_attributes.each do |attribute| %>
+      <% list_attributes.each_with_index do |attribute, index| %>
         <td>
-          <%= element[attribute] %>
+          <% if index == 1 %>
+            <%= link_to attribute_value(element[attribute]), resource_show_path(element) %>
+          <% else %>
+            <%= attribute_value(element[attribute]) %>
+          <% end %>
         </td>
       <% end %>
-      <% unless session[:admin] %>
-        <td class='has-text-right'>
-          <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
-          <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %>
-        </td>
+
+      <% if super_admin? %>
+        <%= render partial: "actions", locals: { resource: element } %>
       <% end %>
     </tr>
   <% end %>
 </table>
+
+<%= pagy_nav(@pagination).html_safe if @pagination.present? %>
