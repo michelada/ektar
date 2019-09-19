@@ -1,14 +1,14 @@
 <nav class="level">
   <div class="level-left">
     <div class="level-item">
-      <h2 class="title is-4"><%= model_human_name(model_name) %><h2>
+      <h2 class="title is-4"><%= model_human_name(resource_class) %><h2>
     </div>
   </div>
 
   <div class="level-right">
     <div class="level-item">
       <% if super_admin? %>
-        <%= link_to t("new_resource", resource_name: model_human_name(model_name, plural: false)), new_organization_path(resource), class: "button is-primary" %>
+        <%= link_to t("new_resource", resource_name: model_human_name(resource_class, plural: false)), new_resource_path, class: "button is-primary" %>
       <% end %>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <tr>
       <% list_attributes.each do |attribute| %>
         <th>
-          <%= model_name.human_attribute_name(attribute) %>
+          <%= resource_class.human_attribute_name(attribute) %>
         </th>
       <% end %>
 
@@ -29,23 +29,7 @@
     </tr>
   </thead>
 
-  <% collection.each do |element| %>
-    <tr>
-      <% list_attributes.each_with_index do |attribute, index| %>
-        <td>
-          <% if index == 1 %>
-            <%= link_to attribute_value(element[attribute]), resource_show_path(element) %>
-          <% else %>
-            <%= attribute_value(element[attribute]) %>
-          <% end %>
-        </td>
-      <% end %>
-
-      <% if super_admin? %>
-        <%= render partial: "actions", locals: { resource: element } %>
-      <% end %>
-    </tr>
-  <% end %>
+  <%= render partial: "resource", collection: collection, as: :resource %>
 </table>
 
 <%= pagy_nav(@pagination).html_safe if @pagination.present? %>

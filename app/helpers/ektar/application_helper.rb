@@ -22,13 +22,7 @@ module Ektar
     end
 
     def model_human_name(model, plural: true)
-      model_class = case model
-                    when :organization then Ektar::Organization
-                    else model
-      end
-
-      return model_class.model_name.human(count: plural ? 2 : 1) if model_class.present?
-      model
+      model.model_name.human(count: plural ? 2 : 1)
     end
 
     def attribute_value(value)
@@ -44,14 +38,32 @@ module Ektar
       end
     end
 
-    def resource_edit_path(resource)
+    def input_attributes(field_name)
+      key = resource_class.model_name.i18n_key
+      {
+        placeholder: t("placeholders.#{key}.#{field_name}", default: ""),
+        maxlength: t("maxlength.#{key}.#{field_name}", default: t("maxlength.size")),
+      }
+    end
+
+    def new_resource_path
+      path = "new_#{resource_class.model_name.singular_route_key}_path"
+      send(path)
+    end
+
+    def edit_resource_path(resource)
       path = "edit_#{resource.model_name.singular_route_key}_path"
       send(path, resource)
     end
 
-    def resource_show_path(resource)
+    def resource_path(resource)
       path = "#{resource.model_name.singular_route_key}_path"
       send(path, resource)
+    end
+
+    def delete_confirmation(resource)
+      name = resource.model_name.i18n_key
+      t("table.confirmation.#{name}.delete", default: t("table.confirmation.delete"))
     end
   end
 end

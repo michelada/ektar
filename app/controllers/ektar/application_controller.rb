@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "pagy"
+require "pagy/extras/i18n"
 
 module Ektar
   class ApplicationController < ActionController::Base
@@ -20,21 +21,15 @@ module Ektar
 
     def collection
       @collection ||= begin
-                        @pagination, collection = pagy(model_name.order(updated_at: :desc))
+                        @pagination, collection = pagy(resource_class.order(updated_at: :desc))
                         collection
                       end
     end
 
-    attr_reader :pagination
+    attr_reader :pagination, :resource
 
     def build_resource(options = {})
-      model_name.new options
-    end
-
-    def resource(find: false, options: {})
-      @resource ||= if find
-        class_name.find(params[:id])
-      end
+      resource_class.new options
     end
 
     def resource_show
@@ -42,11 +37,11 @@ module Ektar
     end
 
     def resource_ivar
-      "@#{class_name.model_name.singular}"
+      "@#{resource_class.model_name.singular}"
     end
 
     def create_resource
-      model_name.new(get_secure_params).tap do |model|
+      resource_class.new(get_secure_params).tap do |model|
         model.save
         @resource = model
       end
@@ -61,11 +56,15 @@ module Ektar
     end
 
     def find_resource
-      set_resource_ivar class_name.find(params[:id])
+      @resource ||= begin
+                      object = resource_class.find(params[:id])
+                      set_resource_ivar object
+                      object
+                    end
     end
 
     def find_and_update_resource
-      model = class_name.find(params[:id])
+      model = resource_class.find(params[:id])
       model.tap do |m|
         m.update get_secure_params
         set_resource_ivar m
@@ -73,14 +72,14 @@ module Ektar
     end
 
     def collection_path
-      send "#{class_name.model_name.route_key}_path"
+      send "#{resource_class.model_name.route_key}_path"
     end
 
     def action_response_dual(object, options, &block)
       invalid_resource = @resource&.errors&.any?
 
       set_flash options.merge(
-        klass: class_name.model_name.element,
+        klass: resource_class.model_name.element,
         errors: invalid_resource,
         action: action_name
       )
@@ -138,8 +137,8 @@ module Ektar
       filterd_params
     end
 
-    def class_name
-      if model_name.to_s.include? "_"
+    def resource_class
+      @resource_class ||= if model_name.to_s.include? "_"
         ns, *klass = model_name.to_s.split("_").collect(&:camelize)
         begin
           "#{ns}::#{klass.join("")}".constantize
@@ -152,12 +151,12 @@ module Ektar
     end
 
     def set_flash(options = {})
-      result = options[:errors] ? :alert : :notice
+      result = options[:errors].present? ? :alert : :notice
       default_key = "flash.#{options[:action]}.#{result}"
       resource_key = "flash.#{options[:action]}.#{options[:klass]}.#{result}"
 
       flash[result] = I18n.t(resource_key, default: I18n.t(default_key))
     end
-    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :class_name, :resource_show, :find_and_update_resource
+    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :resource_class, :resource_show, :find_and_update_resource
   end
 end

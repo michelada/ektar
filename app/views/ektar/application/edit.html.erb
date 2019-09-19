@@ -1,4 +1,4 @@
-<h2 class='title is-4'><%= t("edit.resource", name: resource.model_name.human) %></h2>
+<h2 class='title is-4'><%= t("edit.resource", name: resource.resource_class.human) %></h2>
 <div class='columns'>
   <div class='column is-5'>
     <%= form_for(resource, as: resource, html: { method: :put }) do |form| %>

@@ -20,7 +20,7 @@ module Ektar
 
     private
 
-    def model_name
+    def resource_class
       User
     end
 
@@ -53,6 +53,6 @@ module Ektar
       true
     end
 
-    helper_method :model_name, :list_attributes, :form_attributes, :attributes_options, :form_show_attributes, :route_prefix
+    helper_method :resource_class, :list_attributes, :form_attributes, :attributes_options, :form_show_attributes, :route_prefix
   end
 end

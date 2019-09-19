@@ -1,25 +1,29 @@
 # frozen_string_literal: true
 
-require_dependency "ektar/application_controller"
-require_dependency "ektar/concerns/show"
-require_dependency "ektar/concerns/new"
-require_dependency "ektar/concerns/index"
-require_dependency "ektar/concerns/create"
-require_dependency "ektar/concerns/edit"
-require_dependency "ektar/concerns/update"
-require_dependency "ektar/concerns/destroy"
+require_dependency "ektar/concerns/resourceful"
 
 module Ektar
   class OrganizationsController < ApplicationController
-    include New
-    include Index
-    include Show
-    include Create
-    include Edit
-    include Update
-    include Destroy
+    include Resourceful
+
+    resourceful :ektar_organization,
+      :index, :new, :create, :edit, :update, :show
 
     before_action :authenticate_superadmin!, except: :show
+
+    def destroy
+      object = find_resource
+      object.enable = false
+
+      object.save
+      set_flash(errors: object.errors, klass: resource_class.model_name.element, action: action_name)
+
+      redirect_to collection_path
+    end
+
+    def allow_delete?(resource)
+      resource.enable
+    end
 
     private
 
@@ -35,12 +39,8 @@ module Ektar
       @super_admin ||= session[:super_admin].present?
     end
 
-    def model_name
-      Organization
-    end
-
     def list_attributes
-      %w[id name enable updated_at]
+      %i[id name enable updated_at]
     end
 
     def form_attributes
@@ -55,6 +55,6 @@ module Ektar
       params.require(:organization).permit(:name, :enable)
     end
 
-    helper_method :model_name, :list_attributes, :form_attributes, :form_show_attributes, :super_admin?
+    helper_method :resource_class, :list_attributes, :form_attributes, :form_show_attributes, :super_admin?
   end
 end

@@ -14,6 +14,15 @@ es:
     attributes:
       ektar/organization:
 
+  placeholders:
+    ektar/organization:
+      name: "Nombre de la empresa u organización"
+
+  maxlength:
+    size: 25
+    ektar/organization:
+      name: 40
+
   new_resource: "Nuevo(a) %{resource_name}"
 
   table:
@@ -22,6 +31,10 @@ es:
     delete: "Eliminar"
     true: "Sí"
     false: "No"
+    confirmation:
+      ektar/organization:
+        delete: "Está seguro de querer desactivar la organización?"
+      delete: "Está seguro de eliminar el registro?"
 
   navbar:
     add_org: Agregar organizacion

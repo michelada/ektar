@@ -1,6 +1,6 @@
 <div class="control">
   <label class="checkbox">
-    <%= form.check_box "#{attribute_name}".to_sym, class:'checkbox', disabled: disable %>
-    <%= t("forms.options_checkbox", option: attribute_name) %>
+    <%= form.check_box attribute_name, class: "checkbox" %>
+    <%= resource_class.human_attribute_name(attribute_name) %>
   </label>
 </div>

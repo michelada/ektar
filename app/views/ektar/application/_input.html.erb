@@ -1,3 +1,4 @@
+<label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
 <div class="control">
-  <%= form.text_field "#{attribute_name}".to_sym, class: 'input', disabled: disable %>
+  <%= form.text_field attribute_name, class: "input", **input_attributes(attribute_name) %>
 </div>

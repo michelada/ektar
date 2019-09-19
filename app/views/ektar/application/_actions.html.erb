@@ -1,4 +1,7 @@
 <td class="has-text-right">
-  <%= link_to t('table.edit'), resource_edit_path(resource), class: 'button is-info' %>
-  <%= link_to t('table.delete'), "/", class: 'button is-danger' %>
+  <%= link_to t("table.edit"), edit_resource_path(resource), class: "button is-info" %>
+  <% if allow_delete?(resource) %>
+    <%= link_to t("table.delete"), resource_path(resource), class: "button is-danger",
+      method: :delete, data: { confirm: delete_confirmation(resource) } %>
+  <% end %>
 </td>
