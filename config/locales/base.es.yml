@@ -36,6 +36,10 @@ es:
         delete: "Está seguro de querer desactivar la organización?"
       delete: "Está seguro de eliminar el registro?"
 
+  form:
+    back: "Regresar"
+    submit: "Guardar"
+
   navbar:
     add_org: Agregar organizacion
     add_user: Agregar usuario

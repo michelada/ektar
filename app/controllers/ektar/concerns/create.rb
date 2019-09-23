@@ -8,11 +8,13 @@ module Ektar
 
     included do
       def create(options = {}, &block)
-        object = @resource || create_resource
+        @resource ||= create_resource
+        set_resource_ivar @resource
+
         options[:location] = collection_path
         options[:action] = :create
 
-        action_response_dual object, options, &block
+        action_response_dual resource, options, &block
       end
       alias_method :create!, :create
     end

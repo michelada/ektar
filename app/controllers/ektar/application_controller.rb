@@ -41,10 +41,7 @@ module Ektar
     end
 
     def create_resource
-      resource_class.new(get_secure_params).tap do |model|
-        model.save
-        @resource = model
-      end
+      resource_class.new(get_secure_params) { |r| r.save }
     end
 
     def get_resource
@@ -71,17 +68,12 @@ module Ektar
       end
     end
 
-    def collection_path
-      send "#{resource_class.model_name.route_key}_path"
-    end
-
     def action_response_dual(object, options, &block)
-      invalid_resource = @resource&.errors&.any?
+      invalid_resource = object&.errors&.any?
 
       set_flash options.merge(
         klass: resource_class.model_name.element,
-        errors: invalid_resource,
-        action: action_name
+        errors: invalid_resource
       )
 
       case block.try(:arity)
@@ -155,7 +147,13 @@ module Ektar
       default_key = "flash.#{options[:action]}.#{result}"
       resource_key = "flash.#{options[:action]}.#{options[:klass]}.#{result}"
 
-      flash[result] = I18n.t(resource_key, default: I18n.t(default_key))
+      flash_message = I18n.t(resource_key, default: I18n.t(default_key))
+      byebug
+      if options[:action] == :create
+        flash.now[result] = flash_message
+      else
+        flash[result] = flash_message
+      end
     end
     helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :resource_class, :resource_show, :find_and_update_resource
   end

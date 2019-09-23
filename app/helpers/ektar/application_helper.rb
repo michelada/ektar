@@ -61,6 +61,10 @@ module Ektar
       send(path, resource)
     end
 
+    def collection_path(resource)
+      send "#{resource.model_name.route_key}_path"
+    end
+
     def delete_confirmation(resource)
       name = resource.model_name.i18n_key
       t("table.confirmation.#{name}.delete", default: t("table.confirmation.delete"))

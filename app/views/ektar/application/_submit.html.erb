@@ -1,3 +1,8 @@
-<div class="control">
-  <%= form.submit t('forms.submit'), class: 'button is-link button-hover-color' %>
+<div class="field is-grouped">
+  <div class="control">
+    <%= form.submit t("form.submit"), class: "button is-link" %>
+  </div>
+  <div class="control">
+    <%= link_to t("form.back"), collection_path, class: "button is-text" %>
+  </div>
 </div>

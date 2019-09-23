@@ -24,3 +24,18 @@ document.addEventListener(
   'turbolinks:render',
   () => Flash.setup(),
 );
+
+document.addEventListener(
+  'turbolinks:before-cache',
+  () => {}
+);
+
+document.addEventListener(
+  'ajax:before',
+  () => Turbolinks.clearCache(),
+);
+
+document.addEventListener(
+  '[data-remote]',
+  () => Turbolinks.clearCache(),
+);

@@ -22,7 +22,32 @@ module Ektar
         true
       end
 
-      helper_method :link_attribute, :allow_delete?
+      def new_resource_path
+        path = "new_#{resource_class.model_name.singular_route_key}_path"
+        send(path)
+      end
+
+      def edit_resource_path(resource)
+        path = "edit_#{resource.model_name.singular_route_key}_path"
+        send(path, resource)
+      end
+
+      def resource_path(resource)
+        path = "#{resource.model_name.singular_route_key}_path"
+        send(path, resource)
+      end
+
+      def collection_path
+        send "#{resource_class.model_name.route_key}_path"
+      end
+
+      def delete_confirmation(resource)
+        name = resource.model_name.i18n_key
+        t("table.confirmation.#{name}.delete", default: t("table.confirmation.delete"))
+      end
+
+      helper_method :link_attribute, :allow_delete?, :new_resource_path, :edit_resource_path,
+        :resource_path, :collection_path, :delete_confirmation
     end
 
     class_methods do
