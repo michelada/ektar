@@ -22,6 +22,24 @@ module Ektar
         true
       end
 
+      unless respond_to?(:list_attributes)
+        def list_attributes
+          resource.attribute_names.map(&:to_sym)
+        end
+      end
+
+      unless respond_to?(:form_attributes)
+        def form_attributes
+          Hash[(list_attributes - %i[id updated_at created_at]).map { |attr| [attr, :input] }]
+        end
+      end
+
+      unless respond_to?(:show_attributes)
+        def show_attributes
+          resource.attribute_names.map(&:to_sym)
+        end
+      end
+
       def new_resource_path
         path = "new_#{resource_class.model_name.singular_route_key}_path"
         send(path)
@@ -47,7 +65,8 @@ module Ektar
       end
 
       helper_method :link_attribute, :allow_delete?, :new_resource_path, :edit_resource_path,
-        :resource_path, :collection_path, :delete_confirmation
+        :resource_path, :collection_path, :delete_confirmation, :list_attributes, :form_attributes,
+        :show_attributes
     end
 
     class_methods do

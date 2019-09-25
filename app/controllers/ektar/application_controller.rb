@@ -7,7 +7,6 @@ module Ektar
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     layout "ektar/application"
-    include Pagy::Backend
 
     class ResourceResponse
       def response(&block)
@@ -19,29 +18,10 @@ module Ektar
       end
     end
 
-    def collection
-      @collection ||= begin
-                        @pagination, collection = pagy(resource_class.order(updated_at: :desc))
-                        collection
-                      end
-    end
-
-    attr_reader :pagination, :resource
-
-    def build_resource(options = {})
-      resource_class.new options
-    end
-
-    def resource_show
-      get_resource || find_resource
-    end
+    attr_reader :pagination, :resource, :collection
 
     def resource_ivar
       "@#{resource_class.model_name.singular}"
-    end
-
-    def create_resource
-      resource_class.new(get_secure_params) { |r| r.save }
     end
 
     def get_resource
@@ -50,22 +30,6 @@ module Ektar
 
     def set_resource_ivar(object)
       instance_variable_set resource_ivar, object
-    end
-
-    def find_resource
-      @resource ||= begin
-                      object = resource_class.find(params[:id])
-                      set_resource_ivar object
-                      object
-                    end
-    end
-
-    def find_and_update_resource
-      model = resource_class.find(params[:id])
-      model.tap do |m|
-        m.update get_secure_params
-        set_resource_ivar m
-      end
     end
 
     def action_response_dual(object, options, &block)
@@ -114,19 +78,13 @@ module Ektar
       set_flash options
     end
 
-    def get_secure_params
+    def resource_secure_params
       params_method = "#{action_name}_secure_params".to_sym
 
-      filterd_params =
-        (send(params_method) if respond_to?(params_method, true)) ||
-        (send(:secure_params) if respond_to?(:secure_params, true))
+      filtered_params = (respond_to?(params_method, true) && send(params_method)) ||
+        (respond_to?(:secure_params, true) && send(:secure_params))
 
-      unless filterd_params
-        raise NotImplementedError,
-          "You need to define template methods for strong params"
-      end
-
-      filterd_params
+      filtered_params || params
     end
 
     def resource_class
@@ -148,13 +106,12 @@ module Ektar
       resource_key = "flash.#{options[:action]}.#{options[:klass]}.#{result}"
 
       flash_message = I18n.t(resource_key, default: I18n.t(default_key))
-      byebug
-      if options[:action] == :create
+      if result == :alert
         flash.now[result] = flash_message
       else
         flash[result] = flash_message
       end
     end
-    helper_method :action_response_dual, :collection, :build_resource, :resource, :create_resource, :respond_with_dual, :resource_class, :resource_show, :find_and_update_resource
+    helper_method :action_response_dual, :collection, :resource, :resource_class
   end
 end

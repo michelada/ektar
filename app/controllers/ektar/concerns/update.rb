@@ -8,12 +8,13 @@ module Ektar
 
     included do
       def update(options = {}, &block)
-        object = get_resource ||= find_and_update_resource
+        @resource ||= resource_class.find(params[:id]).tap { |r| r.update(resource_secure_params) }
+        set_resource_ivar @resource
 
-        options[:location] = collection_path if object.errors.empty?
+        options[:location] = collection_path
         options[:action] = :update
 
-        action_response_dual object, options, &block
+        action_response_dual resource, options, &block
       end
       alias_method :update!, :update
     end

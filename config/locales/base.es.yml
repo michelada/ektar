@@ -13,6 +13,7 @@ es:
 
     attributes:
       ektar/organization:
+        enable: "Activa"
 
   placeholders:
     ektar/organization:
@@ -23,14 +24,24 @@ es:
     ektar/organization:
       name: 40
 
-  new_resource: "Nuevo(a) %{resource_name}"
-
   table:
-    actions: "Acciones"
-    edit: "Modificar"
+    actions:
+      name: "Acciones"
+      edit: "Modificar"
+      delete: "Eliminar"
+      ektar/organization:
+        delete: "Desactivar"
+    edit:
+      name: "Modificar %{resource_name}"
+      ektar/organization: "Modificar organización"
     delete: "Eliminar"
     true: "Sí"
     false: "No"
+    new:
+      name: "Nuevo(a) %{resource_name}"
+      ektar/organization: "Nueva organización"
+    show:
+      name: "%{resource_name}"
     confirmation:
       ektar/organization:
         delete: "Está seguro de querer desactivar la organización?"

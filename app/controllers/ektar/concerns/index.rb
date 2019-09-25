@@ -7,8 +7,13 @@ module Ektar
     extend ActiveSupport::Concern
 
     included do
+      include Pagy::Backend
+
       def index(options = {}, &block)
-        collection
+        @collection ||= begin
+                          @pagination, collection = pagy(resource_class.order(updated_at: :desc))
+                          collection
+                        end
       end
       alias_method :index!, :index
     end

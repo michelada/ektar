@@ -1,9 +1,10 @@
 require "webpacker/helper"
+require "pagy"
 
 module Ektar
   module ApplicationHelper
     include ::Webpacker::Helper
-    include Pagy::Frontend
+    include ::Pagy::Frontend
 
     def current_webpacker_instance
       Ektar.webpacker
@@ -38,36 +39,42 @@ module Ektar
       end
     end
 
+    def new_title
+      model_name = resource_class.model_name
+      t("table.new.#{model_name.i18n_key}",
+        default: t("table.new.name", resource_name: model_name.human(count: 1)))
+    end
+
+    def edit_title
+      model_name = resource_class.model_name
+      t("table.edit.#{model_name.i18n_key}",
+        default: t("table.edit.name", resource_name: model_name.human(count: 1)))
+    end
+
+    def show_title
+      model_name = resource_class.model_name
+      t("table.show.#{model_name.i18n_key}",
+        default: t("table.show.name", resource_name: model_name.human(count: 1)))
+    end
+
+    def edit_action
+      model_name = resource_class.model_name
+      t("table.actions.#{model_name.i18n_key}.edit",
+        default: t("table.actions.edit"))
+    end
+
+    def delete_action
+      model_name = resource_class.model_name
+      t("table.actions.#{model_name.i18n_key}.delete",
+        default: t("table.actions.delete"))
+    end
+
     def input_attributes(field_name)
       key = resource_class.model_name.i18n_key
       {
         placeholder: t("placeholders.#{key}.#{field_name}", default: ""),
         maxlength: t("maxlength.#{key}.#{field_name}", default: t("maxlength.size")),
       }
-    end
-
-    def new_resource_path
-      path = "new_#{resource_class.model_name.singular_route_key}_path"
-      send(path)
-    end
-
-    def edit_resource_path(resource)
-      path = "edit_#{resource.model_name.singular_route_key}_path"
-      send(path, resource)
-    end
-
-    def resource_path(resource)
-      path = "#{resource.model_name.singular_route_key}_path"
-      send(path, resource)
-    end
-
-    def collection_path(resource)
-      send "#{resource.model_name.route_key}_path"
-    end
-
-    def delete_confirmation(resource)
-      name = resource.model_name.i18n_key
-      t("table.confirmation.#{name}.delete", default: t("table.confirmation.delete"))
     end
   end
 end

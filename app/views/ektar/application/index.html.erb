@@ -8,7 +8,7 @@
   <div class="level-right">
     <div class="level-item">
       <% if super_admin? %>
-        <%= link_to t("new_resource", resource_name: model_human_name(resource_class, plural: false)), new_resource_path, class: "button is-primary" %>
+        <%= link_to new_title, new_resource_path, class: "button is-primary" %>
       <% end %>
     </div>
   </div>
@@ -24,7 +24,7 @@
       <% end %>
 
       <% if super_admin? %>
-        <th class='has-text-right'><%= t("table.actions") %></th>
+        <th class="has-text-right"><%= t("table.actions.name") %></th>
       <% end %>
     </tr>
   </thead>
