@@ -1,18 +1,4 @@
-<nav class="level">
-  <div class="level-left">
-    <div class="level-item">
-      <h2 class="title is-4"><%= model_human_name(resource_class) %><h2>
-    </div>
-  </div>
-
-  <div class="level-right">
-    <div class="level-item">
-      <% if super_admin? %>
-        <%= link_to new_title, new_resource_path, class: "button is-primary" %>
-      <% end %>
-    </div>
-  </div>
-</nav>
+<%= render partial: "tools" %>
 
 <table class="table is-fullwidth is-hoverable">
   <thead>

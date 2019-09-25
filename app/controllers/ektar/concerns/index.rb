@@ -11,7 +11,10 @@ module Ektar
 
       def index(options = {}, &block)
         @collection ||= begin
-                          @pagination, collection = pagy(resource_class.order(updated_at: :desc))
+                          scope = resource_class.order(updated_at: :desc)
+                          scope = scope.search_full(params[:q]) if params[:q].present? && resource_class.respond_to?(:search_full)
+
+                          @pagination, collection = pagy(scope)
                           collection
                         end
       end

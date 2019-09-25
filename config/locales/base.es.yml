@@ -24,6 +24,10 @@ es:
     ektar/organization:
       name: 40
 
+  search:
+    placeholder: "Buscar..."
+    submit: "Buscar"
+
   table:
     actions:
       name: "Acciones"
