@@ -27,8 +27,8 @@ document.addEventListener(
 
 document.addEventListener(
   'turbolinks:before-cache',
-  () => {}
-);
+  () => Flash.clean(),
+)
 
 document.addEventListener(
   'ajax:before',
