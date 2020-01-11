@@ -17,6 +17,10 @@
         <div class="navbar-item">
           <%= link_to model_human_name(Ektar::Organization), organizations_path, class: "navbar-item" %>
         </div>
+      <% else %>
+        <div class="navbar-item">
+          <%= link_to model_human_name(Ektar::User), users_path, class: "navbar-item" %>
+        </div>
       <% end %>
     </div>
 

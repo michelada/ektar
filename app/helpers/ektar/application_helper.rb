@@ -10,20 +10,8 @@ module Ektar
       Ektar.webpacker
     end
 
-    def select_options(attribute_name)
-      options = []
-      attributes_options.each do |attribute|
-        if attribute.keys[0] == attribute_name
-          attribute.values[0].split(",") do |option|
-            options += [t("forms.dropdown_options", option: option)]
-          end
-        end
-      end
-      options
-    end
-
     def model_human_name(model, plural: true)
-      model.model_name.human(count: plural ? 2 : 1)
+      model.model_name.human(count: plural ? 3 : 1)
     end
 
     def attribute_value(value)

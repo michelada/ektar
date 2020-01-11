@@ -18,4 +18,5 @@
   <%= render partial: "resource", collection: collection, as: :resource %>
 </table>
 
-<%= pagy_nav(@pagination).html_safe if @pagination.present? %>
+<h6 class="pagination-info"><%= pagy_info(@pagination) %></h6>
+<%== pagy_bulma_nav(@pagination) if @pagination.pages > 1 %>

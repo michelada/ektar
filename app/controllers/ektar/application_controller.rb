@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "pagy"
+require "pagy/extras/bulma"
 require "pagy/extras/i18n"
 
 module Ektar
@@ -112,6 +113,12 @@ module Ektar
         flash[result] = flash_message
       end
     end
-    helper_method :action_response_dual, :collection, :resource, :resource_class
+
+    def super_admin?
+      @super_admin ||= session[:super_admin].present?
+    end
+
+    helper_method :action_response_dual, :collection, :resource, :resource_class,
+      :super_admin?, :select_options
   end
 end

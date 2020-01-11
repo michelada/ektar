@@ -5,14 +5,14 @@ require "ektar/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "ektar"
-  spec.version     = Ektar::VERSION
-  spec.authors     = ["Mario Alberto Chávez", "Galilea Lopez", "Nataly Silva"]
-  spec.email       = ["mario@michelada.io", "galilea.lopez@michelada.io", "nataly.silva@michelada.io"]
-  spec.homepage    = "https://michelada.io"
-  spec.summary     = "Summary of Ektar."
+  spec.name = "ektar"
+  spec.version = Ektar::VERSION
+  spec.authors = ["Mario Alberto Chávez", "Galilea Lopez", "Nataly Silva"]
+  spec.email = ["mario@michelada.io", "galilea.lopez@michelada.io", "nataly.silva@michelada.io"]
+  spec.homepage = "https://michelada.io"
+  spec.summary = "Summary of Ektar."
   spec.description = "Description of Ektar."
-  spec.license     = "MIT"
+  spec.license = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib,public}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 6.0.0"
-  spec.add_dependency "pagy", "~> 3.5.1"
+  spec.add_dependency "rails", "~> 6.0.2"
+  spec.add_dependency "pagy", "~> 3.7.0"
   spec.add_dependency "pg_search", "~> 2.3.0"
   spec.add_development_dependency "standard"
   spec.add_development_dependency "pg"

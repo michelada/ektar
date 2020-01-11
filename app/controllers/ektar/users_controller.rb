@@ -1,58 +1,40 @@
-require_dependency "ektar/application_controller"
-require_dependency "ektar/concerns/index"
-require_dependency "ektar/concerns/new"
-require_dependency "ektar/concerns/create"
-require_dependency "ektar/concerns/edit"
-require_dependency "ektar/concerns/update"
-require_dependency "ektar/concerns/destroy"
-require_dependency "ektar/concerns/show"
+# frozen_string_literal: true
+
+require_dependency "ektar/concerns/resourceful"
 
 module Ektar
   class UsersController < ApplicationController
     # before_action :verify_role, only: [:create, :destroy]
-    include Index
-    include New
-    include Create
-    include Edit
-    include Update
-    include Destroy
-    include Show
+    include Resourceful
+
+    LIST_ATTRIBUTES = %i[id email updated_at].freeze
+    FORM_ATTRIBUTES = {email: :input, password: :password, password_confirmation: :password}.freeze
+    SHOW_ATTRIBUTES = %i[id email updated_at].freeze
+
+    resourceful :ektar_user,
+      :index, :new, :create, :edit, :update, :show, :destroy
 
     private
 
-    def resource_class
-      User
-    end
-
-    def route_prefix
-      'organization'
-    end
-
     def list_attributes
-      %w[id email ektar_organization_id]
+      LIST_ATTRIBUTES
     end
 
     def form_attributes
-      {email: :input, encrypted_password: :input, ektar_organization_id: :select}
+      FORM_ATTRIBUTES
     end
 
-    def attributes_options
-      [{ektar_organization_id: Ektar::Organization.list_name_available}]
-    end
-
-    def form_show_attributes
-      {email: :input, ektar_organization_id: :input}
+    def show_attributes
+      SHOW_ATTRIBUTES
     end
 
     def secure_params
-      params.require(:user).permit(:email, :encrypted_password, :ektar_organization_id)
+      params.require(:user).permit(form_attributes.keys)
     end
 
     def verify_role
       redirect_to root_path unless @user.is_admin?
       true
     end
-
-    helper_method :resource_class, :list_attributes, :form_attributes, :attributes_options, :form_show_attributes, :route_prefix
   end
 end

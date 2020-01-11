@@ -3,6 +3,7 @@ es:
     id: "Id"
     name: "Nombre"
     enable: "Activo"
+    email: "Correo electrónico"
     updated_at: "Modificado el"
 
   activerecord:
@@ -10,6 +11,9 @@ es:
       ektar/organization:
         one: Organización
         other: Organizaciones
+      ektar/user:
+        one: Usuario
+        other: Usuarios
 
     attributes:
       ektar/organization:
@@ -44,6 +48,7 @@ es:
     new:
       name: "Nuevo(a) %{resource_name}"
       ektar/organization: "Nueva organización"
+      ektar/user: "Nuevo usuario"
     show:
       name: "%{resource_name}"
     confirmation:

@@ -6,6 +6,10 @@ module Ektar
   class OrganizationsController < ApplicationController
     include Resourceful
 
+    LIST_ATTRIBUTES = %i[id name enable updated_at].freeze
+    FORM_ATTRIBUTES = {name: :input, enable: :checkbox}.freeze
+    SHOW_ATTRIBUTES = %i[name enable updated_at].freeze
+
     resourceful :ektar_organization,
       :index, :new, :create, :edit, :update, :show
 
@@ -35,26 +39,20 @@ module Ektar
       return render status: :not_authorized unless super_admin?
     end
 
-    def super_admin?
-      @super_admin ||= session[:super_admin].present?
-    end
-
     def list_attributes
-      %i[id name enable updated_at]
+      LIST_ATTRIBUTES
     end
 
     def form_attributes
-      {name: :input, enable: :checkbox}
+      FORM_ATTRIBUTES
     end
 
     def show_attributes
-      %i[name enable updated_at]
+      SHOW_ATTRIBUTES
     end
 
     def secure_params
-      params.require(:organization).permit(:name, :enable)
+      params.require(:organization).permit(form_attributes.keys)
     end
-
-    helper_method :super_admin?
   end
 end
