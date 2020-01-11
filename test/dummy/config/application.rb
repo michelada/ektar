@@ -1,7 +1,6 @@
 require_relative "boot"
 
 require "rails/all"
-# require "rack/static"
 
 Bundler.require(*Rails.groups)
 require "ektar"
@@ -17,10 +16,7 @@ module Dummy
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.i18n.default_locale = "es"
-    # config.middleware.use(
-    #   Rack::Static,
-    #   urls: ["/ektar-packs"], root: "ektar/public"
-    # )
+    config.i18n.available_locales = :es
+    config.i18n.default_locale = :es
   end
 end

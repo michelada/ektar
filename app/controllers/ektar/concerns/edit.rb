@@ -8,7 +8,9 @@ module Ektar
 
     included do
       def edit(options = {}, &block)
-        @resource ||= resource(find: true)
+        @resource ||= resource_class.find(params[:id])
+        set_resource_ivar @resource
+
         yield @resource if block_given?
       end
       alias_method :edit!, :edit

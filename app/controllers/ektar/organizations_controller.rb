@@ -1,60 +1,58 @@
 # frozen_string_literal: true
 
-require_dependency "ektar/application_controller"
-require_dependency "ektar/concerns/show"
-require_dependency "ektar/concerns/new"
-require_dependency "ektar/concerns/index"
-require_dependency "ektar/concerns/create"
-require_dependency "ektar/concerns/edit"
-require_dependency "ektar/concerns/update"
-require_dependency "ektar/concerns/destroy"
+require_dependency "ektar/concerns/resourceful"
 
 module Ektar
   class OrganizationsController < ApplicationController
-    include New
-    include Index
-    include Show
-    include Create
-    include Edit
-    include Update
-    include Destroy
+    include Resourceful
+
+    LIST_ATTRIBUTES = %i[id name enable updated_at].freeze
+    FORM_ATTRIBUTES = {name: :input, enable: :checkbox}.freeze
+    SHOW_ATTRIBUTES = %i[name enable updated_at].freeze
+
+    resourceful :ektar_organization,
+      :index, :new, :create, :edit, :update, :show
 
     before_action :authenticate_superadmin!, except: :show
+
+    def destroy
+      object = find_resource
+      object.enable = false
+
+      object.save
+      set_flash(errors: object.errors, klass: resource_class.model_name.element, action: action_name)
+
+      redirect_to collection_path
+    end
+
+    def allow_delete?(resource)
+      resource.enable
+    end
 
     private
 
     def authenticate_superadmin!
       session[:super_admin] = authenticate_or_request_with_http_basic("Restricted Access") { |username, password|
-        username == "superadmin" && password == "superadmin123"
+        username == Ektar.configuration.organization_username && password == Ektar.configuration.organization_password
       }
 
       return render status: :not_authorized unless super_admin?
     end
 
-    def super_admin?
-      session[:super_admin]
-    end
-
-    def model_name
-      Organization
-    end
-
     def list_attributes
-      %w[id name enable]
+      LIST_ATTRIBUTES
     end
 
     def form_attributes
-      {name: :input, enable: :checkbox}
+      FORM_ATTRIBUTES
     end
 
-    def form_show_attributes
-      {name: :input, enable: :checkbox}
+    def show_attributes
+      SHOW_ATTRIBUTES
     end
 
     def secure_params
-      params.require(:organization).permit(:name, :enable)
+      params.require(:organization).permit(form_attributes.keys)
     end
-
-    helper_method :model_name, :list_attributes, :form_attributes, :form_show_attributes, :super_admin?
   end
 end

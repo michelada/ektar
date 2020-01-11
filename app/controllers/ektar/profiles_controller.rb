@@ -17,7 +17,7 @@ module Ektar
 
     private
 
-    def model_name
+    def resource_class
       Profile
     end
 
@@ -37,6 +37,6 @@ module Ektar
       params.require(:profile).permit(:name, :image_profile, :ektar_user_id)
     end
 
-    helper_method :model_name, :form_attributes, :form_show_attributes, :route_prefix
+    helper_method :resource_class, :form_attributes, :form_show_attributes, :route_prefix
   end
 end

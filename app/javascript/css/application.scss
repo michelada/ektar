@@ -1,1 +1,16 @@
 @import '~bulma/bulma';
+
+.has-margin-top-1 {
+  margin-top: 2rem;
+}
+
+h6.pagination-info {
+  @extend .is-size-6;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
+.pagination-list {
+  margin-top: 2rem;
+}

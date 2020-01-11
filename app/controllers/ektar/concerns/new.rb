@@ -8,7 +8,9 @@ module Ektar
 
     included do
       def new(options = {}, &block)
-        @resource ||= build_resource
+        @resource ||= resource_class.new
+        set_resource_ivar @resource
+
         yield @resource if block_given?
       end
       alias_method :new!, :new

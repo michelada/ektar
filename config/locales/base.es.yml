@@ -1,0 +1,123 @@
+es:
+  attributes:
+    id: "Id"
+    name: "Nombre"
+    enable: "Activo"
+    email: "Correo electrónico"
+    updated_at: "Modificado el"
+
+  activerecord:
+    models:
+      ektar/organization:
+        one: Organización
+        other: Organizaciones
+      ektar/user:
+        one: Usuario
+        other: Usuarios
+
+    attributes:
+      ektar/organization:
+        enable: "Activa"
+
+  placeholders:
+    ektar/organization:
+      name: "Nombre de la empresa u organización"
+
+  maxlength:
+    size: 25
+    ektar/organization:
+      name: 40
+
+  search:
+    placeholder: "Buscar..."
+    submit: "Buscar"
+
+  table:
+    actions:
+      name: "Acciones"
+      edit: "Modificar"
+      delete: "Eliminar"
+      ektar/organization:
+        delete: "Desactivar"
+    edit:
+      name: "Modificar %{resource_name}"
+      ektar/organization: "Modificar organización"
+    delete: "Eliminar"
+    true: "Sí"
+    false: "No"
+    new:
+      name: "Nuevo(a) %{resource_name}"
+      ektar/organization: "Nueva organización"
+      ektar/user: "Nuevo usuario"
+    show:
+      name: "%{resource_name}"
+    confirmation:
+      ektar/organization:
+        delete: "Está seguro de querer desactivar la organización?"
+      delete: "Está seguro de eliminar el registro?"
+
+  form:
+    back: "Regresar"
+    submit: "Guardar"
+
+  navbar:
+    add_org: Agregar organizacion
+    add_user: Agregar usuario
+  new:
+    resource: "%{name}"
+    attribute: "%{attribute}"
+  edit:
+    resource: "%{name}"
+    attribute: "%{attribute}"
+  forms:
+    choose_file: "Carga un archivo"
+    options_checkbox: "%{option}"
+    dropdown_select: "Selecciona %{name_option}"
+    dropdown_options: "%{option}"
+    submit: "Guardar"
+    cancel: "Cancelar"
+    edit: "Editar"
+    delete: "Eliminar"
+
+  flash:
+    create:
+      notice: "Creado"
+      alert: "Error al crear"
+
+      organization:
+        notice: "La organización se ha sido registrado exitosamente"
+        alert: "Error al registrar la organización"
+      user:
+        notice: "El usuario ha sido registrado exitosamente"
+        alert: "Error al registrar el usuario"
+      profile:
+        notice: "El perfil ha sido registrado exitosamente"
+        alert: "Error al registrar el perfil"
+
+    update:
+      notice: "Actualizado"
+      alert: "Error al actualizar"
+
+      organization:
+        notice: "La organización ha sido actualizada exitosamente"
+        alert: "Error al actualizar la organización"
+      user:
+        notice: "El usuario ha sido actualizado exitosamente"
+        alert: "Error al actualizar el usuario"
+      profile:
+        notice: "El perfil ha sido actualizado exitosamente"
+        alert: "Error al actualizar el perfil"
+
+    destroy:
+      notice: "Actualizado"
+      alert: "Error al eliminar"
+
+      organization:
+        notice: "La organización ha sido eliminada exitosamente"
+        alert: "Error al eliminar la organización"
+      user:
+        notice: "El usuario ha sido eliminado exitosamente"
+        alert: "Error al eliminar el usuario"
+      profile:
+        notice: "El perfil ha sido eliminado exitosamente"
+        alert: "Error al eliminar el perfil"

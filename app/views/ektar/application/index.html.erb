@@ -1,30 +1,22 @@
-<h2 class="title is-3"><%= t('activerecord.models.organization.others')%><h2>
+<%= render partial: "tools" %>
+
 <table class="table is-fullwidth is-hoverable">
   <thead>
     <tr>
       <% list_attributes.each do |attribute| %>
         <th>
-          <%= model_name.human_attribute_name(attribute) %>
+          <%= resource_class.human_attribute_name(attribute) %>
         </th>
       <% end %>
-        <% unless session[:admin]%>
-          <th class='has-text-right'>Actions</th>
-        <% end %>
+
+      <% if super_admin? %>
+        <th class="has-text-right"><%= t("table.actions.name") %></th>
+      <% end %>
     </tr>
   </thead>
-  <% collection.each do |element| %> 
-    <tr>
-      <% list_attributes.each do |attribute| %>
-        <td>
-          <%= element[attribute] %>
-        </td>
-      <% end %>
-      <% unless session[:admin] %>
-        <td class='has-text-right'>
-          <%= render partial:'edit_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}/edit"} %>
-          <%= render partial:'delete_button', locals: {path: "#{class_name.model_name.route_key}/#{element.id}"} %>
-        </td>
-      <% end %>
-    </tr>
-  <% end %>
+
+  <%= render partial: "resource", collection: collection, as: :resource %>
 </table>
+
+<h6 class="pagination-info"><%= pagy_info(@pagination) %></h6>
+<%== pagy_bulma_nav(@pagination) if @pagination.pages > 1 %>
