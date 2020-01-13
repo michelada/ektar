@@ -76,7 +76,6 @@ module Ektar
     end
 
     def redirect_with(object, options, &block)
-      args = [object, options]
       set_flash options
     end
 
