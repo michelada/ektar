@@ -1,41 +1,19 @@
-import '../images/ektar.svg';
+import "../images/ektar.svg";
+import "../stylesheets/application.scss";
 
-import '../css/application';
+import Rails from "rails-ujs";
+import Turbolinks from "turbolinks";
 
-import Rails from 'rails-ujs';
-import Turbolinks from 'turbolinks';
+import Flash from "../js/flash";
 
 Rails.start();
 Turbolinks.start();
-
-import { Flash } from '../js/flash.js';
-
 Flash.setup();
 
-document.addEventListener(
-  'turbolinks:load',
-  () => Flash.setup(),
-  {
-    once: true,
-  },
-);
-
-document.addEventListener(
-  'turbolinks:render',
-  () => Flash.setup(),
-);
-
-document.addEventListener(
-  'turbolinks:before-cache',
-  () => Flash.clean(),
-)
-
-document.addEventListener(
-  'ajax:before',
-  () => Turbolinks.clearCache(),
-);
-
-document.addEventListener(
-  '[data-remote]',
-  () => Turbolinks.clearCache(),
-);
+document.addEventListener("turbolinks:load", () => Flash.setup(), {
+  once: true
+});
+document.addEventListener("turbolinks:render", () => Flash.setup());
+document.addEventListener("turbolinks:before-cache", () => Flash.clean());
+document.addEventListener("ajax:before", () => Turbolinks.clearCache());
+document.addEventListener("[data-remote]", () => Turbolinks.clearCache());
