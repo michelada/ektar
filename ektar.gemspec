@@ -30,7 +30,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sorbet-runtime", "~> 0.5.0"
   spec.add_dependency "sorbet-rails", "~> 0.5.0"
   spec.add_dependency "pg_search", "~> 2.3.0"
+  spec.add_development_dependency "lefthook"
+  spec.add_development_dependency "pg"
   spec.add_development_dependency "sorbet"
   spec.add_development_dependency "standard"
-  spec.add_development_dependency "pg"
+  spec.add_development_dependency "brakeman"
 end
