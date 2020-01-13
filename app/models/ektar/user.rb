@@ -1,3 +1,5 @@
+# typed: true
+
 module Ektar
   class User < ApplicationRecord
     belongs_to :organization, class_name: "Ektar::Organization", foreign_key: :ektar_organization_id
@@ -8,7 +10,7 @@ module Ektar
     enum role: %i[admin member]
 
     def is_admin?
-      User.role == "admin"
+      User.roles == "admin"
     end
   end
 end

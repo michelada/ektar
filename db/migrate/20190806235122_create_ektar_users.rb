@@ -1,3 +1,4 @@
+# typed: true
 class CreateEktarUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :ektar_users do |t|

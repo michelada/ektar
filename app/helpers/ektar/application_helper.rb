@@ -1,3 +1,4 @@
+# typed: false
 require "webpacker/helper"
 require "pagy"
 

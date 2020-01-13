@@ -1,3 +1,4 @@
+# typed: strict
 module Ektar
   class ApplicationMailer < ActionMailer::Base
     default from: "from@example.com"

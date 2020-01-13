@@ -1,10 +1,9 @@
+# typed: false
 # frozen_string_literal: true
-
-require_dependency "ektar/concerns/resourceful"
 
 module Ektar
   class OrganizationsController < ApplicationController
-    include Resourceful
+    include Ektar::Concerns::Resourceful
 
     LIST_ATTRIBUTES = %i[id name enable updated_at].freeze
     FORM_ATTRIBUTES = {name: :input, enable: :checkbox}.freeze

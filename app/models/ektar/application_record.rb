@@ -1,3 +1,4 @@
+# typed: strict
 require "pg_search"
 
 module Ektar
