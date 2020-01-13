@@ -43,10 +43,10 @@ module Ektar
     end
 
     test "can edit user" do
-      put user_path(@user.id), params: { user: {encrypted_password: "Password16"} }
+      put user_path(@user.id), params: {user: {encrypted_password: "Password16"}}
       @user.reload
 
-      assert_equal 'Password16', @user.encrypted_password
+      assert_equal "Password16", @user.encrypted_password
     end
 
     test "can delete user" do
@@ -61,7 +61,7 @@ module Ektar
       organization = ektar_organizations(:main_organization)
       {email: "mario@gmail.com",
        encrypted_password: "Password17",
-       ektar_organization_id: organization.id}
+       ektar_organization_id: organization.id,}
     end
   end
 end

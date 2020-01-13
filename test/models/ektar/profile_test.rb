@@ -1,5 +1,5 @@
 # typed: false
-require 'test_helper'
+require "test_helper"
 
 module Ektar
   class ProfileTest < ActiveSupport::TestCase
@@ -24,8 +24,8 @@ module Ektar
     end
 
     def valid_params
-      user =  ektar_users(:first_user)
-      {name: "User Example" , ektar_user_id: user.id}
+      user = ektar_users(:first_user)
+      {name: "User Example", ektar_user_id: user.id}
     end
   end
 end

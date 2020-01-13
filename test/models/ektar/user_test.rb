@@ -17,7 +17,7 @@ module Ektar
     end
 
     test "is invalid without unique email" do
-      user =  ektar_users(:first_user)
+      user = ektar_users(:first_user)
       subject = User.new valid_params.merge(email: user.email)
 
       refute subject.valid?

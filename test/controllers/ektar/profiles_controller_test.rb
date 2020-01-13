@@ -1,5 +1,5 @@
 # typed: ignore
-require 'test_helper'
+require "test_helper"
 
 module Ektar
   class ProfilesControllerTest < ActionDispatch::IntegrationTest
@@ -35,10 +35,9 @@ module Ektar
     end
 
     def valid_profile
-      profile = ektar_profile(:first_profile)
       {name: "Full name",
        ektar_user_id: 1,
-       image_profile: page.attach_file('profile[image_profile]', Rails.root + file_fixture('profile.jpg'), visible: false)}
+       image_profile: page.attach_file("profile[image_profile]", Rails.root + file_fixture("profile.jpg"), visible: false),}
     end
   end
 end

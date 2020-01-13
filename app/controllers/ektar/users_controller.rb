@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 # frozen_string_literal: true
 
 module Ektar
@@ -28,11 +28,11 @@ module Ektar
     end
 
     def secure_params
-      params.require(:user).permit(form_attributes.keys)
+      params.require(:user).format(form_attributes.keys)
     end
 
     def verify_role
-      redirect_to root_path unless @user.is_admin?
+      redirect_to root_path unless @user.admin?
       true
     end
   end
