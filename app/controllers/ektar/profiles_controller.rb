@@ -1,20 +1,7 @@
-require_dependency "ektar/application_controller"
-require_dependency "ektar/concerns/new"
-require_dependency "ektar/concerns/create"
-require_dependency "ektar/concerns/edit"
-require_dependency "ektar/concerns/update"
-require_dependency "ektar/concerns/destroy"
-require_dependency "ektar/concerns/show"
+# typed: false
 
 module Ektar
   class ProfilesController < ApplicationController
-    include New
-    include Create
-    include Edit
-    include Update
-    include Destroy
-    include Show
-
     private
 
     def resource_class
@@ -22,15 +9,15 @@ module Ektar
     end
 
     def route_prefix
-      'organization_user'
+      "organization_user"
     end
 
     def form_attributes
-      { image_profile: :file, name: :input, ektar_user_id: :input }
+      {image_profile: :file, name: :input, ektar_user_id: :input}
     end
 
     def form_show_attributes
-      { image_profile: :image, name: :input}
+      {image_profile: :image, name: :input}
     end
 
     def secure_params

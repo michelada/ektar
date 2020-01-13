@@ -1,3 +1,4 @@
+# typed: strict
 module Ektar
   class Engine < ::Rails::Engine
     engine_name "ektar"

@@ -1,3 +1,5 @@
+# typed: false
+
 module Ektar
   class Organization < ApplicationRecord
     include PgSearch::Model

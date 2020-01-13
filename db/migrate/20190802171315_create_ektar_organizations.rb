@@ -1,3 +1,4 @@
+# typed: true
 class CreateEktarOrganizations < ActiveRecord::Migration[6.0]
   def change
     create_table :ektar_organizations do |t|

@@ -1,11 +1,10 @@
+# typed: false
 # frozen_string_literal: true
-
-require_dependency "ektar/concerns/resourceful"
 
 module Ektar
   class UsersController < ApplicationController
     # before_action :verify_role, only: [:create, :destroy]
-    include Resourceful
+    include Ektar::Concerns::Resourceful
 
     LIST_ATTRIBUTES = %i[id email updated_at].freeze
     FORM_ATTRIBUTES = {email: :input, password: :password, password_confirmation: :password}.freeze
