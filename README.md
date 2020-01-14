@@ -1,8 +1,8 @@
 # Ektar
-Short description and motivation.
+Rails engine for Subscriptions
 
 ## Usage
-How to use my plugin.
+-
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -16,9 +16,38 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
+Mount the engine in your application through routes.rb
+```ruby
+  mount Ektar::Engine => "/ektar"
+```
+
+## Development
+Clone this repo and execute:
 ```bash
-$ gem install ektar
+$ bundle
+```
+
+Run migrations
+```bash
+$ bin/rails db:create db:migrate
+```
+
+To start the dummy Rails application you will need [Overmind](https://github.com/DarthSim/overmind).
+On MacOS it can be installed via Homebrew:
+```bash
+$ brew install overmind
+```
+
+Start the project with:
+```bash
+$ overmind start
+```
+
+Your Rails server will be available at http://localhost:3010
+
+To run linters execute:
+```bash
+$ bundle exec lefthook run pre-commit
 ```
 
 ## Contributing
