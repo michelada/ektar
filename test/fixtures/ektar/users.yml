@@ -1,14 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-first_user:
-  email: first@example.com
-  encrypted_password: 'Password14'
+user:
+  email: "fixture_user@example.com"
+  encrypted_password: "Password14"
   role: 1
-  organization: main_organization
+  organization: organization
 
-second_user:
-  email: second@example.com
-  role: 1
-  encrypted_password: 'Password15'
-  organization: main_organization
-  

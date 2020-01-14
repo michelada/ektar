@@ -1,9 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-main_organization:
-  name: "Main Organization"
-  enable: true
-
-organization_delete:
-  name: "Organization Delete"
+organization:
+  name: "Fixture Organization"
   enable: true

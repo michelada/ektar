@@ -8,5 +8,9 @@ module Ektar
     validates :email, presence: true, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false, scope: :ektar_organization_id}
 
     enum role: %i[admin member]
+
+    def to_param
+      global_id
+    end
   end
 end
