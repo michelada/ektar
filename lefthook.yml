@@ -47,7 +47,7 @@ pre-commit:
     standard:
       tags: backend style
       glob: "*.rb"
-      run: bundle exec standardrb {all_files}
+      run: bundle exec standardrb
     sorbet:
       tags: backend style
       glob: "*.rb"
