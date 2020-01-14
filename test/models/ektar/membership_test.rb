@@ -1,4 +1,5 @@
-require 'test_helper'
+# typed: false
+require "test_helper"
 
 module Ektar
   class MembershipTest < ActiveSupport::TestCase
