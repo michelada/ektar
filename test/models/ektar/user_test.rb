@@ -3,6 +3,16 @@ require "test_helper"
 
 module Ektar
   class UserTest < ActiveSupport::TestCase
+    test "it can belong to more than one organization" do
+      subject = ektar_users(:user)
+      alternate_organization = ektar_organizations(:alternate_organization)
+
+      assert_difference "subject.ektar_organizations.reload.size", 1 do
+        subject.ektar_organizations << alternate_organization
+        subject.save
+      end
+    end
+
     test "to_param uses global_id" do
       subject = ektar_users(:user)
 

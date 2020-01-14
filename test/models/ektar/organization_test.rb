@@ -3,33 +3,43 @@ require "test_helper"
 
 module Ektar
   class OrganizationTest < ActiveSupport::TestCase
-    test "is valid" do
-      subject = Organization.new valid_params
+    test "it can have more than one user" do
+      subject = ektar_organizations(:organization)
+      alternate_user = ektar_users(:alternate_user)
 
-      assert subject.valid?
+      assert_difference "subject.ektar_users.reload.size", 1 do
+        subject.ektar_users << alternate_user
+        subject.save
+      end
     end
 
-    test "is invalid" do
-      subject = Organization.new invalid_params
+    #   test "is valid" do
+    #     subject = Organization.new valid_params
 
-      refute subject.valid?
-      assert_equal 1, subject.errors.count
-    end
+    #     assert subject.valid?
+    #   end
 
-    test "is invalid without unique name" do
-      organization = ektar_organizations(:main_organization)
-      subject = Organization.new valid_params.merge(name: organization.name)
+    #   test "is invalid" do
+    #     subject = Organization.new invalid_params
 
-      refute subject.valid?
-      assert_equal 1, subject.errors.count
-    end
+    #     refute subject.valid?
+    #     assert_equal 1, subject.errors.count
+    #   end
 
-    def valid_params
-      {name: "Sample Organization"}
-    end
+    #   test "is invalid without unique name" do
+    #     organization = ektar_organizations(:main_organization)
+    #     subject = Organization.new valid_params.merge(name: organization.name)
 
-    def invalid_params
-      {}
-    end
+    #     refute subject.valid?
+    #     assert_equal 1, subject.errors.count
+    #   end
+
+    #   def valid_params
+    #     {name: "Sample Organization"}
+    #   end
+
+    #   def invalid_params
+    #     {}
+    #   end
   end
 end
