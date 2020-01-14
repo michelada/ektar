@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_181814) do
+ActiveRecord::Schema.define(version: 2020_01_14_185239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2020_01_14_181814) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "ektar_memberships", force: :cascade do |t|
+    t.bigint "ektar_organization_id", null: false
+    t.bigint "ektar_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ektar_organization_id"], name: "index_ektar_memberships_on_ektar_organization_id"
+    t.index ["ektar_user_id"], name: "index_ektar_memberships_on_ektar_user_id"
   end
 
   create_table "ektar_organizations", force: :cascade do |t|
@@ -68,6 +77,8 @@ ActiveRecord::Schema.define(version: 2020_01_14_181814) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "ektar_memberships", "ektar_organizations"
+  add_foreign_key "ektar_memberships", "ektar_users"
   add_foreign_key "ektar_profiles", "ektar_users"
   add_foreign_key "ektar_users", "ektar_organizations"
 end

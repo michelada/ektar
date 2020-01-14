@@ -3,3 +3,7 @@
 organization:
   name: "Fixture Organization"
   enable: true
+
+alternate_organization:
+  name: "Alternate Fixture Organization"
+  enable: true

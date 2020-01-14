@@ -4,5 +4,9 @@ user:
   email: "fixture_user@example.com"
   encrypted_password: "Password14"
   role: 1
-  organization: organization
+
+alternate_user:
+  email: "alternate_fixture_user@example.com"
+  encrypted_password: "Password14"
+  role: 1
 
