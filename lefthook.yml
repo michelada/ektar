@@ -55,3 +55,6 @@ pre-commit:
     brakeman:
       tags: backend security
       run: bundle exec brakeman -A -n --no-summary
+    bundle-audit:
+      tags: backend security
+      run: "bundle exec bundle-audit update && bundle exec bundle-audit check"

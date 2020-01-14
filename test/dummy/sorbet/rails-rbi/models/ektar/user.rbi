@@ -62,6 +62,15 @@ module Ektar::User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def encrypted_password?; end
 
+  sig { returns(T.untyped) }
+  def global_id; end
+
+  sig { params(value: T.untyped).void }
+  def global_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def global_id?; end
+
   sig { returns(Integer) }
   def id; end
 
@@ -93,17 +102,23 @@ end
 module Ektar::User::GeneratedAssociationMethods
   extend T::Sig
 
+  sig { returns(::Ektar::Membership::ActiveRecord_Associations_CollectionProxy) }
+  def ektar_memberships; end
+
+  sig { params(value: T::Enumerable[::Ektar::Membership]).void }
+  def ektar_memberships=(value); end
+
+  sig { returns(::Ektar::Organization::ActiveRecord_Associations_CollectionProxy) }
+  def ektar_organizations; end
+
+  sig { params(value: T::Enumerable[::Ektar::Organization]).void }
+  def ektar_organizations=(value); end
+
   sig { returns(T.nilable(::Ektar::Profile)) }
   def ektar_profile; end
 
   sig { params(value: T.nilable(::Ektar::Profile)).void }
   def ektar_profile=(value); end
-
-  sig { returns(::Ektar::Organization) }
-  def organization; end
-
-  sig { params(value: ::Ektar::Organization).void }
-  def organization=(value); end
 end
 
 module Ektar::User::CustomFinderMethods

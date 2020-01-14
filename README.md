@@ -25,6 +25,7 @@ Mount the engine in your application through routes.rb
 Clone this repo and execute:
 ```bash
 $ bundle
+$ bundle exec lefthook add pre-commit
 ```
 
 Run migrations
