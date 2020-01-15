@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_054732) do
+ActiveRecord::Schema.define(version: 2020_01_15_164543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_054732) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.enum "role", default: "member", null: false, enum_name: "role"
+    t.boolean "active", default: true, null: false
     t.index ["ektar_organization_id"], name: "index_ektar_memberships_on_ektar_organization_id"
     t.index ["ektar_user_id"], name: "index_ektar_memberships_on_ektar_user_id"
   end
