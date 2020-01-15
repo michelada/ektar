@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_183733) do
+ActiveRecord::Schema.define(version: 2020_01_15_215819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2020_01_15_183733) do
     "admin",
     "member",
   ]
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +71,16 @@ ActiveRecord::Schema.define(version: 2020_01_15_183733) do
     t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false
     t.index ["global_id"], name: "index_ektar_organizations_on_global_id", unique: true
     t.index ["name"], name: "index_ektar_organizations_on_name", unique: true
+  end
+
+  create_table "ektar_plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "free", default: false, null: false
+    t.integer "trial", default: 0, null: false
+    t.integer "price", default: 0, null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "ektar_profiles", force: :cascade do |t|
