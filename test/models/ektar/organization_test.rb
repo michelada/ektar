@@ -7,8 +7,8 @@ module Ektar
       subject = ektar_organizations(:organization)
       alternate_user = ektar_users(:alternate_user)
 
-      assert_difference "subject.ektar_users.reload.size", 1 do
-        subject.ektar_users << alternate_user
+      assert_difference "subject.users.reload.size", 1 do
+        subject.users << alternate_user
         subject.save
       end
     end
