@@ -58,3 +58,6 @@ pre-commit:
     bundle-audit:
       tags: backend security
       run: "bundle exec bundle-audit update && bundle exec bundle-audit check"
+    compile-assets:
+      tags: frontend assets
+      run: "bin/rails app:ektar:webpacker:compile && git add {staged_files}"
