@@ -53,5 +53,9 @@ module Ektar
     def secure_params
       params.require(:organization).permit(form_attributes.keys)
     end
+
+    def find_resource
+      Ektar::Organization.find(params[:id])
+    end
   end
 end
