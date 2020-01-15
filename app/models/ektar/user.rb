@@ -14,5 +14,9 @@ module Ektar
     def to_param
       global_id
     end
+
+    def blocked?
+      blocked_at?
+    end
   end
 end
