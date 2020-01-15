@@ -9,5 +9,21 @@ module Ektar
 
       assert_equal membership.role, "member"
     end
+
+    test "membership is active by default" do
+      membership = ektar_memberships(:membership)
+
+      assert membership.active?
+    end
+
+    test "membership can be deactivated" do
+      membership = ektar_memberships(:membership)
+
+      assert membership.active?
+
+      membership.active = false
+
+      refute membership.active?
+    end
   end
 end
