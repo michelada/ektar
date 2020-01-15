@@ -2,8 +2,8 @@
 
 module Ektar
   class User < ApplicationRecord
-    has_many :ektar_memberships, class_name: "Ektar::Membership", foreign_key: :ektar_user_id
-    has_many :ektar_organizations, class_name: "Ektar::Organization", through: :ektar_memberships
+    has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_user_id
+    has_many :organizations, class_name: "Ektar::Organization", through: :memberships, source: :organization
 
     has_one :ektar_profile, dependent: :delete, class_name: "Ektar::Profile", foreign_key: :ektar_user_id
 

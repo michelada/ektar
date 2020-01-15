@@ -7,16 +7,21 @@ module Ektar
       subject = ektar_organizations(:organization)
       alternate_user = ektar_users(:alternate_user)
 
-      assert_difference "subject.ektar_users.reload.size", 1 do
-        subject.ektar_users << alternate_user
+      assert_difference "subject.users.reload.size", 1 do
+        subject.users << alternate_user
         subject.save
       end
     end
 
     test "is valid" do
       subject = Organization.new valid_params
-
       assert subject.valid?
+    end
+
+    test "organization has UUID different than ID" do
+      subject = ektar_organizations(:organization)
+
+      refute_equal subject.global_id, subject.id
     end
 
     test "is invalid" do
