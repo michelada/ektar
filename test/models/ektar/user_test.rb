@@ -19,6 +19,20 @@ module Ektar
       refute_equal subject.to_param, subject.id
     end
 
+    test "any new user is not super_admin" do
+      user = Ektar::User.new
+
+      refute user.super_admin?
+    end
+
+    test "any user can be updated to super_admin" do
+      user = Ektar::User.new
+
+      user.super_admin = true
+
+      assert user.super_admin?
+    end
+
     # test "is valid" do
     #   subject = User.new valid_params
 

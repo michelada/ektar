@@ -1,5 +1,6 @@
 # typed: true
 require "ektar/engine"
+require "activerecord/postgres_enum"
 
 module Ektar
   ROOT_PATH = Pathname.new(File.join(__dir__, ".."))
