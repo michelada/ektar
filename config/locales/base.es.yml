@@ -5,7 +5,6 @@ es:
     enable: "Activo"
     email: "Correo electrónico"
     updated_at: "Modificado el"
-    encrypted_password: "Contraseña"
 
   activerecord:
     models:

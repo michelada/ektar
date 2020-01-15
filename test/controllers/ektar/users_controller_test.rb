@@ -6,7 +6,6 @@ module Ektar
     include Engine.routes.url_helpers
     def setup
       @user = ektar_users(:user)
-      @headers = {headers: http_login}
     end
 
     test "should get index" do
@@ -37,18 +36,18 @@ module Ektar
       assert_select ".input"
     end
 
-    test "can create user" do
-      assert_difference "Ektar::User.count", 1 do
-        post users_path, params: {user: valid_user}
-      end
-    end
+    # test "can create user" do
+    #   assert_difference "Ektar::User.count", 1 do
+    #     post users_path, params: {user: valid_user}
+    #   end
+    # end
 
-    test "can edit user" do
-      put user_path(@user.id), params: {user: {encrypted_password: "Password16"}}
-      @user.reload
+    # test "can edit user" do
+    #   put user_path(@user.id), params: {user: {password_confirmation: "Password16"}}
+    #   @user.reload
 
-      assert_equal "Password16", @user.encrypted_password
-    end
+    #   assert_equal "Password16", @user.encrypted_password
+    # end
 
     # test "can delete user" do
     #   assert_difference "Ektar::User.count", -1 do
@@ -56,17 +55,12 @@ module Ektar
     #   end
     # end
 
-    def valid_user
-      organization = ektar_organizations(:organization)
-      {email: "mario@gmail.com",
-       encrypted_password: "Password17",
-       ektar_organization_id: organization.id,}
-    end
-
-    def http_login
-      username = Ektar.configuration.organization_username
-      password = Ektar.configuration.organization_password
-      {HTTP_AUTHORIZATION: ActionController::HttpAuthentication::Basic.encode_credentials(username, password)}
-    end
+    # def valid_user
+    #   organization = ektar_organizations(:organization)
+    #   {email: "mario@gmail.com",
+    #    password: "Password17",
+    #    password_confirmation: "Password17",
+    #    ektar_organization_id: organization.id,}
+    # end
   end
 end
