@@ -13,6 +13,12 @@ module Ektar
       end
     end
 
+    test "organization has UUID different than ID" do
+      subject = ektar_organizations(:organization)
+
+      refute_equal subject.global_id, subject.id
+    end
+
     #   test "is valid" do
     #     subject = Organization.new valid_params
 

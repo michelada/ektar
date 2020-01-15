@@ -10,5 +10,9 @@ module Ektar
 
     pg_search_scope :search_full, against: :name,
                                   using: {tsearch: {prefix: true, any_word: true}}
+
+    def to_param
+      global_id
+    end
   end
 end
