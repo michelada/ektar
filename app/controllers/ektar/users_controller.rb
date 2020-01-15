@@ -28,7 +28,6 @@ module Ektar
     end
 
     def secure_params
-      byebug
       params.require(:user).format(form_attributes.keys)
     end
 
