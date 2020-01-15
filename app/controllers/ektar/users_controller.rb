@@ -7,7 +7,7 @@ module Ektar
     include Ektar::Concerns::Resourceful
 
     LIST_ATTRIBUTES = %i[id email updated_at].freeze
-    FORM_ATTRIBUTES = {email: :input, password: :password, password_confirmation: :password}.freeze
+    FORM_ATTRIBUTES = {email: :input, encrypted_password: :password}.freeze
     SHOW_ATTRIBUTES = %i[id email updated_at].freeze
 
     resourceful :ektar_user,
@@ -28,7 +28,7 @@ module Ektar
     end
 
     def secure_params
-      params.require(:user).format(form_attributes.keys)
+      params.require(:user).permit(form_attributes.keys)
     end
 
     def verify_role
