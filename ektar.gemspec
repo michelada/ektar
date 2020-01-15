@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.2"
   spec.add_dependency "pagy", "~> 3.7.0"
+  spec.add_dependency "activerecord-postgres_enum", "~> 0.6.0"
   spec.add_dependency "sorbet-runtime", "~> 0.5.0"
   spec.add_dependency "sorbet-rails", "~> 0.5.0"
   spec.add_dependency "pg_search", "~> 2.3.0"
