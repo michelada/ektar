@@ -1,6 +1,9 @@
 import "../images/ektar.svg";
 import "../stylesheets/application.scss";
 
+import "trix";
+import "@rails/actiontext";
+
 import Rails from "rails-ujs";
 import Turbolinks from "turbolinks";
 
