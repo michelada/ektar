@@ -6,7 +6,7 @@ module Ektar
     include Engine.routes.url_helpers
     def setup
       @headers = {headers: http_login}
-      @organization = ektar_organizations(:organization)
+      @organization = ektar_organizations(:main_organization)
     end
 
     test "should get index" do
@@ -25,7 +25,7 @@ module Ektar
       get organization_path(@organization.id)
 
       assert_response :success
-      assert_select "span", value: @organization.name
+      assert_select ".input", value: @organization.name
     end
 
     test "should get edit" do
@@ -46,7 +46,8 @@ module Ektar
     test "can show organization" do
       get organization_path(@organization.id)
 
-      assert :success
+      assert_select "form"
+      assert_select ".input", value: @organization.name
     end
 
     test "can update organization" do
@@ -56,12 +57,12 @@ module Ektar
       assert_equal "michelada", @organization.name
     end
 
-    test "can soft-delete organization" do
-      assert_no_difference "Ektar::Organization.count" do
-        delete organization_path(@organization.id), @headers
-      end
+    test "can delete organization" do
+      organization_delete = ektar_organizations(:organization_delete)
 
-      refute @organization.reload.enable?
+      assert_difference "Organization.count", -1 do
+        delete organization_path(organization_delete.id), @headers
+      end
     end
 
     def valid_organization
@@ -69,8 +70,8 @@ module Ektar
     end
 
     def http_login
-      username = Ektar.configuration.organization_username
-      password = Ektar.configuration.organization_password
+      username = "superadmin"
+      password = "superadmin123"
       {HTTP_AUTHORIZATION: ActionController::HttpAuthentication::Basic.encode_credentials(username, password)}
     end
   end

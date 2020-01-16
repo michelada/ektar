@@ -24,7 +24,7 @@ module Ektar
     end
 
     def valid_params
-      user = ektar_users(:user)
+      user = ektar_users(:first_user)
       {name: "User Example", ektar_user_id: user.id}
     end
   end

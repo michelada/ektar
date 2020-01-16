@@ -13,38 +13,39 @@ module Ektar
       end
     end
 
-    test "is valid" do
-      subject = Organization.new valid_params
-      assert subject.valid?
-    end
-
     test "organization has UUID different than ID" do
       subject = ektar_organizations(:organization)
 
       refute_equal subject.global_id, subject.id
     end
 
-    test "is invalid" do
-      subject = Organization.new invalid_params
+    #   test "is valid" do
+    #     subject = Organization.new valid_params
 
-      refute subject.valid?
-      assert_equal 1, subject.errors.count
-    end
+    #     assert subject.valid?
+    #   end
 
-    test "is invalid without unique name" do
-      organization = ektar_organizations(:organization)
-      subject = Organization.new valid_params.merge(name: organization.name)
+    #   test "is invalid" do
+    #     subject = Organization.new invalid_params
 
-      refute subject.valid?
-      assert_equal 1, subject.errors.count
-    end
+    #     refute subject.valid?
+    #     assert_equal 1, subject.errors.count
+    #   end
 
-    def valid_params
-      {name: "Sample Organization"}
-    end
+    #   test "is invalid without unique name" do
+    #     organization = ektar_organizations(:main_organization)
+    #     subject = Organization.new valid_params.merge(name: organization.name)
 
-    def invalid_params
-      {}
-    end
+    #     refute subject.valid?
+    #     assert_equal 1, subject.errors.count
+    #   end
+
+    #   def valid_params
+    #     {name: "Sample Organization"}
+    #   end
+
+    #   def invalid_params
+    #     {}
+    #   end
   end
 end
