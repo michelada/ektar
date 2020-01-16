@@ -1,17 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  free: false
-  description: MyString
-  trial: 1
-  price: 1
-  active: false
+plan:
+  name: Basic
 
-two:
-  name: MyString
-  free: false
-  description: MyString
-  trial: 1
-  price: 1
-  active: false
