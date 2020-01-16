@@ -77,8 +77,9 @@ ActiveRecord::Schema.define(version: 2020_01_15_215819) do
     t.string "name", null: false
     t.boolean "free", default: false, null: false
     t.integer "trial", default: 0, null: false
-    t.integer "price", default: 0, null: false
     t.boolean "active", default: true, null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "MXN", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

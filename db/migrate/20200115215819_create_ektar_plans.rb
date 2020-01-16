@@ -4,8 +4,8 @@ class CreateEktarPlans < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.boolean :free, null: false, default: false
       t.integer :trial, null: false, default: 0
-      t.integer :price, null: false, default: 0
       t.boolean :active, null: false, default: true
+      t.monetize :price
 
       t.timestamps
     end
