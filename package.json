@@ -2,9 +2,11 @@
   "name": "ektar",
   "private": true,
   "dependencies": {
+    "@rails/actiontext": "^6.0.2-1",
     "@rails/webpacker": "^4.0.7",
     "bulma": "^0.7.5",
     "rails-ujs": "^5.2.3",
+    "trix": "^1.0.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
@@ -17,6 +19,10 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-prettier": "^3.1.2",
     "prettier": "^1.19.1",
+    "stylelint": "^13.0.0",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-prettier": "^1.1.2",
     "webpack-dev-server": "^3.7.2"
   }
 }
