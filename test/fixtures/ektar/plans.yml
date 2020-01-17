@@ -3,3 +3,5 @@
 plan:
   name: Basic
 
+alternate_plan:
+  name: Pro

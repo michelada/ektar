@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_215819) do
+ActiveRecord::Schema.define(version: 2020_01_16_171710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_01_15_215819) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false
+    t.bigint "ektar_plan_id"
+    t.index ["ektar_plan_id"], name: "index_ektar_organizations_on_ektar_plan_id"
     t.index ["global_id"], name: "index_ektar_organizations_on_global_id", unique: true
     t.index ["name"], name: "index_ektar_organizations_on_name", unique: true
   end
