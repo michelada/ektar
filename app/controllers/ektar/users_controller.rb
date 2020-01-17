@@ -28,7 +28,7 @@ module Ektar
     end
 
     def secure_params
-      params.require(:user).format(form_attributes.keys)
+      params.require(:user).permit(form_attributes.keys)
     end
 
     def verify_role
