@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_171710) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false
     t.boolean "super_admin", default: false
+    t.datetime "blocked_at"
     t.index ["ektar_organization_id"], name: "index_ektar_users_on_ektar_organization_id"
     t.index ["email"], name: "index_ektar_users_on_email", unique: true
     t.index ["global_id"], name: "index_ektar_users_on_global_id", unique: true
