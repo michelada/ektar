@@ -5,7 +5,7 @@
 
 <div class="control">
   <div class="select is-primary">
-    <%= form.select attribute_name, options_for_select(currency) %>
+    <%= form.select attribute_name, options_for_select(currency, resource.send(attribute_name)) %>
   </div>
   <% if error.present? %>
     <p class="help is-danger"><%= error %><p/>

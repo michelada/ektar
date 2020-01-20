@@ -49,6 +49,8 @@ es:
       delete: "Eliminar"
       ektar/organization:
         delete: "Desactivar"
+      ektar/plan:
+        delete: "Desactivar"
     edit:
       name: "Modificar %{resource_name}"
       ektar/organization: "Modificar organización"

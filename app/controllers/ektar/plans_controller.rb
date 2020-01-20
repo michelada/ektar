@@ -4,7 +4,7 @@ module Ektar
   class PlansController < ApplicationController
     include Ektar::Concerns::Resourceful
 
-    LIST_ATTRIBUTES = %i[name price active updated_at].freeze
+    LIST_ATTRIBUTES = %i[name price_cents active updated_at].freeze
     FORM_ATTRIBUTES = {name: :input, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency}.freeze
     SHOW_ATTRIBUTES = %i[name free trial active price_cents price_currency].freeze
 
@@ -15,7 +15,7 @@ module Ektar
 
     def destroy
       object = find_resource
-      # object.enable = false
+      plan.active = false
 
       object.save
       set_flash(errors: object.errors, klass: resouce_class.model_name.element, active: action_name)
@@ -24,7 +24,7 @@ module Ektar
     end
 
     def allow_delete?(resource)
-      true
+      resource.active
     end
 
     private
@@ -43,6 +43,10 @@ module Ektar
 
     def secure_params
       params.require(:plan).permit(form_attributes.keys)
+    end
+
+    def find_resource
+      Ektar::Plan.find(params[:id])
     end
   end
 end
