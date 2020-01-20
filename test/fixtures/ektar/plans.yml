@@ -8,3 +8,4 @@ alternate_plan:
 
 plan_delete:
   name: Delete
+  active: true

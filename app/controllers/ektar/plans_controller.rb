@@ -15,10 +15,10 @@ module Ektar
 
     def destroy
       object = find_resource
-      plan.active = false
+      object.active = false
 
       object.save
-      set_flash(errors: object.errors, klass: resouce_class.model_name.element, active: action_name)
+      set_flash(errors: object.errors, klass: resource_class.model_name.element, active: action_name)
 
       redirect_to collection_path
     end

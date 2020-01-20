@@ -67,6 +67,8 @@ es:
     confirmation:
       ektar/organization:
         delete: "Está seguro de querer desactivar la organización?"
+      ektar/plan:
+        delete: "Está seguro de querer desactivar éste plan?"
       delete: "Está seguro de eliminar el registro?"
 
   form:

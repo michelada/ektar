@@ -4,7 +4,7 @@
 <% error = form.object.errors[attribute_name].first %>
 
 <div class="control">
-  <div class="select is-primary">
+  <div class="select">
     <%= form.select attribute_name, options_for_select(currency, resource.send(attribute_name)) %>
   </div>
   <% if error.present? %>

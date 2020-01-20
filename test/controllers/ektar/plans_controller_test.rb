@@ -26,7 +26,7 @@ module Ektar
       get plan_path(@plan.id)
 
       assert_response :success
-      assert_select ".input", value: @plan.name
+      assert_select ".control", value: @plan.name
     end
 
     test "should get edit" do
@@ -41,29 +41,31 @@ module Ektar
         post plans_path, {params: valid_plan, headers: http_login}
       end
 
-      assert_equal "Basic", Ektar::Plan.last.name
+      assert_equal "Plan test", Ektar::Plan.last.name
     end
 
     test "can show plan" do
       get plan_path(@plan.id)
 
-      assert_select "form"
-      assert_select ".input", value: @plan.name
+      assert_select ".control"
+      assert_select "span", value: @plan.name
     end
 
     test "can update plan" do
       put plan_path(@plan.id), {params: {plan: {name: "Test"}}, headers: http_login}
       @plan.reload
 
-      assert_equal "Test", @organization.name
+      assert_equal "Test", @plan.name
     end
 
     test "can delete plan" do
-      plan_delete = ektar_plan(:plan_delete)
+      plan_delete = ektar_plans(:plan_delete)
 
-      assert_difference "Plan.count", -1 do
+      assert_no_difference "Plan.count", -1 do
         delete plan_path(plan_delete.id), @headers
       end
+
+      assert_equal false, plan_delete.reload.active
     end
 
     def valid_plan
@@ -71,8 +73,8 @@ module Ektar
     end
 
     def http_login
-      username = "superadmin"
-      password = "superadmin123"
+      username = Ektar.configuration.organization_username
+      password = Ektar.configuration.organization_password
       {HTTP_AUTHORIZATION: ActionController::HttpAuthentication::Basic.encode_credentials(username, password)}
     end
   end
