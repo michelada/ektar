@@ -1,0 +1,46 @@
+require_dependency "ektar/application_controller"
+
+module Ektar
+  class PlansController < ApplicationController
+    LIST_ATTRIBUTES = %i[id name free trial active price_cents price_currency]
+    FORM_ATTRIBUTES = {name: :input, free: :checkbox, trial: :input, active: :checkbox, price_cents: :money, price_currency: :currency}
+    SHOW_ATTRIBUTES = %i[name free trial active price_cents price_currency]
+
+    resourceful :ektar_plan,
+      :index, :new, :create, :edit, :update, :show
+
+    before_action :authenticate_superadmin!, except: :show
+
+    def destroy
+      object = find_resource
+      object.enable = false
+
+      object.save
+      set_flash(errors: object.errors, klass: resouce_class.model_name.element, active: action_name)
+
+      redirect_to collection_path
+    end
+
+    def allow_delete?(resource)
+      resource.enable
+    end
+
+    private
+
+    def list_attributes
+      LIST_ATTRIBUTES
+    end
+
+    def form_attributes
+      FORM_ATTRIBUTES
+    end
+
+    def show_attributes
+      SHOW_ATTRIBUTES
+    end
+
+    def secure_params
+      params.require(:plan).permit(form_attributes.keys)
+    end
+  end
+end
