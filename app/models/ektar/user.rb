@@ -1,4 +1,4 @@
-# typed: true
+# typed: false
 
 module Ektar
   class User < ApplicationRecord
