@@ -2,9 +2,11 @@ require_dependency "ektar/application_controller"
 
 module Ektar
   class PlansController < ApplicationController
-    LIST_ATTRIBUTES = %i[id name free trial active price_cents price_currency]
-    FORM_ATTRIBUTES = {name: :input, free: :checkbox, trial: :input, active: :checkbox, price_cents: :money, price_currency: :currency}
-    SHOW_ATTRIBUTES = %i[name free trial active price_cents price_currency]
+    include Ektar::Concerns::Resourceful
+
+    LIST_ATTRIBUTES = %i[name price active updated_at].freeze
+    FORM_ATTRIBUTES = {name: :input, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency}.freeze
+    SHOW_ATTRIBUTES = %i[name free trial active price_cents price_currency].freeze
 
     resourceful :ektar_plan,
       :index, :new, :create, :edit, :update, :show
@@ -13,7 +15,7 @@ module Ektar
 
     def destroy
       object = find_resource
-      object.enable = false
+      # object.enable = false
 
       object.save
       set_flash(errors: object.errors, klass: resouce_class.model_name.element, active: action_name)
@@ -22,7 +24,7 @@ module Ektar
     end
 
     def allow_delete?(resource)
-      resource.enable
+      true
     end
 
     private
