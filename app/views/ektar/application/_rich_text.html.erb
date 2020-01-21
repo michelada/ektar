@@ -1,0 +1,8 @@
+<label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
+<% error = form.object.errors[attribute_name].first %>
+<div class="control">
+  <%= form.rich_text_area attribute_name, class: "textarea #{error.present? ? 'is-danger' : ''}", **input_attributes(attribute_name) %>
+  <% if error.present? %>
+    <p class="help is-danger"><%= error %><p/>
+  <% end %>
+</div>

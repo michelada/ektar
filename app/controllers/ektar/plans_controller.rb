@@ -7,8 +7,8 @@ module Ektar
     extend T::Sig
 
     LIST_ATTRIBUTES = T.let(%i[name price_cents active updated_at].freeze, T::Array[Symbol])
-    FORM_ATTRIBUTES = T.let({name: :input, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency}.freeze, T::Hash[T.untyped, T.untyped])
-    SHOW_ATTRIBUTES = T.let(%i[name free trial active price_cents price_currency].freeze, T::Array[Symbol])
+    FORM_ATTRIBUTES = T.let({name: :input, description: :rich_text, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency}.freeze, T::Hash[T.untyped, T.untyped])
+    SHOW_ATTRIBUTES = T.let(%i[name description free trial active price_cents price_currency].freeze, T::Array[Symbol])
 
     resourceful :ektar_plan,
       :index, :new, :create, :edit, :update, :show

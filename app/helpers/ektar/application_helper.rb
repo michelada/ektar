@@ -23,6 +23,8 @@ module Ektar
         t("table.false")
       when ActiveSupport::TimeWithZone
         l value, format: :short
+      when ActionText::RichText
+        value.body&.html_safe
       else
         value
       end

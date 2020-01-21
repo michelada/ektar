@@ -11,7 +11,7 @@
         <div class="field-body">
           <div class="field is-expanded">
             <div class="control">
-              <span><%= attribute_value(resource[attribute]) %>
+              <span><%= attribute_value(resource[attribute] || resource.send(attribute)) %>
             </div>
           </div>
         </div>
