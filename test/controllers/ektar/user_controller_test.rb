@@ -5,7 +5,7 @@ module Ektar
   class UserControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
     def setup
-      @user = ektar_users(:first_user)
+      @user = ektar_users(:user)
     end
 
     test "should get index" do
@@ -50,15 +50,15 @@ module Ektar
     end
 
     test "can delete user" do
-      second_user = ektar_users(:second_user)
+      alternate_user = ektar_users(:alternate_user)
 
       assert_difference "Ektar::User.count", -1 do
-        delete user_path(second_user.id)
+        delete user_path(alternate_user.id)
       end
     end
 
     def valid_user
-      organization = ektar_organizations(:main_organization)
+      organization = ektar_organizations(:organization)
       {email: "mario@gmail.com",
        encrypted_password: "Password17",
        ektar_organization_id: organization.id,}
