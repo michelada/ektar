@@ -25,6 +25,12 @@ module Ektar
         l value, format: :short
       when ActionText::RichText
         value.body&.html_safe
+      when Money
+        "#{number_to_currency(value.fractional, unit: value.currency.symbol,
+                                                format: "%u%n",
+                                                separator: ".",
+                                                delimiter: ",")}
+                                                #{value.currency.iso_code} "
       else
         value
       end
