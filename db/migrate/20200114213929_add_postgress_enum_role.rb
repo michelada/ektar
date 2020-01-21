@@ -1,3 +1,4 @@
+# typed: false
 class AddPostgressEnumRole < ActiveRecord::Migration[6.0]
   def change
     create_enum :role, %w(admin member)

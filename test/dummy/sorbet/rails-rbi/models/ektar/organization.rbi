@@ -19,6 +19,15 @@ module Ektar::Organization::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
+  sig { returns(T.nilable(Integer)) }
+  def ektar_plan_id; end
+
+  sig { params(value: T.nilable(T.any(Integer, Float, ActiveSupport::Duration))).void }
+  def ektar_plan_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def ektar_plan_id?; end
+
   sig { returns(T.nilable(T::Boolean)) }
   def enable; end
 
@@ -27,6 +36,15 @@ module Ektar::Organization::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def enable?; end
+
+  sig { returns(T.untyped) }
+  def global_id; end
+
+  sig { params(value: T.untyped).void }
+  def global_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def global_id?; end
 
   sig { returns(Integer) }
   def id; end
@@ -60,16 +78,22 @@ module Ektar::Organization::GeneratedAssociationMethods
   extend T::Sig
 
   sig { returns(::Ektar::Membership::ActiveRecord_Associations_CollectionProxy) }
-  def ektar_memberships; end
+  def memberships; end
 
   sig { params(value: T::Enumerable[::Ektar::Membership]).void }
-  def ektar_memberships=(value); end
+  def memberships=(value); end
+
+  sig { returns(::Ektar::Plan) }
+  def plan; end
+
+  sig { params(value: ::Ektar::Plan).void }
+  def plan=(value); end
 
   sig { returns(::Ektar::User::ActiveRecord_Associations_CollectionProxy) }
-  def ektar_users; end
+  def users; end
 
   sig { params(value: T::Enumerable[::Ektar::User]).void }
-  def ektar_users=(value); end
+  def users=(value); end
 end
 
 module Ektar::Organization::CustomFinderMethods

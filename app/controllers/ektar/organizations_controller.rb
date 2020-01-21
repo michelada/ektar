@@ -1,21 +1,23 @@
-# typed: false
+# typed: strict
 # frozen_string_literal: true
 
 module Ektar
   class OrganizationsController < ApplicationController
     include Ektar::Concerns::Resourceful
+    extend T::Sig
 
-    LIST_ATTRIBUTES = %i[id name enable updated_at].freeze
-    FORM_ATTRIBUTES = {name: :input, enable: :checkbox}.freeze
-    SHOW_ATTRIBUTES = %i[name enable updated_at].freeze
+    LIST_ATTRIBUTES = T.let(%i[id name enable updated_at].freeze, T::Array[Symbol])
+    FORM_ATTRIBUTES = T.let({name: :input, enable: :checkbox}.freeze, T::Hash[Symbol, Symbol])
+    SHOW_ATTRIBUTES = T.let(%i[name enable updated_at].freeze, T::Array[Symbol])
 
     resourceful :ektar_organization,
       :index, :new, :create, :edit, :update, :show
 
     before_action :authenticate_superadmin!, except: :show
 
+    sig { void }
     def destroy
-      object = find_resource
+      object = Ektar::Organization.find_by!(id: params[:id])
       object.enable = false
 
       object.save
@@ -24,26 +26,31 @@ module Ektar
       redirect_to collection_path
     end
 
+    sig { params(resource: Ektar::Organization).returns(T::Boolean) }
     def allow_delete?(resource)
-      resource.enable
+      resource.enable?
     end
 
     private
 
+    sig { returns(T::Array[Symbol]) }
     def list_attributes
       LIST_ATTRIBUTES
     end
 
+    sig { returns(T::Hash[Symbol, Symbol]) }
     def form_attributes
       FORM_ATTRIBUTES
     end
 
+    sig { returns(T::Array[Symbol]) }
     def show_attributes
       SHOW_ATTRIBUTES
     end
 
+    sig { returns(ActionController::Parameters) }
     def secure_params
-      params.require(:organization).permit(form_attributes.keys)
+      params.require_typed(:organization, TA[ActionController::Parameters].new).permit(form_attributes.keys)
     end
   end
 end

@@ -38,7 +38,7 @@ class Sprockets::Cache
   def self.default_logger; end
   def set(key, value, local = nil); end
 end
-class Anonymous_Struct_24 < Struct
+class Anonymous_Struct_22 < Struct
   def cache; end
   def cache=(_); end
   def self.[](*arg0); end
@@ -46,7 +46,7 @@ class Anonymous_Struct_24 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Sprockets::Cache::Wrapper < Anonymous_Struct_24
+class Sprockets::Cache::Wrapper < Anonymous_Struct_22
 end
 class Sprockets::Cache::GetWrapper < Sprockets::Cache::Wrapper
   def clear(options = nil); end
@@ -225,7 +225,7 @@ module Sprockets::ProcessorUtils
   def validate_processor_result!(result); end
   extend Sprockets::ProcessorUtils
 end
-class Anonymous_Struct_25 < Struct
+class Anonymous_Struct_23 < Struct
   def param; end
   def param=(_); end
   def processor_strategy; end
@@ -237,7 +237,7 @@ class Anonymous_Struct_25 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Sprockets::ProcessorUtils::CompositeProcessor < Anonymous_Struct_25
+class Sprockets::ProcessorUtils::CompositeProcessor < Anonymous_Struct_23
   def cache_key; end
   def call(input); end
   def self.create(processors); end
@@ -736,18 +736,4 @@ end
 class Sprockets::Preprocessors::DefaultSourceMap
   def call(input); end
   def default_mappings(lines); end
-end
-class Sprockets::Cache::FileStore
-  def clear(options = nil); end
-  def compute_size(caches); end
-  def find_caches; end
-  def gc!; end
-  def get(key); end
-  def initialize(root, max_size = nil, logger = nil); end
-  def inspect; end
-  def safe_open(path, &block); end
-  def safe_stat(fn); end
-  def self.default_logger; end
-  def set(key, value); end
-  def size; end
 end

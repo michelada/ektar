@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 
 module Ektar
   class Membership < ApplicationRecord
