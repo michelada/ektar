@@ -7,6 +7,73 @@ module ActionText::RichText::ActiveRelation_WhereNot
   def not(opts, *rest); end
 end
 
+module ActionText::RichText::GeneratedAttributeMethods
+  extend T::Sig
+
+  sig { returns(T.nilable(String)) }
+  def body; end
+
+  sig { params(value: T.nilable(String)).void }
+  def body=(value); end
+
+  sig { returns(T::Boolean) }
+  def body?; end
+
+  sig { returns(ActiveSupport::TimeWithZone) }
+  def created_at; end
+
+  sig { params(value: T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone)).void }
+  def created_at=(value); end
+
+  sig { returns(T::Boolean) }
+  def created_at?; end
+
+  sig { returns(Integer) }
+  def id; end
+
+  sig { params(value: T.any(Integer, Float, ActiveSupport::Duration)).void }
+  def id=(value); end
+
+  sig { returns(T::Boolean) }
+  def id?; end
+
+  sig { returns(String) }
+  def name; end
+
+  sig { params(value: T.any(String, Symbol)).void }
+  def name=(value); end
+
+  sig { returns(T::Boolean) }
+  def name?; end
+
+  sig { returns(Integer) }
+  def record_id; end
+
+  sig { params(value: T.any(Integer, Float, ActiveSupport::Duration)).void }
+  def record_id=(value); end
+
+  sig { returns(T::Boolean) }
+  def record_id?; end
+
+  sig { returns(String) }
+  def record_type; end
+
+  sig { params(value: T.any(String, Symbol)).void }
+  def record_type=(value); end
+
+  sig { returns(T::Boolean) }
+  def record_type?; end
+
+  sig { returns(ActiveSupport::TimeWithZone) }
+  def updated_at; end
+
+  sig { params(value: T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone)).void }
+  def updated_at=(value); end
+
+  sig { returns(T::Boolean) }
+  def updated_at?; end
+end
+
 module ActionText::RichText::CustomFinderMethods
   sig { params(limit: Integer).returns(T::Array[ActionText::RichText]) }
   def first_n(limit); end
@@ -25,6 +92,7 @@ module ActionText::RichText::CustomFinderMethods
 end
 
 class ActionText::RichText < ActiveRecord::Base
+  include ActionText::RichText::GeneratedAttributeMethods
   include ActionText::RichText::GeneratedAssociationMethods
   extend ActionText::RichText::CustomFinderMethods
   extend T::Sig
