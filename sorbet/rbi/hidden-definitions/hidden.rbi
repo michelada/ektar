@@ -15127,6 +15127,7 @@ module Ektar::Organization::GeneratedAttributeMethods
 end
 
 class Ektar::Organization
+  extend ::T::Sig
   def self.after_add_for_memberships(); end
 
   def self.after_add_for_memberships=(val); end
@@ -15300,6 +15301,64 @@ class Ektar::Plan
   def self.before_remove_for_organizations=(val); end
 
   def self.before_remove_for_organizations?(); end
+end
+
+class Ektar::PlansController
+  include ::Ektar::Concerns::Index
+  include ::Pagy::Backend
+  include ::Ektar::Concerns::New
+  include ::Ektar::Concerns::Create
+  include ::Ektar::Concerns::Edit
+  include ::Ektar::Concerns::Update
+  include ::Ektar::Concerns::Show
+  def collection_path(); end
+
+  def create(options=T.unsafe(nil), &block); end
+
+  def create!(options=T.unsafe(nil), &block); end
+
+  def delete_confirmation(resource); end
+
+  def edit(options=T.unsafe(nil), &block); end
+
+  def edit!(options=T.unsafe(nil), &block); end
+
+  def edit_resource_path(resource); end
+
+  def index(options=T.unsafe(nil), &block); end
+
+  def index!(options=T.unsafe(nil), &block); end
+
+  def link_attribute(); end
+
+  def model_name(); end
+
+  def model_name?(); end
+
+  def new(options=T.unsafe(nil), &block); end
+
+  def new!(options=T.unsafe(nil), &block); end
+
+  def new_resource_path(); end
+
+  def resource_path(resource); end
+
+  def show(options=T.unsafe(nil), &block); end
+
+  def show!(options=T.unsafe(nil), &block); end
+
+  def update(options=T.unsafe(nil), &block); end
+
+  def update!(options=T.unsafe(nil), &block); end
+end
+
+class Ektar::PlansController
+  extend ::Ektar::Concerns::Resourceful::ClassMethods
+  def self.model_name(); end
+
+  def self.model_name=(val); end
+
+  def self.model_name?(); end
 end
 
 class Ektar::Profile
@@ -15529,6 +15588,8 @@ module Ektar
 
   def self.use_relative_model_naming?(); end
 end
+
+Emitter = Psych::Stream::Emitter
 
 class Encoding
   def _dump(*_); end
@@ -16073,6 +16134,14 @@ module GC
   def self.verify_transient_heap_internal_consistency(); end
 end
 
+class Gem::Package::TarHeader
+  def self.oct_or_256based(str); end
+end
+
+class Gem::RemoteFetcher
+  def s3_uri_signer(uri); end
+end
+
 class Gem::RemoteFetcher::FetchError
   def initialize(message, uri); end
 
@@ -16094,8 +16163,65 @@ class Gem::Resolver::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
+class Gem::S3URISigner
+  def initialize(uri); end
+
+  def sign(expiration=T.unsafe(nil)); end
+
+  def uri(); end
+
+  def uri=(uri); end
+  BASE64_URI_TRANSLATE = ::T.let(nil, ::T.untyped)
+  EC2_METADATA_CREDENTIALS = ::T.let(nil, ::T.untyped)
+end
+
+class Gem::S3URISigner::ConfigurationError
+  def initialize(message); end
+end
+
+class Gem::S3URISigner::ConfigurationError
+end
+
+class Gem::S3URISigner::InstanceProfileError
+  def initialize(message); end
+end
+
+class Gem::S3URISigner::InstanceProfileError
+end
+
+class Gem::S3URISigner::S3Config
+  def access_key_id(); end
+
+  def access_key_id=(_); end
+
+  def region(); end
+
+  def region=(_); end
+
+  def secret_access_key(); end
+
+  def secret_access_key=(_); end
+
+  def security_token(); end
+
+  def security_token=(_); end
+end
+
+class Gem::S3URISigner::S3Config
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class Gem::S3URISigner
+end
+
 class Gem::Specification
   extend ::Enumerable
+end
+
+module Gem::Util
+  def self.correct_for_windows_path(path); end
 end
 
 module GlobalID::Locator
@@ -17422,6 +17548,8 @@ JSON::Parser = JSON::Ext::Parser
 JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
+
+JSONTree = Psych::Visitors::JSONTree
 
 module JaroWinkler
   VERSION = ::T.let(nil, ::T.untyped)
@@ -18916,7 +19044,13 @@ end
 class Net::HTTPGatewayTimeout
 end
 
-Net::HTTPInformationCode = Net::HTTPInformation
+class Net::HTTPInformation
+end
+
+Net::HTTPInformationCode::EXCEPTION_TYPE = Net::HTTPError
+
+class Net::HTTPInformation
+end
 
 class Net::HTTPLoopDetected
   HAS_BODY = ::T.let(nil, ::T.untyped)
@@ -18995,7 +19129,13 @@ Net::HTTPSession::ProxyMod = Net::HTTP::ProxyDelta
 class Net::HTTP
 end
 
-Net::HTTPSuccessCode = Net::HTTPSuccess
+class Net::HTTPSuccess
+end
+
+Net::HTTPSuccessCode::EXCEPTION_TYPE = Net::HTTPError
+
+class Net::HTTPSuccess
+end
 
 class Net::HTTPURITooLong
   HAS_BODY = ::T.let(nil, ::T.untyped)
@@ -19607,11 +19747,7 @@ class OpenSSL::KDF::KDFError
 end
 
 module OpenSSL::KDF
-  def self.hkdf(*_); end
-
   def self.pbkdf2_hmac(*_); end
-
-  def self.scrypt(*_); end
 end
 
 class OpenSSL::OCSP::Request
@@ -19619,10 +19755,6 @@ class OpenSSL::OCSP::Request
 end
 
 OpenSSL::PKCS7::Signer = OpenSSL::PKCS7::SignerInfo
-
-class OpenSSL::PKey::EC
-  EXPLICIT_CURVE = ::T.let(nil, ::T.untyped)
-end
 
 class OpenSSL::PKey::EC::Point
   def to_octet_string(_); end
@@ -19635,25 +19767,19 @@ class OpenSSL::PKey::RSA
 end
 
 module OpenSSL::SSL
-  OP_ALLOW_NO_DHE_KEX = ::T.let(nil, ::T.untyped)
   OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION = ::T.let(nil, ::T.untyped)
   OP_CRYPTOPRO_TLSEXT_BUG = ::T.let(nil, ::T.untyped)
   OP_LEGACY_SERVER_CONNECT = ::T.let(nil, ::T.untyped)
-  OP_NO_ENCRYPT_THEN_MAC = ::T.let(nil, ::T.untyped)
-  OP_NO_RENEGOTIATION = ::T.let(nil, ::T.untyped)
-  OP_NO_TLSv1_3 = ::T.let(nil, ::T.untyped)
   OP_SAFARI_ECDHE_ECDSA_BUG = ::T.let(nil, ::T.untyped)
   OP_TLSEXT_PADDING = ::T.let(nil, ::T.untyped)
   SSL2_VERSION = ::T.let(nil, ::T.untyped)
   SSL3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_1_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_2_VERSION = ::T.let(nil, ::T.untyped)
-  TLS1_3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 module OpenSSL::X509
-  V_FLAG_NO_CHECK_TIME = ::T.let(nil, ::T.untyped)
   V_FLAG_TRUSTED_FIRST = ::T.let(nil, ::T.untyped)
 end
 
@@ -30183,6 +30309,8 @@ end
 module UnicodeNormalize
 end
 
+Visitor = Psych::Visitors::Visitor
+
 module Warning
   def warn(_); end
 end
@@ -30345,6 +30473,8 @@ class Webpacker::Env
 end
 
 YAML = Psych
+
+YAMLTree = Psych::Visitors::YAMLTree
 
 module Zeitwerk::ExplicitNamespace
   extend ::Zeitwerk::RealModName
