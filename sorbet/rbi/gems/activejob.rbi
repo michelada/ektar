@@ -17,67 +17,6 @@ module ActiveJob::VERSION
 end
 class ActiveJob::Railtie < Rails::Railtie
 end
-module ActiveJob::Serializers
-  def _additional_serializers; end
-  def _additional_serializers=(obj); end
-  def self._additional_serializers; end
-  def self._additional_serializers=(obj); end
-  def self.add_serializers(*new_serializers); end
-  def self.deserialize(argument); end
-  def self.serialize(argument); end
-  def self.serializers; end
-  extend ActiveSupport::Autoload
-end
-class ActiveJob::Serializers::ObjectSerializer
-  def deserialize(_argument); end
-  def klass; end
-  def self.allocate; end
-  def self.deserialize(*args, &block); end
-  def self.instance; end
-  def self.new(*arg0); end
-  def self.serialize(*args, &block); end
-  def self.serialize?(*args, &block); end
-  def serialize(hash); end
-  def serialize?(argument); end
-  extend Singleton::SingletonClassMethods
-  include Singleton
-end
-class ActiveJob::Serializers::SymbolSerializer < ActiveJob::Serializers::ObjectSerializer
-  def deserialize(argument); end
-  def klass; end
-  def self.instance; end
-  def serialize(argument); end
-end
-class ActiveJob::Serializers::DurationSerializer < ActiveJob::Serializers::ObjectSerializer
-  def deserialize(hash); end
-  def klass; end
-  def self.instance; end
-  def serialize(duration); end
-end
-class ActiveJob::Serializers::DateTimeSerializer < ActiveJob::Serializers::ObjectSerializer
-  def deserialize(hash); end
-  def klass; end
-  def self.instance; end
-  def serialize(time); end
-end
-class ActiveJob::Serializers::DateSerializer < ActiveJob::Serializers::ObjectSerializer
-  def deserialize(hash); end
-  def klass; end
-  def self.instance; end
-  def serialize(date); end
-end
-class ActiveJob::Serializers::TimeWithZoneSerializer < ActiveJob::Serializers::ObjectSerializer
-  def deserialize(hash); end
-  def klass; end
-  def self.instance; end
-  def serialize(time); end
-end
-class ActiveJob::Serializers::TimeSerializer < ActiveJob::Serializers::ObjectSerializer
-  def deserialize(hash); end
-  def klass; end
-  def self.instance; end
-  def serialize(time); end
-end
 module ActiveJob::Core
   def arguments; end
   def arguments=(arg0); end
@@ -277,8 +216,6 @@ class ActiveJob::Base
   def self._queue_adapter=(val); end
   def self._queue_adapter_name; end
   def self._queue_adapter_name=(val); end
-  def self._test_adapter; end
-  def self._test_adapter=(val); end
   def self.logger; end
   def self.logger=(obj); end
   def self.priority; end
@@ -303,7 +240,6 @@ class ActiveJob::Base
   extend ActiveJob::QueueAdapter::ClassMethods
   extend ActiveJob::QueueName::ClassMethods
   extend ActiveJob::QueuePriority::ClassMethods
-  extend ActiveJob::TestHelper::TestQueueAdapter::ClassMethods
   extend ActiveSupport::Callbacks::ClassMethods
   extend ActiveSupport::DescendantsTracker
   extend ActiveSupport::Rescuable::ClassMethods
@@ -316,47 +252,8 @@ class ActiveJob::Base
   include ActiveJob::QueueAdapter
   include ActiveJob::QueueName
   include ActiveJob::QueuePriority
-  include ActiveJob::TestHelper::TestQueueAdapter
   include ActiveJob::Timezones
   include ActiveJob::Translation
   include ActiveSupport::Callbacks
   include ActiveSupport::Rescuable
-end
-module ActiveJob::TestHelper
-  def after_teardown; end
-  def assert_enqueued_jobs(number, only: nil, except: nil, queue: nil); end
-  def assert_enqueued_with(job: nil, args: nil, at: nil, queue: nil); end
-  def assert_no_enqueued_jobs(only: nil, except: nil, queue: nil, &block); end
-  def assert_no_performed_jobs(only: nil, except: nil, queue: nil, &block); end
-  def assert_performed_jobs(number, only: nil, except: nil, queue: nil, &block); end
-  def assert_performed_with(job: nil, args: nil, at: nil, queue: nil, &block); end
-  def before_setup; end
-  def clear_enqueued_jobs; end
-  def clear_performed_jobs; end
-  def deserialize_args_for_assertion(job); end
-  def enqueued_jobs(*args, &block); end
-  def enqueued_jobs=(arg); end
-  def enqueued_jobs_with(only: nil, except: nil, queue: nil, &block); end
-  def filter_as_proc(filter); end
-  def flush_enqueued_jobs(only: nil, except: nil, queue: nil); end
-  def instantiate_job(payload); end
-  def jobs_with(jobs, only: nil, except: nil, queue: nil); end
-  def perform_enqueued_jobs(only: nil, except: nil, queue: nil); end
-  def performed_jobs(*args, &block); end
-  def performed_jobs=(arg); end
-  def performed_jobs_with(only: nil, except: nil, queue: nil, &block); end
-  def prepare_args_for_assertion(args); end
-  def queue_adapter; end
-  def queue_adapter_changed_jobs; end
-  def queue_adapter_for_test; end
-  def round_time_arguments(argument); end
-  def validate_option(only: nil, except: nil); end
-end
-module ActiveJob::TestHelper::TestQueueAdapter
-  extend ActiveSupport::Concern
-end
-module ActiveJob::TestHelper::TestQueueAdapter::ClassMethods
-  def disable_test_adapter; end
-  def enable_test_adapter(test_adapter); end
-  def queue_adapter; end
 end

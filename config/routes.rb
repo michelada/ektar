@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 Ektar::Engine.routes.draw do
   root to: "organizations#index"
 
