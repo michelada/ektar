@@ -2,6 +2,22 @@
 # Please rerun rake rails_rbi:models[Ektar::Membership] to regenerate.
 
 # typed: strong
+module Ektar::Membership::EnumInstanceMethods
+  extend T::Sig
+
+  sig { returns(T::Boolean) }
+  def admin?; end
+
+  sig { void }
+  def admin!; end
+
+  sig { returns(T::Boolean) }
+  def member?; end
+
+  sig { void }
+  def member!; end
+end
+
 module Ektar::Membership::ActiveRelation_WhereNot
   sig { params(opts: T.untyped, rest: T.untyped).returns(T.self_type) }
   def not(opts, *rest); end
@@ -9,6 +25,15 @@ end
 
 module Ektar::Membership::GeneratedAttributeMethods
   extend T::Sig
+
+  sig { returns(T::Boolean) }
+  def active; end
+
+  sig { params(value: T::Boolean).void }
+  def active=(value); end
+
+  sig { returns(T::Boolean) }
+  def active?; end
 
   sig { returns(ActiveSupport::TimeWithZone) }
   def created_at; end
@@ -46,6 +71,15 @@ module Ektar::Membership::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
+  sig { returns(String) }
+  def role; end
+
+  sig { params(value: T.any(Integer, String, Symbol)).void }
+  def role=(value); end
+
+  sig { returns(T::Boolean) }
+  def role?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def updated_at; end
 
@@ -60,16 +94,16 @@ module Ektar::Membership::GeneratedAssociationMethods
   extend T::Sig
 
   sig { returns(::Ektar::Organization) }
-  def ektar_organization; end
+  def organization; end
 
   sig { params(value: ::Ektar::Organization).void }
-  def ektar_organization=(value); end
+  def organization=(value); end
 
   sig { returns(::Ektar::User) }
-  def ektar_user; end
+  def user; end
 
   sig { params(value: ::Ektar::User).void }
-  def ektar_user=(value); end
+  def user=(value); end
 end
 
 module Ektar::Membership::CustomFinderMethods
@@ -90,11 +124,27 @@ module Ektar::Membership::CustomFinderMethods
 end
 
 class Ektar::Membership < Ektar::ApplicationRecord
+  include Ektar::Membership::EnumInstanceMethods
   include Ektar::Membership::GeneratedAttributeMethods
   include Ektar::Membership::GeneratedAssociationMethods
   extend Ektar::Membership::CustomFinderMethods
   extend T::Sig
   extend T::Generic
+
+  sig { returns(T::Hash[T.any(String, Symbol), String]) }
+  def self.roles; end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def self.admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def self.member(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def self.not_admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def self.not_member(*args); end
 
   sig { returns(Ektar::Membership::ActiveRecord_Relation) }
   def self.all; end
@@ -273,6 +323,18 @@ class Ektar::Membership::ActiveRecord_Relation < ActiveRecord::Relation
   extend T::Generic
   Elem = type_member(fixed: Ektar::Membership)
 
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def member(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def not_admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_Relation) }
+  def not_member(*args); end
+
   sig { returns(Ektar::Membership::ActiveRecord_Relation) }
   def all; end
 
@@ -380,6 +442,18 @@ class Ektar::Membership::ActiveRecord_AssociationRelation < ActiveRecord::Associ
   extend T::Sig
   extend T::Generic
   Elem = type_member(fixed: Ektar::Membership)
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def member(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def not_admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def not_member(*args); end
 
   sig { returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
   def all; end
@@ -564,6 +638,18 @@ class Ektar::Membership::ActiveRecord_Associations_CollectionProxy < ActiveRecor
   extend T::Sig
   extend T::Generic
   Elem = type_member(fixed: Ektar::Membership)
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def member(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def not_admin(*args); end
+
+  sig { params(args: T.untyped).returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
+  def not_member(*args); end
 
   sig { returns(Ektar::Membership::ActiveRecord_AssociationRelation) }
   def all; end

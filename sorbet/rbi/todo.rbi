@@ -5,11 +5,7 @@
 module ::Anonymous_Delegator_10; end
 module ::Anonymous_Delegator_11; end
 module ::Anonymous_Delegator_12; end
-module ::Anonymous_Delegator_13; end
-module ::Anonymous_Delegator_14; end
-module ::Anonymous_Delegator_17; end
 module ::Anonymous_Delegator_18; end
-module ::Anonymous_Delegator_20; end
 module ::Anonymous_Delegator_7; end
 module ::Anonymous_Delegator_8; end
 module ::Anonymous_Delegator_9; end

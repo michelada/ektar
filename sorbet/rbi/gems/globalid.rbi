@@ -92,7 +92,3 @@ module GlobalID::Identification
   def to_signed_global_id(options = nil); end
   extend ActiveSupport::Concern
 end
-class GlobalID::Verifier < ActiveSupport::MessageVerifier
-  def decode(data); end
-  def encode(data); end
-end

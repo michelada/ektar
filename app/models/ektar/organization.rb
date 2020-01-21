@@ -1,4 +1,4 @@
-# typed: false
+# typed: strong
 
 module Ektar
   class Organization < ApplicationRecord
@@ -12,6 +12,7 @@ module Ektar
     pg_search_scope :search_full, against: :name,
                                   using: {tsearch: {prefix: true, any_word: true}}
 
+    sig { returns(String) }
     def to_param
       global_id
     end

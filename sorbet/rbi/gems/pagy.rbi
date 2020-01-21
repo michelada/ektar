@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/pagy/all/pagy.rbi
 #
-# pagy-3.7.1
+# pagy-3.7.2
 class Pagy
   def count; end
   def from; end
