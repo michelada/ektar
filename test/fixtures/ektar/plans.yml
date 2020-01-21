@@ -5,3 +5,7 @@ plan:
 
 alternate_plan:
   name: Pro
+
+plan_delete:
+  name: Delete
+  active: true

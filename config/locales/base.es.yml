@@ -14,10 +14,20 @@ es:
       ektar/user:
         one: Usuario
         other: Usuarios
+      ektar/plan:
+        one: Plan
+        other: Planes
 
     attributes:
       ektar/organization:
         enable: "Activa"
+      ektar/plan:
+        active: Activo 
+        free: Gratuito
+        price: Precio
+        price_cents: Precio
+        price_currency: Moneda
+        trial: Prueba
 
   placeholders:
     ektar/organization:
@@ -39,6 +49,8 @@ es:
       delete: "Eliminar"
       ektar/organization:
         delete: "Desactivar"
+      ektar/plan:
+        delete: "Desactivar"
     edit:
       name: "Modificar %{resource_name}"
       ektar/organization: "Modificar organización"
@@ -49,11 +61,14 @@ es:
       name: "Nuevo(a) %{resource_name}"
       ektar/organization: "Nueva organización"
       ektar/user: "Nuevo usuario"
+      ektar/plan: "Nuevo plan"
     show:
       name: "%{resource_name}"
     confirmation:
       ektar/organization:
         delete: "Está seguro de querer desactivar la organización?"
+      ektar/plan:
+        delete: "Está seguro de querer desactivar éste plan?"
       delete: "Está seguro de eliminar el registro?"
 
   form:

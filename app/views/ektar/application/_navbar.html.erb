@@ -12,10 +12,13 @@
       </a>
     </div>
 
-    <div id="navbarMain">
+    <div id="navbarMain" class="navbar-menu">
       <% if super_admin? %>
         <div class="navbar-item">
           <%= link_to model_human_name(Ektar::Organization), organizations_path, class: "navbar-item" %>
+        </div>
+        <div class="navbar-item">
+          <%= link_to model_human_name(Ektar::Plan), plans_path, class: "navbar-item" %>
         </div>
       <% else %>
         <div class="navbar-item">

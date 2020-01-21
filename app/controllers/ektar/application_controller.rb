@@ -34,6 +34,14 @@ module Ektar
       instance_variable_set resource_ivar, object
     end
 
+    def authenticate_superadmin!
+      session[:super_admin] = authenticate_or_request_with_http_basic("Restricted Access") { |username, password|
+        username == Ektar.configuration.organization_username && password == Ektar.configuration.organization_password
+      }
+
+      return render status: :not_authorized unless super_admin?
+    end
+
     def action_response_dual(object, options, &block)
       invalid_resource = object&.errors&.any?
 
