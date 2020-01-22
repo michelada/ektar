@@ -1,4 +1,4 @@
-# typed: false
+# typed: strict
 
 module Ektar
   class ResourcefulController < ApplicationController
@@ -41,7 +41,7 @@ module Ektar
 
       Array(actions).each do |name|
         if VALID_RESOURCE_ACTIONS.include?(name)
-          include "Ektar::Concerns::#{name.capitalize}".constantize
+          T.unsafe(self).include "Ektar::Concerns::#{name.capitalize}".constantize
         end
       end
     end

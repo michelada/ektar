@@ -3,7 +3,9 @@
 organization:
   name: "Fixture Organization"
   enable: true
+  plan: :plan
 
 alternate_organization:
   name: "Alternate Fixture Organization"
   enable: true
+  plan: :alternate_plan
