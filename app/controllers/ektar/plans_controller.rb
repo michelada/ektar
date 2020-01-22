@@ -5,8 +5,7 @@ module Ektar
   class PlansController < ResourcefulController
     extend T::Sig
 
-    resourceful(resource_class: Ektar::Plan,
-                list_attributes: %i[name price active updated_at],
+    resourceful(list_attributes: %i[name price active updated_at],
                 form_attributes: {name: :input, description: :rich_text, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency},
                 show_attributes: %i[name description free trial active price])
 
