@@ -16,18 +16,21 @@ module Ektar
     class_attribute :list_attributes, instance_writer: false
     class_attribute :form_attributes, instance_writer: false
     class_attribute :show_attributes, instance_writer: false
+    class_attribute :find_by, instance_writer: false
 
     sig do
       params(list_attributes: T::Array[Symbol],
              form_attributes: T::Hash[Symbol, Symbol],
              show_attributes: T::Array[Symbol],
              only: T.untyped,
-             except: T.nilable(T.any(T::Array[Symbol], Symbol))).void
+             except: T.nilable(T.any(T::Array[Symbol], Symbol)),
+             find_by: Symbol).void
     end
-    def self.resourceful(list_attributes:, form_attributes:, show_attributes:, only: nil, except: nil)
+    def self.resourceful(list_attributes:, form_attributes:, show_attributes:, only: nil, except: nil, find_by: :id)
       self.list_attributes = list_attributes
       self.form_attributes = form_attributes
       self.show_attributes = show_attributes
+      self.find_by = find_by
 
       only_actions = [only].compact
       except_actions = [except].compact
@@ -106,6 +109,11 @@ module Ektar
     sig { returns T.nilable(T::Array[Symbol]) }
     def show_attributes
       self.class.show_attributes || list_attributes
+    end
+
+    sig { returns(Symbol) }
+    def find_by_param
+      self.class.find_by || :id
     end
 
     helper_method :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,

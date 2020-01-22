@@ -7,13 +7,14 @@ module Ektar
 
     resourceful(list_attributes: %i[id name enable updated_at],
                 form_attributes: {name: :input, enable: :checkbox},
-                show_attributes: %i[name enable updated_at])
+                show_attributes: %i[name enable updated_at],
+                find_by: :global_id)
 
     before_action :authenticate_superadmin!, except: :show
 
     sig { void }
     def destroy
-      object = Ektar::Organization.find_by!(global_id: params[:id])
+      object = Ektar::Organization.find_by!(find_by_param => params[:id])
       object.enable = false
 
       object.save

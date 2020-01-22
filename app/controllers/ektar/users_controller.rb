@@ -8,7 +8,8 @@ module Ektar
 
     resourceful(list_attributes: %i[id email updated_at],
                 form_attributes: {email: :input, password: :password, password_confirmation: :password},
-                show_attributes: %i[id email updated_at])
+                show_attributes: %i[id email updated_at],
+                find_by: :global_id)
 
     private
 

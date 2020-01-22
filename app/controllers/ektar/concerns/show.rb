@@ -10,7 +10,7 @@ module Ektar
 
       included do
         def show(options = {}, &block)
-          @resource ||= resource_class.find_by(global_id: params[:id])
+          @resource ||= resource_class.find_by!(find_by_param => params[:id])
           set_resource_ivar @resource
 
           yield @resource if block_given?

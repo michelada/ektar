@@ -13,7 +13,7 @@ module Ektar
 
     sig { void }
     def destroy
-      object = Ektar::Plan.find(params[:id])
+      object = Ektar::Plan.find_by!(find_by_param => params[:id])
       object.active = false
 
       object.save
