@@ -5,17 +5,16 @@ module Ektar
   class PlansController < ResourcefulController
     extend T::Sig
 
-    FORM_ATTRIBUTES = T.let({name: :input, description: :rich_text, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency}.freeze, T::Hash[T.untyped, T.untyped])
-    SHOW_ATTRIBUTES = T.let(%i[name description free trial active price].freeze, T::Array[Symbol])
-
     resourceful(resource_class: Ektar::Plan,
-                list_attributes: %i[name price active updated_at])
+                list_attributes: %i[name price active updated_at],
+                form_attributes: {name: :input, description: :rich_text, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency},
+                show_attributes: %i[name description free trial active price])
 
     before_action :authenticate_superadmin!, except: :show
 
     sig { void }
     def destroy
-      object = find_resource
+      object = Ektar::Plan.find(params[:id])
       object.active = false
 
       object.save
@@ -31,24 +30,9 @@ module Ektar
 
     private
 
-    sig { returns(T::Hash[Symbol, Symbol]) }
-    def form_attributes
-      FORM_ATTRIBUTES
-    end
-
-    sig { returns(T::Array[Symbol]) }
-    def show_attributes
-      SHOW_ATTRIBUTES
-    end
-
     sig { returns(ActionController::Parameters) }
     def secure_params
-      params.require_typed(:plan, TA[ActionController::Parameters].new).permit(form_attributes.keys)
-    end
-
-    sig { returns(Ektar::Plan) }
-    def find_resource
-      Ektar::Plan.find(params[:id])
+      params.require_typed(:plan, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys)
     end
   end
 end

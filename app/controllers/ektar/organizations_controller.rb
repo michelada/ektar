@@ -5,11 +5,10 @@ module Ektar
   class OrganizationsController < ResourcefulController
     extend T::Sig
 
-    FORM_ATTRIBUTES = T.let({name: :input, enable: :checkbox}.freeze, T::Hash[Symbol, Symbol])
-    SHOW_ATTRIBUTES = T.let(%i[name enable updated_at].freeze, T::Array[Symbol])
-
     resourceful(resource_class: Ektar::Organization,
-                list_attributes: %i[id name enable updated_at])
+                list_attributes: %i[id name enable updated_at],
+                form_attributes: {name: :input, enable: :checkbox},
+                show_attributes: %i[name enable updated_at])
 
     before_action :authenticate_superadmin!, except: :show
 
@@ -31,19 +30,9 @@ module Ektar
 
     private
 
-    sig { returns(T::Hash[Symbol, Symbol]) }
-    def form_attributes
-      Ektar::PlansController::FORM_ATTRIBUTES
-    end
-
-    sig { returns(T::Array[Symbol]) }
-    def show_attributes
-      Ektar::PlansController::SHOW_ATTRIBUTES
-    end
-
     sig { returns(ActionController::Parameters) }
     def secure_params
-      params.require_typed(:organization, TA[ActionController::Parameters].new).permit(form_attributes.keys)
+      params.require_typed(:organization, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys)
     end
   end
 end
