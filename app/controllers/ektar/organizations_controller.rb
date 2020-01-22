@@ -13,7 +13,7 @@ module Ektar
 
     sig { void }
     def destroy
-      object = Ektar::Organization.find(params[:id])
+      object = Ektar::Organization.find_by!(global_id: params[:id])
       object.enable = false
 
       object.save
