@@ -1,4 +1,4 @@
-# typed: ignore
+# typed: strict
 # frozen_string_literal: true
 
 require "active_support/concern"
@@ -11,11 +11,6 @@ module Ektar
       extend T::Sig
 
       included do
-        sig { returns(Symbol) }
-        def link_attribute
-          :name
-        end
-
         sig { params(resource: Class).returns(T::Boolean) }
         def allow_delete?(resource)
           true
@@ -45,27 +40,20 @@ module Ektar
           end
         end
 
-        sig { params(resource: Class).returns(String) }
-        def delete_confirmation(resource)
-          name = T.unsafe(self).resource.model_name.i18n_key
-          T.unsafe(self).t("table.confirmation.#{name}.delete", default: T.unsafe(self).t("table.confirmation.delete"))
-        end
-
         T.unsafe(self).helper_method(:link_attribute, :allow_delete?, :new_resource_path, :edit_resource_path,
           :resource_path, :collection_path, :delete_confirmation, :list_attributes, :form_attributes,
-          :show_attributes, :resource_class)
+          :show_attributes)
       end
 
       class_methods do
         sig { params(model_name: Symbol, actions: String).void }
         def resourceful(model_name, *actions)
-          class_attribute :model_name, instance_writer: false
-          self.model_name = model_name
-          Rails.logger.debug ">>>>>>> #{model_name}"
+          T.unsafe(self).class_attribute :model_name, instance_writer: false
+          T.unsafe(self).self.model_name = model_name
 
           Array(actions).each do |name|
             case name
-            when :index then include Ektar::Concerns::Index
+            when :index then T.unsafe(self).include Ektar::Concerns::Index
             when :new then T.unsafe(self).include Ektar::Concerns::New
             when :create then T.unsafe(self).include Ektar::Concerns::Create
             when :edit then T.unsafe(self).include Ektar::Concerns::Edit

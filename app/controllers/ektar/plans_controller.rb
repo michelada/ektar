@@ -2,16 +2,14 @@
 # frozen_string_literal: true
 
 module Ektar
-  class PlansController < ApplicationController
-    include Ektar::Concerns::Resourceful
+  class PlansController < ResourcefulController
     extend T::Sig
 
-    LIST_ATTRIBUTES = T.let(%i[name price active updated_at].freeze, T::Array[Symbol])
     FORM_ATTRIBUTES = T.let({name: :input, description: :rich_text, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency}.freeze, T::Hash[T.untyped, T.untyped])
     SHOW_ATTRIBUTES = T.let(%i[name description free trial active price].freeze, T::Array[Symbol])
 
-    resourceful :ektar_plan,
-      :index, :new, :create, :edit, :update, :show
+    resourceful(resource_class: Ektar::Plan,
+                list_attributes: %i[name price active updated_at])
 
     before_action :authenticate_superadmin!, except: :show
 
@@ -26,17 +24,12 @@ module Ektar
       redirect_to collection_path
     end
 
-    sig { params(resource: Ektar::Plan).returns(T::Boolean) }
+    sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_delete?(resource)
       resource.active
     end
 
     private
-
-    sig { returns(T::Array[Symbol]) }
-    def list_attributes
-      LIST_ATTRIBUTES
-    end
 
     sig { returns(T::Hash[Symbol, Symbol]) }
     def form_attributes

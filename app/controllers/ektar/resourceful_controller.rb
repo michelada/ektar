@@ -3,6 +3,7 @@
 module Ektar
   class ResourcefulController < ApplicationController
     extend T::Sig
+
     class_attribute :resource_class, instance_writer: false
     class_attribute :list_attributes, instance_writer: false
 
@@ -37,7 +38,33 @@ module Ektar
       send "#{resource_class.model_name.route_key}_path"
     end
 
+    sig { params(resource: T.untyped).returns(T::Boolean) }
+    def allow_delete?(resource)
+      true
+    end
+
+    sig { returns(Symbol) }
+    def link_attribute
+      :name
+    end
+
+    sig { params(resource: ActiveRecord::Base).returns(String) }
+    def delete_confirmation(resource)
+      name = resource.model_name.i18n_key
+      T.unsafe(self).t("table.confirmation.#{name}.delete", default: T.unsafe(self).t("table.confirmation.delete"))
+    end
+
+    sig { returns(T.untyped) }
+    def resource_class
+      self.class.resource_class
+    end
+
+    sig { returns(T.untyped) }
+    def list_attributes
+      self.class.list_attributes
+    end
+
     helper_method :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
-      :list_attributes
+      :link_attribute, :delete_confirmation, :list_attributes, :allow_delete?
   end
 end
