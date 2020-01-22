@@ -4,44 +4,47 @@ module Ektar
   class ResourcefulController < ApplicationController
     extend T::Sig
 
-    VALID_RESOURCE_ACTIONS = T.let([:index, :new, :create, :edit, :update, :show, :destroy], T::Array[Symbol])
+    VALID_RESOURCE_ACTIONS = T.let({index: Ektar::Concerns::Index,
+                                    new: Ektar::Concerns::New,
+                                    create: Ektar::Concerns::Create,
+                                    edit: Ektar::Concerns::Edit,
+                                    update: Ektar::Concerns::Update,
+                                    show: Ektar::Concerns::Show,
+                                    destroy: Ektar::Concerns::Destroy,},
+      T::Hash[Symbol, Module])
 
-    class_attribute :resource_class, instance_writer: false
     class_attribute :list_attributes, instance_writer: false
     class_attribute :form_attributes, instance_writer: false
     class_attribute :show_attributes, instance_writer: false
 
     sig do
-      params(resource_class: T.untyped,
-             list_attributes: T::Array[Symbol],
+      params(list_attributes: T::Array[Symbol],
              form_attributes: T::Hash[Symbol, Symbol],
              show_attributes: T::Array[Symbol],
-             only: T.nilable(T.any(T::Array[Symbol], Symbol)),
+             only: T.untyped,
              except: T.nilable(T.any(T::Array[Symbol], Symbol))).void
     end
-    def self.resourceful(resource_class:, list_attributes:, form_attributes:, show_attributes:, only: nil, except: nil)
-      self.resource_class = resource_class
+    def self.resourceful(list_attributes:, form_attributes:, show_attributes:, only: nil, except: nil)
       self.list_attributes = list_attributes
       self.form_attributes = form_attributes
       self.show_attributes = show_attributes
 
-      only = [] if only.nil?
-      except = [] if except.nil?
+      only_actions = [only].compact
+      except_actions = [except].compact
 
-      only = [only] if only.is_a?(Symbol)
-      except = [except] if except.is_a?(Symbol)
+      actions_keys = VALID_RESOURCE_ACTIONS.keys
 
-      actions = if only.any?
-        VALID_RESOURCE_ACTIONS & only
-      elsif except.any?
-        VALID_RESOURCE_ACTIONS - except
+      actions = if only_actions.any?
+        actions_keys & only_actions
+      elsif except_actions.any?
+        actions_keys - except_actions
       else
-        VALID_RESOURCE_ACTIONS.dup
+        actions_keys.dup
       end
 
       Array(actions).each do |name|
-        if VALID_RESOURCE_ACTIONS.include?(name)
-          T.unsafe(self).include "Ektar::Concerns::#{name.capitalize}".constantize
+        if actions_keys.include?(name)
+          include T.must(VALID_RESOURCE_ACTIONS[name])
         end
       end
     end
@@ -87,7 +90,7 @@ module Ektar
 
     sig { returns(T.untyped) }
     def resource_class
-      self.class.resource_class
+      controller_path.classify.constantize
     end
 
     sig { returns T.nilable(T::Array[Symbol]) }

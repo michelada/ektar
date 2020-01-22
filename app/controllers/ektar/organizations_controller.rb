@@ -5,8 +5,7 @@ module Ektar
   class OrganizationsController < ResourcefulController
     extend T::Sig
 
-    resourceful(resource_class: Ektar::Organization,
-                list_attributes: %i[id name enable updated_at],
+    resourceful(list_attributes: %i[id name enable updated_at],
                 form_attributes: {name: :input, enable: :checkbox},
                 show_attributes: %i[name enable updated_at])
 

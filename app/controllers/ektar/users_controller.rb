@@ -4,11 +4,11 @@
 module Ektar
   class UsersController < ResourcefulController
     # before_action :verify_role, only: [:create, :destroy]
-    # include Ektar::Concerns::Resourceful
     extend T::Sig
 
-    resourceful(resource_class: Ektar::User,
-                list_attributes: %i[id email updated_at])
+    resourceful(list_attributes: %i[id email updated_at],
+                form_attributes: {email: :input, password: :password, password_confirmation: :password},
+                show_attributes: %i[id email updated_at])
 
     private
 
