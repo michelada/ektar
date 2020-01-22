@@ -2,24 +2,18 @@
 # frozen_string_literal: true
 
 module Ektar
-  class UsersController < ApplicationController
+  class UsersController < ResourcefulController
     # before_action :verify_role, only: [:create, :destroy]
-    include Ektar::Concerns::Resourceful
+    # include Ektar::Concerns::Resourceful
     extend T::Sig
 
-    LIST_ATTRIBUTES = T.let(%i[id email updated_at].freeze, T::Array[Symbol])
     FORM_ATTRIBUTES = T.let({email: :input, password: :password, password_confirmation: :password}.freeze, T::Hash[Symbol, Symbol])
     SHOW_ATTRIBUTES = T.let(%i[id email updated_at].freeze, T::Array[Symbol])
 
-    resourceful :ektar_user,
-      :index, :new, :create, :edit, :update, :show, :destroy
+    resourceful(resource_class: Ektar::User,
+                list_attributes: %i[id email updated_at])
 
     private
-
-    sig { returns(T::Array[Symbol]) }
-    def list_attributes
-      LIST_ATTRIBUTES
-    end
 
     sig { returns(T::Hash[Symbol, Symbol]) }
     def form_attributes

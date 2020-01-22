@@ -1,4 +1,4 @@
-# typed: strict
+# typed: ignore
 # frozen_string_literal: true
 
 require "active_support/concern"
@@ -45,29 +45,6 @@ module Ektar
           end
         end
 
-        sig { void }
-        def new_resource_path
-          path = "new_#{T.unsafe(self).T.unsafe(self).resource_class.model_name.singular_route_key}_path"
-          send(path)
-        end
-
-        sig { params(resource: Class).void }
-        def edit_resource_path(resource)
-          path = "edit_#{T.unsafe(self).resource.model_name.singular_route_key}_path"
-          send(path, resource)
-        end
-
-        sig { params(resource: Class).void }
-        def resource_path(resource)
-          path = "#{T.unsafe(self).resource.model_name.singular_route_key}_path"
-          send(path, resource)
-        end
-
-        sig { void }
-        def collection_path
-          send "#{T.unsafe(self).resource_class.model_name.route_key}_path"
-        end
-
         sig { params(resource: Class).returns(String) }
         def delete_confirmation(resource)
           name = T.unsafe(self).resource.model_name.i18n_key
@@ -76,18 +53,19 @@ module Ektar
 
         T.unsafe(self).helper_method(:link_attribute, :allow_delete?, :new_resource_path, :edit_resource_path,
           :resource_path, :collection_path, :delete_confirmation, :list_attributes, :form_attributes,
-          :show_attributes)
+          :show_attributes, :resource_class)
       end
 
       class_methods do
         sig { params(model_name: Symbol, actions: String).void }
         def resourceful(model_name, *actions)
-          T.unsafe(self).class_attribute :model_name, instance_writer: false
-          T.unsafe(self).self.model_name = model_name
+          class_attribute :model_name, instance_writer: false
+          self.model_name = model_name
+          Rails.logger.debug ">>>>>>> #{model_name}"
 
           Array(actions).each do |name|
             case name
-            when :index then T.unsafe(self).include Ektar::Concerns::Index
+            when :index then include Ektar::Concerns::Index
             when :new then T.unsafe(self).include Ektar::Concerns::New
             when :create then T.unsafe(self).include Ektar::Concerns::Create
             when :edit then T.unsafe(self).include Ektar::Concerns::Edit
