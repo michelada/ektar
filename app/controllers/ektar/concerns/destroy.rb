@@ -10,7 +10,7 @@ module Ektar
 
       included do
         def destroy(options = {}, &block)
-          object = @resource ||= resource(find: true)
+          object = resource_class.find_by(find_by_param => params[:id])
           object.destroy
           options[:location] = collection_path
           options[:action] = :destroy

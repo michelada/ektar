@@ -2,6 +2,7 @@
 
 module Ektar
   class Organization < ApplicationRecord
+    extend T::Sig
     include PgSearch::Model
 
     has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_organization_id

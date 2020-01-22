@@ -96,19 +96,6 @@ module Ektar
       filtered_params || params
     end
 
-    def resource_class
-      @resource_class ||= if model_name.to_s.include? "_"
-        ns, *klass = model_name.to_s.split("_").collect(&:camelize)
-        begin
-          "#{ns}::#{klass.join("")}".constantize
-        rescue NameError
-          "#{ns}#{klass.join("")}".constantize
-        end
-      else
-        model_name.to_s.camelize.constantize
-      end
-    end
-
     def set_flash(options = {})
       result = options[:errors].present? ? :alert : :notice
       default_key = "flash.#{options[:action]}.#{result}"
@@ -126,7 +113,7 @@ module Ektar
       @super_admin ||= session[:super_admin].present?
     end
 
-    helper_method :action_response_dual, :collection, :resource, :resource_class,
+    helper_method :action_response_dual, :collection, :resource,
       :super_admin?, :select_options
   end
 end
