@@ -24,3 +24,9 @@ module ActionText::Attachments
 end
 class ActionText::Engine < Rails::Engine
 end
+module ActionText::Attribute
+  extend ActiveSupport::Concern
+end
+module ActionText::Attribute::ClassMethods
+  def has_rich_text(name); end
+end

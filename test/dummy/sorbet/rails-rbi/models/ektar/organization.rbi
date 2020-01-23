@@ -83,10 +83,10 @@ module Ektar::Organization::GeneratedAssociationMethods
   sig { params(value: T::Enumerable[::Ektar::Membership]).void }
   def memberships=(value); end
 
-  sig { returns(::Ektar::Plan) }
+  sig { returns(T.nilable(::Ektar::Plan)) }
   def plan; end
 
-  sig { params(value: ::Ektar::Plan).void }
+  sig { params(value: T.nilable(::Ektar::Plan)).void }
   def plan=(value); end
 
   sig { returns(::Ektar::User::ActiveRecord_Associations_CollectionProxy) }

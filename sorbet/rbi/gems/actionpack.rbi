@@ -1544,7 +1544,7 @@ module ActionController::ParamsWrapper
   def process_action(*args); end
   extend ActiveSupport::Concern
 end
-class Anonymous_Struct_13 < Struct
+class Anonymous_Struct_14 < Struct
   def exclude; end
   def exclude=(_); end
   def format; end
@@ -1562,7 +1562,7 @@ class Anonymous_Struct_13 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class ActionController::ParamsWrapper::Options < Anonymous_Struct_13
+class ActionController::ParamsWrapper::Options < Anonymous_Struct_14
   def _default_wrap_model; end
   def include; end
   def initialize(name, format, include, exclude, klass, model); end
@@ -1699,7 +1699,7 @@ class ActionDispatch::Response
   include MonitorMixin
   include Rack::Response::Helpers
 end
-class ActionDispatch::Response::Header < Anonymous_Delegator_14
+class ActionDispatch::Response::Header < Anonymous_Delegator_15
   def []=(k, v); end
   def initialize(response, header); end
   def merge(other); end
@@ -2507,7 +2507,7 @@ class ActionController::Base < ActionController::Metal
   extend ActiveSupport::Callbacks::ClassMethods
   extend ActiveSupport::DescendantsTracker
   extend ActiveSupport::Rescuable::ClassMethods
-  extend Anonymous_Module_15
+  extend Anonymous_Module_16
   include AbstractController::AssetPaths
   include AbstractController::Caching
   include AbstractController::Caching::Fragments
@@ -2568,6 +2568,6 @@ class ActionController::Base < ActionController::Metal
   include ActiveSupport::Callbacks
   include ActiveSupport::Rescuable
 end
-module Anonymous_Module_15
+module Anonymous_Module_16
   def inherited(klass); end
 end

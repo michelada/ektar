@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 require "webpacker/helper"
 require "pagy"
 

@@ -46,15 +46,6 @@ module Ektar::User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def email?; end
 
-  sig { returns(String) }
-  def encrypted_password; end
-
-  sig { params(value: T.any(String, Symbol)).void }
-  def encrypted_password=(value); end
-
-  sig { returns(T::Boolean) }
-  def encrypted_password?; end
-
   sig { returns(T.untyped) }
   def global_id; end
 
@@ -72,6 +63,24 @@ module Ektar::User::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def id?; end
+
+  sig { returns(String) }
+  def password_digest; end
+
+  sig { params(value: T.any(String, Symbol)).void }
+  def password_digest=(value); end
+
+  sig { returns(T::Boolean) }
+  def password_digest?; end
+
+  sig { returns(T.nilable(String)) }
+  def recovery_password_digest; end
+
+  sig { params(value: T.nilable(String)).void }
+  def recovery_password_digest=(value); end
+
+  sig { returns(T::Boolean) }
+  def recovery_password_digest?; end
 
   sig { returns(T.nilable(T::Boolean)) }
   def super_admin; end

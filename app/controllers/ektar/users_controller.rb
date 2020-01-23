@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 # frozen_string_literal: true
 
 module Ektar
@@ -9,7 +9,24 @@ module Ektar
     resourceful(list_attributes: %i[id email updated_at],
                 form_attributes: {email: :input, password: :password, password_confirmation: :password},
                 show_attributes: %i[id email updated_at],
-                find_by: :global_id)
+                find_by: :global_id, except: :new)
+
+    def new
+      @resource = T.let(Ektar::User.new, T.nilable(Ektar::User))
+      @resource.organizations.build if @resource.present?
+
+      render :new, layout: "ektar/users"
+    end
+
+    def create
+      create! do |success|
+        cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"] = resource.global_id
+      end
+    end
+
+    def new_resource_path
+      registration_path
+    end
 
     private
 
