@@ -1,5 +1,5 @@
 <label class="file-label">
-  <%= form.file_field "#{attribute_name}".to_sym,  accept: "image/png, image/jpg", multiple: false, data: { max_file_size: 1.megabytes }, class:'file-input'%>
+  <%= form.file_field "#{attribute_name}".to_sym, merge_resource_attributes({accept: "image/png, image/jpg", multiple: false, data: { max_file_size: 1.megabytes }, class:'file-input'}, input_html) %>
   <span class="file-cta">
     <span class="file-icon">
       <i class="fas fa-upload"></i>

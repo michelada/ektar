@@ -6,7 +6,13 @@ module Ektar
     extend T::Sig
 
     resourceful(list_attributes: %i[name price active updated_at],
-                form_attributes: {name: :input, description: :rich_text, active: :checkbox, trial: :input, free: :checkbox, price_cents: :number, price_currency: :currency},
+                form_attributes: {name: {type: :input},
+                                  description: :rich_text,
+                                  active: :checkbox,
+                                  trial: :input,
+                                  free: :checkbox,
+                                  price_cents: :number,
+                                  price_currency: :currency,},
                 show_attributes: %i[name description free trial active price])
 
     before_action :authenticate_superadmin!, except: :show

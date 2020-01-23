@@ -6,6 +6,7 @@ module Ektar
   module ApplicationHelper
     include ::Webpacker::Helper
     include ::Pagy::Frontend
+    extend T::Sig
 
     def current_webpacker_instance
       Ektar.webpacker
@@ -66,9 +67,11 @@ module Ektar
         default: t("table.actions.delete"))
     end
 
+    sig { params(field_name: T.any(Symbol, String)).returns(T::Hash[Symbol, T.untyped]) }
     def input_attributes(field_name)
       key = resource_class.model_name.i18n_key
       {
+        class: "input",
         placeholder: t("placeholders.#{key}.#{field_name}", default: ""),
         maxlength: t("maxlength.#{key}.#{field_name}", default: t("maxlength.size")),
       }

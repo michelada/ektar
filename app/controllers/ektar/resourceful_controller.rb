@@ -20,13 +20,15 @@ module Ektar
     class_attribute :find_by, instance_writer: false
 
     sig do
-      params(list_attributes: T::Array[Symbol],
-             form_attributes: T::Hash[Symbol, Symbol],
-             show_attributes: T::Array[Symbol],
-             resource_class: T.untyped,
-             only: T.untyped,
-             except: T.nilable(T.any(T::Array[Symbol], Symbol)),
-             find_by: Symbol).void
+      params(
+        list_attributes: T::Array[Symbol],
+        form_attributes: T::Hash[Symbol, T.untyped],
+        show_attributes: T::Array[Symbol],
+        resource_class: T.untyped,
+        only: T.untyped,
+        except: T.nilable(T.any(T::Array[Symbol], Symbol)),
+        find_by: Symbol
+      ).void
     end
     def self.resourceful(list_attributes:, form_attributes:, show_attributes:, resource_class: nil, only: nil, except: nil, find_by: :id)
       self.list_attributes = list_attributes
@@ -104,7 +106,7 @@ module Ektar
       self.class.list_attributes || resource.attribute_names.map(&:to_sym)
     end
 
-    sig { returns T.nilable(T::Hash[Symbol, Symbol]) }
+    sig { returns T.nilable(T::Hash[Symbol, T.untyped]) }
     def form_attributes
       self.class.form_attributes || Hash[(T.must(list_attributes) - %i[id updated_at created_at]).map { |attr| [attr, :input] }]
     end

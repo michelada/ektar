@@ -114,6 +114,6 @@ module Ektar
     end
 
     helper_method :action_response_dual, :collection, :resource,
-      :super_admin?, :select_options
+      :super_admin?
   end
 end
