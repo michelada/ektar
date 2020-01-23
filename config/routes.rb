@@ -5,7 +5,5 @@ Ektar::Engine.routes.draw do
   resources :organizations
   resources :plans
 
-  resources :users do
-    resource :profiles
-  end
+  resources :users
 end
