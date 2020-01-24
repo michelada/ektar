@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_185107) do
+ActiveRecord::Schema.define(version: 2020_01_24_211207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,15 +86,6 @@ ActiveRecord::Schema.define(version: 2020_01_23_185107) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ektar_profiles", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "ektar_user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ektar_user_id"], name: "index_ektar_profiles_on_ektar_user_id"
-    t.index ["name"], name: "index_ektar_profiles_on_name", unique: true
-  end
-
   create_table "ektar_users", force: :cascade do |t|
     t.string "email", null: false
     t.bigint "ektar_organization_id"
@@ -105,6 +96,8 @@ ActiveRecord::Schema.define(version: 2020_01_23_185107) do
     t.datetime "blocked_at"
     t.string "password_digest", null: false
     t.string "recovery_password_digest"
+    t.datetime "last_activity_at"
+    t.string "last_ip"
     t.index ["ektar_organization_id"], name: "index_ektar_users_on_ektar_organization_id"
     t.index ["email"], name: "index_ektar_users_on_email", unique: true
     t.index ["global_id"], name: "index_ektar_users_on_global_id", unique: true
@@ -113,6 +106,5 @@ ActiveRecord::Schema.define(version: 2020_01_23_185107) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ektar_memberships", "ektar_organizations"
   add_foreign_key "ektar_memberships", "ektar_users"
-  add_foreign_key "ektar_profiles", "ektar_users"
   add_foreign_key "ektar_users", "ektar_organizations"
 end
