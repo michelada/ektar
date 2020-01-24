@@ -1,0 +1,29 @@
+es:
+  table:
+    actions:
+      name: "Acciones"
+      edit: "Modificar"
+      delete: "Eliminar"
+      ektar/organization:
+        delete: "Desactivar"
+      ektar/plan:
+        delete: "Desactivar"
+    edit:
+      name: "Modificar %{resource_name}"
+      ektar/organization: "Modificar organización"
+    delete: "Eliminar"
+    true: "Sí"
+    false: "No"
+    new:
+      name: "Nuevo(a) %{resource_name}"
+      ektar/organization: "Nueva organización"
+      ektar/user: "Nuevo usuario"
+      ektar/plan: "Nuevo plan"
+    show:
+      name: "%{resource_name}"
+    confirmation:
+      ektar/organization:
+        delete: "Está seguro de querer desactivar la organización?"
+      ektar/plan:
+        delete: "Está seguro de querer desactivar éste plan?"
+      delete: "Está seguro de eliminar el registro?"

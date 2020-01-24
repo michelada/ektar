@@ -1,0 +1,38 @@
+es:
+  flash:
+    
+    create:
+      notice: "Creado"
+      alert: "Error al crear"
+
+      organization:
+        notice: "La organización se ha sido registrado exitosamente"
+        alert: "Error al registrar la organización"
+      
+      user:
+        notice: "El usuario ha sido registrado exitosamente"
+        alert: "Error al registrar el usuario"
+
+    update:
+      notice: "Actualizado"
+      alert: "Error al actualizar"
+
+      organization:
+        notice: "La organización ha sido actualizada exitosamente"
+        alert: "Error al actualizar la organización"
+     
+      user:
+        notice: "El usuario ha sido actualizado exitosamente"
+        alert: "Error al actualizar el usuario"
+
+    destroy:
+      notice: "Actualizado"
+      alert: "Error al eliminar"
+
+      organization:
+        notice: "La organización ha sido eliminada exitosamente"
+        alert: "Error al eliminar la organización"
+        
+      user:
+        notice: "El usuario ha sido eliminado exitosamente"
+        alert: "Error al eliminar el usuario"

@@ -69,8 +69,8 @@ module Ektar
     def input_attributes(field_name)
       key = resource_class.model_name.i18n_key
       {
-        placeholder: t("placeholders.#{key}.#{field_name}", default: ""),
-        maxlength: t("maxlength.#{key}.#{field_name}", default: t("maxlength.size")),
+        placeholder: t("form.placeholders.#{key}.#{field_name}", default: ""),
+        maxlength: t("form.maxlength.#{key}.#{field_name}", default: t("form.maxlength.size")),
       }
     end
   end
