@@ -22,13 +22,9 @@ module Ektar
     test "organization can only have one plan" do
       subject = ektar_organizations(:alternate_organization)
 
-      assert_nil subject.plan
+      assert_equal subject.plan, ektar_plans(:alternate_plan)
 
       subject.plan = ektar_plans(:plan)
-
-      assert_equal subject.plan, ektar_plans(:plan)
-
-      subject.plan = ektar_plans(:alternate_plan)
 
       refute_equal subject.reload.plan, ektar_plans(:plan)
     end

@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 # frozen_string_literal: true
 
 require "pagy"
@@ -8,13 +8,17 @@ require "pagy/extras/i18n"
 module Ektar
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
-    layout "ektar/application"
+    extend T::Sig
+    include Kernel
 
     class ResourceResponse
+      extend T::Sig
+      sig { params(block: T.untyped).returns(T.untyped) }
       def response(&block)
         @block = block
       end
 
+      sig { returns(T.untyped) }
       def code
         @block
       end
@@ -22,18 +26,7 @@ module Ektar
 
     attr_reader :pagination, :resource, :collection
 
-    def resource_ivar
-      "@#{resource_class.model_name.singular}"
-    end
-
-    def get_resource
-      instance_variable_get resource_ivar
-    end
-
-    def set_resource_ivar(object)
-      instance_variable_set resource_ivar, object
-    end
-
+    sig { returns(NilClass) }
     def authenticate_superadmin!
       session[:super_admin] = authenticate_or_request_with_http_basic("Restricted Access") { |username, password|
         username == Ektar.configuration.organization_username && password == Ektar.configuration.organization_password
@@ -42,51 +35,12 @@ module Ektar
       return render status: :not_authorized unless super_admin?
     end
 
-    def action_response_dual(object, options, &block)
-      invalid_resource = object&.errors&.any?
-
-      set_flash options.merge(
-        klass: resource_class.model_name.element,
-        errors: invalid_resource
-      )
-
-      case block.try(:arity)
-      when 2
-        success = ResourceResponse.new
-        failure = ResourceResponse.new
-        block.call success, failure
-
-        if invalid_resource
-          failure.code.call
-        else
-          success.code.call
-        end
-
-      when 1
-        success = ResourceResponse.new
-        block.call success
-
-        if invalid_resource
-          render object.persisted? ? :edit : :new
-        elsif success.code.present?
-          success.code.call
-        else
-          redirect_to options[:location]
-        end
-
-      else
-        if invalid_resource
-          render object.persisted? ? :edit : :new
-        else
-          redirect_to options[:location]
-        end
-      end
-    end
-
+    sig { params(object: ActiveRecord::Base, options: T::Hash[Symbol, T.untyped], block: T.untyped).returns(String) }
     def redirect_with(object, options, &block)
       set_flash options
     end
 
+    sig { returns(ActionController::Parameters) }
     def resource_secure_params
       params_method = "#{action_name}_secure_params".to_sym
 
@@ -96,6 +50,7 @@ module Ektar
       filtered_params || params
     end
 
+    sig { params(options: T::Hash[Symbol, T.untyped]).returns(String) }
     def set_flash(options = {})
       result = options[:errors].present? ? :alert : :notice
       default_key = "flash.#{options[:action]}.#{result}"
@@ -113,7 +68,7 @@ module Ektar
       @super_admin ||= session[:super_admin].present?
     end
 
-    helper_method :action_response_dual, :collection, :resource,
+    helper_method :collection, :resource,
       :super_admin?, :select_options
   end
 end
