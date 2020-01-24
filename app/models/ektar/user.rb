@@ -13,6 +13,7 @@ module Ektar
     validates :email, presence: true, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false}
 
     accepts_nested_attributes_for :memberships, limit: 1, reject_if: :reject_empty_organization!
+    validates :memberships, presence: true
 
     sig { returns(String) }
     def to_param

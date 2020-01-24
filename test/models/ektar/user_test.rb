@@ -43,7 +43,7 @@ module Ektar
       subject = User.new invalid_params_email
 
       refute subject.valid?
-      assert_equal 2, subject.errors.count
+      assert_equal 3, subject.errors.count
     end
 
     test "is invalid without unique email" do
@@ -61,6 +61,18 @@ module Ektar
       assert_equal 1, subject.errors.count
     end
 
+    test "user can be invited" do
+      organization = ektar_organizations(:organization)
+
+      assert_difference ["Ektar::User.count", "Ektar::Membership.count"], 1 do
+        params = valid_params
+        params.delete(:memberships_attributes)
+        u = Ektar::User.new(params)
+        u.memberships.build(organization: organization)
+        u.save
+      end
+    end
+
     # test "is invalid without valid encrypted_password" do
     #   subject = User.new valid_params.merge(encrypted_password: "123")
 
@@ -69,11 +81,10 @@ module Ektar
     # end
 
     def valid_params
-      organization = ektar_organizations(:organization)
-      {email: "user_example@gmail.com",
-       password: "Password14",
-       password_confirmation: "Password14",
-       ektar_organization_id: organization.id}
+      {email: "mario@gmail.com",
+       password: "Password17",
+       password_confirmation: "Password17",
+       memberships_attributes: [organization_attributes: {name: "organization example"}],}
     end
 
     def invalid_params_organization

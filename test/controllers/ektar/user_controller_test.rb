@@ -36,16 +36,18 @@ module Ektar
       assert_select ".input"
     end
 
-    test "can create user" do
-      assert_difference "Ektar::User.count", 1 do
-        post users_path, params: {user: valid_user}
+    test "cannot create user without organization name" do
+      assert_no_difference ["Ektar::User.count", "Ektar::Membership.count", "Ektar::Organization.count"], 1 do
+        post users_path, params: {user: invalid_user}
       end
     end
 
-    test "cannot create user without organization name" do
-      assert_no_difference "Ektar::User.count", 1 do
-        post users_path, params: { user: invalid_user }
+    test "Only can create user with organization" do
+      assert_difference ["Ektar::User.count", "Ektar::Membership.count", "Ektar::Organization.count"], 1 do
+        post users_path, params: {user: valid_user}
       end
+
+      assert_equal "example organization", Ektar::User.last.organizations.first.name
     end
 
     test "can edit user" do
@@ -64,19 +66,17 @@ module Ektar
     end
 
     def valid_user
-      organization = ektar_organizations(:organization)
       {email: "mario@gmail.com",
        password: "Password17",
        password_confirmation: "Password17",
-       ektar_organization_id: organization.id,}
+       memberships_attributes: [organization_attributes: {name: "example organization"}],}
     end
 
     def invalid_user
-      organization = ektar_organizations(:organization)
       {email: "mario@gmail.com",
        password: "Password17",
        password_confirmation: "Password17",
-       organization_attributes: { name: "" }}
+       memberships_attributes: [organization_attributes: {name: ""}],}
     end
   end
 end
