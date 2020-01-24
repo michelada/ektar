@@ -6,7 +6,7 @@ module Ektar
     extend T::Sig
 
     resourceful(list_attributes: %i[name price active updated_at],
-                form_attributes: {name: {type: :input},
+                form_attributes: {name: :input,
                                   description: :rich_text,
                                   active: :checkbox,
                                   trial: :input,

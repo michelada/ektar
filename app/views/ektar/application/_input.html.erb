@@ -2,7 +2,8 @@
 <% error = form.object.errors[attribute_name].first %>
 
 <div class="control">
-<%= form.text_field attribute_name, options_for_input(attribute_name, input_html) %>
-<% if error.present? %>
-  <p class="help is-danger"><%= error %></p>
-<% end %>
+  <%= form.text_field attribute_name, options_for_input(attribute_name, input_html) %>
+  <% if error.present? %>
+    <p class="help is-danger"><%= error %></p>
+  <% end %>
+</div>

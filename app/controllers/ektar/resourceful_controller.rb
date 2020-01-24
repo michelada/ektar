@@ -19,18 +19,91 @@ module Ektar
     class_attribute :show_attributes, instance_writer: false
     class_attribute :find_by, instance_writer: false
 
+    # +resourceful+ method helps you define the actions that will be included on your controller. It also lets you
+    # specify the attributes that must be shown in some views, such as +show+, +index+, +new+ and +edit+
+    #
+    # == Parameters
+    #
+    # [resource_class]
+    #   Specifies the name of the model associated with the controller implementing +resourceful+.
+    #   If no specified, the +resource_name+ can be infered from the controller name.
+    #   i.e: A controller named `UsersController` implementing resourceful, will assume its resource_class is user.
+    #   Also supports namespaces
+    #
+    # [list_attributes]
+    #   Must be an array of symbols, representing each of the attributes that want to be displayed in the +index+ view
+    #   i.e: +list_attributes: %i[name description updated_at] +
+    #
+    # [show_attributes]
+    #   Same as +list_attributes+, but works for +show+ view.
+    #
+    # [form_attributes]
+    #   It's a hash containing a group of keys for each resource attribute, and the values representing the type of
+    #   element corresponding to that attribute.
+    #
+    #   Supported values:
+    #     [type]
+    #       The type of the attribute. If this is the only option that will be specified for the +resourceful+ method,
+    #       you can send this as the only value for the key, so that
+    #         +form_attributes: {name: {type: :input}} +
+    #       can be written simply as
+    #         +form_attributes: {name: :input}
+    #
+    #       Supported types are:
+    #         - checkbox
+    #         - currency
+    #         - currencyfile
+    #         - image
+    #         - input
+    #         - number
+    #         - password
+    #         - radio
+    #         - rich_text
+    #         - select
+    #         - text_area
+    #
+    #     [input_html]
+    #       A hash containing the options that will be merged to the input attributes.
+    #         The following code add two classes to our input:
+    #         +form_attributes: {name: {type: :input, input_html: {class: "input is-success"}}}+
+    #
+    #     [control_html]
+    #       The html options for a +div+ container that will wrap the form field for that attribute
+    #         +form_attributes: {name: {type: :input, control_html: {data-controller: "form_controller"}}}+
+    #
+    #         This will create:
+    #           <div data-controller: "form_controller">
+    #             <!-- Our input html -->
+    #             ...
+    #           </div>
+    #
+    #     [options]
+    #       An array of symbols including the options for a group of radio buttons or a select input
+    #         +form_attributes: {name: {country: :radio, input_html: {class: "radio"}, options: %i[Mexico USA Canada]}}+
+    #
+    # [only]
+    #   Similar to rails, it only includes the options specified in the array of symbols.
+    #     +resourceful only: [:new, :create, :index]+
+    #
+    # [except]
+    #   Includes all the RESTful action modules, except those specified in this parameter.
+    #     +resourceful except: [:show, :destroy, :edit, :update]+
+    #
+    # [find_by]
+    #   This parameter specifies the index used for the model table, defaults to +id+
+    #
     sig do
       params(
-        list_attributes: T::Array[Symbol],
-        form_attributes: T::Hash[Symbol, T.untyped],
-        show_attributes: T::Array[Symbol],
+        list_attributes: T.nilable(T::Array[Symbol]),
+        form_attributes: T.nilable(T::Hash[Symbol, T.untyped]),
+        show_attributes: T.nilable(T::Array[Symbol]),
         resource_class: T.untyped,
         only: T.untyped,
         except: T.nilable(T.any(T::Array[Symbol], Symbol)),
         find_by: Symbol
       ).void
     end
-    def self.resourceful(list_attributes:, form_attributes:, show_attributes:, resource_class: nil, only: nil, except: nil, find_by: :id)
+    def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id)
       self.list_attributes = list_attributes
       self.form_attributes = form_attributes
       self.show_attributes = show_attributes
@@ -103,17 +176,17 @@ module Ektar
 
     sig { returns T.nilable(T::Array[Symbol]) }
     def list_attributes
-      self.class.list_attributes || resource.attribute_names.map(&:to_sym)
+      self.class.list_attributes ||= resource_class.attribute_names.map(&:to_sym)
     end
 
     sig { returns T.nilable(T::Hash[Symbol, T.untyped]) }
     def form_attributes
-      self.class.form_attributes || Hash[(T.must(list_attributes) - %i[id updated_at created_at]).map { |attr| [attr, :input] }]
+      self.class.form_attributes ||= Hash[(T.must(list_attributes) - %i[id updated_at created_at]).map { |attr| [attr, :input] }]
     end
 
     sig { returns T.nilable(T::Array[Symbol]) }
     def show_attributes
-      self.class.show_attributes || list_attributes
+      self.class.show_attributes ||= list_attributes
     end
 
     sig { returns(Symbol) }
