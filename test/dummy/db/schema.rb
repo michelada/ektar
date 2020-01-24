@@ -1,4 +1,3 @@
-# typed: false
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -66,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_01_23_185107) do
 
   create_table "ektar_organizations", force: :cascade do |t|
     t.string "name", null: false
-    t.boolean "enable", default: false
+    t.boolean "enable", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false

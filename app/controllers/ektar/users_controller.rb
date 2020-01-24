@@ -13,14 +13,20 @@ module Ektar
 
     def new
       @resource = T.let(Ektar::User.new, T.nilable(Ektar::User))
-      @resource.organizations.build if @resource.present?
+      @resource.memberships.build(role: "admin").build_organization if @resource.present?
 
       render :new, layout: "ektar/users"
     end
 
     def create
-      create! do |success|
-        cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"] = resource.global_id
+      @user = Ektar::User.new secure_params
+
+      unless @user.memberships.empty?
+        @user.save
+        # cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"] = @user.global_id
+        redirect_to users_path
+      else
+        render :new, alert: "Error al guardar el usuario"
       end
     end
 
@@ -32,7 +38,8 @@ module Ektar
 
     sig { returns(ActionController::Parameters) }
     def secure_params
-      params.require_typed(:user, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys)
+      params.require(:user).permit(form_attributes.keys, memberships_attributes: [{organization_attributes: [:name]}])
+      # params.require_typed(user: [ :organization ], TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys)
     end
 
     sig { returns(TrueClass) }

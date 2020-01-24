@@ -17,14 +17,10 @@
           </div>
         </div>
 
-        <% @resource.organizations.each do |organization| %>
-          <%= form.fields_for :organizations, organization do |organizations_form| %>
-            <div class="field">
-              <label class="label"><%= organizations_form.label :name %></label>
-              <div class="control">
-                <%= organizations_form.text_field :name, class: "input" %>
-              </div>
-            </div>
+        <%= form.fields_for :memberships do |membership| %>
+          <%= membership.fields_for(:organization) do |organization| %>
+            <label class="label"><%= organization.label :name %></label>
+            <%= organization.text_field :name, class: "input"%>
           <% end %>
         <% end %>
 
