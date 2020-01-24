@@ -137,7 +137,6 @@ module Ektar
         klass: resource_class.model_name.element,
         errors: invalid_resource
       )
-
       case block.try(:arity)
       when 2
         success = ResourceResponse.new
@@ -155,18 +154,31 @@ module Ektar
         block.call success
 
         if invalid_resource
-          render object.persisted? ? :edit : :new
+          respond_to do |format|
+            format.html { render object.persisted? ? :edit : :new }
+            format.json { render json: object.errors, status: :unprocessable_entity }
+          end
         elsif success.code.present?
           success.code.call
         else
-          redirect_to options[:location]
+          respond_to do |format|
+            format.html { redirect_to options[:location] }
+            format.json { render json: object.errors, status: :unprocessable_entity }
+          end
         end
 
       else
         if invalid_resource
-          render object.persisted? ? :edit : :new
+          respond_to do |format|
+            format.html { render object.persisted? ? :edit : :new }
+            format.json { render json: object.errors, status: :unprocessable_entity } unless options[:action] == :destroy
+            format.json { head :no_content } if options[:action] == :destroy
+          end
         else
-          redirect_to options[:location]
+          respond_to do |format|
+            format.html { redirect_to options[:location] }
+            format.json { render json: object }
+          end
         end
       end
     end
