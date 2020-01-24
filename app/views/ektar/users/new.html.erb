@@ -6,7 +6,7 @@
         <div class="field">
           <label class="label"><%= form.label :email %></label>
           <div class="control">
-            <%= form.text_field :email, class: "input", **input_attributes("email") %>
+            <%= form.text_field :email, class: "input", **input_attributes(:email) %>
             <% if form.object.errors[:email].first.present? %>
               <p class="help is-danger"><%=  form.object.errors[:email].first %><p/>
             <% end %>
@@ -16,7 +16,7 @@
         <div class="field">
           <label class="label"><%= form.label :password %></label>
           <div class="control">
-            <%= form.password_field :password, class: "input", **input_attributes("password") %>
+            <%= form.password_field :password, class: "input", **input_attributes(:password) %>
             <% if form.object.errors[:password].first.present? %>
               <p class="help is-danger"><%= form.object.errors[:password].first %><p/>
             <% end %>
