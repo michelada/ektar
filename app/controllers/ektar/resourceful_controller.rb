@@ -194,7 +194,59 @@ module Ektar
       self.class.find_by || :id
     end
 
+    sig { returns(String) }
+    def resource_ivar
+      "@#{resource_class.model_name.singular}"
+    end
+
+    sig { params(object: BasicObject).returns(Object) }
+    def set_resource_ivar(object)
+      instance_variable_set resource_ivar, object
+    end
+
+    sig { params(object: ActiveRecord::Base, options: T.nilable(T.untyped), block: T.nilable(T.untyped)).returns(T.untyped) }
+    def action_response_dual(object, options, &block)
+      invalid_resource = T.unsafe(object)&.errors&.any?
+
+      set_flash options.merge(
+        klass: resource_class.model_name.element,
+        errors: invalid_resource
+      )
+
+      case block.try(:arity)
+      when 2
+        success = ResourceResponse.new
+        failure = ResourceResponse.new
+        block.call success, failure
+
+        if invalid_resource
+          failure.code.call
+        else
+          success.code.call
+        end
+
+      when 1
+        success = ResourceResponse.new
+        block.call success
+
+        if invalid_resource
+          render object.persisted? ? :edit : :new
+        elsif success.code.present?
+          success.code.call
+        else
+          redirect_to options[:location]
+        end
+
+      else
+        if invalid_resource
+          render object.persisted? ? :edit : :new
+        else
+          redirect_to options[:location]
+        end
+      end
+    end
+
     helper_method :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
-      :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?
+      :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :set_resource_ivar
   end
 end

@@ -7,7 +7,9 @@
     "bulma": "^0.7.5",
     "rails-ujs": "^5.2.3",
     "trix": "^1.0.0",
-    "turbolinks": "^5.2.0"
+    "ts-loader": "^6.2.1",
+    "turbolinks": "^5.2.0",
+    "typescript": "^3.7.5"
   },
   "version": "0.1.0",
   "devDependencies": {
