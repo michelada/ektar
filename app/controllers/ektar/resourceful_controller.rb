@@ -13,6 +13,7 @@ module Ektar
                                     destroy: Ektar::Concerns::Destroy,},
       T::Hash[Symbol, Module])
 
+    class_attribute :resource_class, instance_writer: false
     class_attribute :list_attributes, instance_writer: false
     class_attribute :form_attributes, instance_writer: false
     class_attribute :show_attributes, instance_writer: false
@@ -22,14 +23,16 @@ module Ektar
       params(list_attributes: T::Array[Symbol],
              form_attributes: T::Hash[Symbol, Symbol],
              show_attributes: T::Array[Symbol],
+             resource_class: T.untyped,
              only: T.untyped,
              except: T.nilable(T.any(T::Array[Symbol], Symbol)),
              find_by: Symbol).void
     end
-    def self.resourceful(list_attributes:, form_attributes:, show_attributes:, only: nil, except: nil, find_by: :id)
+    def self.resourceful(list_attributes:, form_attributes:, show_attributes:, resource_class: nil, only: nil, except: nil, find_by: :id)
       self.list_attributes = list_attributes
       self.form_attributes = form_attributes
       self.show_attributes = show_attributes
+      self.resource_class = resource_class || controller_path.classify.constantize
       self.find_by = find_by
 
       only_actions = [only].compact
@@ -93,7 +96,7 @@ module Ektar
 
     sig { returns(T.untyped) }
     def resource_class
-      controller_path.classify.constantize
+      self.class.resource_class
     end
 
     sig { returns T.nilable(T::Array[Symbol]) }
