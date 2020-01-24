@@ -13,5 +13,3 @@ es:
   edit:
     resource: "%{name}"
     attribute: "%{attribute}"
-
-  
