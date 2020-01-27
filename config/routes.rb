@@ -7,4 +7,6 @@ Ektar::Engine.routes.draw do
 
   resources :users, except: :new
   get "/registro", to: "users#new", as: :registration
+
+  resources :sessions, only: [:new, :create, :destroy]
 end

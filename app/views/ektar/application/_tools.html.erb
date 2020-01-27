@@ -8,7 +8,7 @@
       <%= form_with(url: collection_path, method: :get, local: true) do |form| %>
         <div class="field has-addons">
           <div class="control">
-            <%= text_field_tag :q, params[:q], class: "input", maxlength: 40, placeholder: t("placeholder.search") %>
+            <%= text_field_tag :q, params[:q], class: "input", maxlength: 40, placeholder: t("form.placeholders.search") %>
           </div>
           <div class="control">
             <%= form.submit t("form.search"), class: "button is-info" %>
