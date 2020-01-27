@@ -2,9 +2,9 @@
 
 user:
   email: "fixture_user@example.com"
-  encrypted_password: "Password14"
+  password_digest: "Password14"
 
 alternate_user:
   email: "alternate_fixture_user@example.com"
-  encrypted_password: "Password14"
+  password_digest: "Password14"
 

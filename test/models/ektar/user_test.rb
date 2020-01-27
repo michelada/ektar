@@ -33,33 +33,45 @@ module Ektar
       assert user.super_admin?
     end
 
-    # test "is valid" do
-    #   subject = User.new valid_params
+    test "is valid" do
+      subject = User.new valid_params
 
-    #   assert subject.valid?
-    # end
+      assert subject.valid?
+    end
 
-    # test "is invalid" do
-    #   subject = User.new invalid_params_email
+    test "is invalid" do
+      subject = User.new invalid_params_email
 
-    #   refute subject.valid?
-    #   assert_equal 2, subject.errors.count
-    # end
+      refute subject.valid?
+      assert_equal 3, subject.errors.count
+    end
 
-    # test "is invalid without unique email" do
-    #   user = ektar_users(:first_user)
-    #   subject = User.new valid_params.merge(email: user.email)
+    test "is invalid without unique email" do
+      user = ektar_users(:user)
+      subject = User.new valid_params.merge(email: user.email)
 
-    #   refute subject.valid?
-    #   assert_equal 1, subject.errors.count
-    # end
+      refute subject.valid?
+      assert_equal 1, subject.errors.count
+    end
 
-    # test "is invalid without valid organization" do
-    #   subject = User.new invalid_params_organization
-    #   refute subject.valid?
+    test "is invalid without valid organization" do
+      subject = User.new invalid_params_organization
+      refute subject.valid?
 
-    #   assert_equal 1, subject.errors.count
-    # end
+      assert_equal 1, subject.errors.count
+    end
+
+    test "user can be invited" do
+      organization = ektar_organizations(:organization)
+
+      assert_difference ["Ektar::User.count", "Ektar::Membership.count"], 1 do
+        params = valid_params
+        params.delete(:memberships_attributes)
+        u = Ektar::User.new(params)
+        u.memberships.build(organization: organization)
+        u.save
+      end
+    end
 
     # test "is invalid without valid encrypted_password" do
     #   subject = User.new valid_params.merge(encrypted_password: "123")
@@ -68,24 +80,26 @@ module Ektar
     #   assert_equal 1, subject.errors.count
     # end
 
-    # def valid_params
-    #   organization = ektar_organizations(:main_organization)
-    #   {email: "mario@gmail.com",
-    #    encrypted_password: "Password14",
-    #    ektar_organization_id: organization.id,}
-    # end
+    def valid_params
+      {email: "mario@gmail.com",
+       password: "Password17",
+       password_confirmation: "Password17",
+       memberships_attributes: [organization_attributes: {name: "organization example"}],}
+    end
 
-    # def invalid_params_organization
-    #   {email: "user@example.example",
-    #    encrypted_password: "Password14",
-    #    ektar_organization_id: Ektar::Organization.last.id + 1,}
-    # end
+    def invalid_params_organization
+      {email: "user@example.example",
+       password: "Password14",
+       password_confirmation: "Password14",
+       ektar_organization_id: Ektar::Organization.last.id + 1,}
+    end
 
-    # def invalid_params_email
-    #   organization = ektar_organizations(:main_organization)
-    #   {email: " ",
-    #    encrypted_password: "Password14",
-    #    ektar_organization_id: organization.id,}
-    # end
+    def invalid_params_email
+      organization = ektar_organizations(:organization)
+      {email: " ",
+       password: "Password14",
+       password_confirmation: "Password14",
+       ektar_organization_id: organization.id,}
+    end
   end
 end

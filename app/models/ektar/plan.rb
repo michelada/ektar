@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 module Ektar
   class Plan < ApplicationRecord
     extend ActionText::Attribute::ClassMethods

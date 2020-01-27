@@ -1,4 +1,4 @@
-# typed: strong
+# typed: false
 
 module Ektar
   class Organization < ApplicationRecord
@@ -7,7 +7,7 @@ module Ektar
 
     has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_organization_id
     has_many :users, class_name: "Ektar::User", through: :memberships, source: :user
-    belongs_to :plan, class_name: "Ektar::Plan", foreign_key: :ektar_plan_id
+    belongs_to :plan, class_name: "Ektar::Plan", foreign_key: :ektar_plan_id, optional: true
     validates :name, presence: true, uniqueness: {case_sensitive: false}
 
     pg_search_scope :search_full, against: :name,

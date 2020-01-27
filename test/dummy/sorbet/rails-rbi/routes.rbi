@@ -163,26 +163,33 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def organization_url(*args, **kwargs); end
 
-  # Sigs for route /users/:user_id/profiles/new(.:format)
+  # Sigs for route /plans(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_user_profiles_path(*args, **kwargs); end
+  def plans_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_user_profiles_url(*args, **kwargs); end
+  def plans_url(*args, **kwargs); end
 
-  # Sigs for route /users/:user_id/profiles/edit(.:format)
+  # Sigs for route /plans/new(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_user_profiles_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_user_profiles_url(*args, **kwargs); end
-
-  # Sigs for route /users/:user_id/profiles(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def user_profiles_path(*args, **kwargs); end
+  def new_plan_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def user_profiles_url(*args, **kwargs); end
+  def new_plan_url(*args, **kwargs); end
+
+  # Sigs for route /plans/:id/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_plan_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_plan_url(*args, **kwargs); end
+
+  # Sigs for route /plans/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def plan_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def plan_url(*args, **kwargs); end
 
   # Sigs for route /users(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
@@ -190,13 +197,6 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def users_url(*args, **kwargs); end
-
-  # Sigs for route /users/new(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_user_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_user_url(*args, **kwargs); end
 
   # Sigs for route /users/:id/edit(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
@@ -211,4 +211,11 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def user_url(*args, **kwargs); end
+
+  # Sigs for route /registro(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def registration_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def registration_url(*args, **kwargs); end
 end
