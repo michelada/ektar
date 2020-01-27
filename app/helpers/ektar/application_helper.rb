@@ -1,4 +1,4 @@
-# typed: ignore
+# typed: false
 require "webpacker/helper"
 require "pagy"
 
@@ -78,7 +78,7 @@ module Ektar
 
     sig { params(field_name: Symbol).returns(T::Hash[Symbol, T.any(Integer, String)]) }
     def input_attributes(field_name)
-      key = resource_class.i18n_key
+      key = resource_class.model_name.i18n_key
       {
         placeholder: I18n.t("placeholders.#{key}.#{field_name}", default: ""),
         maxlength: I18n.t("maxlength.#{key}.#{field_name}", default: I18n.t("maxlength.size")),

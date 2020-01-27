@@ -129,15 +129,6 @@ module Ektar
       instance_variable_set resource_ivar, object
     end
 
-    sig { params(field_name: Symbol).returns(T::Hash[Symbol, T.any(Integer, String)]) }
-    def input_attributes(field_name)
-      key = resource_class.model_name.i18n_key
-      {
-        placeholder: I18n.t("placeholders.#{key}.#{field_name}", default: ""),
-        maxlength: I18n.t("maxlength.#{key}.#{field_name}", default: I18n.t("maxlength.size")),
-      }
-    end
-
     sig { params(object: ActiveRecord::Base, options: T.nilable(T.untyped), block: T.nilable(T.untyped)).returns(T.untyped) }
     def action_response_dual(object, options, &block)
       invalid_resource = T.unsafe(object)&.errors&.any?
@@ -180,7 +171,7 @@ module Ektar
       end
     end
 
-    helper_method :input_attributes, :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
+    helper_method :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
       :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :set_resource_ivar
   end
 end
