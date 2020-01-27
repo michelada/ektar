@@ -1,0 +1,23 @@
+es:
+  form:
+    back: "Regresar"
+    submit: "Guardar"
+    cancel: "Cancelar"
+    edit: "Editar"
+    delete: "Eliminar"
+    search: "Buscar"
+    choose_file: "Carga un archivo"
+    options_checkbox: "%{option}"
+    dropdown_select: "Selecciona %{name_option}"
+    dropdown_options: "%{option}"
+    
+    placeholders:
+      search: "Buscar..."
+      ektar/organization:
+        name: "Nombre de la empresa u organización"
+
+    maxlength:
+      size: 50
+      ektar/organization:
+        name: 40
+    
