@@ -104,12 +104,6 @@ end
 module Ektar::User::GeneratedAssociationMethods
   extend T::Sig
 
-  sig { returns(T.nilable(::Ektar::Profile)) }
-  def ektar_profile; end
-
-  sig { params(value: T.nilable(::Ektar::Profile)).void }
-  def ektar_profile=(value); end
-
   sig { returns(::Ektar::Membership::ActiveRecord_Associations_CollectionProxy) }
   def memberships; end
 

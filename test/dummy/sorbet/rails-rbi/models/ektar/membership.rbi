@@ -71,6 +71,15 @@ module Ektar::Membership::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
+  sig { returns(T::Boolean) }
+  def owner; end
+
+  sig { params(value: T::Boolean).void }
+  def owner=(value); end
+
+  sig { returns(T::Boolean) }
+  def owner?; end
+
   sig { returns(String) }
   def role; end
 

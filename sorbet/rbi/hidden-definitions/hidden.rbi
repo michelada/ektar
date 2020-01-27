@@ -1645,10 +1645,6 @@ end
 module ActionController::Head
 end
 
-module ActionController::Helpers
-  def helpers(); end
-end
-
 module ActionController::Helpers::ClassMethods
   def all_helpers_from_path(path); end
 
@@ -2802,9 +2798,6 @@ module ActionDispatch::Cookies::ChainedCookieJars
   def signed_or_encrypted(); end
 end
 
-module ActionDispatch::Cookies::ChainedCookieJars
-end
-
 class ActionDispatch::Cookies::CookieJar
   include ::ActionDispatch::Cookies::ChainedCookieJars
   include ::Enumerable
@@ -2911,9 +2904,6 @@ class ActionDispatch::Cookies::SignedKeyRotatingCookieJar
 end
 
 class ActionDispatch::Cookies::SignedKeyRotatingCookieJar
-end
-
-class ActionDispatch::Cookies
 end
 
 class ActionDispatch::DebugExceptions
@@ -22273,32 +22263,6 @@ module ERB::Util
   JSON_ESCAPE_REGEXP = ::T.let(nil, ::T.untyped)
 end
 
-module Ektar::ApplicationHelper
-  include ::Webpacker::Helper
-  include ::Pagy::Frontend
-  include ::Pagy::Helpers
-  def attribute_value(value); end
-
-  def current_webpacker_instance(); end
-
-  def delete_action(); end
-
-  def edit_action(); end
-
-  def edit_title(); end
-
-  def input_attributes(field_name); end
-
-  def model_human_name(model, plural: T.unsafe(nil)); end
-
-  def new_title(); end
-
-  def show_title(); end
-end
-
-module Ektar::ApplicationHelper
-end
-
 class Ektar::ApplicationRecord
   include ::Ektar::ApplicationRecord::GeneratedAttributeMethods
   include ::Ektar::ApplicationRecord::GeneratedAssociationMethods
@@ -22327,6 +22291,8 @@ class Ektar::Membership
   def autosave_associated_records_for_organization(*args); end
 
   def autosave_associated_records_for_user(*args); end
+
+  def validate_associated_records_for_organization(*args); end
 end
 
 module Ektar::Membership::GeneratedAssociationMethods
@@ -22342,6 +22308,8 @@ module Ektar::Membership::GeneratedAssociationMethods
 
   def create_user!(*args, &block); end
 
+  def organization_attributes=(attributes); end
+
   def reload_organization(); end
 
   def reload_user(); end
@@ -22349,6 +22317,10 @@ end
 
 module Ektar::Membership::GeneratedAttributeMethods
   extend ::Mutex_m
+end
+
+class Ektar::Membership
+  extend ::T::Sig
 end
 
 class Ektar::Organization
@@ -22579,22 +22551,8 @@ class Ektar::Plan
   def self.before_remove_for_organizations?(); end
 end
 
-class Ektar::Profile
-  def autosave_associated_records_for_user(*args); end
-end
-
-module Ektar::Profile::GeneratedAssociationMethods
-  def build_user(*args, &block); end
-
-  def create_user(*args, &block); end
-
-  def create_user!(*args, &block); end
-
-  def reload_user(); end
-end
-
-module Ektar::Profile::GeneratedAttributeMethods
-  extend ::Mutex_m
+class Ektar::ResourcefulController
+  extend ::T::Sig
 end
 
 class Ektar::User
@@ -22621,8 +22579,6 @@ class Ektar::User
   def after_remove_for_organizations=(val); end
 
   def after_remove_for_organizations?(); end
-
-  def autosave_associated_records_for_ektar_profile(); end
 
   def autosave_associated_records_for_memberships(*args); end
 
@@ -22660,23 +22616,15 @@ class Ektar::User
 end
 
 module Ektar::User::GeneratedAssociationMethods
-  def build_ektar_profile(*args, &block); end
-
-  def create_ektar_profile(*args, &block); end
-
-  def create_ektar_profile!(*args, &block); end
-
   def membership_ids(); end
 
   def membership_ids=(ids); end
 
+  def memberships_attributes=(attributes); end
+
   def organization_ids(); end
 
   def organization_ids=(ids); end
-
-  def organizations_attributes=(attributes); end
-
-  def reload_ektar_profile(); end
 end
 
 module Ektar::User::GeneratedAttributeMethods
@@ -22745,6 +22693,8 @@ module Ektar
 
   def self.use_relative_model_naming?(); end
 end
+
+Emitter = Psych::Stream::Emitter
 
 class Encoding
   def _dump(*_); end
@@ -23289,12 +23239,77 @@ module GC
   def self.verify_transient_heap_internal_consistency(); end
 end
 
+class Gem::Package::TarHeader
+  def self.oct_or_256based(str); end
+end
+
+class Gem::RemoteFetcher
+  def s3_uri_signer(uri); end
+end
+
 class Gem::Resolver::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
+class Gem::S3URISigner
+  def initialize(uri); end
+
+  def sign(expiration=T.unsafe(nil)); end
+
+  def uri(); end
+
+  def uri=(uri); end
+  BASE64_URI_TRANSLATE = ::T.let(nil, ::T.untyped)
+  EC2_METADATA_CREDENTIALS = ::T.let(nil, ::T.untyped)
+end
+
+class Gem::S3URISigner::ConfigurationError
+  def initialize(message); end
+end
+
+class Gem::S3URISigner::ConfigurationError
+end
+
+class Gem::S3URISigner::InstanceProfileError
+  def initialize(message); end
+end
+
+class Gem::S3URISigner::InstanceProfileError
+end
+
+class Gem::S3URISigner::S3Config
+  def access_key_id(); end
+
+  def access_key_id=(_); end
+
+  def region(); end
+
+  def region=(_); end
+
+  def secret_access_key(); end
+
+  def secret_access_key=(_); end
+
+  def security_token(); end
+
+  def security_token=(_); end
+end
+
+class Gem::S3URISigner::S3Config
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class Gem::S3URISigner
+end
+
 class Gem::Specification
   extend ::Enumerable
+end
+
+module Gem::Util
+  def self.correct_for_windows_path(path); end
 end
 
 module GlobalID::Locator
@@ -24602,7 +24617,6 @@ class Integer
   def to_bn(); end
 
   def to_d(); end
-  GMP_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 class Integer
@@ -24622,6 +24636,8 @@ JSON::Parser = JSON::Ext::Parser
 JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
+
+JSONTree = Psych::Visitors::JSONTree
 
 module JaroWinkler
   VERSION = ::T.let(nil, ::T.untyped)
@@ -39151,6 +39167,8 @@ end
 module UnicodeNormalize
 end
 
+Visitor = Psych::Visitors::Visitor
+
 module Warning
   def warn(_); end
 end
@@ -39313,6 +39331,8 @@ class Webpacker::Env
 end
 
 YAML = Psych
+
+YAMLTree = Psych::Visitors::YAMLTree
 
 module Zeitwerk::ExplicitNamespace
   extend ::Zeitwerk::RealModName
