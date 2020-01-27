@@ -20,6 +20,8 @@ module Ektar
 
     def create
       @resource = Ektar::User.new secure_params
+      @resource.last_ip = format_ip(request.remote_ip)
+      @resource.last_activity_at = Time.now
 
       if @resource.save
         cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"] = @resource.global_id
@@ -45,6 +47,10 @@ module Ektar
     def verify_role
       redirect_to root_path unless resource.admin?
       true
+    end
+
+    def format_ip(ip)
+      ip.split(".")[0..-2].join(".") + ".XXX"
     end
   end
 end
