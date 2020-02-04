@@ -22,6 +22,13 @@ module Ektar
       assert_select ".input"
     end
 
+    test "should add last_ip and last_activity_at to user" do
+      post users_path, params: {user: valid_user}
+
+      assert_equal Ektar::User.last.last_ip, "127.0.0.XXX"
+      assert_equal Ektar::User.last.last_activity_at.to_s, Time.now.to_datetime.utc.to_s
+    end
+
     test "should get show" do
       get users_path(@user.id)
 

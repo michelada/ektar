@@ -64,6 +64,24 @@ module Ektar::User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def id?; end
 
+  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
+  def last_activity_at; end
+
+  sig { params(value: T.nilable(T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone))).void }
+  def last_activity_at=(value); end
+
+  sig { returns(T::Boolean) }
+  def last_activity_at?; end
+
+  sig { returns(T.nilable(String)) }
+  def last_ip; end
+
+  sig { params(value: T.nilable(String)).void }
+  def last_ip=(value); end
+
+  sig { returns(T::Boolean) }
+  def last_ip?; end
+
   sig { returns(String) }
   def password_digest; end
 

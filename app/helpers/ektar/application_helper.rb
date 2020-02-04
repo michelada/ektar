@@ -82,7 +82,7 @@ module Ektar
       {
         class: "input",
         placeholder: t("placeholders.#{key}.#{field_name}", default: ""),
-        maxlength: t("maxlength.#{key}.#{field_name}", default: t("maxlength.size")),
+        maxlength: t("maxlength.#{key}.#{field_name}", default: t("form.maxlength.size")),
       }
     end
   end
