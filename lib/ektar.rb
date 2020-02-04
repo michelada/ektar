@@ -26,12 +26,14 @@ module Ektar
   class Configuration
     # Host where is running webpacker (Useful while developing)
     # It sets the `:host` attribute of the `javascript_pack_tag` helper.
-    attr_accessor :webpacker_host, :title, :organization_username, :organization_password
+    attr_accessor :webpacker_host, :title, :organization_username, :organization_password,
+      :session_name
 
     def initialize
       @title = "Ektar administration"
       @organization_username = "superadmin"
       @organization_password = "superadmin123"
+      @session_name = "_ektar"
     end
   end
 

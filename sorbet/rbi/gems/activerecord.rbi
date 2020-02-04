@@ -4848,45 +4848,13 @@ end
 module Ektar::Plan::GeneratedAttributeMethods
 end
 class Ektar::Plan < Ektar::ApplicationRecord
-  def after_add_for_organizations; end
-  def after_add_for_organizations=(val); end
-  def after_add_for_organizations?; end
-  def after_remove_for_organizations; end
-  def after_remove_for_organizations=(val); end
-  def after_remove_for_organizations?; end
-  def autosave_associated_records_for_organizations(*args); end
-  def before_add_for_organizations; end
-  def before_add_for_organizations=(val); end
-  def before_add_for_organizations?; end
-  def before_remove_for_organizations; end
-  def before_remove_for_organizations=(val); end
-  def before_remove_for_organizations?; end
-  def self.__callbacks; end
-  def self._reflections; end
   def self._validators; end
-  def self.after_add_for_organizations; end
-  def self.after_add_for_organizations=(val); end
-  def self.after_add_for_organizations?; end
-  def self.after_remove_for_organizations; end
-  def self.after_remove_for_organizations=(val); end
-  def self.after_remove_for_organizations?; end
   def self.attribute_type_decorations; end
-  def self.before_add_for_organizations; end
-  def self.before_add_for_organizations=(val); end
-  def self.before_add_for_organizations?; end
-  def self.before_remove_for_organizations; end
-  def self.before_remove_for_organizations=(val); end
-  def self.before_remove_for_organizations?; end
   def self.defined_enums; end
-  def validate_associated_records_for_organizations(*args); end
   include Ektar::Plan::GeneratedAssociationMethods
   include Ektar::Plan::GeneratedAttributeMethods
 end
 module Ektar::Plan::GeneratedAssociationMethods
-  def organization_ids; end
-  def organization_ids=(ids); end
-  def organizations; end
-  def organizations=(value); end
 end
 class Ektar::Plan::ActiveRecord_Relation < ActiveRecord::Relation
   extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
@@ -4904,151 +4872,6 @@ class Ektar::Plan::ActiveRecord_AssociationRelation < ActiveRecord::AssociationR
   extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
   include ActiveRecord::Delegation::ClassSpecificRelation
   include Ektar::Plan::GeneratedRelationMethods
-end
-module Ektar::Profile::GeneratedAttributeMethods
-end
-class Ektar::Profile < Ektar::ApplicationRecord
-  def autosave_associated_records_for_user(*args); end
-  def self.__callbacks; end
-  def self._reflections; end
-  def self._validators; end
-  def self.attribute_type_decorations; end
-  def self.defined_enums; end
-  include Ektar::Profile::GeneratedAssociationMethods
-  include Ektar::Profile::GeneratedAttributeMethods
-end
-module Ektar::Profile::GeneratedAssociationMethods
-  def build_user(*args, &block); end
-  def create_user!(*args, &block); end
-  def create_user(*args, &block); end
-  def reload_user; end
-  def user; end
-  def user=(value); end
-end
-class Ektar::Profile::ActiveRecord_Relation < ActiveRecord::Relation
-  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
-  include ActiveRecord::Delegation::ClassSpecificRelation
-  include Ektar::Profile::GeneratedRelationMethods
-end
-module Ektar::Profile::GeneratedRelationMethods
-end
-class Ektar::Profile::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
-  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
-  include ActiveRecord::Delegation::ClassSpecificRelation
-  include Ektar::Profile::GeneratedRelationMethods
-end
-class Ektar::Profile::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
-  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
-  include ActiveRecord::Delegation::ClassSpecificRelation
-  include Ektar::Profile::GeneratedRelationMethods
-end
-class ActiveRecord::Associations::Builder::HasOne < ActiveRecord::Associations::Builder::SingularAssociation
-  def self.add_destroy_callbacks(model, reflection); end
-  def self.add_touch_callbacks(model, reflection); end
-  def self.define_callbacks(model, reflection); end
-  def self.define_validations(model, reflection); end
-  def self.macro; end
-  def self.touch_record(o, name, touch); end
-  def self.valid_dependent_options; end
-  def self.valid_options(options); end
-end
-module Ektar::User::GeneratedAttributeMethods
-end
-class Ektar::User < Ektar::ApplicationRecord
-  def after_add_for_memberships; end
-  def after_add_for_memberships=(val); end
-  def after_add_for_memberships?; end
-  def after_add_for_organizations; end
-  def after_add_for_organizations=(val); end
-  def after_add_for_organizations?; end
-  def after_remove_for_memberships; end
-  def after_remove_for_memberships=(val); end
-  def after_remove_for_memberships?; end
-  def after_remove_for_organizations; end
-  def after_remove_for_organizations=(val); end
-  def after_remove_for_organizations?; end
-  def autosave_associated_records_for_ektar_profile; end
-  def autosave_associated_records_for_memberships(*args); end
-  def autosave_associated_records_for_organizations(*args); end
-  def before_add_for_memberships; end
-  def before_add_for_memberships=(val); end
-  def before_add_for_memberships?; end
-  def before_add_for_organizations; end
-  def before_add_for_organizations=(val); end
-  def before_add_for_organizations?; end
-  def before_remove_for_memberships; end
-  def before_remove_for_memberships=(val); end
-  def before_remove_for_memberships?; end
-  def before_remove_for_organizations; end
-  def before_remove_for_organizations=(val); end
-  def before_remove_for_organizations?; end
-  def self.__callbacks; end
-  def self._reflections; end
-  def self._validators; end
-  def self.after_add_for_memberships; end
-  def self.after_add_for_memberships=(val); end
-  def self.after_add_for_memberships?; end
-  def self.after_add_for_organizations; end
-  def self.after_add_for_organizations=(val); end
-  def self.after_add_for_organizations?; end
-  def self.after_remove_for_memberships; end
-  def self.after_remove_for_memberships=(val); end
-  def self.after_remove_for_memberships?; end
-  def self.after_remove_for_organizations; end
-  def self.after_remove_for_organizations=(val); end
-  def self.after_remove_for_organizations?; end
-  def self.attribute_type_decorations; end
-  def self.before_add_for_memberships; end
-  def self.before_add_for_memberships=(val); end
-  def self.before_add_for_memberships?; end
-  def self.before_add_for_organizations; end
-  def self.before_add_for_organizations=(val); end
-  def self.before_add_for_organizations?; end
-  def self.before_remove_for_memberships; end
-  def self.before_remove_for_memberships=(val); end
-  def self.before_remove_for_memberships?; end
-  def self.before_remove_for_organizations; end
-  def self.before_remove_for_organizations=(val); end
-  def self.before_remove_for_organizations?; end
-  def self.defined_enums; end
-  def validate_associated_records_for_memberships(*args); end
-  def validate_associated_records_for_organizations(*args); end
-  extend T::Sig
-  include Ektar::User::GeneratedAssociationMethods
-  include Ektar::User::GeneratedAttributeMethods
-end
-module Ektar::User::GeneratedAssociationMethods
-  def build_ektar_profile(*args, &block); end
-  def create_ektar_profile!(*args, &block); end
-  def create_ektar_profile(*args, &block); end
-  def ektar_profile; end
-  def ektar_profile=(value); end
-  def membership_ids; end
-  def membership_ids=(ids); end
-  def memberships; end
-  def memberships=(value); end
-  def organization_ids; end
-  def organization_ids=(ids); end
-  def organizations; end
-  def organizations=(value); end
-  def reload_ektar_profile; end
-end
-class Ektar::User::ActiveRecord_Relation < ActiveRecord::Relation
-  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
-  include ActiveRecord::Delegation::ClassSpecificRelation
-  include Ektar::User::GeneratedRelationMethods
-end
-module Ektar::User::GeneratedRelationMethods
-end
-class Ektar::User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
-  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
-  include ActiveRecord::Delegation::ClassSpecificRelation
-  include Ektar::User::GeneratedRelationMethods
-end
-class Ektar::User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
-  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
-  include ActiveRecord::Delegation::ClassSpecificRelation
-  include Ektar::User::GeneratedRelationMethods
 end
 module ActiveRecord::Migration::Compatibility
   def self.find(version); end
@@ -5995,4 +5818,14 @@ module ActiveRecord::Railties::CollectionCacheAssociationLoading
   def collection_without_template(*arg0); end
   def relation_from_options(cached: nil, partial: nil, collection: nil, **_); end
   def setup(context, options, as, block); end
+end
+class ActiveRecord::Associations::Builder::HasOne < ActiveRecord::Associations::Builder::SingularAssociation
+  def self.add_destroy_callbacks(model, reflection); end
+  def self.add_touch_callbacks(model, reflection); end
+  def self.define_callbacks(model, reflection); end
+  def self.define_validations(model, reflection); end
+  def self.macro; end
+  def self.touch_record(o, name, touch); end
+  def self.valid_dependent_options; end
+  def self.valid_options(options); end
 end

@@ -329,7 +329,7 @@ class Array
   def inquiry; end
   def second; end
   def second_to_last; end
-  def self.wrap(object); end
+  def self.try_convert(arg0); end
   def split(value = nil); end
   def third; end
   def third_to_last; end
@@ -2088,8 +2088,8 @@ module ActiveSupport::NumericWithFormat
   def to_s(format = nil, options = nil); end
 end
 class File < IO
+  def self.atomic_write(file_name, temp_dir = nil); end
   def self.empty?(arg0); end
-  def self.probe_stat_in(dir); end
 end
 module Digest
 end

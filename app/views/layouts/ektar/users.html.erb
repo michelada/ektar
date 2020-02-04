@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= Ektar.configuration.title %></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script type="text/javascript">
+      fetch('<%= Ektar.configuration.webpacker_host %>/ektar-packs/manifest.json')
+        .then(response => response.json())
+        .then(json => [json['application.js'], json['application.css']])
+        .then(([jsPath, cssPath]) => {
+          if (cssPath) {
+            // Equivalent to stylesheet_pack_tag 'application'
+            let link = document.createElement('link')
+            link.rel = 'stylesheet'
+            link.href = '<%= Ektar.configuration.webpacker_host %>' + cssPath
+            document.head.appendChild(link)
+          }
+
+          // Equivalent to javascript_pack_tag 'application'
+          let script = document.createElement('script')
+          script.src = '<%= Ektar.configuration.webpacker_host %>' + jsPath
+          document.head.appendChild(script)
+        })
+    </script>
+
+  </head>
+  <body>
+    <%= render "flash_notification" %>
+
+    <div class="container has-margin-top-1">
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

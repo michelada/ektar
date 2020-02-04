@@ -5,5 +5,6 @@ Ektar::Engine.routes.draw do
   resources :organizations
   resources :plans
 
-  resources :users
+  resources :users, except: :new
+  get "/registro", to: "users#new", as: :registration
 end

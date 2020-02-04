@@ -1645,10 +1645,6 @@ end
 module ActionController::Head
 end
 
-module ActionController::Helpers
-  def helpers(); end
-end
-
 module ActionController::Helpers::ClassMethods
   def all_helpers_from_path(path); end
 
@@ -2802,9 +2798,6 @@ module ActionDispatch::Cookies::ChainedCookieJars
   def signed_or_encrypted(); end
 end
 
-module ActionDispatch::Cookies::ChainedCookieJars
-end
-
 class ActionDispatch::Cookies::CookieJar
   include ::ActionDispatch::Cookies::ChainedCookieJars
   include ::Enumerable
@@ -2911,9 +2904,6 @@ class ActionDispatch::Cookies::SignedKeyRotatingCookieJar
 end
 
 class ActionDispatch::Cookies::SignedKeyRotatingCookieJar
-end
-
-class ActionDispatch::Cookies
 end
 
 class ActionDispatch::DebugExceptions
@@ -7085,20 +7075,6 @@ module ActionText::Attachments::TrixConversion
   extend ::ActiveSupport::Concern
 end
 
-module ActionText::Attribute
-end
-
-module ActionText::Attribute::ClassMethods
-  def has_rich_text(name); end
-end
-
-module ActionText::Attribute::ClassMethods
-end
-
-module ActionText::Attribute
-  extend ::ActiveSupport::Concern
-end
-
 class ActionText::Content
   include ::ActionText::Serialization
   def ==(other); end
@@ -10696,6 +10672,9 @@ class ActiveRecord::Result
   def to_hash(); end
 end
 
+class ActiveRecord::Result
+end
+
 class ActiveRecord::RuntimeRegistry
   def connection_handler(); end
 
@@ -10719,6 +10698,10 @@ end
 
 class ActiveRecord::Schema
   def define(info, &block); end
+end
+
+class ActiveRecord::Schema
+  def self.define(info=T.unsafe(nil), &block); end
 end
 
 class ActiveRecord::SchemaDumper
@@ -11109,6 +11092,8 @@ ActiveRecord::Type::BigInteger = ActiveModel::Type::BigInteger
 
 ActiveRecord::Type::Binary = ActiveModel::Type::Binary
 
+ActiveRecord::Type::Boolean = ActiveModel::Type::Boolean
+
 ActiveRecord::Type::Decimal = ActiveModel::Type::Decimal
 
 ActiveRecord::Type::Float = ActiveModel::Type::Float
@@ -11116,6 +11101,10 @@ ActiveRecord::Type::Float = ActiveModel::Type::Float
 ActiveRecord::Type::Integer = ActiveModel::Type::Integer
 
 ActiveRecord::Type::String = ActiveModel::Type::String
+
+ActiveRecord::Type::Value = ActiveModel::Type::Value
+
+ActiveRecord::UnknownAttributeError = ActiveModel::UnknownAttributeError
 
 module ActiveRecord::VERSION
   MAJOR = ::T.let(nil, ::T.untyped)
@@ -12145,6 +12134,12 @@ class Array
   def self.wrap(object); end
 end
 
+class BCrypt::Engine
+  DEFAULT_COST = ::T.let(nil, ::T.untyped)
+  MAX_SALT_LENGTH = ::T.let(nil, ::T.untyped)
+  MIN_COST = ::T.let(nil, ::T.untyped)
+end
+
 BasicObject::BasicObject = BasicObject
 
 class Benchmark::Job
@@ -12244,14 +12239,6 @@ module Bundle::Audit
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-class Bundler::Dependency
-  def branch(); end
-
-  def expanded_platforms(); end
-
-  def git(); end
-end
-
 Bundler::Deprecate = Gem::Deprecate
 
 class Bundler::Env
@@ -12263,6 +12250,12 @@ class Bundler::Env
   def self.report(options=T.unsafe(nil)); end
 
   def self.write(io); end
+end
+
+class Bundler::FeatureFlag
+  def github_https?(); end
+
+  def lockfile_upgrade_warning?(); end
 end
 
 class Bundler::Fetcher
@@ -12397,12 +12390,6 @@ class Bundler::Fetcher::SSLError
   def initialize(msg=T.unsafe(nil)); end
 end
 
-class Bundler::Fetcher::TooManyRequestsError
-end
-
-class Bundler::Fetcher::TooManyRequestsError
-end
-
 class Bundler::Fetcher
   def self.api_timeout(); end
 
@@ -12449,8 +12436,6 @@ class Bundler::GemHelper
   def clean?(); end
 
   def committed?(); end
-
-  def gem_command(); end
 
   def gem_key(); end
 
@@ -12499,6 +12484,12 @@ class Bundler::GemHelper
   def self.instance(); end
 
   def self.instance=(instance); end
+end
+
+class Bundler::GemRemoteFetcher
+end
+
+class Bundler::GemRemoteFetcher
 end
 
 class Bundler::GemVersionPromoter
@@ -12611,12 +12602,6 @@ class Bundler::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
-class Bundler::Molinillo::DependencyGraph::Vertex
-  def _recursive_predecessors(vertices=T.unsafe(nil)); end
-
-  def _recursive_successors(vertices=T.unsafe(nil)); end
-end
-
 module Bundler::Plugin::API::Source
   def ==(other); end
 
@@ -12693,12 +12678,6 @@ module Bundler::Plugin::Events
   GEM_BEFORE_INSTALL_ALL = ::T.let(nil, ::T.untyped)
 end
 
-class Bundler::Plugin::Index
-  def installed_plugins(); end
-
-  def plugin_commands(plugin); end
-end
-
 class Bundler::Plugin::Index::CommandConflict
   def initialize(plugin, commands); end
 end
@@ -12739,10 +12718,6 @@ class Bundler::Plugin::SourceList
 end
 
 class Bundler::Plugin::SourceList
-end
-
-module Bundler::Plugin
-  def self.list(); end
 end
 
 class Bundler::ProcessLock
@@ -12786,28 +12761,8 @@ end
 class Bundler::RubyGemsGemInstaller
 end
 
-class Bundler::RubygemsIntegration
-  def add_to_load_path(paths); end
-
-  def all_specs(); end
-
-  def backport_ext_builder_monitor(); end
-
-  def correct_for_windows_path(path); end
-
+class Bundler::RubygemsIntegration::MoreFuture
   def default_stubs(); end
-
-  def find_name(name); end
-
-  def gem_remote_fetcher(); end
-
-  def plain_specs(); end
-
-  def plain_specs=(specs); end
-
-  def stub_rubygems(specs); end
-
-  def use_gemdeps(gemfile); end
 end
 
 class Bundler::Settings::Mirror
@@ -12869,1122 +12824,8 @@ class Bundler::Settings::Validator
   def self.validate!(key, value, settings); end
 end
 
-class Bundler::Source::Git
-  def glob(); end
-end
-
 class Bundler::SpecSet
   include ::Enumerable
-end
-
-class Bundler::Thor
-  include ::Bundler::Thor::Base
-  include ::Bundler::Thor::Invocation
-  include ::Bundler::Thor::Shell
-  def help(command=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-  HELP_MAPPINGS = ::T.let(nil, ::T.untyped)
-  TEMPLATE_EXTNAME = ::T.let(nil, ::T.untyped)
-  THOR_RESERVED_WORDS = ::T.let(nil, ::T.untyped)
-end
-
-module Bundler::Thor::Actions
-  def _cleanup_options_and_set(options, key); end
-
-  def _shared_configuration(); end
-
-  def action(instance); end
-
-  def add_file(destination, *args, &block); end
-
-  def add_link(destination, *args); end
-
-  def append_file(path, *args, &block); end
-
-  def append_to_file(path, *args, &block); end
-
-  def apply(path, config=T.unsafe(nil)); end
-
-  def behavior(); end
-
-  def behavior=(behavior); end
-
-  def chmod(path, mode, config=T.unsafe(nil)); end
-
-  def comment_lines(path, flag, *args); end
-
-  def copy_file(source, *args, &block); end
-
-  def create_file(destination, *args, &block); end
-
-  def create_link(destination, *args); end
-
-  def destination_root(); end
-
-  def destination_root=(root); end
-
-  def directory(source, *args, &block); end
-
-  def empty_directory(destination, config=T.unsafe(nil)); end
-
-  def find_in_source_paths(file); end
-
-  def get(source, *args, &block); end
-
-  def gsub_file(path, flag, *args, &block); end
-
-  def in_root(); end
-
-  def initialize(args=T.unsafe(nil), options=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def inject_into_class(path, klass, *args, &block); end
-
-  def inject_into_file(destination, *args, &block); end
-
-  def inject_into_module(path, module_name, *args, &block); end
-
-  def insert_into_file(destination, *args, &block); end
-
-  def inside(dir=T.unsafe(nil), config=T.unsafe(nil), &block); end
-
-  def link_file(source, *args); end
-
-  def prepend_file(path, *args, &block); end
-
-  def prepend_to_file(path, *args, &block); end
-
-  def relative_to_original_destination_root(path, remove_dot=T.unsafe(nil)); end
-
-  def remove_dir(path, config=T.unsafe(nil)); end
-
-  def remove_file(path, config=T.unsafe(nil)); end
-
-  def run(command, config=T.unsafe(nil)); end
-
-  def run_ruby_script(command, config=T.unsafe(nil)); end
-
-  def source_paths(); end
-
-  def template(source, *args, &block); end
-
-  def thor(command, *args); end
-
-  def uncomment_lines(path, flag, *args); end
-  WARNINGS = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Actions::CapturableERB
-end
-
-class Bundler::Thor::Actions::CapturableERB
-end
-
-module Bundler::Thor::Actions::ClassMethods
-  def add_runtime_options!(); end
-
-  def source_paths(); end
-
-  def source_paths_for_search(); end
-
-  def source_root(path=T.unsafe(nil)); end
-end
-
-module Bundler::Thor::Actions::ClassMethods
-end
-
-class Bundler::Thor::Actions::CreateFile
-  def data(); end
-
-  def force_on_collision?(); end
-
-  def force_or_skip_or_conflict(force, skip, &block); end
-
-  def identical?(); end
-
-  def initialize(base, destination, data, config=T.unsafe(nil)); end
-
-  def on_conflict_behavior(&block); end
-
-  def render(); end
-end
-
-class Bundler::Thor::Actions::CreateFile
-end
-
-class Bundler::Thor::Actions::CreateLink
-end
-
-class Bundler::Thor::Actions::CreateLink
-end
-
-class Bundler::Thor::Actions::Directory
-  def execute!(); end
-
-  def file_level_lookup(previous_lookup); end
-
-  def files(lookup); end
-
-  def initialize(base, source, destination=T.unsafe(nil), config=T.unsafe(nil), &block); end
-
-  def source(); end
-end
-
-class Bundler::Thor::Actions::Directory
-end
-
-class Bundler::Thor::Actions::EmptyDirectory
-  def base(); end
-
-  def config(); end
-
-  def convert_encoded_instructions(filename); end
-
-  def destination(); end
-
-  def destination=(destination); end
-
-  def exists?(); end
-
-  def given_destination(); end
-
-  def initialize(base, destination, config=T.unsafe(nil)); end
-
-  def invoke!(); end
-
-  def invoke_with_conflict_check(&block); end
-
-  def on_conflict_behavior(); end
-
-  def on_file_clash_behavior(); end
-
-  def pretend?(); end
-
-  def relative_destination(); end
-
-  def revoke!(); end
-
-  def say_status(status, color); end
-end
-
-class Bundler::Thor::Actions::EmptyDirectory
-end
-
-class Bundler::Thor::Actions::InjectIntoFile
-  def behavior(); end
-
-  def flag(); end
-
-  def initialize(base, destination, data, config); end
-
-  def replace!(regexp, string, force); end
-
-  def replacement(); end
-
-  def say_status(behavior, warning: T.unsafe(nil), color: T.unsafe(nil)); end
-end
-
-class Bundler::Thor::Actions::InjectIntoFile
-end
-
-module Bundler::Thor::Actions
-  def self.included(base); end
-end
-
-class Bundler::Thor::AmbiguousCommandError
-end
-
-class Bundler::Thor::AmbiguousCommandError
-end
-
-Bundler::Thor::AmbiguousTaskError = Bundler::Thor::AmbiguousCommandError
-
-class Bundler::Thor::Argument
-  def banner(); end
-
-  def default(); end
-
-  def default_banner(); end
-
-  def description(); end
-
-  def enum(); end
-
-  def human_name(); end
-
-  def initialize(name, options=T.unsafe(nil)); end
-
-  def name(); end
-
-  def required(); end
-
-  def required?(); end
-
-  def show_default?(); end
-
-  def type(); end
-
-  def usage(); end
-
-  def valid_type?(type); end
-
-  def validate!(); end
-  VALID_TYPES = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Argument
-end
-
-class Bundler::Thor::Arguments
-  def initialize(arguments=T.unsafe(nil)); end
-
-  def parse(args); end
-
-  def remaining(); end
-  NUMERIC = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Arguments
-  def self.parse(*args); end
-
-  def self.split(args); end
-end
-
-module Bundler::Thor::Base
-  def args(); end
-
-  def args=(args); end
-
-  def initialize(args=T.unsafe(nil), local_options=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def options(); end
-
-  def options=(options); end
-
-  def parent_options(); end
-
-  def parent_options=(parent_options); end
-end
-
-module Bundler::Thor::Base::ClassMethods
-  def all_commands(); end
-
-  def all_tasks(); end
-
-  def allow_incompatible_default_type!(); end
-
-  def argument(name, options=T.unsafe(nil)); end
-
-  def arguments(); end
-
-  def attr_accessor(*_); end
-
-  def attr_reader(*_); end
-
-  def attr_writer(*_); end
-
-  def baseclass(); end
-
-  def basename(); end
-
-  def build_option(name, options, scope); end
-
-  def build_options(options, scope); end
-
-  def check_default_type(); end
-
-  def check_default_type!(); end
-
-  def check_unknown_options(); end
-
-  def check_unknown_options!(); end
-
-  def check_unknown_options?(config); end
-
-  def class_option(name, options=T.unsafe(nil)); end
-
-  def class_options(options=T.unsafe(nil)); end
-
-  def class_options_help(shell, groups=T.unsafe(nil)); end
-
-  def commands(); end
-
-  def create_command(meth); end
-
-  def create_task(meth); end
-
-  def disable_required_check?(command_name); end
-
-  def dispatch(command, given_args, given_opts, config); end
-
-  def exit_on_failure?(); end
-
-  def find_and_refresh_command(name); end
-
-  def find_and_refresh_task(name); end
-
-  def from_superclass(method, default=T.unsafe(nil)); end
-
-  def group(name=T.unsafe(nil)); end
-
-  def handle_argument_error(command, error, args, arity); end
-
-  def handle_no_command_error(command, has_namespace=T.unsafe(nil)); end
-
-  def handle_no_task_error(command, has_namespace=T.unsafe(nil)); end
-
-  def inherited(klass); end
-
-  def initialize_added(); end
-
-  def is_thor_reserved_word?(word, type); end
-
-  def method_added(meth); end
-
-  def namespace(name=T.unsafe(nil)); end
-
-  def no_commands(&block); end
-
-  def no_commands?(); end
-
-  def no_commands_context(); end
-
-  def no_tasks(&block); end
-
-  def print_options(shell, options, group_name=T.unsafe(nil)); end
-
-  def public_command(*names); end
-
-  def public_task(*names); end
-
-  def remove_argument(*names); end
-
-  def remove_class_option(*names); end
-
-  def remove_command(*names); end
-
-  def remove_task(*names); end
-
-  def start(given_args=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def stop_on_unknown_option?(command_name); end
-
-  def strict_args_position(); end
-
-  def strict_args_position!(); end
-
-  def strict_args_position?(config); end
-
-  def tasks(); end
-end
-
-module Bundler::Thor::Base::ClassMethods
-end
-
-module Bundler::Thor::Base
-  def self.included(base); end
-
-  def self.register_klass_file(klass); end
-
-  def self.shell(); end
-
-  def self.shell=(shell); end
-
-  def self.subclass_files(); end
-
-  def self.subclasses(); end
-end
-
-class Bundler::Thor::Command
-  def formatted_usage(klass, namespace=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def handle_argument_error?(instance, error, caller); end
-
-  def handle_no_method_error?(instance, error, caller); end
-
-  def hidden?(); end
-
-  def initialize(name, description, long_description, usage, options=T.unsafe(nil)); end
-
-  def local_method?(instance, name); end
-
-  def not_debugging?(instance); end
-
-  def private_method?(instance); end
-
-  def public_method?(instance); end
-
-  def required_arguments_for(klass, usage); end
-
-  def required_options(); end
-
-  def run(instance, args=T.unsafe(nil)); end
-
-  def sans_backtrace(backtrace, caller); end
-  FILE_REGEXP = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Command
-end
-
-module Bundler::Thor::CoreExt
-end
-
-class Bundler::Thor::CoreExt::HashWithIndifferentAccess
-  def [](key); end
-
-  def []=(key, value); end
-
-  def convert_key(key); end
-
-  def delete(key); end
-
-  def fetch(key, *args); end
-
-  def initialize(hash=T.unsafe(nil)); end
-
-  def key?(key); end
-
-  def merge(other); end
-
-  def merge!(other); end
-
-  def method_missing(method, *args); end
-
-  def replace(other_hash); end
-
-  def reverse_merge(other); end
-
-  def values_at(*indices); end
-end
-
-class Bundler::Thor::CoreExt::HashWithIndifferentAccess
-end
-
-module Bundler::Thor::CoreExt
-end
-
-Bundler::Thor::Correctable = DidYouMean::Correctable
-
-class Bundler::Thor::DynamicCommand
-  def initialize(name, options=T.unsafe(nil)); end
-end
-
-class Bundler::Thor::DynamicCommand
-end
-
-Bundler::Thor::DynamicTask = Bundler::Thor::DynamicCommand
-
-class Bundler::Thor::Error
-end
-
-class Bundler::Thor::Error
-end
-
-class Bundler::Thor::Group
-  include ::Bundler::Thor::Base
-  include ::Bundler::Thor::Invocation
-  include ::Bundler::Thor::Shell
-  def _invoke_for_class_method(klass, command=T.unsafe(nil), *args, &block); end
-end
-
-class Bundler::Thor::Group
-  extend ::Bundler::Thor::Base::ClassMethods
-  extend ::Bundler::Thor::Invocation::ClassMethods
-  def self.banner(); end
-
-  def self.desc(description=T.unsafe(nil)); end
-
-  def self.get_options_from_invocations(group_options, base_options); end
-
-  def self.handle_argument_error(command, error, _args, arity); end
-
-  def self.help(shell); end
-
-  def self.invocation_blocks(); end
-
-  def self.invocations(); end
-
-  def self.invoke(*names, &block); end
-
-  def self.invoke_from_option(*names, &block); end
-
-  def self.printable_commands(*_); end
-
-  def self.printable_tasks(*_); end
-
-  def self.remove_invocation(*names); end
-
-  def self.self_command(); end
-
-  def self.self_task(); end
-end
-
-class Bundler::Thor::HiddenCommand
-end
-
-class Bundler::Thor::HiddenCommand
-end
-
-Bundler::Thor::HiddenTask = Bundler::Thor::HiddenCommand
-
-module Bundler::Thor::Invocation
-  def _parse_initialization_options(args, opts, config); end
-
-  def _retrieve_class_and_command(name, sent_command=T.unsafe(nil)); end
-
-  def _retrieve_class_and_task(name, sent_command=T.unsafe(nil)); end
-
-  def _shared_configuration(); end
-
-  def current_command_chain(); end
-
-  def initialize(args=T.unsafe(nil), options=T.unsafe(nil), config=T.unsafe(nil), &block); end
-
-  def invoke(name=T.unsafe(nil), *args); end
-
-  def invoke_all(); end
-
-  def invoke_command(command, *args); end
-
-  def invoke_task(command, *args); end
-
-  def invoke_with_padding(*args); end
-end
-
-module Bundler::Thor::Invocation::ClassMethods
-  def prepare_for_invocation(key, name); end
-end
-
-module Bundler::Thor::Invocation::ClassMethods
-end
-
-module Bundler::Thor::Invocation
-  def self.included(base); end
-end
-
-class Bundler::Thor::InvocationError
-end
-
-class Bundler::Thor::InvocationError
-end
-
-module Bundler::Thor::LineEditor
-end
-
-class Bundler::Thor::LineEditor::Basic
-  def initialize(prompt, options); end
-
-  def options(); end
-
-  def prompt(); end
-
-  def readline(); end
-end
-
-class Bundler::Thor::LineEditor::Basic
-  def self.available?(); end
-end
-
-class Bundler::Thor::LineEditor::Readline
-end
-
-class Bundler::Thor::LineEditor::Readline::PathCompletion
-  def initialize(text); end
-
-  def matches(); end
-end
-
-class Bundler::Thor::LineEditor::Readline::PathCompletion
-end
-
-class Bundler::Thor::LineEditor::Readline
-end
-
-module Bundler::Thor::LineEditor
-  def self.best_available(); end
-
-  def self.readline(prompt, options=T.unsafe(nil)); end
-end
-
-class Bundler::Thor::MalformattedArgumentError
-end
-
-class Bundler::Thor::MalformattedArgumentError
-end
-
-class Bundler::Thor::NestedContext
-  def enter(); end
-
-  def entered?(); end
-end
-
-class Bundler::Thor::NestedContext
-end
-
-class Bundler::Thor::NoKwargSpellChecker
-  def initialize(dictionary); end
-end
-
-class Bundler::Thor::NoKwargSpellChecker
-end
-
-class Bundler::Thor::Option
-  def aliases(); end
-
-  def array?(); end
-
-  def boolean?(); end
-
-  def dasherize(str); end
-
-  def dasherized?(); end
-
-  def group(); end
-
-  def hash?(); end
-
-  def hide(); end
-
-  def lazy_default(); end
-
-  def numeric?(); end
-
-  def repeatable(); end
-
-  def string?(); end
-
-  def switch_name(); end
-
-  def undasherize(str); end
-
-  def usage(padding=T.unsafe(nil)); end
-
-  def validate_default_type!(); end
-  VALID_TYPES = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Option
-  def self.parse(key, value); end
-end
-
-class Bundler::Thor::Options
-  def assign_result!(option, result); end
-
-  def check_unknown!(); end
-
-  def current_is_switch?(); end
-
-  def current_is_switch_formatted?(); end
-
-  def initialize(hash_options=T.unsafe(nil), defaults=T.unsafe(nil), stop_on_unknown=T.unsafe(nil), disable_required_check=T.unsafe(nil)); end
-
-  def normalize_switch(arg); end
-
-  def parse_boolean(switch); end
-
-  def parse_peek(switch, option); end
-
-  def parsing_options?(); end
-
-  def switch?(arg); end
-
-  def switch_option(arg); end
-  EQ_RE = ::T.let(nil, ::T.untyped)
-  LONG_RE = ::T.let(nil, ::T.untyped)
-  OPTS_END = ::T.let(nil, ::T.untyped)
-  SHORT_NUM = ::T.let(nil, ::T.untyped)
-  SHORT_RE = ::T.let(nil, ::T.untyped)
-  SHORT_SQ_RE = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Options
-  def self.to_switches(options); end
-end
-
-module Bundler::Thor::RakeCompat
-  include ::Rake::DSL
-  include ::Rake::FileUtilsExt
-  include ::FileUtils
-  include ::FileUtils::StreamUtils_
-end
-
-module Bundler::Thor::RakeCompat
-  def self.included(base); end
-
-  def self.rake_classes(); end
-end
-
-class Bundler::Thor::RequiredArgumentMissingError
-end
-
-class Bundler::Thor::RequiredArgumentMissingError
-end
-
-module Bundler::Thor::Sandbox
-end
-
-module Bundler::Thor::Sandbox
-end
-
-module Bundler::Thor::Shell
-  def _shared_configuration(); end
-
-  def ask(*args, &block); end
-
-  def error(*args, &block); end
-
-  def file_collision(*args, &block); end
-
-  def initialize(args=T.unsafe(nil), options=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def no?(*args, &block); end
-
-  def print_in_columns(*args, &block); end
-
-  def print_table(*args, &block); end
-
-  def print_wrapped(*args, &block); end
-
-  def say(*args, &block); end
-
-  def say_status(*args, &block); end
-
-  def set_color(*args, &block); end
-
-  def shell(); end
-
-  def shell=(shell); end
-
-  def terminal_width(*args, &block); end
-
-  def with_padding(); end
-
-  def yes?(*args, &block); end
-  SHELL_DELEGATED_METHODS = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::Basic
-  def answer_match(possibilities, answer, case_insensitive); end
-
-  def as_unicode(); end
-
-  def ask(statement, *args); end
-
-  def ask_filtered(statement, color, options); end
-
-  def ask_simply(statement, color, options); end
-
-  def base(); end
-
-  def base=(base); end
-
-  def can_display_colors?(); end
-
-  def dynamic_width(); end
-
-  def dynamic_width_stty(); end
-
-  def dynamic_width_tput(); end
-
-  def error(statement); end
-
-  def file_collision(destination); end
-
-  def file_collision_help(); end
-
-  def git_merge_tool(); end
-
-  def indent(count=T.unsafe(nil)); end
-
-  def is?(value); end
-
-  def lookup_color(color); end
-
-  def merge(destination, content); end
-
-  def merge_tool(); end
-
-  def mute(); end
-
-  def mute?(); end
-
-  def no?(statement, color=T.unsafe(nil)); end
-
-  def padding(); end
-
-  def padding=(value); end
-
-  def prepare_message(message, *color); end
-
-  def print_in_columns(array); end
-
-  def print_table(array, options=T.unsafe(nil)); end
-
-  def print_wrapped(message, options=T.unsafe(nil)); end
-
-  def quiet?(); end
-
-  def say(message=T.unsafe(nil), color=T.unsafe(nil), force_new_line=T.unsafe(nil)); end
-
-  def say_status(status, message, log_status=T.unsafe(nil)); end
-
-  def set_color(string, *_); end
-
-  def show_diff(destination, content); end
-
-  def stderr(); end
-
-  def stdout(); end
-
-  def terminal_width(); end
-
-  def truncate(string, width); end
-
-  def unix?(); end
-
-  def yes?(statement, color=T.unsafe(nil)); end
-  DEFAULT_TERMINAL_WIDTH = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::Basic
-end
-
-class Bundler::Thor::Shell::Color
-  def are_colors_disabled?(); end
-
-  def diff_lcs_loaded?(); end
-
-  def output_diff_line(diff); end
-
-  def set_color(string, *colors); end
-  BLACK = ::T.let(nil, ::T.untyped)
-  BLUE = ::T.let(nil, ::T.untyped)
-  BOLD = ::T.let(nil, ::T.untyped)
-  CLEAR = ::T.let(nil, ::T.untyped)
-  CYAN = ::T.let(nil, ::T.untyped)
-  GREEN = ::T.let(nil, ::T.untyped)
-  MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_BLACK = ::T.let(nil, ::T.untyped)
-  ON_BLUE = ::T.let(nil, ::T.untyped)
-  ON_CYAN = ::T.let(nil, ::T.untyped)
-  ON_GREEN = ::T.let(nil, ::T.untyped)
-  ON_MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_RED = ::T.let(nil, ::T.untyped)
-  ON_WHITE = ::T.let(nil, ::T.untyped)
-  ON_YELLOW = ::T.let(nil, ::T.untyped)
-  RED = ::T.let(nil, ::T.untyped)
-  WHITE = ::T.let(nil, ::T.untyped)
-  YELLOW = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::Color
-end
-
-class Bundler::Thor::Shell::HTML
-  def ask(statement, color=T.unsafe(nil)); end
-
-  def diff_lcs_loaded?(); end
-
-  def output_diff_line(diff); end
-
-  def set_color(string, *colors); end
-  BLACK = ::T.let(nil, ::T.untyped)
-  BLUE = ::T.let(nil, ::T.untyped)
-  BOLD = ::T.let(nil, ::T.untyped)
-  CYAN = ::T.let(nil, ::T.untyped)
-  GREEN = ::T.let(nil, ::T.untyped)
-  MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_BLACK = ::T.let(nil, ::T.untyped)
-  ON_BLUE = ::T.let(nil, ::T.untyped)
-  ON_CYAN = ::T.let(nil, ::T.untyped)
-  ON_GREEN = ::T.let(nil, ::T.untyped)
-  ON_MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_RED = ::T.let(nil, ::T.untyped)
-  ON_WHITE = ::T.let(nil, ::T.untyped)
-  ON_YELLOW = ::T.let(nil, ::T.untyped)
-  RED = ::T.let(nil, ::T.untyped)
-  WHITE = ::T.let(nil, ::T.untyped)
-  YELLOW = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::HTML
-end
-
-module Bundler::Thor::Shell
-end
-
-Bundler::Thor::Task = Bundler::Thor::Command
-
-class Bundler::Thor::UndefinedCommandError
-  include ::DidYouMean::Correctable
-  def all_commands(); end
-
-  def command(); end
-
-  def initialize(command, all_commands, namespace); end
-end
-
-class Bundler::Thor::UndefinedCommandError::SpellChecker
-  def corrections(); end
-
-  def error(); end
-
-  def initialize(error); end
-
-  def spell_checker(); end
-end
-
-class Bundler::Thor::UndefinedCommandError::SpellChecker
-end
-
-class Bundler::Thor::UndefinedCommandError
-end
-
-Bundler::Thor::UndefinedTaskError = Bundler::Thor::UndefinedCommandError
-
-class Bundler::Thor::UnknownArgumentError
-  include ::DidYouMean::Correctable
-  def initialize(switches, unknown); end
-
-  def switches(); end
-
-  def unknown(); end
-end
-
-class Bundler::Thor::UnknownArgumentError::SpellChecker
-  def corrections(); end
-
-  def error(); end
-
-  def initialize(error); end
-
-  def spell_checker(); end
-end
-
-class Bundler::Thor::UnknownArgumentError::SpellChecker
-end
-
-class Bundler::Thor::UnknownArgumentError
-end
-
-module Bundler::Thor::Util
-end
-
-module Bundler::Thor::Util
-  def self.camel_case(str); end
-
-  def self.escape_globs(path); end
-
-  def self.escape_html(string); end
-
-  def self.find_by_namespace(namespace); end
-
-  def self.find_class_and_command_by_namespace(namespace, fallback=T.unsafe(nil)); end
-
-  def self.find_class_and_task_by_namespace(namespace, fallback=T.unsafe(nil)); end
-
-  def self.globs_for(path); end
-
-  def self.load_thorfile(path, content=T.unsafe(nil), debug=T.unsafe(nil)); end
-
-  def self.namespace_from_thor_class(constant); end
-
-  def self.namespaces_in_content(contents, file=T.unsafe(nil)); end
-
-  def self.ruby_command(); end
-
-  def self.snake_case(str); end
-
-  def self.thor_classes_in(klass); end
-
-  def self.thor_root(); end
-
-  def self.thor_root_glob(); end
-
-  def self.user_home(); end
-end
-
-class Bundler::Thor
-  extend ::Bundler::Thor::Base::ClassMethods
-  extend ::Bundler::Thor::Invocation::ClassMethods
-  def self.banner(command, namespace=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def self.check_unknown_options!(options=T.unsafe(nil)); end
-
-  def self.command_help(shell, command_name); end
-
-  def self.default_command(meth=T.unsafe(nil)); end
-
-  def self.default_task(meth=T.unsafe(nil)); end
-
-  def self.deprecation_warning(message); end
-
-  def self.desc(usage, description, options=T.unsafe(nil)); end
-
-  def self.disable_required_check(); end
-
-  def self.disable_required_check!(*command_names); end
-
-  def self.disable_required_check?(command); end
-
-  def self.dispatch(meth, given_args, given_opts, config); end
-
-  def self.dynamic_command_class(); end
-
-  def self.find_command_possibilities(meth); end
-
-  def self.find_task_possibilities(meth); end
-
-  def self.help(shell, subcommand=T.unsafe(nil)); end
-
-  def self.long_desc(long_description, options=T.unsafe(nil)); end
-
-  def self.map(mappings=T.unsafe(nil), **kw); end
-
-  def self.method_option(name, options=T.unsafe(nil)); end
-
-  def self.method_options(options=T.unsafe(nil)); end
-
-  def self.normalize_command_name(meth); end
-
-  def self.normalize_task_name(meth); end
-
-  def self.option(name, options=T.unsafe(nil)); end
-
-  def self.options(options=T.unsafe(nil)); end
-
-  def self.package_name(name, _=T.unsafe(nil)); end
-
-  def self.printable_commands(all=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def self.printable_tasks(all=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def self.register(klass, subcommand_name, usage, description, options=T.unsafe(nil)); end
-
-  def self.retrieve_command_name(args); end
-
-  def self.retrieve_task_name(args); end
-
-  def self.stop_on_unknown_option(); end
-
-  def self.stop_on_unknown_option!(*command_names); end
-
-  def self.stop_on_unknown_option?(command); end
-
-  def self.subcommand(subcommand, subcommand_class); end
-
-  def self.subcommand_classes(); end
-
-  def self.subcommand_help(cmd); end
-
-  def self.subcommands(); end
-
-  def self.subtask(subcommand, subcommand_class); end
-
-  def self.subtask_help(cmd); end
-
-  def self.subtasks(); end
-
-  def self.task_help(shell, command_name); end
 end
 
 class Bundler::UI::Shell
@@ -14027,449 +12868,6 @@ class Bundler::UI::Shell
 end
 
 class Bundler::UI::Shell
-end
-
-module Bundler::URI
-  include ::Bundler::URI::RFC2396_REGEXP
-  ABS_PATH = ::T.let(nil, ::T.untyped)
-  ABS_URI = ::T.let(nil, ::T.untyped)
-  ABS_URI_REF = ::T.let(nil, ::T.untyped)
-  DEFAULT_PARSER = ::T.let(nil, ::T.untyped)
-  ESCAPED = ::T.let(nil, ::T.untyped)
-  FRAGMENT = ::T.let(nil, ::T.untyped)
-  HOST = ::T.let(nil, ::T.untyped)
-  OPAQUE = ::T.let(nil, ::T.untyped)
-  PORT = ::T.let(nil, ::T.untyped)
-  QUERY = ::T.let(nil, ::T.untyped)
-  REGISTRY = ::T.let(nil, ::T.untyped)
-  REL_PATH = ::T.let(nil, ::T.untyped)
-  REL_URI = ::T.let(nil, ::T.untyped)
-  REL_URI_REF = ::T.let(nil, ::T.untyped)
-  RFC3986_PARSER = ::T.let(nil, ::T.untyped)
-  SCHEME = ::T.let(nil, ::T.untyped)
-  TBLDECWWWCOMP_ = ::T.let(nil, ::T.untyped)
-  TBLENCWWWCOMP_ = ::T.let(nil, ::T.untyped)
-  UNSAFE = ::T.let(nil, ::T.untyped)
-  URI_REF = ::T.let(nil, ::T.untyped)
-  USERINFO = ::T.let(nil, ::T.untyped)
-  VERSION = ::T.let(nil, ::T.untyped)
-  VERSION_CODE = ::T.let(nil, ::T.untyped)
-  WEB_ENCODINGS_ = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::BadURIError
-end
-
-class Bundler::URI::BadURIError
-end
-
-class Bundler::URI::Error
-end
-
-class Bundler::URI::Error
-end
-
-module Bundler::URI::Escape
-  def decode(*arg); end
-
-  def encode(*arg); end
-
-  def escape(*arg); end
-
-  def unescape(*arg); end
-end
-
-module Bundler::URI::Escape
-end
-
-class Bundler::URI::FTP
-  def set_typecode(v); end
-
-  def typecode(); end
-
-  def typecode=(typecode); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  TYPECODE = ::T.let(nil, ::T.untyped)
-  TYPECODE_PREFIX = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::FTP
-  def self.new2(user, password, host, port, path, typecode=T.unsafe(nil), arg_check=T.unsafe(nil)); end
-end
-
-class Bundler::URI::File
-  def check_password(user); end
-
-  def check_user(user); end
-
-  def check_userinfo(user); end
-
-  def set_userinfo(v); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::File
-end
-
-class Bundler::URI::Generic
-  include ::Bundler::URI
-  include ::Bundler::URI::RFC2396_REGEXP
-  def +(oth); end
-
-  def -(oth); end
-
-  def ==(oth); end
-
-  def absolute(); end
-
-  def absolute?(); end
-
-  def coerce(oth); end
-
-  def component(); end
-
-  def component_ary(); end
-
-  def default_port(); end
-
-  def eql?(oth); end
-
-  def find_proxy(env=T.unsafe(nil)); end
-
-  def fragment(); end
-
-  def fragment=(v); end
-
-  def hierarchical?(); end
-
-  def host(); end
-
-  def host=(v); end
-
-  def hostname(); end
-
-  def hostname=(v); end
-
-  def initialize(scheme, userinfo, host, port, registry, path, opaque, query, fragment, parser=T.unsafe(nil), arg_check=T.unsafe(nil)); end
-
-  def merge(oth); end
-
-  def merge!(oth); end
-
-  def normalize(); end
-
-  def normalize!(); end
-
-  def opaque(); end
-
-  def opaque=(v); end
-
-  def parser(); end
-
-  def password(); end
-
-  def password=(password); end
-
-  def path(); end
-
-  def path=(v); end
-
-  def port(); end
-
-  def port=(v); end
-
-  def query(); end
-
-  def query=(v); end
-
-  def registry(); end
-
-  def registry=(v); end
-
-  def relative?(); end
-
-  def route_from(oth); end
-
-  def route_to(oth); end
-
-  def scheme(); end
-
-  def scheme=(v); end
-
-  def select(*components); end
-
-  def set_host(v); end
-
-  def set_opaque(v); end
-
-  def set_password(v); end
-
-  def set_path(v); end
-
-  def set_port(v); end
-
-  def set_registry(v); end
-
-  def set_scheme(v); end
-
-  def set_user(v); end
-
-  def set_userinfo(user, password=T.unsafe(nil)); end
-
-  def user(); end
-
-  def user=(user); end
-
-  def userinfo(); end
-
-  def userinfo=(userinfo); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  USE_REGISTRY = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::Generic
-  def self.build(args); end
-
-  def self.build2(args); end
-
-  def self.component(); end
-
-  def self.default_port(); end
-
-  def self.use_proxy?(hostname, addr, port, no_proxy); end
-
-  def self.use_registry(); end
-end
-
-class Bundler::URI::HTTP
-  def request_uri(); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::HTTP
-end
-
-class Bundler::URI::HTTPS
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::HTTPS
-end
-
-class Bundler::URI::InvalidComponentError
-end
-
-class Bundler::URI::InvalidComponentError
-end
-
-class Bundler::URI::InvalidURIError
-end
-
-class Bundler::URI::InvalidURIError
-end
-
-class Bundler::URI::LDAP
-  def attributes(); end
-
-  def attributes=(val); end
-
-  def dn(); end
-
-  def dn=(val); end
-
-  def extensions(); end
-
-  def extensions=(val); end
-
-  def filter(); end
-
-  def filter=(val); end
-
-  def initialize(*arg); end
-
-  def scope(); end
-
-  def scope=(val); end
-
-  def set_attributes(val); end
-
-  def set_dn(val); end
-
-  def set_extensions(val); end
-
-  def set_filter(val); end
-
-  def set_scope(val); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  SCOPE = ::T.let(nil, ::T.untyped)
-  SCOPE_BASE = ::T.let(nil, ::T.untyped)
-  SCOPE_ONE = ::T.let(nil, ::T.untyped)
-  SCOPE_SUB = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::LDAP
-end
-
-class Bundler::URI::LDAPS
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::LDAPS
-end
-
-class Bundler::URI::MailTo
-  def headers(); end
-
-  def headers=(v); end
-
-  def initialize(*arg); end
-
-  def set_headers(v); end
-
-  def set_to(v); end
-
-  def to(); end
-
-  def to=(v); end
-
-  def to_mailtext(); end
-
-  def to_rfc822text(); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  EMAIL_REGEXP = ::T.let(nil, ::T.untyped)
-  HEADER_REGEXP = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::MailTo
-end
-
-Bundler::URI::Parser = Bundler::URI::RFC2396_Parser
-
-Bundler::URI::REGEXP = Bundler::URI::RFC2396_REGEXP
-
-class Bundler::URI::RFC2396_Parser
-  include ::Bundler::URI::RFC2396_REGEXP
-  def escape(str, unsafe=T.unsafe(nil)); end
-
-  def extract(str, schemes=T.unsafe(nil)); end
-
-  def initialize(opts=T.unsafe(nil)); end
-
-  def join(*uris); end
-
-  def make_regexp(schemes=T.unsafe(nil)); end
-
-  def parse(uri); end
-
-  def pattern(); end
-
-  def regexp(); end
-
-  def split(uri); end
-
-  def unescape(str, escaped=T.unsafe(nil)); end
-end
-
-class Bundler::URI::RFC2396_Parser
-end
-
-module Bundler::URI::RFC2396_REGEXP
-end
-
-module Bundler::URI::RFC2396_REGEXP::PATTERN
-  ABS_PATH = ::T.let(nil, ::T.untyped)
-  ABS_URI = ::T.let(nil, ::T.untyped)
-  ALNUM = ::T.let(nil, ::T.untyped)
-  ALPHA = ::T.let(nil, ::T.untyped)
-  DOMLABEL = ::T.let(nil, ::T.untyped)
-  ESCAPED = ::T.let(nil, ::T.untyped)
-  FRAGMENT = ::T.let(nil, ::T.untyped)
-  HEX = ::T.let(nil, ::T.untyped)
-  HIER_PART = ::T.let(nil, ::T.untyped)
-  HOST = ::T.let(nil, ::T.untyped)
-  HOSTNAME = ::T.let(nil, ::T.untyped)
-  HOSTPORT = ::T.let(nil, ::T.untyped)
-  IPV4ADDR = ::T.let(nil, ::T.untyped)
-  IPV6ADDR = ::T.let(nil, ::T.untyped)
-  IPV6REF = ::T.let(nil, ::T.untyped)
-  NET_PATH = ::T.let(nil, ::T.untyped)
-  OPAQUE_PART = ::T.let(nil, ::T.untyped)
-  PATH_SEGMENTS = ::T.let(nil, ::T.untyped)
-  PORT = ::T.let(nil, ::T.untyped)
-  QUERY = ::T.let(nil, ::T.untyped)
-  REG_NAME = ::T.let(nil, ::T.untyped)
-  REL_PATH = ::T.let(nil, ::T.untyped)
-  REL_SEGMENT = ::T.let(nil, ::T.untyped)
-  REL_URI = ::T.let(nil, ::T.untyped)
-  RESERVED = ::T.let(nil, ::T.untyped)
-  SCHEME = ::T.let(nil, ::T.untyped)
-  TOPLABEL = ::T.let(nil, ::T.untyped)
-  UNRESERVED = ::T.let(nil, ::T.untyped)
-  URIC = ::T.let(nil, ::T.untyped)
-  URIC_NO_SLASH = ::T.let(nil, ::T.untyped)
-  URI_REF = ::T.let(nil, ::T.untyped)
-  USERINFO = ::T.let(nil, ::T.untyped)
-  X_ABS_URI = ::T.let(nil, ::T.untyped)
-  X_REL_URI = ::T.let(nil, ::T.untyped)
-end
-
-module Bundler::URI::RFC2396_REGEXP::PATTERN
-end
-
-module Bundler::URI::RFC2396_REGEXP
-end
-
-class Bundler::URI::RFC3986_Parser
-  def join(*uris); end
-
-  def parse(uri); end
-
-  def regexp(); end
-
-  def split(uri); end
-  RFC3986_URI = ::T.let(nil, ::T.untyped)
-  RFC3986_relative_ref = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::RFC3986_Parser
-end
-
-module Bundler::URI::Util
-end
-
-module Bundler::URI::Util
-  def self.make_components_hash(klass, array_hash); end
-end
-
-module Bundler::URI
-  extend ::Bundler::URI::Escape
-  def self.decode_www_form(str, enc=T.unsafe(nil), separator: T.unsafe(nil), use__charset_: T.unsafe(nil), isindex: T.unsafe(nil)); end
-
-  def self.decode_www_form_component(str, enc=T.unsafe(nil)); end
-
-  def self.encode_www_form(enum, enc=T.unsafe(nil)); end
-
-  def self.encode_www_form_component(str, enc=T.unsafe(nil)); end
-
-  def self.extract(str, schemes=T.unsafe(nil), &block); end
-
-  def self.get_encoding(label); end
-
-  def self.join(*str); end
-
-  def self.parse(uri); end
-
-  def self.regexp(schemes=T.unsafe(nil)); end
-
-  def self.scheme_list(); end
-
-  def self.split(uri); end
 end
 
 module Bundler::VersionRanges
@@ -14534,20 +12932,6 @@ module Bundler::VersionRanges
   def self.for(requirement); end
 
   def self.for_many(requirements); end
-end
-
-module Bundler
-  def self.original_exec(*args); end
-
-  def self.original_system(*args); end
-
-  def self.unbundled_env(); end
-
-  def self.unbundled_exec(*args); end
-
-  def self.unbundled_system(*args); end
-
-  def self.with_unbundled_env(); end
 end
 
 module Byebug
@@ -15003,13 +13387,6 @@ module Ektar::ApplicationRecord::GeneratedAttributeMethods
   extend ::Mutex_m
 end
 
-module Ektar::Concerns::Resourceful::ClassMethods
-  def resourceful(model_name, *actions); end
-end
-
-module Ektar::Concerns::Resourceful::ClassMethods
-end
-
 class Ektar::Engine
 end
 
@@ -15020,6 +13397,8 @@ class Ektar::Membership
   def autosave_associated_records_for_organization(*args); end
 
   def autosave_associated_records_for_user(*args); end
+
+  def validate_associated_records_for_organization(*args); end
 end
 
 module Ektar::Membership::GeneratedAssociationMethods
@@ -15035,6 +13414,8 @@ module Ektar::Membership::GeneratedAssociationMethods
 
   def create_user!(*args, &block); end
 
+  def organization_attributes=(attributes); end
+
   def reload_organization(); end
 
   def reload_user(); end
@@ -15044,82 +13425,8 @@ module Ektar::Membership::GeneratedAttributeMethods
   extend ::Mutex_m
 end
 
-class Ektar::Organization
-  def after_add_for_memberships(); end
-
-  def after_add_for_memberships=(val); end
-
-  def after_add_for_memberships?(); end
-
-  def after_add_for_users(); end
-
-  def after_add_for_users=(val); end
-
-  def after_add_for_users?(); end
-
-  def after_remove_for_memberships(); end
-
-  def after_remove_for_memberships=(val); end
-
-  def after_remove_for_memberships?(); end
-
-  def after_remove_for_users(); end
-
-  def after_remove_for_users=(val); end
-
-  def after_remove_for_users?(); end
-
-  def autosave_associated_records_for_memberships(*args); end
-
-  def autosave_associated_records_for_plan(*args); end
-
-  def autosave_associated_records_for_users(*args); end
-
-  def before_add_for_memberships(); end
-
-  def before_add_for_memberships=(val); end
-
-  def before_add_for_memberships?(); end
-
-  def before_add_for_users(); end
-
-  def before_add_for_users=(val); end
-
-  def before_add_for_users?(); end
-
-  def before_remove_for_memberships(); end
-
-  def before_remove_for_memberships=(val); end
-
-  def before_remove_for_memberships?(); end
-
-  def before_remove_for_users(); end
-
-  def before_remove_for_users=(val); end
-
-  def before_remove_for_users?(); end
-
-  def validate_associated_records_for_memberships(*args); end
-
-  def validate_associated_records_for_users(*args); end
-end
-
-module Ektar::Organization::GeneratedAssociationMethods
-  def build_plan(*args, &block); end
-
-  def create_plan(*args, &block); end
-
-  def create_plan!(*args, &block); end
-
-  def membership_ids(); end
-
-  def membership_ids=(ids); end
-
-  def reload_plan(); end
-
-  def user_ids(); end
-
-  def user_ids=(ids); end
+class Ektar::Membership
+  extend ::T::Sig
 end
 
 module Ektar::Organization::GeneratedAttributeMethods
@@ -15128,113 +13435,6 @@ end
 
 class Ektar::Organization
   extend ::T::Sig
-  def self.after_add_for_memberships(); end
-
-  def self.after_add_for_memberships=(val); end
-
-  def self.after_add_for_memberships?(); end
-
-  def self.after_add_for_users(); end
-
-  def self.after_add_for_users=(val); end
-
-  def self.after_add_for_users?(); end
-
-  def self.after_remove_for_memberships(); end
-
-  def self.after_remove_for_memberships=(val); end
-
-  def self.after_remove_for_memberships?(); end
-
-  def self.after_remove_for_users(); end
-
-  def self.after_remove_for_users=(val); end
-
-  def self.after_remove_for_users?(); end
-
-  def self.before_add_for_memberships(); end
-
-  def self.before_add_for_memberships=(val); end
-
-  def self.before_add_for_memberships?(); end
-
-  def self.before_add_for_users(); end
-
-  def self.before_add_for_users=(val); end
-
-  def self.before_add_for_users?(); end
-
-  def self.before_remove_for_memberships(); end
-
-  def self.before_remove_for_memberships=(val); end
-
-  def self.before_remove_for_memberships?(); end
-
-  def self.before_remove_for_users(); end
-
-  def self.before_remove_for_users=(val); end
-
-  def self.before_remove_for_users?(); end
-
-  def self.search_full(*args); end
-end
-
-class Ektar::OrganizationsController
-  include ::Ektar::Concerns::Index
-  include ::Pagy::Backend
-  include ::Ektar::Concerns::New
-  include ::Ektar::Concerns::Create
-  include ::Ektar::Concerns::Edit
-  include ::Ektar::Concerns::Update
-  include ::Ektar::Concerns::Show
-  def collection_path(); end
-
-  def create(options=T.unsafe(nil), &block); end
-
-  def create!(options=T.unsafe(nil), &block); end
-
-  def delete_confirmation(resource); end
-
-  def edit(options=T.unsafe(nil), &block); end
-
-  def edit!(options=T.unsafe(nil), &block); end
-
-  def edit_resource_path(resource); end
-
-  def index(options=T.unsafe(nil), &block); end
-
-  def index!(options=T.unsafe(nil), &block); end
-
-  def link_attribute(); end
-
-  def model_name(); end
-
-  def model_name?(); end
-
-  def new(options=T.unsafe(nil), &block); end
-
-  def new!(options=T.unsafe(nil), &block); end
-
-  def new_resource_path(); end
-
-  def resource_path(resource); end
-
-  def show(options=T.unsafe(nil), &block); end
-
-  def show!(options=T.unsafe(nil), &block); end
-
-  def update(options=T.unsafe(nil), &block); end
-
-  def update!(options=T.unsafe(nil), &block); end
-end
-
-class Ektar::OrganizationsController
-  extend ::Ektar::Concerns::Resourceful::ClassMethods
-  def self.model_name(); end
-
-  def self.model_name=(val); end
-
-  def self.model_name?(); end
 end
 
 class Ektar::Plan
@@ -15252,6 +13452,8 @@ class Ektar::Plan
 
   def autosave_associated_records_for_organizations(*args); end
 
+  def autosave_associated_records_for_rich_text_description(); end
+
   def before_add_for_organizations(); end
 
   def before_add_for_organizations=(val); end
@@ -15264,13 +13466,37 @@ class Ektar::Plan
 
   def before_remove_for_organizations?(); end
 
+  def currency_for_price(); end
+
+  def description(); end
+
+  def description=(body); end
+
+  def price(*args); end
+
+  def price=(value); end
+
+  def price_cents=(value); end
+
+  def price_money_before_type_cast(); end
+
   def validate_associated_records_for_organizations(*args); end
+
+  def validate_associated_records_for_rich_text_description(*args); end
 end
 
 module Ektar::Plan::GeneratedAssociationMethods
+  def build_rich_text_description(*args, &block); end
+
+  def create_rich_text_description(*args, &block); end
+
+  def create_rich_text_description!(*args, &block); end
+
   def organization_ids(); end
 
   def organization_ids=(ids); end
+
+  def reload_rich_text_description(); end
 end
 
 module Ektar::Plan::GeneratedAttributeMethods
@@ -15278,6 +13504,7 @@ module Ektar::Plan::GeneratedAttributeMethods
 end
 
 class Ektar::Plan
+  extend ::T::Sig
   def self.after_add_for_organizations(); end
 
   def self.after_add_for_organizations=(val); end
@@ -15303,158 +13530,8 @@ class Ektar::Plan
   def self.before_remove_for_organizations?(); end
 end
 
-class Ektar::PlansController
-  include ::Ektar::Concerns::Index
-  include ::Pagy::Backend
-  include ::Ektar::Concerns::New
-  include ::Ektar::Concerns::Create
-  include ::Ektar::Concerns::Edit
-  include ::Ektar::Concerns::Update
-  include ::Ektar::Concerns::Show
-  def collection_path(); end
-
-  def create(options=T.unsafe(nil), &block); end
-
-  def create!(options=T.unsafe(nil), &block); end
-
-  def delete_confirmation(resource); end
-
-  def edit(options=T.unsafe(nil), &block); end
-
-  def edit!(options=T.unsafe(nil), &block); end
-
-  def edit_resource_path(resource); end
-
-  def index(options=T.unsafe(nil), &block); end
-
-  def index!(options=T.unsafe(nil), &block); end
-
-  def link_attribute(); end
-
-  def model_name(); end
-
-  def model_name?(); end
-
-  def new(options=T.unsafe(nil), &block); end
-
-  def new!(options=T.unsafe(nil), &block); end
-
-  def new_resource_path(); end
-
-  def resource_path(resource); end
-
-  def show(options=T.unsafe(nil), &block); end
-
-  def show!(options=T.unsafe(nil), &block); end
-
-  def update(options=T.unsafe(nil), &block); end
-
-  def update!(options=T.unsafe(nil), &block); end
-end
-
-class Ektar::PlansController
-  extend ::Ektar::Concerns::Resourceful::ClassMethods
-  def self.model_name(); end
-
-  def self.model_name=(val); end
-
-  def self.model_name?(); end
-end
-
-class Ektar::Profile
-  def autosave_associated_records_for_user(*args); end
-end
-
-module Ektar::Profile::GeneratedAssociationMethods
-  def build_user(*args, &block); end
-
-  def create_user(*args, &block); end
-
-  def create_user!(*args, &block); end
-
-  def reload_user(); end
-end
-
-module Ektar::Profile::GeneratedAttributeMethods
-  extend ::Mutex_m
-end
-
-class Ektar::User
-  def after_add_for_memberships(); end
-
-  def after_add_for_memberships=(val); end
-
-  def after_add_for_memberships?(); end
-
-  def after_add_for_organizations(); end
-
-  def after_add_for_organizations=(val); end
-
-  def after_add_for_organizations?(); end
-
-  def after_remove_for_memberships(); end
-
-  def after_remove_for_memberships=(val); end
-
-  def after_remove_for_memberships?(); end
-
-  def after_remove_for_organizations(); end
-
-  def after_remove_for_organizations=(val); end
-
-  def after_remove_for_organizations?(); end
-
-  def autosave_associated_records_for_ektar_profile(); end
-
-  def autosave_associated_records_for_memberships(*args); end
-
-  def autosave_associated_records_for_organizations(*args); end
-
-  def before_add_for_memberships(); end
-
-  def before_add_for_memberships=(val); end
-
-  def before_add_for_memberships?(); end
-
-  def before_add_for_organizations(); end
-
-  def before_add_for_organizations=(val); end
-
-  def before_add_for_organizations?(); end
-
-  def before_remove_for_memberships(); end
-
-  def before_remove_for_memberships=(val); end
-
-  def before_remove_for_memberships?(); end
-
-  def before_remove_for_organizations(); end
-
-  def before_remove_for_organizations=(val); end
-
-  def before_remove_for_organizations?(); end
-
-  def validate_associated_records_for_memberships(*args); end
-
-  def validate_associated_records_for_organizations(*args); end
-end
-
-module Ektar::User::GeneratedAssociationMethods
-  def build_ektar_profile(*args, &block); end
-
-  def create_ektar_profile(*args, &block); end
-
-  def create_ektar_profile!(*args, &block); end
-
-  def membership_ids(); end
-
-  def membership_ids=(ids); end
-
-  def organization_ids(); end
-
-  def organization_ids=(ids); end
-
-  def reload_ektar_profile(); end
+class Ektar::ResourcefulController
+  extend ::T::Sig
 end
 
 module Ektar::User::GeneratedAttributeMethods
@@ -15463,118 +13540,6 @@ end
 
 class Ektar::User
   extend ::T::Sig
-  def self.after_add_for_memberships(); end
-
-  def self.after_add_for_memberships=(val); end
-
-  def self.after_add_for_memberships?(); end
-
-  def self.after_add_for_organizations(); end
-
-  def self.after_add_for_organizations=(val); end
-
-  def self.after_add_for_organizations?(); end
-
-  def self.after_remove_for_memberships(); end
-
-  def self.after_remove_for_memberships=(val); end
-
-  def self.after_remove_for_memberships?(); end
-
-  def self.after_remove_for_organizations(); end
-
-  def self.after_remove_for_organizations=(val); end
-
-  def self.after_remove_for_organizations?(); end
-
-  def self.before_add_for_memberships(); end
-
-  def self.before_add_for_memberships=(val); end
-
-  def self.before_add_for_memberships?(); end
-
-  def self.before_add_for_organizations(); end
-
-  def self.before_add_for_organizations=(val); end
-
-  def self.before_add_for_organizations?(); end
-
-  def self.before_remove_for_memberships(); end
-
-  def self.before_remove_for_memberships=(val); end
-
-  def self.before_remove_for_memberships?(); end
-
-  def self.before_remove_for_organizations(); end
-
-  def self.before_remove_for_organizations=(val); end
-
-  def self.before_remove_for_organizations?(); end
-end
-
-class Ektar::UsersController
-  include ::Ektar::Concerns::Index
-  include ::Pagy::Backend
-  include ::Ektar::Concerns::New
-  include ::Ektar::Concerns::Create
-  include ::Ektar::Concerns::Edit
-  include ::Ektar::Concerns::Update
-  include ::Ektar::Concerns::Show
-  include ::Ektar::Concerns::Destroy
-  def allow_delete?(resource); end
-
-  def collection_path(); end
-
-  def create(options=T.unsafe(nil), &block); end
-
-  def create!(options=T.unsafe(nil), &block); end
-
-  def delete_confirmation(resource); end
-
-  def destroy(options=T.unsafe(nil), &block); end
-
-  def destroy!(options=T.unsafe(nil), &block); end
-
-  def edit(options=T.unsafe(nil), &block); end
-
-  def edit!(options=T.unsafe(nil), &block); end
-
-  def edit_resource_path(resource); end
-
-  def index(options=T.unsafe(nil), &block); end
-
-  def index!(options=T.unsafe(nil), &block); end
-
-  def link_attribute(); end
-
-  def model_name(); end
-
-  def model_name?(); end
-
-  def new(options=T.unsafe(nil), &block); end
-
-  def new!(options=T.unsafe(nil), &block); end
-
-  def new_resource_path(); end
-
-  def resource_path(resource); end
-
-  def show(options=T.unsafe(nil), &block); end
-
-  def show!(options=T.unsafe(nil), &block); end
-
-  def update(options=T.unsafe(nil), &block); end
-
-  def update!(options=T.unsafe(nil), &block); end
-end
-
-class Ektar::UsersController
-  extend ::Ektar::Concerns::Resourceful::ClassMethods
-  def self.model_name(); end
-
-  def self.model_name=(val); end
-
-  def self.model_name?(); end
 end
 
 module Ektar
@@ -15588,8 +13553,6 @@ module Ektar
 
   def self.use_relative_model_naming?(); end
 end
-
-Emitter = Psych::Stream::Emitter
 
 class Encoding
   def _dump(*_); end
@@ -16134,94 +14097,12 @@ module GC
   def self.verify_transient_heap_internal_consistency(); end
 end
 
-class Gem::Package::TarHeader
-  def self.oct_or_256based(str); end
-end
-
-class Gem::RemoteFetcher
-  def s3_uri_signer(uri); end
-end
-
-class Gem::RemoteFetcher::FetchError
-  def initialize(message, uri); end
-
-  def uri(); end
-
-  def uri=(uri); end
-end
-
-class Gem::RemoteFetcher::FetchError
-end
-
-class Gem::RemoteFetcher::UnknownHostError
-end
-
-class Gem::RemoteFetcher::UnknownHostError
-end
-
 class Gem::Resolver::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
-class Gem::S3URISigner
-  def initialize(uri); end
-
-  def sign(expiration=T.unsafe(nil)); end
-
-  def uri(); end
-
-  def uri=(uri); end
-  BASE64_URI_TRANSLATE = ::T.let(nil, ::T.untyped)
-  EC2_METADATA_CREDENTIALS = ::T.let(nil, ::T.untyped)
-end
-
-class Gem::S3URISigner::ConfigurationError
-  def initialize(message); end
-end
-
-class Gem::S3URISigner::ConfigurationError
-end
-
-class Gem::S3URISigner::InstanceProfileError
-  def initialize(message); end
-end
-
-class Gem::S3URISigner::InstanceProfileError
-end
-
-class Gem::S3URISigner::S3Config
-  def access_key_id(); end
-
-  def access_key_id=(_); end
-
-  def region(); end
-
-  def region=(_); end
-
-  def secret_access_key(); end
-
-  def secret_access_key=(_); end
-
-  def security_token(); end
-
-  def security_token=(_); end
-end
-
-class Gem::S3URISigner::S3Config
-  def self.[](*_); end
-
-  def self.members(); end
-end
-
-class Gem::S3URISigner
-end
-
 class Gem::Specification
   extend ::Enumerable
-end
-
-module Gem::Util
-  def self.correct_for_windows_path(path); end
 end
 
 module GlobalID::Locator
@@ -16316,7 +14197,7 @@ class Hash
 end
 
 class Hash
-  def self.try_convert(_); end
+  def self.from_xml(xml, disallowed_types=T.unsafe(nil)); end
 end
 
 HashWithIndifferentAccess = ActiveSupport::HashWithIndifferentAccess
@@ -17529,6 +15410,7 @@ class Integer
   def to_bn(); end
 
   def to_d(); end
+  GMP_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 class Integer
@@ -17548,8 +15430,6 @@ JSON::Parser = JSON::Ext::Parser
 JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
-
-JSONTree = Psych::Visitors::JSONTree
 
 module JaroWinkler
   VERSION = ::T.let(nil, ::T.untyped)
@@ -17693,6 +15573,47 @@ module Mail
   RANDOM_TAG = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Address
+  include ::Mail::Utilities
+  include ::Mail::Constants
+  def address(output_type=T.unsafe(nil)); end
+
+  def address=(value); end
+
+  def comments(); end
+
+  def decoded(); end
+
+  def display_name(output_type=T.unsafe(nil)); end
+
+  def display_name=(str); end
+
+  def domain(output_type=T.unsafe(nil)); end
+
+  def encoded(); end
+
+  def format(output_type=T.unsafe(nil)); end
+
+  def group(); end
+
+  def initialize(value=T.unsafe(nil)); end
+
+  def local(output_type=T.unsafe(nil)); end
+
+  def name(); end
+
+  def raw(); end
+end
+
+class Mail::AddressContainer
+  def <<(address); end
+
+  def initialize(field, list=T.unsafe(nil)); end
+end
+
+class Mail::AddressContainer
+end
+
 class Mail::AddressList
   def addresses(); end
 
@@ -17706,23 +15627,244 @@ end
 class Mail::AddressList
 end
 
+class Mail::AttachmentsList
+  def [](index_value); end
+
+  def []=(name, value); end
+
+  def guess_encoding(); end
+
+  def initialize(parts_list); end
+
+  def inline(); end
+
+  def set_mime_type(filename); end
+end
+
+class Mail::AttachmentsList
+end
+
 class Mail::BccField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def include_in_headers(); end
+
+  def include_in_headers=(include_in_headers); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
+  FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::BccField
+end
+
+class Mail::Body
+  def <<(val); end
+
+  def ==(other); end
+
+  def =~(regexp); end
+
+  def ascii_only?(); end
+
+  def boundary(); end
+
+  def boundary=(val); end
+
+  def charset(); end
+
+  def charset=(val); end
+
+  def decoded(); end
+
+  def default_encoding(); end
+
+  def empty?(); end
+
+  def encoded(transfer_encoding=T.unsafe(nil)); end
+
+  def encoding(val=T.unsafe(nil)); end
+
+  def encoding=(val); end
+
+  def epilogue(); end
+
+  def epilogue=(val); end
+
+  def include?(other); end
+
+  def initialize(string=T.unsafe(nil)); end
+
+  def match(regexp); end
+
+  def multipart?(); end
+
+  def negotiate_best_encoding(message_encoding, allowed_encodings=T.unsafe(nil)); end
+
+  def parts(); end
+
+  def preamble(); end
+
+  def preamble=(val); end
+
+  def raw_source(); end
+
+  def set_sort_order(order); end
+
+  def sort_parts!(); end
+
+  def split!(boundary); end
+end
+
+class Mail::Body
+end
+
+class Mail::CcField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::CcField
+end
+
+module Mail::CheckDeliveryParams
+end
+
+module Mail::CheckDeliveryParams
+  def self.check(mail); end
+
+  def self.check_addr(addr_name, addr); end
+
+  def self.check_from(addr); end
+
+  def self.check_message(message); end
+
+  def self.check_to(addrs); end
+
+  def self.validate_smtp_addr(addr); end
+end
+
+class Mail::CommentsField
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::CommentsField
-  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
-  FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+module Mail::CommonAddress
+  def <<(val); end
+
+  def addresses(); end
+
+  def addrs(); end
+
+  def charset(); end
+
+  def decoded_group_addresses(); end
+
+  def default(); end
+
+  def display_names(); end
+
+  def each(&blk); end
+
+  def encode_if_needed(val); end
+
+  def encoded_group_addresses(); end
+
+  def formatted(); end
+
+  def group_addresses(); end
+
+  def group_names(); end
+
+  def groups(); end
+
+  def parse(val=T.unsafe(nil)); end
+
+  def value=(val); end
+end
+
+module Mail::CommonAddress
+end
+
+module Mail::CommonDate
+  def date_time(); end
+
+  def default(); end
+
+  def parse(val=T.unsafe(nil)); end
+end
+
+module Mail::CommonDate
 end
 
 module Mail::CommonField
+  include ::Mail::Constants
+  def default(); end
+
+  def field_length(); end
+
+  def name(); end
+
+  def name=(value); end
+
+  def responsible_for?(val); end
+
+  def to_s(); end
+
+  def value(); end
+
+  def value=(value); end
   FILENAME_RE = ::T.let(nil, ::T.untyped)
+end
+
+module Mail::CommonField
+end
+
+module Mail::CommonMessageId
+  def default(); end
+
+  def element(); end
+
+  def message_id(); end
+
+  def message_ids(); end
+
+  def parse(val=T.unsafe(nil)); end
+end
+
+module Mail::CommonMessageId
+end
+
+class Mail::Configuration
+  include ::Singleton
+  def delivery_method(method=T.unsafe(nil), settings=T.unsafe(nil)); end
+
+  def lookup_delivery_method(method); end
+
+  def lookup_retriever_method(method); end
+
+  def param_encode_language(value=T.unsafe(nil)); end
+
+  def retriever_method(method=T.unsafe(nil), settings=T.unsafe(nil)); end
+end
+
+class Mail::Configuration
+  extend ::Singleton::SingletonClassMethods
+  def self.instance(); end
 end
 
 module Mail::Constants
@@ -17762,9 +15904,16 @@ module Mail::Constants
   WSP = ::T.let(nil, ::T.untyped)
 end
 
+module Mail::Constants
+end
+
 class Mail::ContentDescriptionField
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::ContentDescriptionField
 end
 
 class Mail::ContentDispositionElement
@@ -17779,13 +15928,45 @@ class Mail::ContentDispositionElement
 end
 
 class Mail::ContentDispositionField
+  def decoded(); end
+
+  def disposition_type(); end
+
+  def element(); end
+
+  def encoded(); end
+
+  def filename(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def parameters(); end
+
+  def parse(val=T.unsafe(nil)); end
+  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
+  FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::ContentDispositionField
+end
+
+class Mail::ContentIdField
+  def content_id(); end
+
+  def decoded(); end
+
+  def element(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def parse(val=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ContentIdField
-  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
-  FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ContentLocationElement
@@ -17800,8 +15981,22 @@ class Mail::ContentLocationElement
 end
 
 class Mail::ContentLocationField
+  def decoded(); end
+
+  def element(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def location(); end
+
+  def parse(val=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::ContentLocationField
 end
 
 class Mail::ContentTransferEncodingElement
@@ -17814,8 +16009,22 @@ class Mail::ContentTransferEncodingElement
 end
 
 class Mail::ContentTransferEncodingField
+  def decoded(); end
+
+  def element(); end
+
+  def encoded(); end
+
+  def encoding(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def parse(val=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::ContentTransferEncodingField
 end
 
 class Mail::ContentTypeElement
@@ -17832,13 +16041,53 @@ class Mail::ContentTypeElement
 end
 
 class Mail::ContentTypeField
+  def attempt_to_clean(); end
+
+  def content_type(); end
+
+  def decoded(); end
+
+  def element(); end
+
+  def encoded(); end
+
+  def filename(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def main_type(); end
+
+  def parameters(); end
+
+  def parse(val=T.unsafe(nil)); end
+
+  def string(); end
+
+  def stringify(params); end
+
+  def sub_type(); end
+  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
+  FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::ContentTypeField
+  def self.generate_boundary(); end
+
+  def self.with_boundary(type); end
+end
+
+class Mail::DateField
+  include ::Mail::CommonDate
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::DateField
-  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
-  FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::DateTimeElement
@@ -17852,9 +16101,16 @@ end
 class Mail::DateTimeElement
 end
 
+module Mail::Encodings
+  include ::Mail::Constants
+end
+
 class Mail::Encodings::Base64
   NAME = ::T.let(nil, ::T.untyped)
   PRIORITY = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::Encodings::Base64
 end
 
 class Mail::Encodings::Binary
@@ -17862,9 +16118,24 @@ class Mail::Encodings::Binary
   PRIORITY = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Encodings::Binary
+end
+
 class Mail::Encodings::EightBit
   NAME = ::T.let(nil, ::T.untyped)
   PRIORITY = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::Encodings::EightBit
+end
+
+class Mail::Encodings::Identity
+end
+
+class Mail::Encodings::Identity
+  def self.decode(str); end
+
+  def self.encode(str); end
 end
 
 class Mail::Encodings::QuotedPrintable
@@ -17872,9 +16143,15 @@ class Mail::Encodings::QuotedPrintable
   PRIORITY = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Encodings::QuotedPrintable
+end
+
 class Mail::Encodings::SevenBit
   NAME = ::T.let(nil, ::T.untyped)
   PRIORITY = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::Encodings::SevenBit
 end
 
 class Mail::Encodings::TransferEncoding
@@ -17882,8 +16159,93 @@ class Mail::Encodings::TransferEncoding
   PRIORITY = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Encodings::TransferEncoding
+  def self.can_encode?(enc); end
+
+  def self.can_transport?(enc); end
+
+  def self.compatible_input?(str); end
+
+  def self.cost(str); end
+
+  def self.lowest_cost(str, encodings); end
+
+  def self.negotiate(message_encoding, source_encoding, str, allowed_encodings=T.unsafe(nil)); end
+
+  def self.renegotiate(message_encoding, source_encoding, str, allowed_encodings=T.unsafe(nil)); end
+end
+
 class Mail::Encodings::UnixToUnix
   NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::Encodings::UnixToUnix
+  def self.decode(str); end
+
+  def self.encode(str); end
+end
+
+module Mail::Encodings
+  extend ::Mail::Utilities
+  extend ::Mail::Constants
+  def self.address_encode(address, charset=T.unsafe(nil)); end
+
+  def self.b_value_decode(str); end
+
+  def self.b_value_encode(string, encoding=T.unsafe(nil)); end
+
+  def self.collapse_adjacent_encodings(str); end
+
+  def self.decode_encode(str, output_type); end
+
+  def self.defined?(name); end
+
+  def self.each_base64_chunk_byterange(str, max_bytesize_per_base64_chunk, &block); end
+
+  def self.each_chunk_byterange(str, max_bytesize_per_chunk); end
+
+  def self.encode_non_usascii(address, charset); end
+
+  def self.find_encoding(str); end
+
+  def self.get_all(); end
+
+  def self.get_encoding(name); end
+
+  def self.get_name(name); end
+
+  def self.param_decode(str, encoding); end
+
+  def self.param_encode(str); end
+
+  def self.q_value_decode(str); end
+
+  def self.q_value_encode(encoded_str, encoding=T.unsafe(nil)); end
+
+  def self.register(name, cls); end
+
+  def self.transcode_charset(str, from_charset, to_charset=T.unsafe(nil)); end
+
+  def self.unquote_and_convert_to(str, to_encoding); end
+
+  def self.value_decode(str); end
+
+  def self.value_encoding_from_string(str); end
+
+  def self.with_ascii_kcode(); end
+end
+
+class Mail::Envelope
+  def date(); end
+
+  def element(); end
+
+  def from(); end
+
+  def initialize(*args); end
+end
+
+class Mail::Envelope
 end
 
 class Mail::EnvelopeFromElement
@@ -17907,6 +16269,34 @@ class Mail::Exim
 end
 
 class Mail::Field
+  include ::Mail::Utilities
+  include ::Mail::Constants
+  include ::Comparable
+  def ==(other); end
+
+  def field(); end
+
+  def field=(value); end
+
+  def field_order_id(); end
+
+  def initialize(name, value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def method_missing(name, *args, &block); end
+
+  def name(); end
+
+  def responsible_for?(val); end
+
+  def same(other); end
+
+  def unparsed_value(); end
+
+  def update(name, value); end
+
+  def value(); end
+
+  def value=(val); end
   FIELDS_MAP = ::T.let(nil, ::T.untyped)
   FIELD_NAME_MAP = ::T.let(nil, ::T.untyped)
   FIELD_ORDER = ::T.let(nil, ::T.untyped)
@@ -17915,13 +16305,133 @@ class Mail::Field
   STRUCTURED_FIELDS = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Field::FieldError
+end
+
+class Mail::Field::FieldError
+end
+
+class Mail::Field::IncompleteParseError
+  def initialize(element, original_text, unparsed_index); end
+end
+
+class Mail::Field::IncompleteParseError
+end
+
+class Mail::Field::NilParseError
+  def initialize(element); end
+end
+
+class Mail::Field::NilParseError
+end
+
+class Mail::Field::ParseError
+  def element(); end
+
+  def element=(element); end
+
+  def initialize(element, value, reason); end
+
+  def reason(); end
+
+  def reason=(reason); end
+
+  def value(); end
+
+  def value=(value); end
+end
+
+class Mail::Field::ParseError
+end
+
+class Mail::Field::SyntaxError
+end
+
+class Mail::Field::SyntaxError
+end
+
+class Mail::Field
+  def self.parse(field, charset=T.unsafe(nil)); end
+
+  def self.split(raw_field); end
+end
+
+class Mail::FieldList
+  def <<(new_field); end
+end
+
+class Mail::FieldList
+end
+
+class Mail::FileDelivery
+  def deliver!(mail); end
+
+  def initialize(values); end
+
+  def settings(); end
+
+  def settings=(settings); end
+end
+
+class Mail::FileDelivery
+end
+
 class Mail::FromField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::FromField
+end
+
 class Mail::Header
+  include ::Mail::Utilities
+  include ::Mail::Constants
+  include ::Enumerable
+  def [](name); end
+
+  def []=(name, value); end
+
+  def charset(); end
+
+  def charset=(val); end
+
+  def decoded(); end
+
+  def encoded(); end
+
+  def errors(); end
+
+  def field_summary(); end
+
+  def fields(); end
+
+  def fields=(unfolded_fields); end
+
+  def has_content_id?(); end
+
+  def has_date?(); end
+
+  def has_message_id?(); end
+
+  def has_mime_version?(); end
+
+  def initialize(header_text=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def raw_source(); end
   LIMITED_FIELDS = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::Header
+  def self.maximum_amount(); end
+
+  def self.maximum_amount=(value); end
 end
 
 class Mail::IMAP
@@ -17942,13 +16452,78 @@ class Mail::IMAP
 end
 
 class Mail::InReplyToField
+  include ::Mail::CommonMessageId
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
+  FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::InReplyToField
+end
+
+class Mail::IndifferentHash
+  def []=(key, value); end
+
+  def convert_key(key); end
+
+  def convert_value(value); end
+
+  def default(key=T.unsafe(nil)); end
+
+  def delete(key); end
+
+  def fetch(key, *extras); end
+
+  def has_key?(key); end
+
+  def include?(key); end
+
+  def initialize(constructor=T.unsafe(nil)); end
+
+  def key?(key); end
+
+  def member?(key); end
+
+  def merge(hash); end
+
+  def merge!(other_hash); end
+
+  def regular_update(*_); end
+
+  def regular_writer(_, _1); end
+
+  def store(key, value); end
+
+  def update(other_hash); end
+
+  def values_at(*indices); end
+end
+
+class Mail::IndifferentHash
+  def self.new_from_hash_copying_default(hash); end
+end
+
+class Mail::KeywordsField
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def keywords(); end
+
+  def parse(val=T.unsafe(nil)); end
+
+  def phrase_list(); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::KeywordsField
-  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
-  FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::LoggerDelivery
@@ -17967,13 +16542,463 @@ end
 class Mail::LoggerDelivery
 end
 
+module Mail::Matchers
+  def an_attachment_with_filename(filename); end
+
+  def any_attachment(); end
+
+  def have_sent_email(); end
+end
+
+class Mail::Matchers::AnyAttachmentMatcher
+  def ===(other); end
+end
+
+class Mail::Matchers::AnyAttachmentMatcher
+end
+
+class Mail::Matchers::AttachmentFilenameMatcher
+  def ===(other); end
+
+  def filename(); end
+
+  def initialize(filename); end
+end
+
+class Mail::Matchers::AttachmentFilenameMatcher
+end
+
+class Mail::Matchers::HasSentEmailMatcher
+  def bcc(recipient_or_list); end
+
+  def cc(recipient_or_list); end
+
+  def description(); end
+
+  def dump_deliveries(); end
+
+  def explain_expectations(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def filter_matched_deliveries(deliveries); end
+
+  def from(sender); end
+
+  def initialize(_context); end
+
+  def matches?(subject); end
+
+  def matches_on_attachments?(delivery); end
+
+  def matches_on_blind_copy_recipients?(delivery); end
+
+  def matches_on_body?(delivery); end
+
+  def matches_on_body_matcher?(delivery); end
+
+  def matches_on_copy_recipients?(delivery); end
+
+  def matches_on_having_attachments?(delivery); end
+
+  def matches_on_html_part_body?(delivery); end
+
+  def matches_on_recipients?(delivery); end
+
+  def matches_on_sender?(delivery); end
+
+  def matches_on_subject?(delivery); end
+
+  def matches_on_subject_matcher?(delivery); end
+
+  def matches_on_text_part_body?(delivery); end
+
+  def matching_body(body_matcher); end
+
+  def matching_subject(subject_matcher); end
+
+  def to(recipient_or_list); end
+
+  def with_any_attachments(); end
+
+  def with_attachments(attachments); end
+
+  def with_body(body); end
+
+  def with_html(body); end
+
+  def with_no_attachments(); end
+
+  def with_subject(subject); end
+
+  def with_text(body); end
+end
+
+class Mail::Matchers::HasSentEmailMatcher
+end
+
+module Mail::Matchers
+end
+
 class Mail::Message
+  include ::Mail::Utilities
+  include ::Mail::Constants
+  def ==(other); end
+
+  def [](name); end
+
+  def []=(name, value); end
+
+  def action(); end
+
+  def add_charset(); end
+
+  def add_content_transfer_encoding(); end
+
+  def add_content_type(); end
+
+  def add_date(date_val=T.unsafe(nil)); end
+
+  def add_file(values); end
+
+  def add_message_id(msg_id_val=T.unsafe(nil)); end
+
+  def add_mime_version(ver_val=T.unsafe(nil)); end
+
+  def add_part(part); end
+
+  def add_transfer_encoding(); end
+
+  def all_parts(); end
+
+  def attachment(); end
+
+  def attachment?(); end
+
+  def attachments(); end
+
+  def bcc(val=T.unsafe(nil)); end
+
+  def bcc=(val); end
+
+  def bcc_addrs(); end
+
+  def body(value=T.unsafe(nil)); end
+
+  def body=(value); end
+
+  def body_encoding(value=T.unsafe(nil)); end
+
+  def body_encoding=(value); end
+
+  def bounced?(); end
+
+  def boundary(); end
+
+  def cc(val=T.unsafe(nil)); end
+
+  def cc=(val); end
+
+  def cc_addrs(); end
+
+  def charset(); end
+
+  def charset=(value); end
+
+  def comments(val=T.unsafe(nil)); end
+
+  def comments=(val); end
+
+  def content_description(val=T.unsafe(nil)); end
+
+  def content_description=(val); end
+
+  def content_disposition(val=T.unsafe(nil)); end
+
+  def content_disposition=(val); end
+
+  def content_id(val=T.unsafe(nil)); end
+
+  def content_id=(val); end
+
+  def content_location(val=T.unsafe(nil)); end
+
+  def content_location=(val); end
+
+  def content_transfer_encoding(val=T.unsafe(nil)); end
+
+  def content_transfer_encoding=(val); end
+
+  def content_type(val=T.unsafe(nil)); end
+
+  def content_type=(val); end
+
+  def content_type_parameters(); end
+
+  def convert_to_multipart(); end
+
+  def date(val=T.unsafe(nil)); end
+
+  def date=(val); end
+
+  def decode_body(); end
+
+  def decoded(); end
+
+  def default(sym, val=T.unsafe(nil)); end
+
+  def deliver(); end
+
+  def deliver!(); end
+
+  def delivery_handler(); end
+
+  def delivery_handler=(delivery_handler); end
+
+  def delivery_method(method=T.unsafe(nil), settings=T.unsafe(nil)); end
+
+  def delivery_status_part(); end
+
+  def delivery_status_report?(); end
+
+  def destinations(); end
+
+  def diagnostic_code(); end
+
+  def encode!(); end
+
+  def encoded(); end
+
+  def envelope_date(); end
+
+  def envelope_from(); end
+
+  def error_status(); end
+
+  def errors(); end
+
+  def filename(); end
+
+  def final_recipient(); end
+
+  def find_first_mime_type(mt); end
+
+  def from(val=T.unsafe(nil)); end
+
+  def from=(val); end
+
+  def from_addrs(); end
+
+  def has_attachments?(); end
+
+  def has_charset?(); end
+
+  def has_content_transfer_encoding?(); end
+
+  def has_content_type?(); end
+
+  def has_date?(); end
+
+  def has_message_id?(); end
+
+  def has_mime_version?(); end
+
+  def has_transfer_encoding?(); end
+
+  def header(value=T.unsafe(nil)); end
+
+  def header=(value); end
+
+  def header_fields(); end
+
+  def headers(hash=T.unsafe(nil)); end
+
+  def html_part(&block); end
+
+  def html_part=(msg); end
+
+  def in_reply_to(val=T.unsafe(nil)); end
+
+  def in_reply_to=(val); end
+
+  def inform_interceptors(); end
+
+  def inform_observers(); end
+
+  def initialize(*args, &block); end
+
+  def is_marked_for_delete?(); end
+
+  def keywords(val=T.unsafe(nil)); end
+
+  def keywords=(val); end
+
+  def main_type(); end
+
+  def mark_for_delete=(value=T.unsafe(nil)); end
+
+  def message_content_type(); end
+
+  def message_id(val=T.unsafe(nil)); end
+
+  def message_id=(val); end
+
+  def method_missing(name, *args, &block); end
+
+  def mime_parameters(); end
+
+  def mime_type(); end
+
+  def mime_version(val=T.unsafe(nil)); end
+
+  def mime_version=(val); end
+
+  def multipart?(); end
+
+  def multipart_report?(); end
+
+  def part(params=T.unsafe(nil)); end
+
+  def parts(); end
+
+  def perform_deliveries(); end
+
+  def perform_deliveries=(perform_deliveries); end
+
+  def raise_delivery_errors(); end
+
+  def raise_delivery_errors=(raise_delivery_errors); end
+
+  def raw_envelope(); end
+
+  def raw_source(); end
+
+  def read(); end
+
+  def ready_to_send!(); end
+
+  def received(val=T.unsafe(nil)); end
+
+  def received=(val); end
+
+  def references(val=T.unsafe(nil)); end
+
+  def references=(val); end
+
+  def register_for_delivery_notification(observer); end
+
+  def remote_mta(); end
+
+  def reply(*args, &block); end
+
+  def reply_to(val=T.unsafe(nil)); end
+
+  def reply_to=(val); end
+
+  def resent_bcc(val=T.unsafe(nil)); end
+
+  def resent_bcc=(val); end
+
+  def resent_cc(val=T.unsafe(nil)); end
+
+  def resent_cc=(val); end
+
+  def resent_date(val=T.unsafe(nil)); end
+
+  def resent_date=(val); end
+
+  def resent_from(val=T.unsafe(nil)); end
+
+  def resent_from=(val); end
+
+  def resent_message_id(val=T.unsafe(nil)); end
+
+  def resent_message_id=(val); end
+
+  def resent_sender(val=T.unsafe(nil)); end
+
+  def resent_sender=(val); end
+
+  def resent_to(val=T.unsafe(nil)); end
+
+  def resent_to=(val); end
+
+  def retryable?(); end
+
+  def return_path(val=T.unsafe(nil)); end
+
+  def return_path=(val); end
+
+  def sender(val=T.unsafe(nil)); end
+
+  def sender=(val); end
+
+  def set_envelope(val); end
+
+  def skip_deletion(); end
+
+  def smtp_envelope_from(val=T.unsafe(nil)); end
+
+  def smtp_envelope_from=(val); end
+
+  def smtp_envelope_to(val=T.unsafe(nil)); end
+
+  def smtp_envelope_to=(val); end
+
+  def sub_type(); end
+
+  def subject(val=T.unsafe(nil)); end
+
+  def subject=(val); end
+
+  def text?(); end
+
+  def text_part(&block); end
+
+  def text_part=(msg); end
+
+  def to(val=T.unsafe(nil)); end
+
+  def to=(val); end
+
+  def to_addrs(); end
+
+  def to_yaml(opts=T.unsafe(nil)); end
+
+  def transfer_encoding(); end
+
+  def transport_encoding(val=T.unsafe(nil)); end
+
+  def transport_encoding=(val); end
+
+  def without_attachments!(); end
   HEADER_SEPARATOR = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Message
+  def self.default_charset(); end
+
+  def self.default_charset=(charset); end
+
+  def self.from_hash(hash); end
+
+  def self.from_yaml(str); end
+end
+
 class Mail::MessageIdField
+  include ::Mail::CommonMessageId
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::MessageIdField
 end
 
 class Mail::MessageIdsElement
@@ -17999,15 +17024,135 @@ class Mail::MimeVersionElement
 end
 
 class Mail::MimeVersionField
+  def decoded(); end
+
+  def element(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def major(); end
+
+  def minor(); end
+
+  def parse(val=T.unsafe(nil)); end
+
+  def version(); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::MimeVersionField
 end
 
 module Mail::Multibyte
   VALID_CHARACTER = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Multibyte::Chars
+  include ::Comparable
+  def =~(other); end
+
+  def [](*args); end
+
+  def []=(*args); end
+
+  def acts_like_string?(); end
+
+  def capitalize(); end
+
+  def capitalize!(*args); end
+
+  def chars(string); end
+
+  def compose(); end
+
+  def decompose(); end
+
+  def downcase(); end
+
+  def downcase!(*args); end
+
+  def g_length(); end
+
+  def initialize(string); end
+
+  def justify(integer, way, padstr=T.unsafe(nil)); end
+
+  def limit(limit); end
+
+  def method_missing(method, *args, &block); end
+
+  def normalize(form=T.unsafe(nil)); end
+
+  def padding(padsize, padstr=T.unsafe(nil)); end
+
+  def respond_to?(method, include_private=T.unsafe(nil)); end
+
+  def reverse(); end
+
+  def reverse!(*args); end
+
+  def slice(*args); end
+
+  def slice!(*args); end
+
+  def split(*args); end
+
+  def tidy_bytes(force=T.unsafe(nil)); end
+
+  def tidy_bytes!(*args); end
+
+  def titlecase(); end
+
+  def titleize(); end
+
+  def to_str(); end
+
+  def translate_offset(byte_offset); end
+
+  def upcase(); end
+
+  def upcase!(*args); end
+
+  def wrapped_string(); end
+end
+
+class Mail::Multibyte::Chars
+  def self.consumes?(string); end
+end
+
+class Mail::Multibyte::EncodingError
+end
+
+class Mail::Multibyte::EncodingError
+end
+
 module Mail::Multibyte::Unicode
+  def apply_mapping(string, mapping); end
+
+  def compose_codepoints(codepoints); end
+
+  def decompose_codepoints(type, codepoints); end
+
+  def default_normalization_form(); end
+
+  def default_normalization_form=(default_normalization_form); end
+
+  def g_pack(unpacked); end
+
+  def g_unpack(string); end
+
+  def in_char_class?(codepoint, classes); end
+
+  def normalize(string, form=T.unsafe(nil)); end
+
+  def reorder_characters(codepoints); end
+
+  def tidy_bytes(string, force=T.unsafe(nil)); end
+
+  def u_unpack(string); end
   HANGUL_JAMO_FIRST = ::T.let(nil, ::T.untyped)
   HANGUL_JAMO_LAST = ::T.let(nil, ::T.untyped)
   HANGUL_LBASE = ::T.let(nil, ::T.untyped)
@@ -18028,8 +17173,87 @@ module Mail::Multibyte::Unicode
   WHITESPACE = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Multibyte::Unicode::Codepoint
+  def code(); end
+
+  def code=(code); end
+
+  def combining_class(); end
+
+  def combining_class=(combining_class); end
+
+  def decomp_mapping(); end
+
+  def decomp_mapping=(decomp_mapping); end
+
+  def decomp_type(); end
+
+  def decomp_type=(decomp_type); end
+
+  def lowercase_mapping(); end
+
+  def lowercase_mapping=(lowercase_mapping); end
+
+  def swapcase_mapping(); end
+
+  def uppercase_mapping(); end
+
+  def uppercase_mapping=(uppercase_mapping); end
+end
+
+class Mail::Multibyte::Unicode::Codepoint
+end
+
 class Mail::Multibyte::Unicode::UnicodeDatabase
+  def boundary(); end
+
+  def boundary=(boundary); end
+
+  def codepoints(); end
+
+  def codepoints=(codepoints); end
+
+  def composition_exclusion(); end
+
+  def composition_exclusion=(composition_exclusion); end
+
+  def composition_map(); end
+
+  def composition_map=(composition_map); end
+
+  def cp1252(); end
+
+  def cp1252=(cp1252); end
+
+  def load(); end
   ATTRIBUTES = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::Multibyte::Unicode::UnicodeDatabase
+  def self.dirname(); end
+
+  def self.filename(); end
+end
+
+module Mail::Multibyte::Unicode
+  extend ::Mail::Multibyte::Unicode
+  def self.codepoints_to_pattern(array_of_codepoints); end
+end
+
+module Mail::Multibyte
+  def self.clean(string); end
+
+  def self.mb_chars(str); end
+
+  def self.proxy_class(); end
+
+  def self.proxy_class=(proxy_class); end
+
+  def self.valid_character(); end
+
+  def self.verify(string); end
+
+  def self.verify!(string); end
 end
 
 class Mail::OptionalField
@@ -18053,6 +17277,640 @@ class Mail::POP3
 end
 
 class Mail::POP3
+end
+
+class Mail::ParameterHash
+  include ::Mail::Utilities
+  include ::Mail::Constants
+  def [](key_name); end
+
+  def decoded(); end
+
+  def encoded(); end
+end
+
+class Mail::ParameterHash
+end
+
+module Mail::ParserTools
+  def chars(data, from_bytes, to_bytes); end
+end
+
+module Mail::ParserTools
+end
+
+module Mail::Parsers
+end
+
+module Mail::Parsers::AddressListsParser
+end
+
+class Mail::Parsers::AddressListsParser::AddressListStruct
+  def addresses(); end
+
+  def addresses=(_); end
+
+  def error(); end
+
+  def error=(_); end
+
+  def group_names(); end
+
+  def group_names=(_); end
+end
+
+class Mail::Parsers::AddressListsParser::AddressListStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class Mail::Parsers::AddressListsParser::AddressStruct
+  def comments(); end
+
+  def comments=(_); end
+
+  def display_name(); end
+
+  def display_name=(_); end
+
+  def domain(); end
+
+  def domain=(_); end
+
+  def error(); end
+
+  def error=(_); end
+
+  def group(); end
+
+  def group=(_); end
+
+  def local(); end
+
+  def local=(_); end
+
+  def obs_domain_list(); end
+
+  def obs_domain_list=(_); end
+
+  def raw(); end
+
+  def raw=(_); end
+end
+
+class Mail::Parsers::AddressListsParser::AddressStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::AddressListsParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::ContentDispositionParser
+end
+
+class Mail::Parsers::ContentDispositionParser::ContentDispositionStruct
+  def disposition_type(); end
+
+  def disposition_type=(_); end
+
+  def error(); end
+
+  def error=(_); end
+
+  def parameters(); end
+
+  def parameters=(_); end
+end
+
+class Mail::Parsers::ContentDispositionParser::ContentDispositionStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::ContentDispositionParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::ContentLocationParser
+end
+
+class Mail::Parsers::ContentLocationParser::ContentLocationStruct
+  def error(); end
+
+  def error=(_); end
+
+  def location(); end
+
+  def location=(_); end
+end
+
+class Mail::Parsers::ContentLocationParser::ContentLocationStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::ContentLocationParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::ContentTransferEncodingParser
+end
+
+class Mail::Parsers::ContentTransferEncodingParser::ContentTransferEncodingStruct
+  def encoding(); end
+
+  def encoding=(_); end
+
+  def error(); end
+
+  def error=(_); end
+end
+
+class Mail::Parsers::ContentTransferEncodingParser::ContentTransferEncodingStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::ContentTransferEncodingParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::ContentTypeParser
+end
+
+class Mail::Parsers::ContentTypeParser::ContentTypeStruct
+  def error(); end
+
+  def error=(_); end
+
+  def main_type(); end
+
+  def main_type=(_); end
+
+  def parameters(); end
+
+  def parameters=(_); end
+
+  def sub_type(); end
+
+  def sub_type=(_); end
+end
+
+class Mail::Parsers::ContentTypeParser::ContentTypeStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::ContentTypeParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::DateTimeParser
+end
+
+class Mail::Parsers::DateTimeParser::DateTimeStruct
+  def date_string(); end
+
+  def date_string=(_); end
+
+  def error(); end
+
+  def error=(_); end
+
+  def time_string(); end
+
+  def time_string=(_); end
+end
+
+class Mail::Parsers::DateTimeParser::DateTimeStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::DateTimeParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::EnvelopeFromParser
+end
+
+class Mail::Parsers::EnvelopeFromParser::EnvelopeFromStruct
+  def address(); end
+
+  def address=(_); end
+
+  def ctime_date(); end
+
+  def ctime_date=(_); end
+
+  def error(); end
+
+  def error=(_); end
+end
+
+class Mail::Parsers::EnvelopeFromParser::EnvelopeFromStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::EnvelopeFromParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::MessageIdsParser
+end
+
+class Mail::Parsers::MessageIdsParser::MessageIdsStruct
+  def error(); end
+
+  def error=(_); end
+
+  def message_ids(); end
+
+  def message_ids=(_); end
+end
+
+class Mail::Parsers::MessageIdsParser::MessageIdsStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::MessageIdsParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::MimeVersionParser
+end
+
+class Mail::Parsers::MimeVersionParser::MimeVersionStruct
+  def error(); end
+
+  def error=(_); end
+
+  def major(); end
+
+  def major=(_); end
+
+  def minor(); end
+
+  def minor=(_); end
+end
+
+class Mail::Parsers::MimeVersionParser::MimeVersionStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::MimeVersionParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+class Mail::Parsers::PhraseListsParser
+end
+
+class Mail::Parsers::PhraseListsParser::PhraseListsStruct
+  def error(); end
+
+  def error=(_); end
+
+  def phrases(); end
+
+  def phrases=(_); end
+end
+
+class Mail::Parsers::PhraseListsParser::PhraseListsStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class Mail::Parsers::PhraseListsParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers::ReceivedParser
+end
+
+class Mail::Parsers::ReceivedParser::ReceivedStruct
+  def date(); end
+
+  def date=(_); end
+
+  def error(); end
+
+  def error=(_); end
+
+  def info(); end
+
+  def info=(_); end
+
+  def time(); end
+
+  def time=(_); end
+end
+
+class Mail::Parsers::ReceivedParser::ReceivedStruct
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module Mail::Parsers::ReceivedParser
+  extend ::Mail::ParserTools
+  def self.en_comment_tail(); end
+
+  def self.en_comment_tail=(en_comment_tail); end
+
+  def self.en_main(); end
+
+  def self.en_main=(en_main); end
+
+  def self.error(); end
+
+  def self.error=(error); end
+
+  def self.first_final(); end
+
+  def self.first_final=(first_final); end
+
+  def self.parse(data); end
+
+  def self.start(); end
+
+  def self.start=(start); end
+end
+
+module Mail::Parsers
+end
+
+class Mail::Part
+  def add_content_id(content_id_val=T.unsafe(nil)); end
+
+  def cid(); end
+
+  def delivery_status_data(); end
+
+  def delivery_status_report_part?(); end
+
+  def has_content_id?(); end
+
+  def inline?(); end
+
+  def inline_content_id(); end
+
+  def url(); end
+end
+
+class Mail::Part
+end
+
+class Mail::PartsList
+  def attachments(); end
+
+  def collect(); end
+
+  def collect!(); end
+
+  def encode_with(coder); end
+
+  def initialize(*args); end
+
+  def map(); end
+
+  def map!(); end
+
+  def parts(); end
+
+  def sort(); end
+
+  def sort!(order); end
+
+  def to_yaml(options=T.unsafe(nil)); end
+end
+
+class Mail::PartsList
 end
 
 class Mail::PhraseList
@@ -18080,64 +17938,262 @@ class Mail::ReceivedElement
 end
 
 class Mail::ReceivedField
+  def date_time(); end
+
+  def decoded(); end
+
+  def element(); end
+
+  def encoded(); end
+
+  def formatted_date(); end
+
+  def info(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
+
+  def parse(val=T.unsafe(nil)); end
+  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
+  FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::ReceivedField
+end
+
+class Mail::ReferencesField
+  include ::Mail::CommonMessageId
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ReferencesField
+end
+
+class Mail::ReplyToField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ReplyToField
+end
+
+class Mail::ResentBccField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ResentBccField
+end
+
+class Mail::ResentCcField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ResentCcField
+end
+
+class Mail::ResentDateField
+  include ::Mail::CommonDate
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ResentDateField
+end
+
+class Mail::ResentFromField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ResentFromField
+end
+
+class Mail::ResentMessageIdField
+  include ::Mail::CommonMessageId
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ResentMessageIdField
+end
+
+class Mail::ResentSenderField
+  include ::Mail::CommonAddress
+  def address(); end
+
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ResentSenderField
+end
+
+class Mail::ResentToField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ResentToField
+end
+
+class Mail::Retriever
+  def all(options=T.unsafe(nil), &block); end
+
+  def find_and_delete(options=T.unsafe(nil), &block); end
+
+  def first(options=T.unsafe(nil), &block); end
+
+  def last(options=T.unsafe(nil), &block); end
+end
+
+class Mail::Retriever
+end
+
+class Mail::ReturnPathField
+  include ::Mail::CommonAddress
+  def address(); end
+
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
 class Mail::ReturnPathField
-  CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
-  FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::Ruby19
+end
+
+class Mail::Ruby19::BestEffortCharsetEncoder
+  def encode(string, charset); end
+end
+
+class Mail::Ruby19::BestEffortCharsetEncoder
+end
+
+class Mail::Ruby19::StrictCharsetEncoder
+  def encode(string, charset); end
+end
+
+class Mail::Ruby19::StrictCharsetEncoder
+end
+
+class Mail::Ruby19
+  def self.b_value_decode(str); end
+
+  def self.b_value_encode(str, encoding=T.unsafe(nil)); end
+
+  def self.bracket(str); end
+
+  def self.charset_encoder(); end
+
+  def self.charset_encoder=(charset_encoder); end
+
+  def self.decode_base64(str); end
+
+  def self.decode_utf7(utf7); end
+
+  def self.encode_base64(str); end
+
+  def self.encode_utf7(string); end
+
+  def self.escape_bracket(str); end
+
+  def self.escape_paren(str); end
+
+  def self.get_constant(klass, string); end
+
+  def self.has_constant?(klass, string); end
+
+  def self.param_decode(str, encoding); end
+
+  def self.param_encode(str); end
+
+  def self.paren(str); end
+
+  def self.pick_encoding(charset); end
+
+  def self.q_value_decode(str); end
+
+  def self.q_value_encode(str, encoding=T.unsafe(nil)); end
+
+  def self.string_byteslice(str, *args); end
+
+  def self.transcode_charset(str, from_encoding, to_encoding=T.unsafe(nil)); end
+
+  def self.uri_parser(); end
 end
 
 Mail::RubyVer = Mail::Ruby19
 
 class Mail::SMTP
+  def deliver!(mail); end
+
+  def initialize(values); end
+
+  def settings(); end
+
+  def settings=(settings); end
   DEFAULTS = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::SMTP
 end
 
 class Mail::SMTPConnection
@@ -18158,17 +18214,79 @@ class Mail::SMTPConnection
 end
 
 class Mail::SenderField
+  include ::Mail::CommonAddress
+  def address(); end
+
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::SenderField
 end
 
 class Mail::Sendmail
+  def deliver!(mail); end
+
+  def initialize(values); end
+
+  def settings(); end
+
+  def settings=(settings); end
   DEFAULTS = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::Sendmail
+  def self.call(path, arguments, destinations, encoded_message); end
+
+  def self.popen(command, &block); end
+
+  def self.shellquote(address); end
+end
+
+class Mail::StructuredField
+  include ::Mail::CommonField
+  include ::Mail::Utilities
+  include ::Mail::Constants
+  def charset(); end
+
+  def charset=(val); end
+
+  def errors(); end
+
+  def initialize(name=T.unsafe(nil), value=T.unsafe(nil), charset=T.unsafe(nil)); end
+end
+
+class Mail::StructuredField
+end
+
 class Mail::SubjectField
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Mail::SubjectField
+end
+
+class Mail::TestMailer
+  def deliver!(mail); end
+
+  def initialize(values); end
+
+  def settings(); end
+
+  def settings=(settings); end
+end
+
+class Mail::TestMailer
+  def self.deliveries(); end
+
+  def self.deliveries=(val); end
 end
 
 class Mail::TestRetriever
@@ -18184,14 +18302,111 @@ class Mail::TestRetriever
 end
 
 class Mail::ToField
+  include ::Mail::CommonAddress
+  def decoded(); end
+
+  def encoded(); end
+
+  def initialize(value=T.unsafe(nil), charset=T.unsafe(nil)); end
   CAPITALIZED_FIELD = ::T.let(nil, ::T.untyped)
   FIELD_NAME = ::T.let(nil, ::T.untyped)
 end
 
+class Mail::ToField
+end
+
+class Mail::UnknownEncodingType
+end
+
+class Mail::UnknownEncodingType
+end
+
+class Mail::UnstructuredField
+  include ::Mail::CommonField
+  include ::Mail::Utilities
+  include ::Mail::Constants
+  def charset(); end
+
+  def charset=(charset); end
+
+  def decoded(); end
+
+  def encoded(); end
+
+  def errors(); end
+
+  def initialize(name, value, charset=T.unsafe(nil)); end
+
+  def parse(); end
+end
+
+class Mail::UnstructuredField
+end
+
 module Mail::Utilities
+  include ::Mail::Constants
+  def atom_safe?(str); end
+
+  def bracket(str); end
+
+  def capitalize_field(str); end
+
+  def constantize(str); end
+
+  def dasherize(str); end
+
+  def dquote(str); end
+
+  def escape_paren(str); end
+
+  def map_lines(str, &block); end
+
+  def map_with_index(enum, &block); end
+
+  def match_to_s(obj1, obj2); end
+
+  def paren(str); end
+
+  def quote_atom(str); end
+
+  def quote_phrase(str); end
+
+  def quote_token(str); end
+
+  def token_safe?(str); end
+
+  def unbracket(str); end
+
+  def underscoreize(str); end
+
+  def unparen(str); end
+
+  def uri_escape(str); end
+
+  def uri_parser(); end
+
+  def uri_unescape(str); end
   CRLF = ::T.let(nil, ::T.untyped)
   LF = ::T.let(nil, ::T.untyped)
   TO_CRLF_REGEX = ::T.let(nil, ::T.untyped)
+end
+
+module Mail::Utilities
+  def self.binary_unsafe_to_crlf(string); end
+
+  def self.binary_unsafe_to_lf(string); end
+
+  def self.blank?(value); end
+
+  def self.safe_for_line_ending_conversion?(string); end
+
+  def self.to_crlf(string); end
+
+  def self.to_lf(string); end
+
+  def self.unescape(str); end
+
+  def self.unquote(str); end
 end
 
 module Mail::VERSION
@@ -18200,6 +18415,62 @@ module Mail::VERSION
   MINOR = ::T.let(nil, ::T.untyped)
   PATCH = ::T.let(nil, ::T.untyped)
   STRING = ::T.let(nil, ::T.untyped)
+end
+
+module Mail::VERSION
+  def self.version(); end
+end
+
+module Mail
+  def self.all(*args, &block); end
+
+  def self.connection(&block); end
+
+  def self.defaults(&block); end
+
+  def self.delete_all(*args, &block); end
+
+  def self.deliver(*args, &block); end
+
+  def self.delivery_method(); end
+
+  def self.eager_autoload!(); end
+
+  def self.find(*args, &block); end
+
+  def self.find_and_delete(*args, &block); end
+
+  def self.first(*args, &block); end
+
+  def self.inform_interceptors(mail); end
+
+  def self.inform_observers(mail); end
+
+  def self.last(*args, &block); end
+
+  def self.new(*args, &block); end
+
+  def self.random_tag(); end
+
+  def self.read(filename); end
+
+  def self.read_from_string(mail_as_string); end
+
+  def self.register_autoload(name, path); end
+
+  def self.register_interceptor(interceptor); end
+
+  def self.register_observer(observer); end
+
+  def self.retriever_method(); end
+
+  def self.something_random(); end
+
+  def self.uniq(); end
+
+  def self.unregister_interceptor(interceptor); end
+
+  def self.unregister_observer(observer); end
 end
 
 module MakeMakefile
@@ -19098,9 +19369,13 @@ end
 class Net::HTTPRangeNotSatisfiable
 end
 
-Net::HTTPRedirection::EXCEPTION_TYPE = Net::HTTPRetriableError
+class Net::HTTPRedirection
+end
 
-Net::HTTPRedirectionCode = Net::HTTPRedirection
+Net::HTTPRedirectionCode::EXCEPTION_TYPE = Net::HTTPRetriableError
+
+class Net::HTTPRedirection
+end
 
 class Net::HTTPRequestTimeout
   HAS_BODY = ::T.let(nil, ::T.untyped)
@@ -24242,187 +24517,6 @@ end
 class Rails::WelcomeController
 end
 
-module Rake
-  EARLY = ::T.let(nil, ::T.untyped)
-  EMPTY_TASK_ARGS = ::T.let(nil, ::T.untyped)
-  LATE = ::T.let(nil, ::T.untyped)
-  VERSION = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Application
-  include ::Rake::TaskManager
-  include ::Rake::TraceOutput
-  def add_import(fn); end
-
-  def add_loader(ext, loader); end
-
-  def collect_command_line_tasks(args); end
-
-  def default_task_name(); end
-
-  def deprecate(old_usage, new_usage, call_site); end
-
-  def display_cause_details(ex); end
-
-  def display_error_message(ex); end
-
-  def display_exception_backtrace(ex); end
-
-  def display_exception_details(ex); end
-
-  def display_exception_details_seen(); end
-
-  def display_exception_message_details(ex); end
-
-  def display_prerequisites(); end
-
-  def display_tasks_and_comments(); end
-
-  def dynamic_width(); end
-
-  def dynamic_width_stty(); end
-
-  def dynamic_width_tput(); end
-
-  def exit_because_of_exception(ex); end
-
-  def find_rakefile_location(); end
-
-  def handle_options(argv); end
-
-  def has_cause?(ex); end
-
-  def have_rakefile(); end
-
-  def init(app_name=T.unsafe(nil), argv=T.unsafe(nil)); end
-
-  def invoke_task(task_string); end
-
-  def load_imports(); end
-
-  def load_rakefile(); end
-
-  def name(); end
-
-  def options(); end
-
-  def original_dir(); end
-
-  def parse_task_string(string); end
-
-  def print_rakefile_directory(location); end
-
-  def rake_require(file_name, paths=T.unsafe(nil), loaded=T.unsafe(nil)); end
-
-  def rakefile(); end
-
-  def rakefile_location(backtrace=T.unsafe(nil)); end
-
-  def raw_load_rakefile(); end
-
-  def run(argv=T.unsafe(nil)); end
-
-  def run_with_threads(); end
-
-  def set_default_options(); end
-
-  def standard_exception_handling(); end
-
-  def standard_rake_options(); end
-
-  def system_dir(); end
-
-  def terminal_columns(); end
-
-  def terminal_columns=(terminal_columns); end
-
-  def terminal_width(); end
-
-  def thread_pool(); end
-
-  def top_level(); end
-
-  def top_level_tasks(); end
-
-  def trace(*strings); end
-
-  def truncate(string, width); end
-
-  def truncate_output?(); end
-
-  def tty_output=(tty_output); end
-
-  def tty_output?(); end
-
-  def unix?(); end
-
-  def windows?(); end
-  DEFAULT_RAKEFILES = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Application
-end
-
-module Rake::Backtrace
-  SUPPRESSED_PATHS = ::T.let(nil, ::T.untyped)
-  SUPPRESSED_PATHS_RE = ::T.let(nil, ::T.untyped)
-  SUPPRESS_PATTERN = ::T.let(nil, ::T.untyped)
-  SYS_KEYS = ::T.let(nil, ::T.untyped)
-  SYS_PATHS = ::T.let(nil, ::T.untyped)
-end
-
-module Rake::Backtrace
-  def self.collapse(backtrace); end
-end
-
-class Rake::CommandLineOptionError
-end
-
-class Rake::CommandLineOptionError
-end
-
-class Rake::CpuCounter
-  def count(); end
-
-  def count_with_default(default=T.unsafe(nil)); end
-end
-
-class Rake::CpuCounter
-  def self.count(); end
-end
-
-module Rake::DSL
-  include ::Rake::FileUtilsExt
-  include ::FileUtils
-  include ::FileUtils::StreamUtils_
-end
-
-module Rake::DSL
-end
-
-class Rake::DefaultLoader
-  def load(fn); end
-end
-
-class Rake::DefaultLoader
-end
-
-class Rake::EarlyTime
-  include ::Comparable
-  include ::Singleton
-end
-
-class Rake::EarlyTime
-  extend ::Singleton::SingletonClassMethods
-  def self.instance(); end
-end
-
-class Rake::FileCreationTask
-end
-
-class Rake::FileCreationTask
-end
-
 class Rake::FileList
   ARRAY_METHODS = ::T.let(nil, ::T.untyped)
   DEFAULT_IGNORE_PATTERNS = ::T.let(nil, ::T.untyped)
@@ -24434,12 +24528,6 @@ class Rake::FileList
   SPECIAL_RETURN = ::T.let(nil, ::T.untyped)
 end
 
-class Rake::FileTask
-end
-
-class Rake::FileTask
-end
-
 module Rake::FileUtilsExt
   include ::FileUtils::StreamUtils_
   DEFAULT = ::T.let(nil, ::T.untyped)
@@ -24447,444 +24535,6 @@ end
 
 module Rake::FileUtilsExt
   extend ::FileUtils::StreamUtils_
-end
-
-class Rake::InvocationChain
-  def append(invocation); end
-
-  def member?(invocation); end
-  EMPTY = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::InvocationChain::EmptyInvocationChain
-  def append(invocation); end
-
-  def member?(obj); end
-end
-
-class Rake::InvocationChain::EmptyInvocationChain
-end
-
-class Rake::InvocationChain
-  def self.append(invocation, chain); end
-end
-
-module Rake::InvocationExceptionMixin
-  def chain(); end
-
-  def chain=(value); end
-end
-
-module Rake::InvocationExceptionMixin
-end
-
-class Rake::LateTime
-  include ::Comparable
-  include ::Singleton
-end
-
-class Rake::LateTime
-  extend ::Singleton::SingletonClassMethods
-  def self.instance(); end
-end
-
-class Rake::LinkedList
-  include ::Enumerable
-  def ==(other); end
-
-  def conj(item); end
-
-  def each(&blk); end
-
-  def empty?(); end
-
-  def head(); end
-
-  def initialize(head, tail=T.unsafe(nil)); end
-
-  def tail(); end
-  EMPTY = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::LinkedList::EmptyLinkedList
-  def initialize(); end
-end
-
-class Rake::LinkedList::EmptyLinkedList
-end
-
-class Rake::LinkedList
-  def self.cons(head, tail); end
-
-  def self.empty(); end
-
-  def self.make(*args); end
-end
-
-class Rake::MultiTask
-end
-
-class Rake::MultiTask
-end
-
-class Rake::NameSpace
-  def [](name); end
-
-  def initialize(task_manager, scope_list); end
-
-  def scope(); end
-
-  def tasks(); end
-end
-
-class Rake::NameSpace
-end
-
-module Rake::PrivateReader
-end
-
-module Rake::PrivateReader::ClassMethods
-  def private_reader(*names); end
-end
-
-module Rake::PrivateReader::ClassMethods
-end
-
-module Rake::PrivateReader
-  def self.included(base); end
-end
-
-class Rake::Promise
-  def initialize(args, &block); end
-
-  def recorder(); end
-
-  def recorder=(recorder); end
-
-  def value(); end
-
-  def work(); end
-  NOT_SET = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Promise
-end
-
-class Rake::PseudoStatus
-  def >>(n); end
-
-  def exited?(); end
-
-  def exitstatus(); end
-
-  def initialize(code=T.unsafe(nil)); end
-
-  def stopped?(); end
-
-  def to_i(); end
-end
-
-class Rake::PseudoStatus
-end
-
-class Rake::RuleRecursionOverflowError
-  def add_target(target); end
-
-  def initialize(*args); end
-end
-
-class Rake::RuleRecursionOverflowError
-end
-
-class Rake::Scope
-  def path(); end
-
-  def path_with_task_name(task_name); end
-
-  def trim(n); end
-  EMPTY = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Scope::EmptyScope
-  def path(); end
-
-  def path_with_task_name(task_name); end
-end
-
-class Rake::Scope::EmptyScope
-end
-
-class Rake::Scope
-end
-
-class Rake::Task
-  def actions(); end
-
-  def add_description(description); end
-
-  def all_prerequisite_tasks(); end
-
-  def already_invoked(); end
-
-  def application(); end
-
-  def application=(application); end
-
-  def arg_description(); end
-
-  def arg_names(); end
-
-  def clear(); end
-
-  def clear_actions(); end
-
-  def clear_args(); end
-
-  def clear_comments(); end
-
-  def clear_prerequisites(); end
-
-  def collect_prerequisites(seen); end
-
-  def comment(); end
-
-  def comment=(comment); end
-
-  def enhance(deps=T.unsafe(nil), &block); end
-
-  def execute(args=T.unsafe(nil)); end
-
-  def full_comment(); end
-
-  def initialize(task_name, app); end
-
-  def investigation(); end
-
-  def invoke(*args); end
-
-  def invoke_prerequisites(task_args, invocation_chain); end
-
-  def invoke_prerequisites_concurrently(task_args, invocation_chain); end
-
-  def invoke_with_call_chain(task_args, invocation_chain); end
-
-  def locations(); end
-
-  def name(); end
-
-  def name_with_args(); end
-
-  def needed?(); end
-
-  def order_only_prerequisites(); end
-
-  def prereqs(); end
-
-  def prerequisite_tasks(); end
-
-  def prerequisites(); end
-
-  def reenable(); end
-
-  def scope(); end
-
-  def set_arg_names(args); end
-
-  def source(); end
-
-  def sources(); end
-
-  def sources=(sources); end
-
-  def timestamp(); end
-
-  def |(deps); end
-end
-
-class Rake::Task
-  def self.[](task_name); end
-
-  def self.clear(); end
-
-  def self.create_rule(*args, &block); end
-
-  def self.define_task(*args, &block); end
-
-  def self.format_deps(deps); end
-
-  def self.scope_name(scope, task_name); end
-
-  def self.task_defined?(task_name); end
-
-  def self.tasks(); end
-end
-
-class Rake::TaskArgumentError
-end
-
-class Rake::TaskArgumentError
-end
-
-class Rake::TaskArguments
-  include ::Enumerable
-  def [](index); end
-
-  def each(&block); end
-
-  def extras(); end
-
-  def fetch(*args, &block); end
-
-  def has_key?(key); end
-
-  def initialize(names, values, parent=T.unsafe(nil)); end
-
-  def key?(key); end
-
-  def lookup(name); end
-
-  def method_missing(sym, *args); end
-
-  def names(); end
-
-  def new_scope(names); end
-
-  def to_a(); end
-
-  def to_hash(); end
-
-  def values_at(*keys); end
-
-  def with_defaults(defaults); end
-end
-
-class Rake::TaskArguments
-end
-
-module Rake::TaskManager
-  def [](task_name, scopes=T.unsafe(nil)); end
-
-  def clear(); end
-
-  def create_rule(*args, &block); end
-
-  def current_scope(); end
-
-  def define_task(task_class, *args, &block); end
-
-  def enhance_with_matching_rule(task_name, level=T.unsafe(nil)); end
-
-  def generate_did_you_mean_suggestions(task_name); end
-
-  def generate_message_for_undefined_task(task_name); end
-
-  def in_namespace(name); end
-
-  def initialize(); end
-
-  def intern(task_class, task_name); end
-
-  def last_description(); end
-
-  def last_description=(last_description); end
-
-  def lookup(task_name, initial_scope=T.unsafe(nil)); end
-
-  def resolve_args(args); end
-
-  def synthesize_file_task(task_name); end
-
-  def tasks(); end
-
-  def tasks_in_scope(scope); end
-end
-
-module Rake::TaskManager
-  def self.record_task_metadata(); end
-
-  def self.record_task_metadata=(record_task_metadata); end
-end
-
-class Rake::ThreadHistoryDisplay
-  include ::Rake::PrivateReader
-  def initialize(stats); end
-
-  def show(); end
-end
-
-class Rake::ThreadHistoryDisplay
-  extend ::Rake::PrivateReader::ClassMethods
-end
-
-class Rake::ThreadPool
-  def future(*args, &block); end
-
-  def gather_history(); end
-
-  def history(); end
-
-  def initialize(thread_count); end
-
-  def join(); end
-
-  def statistics(); end
-end
-
-class Rake::ThreadPool
-end
-
-module Rake::TraceOutput
-  def trace_on(out, *strings); end
-end
-
-module Rake::TraceOutput
-end
-
-module Rake::Version
-  BUILD = ::T.let(nil, ::T.untyped)
-  MAJOR = ::T.let(nil, ::T.untyped)
-  MINOR = ::T.let(nil, ::T.untyped)
-  NUMBERS = ::T.let(nil, ::T.untyped)
-  OTHER = ::T.let(nil, ::T.untyped)
-end
-
-module Rake::Version
-end
-
-module Rake::Win32
-end
-
-class Rake::Win32::Win32HomeError
-end
-
-class Rake::Win32::Win32HomeError
-end
-
-module Rake::Win32
-  def self.normalize(path); end
-
-  def self.win32_system_dir(); end
-
-  def self.windows?(); end
-end
-
-module Rake
-  extend ::Rake::FileUtilsExt
-  extend ::FileUtils
-  extend ::FileUtils::StreamUtils_
-  def self.add_rakelib(*files); end
-
-  def self.application(); end
-
-  def self.application=(app); end
-
-  def self.load_rakefile(path); end
-
-  def self.original_dir(); end
-
-  def self.suggested_thread_count(); end
-
-  def self.with_application(block_application=T.unsafe(nil)); end
 end
 
 module Random::Formatter
@@ -30309,8 +29959,6 @@ end
 module UnicodeNormalize
 end
 
-Visitor = Psych::Visitors::Visitor
-
 module Warning
   def warn(_); end
 end
@@ -30473,8 +30121,6 @@ class Webpacker::Env
 end
 
 YAML = Psych
-
-YAMLTree = Psych::Visitors::YAMLTree
 
 module Zeitwerk::ExplicitNamespace
   extend ::Zeitwerk::RealModName

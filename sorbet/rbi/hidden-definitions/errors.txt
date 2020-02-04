@@ -921,13 +921,10 @@
 # wrong constant name head<defaultArg>1
 # wrong constant name head
 # wrong constant name <static-init>
-# wrong constant name <Class:ClassMethods>
-# wrong constant name helpers
 # wrong constant name all_helpers_from_path
 # wrong constant name helper_attr
 # wrong constant name helpers
 # wrong constant name modules_for_helpers
-# wrong constant name <static-init>
 # wrong constant name <static-init>
 # wrong constant name helpers_path
 # wrong constant name helpers_path=
@@ -1415,7 +1412,6 @@
 # wrong constant name <Class:Assertions>
 # wrong constant name <Class:Callbacks>
 # wrong constant name <Class:ContentSecurityPolicy>
-# wrong constant name <Class:Cookies>
 # wrong constant name <Class:DebugExceptions>
 # wrong constant name <Class:DebugLocks>
 # wrong constant name <Class:DebugView>
@@ -1557,7 +1553,6 @@
 # wrong constant name <static-init>
 # wrong constant name <static-init>
 # wrong constant name <Class:AbstractCookieJar>
-# wrong constant name <Class:ChainedCookieJars>
 # wrong constant name <Class:CookieJar>
 # wrong constant name <Class:CookieOverflow>
 # wrong constant name <Class:EncryptedKeyRotatingCookieJar>
@@ -1576,7 +1571,6 @@
 # wrong constant name permanent
 # wrong constant name signed
 # wrong constant name signed_or_encrypted
-# wrong constant name <static-init>
 # undefined method `clear<defaultArg>1' for class `ActionDispatch::Cookies::CookieJar'
 # undefined method `delete<defaultArg>1' for class `ActionDispatch::Cookies::CookieJar'
 # undefined method `deleted?<defaultArg>1' for class `ActionDispatch::Cookies::CookieJar'
@@ -1623,7 +1617,6 @@
 # wrong constant name serializer
 # wrong constant name <static-init>
 # uninitialized constant ActionDispatch::Cookies::SignedKeyRotatingCookieJar::MARSHAL_SIGNATURE
-# wrong constant name <static-init>
 # wrong constant name <static-init>
 # undefined method `initialize<defaultArg>1' for class `ActionDispatch::DebugExceptions'
 # Did you mean?  initialize_dup
@@ -3818,10 +3811,6 @@
 # undefined method `to_trix_attachment<defaultArg>1' for module `ActionText::Attachments::TrixConversion'
 # wrong constant name to_trix_attachment<defaultArg>1
 # wrong constant name to_trix_attachment
-# wrong constant name <static-init>
-# wrong constant name <Class:ClassMethods>
-# wrong constant name has_rich_text
-# wrong constant name <static-init>
 # wrong constant name <static-init>
 # undefined method `initialize<defaultArg>1' for class `ActionText::Content'
 # Did you mean?  initialize_dup
@@ -6176,6 +6165,7 @@
 # wrong constant name to_a
 # wrong constant name to_ary
 # wrong constant name to_hash
+# wrong constant name <static-init>
 # wrong constant name connection_handler
 # wrong constant name connection_handler=
 # wrong constant name sql_runtime
@@ -6186,6 +6176,10 @@
 # wrong constant name sql_runtime
 # wrong constant name sql_runtime=
 # uninitialized constant ActiveRecord::Schema::MigrationFilenameRegexp
+# wrong constant name define
+# undefined singleton method `define<defaultArg>1' for `ActiveRecord::Schema'
+# wrong constant name <static-init>
+# wrong constant name define<defaultArg>1
 # wrong constant name define
 # uninitialized constant ActiveRecord::SchemaMigration::ACTIONS
 # uninitialized constant ActiveRecord::SchemaMigration::CALLBACKS
@@ -7023,22 +7017,19 @@
 # wrong constant name new
 # wrong constant name clone
 # wrong constant name irb
-# uninitialized constant Bundler::Dependency::TYPES
-# wrong constant name branch
-# wrong constant name expanded_platforms
-# wrong constant name git
 # undefined singleton method `report<defaultArg>1' for `Bundler::Env'
 # wrong constant name <static-init>
 # wrong constant name environment
 # wrong constant name report<defaultArg>1
 # wrong constant name report
 # wrong constant name write
+# wrong constant name github_https?
+# wrong constant name lockfile_upgrade_warning?
 # wrong constant name <Class:Base>
 # wrong constant name <Class:CompactIndex>
 # wrong constant name <Class:Dependency>
 # wrong constant name <Class:Downloader>
 # wrong constant name <Class:Index>
-# wrong constant name <Class:TooManyRequestsError>
 # wrong constant name fetch_spec
 # wrong constant name fetchers
 # wrong constant name http_proxy
@@ -7106,7 +7097,6 @@
 # wrong constant name initialize<defaultArg>1
 # wrong constant name initialize
 # wrong constant name <static-init>
-# wrong constant name <static-init>
 # wrong constant name api_timeout
 # wrong constant name api_timeout=
 # wrong constant name disable_endpoint
@@ -7145,7 +7135,6 @@
 # wrong constant name built_gem_path
 # wrong constant name clean?
 # wrong constant name committed?
-# wrong constant name gem_command
 # wrong constant name gem_key
 # wrong constant name gem_push?
 # wrong constant name gem_push_host
@@ -7178,6 +7167,8 @@
 # wrong constant name install_tasks
 # wrong constant name instance
 # wrong constant name instance=
+# uninitialized constant Bundler::GemRemoteFetcher::BASE64_URI_TRANSLATE
+# wrong constant name <static-init>
 # undefined method `initialize<defaultArg>1' for class `Bundler::GemVersionPromoter'
 # Did you mean?  initialize_dup
 # undefined method `initialize<defaultArg>2' for class `Bundler::GemVersionPromoter'
@@ -7252,12 +7243,6 @@
 # wrong constant name install
 # uninitialized constant Bundler::Molinillo::DependencyGraph::Elem
 # uninitialized constant Bundler::Molinillo::DependencyGraph::Log::Elem
-# undefined method `_recursive_predecessors<defaultArg>1' for class `Bundler::Molinillo::DependencyGraph::Vertex'
-# undefined method `_recursive_successors<defaultArg>1' for class `Bundler::Molinillo::DependencyGraph::Vertex'
-# wrong constant name _recursive_predecessors<defaultArg>1
-# wrong constant name _recursive_predecessors
-# wrong constant name _recursive_successors<defaultArg>1
-# wrong constant name _recursive_successors
 # undefined method `app_cache_path<defaultArg>1' for module `Bundler::Plugin::API::Source'
 # undefined method `cache<defaultArg>1' for module `Bundler::Plugin::API::Source'
 # undefined method `post_install<defaultArg>1' for module `Bundler::Plugin::API::Source'
@@ -7297,10 +7282,6 @@
 # wrong constant name uri
 # wrong constant name uri_hash
 # wrong constant name <static-init>
-# wrong constant name <Class:CommandConflict>
-# wrong constant name <Class:SourceConflict>
-# wrong constant name installed_plugins
-# wrong constant name plugin_commands
 # wrong constant name initialize
 # wrong constant name <static-init>
 # wrong constant name initialize
@@ -7319,7 +7300,6 @@
 # wrong constant name <static-init>
 # wrong constant name <static-init>
 # wrong constant name <static-init>
-# wrong constant name list
 # undefined singleton method `lock<defaultArg>1' for `Bundler::ProcessLock'
 # wrong constant name <static-init>
 # wrong constant name lock<defaultArg>1
@@ -7345,17 +7325,8 @@
 # wrong constant name default_retries
 # uninitialized constant Bundler::RubyGemsGemInstaller::ENV_PATHS
 # wrong constant name <static-init>
-# wrong constant name add_to_load_path
-# wrong constant name all_specs
-# wrong constant name backport_ext_builder_monitor
-# wrong constant name correct_for_windows_path
+# uninitialized constant Bundler::RubygemsIntegration::MoreFuture::EXT_LOCK
 # wrong constant name default_stubs
-# wrong constant name find_name
-# wrong constant name gem_remote_fetcher
-# wrong constant name plain_specs
-# wrong constant name plain_specs=
-# wrong constant name stub_rubygems
-# wrong constant name use_gemdeps
 # undefined method `initialize<defaultArg>1' for class `Bundler::Settings::Mirror'
 # Did you mean?  initialize_dup
 # undefined method `initialize<defaultArg>2' for class `Bundler::Settings::Mirror'
@@ -7391,735 +7362,7 @@
 # wrong constant name <static-init>
 # wrong constant name <static-init>
 # wrong constant name validate!
-# uninitialized constant Bundler::Source::Git::DEFAULT_GLOB
-# wrong constant name glob
 # uninitialized constant Bundler::SpecSet::Elem
-# undefined method `help<defaultArg>1' for class `Bundler::Thor'
-# undefined method `help<defaultArg>2' for class `Bundler::Thor'
-# wrong constant name <Class:Actions>
-# wrong constant name <Class:AmbiguousCommandError>
-# wrong constant name <Class:Argument>
-# wrong constant name <Class:Arguments>
-# wrong constant name <Class:Base>
-# wrong constant name <Class:Command>
-# wrong constant name <Class:CoreExt>
-# wrong constant name <Class:DynamicCommand>
-# wrong constant name <Class:Error>
-# wrong constant name <Class:Group>
-# wrong constant name <Class:HiddenCommand>
-# wrong constant name <Class:Invocation>
-# wrong constant name <Class:InvocationError>
-# wrong constant name <Class:LineEditor>
-# wrong constant name <Class:MalformattedArgumentError>
-# wrong constant name <Class:NestedContext>
-# wrong constant name <Class:NoKwargSpellChecker>
-# wrong constant name <Class:Option>
-# wrong constant name <Class:Options>
-# wrong constant name <Class:RakeCompat>
-# wrong constant name <Class:RequiredArgumentMissingError>
-# uninitialized constant Bundler::Thor::SHELL_DELEGATED_METHODS
-# wrong constant name <Class:Sandbox>
-# wrong constant name <Class:Shell>
-# wrong constant name <Class:UndefinedCommandError>
-# wrong constant name <Class:UnknownArgumentError>
-# wrong constant name <Class:Util>
-# wrong constant name help<defaultArg>1
-# wrong constant name help<defaultArg>2
-# wrong constant name help
-# undefined method `apply<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `chmod<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `empty_directory<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `initialize<defaultArg>1' for module `Bundler::Thor::Actions'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>2' for module `Bundler::Thor::Actions'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>3' for module `Bundler::Thor::Actions'
-# Did you mean?  initialize_dup
-# undefined method `inside<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `inside<defaultArg>2' for module `Bundler::Thor::Actions'
-# undefined method `relative_to_original_destination_root<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `remove_dir<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `remove_file<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `run<defaultArg>1' for module `Bundler::Thor::Actions'
-# undefined method `run_ruby_script<defaultArg>1' for module `Bundler::Thor::Actions'
-# wrong constant name <Class:CapturableERB>
-# wrong constant name <Class:ClassMethods>
-# wrong constant name <Class:CreateFile>
-# wrong constant name <Class:CreateLink>
-# wrong constant name <Class:Directory>
-# wrong constant name <Class:EmptyDirectory>
-# wrong constant name <Class:InjectIntoFile>
-# wrong constant name _cleanup_options_and_set
-# wrong constant name _shared_configuration
-# wrong constant name action
-# wrong constant name add_file
-# wrong constant name add_link
-# wrong constant name append_file
-# wrong constant name append_to_file
-# wrong constant name apply<defaultArg>1
-# wrong constant name apply
-# wrong constant name behavior
-# wrong constant name behavior=
-# wrong constant name chmod<defaultArg>1
-# wrong constant name chmod
-# wrong constant name comment_lines
-# wrong constant name copy_file
-# wrong constant name create_file
-# wrong constant name create_link
-# wrong constant name destination_root
-# wrong constant name destination_root=
-# wrong constant name directory
-# wrong constant name empty_directory<defaultArg>1
-# wrong constant name empty_directory
-# wrong constant name find_in_source_paths
-# wrong constant name get
-# wrong constant name gsub_file
-# wrong constant name in_root
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize<defaultArg>2
-# wrong constant name initialize<defaultArg>3
-# wrong constant name initialize
-# wrong constant name inject_into_class
-# wrong constant name inject_into_file
-# wrong constant name inject_into_module
-# wrong constant name insert_into_file
-# wrong constant name inside<defaultArg>1
-# wrong constant name inside<defaultArg>2
-# wrong constant name inside
-# wrong constant name link_file
-# wrong constant name prepend_file
-# wrong constant name prepend_to_file
-# wrong constant name relative_to_original_destination_root<defaultArg>1
-# wrong constant name relative_to_original_destination_root
-# wrong constant name remove_dir<defaultArg>1
-# wrong constant name remove_dir
-# wrong constant name remove_file<defaultArg>1
-# wrong constant name remove_file
-# wrong constant name run<defaultArg>1
-# wrong constant name run
-# wrong constant name run_ruby_script<defaultArg>1
-# wrong constant name run_ruby_script
-# wrong constant name source_paths
-# wrong constant name template
-# wrong constant name thor
-# wrong constant name uncomment_lines
-# uninitialized constant Bundler::Thor::Actions::CapturableERB::Revision
-# wrong constant name <static-init>
-# undefined method `source_root<defaultArg>1' for module `Bundler::Thor::Actions::ClassMethods'
-# wrong constant name add_runtime_options!
-# wrong constant name source_paths
-# wrong constant name source_paths_for_search
-# wrong constant name source_root<defaultArg>1
-# wrong constant name source_root
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::Actions::CreateFile'
-# Did you mean?  initialize_dup
-# wrong constant name data
-# wrong constant name force_on_collision?
-# wrong constant name force_or_skip_or_conflict
-# wrong constant name identical?
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name on_conflict_behavior
-# wrong constant name render
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::Actions::Directory'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>2' for class `Bundler::Thor::Actions::Directory'
-# Did you mean?  initialize_dup
-# wrong constant name execute!
-# wrong constant name file_level_lookup
-# wrong constant name files
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize<defaultArg>2
-# wrong constant name initialize
-# wrong constant name source
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::Actions::EmptyDirectory'
-# Did you mean?  initialize_dup
-# wrong constant name base
-# wrong constant name config
-# wrong constant name convert_encoded_instructions
-# wrong constant name destination
-# wrong constant name destination=
-# wrong constant name exists?
-# wrong constant name given_destination
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name invoke!
-# wrong constant name invoke_with_conflict_check
-# wrong constant name on_conflict_behavior
-# wrong constant name on_file_clash_behavior
-# wrong constant name pretend?
-# wrong constant name relative_destination
-# wrong constant name revoke!
-# wrong constant name say_status
-# wrong constant name <static-init>
-# undefined method `say_status<defaultArg>1' for class `Bundler::Thor::Actions::InjectIntoFile'
-# undefined method `say_status<defaultArg>2' for class `Bundler::Thor::Actions::InjectIntoFile'
-# wrong constant name behavior
-# wrong constant name flag
-# wrong constant name initialize
-# wrong constant name replace!
-# wrong constant name replacement
-# wrong constant name say_status<defaultArg>1
-# wrong constant name say_status<defaultArg>2
-# wrong constant name say_status
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name included
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::Argument'
-# Did you mean?  initialize_dup
-# wrong constant name banner
-# wrong constant name default
-# wrong constant name default_banner
-# wrong constant name description
-# wrong constant name enum
-# wrong constant name human_name
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name name
-# wrong constant name required
-# wrong constant name required?
-# wrong constant name show_default?
-# wrong constant name type
-# wrong constant name usage
-# wrong constant name valid_type?
-# wrong constant name validate!
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::Arguments'
-# Did you mean?  initialize_dup
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name parse
-# wrong constant name remaining
-# wrong constant name <static-init>
-# wrong constant name parse
-# wrong constant name split
-# undefined method `initialize<defaultArg>1' for module `Bundler::Thor::Base'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>2' for module `Bundler::Thor::Base'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>3' for module `Bundler::Thor::Base'
-# Did you mean?  initialize_dup
-# wrong constant name <Class:ClassMethods>
-# wrong constant name args
-# wrong constant name args=
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize<defaultArg>2
-# wrong constant name initialize<defaultArg>3
-# wrong constant name initialize
-# wrong constant name options
-# wrong constant name options=
-# wrong constant name parent_options
-# wrong constant name parent_options=
-# undefined method `argument<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `class_option<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `class_options<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `class_options_help<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `from_superclass<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `group<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `handle_no_command_error<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `handle_no_task_error<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `namespace<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `print_options<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `start<defaultArg>1' for module `Bundler::Thor::Base::ClassMethods'
-# undefined method `start<defaultArg>2' for module `Bundler::Thor::Base::ClassMethods'
-# wrong constant name all_commands
-# wrong constant name all_tasks
-# wrong constant name allow_incompatible_default_type!
-# wrong constant name argument<defaultArg>1
-# wrong constant name argument
-# wrong constant name arguments
-# wrong constant name attr_accessor
-# wrong constant name attr_reader
-# wrong constant name attr_writer
-# wrong constant name baseclass
-# wrong constant name basename
-# wrong constant name build_option
-# wrong constant name build_options
-# wrong constant name check_default_type
-# wrong constant name check_default_type!
-# wrong constant name check_unknown_options
-# wrong constant name check_unknown_options!
-# wrong constant name check_unknown_options?
-# wrong constant name class_option<defaultArg>1
-# wrong constant name class_option
-# wrong constant name class_options<defaultArg>1
-# wrong constant name class_options
-# wrong constant name class_options_help<defaultArg>1
-# wrong constant name class_options_help
-# wrong constant name commands
-# wrong constant name create_command
-# wrong constant name create_task
-# wrong constant name disable_required_check?
-# wrong constant name dispatch
-# wrong constant name exit_on_failure?
-# wrong constant name find_and_refresh_command
-# wrong constant name find_and_refresh_task
-# wrong constant name from_superclass<defaultArg>1
-# wrong constant name from_superclass
-# wrong constant name group<defaultArg>1
-# wrong constant name group
-# wrong constant name handle_argument_error
-# wrong constant name handle_no_command_error<defaultArg>1
-# wrong constant name handle_no_command_error
-# wrong constant name handle_no_task_error<defaultArg>1
-# wrong constant name handle_no_task_error
-# wrong constant name inherited
-# wrong constant name initialize_added
-# wrong constant name is_thor_reserved_word?
-# wrong constant name method_added
-# wrong constant name namespace<defaultArg>1
-# wrong constant name namespace
-# wrong constant name no_commands
-# wrong constant name no_commands?
-# wrong constant name no_commands_context
-# wrong constant name no_tasks
-# wrong constant name print_options<defaultArg>1
-# wrong constant name print_options
-# wrong constant name public_command
-# wrong constant name public_task
-# wrong constant name remove_argument
-# wrong constant name remove_class_option
-# wrong constant name remove_command
-# wrong constant name remove_task
-# wrong constant name start<defaultArg>1
-# wrong constant name start<defaultArg>2
-# wrong constant name start
-# wrong constant name stop_on_unknown_option?
-# wrong constant name strict_args_position
-# wrong constant name strict_args_position!
-# wrong constant name strict_args_position?
-# wrong constant name tasks
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name included
-# wrong constant name register_klass_file
-# wrong constant name shell
-# wrong constant name shell=
-# wrong constant name subclass_files
-# wrong constant name subclasses
-# undefined method `formatted_usage<defaultArg>1' for class `Bundler::Thor::Command'
-# undefined method `formatted_usage<defaultArg>2' for class `Bundler::Thor::Command'
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::Command'
-# Did you mean?  initialize_dup
-# undefined method `run<defaultArg>1' for class `Bundler::Thor::Command'
-# wrong constant name formatted_usage<defaultArg>1
-# wrong constant name formatted_usage<defaultArg>2
-# wrong constant name formatted_usage
-# wrong constant name handle_argument_error?
-# wrong constant name handle_no_method_error?
-# wrong constant name hidden?
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name local_method?
-# wrong constant name not_debugging?
-# wrong constant name private_method?
-# wrong constant name public_method?
-# wrong constant name required_arguments_for
-# wrong constant name required_options
-# wrong constant name run<defaultArg>1
-# wrong constant name run
-# wrong constant name sans_backtrace
-# wrong constant name <static-init>
-# wrong constant name <Class:HashWithIndifferentAccess>
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::CoreExt::HashWithIndifferentAccess'
-# Did you mean?  initialize_dup
-# uninitialized constant Bundler::Thor::CoreExt::HashWithIndifferentAccess::Elem
-# uninitialized constant Bundler::Thor::CoreExt::HashWithIndifferentAccess::K
-# uninitialized constant Bundler::Thor::CoreExt::HashWithIndifferentAccess::V
-# wrong constant name []
-# wrong constant name []=
-# wrong constant name convert_key
-# wrong constant name delete
-# wrong constant name fetch
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name key?
-# wrong constant name merge
-# wrong constant name merge!
-# wrong constant name method_missing
-# wrong constant name replace
-# wrong constant name reverse_merge
-# wrong constant name values_at
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::DynamicCommand'
-# Did you mean?  initialize_dup
-# uninitialized constant Bundler::Thor::DynamicCommand::FILE_REGEXP
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# undefined method `_invoke_for_class_method<defaultArg>1' for class `Bundler::Thor::Group'
-# uninitialized constant Bundler::Thor::Group::SHELL_DELEGATED_METHODS
-# wrong constant name _invoke_for_class_method<defaultArg>1
-# wrong constant name _invoke_for_class_method
-# undefined singleton method `desc<defaultArg>1' for `Bundler::Thor::Group'
-# wrong constant name <static-init>
-# wrong constant name banner
-# wrong constant name desc<defaultArg>1
-# wrong constant name desc
-# wrong constant name get_options_from_invocations
-# wrong constant name handle_argument_error
-# wrong constant name help
-# wrong constant name invocation_blocks
-# wrong constant name invocations
-# wrong constant name invoke
-# wrong constant name invoke_from_option
-# wrong constant name printable_commands
-# wrong constant name printable_tasks
-# wrong constant name remove_invocation
-# wrong constant name self_command
-# wrong constant name self_task
-# uninitialized constant Bundler::Thor::HiddenCommand::FILE_REGEXP
-# wrong constant name <static-init>
-# undefined method `_retrieve_class_and_command<defaultArg>1' for module `Bundler::Thor::Invocation'
-# undefined method `_retrieve_class_and_task<defaultArg>1' for module `Bundler::Thor::Invocation'
-# undefined method `initialize<defaultArg>1' for module `Bundler::Thor::Invocation'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>2' for module `Bundler::Thor::Invocation'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>3' for module `Bundler::Thor::Invocation'
-# Did you mean?  initialize_dup
-# undefined method `invoke<defaultArg>1' for module `Bundler::Thor::Invocation'
-# wrong constant name <Class:ClassMethods>
-# wrong constant name _parse_initialization_options
-# wrong constant name _retrieve_class_and_command<defaultArg>1
-# wrong constant name _retrieve_class_and_command
-# wrong constant name _retrieve_class_and_task<defaultArg>1
-# wrong constant name _retrieve_class_and_task
-# wrong constant name _shared_configuration
-# wrong constant name current_command_chain
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize<defaultArg>2
-# wrong constant name initialize<defaultArg>3
-# wrong constant name initialize
-# wrong constant name invoke<defaultArg>1
-# wrong constant name invoke
-# wrong constant name invoke_all
-# wrong constant name invoke_command
-# wrong constant name invoke_task
-# wrong constant name invoke_with_padding
-# wrong constant name prepare_for_invocation
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name included
-# wrong constant name <static-init>
-# wrong constant name <Class:Basic>
-# wrong constant name <Class:Readline>
-# wrong constant name initialize
-# wrong constant name options
-# wrong constant name prompt
-# wrong constant name readline
-# wrong constant name <static-init>
-# wrong constant name available?
-# wrong constant name <Class:PathCompletion>
-# wrong constant name initialize
-# wrong constant name matches
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# undefined singleton method `readline<defaultArg>1' for `Bundler::Thor::LineEditor'
-# wrong constant name <static-init>
-# wrong constant name best_available
-# wrong constant name readline<defaultArg>1
-# wrong constant name readline
-# wrong constant name <static-init>
-# wrong constant name enter
-# wrong constant name entered?
-# wrong constant name <static-init>
-# wrong constant name initialize
-# wrong constant name <static-init>
-# undefined method `usage<defaultArg>1' for class `Bundler::Thor::Option'
-# wrong constant name aliases
-# wrong constant name array?
-# wrong constant name boolean?
-# wrong constant name dasherize
-# wrong constant name dasherized?
-# wrong constant name group
-# wrong constant name hash?
-# wrong constant name hide
-# wrong constant name lazy_default
-# wrong constant name numeric?
-# wrong constant name repeatable
-# wrong constant name string?
-# wrong constant name switch_name
-# wrong constant name undasherize
-# wrong constant name usage<defaultArg>1
-# wrong constant name usage
-# wrong constant name validate_default_type!
-# wrong constant name <static-init>
-# wrong constant name parse
-# undefined method `initialize<defaultArg>1' for class `Bundler::Thor::Options'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>2' for class `Bundler::Thor::Options'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>3' for class `Bundler::Thor::Options'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>4' for class `Bundler::Thor::Options'
-# Did you mean?  initialize_dup
-# uninitialized constant Bundler::Thor::Options::NUMERIC
-# wrong constant name assign_result!
-# wrong constant name check_unknown!
-# wrong constant name current_is_switch?
-# wrong constant name current_is_switch_formatted?
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize<defaultArg>2
-# wrong constant name initialize<defaultArg>3
-# wrong constant name initialize<defaultArg>4
-# wrong constant name initialize
-# wrong constant name normalize_switch
-# wrong constant name parse_boolean
-# wrong constant name parse_peek
-# wrong constant name parsing_options?
-# wrong constant name switch?
-# wrong constant name switch_option
-# wrong constant name <static-init>
-# wrong constant name to_switches
-# uninitialized constant Bundler::Thor::RakeCompat::DEFAULT
-# uninitialized constant Bundler::Thor::RakeCompat::LN_SUPPORTED
-# uninitialized constant Bundler::Thor::RakeCompat::LOW_METHODS
-# uninitialized constant Bundler::Thor::RakeCompat::METHODS
-# uninitialized constant Bundler::Thor::RakeCompat::OPT_TABLE
-# uninitialized constant Bundler::Thor::RakeCompat::RUBY
-# uninitialized constant Bundler::Thor::RakeCompat::VERSION
-# wrong constant name <static-init>
-# wrong constant name included
-# wrong constant name rake_classes
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for module `Bundler::Thor::Shell'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>2' for module `Bundler::Thor::Shell'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>3' for module `Bundler::Thor::Shell'
-# Did you mean?  initialize_dup
-# wrong constant name <Class:Basic>
-# wrong constant name <Class:Color>
-# wrong constant name <Class:HTML>
-# wrong constant name _shared_configuration
-# wrong constant name ask
-# wrong constant name error
-# wrong constant name file_collision
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize<defaultArg>2
-# wrong constant name initialize<defaultArg>3
-# wrong constant name initialize
-# wrong constant name no?
-# wrong constant name print_in_columns
-# wrong constant name print_table
-# wrong constant name print_wrapped
-# wrong constant name say
-# wrong constant name say_status
-# wrong constant name set_color
-# wrong constant name shell
-# wrong constant name shell=
-# wrong constant name terminal_width
-# wrong constant name with_padding
-# wrong constant name yes?
-# undefined method `indent<defaultArg>1' for class `Bundler::Thor::Shell::Basic'
-# undefined method `no?<defaultArg>1' for class `Bundler::Thor::Shell::Basic'
-# undefined method `print_table<defaultArg>1' for class `Bundler::Thor::Shell::Basic'
-# undefined method `print_wrapped<defaultArg>1' for class `Bundler::Thor::Shell::Basic'
-# undefined method `say<defaultArg>1' for class `Bundler::Thor::Shell::Basic'
-# undefined method `say<defaultArg>2' for class `Bundler::Thor::Shell::Basic'
-# undefined method `say<defaultArg>3' for class `Bundler::Thor::Shell::Basic'
-# undefined method `say_status<defaultArg>1' for class `Bundler::Thor::Shell::Basic'
-# undefined method `yes?<defaultArg>1' for class `Bundler::Thor::Shell::Basic'
-# wrong constant name answer_match
-# wrong constant name as_unicode
-# wrong constant name ask
-# wrong constant name ask_filtered
-# wrong constant name ask_simply
-# wrong constant name base
-# wrong constant name base=
-# wrong constant name can_display_colors?
-# wrong constant name dynamic_width
-# wrong constant name dynamic_width_stty
-# wrong constant name dynamic_width_tput
-# wrong constant name error
-# wrong constant name file_collision
-# wrong constant name file_collision_help
-# wrong constant name git_merge_tool
-# wrong constant name indent<defaultArg>1
-# wrong constant name indent
-# wrong constant name is?
-# wrong constant name lookup_color
-# wrong constant name merge
-# wrong constant name merge_tool
-# wrong constant name mute
-# wrong constant name mute?
-# wrong constant name no?<defaultArg>1
-# wrong constant name no?
-# wrong constant name padding
-# wrong constant name padding=
-# wrong constant name prepare_message
-# wrong constant name print_in_columns
-# wrong constant name print_table<defaultArg>1
-# wrong constant name print_table
-# wrong constant name print_wrapped<defaultArg>1
-# wrong constant name print_wrapped
-# wrong constant name quiet?
-# wrong constant name say<defaultArg>1
-# wrong constant name say<defaultArg>2
-# wrong constant name say<defaultArg>3
-# wrong constant name say
-# wrong constant name say_status<defaultArg>1
-# wrong constant name say_status
-# wrong constant name set_color
-# wrong constant name show_diff
-# wrong constant name stderr
-# wrong constant name stdout
-# wrong constant name terminal_width
-# wrong constant name truncate
-# wrong constant name unix?
-# wrong constant name yes?<defaultArg>1
-# wrong constant name yes?
-# wrong constant name <static-init>
-# uninitialized constant Bundler::Thor::Shell::Color::DEFAULT_TERMINAL_WIDTH
-# wrong constant name are_colors_disabled?
-# wrong constant name diff_lcs_loaded?
-# wrong constant name output_diff_line
-# wrong constant name set_color
-# wrong constant name <static-init>
-# undefined method `ask<defaultArg>1' for class `Bundler::Thor::Shell::HTML'
-# uninitialized constant Bundler::Thor::Shell::HTML::DEFAULT_TERMINAL_WIDTH
-# wrong constant name ask<defaultArg>1
-# wrong constant name ask
-# wrong constant name diff_lcs_loaded?
-# wrong constant name output_diff_line
-# wrong constant name set_color
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name <Class:SpellChecker>
-# wrong constant name all_commands
-# wrong constant name command
-# wrong constant name initialize
-# wrong constant name corrections
-# wrong constant name error
-# wrong constant name initialize
-# wrong constant name spell_checker
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name <Class:SpellChecker>
-# wrong constant name initialize
-# wrong constant name switches
-# wrong constant name unknown
-# wrong constant name corrections
-# wrong constant name error
-# wrong constant name initialize
-# wrong constant name spell_checker
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# undefined singleton method `find_class_and_command_by_namespace<defaultArg>1' for `Bundler::Thor::Util'
-# undefined singleton method `find_class_and_task_by_namespace<defaultArg>1' for `Bundler::Thor::Util'
-# undefined singleton method `load_thorfile<defaultArg>1' for `Bundler::Thor::Util'
-# undefined singleton method `load_thorfile<defaultArg>2' for `Bundler::Thor::Util'
-# undefined singleton method `namespaces_in_content<defaultArg>1' for `Bundler::Thor::Util'
-# wrong constant name <static-init>
-# wrong constant name camel_case
-# wrong constant name escape_globs
-# wrong constant name escape_html
-# wrong constant name find_by_namespace
-# wrong constant name find_class_and_command_by_namespace<defaultArg>1
-# wrong constant name find_class_and_command_by_namespace
-# wrong constant name find_class_and_task_by_namespace<defaultArg>1
-# wrong constant name find_class_and_task_by_namespace
-# wrong constant name globs_for
-# wrong constant name load_thorfile<defaultArg>1
-# wrong constant name load_thorfile<defaultArg>2
-# wrong constant name load_thorfile
-# wrong constant name namespace_from_thor_class
-# wrong constant name namespaces_in_content<defaultArg>1
-# wrong constant name namespaces_in_content
-# wrong constant name ruby_command
-# wrong constant name snake_case
-# wrong constant name thor_classes_in
-# wrong constant name thor_root
-# wrong constant name thor_root_glob
-# wrong constant name user_home
-# undefined singleton method `banner<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `banner<defaultArg>2' for `Bundler::Thor'
-# undefined singleton method `check_unknown_options!<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `default_command<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `default_task<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `desc<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `help<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `long_desc<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `map<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `method_option<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `method_options<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `option<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `options<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `package_name<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `printable_commands<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `printable_commands<defaultArg>2' for `Bundler::Thor'
-# undefined singleton method `printable_tasks<defaultArg>1' for `Bundler::Thor'
-# undefined singleton method `printable_tasks<defaultArg>2' for `Bundler::Thor'
-# undefined singleton method `register<defaultArg>1' for `Bundler::Thor'
-# wrong constant name <static-init>
-# wrong constant name banner<defaultArg>1
-# wrong constant name banner<defaultArg>2
-# wrong constant name banner
-# wrong constant name check_unknown_options!<defaultArg>1
-# wrong constant name check_unknown_options!
-# wrong constant name command_help
-# wrong constant name default_command<defaultArg>1
-# wrong constant name default_command
-# wrong constant name default_task<defaultArg>1
-# wrong constant name default_task
-# wrong constant name deprecation_warning
-# wrong constant name desc<defaultArg>1
-# wrong constant name desc
-# wrong constant name disable_required_check
-# wrong constant name disable_required_check!
-# wrong constant name disable_required_check?
-# wrong constant name dispatch
-# wrong constant name dynamic_command_class
-# wrong constant name find_command_possibilities
-# wrong constant name find_task_possibilities
-# wrong constant name help<defaultArg>1
-# wrong constant name help
-# wrong constant name long_desc<defaultArg>1
-# wrong constant name long_desc
-# wrong constant name map<defaultArg>1
-# wrong constant name map
-# wrong constant name method_option<defaultArg>1
-# wrong constant name method_option
-# wrong constant name method_options<defaultArg>1
-# wrong constant name method_options
-# wrong constant name normalize_command_name
-# wrong constant name normalize_task_name
-# wrong constant name option<defaultArg>1
-# wrong constant name option
-# wrong constant name options<defaultArg>1
-# wrong constant name options
-# wrong constant name package_name<defaultArg>1
-# wrong constant name package_name
-# wrong constant name printable_commands<defaultArg>1
-# wrong constant name printable_commands<defaultArg>2
-# wrong constant name printable_commands
-# wrong constant name printable_tasks<defaultArg>1
-# wrong constant name printable_tasks<defaultArg>2
-# wrong constant name printable_tasks
-# wrong constant name register<defaultArg>1
-# wrong constant name register
-# wrong constant name retrieve_command_name
-# wrong constant name retrieve_task_name
-# wrong constant name stop_on_unknown_option
-# wrong constant name stop_on_unknown_option!
-# wrong constant name stop_on_unknown_option?
-# wrong constant name subcommand
-# wrong constant name subcommand_classes
-# wrong constant name subcommand_help
-# wrong constant name subcommands
-# wrong constant name subtask
-# wrong constant name subtask_help
-# wrong constant name subtasks
-# wrong constant name task_help
 # undefined method `confirm<defaultArg>1' for class `Bundler::UI::Shell'
 # undefined method `debug<defaultArg>1' for class `Bundler::UI::Shell'
 # undefined method `error<defaultArg>1' for class `Bundler::UI::Shell'
@@ -8158,416 +7401,6 @@
 # wrong constant name warn
 # wrong constant name yes?
 # wrong constant name <static-init>
-# wrong constant name <Class:BadURIError>
-# wrong constant name <Class:Error>
-# wrong constant name <Class:Escape>
-# wrong constant name <Class:FTP>
-# wrong constant name <Class:File>
-# wrong constant name <Class:Generic>
-# wrong constant name <Class:HTTP>
-# wrong constant name <Class:HTTPS>
-# wrong constant name <Class:InvalidComponentError>
-# wrong constant name <Class:InvalidURIError>
-# wrong constant name <Class:LDAP>
-# wrong constant name <Class:LDAPS>
-# wrong constant name <Class:MailTo>
-# wrong constant name <Class:RFC2396_Parser>
-# wrong constant name <Class:RFC2396_REGEXP>
-# wrong constant name <Class:RFC3986_Parser>
-# wrong constant name <Class:Util>
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name decode
-# wrong constant name encode
-# wrong constant name escape
-# wrong constant name unescape
-# wrong constant name <static-init>
-# uninitialized constant Bundler::URI::FTP::ABS_PATH
-# uninitialized constant Bundler::URI::FTP::ABS_URI
-# uninitialized constant Bundler::URI::FTP::ABS_URI_REF
-# uninitialized constant Bundler::URI::FTP::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::FTP::ESCAPED
-# uninitialized constant Bundler::URI::FTP::FRAGMENT
-# uninitialized constant Bundler::URI::FTP::HOST
-# uninitialized constant Bundler::URI::FTP::OPAQUE
-# uninitialized constant Bundler::URI::FTP::PORT
-# uninitialized constant Bundler::URI::FTP::QUERY
-# uninitialized constant Bundler::URI::FTP::REGISTRY
-# uninitialized constant Bundler::URI::FTP::REL_PATH
-# uninitialized constant Bundler::URI::FTP::REL_URI
-# uninitialized constant Bundler::URI::FTP::REL_URI_REF
-# uninitialized constant Bundler::URI::FTP::RFC3986_PARSER
-# uninitialized constant Bundler::URI::FTP::SCHEME
-# uninitialized constant Bundler::URI::FTP::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::FTP::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::FTP::UNSAFE
-# uninitialized constant Bundler::URI::FTP::URI_REF
-# uninitialized constant Bundler::URI::FTP::USERINFO
-# uninitialized constant Bundler::URI::FTP::USE_REGISTRY
-# uninitialized constant Bundler::URI::FTP::VERSION
-# uninitialized constant Bundler::URI::FTP::VERSION_CODE
-# uninitialized constant Bundler::URI::FTP::WEB_ENCODINGS_
-# wrong constant name set_typecode
-# wrong constant name typecode
-# wrong constant name typecode=
-# undefined singleton method `new2<defaultArg>1' for `Bundler::URI::FTP'
-# undefined singleton method `new2<defaultArg>2' for `Bundler::URI::FTP'
-# wrong constant name <static-init>
-# wrong constant name new2<defaultArg>1
-# wrong constant name new2<defaultArg>2
-# wrong constant name new2
-# uninitialized constant Bundler::URI::File::ABS_PATH
-# uninitialized constant Bundler::URI::File::ABS_URI
-# uninitialized constant Bundler::URI::File::ABS_URI_REF
-# uninitialized constant Bundler::URI::File::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::File::ESCAPED
-# uninitialized constant Bundler::URI::File::FRAGMENT
-# uninitialized constant Bundler::URI::File::HOST
-# uninitialized constant Bundler::URI::File::OPAQUE
-# uninitialized constant Bundler::URI::File::PORT
-# uninitialized constant Bundler::URI::File::QUERY
-# uninitialized constant Bundler::URI::File::REGISTRY
-# uninitialized constant Bundler::URI::File::REL_PATH
-# uninitialized constant Bundler::URI::File::REL_URI
-# uninitialized constant Bundler::URI::File::REL_URI_REF
-# uninitialized constant Bundler::URI::File::RFC3986_PARSER
-# uninitialized constant Bundler::URI::File::SCHEME
-# uninitialized constant Bundler::URI::File::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::File::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::File::UNSAFE
-# uninitialized constant Bundler::URI::File::URI_REF
-# uninitialized constant Bundler::URI::File::USERINFO
-# uninitialized constant Bundler::URI::File::USE_REGISTRY
-# uninitialized constant Bundler::URI::File::VERSION
-# uninitialized constant Bundler::URI::File::VERSION_CODE
-# uninitialized constant Bundler::URI::File::WEB_ENCODINGS_
-# wrong constant name check_password
-# wrong constant name check_user
-# wrong constant name check_userinfo
-# wrong constant name set_userinfo
-# wrong constant name <static-init>
-# undefined method `find_proxy<defaultArg>1' for class `Bundler::URI::Generic'
-# undefined method `initialize<defaultArg>1' for class `Bundler::URI::Generic'
-# Did you mean?  initialize_dup
-# undefined method `initialize<defaultArg>2' for class `Bundler::URI::Generic'
-# Did you mean?  initialize_dup
-# undefined method `set_userinfo<defaultArg>1' for class `Bundler::URI::Generic'
-# wrong constant name +
-# wrong constant name -
-# wrong constant name ==
-# uninitialized constant Bundler::URI::Generic::ABS_PATH
-# uninitialized constant Bundler::URI::Generic::ABS_URI
-# uninitialized constant Bundler::URI::Generic::ABS_URI_REF
-# uninitialized constant Bundler::URI::Generic::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::Generic::ESCAPED
-# uninitialized constant Bundler::URI::Generic::FRAGMENT
-# uninitialized constant Bundler::URI::Generic::HOST
-# uninitialized constant Bundler::URI::Generic::OPAQUE
-# uninitialized constant Bundler::URI::Generic::PORT
-# uninitialized constant Bundler::URI::Generic::QUERY
-# uninitialized constant Bundler::URI::Generic::REGISTRY
-# uninitialized constant Bundler::URI::Generic::REL_PATH
-# uninitialized constant Bundler::URI::Generic::REL_URI
-# uninitialized constant Bundler::URI::Generic::REL_URI_REF
-# uninitialized constant Bundler::URI::Generic::RFC3986_PARSER
-# uninitialized constant Bundler::URI::Generic::SCHEME
-# uninitialized constant Bundler::URI::Generic::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::Generic::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::Generic::UNSAFE
-# uninitialized constant Bundler::URI::Generic::URI_REF
-# uninitialized constant Bundler::URI::Generic::USERINFO
-# uninitialized constant Bundler::URI::Generic::VERSION
-# uninitialized constant Bundler::URI::Generic::VERSION_CODE
-# uninitialized constant Bundler::URI::Generic::WEB_ENCODINGS_
-# wrong constant name absolute
-# wrong constant name absolute?
-# wrong constant name coerce
-# wrong constant name component
-# wrong constant name component_ary
-# wrong constant name default_port
-# wrong constant name eql?
-# wrong constant name find_proxy<defaultArg>1
-# wrong constant name find_proxy
-# wrong constant name fragment
-# wrong constant name fragment=
-# wrong constant name hierarchical?
-# wrong constant name host
-# wrong constant name host=
-# wrong constant name hostname
-# wrong constant name hostname=
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize<defaultArg>2
-# wrong constant name initialize
-# wrong constant name merge
-# wrong constant name merge!
-# wrong constant name normalize
-# wrong constant name normalize!
-# wrong constant name opaque
-# wrong constant name opaque=
-# wrong constant name parser
-# wrong constant name password
-# wrong constant name password=
-# wrong constant name path
-# wrong constant name path=
-# wrong constant name port
-# wrong constant name port=
-# wrong constant name query
-# wrong constant name query=
-# wrong constant name registry
-# wrong constant name registry=
-# wrong constant name relative?
-# wrong constant name route_from
-# wrong constant name route_to
-# wrong constant name scheme
-# wrong constant name scheme=
-# wrong constant name select
-# wrong constant name set_host
-# wrong constant name set_opaque
-# wrong constant name set_password
-# wrong constant name set_path
-# wrong constant name set_port
-# wrong constant name set_registry
-# wrong constant name set_scheme
-# wrong constant name set_user
-# wrong constant name set_userinfo<defaultArg>1
-# wrong constant name set_userinfo
-# wrong constant name user
-# wrong constant name user=
-# wrong constant name userinfo
-# wrong constant name userinfo=
-# wrong constant name <static-init>
-# wrong constant name build
-# wrong constant name build2
-# wrong constant name component
-# wrong constant name default_port
-# wrong constant name use_proxy?
-# wrong constant name use_registry
-# uninitialized constant Bundler::URI::HTTP::ABS_PATH
-# uninitialized constant Bundler::URI::HTTP::ABS_URI
-# uninitialized constant Bundler::URI::HTTP::ABS_URI_REF
-# uninitialized constant Bundler::URI::HTTP::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::HTTP::ESCAPED
-# uninitialized constant Bundler::URI::HTTP::FRAGMENT
-# uninitialized constant Bundler::URI::HTTP::HOST
-# uninitialized constant Bundler::URI::HTTP::OPAQUE
-# uninitialized constant Bundler::URI::HTTP::PORT
-# uninitialized constant Bundler::URI::HTTP::QUERY
-# uninitialized constant Bundler::URI::HTTP::REGISTRY
-# uninitialized constant Bundler::URI::HTTP::REL_PATH
-# uninitialized constant Bundler::URI::HTTP::REL_URI
-# uninitialized constant Bundler::URI::HTTP::REL_URI_REF
-# uninitialized constant Bundler::URI::HTTP::RFC3986_PARSER
-# uninitialized constant Bundler::URI::HTTP::SCHEME
-# uninitialized constant Bundler::URI::HTTP::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::HTTP::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::HTTP::UNSAFE
-# uninitialized constant Bundler::URI::HTTP::URI_REF
-# uninitialized constant Bundler::URI::HTTP::USERINFO
-# uninitialized constant Bundler::URI::HTTP::USE_REGISTRY
-# uninitialized constant Bundler::URI::HTTP::VERSION
-# uninitialized constant Bundler::URI::HTTP::VERSION_CODE
-# uninitialized constant Bundler::URI::HTTP::WEB_ENCODINGS_
-# wrong constant name request_uri
-# wrong constant name <static-init>
-# uninitialized constant Bundler::URI::HTTPS::ABS_PATH
-# uninitialized constant Bundler::URI::HTTPS::ABS_URI
-# uninitialized constant Bundler::URI::HTTPS::ABS_URI_REF
-# uninitialized constant Bundler::URI::HTTPS::COMPONENT
-# uninitialized constant Bundler::URI::HTTPS::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::HTTPS::ESCAPED
-# uninitialized constant Bundler::URI::HTTPS::FRAGMENT
-# uninitialized constant Bundler::URI::HTTPS::HOST
-# uninitialized constant Bundler::URI::HTTPS::OPAQUE
-# uninitialized constant Bundler::URI::HTTPS::PORT
-# uninitialized constant Bundler::URI::HTTPS::QUERY
-# uninitialized constant Bundler::URI::HTTPS::REGISTRY
-# uninitialized constant Bundler::URI::HTTPS::REL_PATH
-# uninitialized constant Bundler::URI::HTTPS::REL_URI
-# uninitialized constant Bundler::URI::HTTPS::REL_URI_REF
-# uninitialized constant Bundler::URI::HTTPS::RFC3986_PARSER
-# uninitialized constant Bundler::URI::HTTPS::SCHEME
-# uninitialized constant Bundler::URI::HTTPS::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::HTTPS::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::HTTPS::UNSAFE
-# uninitialized constant Bundler::URI::HTTPS::URI_REF
-# uninitialized constant Bundler::URI::HTTPS::USERINFO
-# uninitialized constant Bundler::URI::HTTPS::USE_REGISTRY
-# uninitialized constant Bundler::URI::HTTPS::VERSION
-# uninitialized constant Bundler::URI::HTTPS::VERSION_CODE
-# uninitialized constant Bundler::URI::HTTPS::WEB_ENCODINGS_
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# uninitialized constant Bundler::URI::LDAP::ABS_PATH
-# uninitialized constant Bundler::URI::LDAP::ABS_URI
-# uninitialized constant Bundler::URI::LDAP::ABS_URI_REF
-# uninitialized constant Bundler::URI::LDAP::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::LDAP::ESCAPED
-# uninitialized constant Bundler::URI::LDAP::FRAGMENT
-# uninitialized constant Bundler::URI::LDAP::HOST
-# uninitialized constant Bundler::URI::LDAP::OPAQUE
-# uninitialized constant Bundler::URI::LDAP::PORT
-# uninitialized constant Bundler::URI::LDAP::QUERY
-# uninitialized constant Bundler::URI::LDAP::REGISTRY
-# uninitialized constant Bundler::URI::LDAP::REL_PATH
-# uninitialized constant Bundler::URI::LDAP::REL_URI
-# uninitialized constant Bundler::URI::LDAP::REL_URI_REF
-# uninitialized constant Bundler::URI::LDAP::RFC3986_PARSER
-# uninitialized constant Bundler::URI::LDAP::SCHEME
-# uninitialized constant Bundler::URI::LDAP::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::LDAP::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::LDAP::UNSAFE
-# uninitialized constant Bundler::URI::LDAP::URI_REF
-# uninitialized constant Bundler::URI::LDAP::USERINFO
-# uninitialized constant Bundler::URI::LDAP::USE_REGISTRY
-# uninitialized constant Bundler::URI::LDAP::VERSION
-# uninitialized constant Bundler::URI::LDAP::VERSION_CODE
-# uninitialized constant Bundler::URI::LDAP::WEB_ENCODINGS_
-# wrong constant name attributes
-# wrong constant name attributes=
-# wrong constant name dn
-# wrong constant name dn=
-# wrong constant name extensions
-# wrong constant name extensions=
-# wrong constant name filter
-# wrong constant name filter=
-# wrong constant name initialize
-# wrong constant name scope
-# wrong constant name scope=
-# wrong constant name set_attributes
-# wrong constant name set_dn
-# wrong constant name set_extensions
-# wrong constant name set_filter
-# wrong constant name set_scope
-# wrong constant name <static-init>
-# uninitialized constant Bundler::URI::LDAPS::ABS_PATH
-# uninitialized constant Bundler::URI::LDAPS::ABS_URI
-# uninitialized constant Bundler::URI::LDAPS::ABS_URI_REF
-# uninitialized constant Bundler::URI::LDAPS::COMPONENT
-# uninitialized constant Bundler::URI::LDAPS::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::LDAPS::ESCAPED
-# uninitialized constant Bundler::URI::LDAPS::FRAGMENT
-# uninitialized constant Bundler::URI::LDAPS::HOST
-# uninitialized constant Bundler::URI::LDAPS::OPAQUE
-# uninitialized constant Bundler::URI::LDAPS::PORT
-# uninitialized constant Bundler::URI::LDAPS::QUERY
-# uninitialized constant Bundler::URI::LDAPS::REGISTRY
-# uninitialized constant Bundler::URI::LDAPS::REL_PATH
-# uninitialized constant Bundler::URI::LDAPS::REL_URI
-# uninitialized constant Bundler::URI::LDAPS::REL_URI_REF
-# uninitialized constant Bundler::URI::LDAPS::RFC3986_PARSER
-# uninitialized constant Bundler::URI::LDAPS::SCHEME
-# uninitialized constant Bundler::URI::LDAPS::SCOPE
-# uninitialized constant Bundler::URI::LDAPS::SCOPE_BASE
-# uninitialized constant Bundler::URI::LDAPS::SCOPE_ONE
-# uninitialized constant Bundler::URI::LDAPS::SCOPE_SUB
-# uninitialized constant Bundler::URI::LDAPS::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::LDAPS::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::LDAPS::UNSAFE
-# uninitialized constant Bundler::URI::LDAPS::URI_REF
-# uninitialized constant Bundler::URI::LDAPS::USERINFO
-# uninitialized constant Bundler::URI::LDAPS::USE_REGISTRY
-# uninitialized constant Bundler::URI::LDAPS::VERSION
-# uninitialized constant Bundler::URI::LDAPS::VERSION_CODE
-# uninitialized constant Bundler::URI::LDAPS::WEB_ENCODINGS_
-# wrong constant name <static-init>
-# uninitialized constant Bundler::URI::MailTo::ABS_PATH
-# uninitialized constant Bundler::URI::MailTo::ABS_URI
-# uninitialized constant Bundler::URI::MailTo::ABS_URI_REF
-# uninitialized constant Bundler::URI::MailTo::DEFAULT_PARSER
-# uninitialized constant Bundler::URI::MailTo::ESCAPED
-# uninitialized constant Bundler::URI::MailTo::FRAGMENT
-# uninitialized constant Bundler::URI::MailTo::HOST
-# uninitialized constant Bundler::URI::MailTo::OPAQUE
-# uninitialized constant Bundler::URI::MailTo::PORT
-# uninitialized constant Bundler::URI::MailTo::QUERY
-# uninitialized constant Bundler::URI::MailTo::REGISTRY
-# uninitialized constant Bundler::URI::MailTo::REL_PATH
-# uninitialized constant Bundler::URI::MailTo::REL_URI
-# uninitialized constant Bundler::URI::MailTo::REL_URI_REF
-# uninitialized constant Bundler::URI::MailTo::RFC3986_PARSER
-# uninitialized constant Bundler::URI::MailTo::SCHEME
-# uninitialized constant Bundler::URI::MailTo::TBLDECWWWCOMP_
-# uninitialized constant Bundler::URI::MailTo::TBLENCWWWCOMP_
-# uninitialized constant Bundler::URI::MailTo::UNSAFE
-# uninitialized constant Bundler::URI::MailTo::URI_REF
-# uninitialized constant Bundler::URI::MailTo::USERINFO
-# uninitialized constant Bundler::URI::MailTo::USE_REGISTRY
-# uninitialized constant Bundler::URI::MailTo::VERSION
-# uninitialized constant Bundler::URI::MailTo::VERSION_CODE
-# uninitialized constant Bundler::URI::MailTo::WEB_ENCODINGS_
-# wrong constant name headers
-# wrong constant name headers=
-# wrong constant name initialize
-# wrong constant name set_headers
-# wrong constant name set_to
-# wrong constant name to
-# wrong constant name to=
-# wrong constant name to_mailtext
-# wrong constant name to_rfc822text
-# wrong constant name <static-init>
-# undefined method `escape<defaultArg>1' for class `Bundler::URI::RFC2396_Parser'
-# undefined method `extract<defaultArg>1' for class `Bundler::URI::RFC2396_Parser'
-# undefined method `initialize<defaultArg>1' for class `Bundler::URI::RFC2396_Parser'
-# Did you mean?  initialize_dup
-# undefined method `make_regexp<defaultArg>1' for class `Bundler::URI::RFC2396_Parser'
-# undefined method `unescape<defaultArg>1' for class `Bundler::URI::RFC2396_Parser'
-# wrong constant name escape<defaultArg>1
-# wrong constant name escape
-# wrong constant name extract<defaultArg>1
-# wrong constant name extract
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name join
-# wrong constant name make_regexp<defaultArg>1
-# wrong constant name make_regexp
-# wrong constant name parse
-# wrong constant name pattern
-# wrong constant name regexp
-# wrong constant name split
-# wrong constant name unescape<defaultArg>1
-# wrong constant name unescape
-# wrong constant name <static-init>
-# wrong constant name <Class:PATTERN>
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name join
-# wrong constant name parse
-# wrong constant name regexp
-# wrong constant name split
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name make_components_hash
-# undefined singleton method `decode_www_form<defaultArg>1' for `Bundler::URI'
-# undefined singleton method `decode_www_form<defaultArg>2' for `Bundler::URI'
-# undefined singleton method `decode_www_form<defaultArg>3' for `Bundler::URI'
-# undefined singleton method `decode_www_form<defaultArg>4' for `Bundler::URI'
-# undefined singleton method `decode_www_form_component<defaultArg>1' for `Bundler::URI'
-# undefined singleton method `encode_www_form<defaultArg>1' for `Bundler::URI'
-# undefined singleton method `encode_www_form_component<defaultArg>1' for `Bundler::URI'
-# undefined singleton method `extract<defaultArg>1' for `Bundler::URI'
-# undefined singleton method `regexp<defaultArg>1' for `Bundler::URI'
-# wrong constant name <static-init>
-# wrong constant name decode_www_form<defaultArg>1
-# wrong constant name decode_www_form<defaultArg>2
-# wrong constant name decode_www_form<defaultArg>3
-# wrong constant name decode_www_form<defaultArg>4
-# wrong constant name decode_www_form
-# wrong constant name decode_www_form_component<defaultArg>1
-# wrong constant name decode_www_form_component
-# wrong constant name encode_www_form<defaultArg>1
-# wrong constant name encode_www_form
-# wrong constant name encode_www_form_component<defaultArg>1
-# wrong constant name encode_www_form_component
-# wrong constant name extract<defaultArg>1
-# wrong constant name extract
-# wrong constant name get_encoding
-# wrong constant name join
-# wrong constant name parse
-# wrong constant name regexp<defaultArg>1
-# wrong constant name regexp
-# wrong constant name scheme_list
-# wrong constant name split
 # wrong constant name <Class:NEq>
 # wrong constant name <Class:ReqR>
 # uninitialized constant Bundler::VersionRanges::NEq::Elem
@@ -8576,7 +7409,6 @@
 # wrong constant name <static-init>
 # wrong constant name []
 # wrong constant name members
-# wrong constant name <=>
 # uninitialized constant Bundler::VersionRanges::ReqR::Elem
 # wrong constant name <Class:Endpoint>
 # wrong constant name cover?
@@ -8586,7 +7418,6 @@
 # wrong constant name right
 # wrong constant name right=
 # wrong constant name single?
-# wrong constant name <=>
 # uninitialized constant Bundler::VersionRanges::ReqR::Endpoint::Elem
 # wrong constant name inclusive
 # wrong constant name inclusive=
@@ -8602,12 +7433,6 @@
 # wrong constant name empty?
 # wrong constant name for
 # wrong constant name for_many
-# wrong constant name original_exec
-# wrong constant name original_system
-# wrong constant name unbundled_env
-# wrong constant name unbundled_exec
-# wrong constant name unbundled_system
-# wrong constant name with_unbundled_env
 # wrong constant name <Class:ThreadsTable>
 # wrong constant name <static-init>
 # undefined method `a<defaultArg>1' for module `CGI::HtmlExtension'
@@ -8873,8 +7698,6 @@
 # uninitialized constant Ektar::ApplicationRecord::UNASSIGNABLE_KEYS
 # wrong constant name <static-init>
 # wrong constant name <static-init>
-# wrong constant name resourceful
-# wrong constant name <static-init>
 # uninitialized constant Ektar::Engine::ABSTRACT_RAILTIES
 # wrong constant name <static-init>
 # uninitialized constant Ektar::Membership::ACTIONS
@@ -8887,146 +7710,16 @@
 # uninitialized constant Ektar::Membership::UNASSIGNABLE_KEYS
 # wrong constant name autosave_associated_records_for_organization
 # wrong constant name autosave_associated_records_for_user
+# wrong constant name validate_associated_records_for_organization
 # wrong constant name build_organization
 # wrong constant name build_user
 # wrong constant name create_organization
 # wrong constant name create_organization!
 # wrong constant name create_user
 # wrong constant name create_user!
+# wrong constant name organization_attributes=
 # wrong constant name reload_organization
 # wrong constant name reload_user
-# uninitialized constant Ektar::Organization::ACTIONS
-# uninitialized constant Ektar::Organization::CALLBACKS
-# uninitialized constant Ektar::Organization::CALLBACK_FILTER_TYPES
-# uninitialized constant Ektar::Organization::CALL_COMPILABLE_REGEXP
-# uninitialized constant Ektar::Organization::MAX_PASSWORD_LENGTH_ALLOWED
-# uninitialized constant Ektar::Organization::NAME_COMPILABLE_REGEXP
-# uninitialized constant Ektar::Organization::RESTRICTED_CLASS_METHODS
-# uninitialized constant Ektar::Organization::UNASSIGNABLE_KEYS
-# wrong constant name after_add_for_memberships
-# wrong constant name after_add_for_memberships=
-# wrong constant name after_add_for_memberships?
-# wrong constant name after_add_for_users
-# wrong constant name after_add_for_users=
-# wrong constant name after_add_for_users?
-# wrong constant name after_remove_for_memberships
-# wrong constant name after_remove_for_memberships=
-# wrong constant name after_remove_for_memberships?
-# wrong constant name after_remove_for_users
-# wrong constant name after_remove_for_users=
-# wrong constant name after_remove_for_users?
-# wrong constant name autosave_associated_records_for_memberships
-# wrong constant name autosave_associated_records_for_plan
-# wrong constant name autosave_associated_records_for_users
-# wrong constant name before_add_for_memberships
-# wrong constant name before_add_for_memberships=
-# wrong constant name before_add_for_memberships?
-# wrong constant name before_add_for_users
-# wrong constant name before_add_for_users=
-# wrong constant name before_add_for_users?
-# wrong constant name before_remove_for_memberships
-# wrong constant name before_remove_for_memberships=
-# wrong constant name before_remove_for_memberships?
-# wrong constant name before_remove_for_users
-# wrong constant name before_remove_for_users=
-# wrong constant name before_remove_for_users?
-# wrong constant name validate_associated_records_for_memberships
-# wrong constant name validate_associated_records_for_users
-# wrong constant name build_plan
-# wrong constant name create_plan
-# wrong constant name create_plan!
-# wrong constant name membership_ids
-# wrong constant name membership_ids=
-# wrong constant name reload_plan
-# wrong constant name user_ids
-# wrong constant name user_ids=
-# wrong constant name after_add_for_memberships
-# wrong constant name after_add_for_memberships=
-# wrong constant name after_add_for_memberships?
-# wrong constant name after_add_for_users
-# wrong constant name after_add_for_users=
-# wrong constant name after_add_for_users?
-# wrong constant name after_remove_for_memberships
-# wrong constant name after_remove_for_memberships=
-# wrong constant name after_remove_for_memberships?
-# wrong constant name after_remove_for_users
-# wrong constant name after_remove_for_users=
-# wrong constant name after_remove_for_users?
-# wrong constant name before_add_for_memberships
-# wrong constant name before_add_for_memberships=
-# wrong constant name before_add_for_memberships?
-# wrong constant name before_add_for_users
-# wrong constant name before_add_for_users=
-# wrong constant name before_add_for_users?
-# wrong constant name before_remove_for_memberships
-# wrong constant name before_remove_for_memberships=
-# wrong constant name before_remove_for_memberships?
-# wrong constant name before_remove_for_users
-# wrong constant name before_remove_for_users=
-# wrong constant name before_remove_for_users?
-# wrong constant name search_full
-# undefined method `create<defaultArg>1' for class `Ektar::OrganizationsController'
-# Did you mean?  create_header
-# undefined method `create!<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `edit<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `edit!<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `index<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `index!<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `new<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `new!<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `show<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `show!<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `update<defaultArg>1' for class `Ektar::OrganizationsController'
-# undefined method `update!<defaultArg>1' for class `Ektar::OrganizationsController'
-# uninitialized constant Ektar::OrganizationsController::ACTION_OPTIONS
-# uninitialized constant Ektar::OrganizationsController::AUTHENTICITY_TOKEN_LENGTH
-# uninitialized constant Ektar::OrganizationsController::CALLBACK_FILTER_TYPES
-# uninitialized constant Ektar::OrganizationsController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
-# uninitialized constant Ektar::OrganizationsController::DEFAULT_SEND_FILE_DISPOSITION
-# uninitialized constant Ektar::OrganizationsController::DEFAULT_SEND_FILE_TYPE
-# uninitialized constant Ektar::OrganizationsController::EXCLUDE_PARAMETERS
-# uninitialized constant Ektar::OrganizationsController::MODULES
-# uninitialized constant Ektar::OrganizationsController::NULL_ORIGIN_MESSAGE
-# uninitialized constant Ektar::OrganizationsController::PROTECTED_IVARS
-# uninitialized constant Ektar::OrganizationsController::REDIRECT_OPTIONS
-# uninitialized constant Ektar::OrganizationsController::RENDERERS
-# uninitialized constant Ektar::OrganizationsController::RENDER_FORMATS_IN_PRIORITY
-# uninitialized constant Ektar::OrganizationsController::URL_OPTIONS
-# wrong constant name collection_path
-# wrong constant name create<defaultArg>1
-# wrong constant name create
-# wrong constant name create!<defaultArg>1
-# wrong constant name create!
-# wrong constant name delete_confirmation
-# wrong constant name edit<defaultArg>1
-# wrong constant name edit
-# wrong constant name edit!<defaultArg>1
-# wrong constant name edit!
-# wrong constant name edit_resource_path
-# wrong constant name index<defaultArg>1
-# wrong constant name index
-# wrong constant name index!<defaultArg>1
-# wrong constant name index!
-# wrong constant name link_attribute
-# wrong constant name model_name
-# wrong constant name model_name?
-# wrong constant name new<defaultArg>1
-# wrong constant name new
-# wrong constant name new!<defaultArg>1
-# wrong constant name new!
-# wrong constant name new_resource_path
-# wrong constant name resource_path
-# wrong constant name show<defaultArg>1
-# wrong constant name show
-# wrong constant name show!<defaultArg>1
-# wrong constant name show!
-# wrong constant name update<defaultArg>1
-# wrong constant name update
-# wrong constant name update!<defaultArg>1
-# wrong constant name update!
-# wrong constant name model_name
-# wrong constant name model_name=
-# wrong constant name model_name?
 # uninitialized constant Ektar::Plan::ACTIONS
 # uninitialized constant Ektar::Plan::CALLBACKS
 # uninitialized constant Ektar::Plan::CALLBACK_FILTER_TYPES
@@ -9042,15 +7735,28 @@
 # wrong constant name after_remove_for_organizations=
 # wrong constant name after_remove_for_organizations?
 # wrong constant name autosave_associated_records_for_organizations
+# wrong constant name autosave_associated_records_for_rich_text_description
 # wrong constant name before_add_for_organizations
 # wrong constant name before_add_for_organizations=
 # wrong constant name before_add_for_organizations?
 # wrong constant name before_remove_for_organizations
 # wrong constant name before_remove_for_organizations=
 # wrong constant name before_remove_for_organizations?
+# wrong constant name currency_for_price
+# wrong constant name description
+# wrong constant name description=
+# wrong constant name price
+# wrong constant name price=
+# wrong constant name price_cents=
+# wrong constant name price_money_before_type_cast
 # wrong constant name validate_associated_records_for_organizations
+# wrong constant name validate_associated_records_for_rich_text_description
+# wrong constant name build_rich_text_description
+# wrong constant name create_rich_text_description
+# wrong constant name create_rich_text_description!
 # wrong constant name organization_ids
 # wrong constant name organization_ids=
+# wrong constant name reload_rich_text_description
 # wrong constant name after_add_for_organizations
 # wrong constant name after_add_for_organizations=
 # wrong constant name after_add_for_organizations?
@@ -9063,219 +7769,6 @@
 # wrong constant name before_remove_for_organizations
 # wrong constant name before_remove_for_organizations=
 # wrong constant name before_remove_for_organizations?
-# undefined method `create<defaultArg>1' for class `Ektar::PlansController'
-# Did you mean?  create_header
-# undefined method `create!<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `edit<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `edit!<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `index<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `index!<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `new<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `new!<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `show<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `show!<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `update<defaultArg>1' for class `Ektar::PlansController'
-# undefined method `update!<defaultArg>1' for class `Ektar::PlansController'
-# uninitialized constant Ektar::PlansController::ACTION_OPTIONS
-# uninitialized constant Ektar::PlansController::AUTHENTICITY_TOKEN_LENGTH
-# uninitialized constant Ektar::PlansController::CALLBACK_FILTER_TYPES
-# uninitialized constant Ektar::PlansController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
-# uninitialized constant Ektar::PlansController::DEFAULT_SEND_FILE_DISPOSITION
-# uninitialized constant Ektar::PlansController::DEFAULT_SEND_FILE_TYPE
-# uninitialized constant Ektar::PlansController::EXCLUDE_PARAMETERS
-# uninitialized constant Ektar::PlansController::MODULES
-# uninitialized constant Ektar::PlansController::NULL_ORIGIN_MESSAGE
-# uninitialized constant Ektar::PlansController::PROTECTED_IVARS
-# uninitialized constant Ektar::PlansController::REDIRECT_OPTIONS
-# uninitialized constant Ektar::PlansController::RENDERERS
-# uninitialized constant Ektar::PlansController::RENDER_FORMATS_IN_PRIORITY
-# uninitialized constant Ektar::PlansController::URL_OPTIONS
-# wrong constant name collection_path
-# wrong constant name create<defaultArg>1
-# wrong constant name create
-# wrong constant name create!<defaultArg>1
-# wrong constant name create!
-# wrong constant name delete_confirmation
-# wrong constant name edit<defaultArg>1
-# wrong constant name edit
-# wrong constant name edit!<defaultArg>1
-# wrong constant name edit!
-# wrong constant name edit_resource_path
-# wrong constant name index<defaultArg>1
-# wrong constant name index
-# wrong constant name index!<defaultArg>1
-# wrong constant name index!
-# wrong constant name link_attribute
-# wrong constant name model_name
-# wrong constant name model_name?
-# wrong constant name new<defaultArg>1
-# wrong constant name new
-# wrong constant name new!<defaultArg>1
-# wrong constant name new!
-# wrong constant name new_resource_path
-# wrong constant name resource_path
-# wrong constant name show<defaultArg>1
-# wrong constant name show
-# wrong constant name show!<defaultArg>1
-# wrong constant name show!
-# wrong constant name update<defaultArg>1
-# wrong constant name update
-# wrong constant name update!<defaultArg>1
-# wrong constant name update!
-# wrong constant name model_name
-# wrong constant name model_name=
-# wrong constant name model_name?
-# uninitialized constant Ektar::Profile::ACTIONS
-# uninitialized constant Ektar::Profile::CALLBACKS
-# uninitialized constant Ektar::Profile::CALLBACK_FILTER_TYPES
-# uninitialized constant Ektar::Profile::CALL_COMPILABLE_REGEXP
-# uninitialized constant Ektar::Profile::MAX_PASSWORD_LENGTH_ALLOWED
-# uninitialized constant Ektar::Profile::NAME_COMPILABLE_REGEXP
-# uninitialized constant Ektar::Profile::RESTRICTED_CLASS_METHODS
-# uninitialized constant Ektar::Profile::UNASSIGNABLE_KEYS
-# wrong constant name autosave_associated_records_for_user
-# wrong constant name build_user
-# wrong constant name create_user
-# wrong constant name create_user!
-# wrong constant name reload_user
-# uninitialized constant Ektar::User::ACTIONS
-# uninitialized constant Ektar::User::CALLBACKS
-# uninitialized constant Ektar::User::CALLBACK_FILTER_TYPES
-# uninitialized constant Ektar::User::CALL_COMPILABLE_REGEXP
-# uninitialized constant Ektar::User::MAX_PASSWORD_LENGTH_ALLOWED
-# uninitialized constant Ektar::User::NAME_COMPILABLE_REGEXP
-# uninitialized constant Ektar::User::RESTRICTED_CLASS_METHODS
-# uninitialized constant Ektar::User::UNASSIGNABLE_KEYS
-# wrong constant name after_add_for_memberships
-# wrong constant name after_add_for_memberships=
-# wrong constant name after_add_for_memberships?
-# wrong constant name after_add_for_organizations
-# wrong constant name after_add_for_organizations=
-# wrong constant name after_add_for_organizations?
-# wrong constant name after_remove_for_memberships
-# wrong constant name after_remove_for_memberships=
-# wrong constant name after_remove_for_memberships?
-# wrong constant name after_remove_for_organizations
-# wrong constant name after_remove_for_organizations=
-# wrong constant name after_remove_for_organizations?
-# wrong constant name autosave_associated_records_for_ektar_profile
-# wrong constant name autosave_associated_records_for_memberships
-# wrong constant name autosave_associated_records_for_organizations
-# wrong constant name before_add_for_memberships
-# wrong constant name before_add_for_memberships=
-# wrong constant name before_add_for_memberships?
-# wrong constant name before_add_for_organizations
-# wrong constant name before_add_for_organizations=
-# wrong constant name before_add_for_organizations?
-# wrong constant name before_remove_for_memberships
-# wrong constant name before_remove_for_memberships=
-# wrong constant name before_remove_for_memberships?
-# wrong constant name before_remove_for_organizations
-# wrong constant name before_remove_for_organizations=
-# wrong constant name before_remove_for_organizations?
-# wrong constant name validate_associated_records_for_memberships
-# wrong constant name validate_associated_records_for_organizations
-# wrong constant name build_ektar_profile
-# wrong constant name create_ektar_profile
-# wrong constant name create_ektar_profile!
-# wrong constant name membership_ids
-# wrong constant name membership_ids=
-# wrong constant name organization_ids
-# wrong constant name organization_ids=
-# wrong constant name reload_ektar_profile
-# wrong constant name after_add_for_memberships
-# wrong constant name after_add_for_memberships=
-# wrong constant name after_add_for_memberships?
-# wrong constant name after_add_for_organizations
-# wrong constant name after_add_for_organizations=
-# wrong constant name after_add_for_organizations?
-# wrong constant name after_remove_for_memberships
-# wrong constant name after_remove_for_memberships=
-# wrong constant name after_remove_for_memberships?
-# wrong constant name after_remove_for_organizations
-# wrong constant name after_remove_for_organizations=
-# wrong constant name after_remove_for_organizations?
-# wrong constant name before_add_for_memberships
-# wrong constant name before_add_for_memberships=
-# wrong constant name before_add_for_memberships?
-# wrong constant name before_add_for_organizations
-# wrong constant name before_add_for_organizations=
-# wrong constant name before_add_for_organizations?
-# wrong constant name before_remove_for_memberships
-# wrong constant name before_remove_for_memberships=
-# wrong constant name before_remove_for_memberships?
-# wrong constant name before_remove_for_organizations
-# wrong constant name before_remove_for_organizations=
-# wrong constant name before_remove_for_organizations?
-# undefined method `create<defaultArg>1' for class `Ektar::UsersController'
-# Did you mean?  create_header
-# undefined method `create!<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `destroy<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `destroy!<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `edit<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `edit!<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `index<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `index!<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `new<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `new!<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `show<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `show!<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `update<defaultArg>1' for class `Ektar::UsersController'
-# undefined method `update!<defaultArg>1' for class `Ektar::UsersController'
-# uninitialized constant Ektar::UsersController::ACTION_OPTIONS
-# uninitialized constant Ektar::UsersController::AUTHENTICITY_TOKEN_LENGTH
-# uninitialized constant Ektar::UsersController::CALLBACK_FILTER_TYPES
-# uninitialized constant Ektar::UsersController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
-# uninitialized constant Ektar::UsersController::DEFAULT_SEND_FILE_DISPOSITION
-# uninitialized constant Ektar::UsersController::DEFAULT_SEND_FILE_TYPE
-# uninitialized constant Ektar::UsersController::EXCLUDE_PARAMETERS
-# uninitialized constant Ektar::UsersController::MODULES
-# uninitialized constant Ektar::UsersController::NULL_ORIGIN_MESSAGE
-# uninitialized constant Ektar::UsersController::PROTECTED_IVARS
-# uninitialized constant Ektar::UsersController::REDIRECT_OPTIONS
-# uninitialized constant Ektar::UsersController::RENDERERS
-# uninitialized constant Ektar::UsersController::RENDER_FORMATS_IN_PRIORITY
-# uninitialized constant Ektar::UsersController::URL_OPTIONS
-# wrong constant name allow_delete?
-# wrong constant name collection_path
-# wrong constant name create<defaultArg>1
-# wrong constant name create
-# wrong constant name create!<defaultArg>1
-# wrong constant name create!
-# wrong constant name delete_confirmation
-# wrong constant name destroy<defaultArg>1
-# wrong constant name destroy
-# wrong constant name destroy!<defaultArg>1
-# wrong constant name destroy!
-# wrong constant name edit<defaultArg>1
-# wrong constant name edit
-# wrong constant name edit!<defaultArg>1
-# wrong constant name edit!
-# wrong constant name edit_resource_path
-# wrong constant name index<defaultArg>1
-# wrong constant name index
-# wrong constant name index!<defaultArg>1
-# wrong constant name index!
-# wrong constant name link_attribute
-# wrong constant name model_name
-# wrong constant name model_name?
-# wrong constant name new<defaultArg>1
-# wrong constant name new
-# wrong constant name new!<defaultArg>1
-# wrong constant name new!
-# wrong constant name new_resource_path
-# wrong constant name resource_path
-# wrong constant name show<defaultArg>1
-# wrong constant name show
-# wrong constant name show!<defaultArg>1
-# wrong constant name show!
-# wrong constant name update<defaultArg>1
-# wrong constant name update
-# wrong constant name update!<defaultArg>1
-# wrong constant name update!
-# wrong constant name model_name
-# wrong constant name model_name=
-# wrong constant name model_name?
 # undefined singleton method `railtie_routes_url_helpers<defaultArg>1' for `Ektar'
 # wrong constant name railtie_helpers_paths
 # wrong constant name railtie_namespace
@@ -9479,43 +7972,7 @@
 # wrong constant name stress=
 # wrong constant name verify_internal_consistency
 # wrong constant name verify_transient_heap_internal_consistency
-# wrong constant name oct_or_256based
-# wrong constant name <Class:FetchError>
-# wrong constant name <Class:UnknownHostError>
-# wrong constant name s3_uri_signer
-# wrong constant name initialize
-# wrong constant name uri
-# wrong constant name uri=
-# wrong constant name <static-init>
-# wrong constant name <static-init>
 # uninitialized constant Gem::Resolver::Molinillo::DependencyGraph::Log::Elem
-# undefined method `sign<defaultArg>1' for class `Gem::S3URISigner'
-# wrong constant name <Class:ConfigurationError>
-# wrong constant name <Class:InstanceProfileError>
-# wrong constant name <Class:S3Config>
-# wrong constant name initialize
-# wrong constant name sign<defaultArg>1
-# wrong constant name sign
-# wrong constant name uri
-# wrong constant name uri=
-# wrong constant name initialize
-# wrong constant name <static-init>
-# wrong constant name initialize
-# wrong constant name <static-init>
-# uninitialized constant Gem::S3URISigner::S3Config::Elem
-# wrong constant name access_key_id
-# wrong constant name access_key_id=
-# wrong constant name region
-# wrong constant name region=
-# wrong constant name secret_access_key
-# wrong constant name secret_access_key=
-# wrong constant name security_token
-# wrong constant name security_token=
-# wrong constant name <static-init>
-# wrong constant name []
-# wrong constant name members
-# wrong constant name <static-init>
-# wrong constant name correct_for_windows_path
 # wrong constant name <Class:BaseLocator>
 # wrong constant name <Class:BlockLocator>
 # wrong constant name <Class:UnscopedLocator>
@@ -9568,7 +8025,9 @@
 # wrong constant name transform_values
 # wrong constant name transform_values!
 # wrong constant name update
-# wrong constant name try_convert
+# undefined singleton method `from_xml<defaultArg>1' for `Hash'
+# wrong constant name from_xml<defaultArg>1
+# wrong constant name from_xml
 # wrong constant name <Class:Gettext>
 # wrong constant name <Class:Locale>
 # wrong constant name <Class:Middleware>
@@ -10324,29 +8783,173 @@
 # wrong constant name exit_value
 # wrong constant name reason
 # uninitialized constant Logger::LogDevice::SiD
+# wrong constant name <Class:AddressContainer>
 # wrong constant name <Class:AddressList>
+# wrong constant name <Class:AttachmentsList>
+# wrong constant name <Class:BccField>
+# wrong constant name <Class:Body>
+# wrong constant name <Class:CcField>
+# wrong constant name <Class:CheckDeliveryParams>
+# wrong constant name <Class:CommentsField>
+# wrong constant name <Class:CommonAddress>
+# wrong constant name <Class:CommonDate>
+# wrong constant name <Class:CommonField>
+# wrong constant name <Class:CommonMessageId>
+# wrong constant name <Class:Configuration>
+# wrong constant name <Class:Constants>
+# wrong constant name <Class:ContentDescriptionField>
 # wrong constant name <Class:ContentDispositionElement>
+# wrong constant name <Class:ContentDispositionField>
+# wrong constant name <Class:ContentIdField>
 # wrong constant name <Class:ContentLocationElement>
+# wrong constant name <Class:ContentLocationField>
 # wrong constant name <Class:ContentTransferEncodingElement>
+# wrong constant name <Class:ContentTransferEncodingField>
 # wrong constant name <Class:ContentTypeElement>
+# wrong constant name <Class:ContentTypeField>
+# wrong constant name <Class:DateField>
 # wrong constant name <Class:DateTimeElement>
+# wrong constant name <Class:Encodings>
+# wrong constant name <Class:Envelope>
 # wrong constant name <Class:EnvelopeFromElement>
 # wrong constant name <Class:Exim>
+# wrong constant name <Class:Field>
+# wrong constant name <Class:FieldList>
+# wrong constant name <Class:FileDelivery>
+# wrong constant name <Class:FromField>
+# wrong constant name <Class:Header>
 # wrong constant name <Class:IMAP>
+# wrong constant name <Class:InReplyToField>
+# wrong constant name <Class:IndifferentHash>
+# wrong constant name <Class:KeywordsField>
 # wrong constant name <Class:LoggerDelivery>
+# wrong constant name <Class:Matchers>
+# wrong constant name <Class:MessageIdField>
 # wrong constant name <Class:MessageIdsElement>
 # wrong constant name <Class:MimeVersionElement>
+# wrong constant name <Class:MimeVersionField>
+# wrong constant name <Class:Multibyte>
 # wrong constant name <Class:OptionalField>
 # wrong constant name <Class:POP3>
+# wrong constant name <Class:ParameterHash>
+# wrong constant name <Class:ParserTools>
+# wrong constant name <Class:Parsers>
+# wrong constant name <Class:Part>
+# wrong constant name <Class:PartsList>
 # wrong constant name <Class:PhraseList>
 # wrong constant name <Class:ReceivedElement>
+# wrong constant name <Class:ReceivedField>
+# wrong constant name <Class:ReferencesField>
+# wrong constant name <Class:ReplyToField>
+# wrong constant name <Class:ResentBccField>
+# wrong constant name <Class:ResentCcField>
+# wrong constant name <Class:ResentDateField>
+# wrong constant name <Class:ResentFromField>
+# wrong constant name <Class:ResentMessageIdField>
+# wrong constant name <Class:ResentSenderField>
+# wrong constant name <Class:ResentToField>
+# wrong constant name <Class:Retriever>
+# wrong constant name <Class:ReturnPathField>
+# wrong constant name <Class:Ruby19>
+# wrong constant name <Class:SMTP>
 # wrong constant name <Class:SMTPConnection>
+# wrong constant name <Class:SenderField>
+# wrong constant name <Class:Sendmail>
+# wrong constant name <Class:StructuredField>
+# wrong constant name <Class:SubjectField>
+# wrong constant name <Class:TestMailer>
 # wrong constant name <Class:TestRetriever>
+# wrong constant name <Class:ToField>
+# wrong constant name <Class:UnknownEncodingType>
+# wrong constant name <Class:UnstructuredField>
+# wrong constant name <Class:Utilities>
+# wrong constant name <Class:VERSION>
+# undefined method `address<defaultArg>1' for class `Mail::Address'
+# undefined method `display_name<defaultArg>1' for class `Mail::Address'
+# undefined method `domain<defaultArg>1' for class `Mail::Address'
+# undefined method `format<defaultArg>1' for class `Mail::Address'
+# undefined method `initialize<defaultArg>1' for class `Mail::Address'
+# Did you mean?  initialize_dup
+# undefined method `local<defaultArg>1' for class `Mail::Address'
+# uninitialized constant Mail::Address::ASTERISK
+# uninitialized constant Mail::Address::ATOM_UNSAFE
+# uninitialized constant Mail::Address::B_VALUES
+# uninitialized constant Mail::Address::CAPITAL_M
+# uninitialized constant Mail::Address::COLON
+# uninitialized constant Mail::Address::CONTROL_CHAR
+# uninitialized constant Mail::Address::CR
+# uninitialized constant Mail::Address::CRLF
+# uninitialized constant Mail::Address::CR_ENCODED
+# uninitialized constant Mail::Address::EMPTY
+# uninitialized constant Mail::Address::ENCODED_VALUE
+# uninitialized constant Mail::Address::EQUAL_LF
+# uninitialized constant Mail::Address::FIELD_BODY
+# uninitialized constant Mail::Address::FIELD_LINE
+# uninitialized constant Mail::Address::FIELD_NAME
+# uninitialized constant Mail::Address::FIELD_PREFIX
+# uninitialized constant Mail::Address::FIELD_SPLIT
+# uninitialized constant Mail::Address::FULL_ENCODED_VALUE
+# uninitialized constant Mail::Address::FWS
+# uninitialized constant Mail::Address::HEADER_LINE
+# uninitialized constant Mail::Address::HEADER_SPLIT
+# uninitialized constant Mail::Address::HYPHEN
+# uninitialized constant Mail::Address::LF
+# uninitialized constant Mail::Address::LF_ENCODED
+# uninitialized constant Mail::Address::NULL_SENDER
+# uninitialized constant Mail::Address::PHRASE_UNSAFE
+# uninitialized constant Mail::Address::QP_SAFE
+# uninitialized constant Mail::Address::QP_UNSAFE
+# uninitialized constant Mail::Address::Q_VALUES
+# uninitialized constant Mail::Address::SPACE
+# uninitialized constant Mail::Address::TEXT
+# uninitialized constant Mail::Address::TOKEN_UNSAFE
+# uninitialized constant Mail::Address::TO_CRLF_REGEX
+# uninitialized constant Mail::Address::UNDERSCORE
+# uninitialized constant Mail::Address::WSP
+# wrong constant name address<defaultArg>1
+# wrong constant name address
+# wrong constant name address=
+# wrong constant name comments
+# wrong constant name decoded
+# wrong constant name display_name<defaultArg>1
+# wrong constant name display_name
+# wrong constant name display_name=
+# wrong constant name domain<defaultArg>1
+# wrong constant name domain
+# wrong constant name encoded
+# wrong constant name format<defaultArg>1
+# wrong constant name format
+# wrong constant name group
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name local<defaultArg>1
+# wrong constant name local
+# wrong constant name name
+# wrong constant name raw
+# undefined method `initialize<defaultArg>1' for class `Mail::AddressContainer'
+# Did you mean?  initialize_dup
+# wrong constant name <<
+# uninitialized constant Mail::AddressContainer::Elem
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name <static-init>
 # wrong constant name addresses
 # wrong constant name addresses_grouped_by_group
 # wrong constant name group_names
 # wrong constant name initialize
 # wrong constant name <static-init>
+# uninitialized constant Mail::AttachmentsList::Elem
+# wrong constant name []
+# wrong constant name []=
+# wrong constant name guess_encoding
+# wrong constant name initialize
+# wrong constant name inline
+# wrong constant name set_mime_type
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::BccField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::BccField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::BccField::ASTERISK
 # uninitialized constant Mail::BccField::ATOM_UNSAFE
 # uninitialized constant Mail::BccField::B_VALUES
@@ -10382,6 +8985,56 @@
 # uninitialized constant Mail::BccField::TO_CRLF_REGEX
 # uninitialized constant Mail::BccField::UNDERSCORE
 # uninitialized constant Mail::BccField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name include_in_headers
+# wrong constant name include_in_headers=
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `encoded<defaultArg>1' for class `Mail::Body'
+# undefined method `encoding<defaultArg>1' for class `Mail::Body'
+# undefined method `initialize<defaultArg>1' for class `Mail::Body'
+# Did you mean?  initialize_dup
+# undefined method `negotiate_best_encoding<defaultArg>1' for class `Mail::Body'
+# wrong constant name <<
+# wrong constant name ==
+# wrong constant name =~
+# wrong constant name ascii_only?
+# wrong constant name boundary
+# wrong constant name boundary=
+# wrong constant name charset
+# wrong constant name charset=
+# wrong constant name decoded
+# wrong constant name default_encoding
+# wrong constant name empty?
+# wrong constant name encoded<defaultArg>1
+# wrong constant name encoded
+# wrong constant name encoding<defaultArg>1
+# wrong constant name encoding
+# wrong constant name encoding=
+# wrong constant name epilogue
+# wrong constant name epilogue=
+# wrong constant name include?
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name match
+# wrong constant name multipart?
+# wrong constant name negotiate_best_encoding<defaultArg>1
+# wrong constant name negotiate_best_encoding
+# wrong constant name parts
+# wrong constant name preamble
+# wrong constant name preamble=
+# wrong constant name raw_source
+# wrong constant name set_sort_order
+# wrong constant name sort_parts!
+# wrong constant name split!
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::CcField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::CcField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::CcField::ASTERISK
 # uninitialized constant Mail::CcField::ATOM_UNSAFE
 # uninitialized constant Mail::CcField::B_VALUES
@@ -10417,6 +9070,23 @@
 # uninitialized constant Mail::CcField::TO_CRLF_REGEX
 # uninitialized constant Mail::CcField::UNDERSCORE
 # uninitialized constant Mail::CcField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name check
+# wrong constant name check_addr
+# wrong constant name check_from
+# wrong constant name check_message
+# wrong constant name check_to
+# wrong constant name validate_smtp_addr
+# undefined method `initialize<defaultArg>1' for class `Mail::CommentsField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::CommentsField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::CommentsField::ASTERISK
 # uninitialized constant Mail::CommentsField::ATOM_UNSAFE
 # uninitialized constant Mail::CommentsField::B_VALUES
@@ -10452,6 +9122,35 @@
 # uninitialized constant Mail::CommentsField::TO_CRLF_REGEX
 # uninitialized constant Mail::CommentsField::UNDERSCORE
 # uninitialized constant Mail::CommentsField::WSP
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `parse<defaultArg>1' for module `Mail::CommonAddress'
+# wrong constant name <<
+# wrong constant name addresses
+# wrong constant name addrs
+# wrong constant name charset
+# wrong constant name decoded_group_addresses
+# wrong constant name default
+# wrong constant name display_names
+# wrong constant name each
+# wrong constant name encode_if_needed
+# wrong constant name encoded_group_addresses
+# wrong constant name formatted
+# wrong constant name group_addresses
+# wrong constant name group_names
+# wrong constant name groups
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name value=
+# wrong constant name <static-init>
+# undefined method `parse<defaultArg>1' for module `Mail::CommonDate'
+# wrong constant name date_time
+# wrong constant name default
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name <static-init>
 # uninitialized constant Mail::CommonField::ASTERISK
 # uninitialized constant Mail::CommonField::ATOM_UNSAFE
 # uninitialized constant Mail::CommonField::B_VALUES
@@ -10486,6 +9185,45 @@
 # uninitialized constant Mail::CommonField::TOKEN_UNSAFE
 # uninitialized constant Mail::CommonField::UNDERSCORE
 # uninitialized constant Mail::CommonField::WSP
+# wrong constant name default
+# wrong constant name field_length
+# wrong constant name name
+# wrong constant name name=
+# wrong constant name responsible_for?
+# wrong constant name to_s
+# wrong constant name value
+# wrong constant name value=
+# wrong constant name <static-init>
+# undefined method `parse<defaultArg>1' for module `Mail::CommonMessageId'
+# wrong constant name default
+# wrong constant name element
+# wrong constant name message_id
+# wrong constant name message_ids
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name <static-init>
+# undefined method `delivery_method<defaultArg>1' for class `Mail::Configuration'
+# undefined method `delivery_method<defaultArg>2' for class `Mail::Configuration'
+# undefined method `param_encode_language<defaultArg>1' for class `Mail::Configuration'
+# undefined method `retriever_method<defaultArg>1' for class `Mail::Configuration'
+# undefined method `retriever_method<defaultArg>2' for class `Mail::Configuration'
+# wrong constant name delivery_method<defaultArg>1
+# wrong constant name delivery_method<defaultArg>2
+# wrong constant name delivery_method
+# wrong constant name lookup_delivery_method
+# wrong constant name lookup_retriever_method
+# wrong constant name param_encode_language<defaultArg>1
+# wrong constant name param_encode_language
+# wrong constant name retriever_method<defaultArg>1
+# wrong constant name retriever_method<defaultArg>2
+# wrong constant name retriever_method
+# wrong constant name <static-init>
+# wrong constant name instance
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ContentDescriptionField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ContentDescriptionField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ContentDescriptionField::ASTERISK
 # uninitialized constant Mail::ContentDescriptionField::ATOM_UNSAFE
 # uninitialized constant Mail::ContentDescriptionField::B_VALUES
@@ -10521,10 +9259,19 @@
 # uninitialized constant Mail::ContentDescriptionField::TO_CRLF_REGEX
 # uninitialized constant Mail::ContentDescriptionField::UNDERSCORE
 # uninitialized constant Mail::ContentDescriptionField::WSP
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
 # wrong constant name disposition_type
 # wrong constant name initialize
 # wrong constant name parameters
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ContentDispositionField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ContentDispositionField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::ContentDispositionField'
 # uninitialized constant Mail::ContentDispositionField::ASTERISK
 # uninitialized constant Mail::ContentDispositionField::ATOM_UNSAFE
 # uninitialized constant Mail::ContentDispositionField::B_VALUES
@@ -10560,6 +9307,23 @@
 # uninitialized constant Mail::ContentDispositionField::TO_CRLF_REGEX
 # uninitialized constant Mail::ContentDispositionField::UNDERSCORE
 # uninitialized constant Mail::ContentDispositionField::WSP
+# wrong constant name decoded
+# wrong constant name disposition_type
+# wrong constant name element
+# wrong constant name encoded
+# wrong constant name filename
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name parameters
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ContentIdField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ContentIdField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::ContentIdField'
 # uninitialized constant Mail::ContentIdField::ASTERISK
 # uninitialized constant Mail::ContentIdField::ATOM_UNSAFE
 # uninitialized constant Mail::ContentIdField::B_VALUES
@@ -10595,10 +9359,25 @@
 # uninitialized constant Mail::ContentIdField::TO_CRLF_REGEX
 # uninitialized constant Mail::ContentIdField::UNDERSCORE
 # uninitialized constant Mail::ContentIdField::WSP
+# wrong constant name content_id
+# wrong constant name decoded
+# wrong constant name element
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name <static-init>
 # wrong constant name initialize
 # wrong constant name location
 # wrong constant name to_s
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ContentLocationField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ContentLocationField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::ContentLocationField'
 # uninitialized constant Mail::ContentLocationField::ASTERISK
 # uninitialized constant Mail::ContentLocationField::ATOM_UNSAFE
 # uninitialized constant Mail::ContentLocationField::B_VALUES
@@ -10634,9 +9413,24 @@
 # uninitialized constant Mail::ContentLocationField::TO_CRLF_REGEX
 # uninitialized constant Mail::ContentLocationField::UNDERSCORE
 # uninitialized constant Mail::ContentLocationField::WSP
+# wrong constant name decoded
+# wrong constant name element
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name location
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name <static-init>
 # wrong constant name encoding
 # wrong constant name initialize
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ContentTransferEncodingField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ContentTransferEncodingField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::ContentTransferEncodingField'
 # uninitialized constant Mail::ContentTransferEncodingField::ASTERISK
 # uninitialized constant Mail::ContentTransferEncodingField::ATOM_UNSAFE
 # uninitialized constant Mail::ContentTransferEncodingField::B_VALUES
@@ -10672,11 +9466,26 @@
 # uninitialized constant Mail::ContentTransferEncodingField::TO_CRLF_REGEX
 # uninitialized constant Mail::ContentTransferEncodingField::UNDERSCORE
 # uninitialized constant Mail::ContentTransferEncodingField::WSP
+# wrong constant name decoded
+# wrong constant name element
+# wrong constant name encoded
+# wrong constant name encoding
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name <static-init>
 # wrong constant name initialize
 # wrong constant name main_type
 # wrong constant name parameters
 # wrong constant name sub_type
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ContentTypeField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ContentTypeField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::ContentTypeField'
 # uninitialized constant Mail::ContentTypeField::ASTERISK
 # uninitialized constant Mail::ContentTypeField::ATOM_UNSAFE
 # uninitialized constant Mail::ContentTypeField::B_VALUES
@@ -10712,6 +9521,29 @@
 # uninitialized constant Mail::ContentTypeField::TO_CRLF_REGEX
 # uninitialized constant Mail::ContentTypeField::UNDERSCORE
 # uninitialized constant Mail::ContentTypeField::WSP
+# wrong constant name attempt_to_clean
+# wrong constant name content_type
+# wrong constant name decoded
+# wrong constant name element
+# wrong constant name encoded
+# wrong constant name filename
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name main_type
+# wrong constant name parameters
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name string
+# wrong constant name stringify
+# wrong constant name sub_type
+# wrong constant name <static-init>
+# wrong constant name generate_boundary
+# wrong constant name with_boundary
+# undefined method `initialize<defaultArg>1' for class `Mail::DateField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::DateField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::DateField::ASTERISK
 # uninitialized constant Mail::DateField::ATOM_UNSAFE
 # uninitialized constant Mail::DateField::B_VALUES
@@ -10747,17 +9579,169 @@
 # uninitialized constant Mail::DateField::TO_CRLF_REGEX
 # uninitialized constant Mail::DateField::UNDERSCORE
 # uninitialized constant Mail::DateField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
 # wrong constant name date_string
 # wrong constant name initialize
 # wrong constant name time_string
 # wrong constant name <static-init>
+# uninitialized constant Mail::Encodings::ASTERISK
+# uninitialized constant Mail::Encodings::ATOM_UNSAFE
+# uninitialized constant Mail::Encodings::B_VALUES
+# wrong constant name <Class:Base64>
+# wrong constant name <Class:Binary>
+# uninitialized constant Mail::Encodings::CAPITAL_M
+# uninitialized constant Mail::Encodings::COLON
+# uninitialized constant Mail::Encodings::CONTROL_CHAR
+# uninitialized constant Mail::Encodings::CR
+# uninitialized constant Mail::Encodings::CRLF
+# uninitialized constant Mail::Encodings::CR_ENCODED
+# uninitialized constant Mail::Encodings::EMPTY
+# uninitialized constant Mail::Encodings::ENCODED_VALUE
+# uninitialized constant Mail::Encodings::EQUAL_LF
+# wrong constant name <Class:EightBit>
+# uninitialized constant Mail::Encodings::FIELD_BODY
+# uninitialized constant Mail::Encodings::FIELD_LINE
+# uninitialized constant Mail::Encodings::FIELD_NAME
+# uninitialized constant Mail::Encodings::FIELD_PREFIX
+# uninitialized constant Mail::Encodings::FIELD_SPLIT
+# uninitialized constant Mail::Encodings::FULL_ENCODED_VALUE
+# uninitialized constant Mail::Encodings::FWS
+# uninitialized constant Mail::Encodings::HEADER_LINE
+# uninitialized constant Mail::Encodings::HEADER_SPLIT
+# uninitialized constant Mail::Encodings::HYPHEN
+# wrong constant name <Class:Identity>
+# uninitialized constant Mail::Encodings::LF
+# uninitialized constant Mail::Encodings::LF_ENCODED
+# uninitialized constant Mail::Encodings::NULL_SENDER
+# uninitialized constant Mail::Encodings::PHRASE_UNSAFE
+# uninitialized constant Mail::Encodings::QP_SAFE
+# uninitialized constant Mail::Encodings::QP_UNSAFE
+# uninitialized constant Mail::Encodings::Q_VALUES
+# wrong constant name <Class:QuotedPrintable>
+# uninitialized constant Mail::Encodings::SPACE
+# wrong constant name <Class:SevenBit>
+# uninitialized constant Mail::Encodings::TEXT
+# uninitialized constant Mail::Encodings::TOKEN_UNSAFE
+# wrong constant name <Class:TransferEncoding>
+# uninitialized constant Mail::Encodings::UNDERSCORE
+# wrong constant name <Class:UnixToUnix>
+# uninitialized constant Mail::Encodings::WSP
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# uninitialized constant Mail::Encodings::Identity::NAME
+# uninitialized constant Mail::Encodings::Identity::PRIORITY
+# wrong constant name <static-init>
+# wrong constant name decode
+# wrong constant name encode
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined singleton method `negotiate<defaultArg>1' for `Mail::Encodings::TransferEncoding'
+# undefined singleton method `renegotiate<defaultArg>1' for `Mail::Encodings::TransferEncoding'
+# wrong constant name <static-init>
+# wrong constant name can_encode?
+# wrong constant name can_transport?
+# wrong constant name compatible_input?
+# wrong constant name cost
+# wrong constant name lowest_cost
+# wrong constant name negotiate<defaultArg>1
+# wrong constant name negotiate
+# wrong constant name renegotiate<defaultArg>1
+# wrong constant name renegotiate
 # uninitialized constant Mail::Encodings::UnixToUnix::PRIORITY
+# wrong constant name <static-init>
+# wrong constant name decode
+# wrong constant name encode
+# undefined singleton method `address_encode<defaultArg>1' for `Mail::Encodings'
+# undefined singleton method `b_value_encode<defaultArg>1' for `Mail::Encodings'
+# undefined singleton method `q_value_encode<defaultArg>1' for `Mail::Encodings'
+# undefined singleton method `transcode_charset<defaultArg>1' for `Mail::Encodings'
+# wrong constant name <static-init>
+# wrong constant name address_encode<defaultArg>1
+# wrong constant name address_encode
+# wrong constant name b_value_decode
+# wrong constant name b_value_encode<defaultArg>1
+# wrong constant name b_value_encode
+# wrong constant name collapse_adjacent_encodings
+# wrong constant name decode_encode
+# wrong constant name defined?
+# wrong constant name each_base64_chunk_byterange
+# wrong constant name each_chunk_byterange
+# wrong constant name encode_non_usascii
+# wrong constant name find_encoding
+# wrong constant name get_all
+# wrong constant name get_encoding
+# wrong constant name get_name
+# wrong constant name param_decode
+# wrong constant name param_encode
+# wrong constant name q_value_decode
+# wrong constant name q_value_encode<defaultArg>1
+# wrong constant name q_value_encode
+# wrong constant name register
+# wrong constant name transcode_charset<defaultArg>1
+# wrong constant name transcode_charset
+# wrong constant name unquote_and_convert_to
+# wrong constant name value_decode
+# wrong constant name value_encoding_from_string
+# wrong constant name with_ascii_kcode
+# uninitialized constant Mail::Envelope::ASTERISK
+# uninitialized constant Mail::Envelope::ATOM_UNSAFE
+# uninitialized constant Mail::Envelope::B_VALUES
+# uninitialized constant Mail::Envelope::CAPITAL_M
+# uninitialized constant Mail::Envelope::COLON
+# uninitialized constant Mail::Envelope::CONTROL_CHAR
+# uninitialized constant Mail::Envelope::CR
+# uninitialized constant Mail::Envelope::CRLF
+# uninitialized constant Mail::Envelope::CR_ENCODED
+# uninitialized constant Mail::Envelope::EMPTY
+# uninitialized constant Mail::Envelope::ENCODED_VALUE
+# uninitialized constant Mail::Envelope::EQUAL_LF
+# uninitialized constant Mail::Envelope::FIELD_BODY
+# uninitialized constant Mail::Envelope::FIELD_LINE
+# uninitialized constant Mail::Envelope::FIELD_NAME
+# uninitialized constant Mail::Envelope::FIELD_PREFIX
+# uninitialized constant Mail::Envelope::FIELD_SPLIT
+# uninitialized constant Mail::Envelope::FILENAME_RE
+# uninitialized constant Mail::Envelope::FULL_ENCODED_VALUE
+# uninitialized constant Mail::Envelope::FWS
+# uninitialized constant Mail::Envelope::HEADER_LINE
+# uninitialized constant Mail::Envelope::HEADER_SPLIT
+# uninitialized constant Mail::Envelope::HYPHEN
+# uninitialized constant Mail::Envelope::LF
+# uninitialized constant Mail::Envelope::LF_ENCODED
+# uninitialized constant Mail::Envelope::NULL_SENDER
+# uninitialized constant Mail::Envelope::PHRASE_UNSAFE
+# uninitialized constant Mail::Envelope::QP_SAFE
+# uninitialized constant Mail::Envelope::QP_UNSAFE
+# uninitialized constant Mail::Envelope::Q_VALUES
+# uninitialized constant Mail::Envelope::SPACE
+# uninitialized constant Mail::Envelope::TEXT
+# uninitialized constant Mail::Envelope::TOKEN_UNSAFE
+# uninitialized constant Mail::Envelope::TO_CRLF_REGEX
+# uninitialized constant Mail::Envelope::UNDERSCORE
+# uninitialized constant Mail::Envelope::WSP
+# wrong constant name date
+# wrong constant name element
+# wrong constant name from
+# wrong constant name initialize
+# wrong constant name <static-init>
 # wrong constant name address
 # wrong constant name date_time
 # wrong constant name formatted_date_time
 # wrong constant name initialize
 # wrong constant name <static-init>
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::Field'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::Field'
+# Did you mean?  initialize_dup
+# wrong constant name <=>
+# wrong constant name ==
 # uninitialized constant Mail::Field::ASTERISK
 # uninitialized constant Mail::Field::ATOM_UNSAFE
 # uninitialized constant Mail::Field::B_VALUES
@@ -10777,22 +9761,72 @@
 # uninitialized constant Mail::Field::FIELD_SPLIT
 # uninitialized constant Mail::Field::FULL_ENCODED_VALUE
 # uninitialized constant Mail::Field::FWS
+# wrong constant name <Class:FieldError>
 # uninitialized constant Mail::Field::HEADER_LINE
 # uninitialized constant Mail::Field::HEADER_SPLIT
 # uninitialized constant Mail::Field::HYPHEN
+# wrong constant name <Class:IncompleteParseError>
 # uninitialized constant Mail::Field::LF
 # uninitialized constant Mail::Field::LF_ENCODED
 # uninitialized constant Mail::Field::NULL_SENDER
+# wrong constant name <Class:NilParseError>
 # uninitialized constant Mail::Field::PHRASE_UNSAFE
+# wrong constant name <Class:ParseError>
 # uninitialized constant Mail::Field::QP_SAFE
 # uninitialized constant Mail::Field::QP_UNSAFE
 # uninitialized constant Mail::Field::Q_VALUES
 # uninitialized constant Mail::Field::SPACE
+# wrong constant name <Class:SyntaxError>
 # uninitialized constant Mail::Field::TEXT
 # uninitialized constant Mail::Field::TOKEN_UNSAFE
 # uninitialized constant Mail::Field::TO_CRLF_REGEX
 # uninitialized constant Mail::Field::UNDERSCORE
 # uninitialized constant Mail::Field::WSP
+# wrong constant name field
+# wrong constant name field=
+# wrong constant name field_order_id
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name method_missing
+# wrong constant name name
+# wrong constant name responsible_for?
+# wrong constant name same
+# wrong constant name unparsed_value
+# wrong constant name update
+# wrong constant name value
+# wrong constant name value=
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name element
+# wrong constant name element=
+# wrong constant name initialize
+# wrong constant name reason
+# wrong constant name reason=
+# wrong constant name value
+# wrong constant name value=
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined singleton method `parse<defaultArg>1' for `Mail::Field'
+# wrong constant name <static-init>
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name split
+# wrong constant name <<
+# uninitialized constant Mail::FieldList::Elem
+# wrong constant name <static-init>
+# wrong constant name deliver!
+# wrong constant name initialize
+# wrong constant name settings
+# wrong constant name settings=
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::FromField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::FromField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::FromField::ASTERISK
 # uninitialized constant Mail::FromField::ATOM_UNSAFE
 # uninitialized constant Mail::FromField::B_VALUES
@@ -10828,6 +9862,16 @@
 # uninitialized constant Mail::FromField::TO_CRLF_REGEX
 # uninitialized constant Mail::FromField::UNDERSCORE
 # uninitialized constant Mail::FromField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::Header'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::Header'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::Header::ASTERISK
 # uninitialized constant Mail::Header::ATOM_UNSAFE
 # uninitialized constant Mail::Header::B_VALUES
@@ -10840,6 +9884,7 @@
 # uninitialized constant Mail::Header::EMPTY
 # uninitialized constant Mail::Header::ENCODED_VALUE
 # uninitialized constant Mail::Header::EQUAL_LF
+# uninitialized constant Mail::Header::Elem
 # uninitialized constant Mail::Header::FIELD_BODY
 # uninitialized constant Mail::Header::FIELD_LINE
 # uninitialized constant Mail::Header::FIELD_NAME
@@ -10863,6 +9908,27 @@
 # uninitialized constant Mail::Header::TO_CRLF_REGEX
 # uninitialized constant Mail::Header::UNDERSCORE
 # uninitialized constant Mail::Header::WSP
+# wrong constant name []
+# wrong constant name []=
+# wrong constant name charset
+# wrong constant name charset=
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name errors
+# wrong constant name field_summary
+# wrong constant name fields
+# wrong constant name fields=
+# wrong constant name has_content_id?
+# wrong constant name has_date?
+# wrong constant name has_message_id?
+# wrong constant name has_mime_version?
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name raw_source
+# wrong constant name <static-init>
+# wrong constant name maximum_amount
+# wrong constant name maximum_amount=
 # undefined method `delete_all<defaultArg>1' for class `Mail::IMAP'
 # undefined method `find<defaultArg>1' for class `Mail::IMAP'
 # wrong constant name connection
@@ -10874,6 +9940,10 @@
 # wrong constant name settings
 # wrong constant name settings=
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::InReplyToField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::InReplyToField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::InReplyToField::ASTERISK
 # uninitialized constant Mail::InReplyToField::ATOM_UNSAFE
 # uninitialized constant Mail::InReplyToField::B_VALUES
@@ -10909,6 +9979,45 @@
 # uninitialized constant Mail::InReplyToField::TO_CRLF_REGEX
 # uninitialized constant Mail::InReplyToField::UNDERSCORE
 # uninitialized constant Mail::InReplyToField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `default<defaultArg>1' for class `Mail::IndifferentHash'
+# undefined method `initialize<defaultArg>1' for class `Mail::IndifferentHash'
+# Did you mean?  initialize_dup
+# uninitialized constant Mail::IndifferentHash::Elem
+# uninitialized constant Mail::IndifferentHash::K
+# uninitialized constant Mail::IndifferentHash::V
+# wrong constant name []=
+# wrong constant name convert_key
+# wrong constant name convert_value
+# wrong constant name default<defaultArg>1
+# wrong constant name default
+# wrong constant name delete
+# wrong constant name fetch
+# wrong constant name has_key?
+# wrong constant name include?
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name key?
+# wrong constant name member?
+# wrong constant name merge
+# wrong constant name merge!
+# wrong constant name regular_update
+# wrong constant name regular_writer
+# wrong constant name store
+# wrong constant name update
+# wrong constant name values_at
+# wrong constant name <static-init>
+# wrong constant name new_from_hash_copying_default
+# undefined method `initialize<defaultArg>1' for class `Mail::KeywordsField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::KeywordsField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::KeywordsField'
 # uninitialized constant Mail::KeywordsField::ASTERISK
 # uninitialized constant Mail::KeywordsField::ATOM_UNSAFE
 # uninitialized constant Mail::KeywordsField::B_VALUES
@@ -10944,12 +10053,116 @@
 # uninitialized constant Mail::KeywordsField::TO_CRLF_REGEX
 # uninitialized constant Mail::KeywordsField::UNDERSCORE
 # uninitialized constant Mail::KeywordsField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name keywords
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name phrase_list
+# wrong constant name <static-init>
 # wrong constant name deliver!
 # wrong constant name initialize
 # wrong constant name logger
 # wrong constant name settings
 # wrong constant name severity
 # wrong constant name <static-init>
+# wrong constant name <Class:AnyAttachmentMatcher>
+# wrong constant name <Class:AttachmentFilenameMatcher>
+# wrong constant name <Class:HasSentEmailMatcher>
+# wrong constant name an_attachment_with_filename
+# wrong constant name any_attachment
+# wrong constant name have_sent_email
+# wrong constant name ===
+# wrong constant name <static-init>
+# wrong constant name ===
+# wrong constant name filename
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name bcc
+# wrong constant name cc
+# wrong constant name description
+# wrong constant name dump_deliveries
+# wrong constant name explain_expectations
+# wrong constant name failure_message
+# wrong constant name failure_message_when_negated
+# wrong constant name filter_matched_deliveries
+# wrong constant name from
+# wrong constant name initialize
+# wrong constant name matches?
+# wrong constant name matches_on_attachments?
+# wrong constant name matches_on_blind_copy_recipients?
+# wrong constant name matches_on_body?
+# wrong constant name matches_on_body_matcher?
+# wrong constant name matches_on_copy_recipients?
+# wrong constant name matches_on_having_attachments?
+# wrong constant name matches_on_html_part_body?
+# wrong constant name matches_on_recipients?
+# wrong constant name matches_on_sender?
+# wrong constant name matches_on_subject?
+# wrong constant name matches_on_subject_matcher?
+# wrong constant name matches_on_text_part_body?
+# wrong constant name matching_body
+# wrong constant name matching_subject
+# wrong constant name to
+# wrong constant name with_any_attachments
+# wrong constant name with_attachments
+# wrong constant name with_body
+# wrong constant name with_html
+# wrong constant name with_no_attachments
+# wrong constant name with_subject
+# wrong constant name with_text
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `add_date<defaultArg>1' for class `Mail::Message'
+# undefined method `add_message_id<defaultArg>1' for class `Mail::Message'
+# undefined method `add_mime_version<defaultArg>1' for class `Mail::Message'
+# undefined method `bcc<defaultArg>1' for class `Mail::Message'
+# undefined method `body<defaultArg>1' for class `Mail::Message'
+# undefined method `body_encoding<defaultArg>1' for class `Mail::Message'
+# undefined method `cc<defaultArg>1' for class `Mail::Message'
+# undefined method `comments<defaultArg>1' for class `Mail::Message'
+# undefined method `content_description<defaultArg>1' for class `Mail::Message'
+# undefined method `content_disposition<defaultArg>1' for class `Mail::Message'
+# undefined method `content_id<defaultArg>1' for class `Mail::Message'
+# undefined method `content_location<defaultArg>1' for class `Mail::Message'
+# undefined method `content_transfer_encoding<defaultArg>1' for class `Mail::Message'
+# undefined method `content_type<defaultArg>1' for class `Mail::Message'
+# undefined method `date<defaultArg>1' for class `Mail::Message'
+# undefined method `default<defaultArg>1' for class `Mail::Message'
+# undefined method `delivery_method<defaultArg>1' for class `Mail::Message'
+# undefined method `delivery_method<defaultArg>2' for class `Mail::Message'
+# undefined method `from<defaultArg>1' for class `Mail::Message'
+# undefined method `header<defaultArg>1' for class `Mail::Message'
+# undefined method `headers<defaultArg>1' for class `Mail::Message'
+# undefined method `in_reply_to<defaultArg>1' for class `Mail::Message'
+# undefined method `keywords<defaultArg>1' for class `Mail::Message'
+# undefined method `mark_for_delete=<defaultArg>1' for class `Mail::Message'
+# undefined method `message_id<defaultArg>1' for class `Mail::Message'
+# undefined method `mime_version<defaultArg>1' for class `Mail::Message'
+# undefined method `part<defaultArg>1' for class `Mail::Message'
+# undefined method `received<defaultArg>1' for class `Mail::Message'
+# undefined method `references<defaultArg>1' for class `Mail::Message'
+# undefined method `reply_to<defaultArg>1' for class `Mail::Message'
+# undefined method `resent_bcc<defaultArg>1' for class `Mail::Message'
+# undefined method `resent_cc<defaultArg>1' for class `Mail::Message'
+# undefined method `resent_date<defaultArg>1' for class `Mail::Message'
+# undefined method `resent_from<defaultArg>1' for class `Mail::Message'
+# undefined method `resent_message_id<defaultArg>1' for class `Mail::Message'
+# undefined method `resent_sender<defaultArg>1' for class `Mail::Message'
+# undefined method `resent_to<defaultArg>1' for class `Mail::Message'
+# undefined method `return_path<defaultArg>1' for class `Mail::Message'
+# undefined method `sender<defaultArg>1' for class `Mail::Message'
+# undefined method `smtp_envelope_from<defaultArg>1' for class `Mail::Message'
+# undefined method `smtp_envelope_to<defaultArg>1' for class `Mail::Message'
+# undefined method `subject<defaultArg>1' for class `Mail::Message'
+# undefined method `to<defaultArg>1' for class `Mail::Message'
+# undefined method `to_yaml<defaultArg>1' for class `Mail::Message'
+# undefined method `transport_encoding<defaultArg>1' for class `Mail::Message'
+# wrong constant name <=>
+# wrong constant name ==
 # uninitialized constant Mail::Message::ASTERISK
 # uninitialized constant Mail::Message::ATOM_UNSAFE
 # uninitialized constant Mail::Message::B_VALUES
@@ -10985,6 +10198,223 @@
 # uninitialized constant Mail::Message::TO_CRLF_REGEX
 # uninitialized constant Mail::Message::UNDERSCORE
 # uninitialized constant Mail::Message::WSP
+# wrong constant name []
+# wrong constant name []=
+# wrong constant name action
+# wrong constant name add_charset
+# wrong constant name add_content_transfer_encoding
+# wrong constant name add_content_type
+# wrong constant name add_date<defaultArg>1
+# wrong constant name add_date
+# wrong constant name add_file
+# wrong constant name add_message_id<defaultArg>1
+# wrong constant name add_message_id
+# wrong constant name add_mime_version<defaultArg>1
+# wrong constant name add_mime_version
+# wrong constant name add_part
+# wrong constant name add_transfer_encoding
+# wrong constant name all_parts
+# wrong constant name attachment
+# wrong constant name attachment?
+# wrong constant name attachments
+# wrong constant name bcc<defaultArg>1
+# wrong constant name bcc
+# wrong constant name bcc=
+# wrong constant name bcc_addrs
+# wrong constant name body<defaultArg>1
+# wrong constant name body
+# wrong constant name body=
+# wrong constant name body_encoding<defaultArg>1
+# wrong constant name body_encoding
+# wrong constant name body_encoding=
+# wrong constant name bounced?
+# wrong constant name boundary
+# wrong constant name cc<defaultArg>1
+# wrong constant name cc
+# wrong constant name cc=
+# wrong constant name cc_addrs
+# wrong constant name charset
+# wrong constant name charset=
+# wrong constant name comments<defaultArg>1
+# wrong constant name comments
+# wrong constant name comments=
+# wrong constant name content_description<defaultArg>1
+# wrong constant name content_description
+# wrong constant name content_description=
+# wrong constant name content_disposition<defaultArg>1
+# wrong constant name content_disposition
+# wrong constant name content_disposition=
+# wrong constant name content_id<defaultArg>1
+# wrong constant name content_id
+# wrong constant name content_id=
+# wrong constant name content_location<defaultArg>1
+# wrong constant name content_location
+# wrong constant name content_location=
+# wrong constant name content_transfer_encoding<defaultArg>1
+# wrong constant name content_transfer_encoding
+# wrong constant name content_transfer_encoding=
+# wrong constant name content_type<defaultArg>1
+# wrong constant name content_type
+# wrong constant name content_type=
+# wrong constant name content_type_parameters
+# wrong constant name convert_to_multipart
+# wrong constant name date<defaultArg>1
+# wrong constant name date
+# wrong constant name date=
+# wrong constant name decode_body
+# wrong constant name decoded
+# wrong constant name default<defaultArg>1
+# wrong constant name default
+# wrong constant name deliver
+# wrong constant name deliver!
+# wrong constant name delivery_handler
+# wrong constant name delivery_handler=
+# wrong constant name delivery_method<defaultArg>1
+# wrong constant name delivery_method<defaultArg>2
+# wrong constant name delivery_method
+# wrong constant name delivery_status_part
+# wrong constant name delivery_status_report?
+# wrong constant name destinations
+# wrong constant name diagnostic_code
+# wrong constant name encode!
+# wrong constant name encoded
+# wrong constant name envelope_date
+# wrong constant name envelope_from
+# wrong constant name error_status
+# wrong constant name errors
+# wrong constant name filename
+# wrong constant name final_recipient
+# wrong constant name find_first_mime_type
+# wrong constant name from<defaultArg>1
+# wrong constant name from
+# wrong constant name from=
+# wrong constant name from_addrs
+# wrong constant name has_attachments?
+# wrong constant name has_charset?
+# wrong constant name has_content_transfer_encoding?
+# wrong constant name has_content_type?
+# wrong constant name has_date?
+# wrong constant name has_message_id?
+# wrong constant name has_mime_version?
+# wrong constant name has_transfer_encoding?
+# wrong constant name header<defaultArg>1
+# wrong constant name header
+# wrong constant name header=
+# wrong constant name header_fields
+# wrong constant name headers<defaultArg>1
+# wrong constant name headers
+# wrong constant name html_part
+# wrong constant name html_part=
+# wrong constant name in_reply_to<defaultArg>1
+# wrong constant name in_reply_to
+# wrong constant name in_reply_to=
+# wrong constant name inform_interceptors
+# wrong constant name inform_observers
+# wrong constant name initialize
+# wrong constant name is_marked_for_delete?
+# wrong constant name keywords<defaultArg>1
+# wrong constant name keywords
+# wrong constant name keywords=
+# wrong constant name main_type
+# wrong constant name mark_for_delete=<defaultArg>1
+# wrong constant name mark_for_delete=
+# wrong constant name message_content_type
+# wrong constant name message_id<defaultArg>1
+# wrong constant name message_id
+# wrong constant name message_id=
+# wrong constant name method_missing
+# wrong constant name mime_parameters
+# wrong constant name mime_type
+# wrong constant name mime_version<defaultArg>1
+# wrong constant name mime_version
+# wrong constant name mime_version=
+# wrong constant name multipart?
+# wrong constant name multipart_report?
+# wrong constant name part<defaultArg>1
+# wrong constant name part
+# wrong constant name parts
+# wrong constant name perform_deliveries
+# wrong constant name perform_deliveries=
+# wrong constant name raise_delivery_errors
+# wrong constant name raise_delivery_errors=
+# wrong constant name raw_envelope
+# wrong constant name raw_source
+# wrong constant name read
+# wrong constant name ready_to_send!
+# wrong constant name received<defaultArg>1
+# wrong constant name received
+# wrong constant name received=
+# wrong constant name references<defaultArg>1
+# wrong constant name references
+# wrong constant name references=
+# wrong constant name register_for_delivery_notification
+# wrong constant name remote_mta
+# wrong constant name reply
+# wrong constant name reply_to<defaultArg>1
+# wrong constant name reply_to
+# wrong constant name reply_to=
+# wrong constant name resent_bcc<defaultArg>1
+# wrong constant name resent_bcc
+# wrong constant name resent_bcc=
+# wrong constant name resent_cc<defaultArg>1
+# wrong constant name resent_cc
+# wrong constant name resent_cc=
+# wrong constant name resent_date<defaultArg>1
+# wrong constant name resent_date
+# wrong constant name resent_date=
+# wrong constant name resent_from<defaultArg>1
+# wrong constant name resent_from
+# wrong constant name resent_from=
+# wrong constant name resent_message_id<defaultArg>1
+# wrong constant name resent_message_id
+# wrong constant name resent_message_id=
+# wrong constant name resent_sender<defaultArg>1
+# wrong constant name resent_sender
+# wrong constant name resent_sender=
+# wrong constant name resent_to<defaultArg>1
+# wrong constant name resent_to
+# wrong constant name resent_to=
+# wrong constant name retryable?
+# wrong constant name return_path<defaultArg>1
+# wrong constant name return_path
+# wrong constant name return_path=
+# wrong constant name sender<defaultArg>1
+# wrong constant name sender
+# wrong constant name sender=
+# wrong constant name set_envelope
+# wrong constant name skip_deletion
+# wrong constant name smtp_envelope_from<defaultArg>1
+# wrong constant name smtp_envelope_from
+# wrong constant name smtp_envelope_from=
+# wrong constant name smtp_envelope_to<defaultArg>1
+# wrong constant name smtp_envelope_to
+# wrong constant name smtp_envelope_to=
+# wrong constant name sub_type
+# wrong constant name subject<defaultArg>1
+# wrong constant name subject
+# wrong constant name subject=
+# wrong constant name text?
+# wrong constant name text_part
+# wrong constant name text_part=
+# wrong constant name to<defaultArg>1
+# wrong constant name to
+# wrong constant name to=
+# wrong constant name to_addrs
+# wrong constant name to_yaml<defaultArg>1
+# wrong constant name to_yaml
+# wrong constant name transfer_encoding
+# wrong constant name transport_encoding<defaultArg>1
+# wrong constant name transport_encoding
+# wrong constant name transport_encoding=
+# wrong constant name without_attachments!
+# wrong constant name default_charset
+# wrong constant name default_charset=
+# wrong constant name from_hash
+# wrong constant name from_yaml
+# undefined method `initialize<defaultArg>1' for class `Mail::MessageIdField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::MessageIdField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::MessageIdField::ASTERISK
 # uninitialized constant Mail::MessageIdField::ATOM_UNSAFE
 # uninitialized constant Mail::MessageIdField::B_VALUES
@@ -11020,6 +10450,12 @@
 # uninitialized constant Mail::MessageIdField::TO_CRLF_REGEX
 # uninitialized constant Mail::MessageIdField::UNDERSCORE
 # uninitialized constant Mail::MessageIdField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
 # wrong constant name initialize
 # wrong constant name message_id
 # wrong constant name message_ids
@@ -11028,6 +10464,11 @@
 # wrong constant name major
 # wrong constant name minor
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::MimeVersionField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::MimeVersionField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::MimeVersionField'
 # uninitialized constant Mail::MimeVersionField::ASTERISK
 # uninitialized constant Mail::MimeVersionField::ATOM_UNSAFE
 # uninitialized constant Mail::MimeVersionField::B_VALUES
@@ -11063,6 +10504,124 @@
 # uninitialized constant Mail::MimeVersionField::TO_CRLF_REGEX
 # uninitialized constant Mail::MimeVersionField::UNDERSCORE
 # uninitialized constant Mail::MimeVersionField::WSP
+# wrong constant name decoded
+# wrong constant name element
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name major
+# wrong constant name minor
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name version
+# wrong constant name <static-init>
+# wrong constant name <Class:Chars>
+# wrong constant name <Class:EncodingError>
+# wrong constant name <Class:Unicode>
+# undefined method `justify<defaultArg>1' for class `Mail::Multibyte::Chars'
+# undefined method `normalize<defaultArg>1' for class `Mail::Multibyte::Chars'
+# undefined method `padding<defaultArg>1' for class `Mail::Multibyte::Chars'
+# undefined method `respond_to?<defaultArg>1' for class `Mail::Multibyte::Chars'
+# undefined method `tidy_bytes<defaultArg>1' for class `Mail::Multibyte::Chars'
+# wrong constant name <=>
+# wrong constant name =~
+# wrong constant name []
+# wrong constant name []=
+# wrong constant name acts_like_string?
+# wrong constant name capitalize
+# wrong constant name capitalize!
+# wrong constant name chars
+# wrong constant name compose
+# wrong constant name decompose
+# wrong constant name downcase
+# wrong constant name downcase!
+# wrong constant name g_length
+# wrong constant name initialize
+# wrong constant name justify<defaultArg>1
+# wrong constant name justify
+# wrong constant name limit
+# wrong constant name method_missing
+# wrong constant name normalize<defaultArg>1
+# wrong constant name normalize
+# wrong constant name padding<defaultArg>1
+# wrong constant name padding
+# wrong constant name respond_to?<defaultArg>1
+# wrong constant name respond_to?
+# wrong constant name reverse
+# wrong constant name reverse!
+# wrong constant name slice
+# wrong constant name slice!
+# wrong constant name split
+# wrong constant name tidy_bytes<defaultArg>1
+# wrong constant name tidy_bytes
+# wrong constant name tidy_bytes!
+# wrong constant name titlecase
+# wrong constant name titleize
+# wrong constant name to_str
+# wrong constant name translate_offset
+# wrong constant name upcase
+# wrong constant name upcase!
+# wrong constant name wrapped_string
+# wrong constant name <static-init>
+# wrong constant name consumes?
+# wrong constant name <static-init>
+# undefined method `normalize<defaultArg>1' for module `Mail::Multibyte::Unicode'
+# undefined method `tidy_bytes<defaultArg>1' for module `Mail::Multibyte::Unicode'
+# wrong constant name <Class:Codepoint>
+# wrong constant name <Class:UnicodeDatabase>
+# wrong constant name apply_mapping
+# wrong constant name compose_codepoints
+# wrong constant name decompose_codepoints
+# wrong constant name default_normalization_form
+# wrong constant name default_normalization_form=
+# wrong constant name g_pack
+# wrong constant name g_unpack
+# wrong constant name in_char_class?
+# wrong constant name normalize<defaultArg>1
+# wrong constant name normalize
+# wrong constant name reorder_characters
+# wrong constant name tidy_bytes<defaultArg>1
+# wrong constant name tidy_bytes
+# wrong constant name u_unpack
+# wrong constant name code
+# wrong constant name code=
+# wrong constant name combining_class
+# wrong constant name combining_class=
+# wrong constant name decomp_mapping
+# wrong constant name decomp_mapping=
+# wrong constant name decomp_type
+# wrong constant name decomp_type=
+# wrong constant name lowercase_mapping
+# wrong constant name lowercase_mapping=
+# wrong constant name swapcase_mapping
+# wrong constant name uppercase_mapping
+# wrong constant name uppercase_mapping=
+# wrong constant name <static-init>
+# wrong constant name boundary
+# wrong constant name boundary=
+# wrong constant name codepoints
+# wrong constant name codepoints=
+# wrong constant name composition_exclusion
+# wrong constant name composition_exclusion=
+# wrong constant name composition_map
+# wrong constant name composition_map=
+# wrong constant name cp1252
+# wrong constant name cp1252=
+# wrong constant name load
+# wrong constant name <static-init>
+# wrong constant name dirname
+# wrong constant name filename
+# wrong constant name <static-init>
+# wrong constant name codepoints_to_pattern
+# wrong constant name <static-init>
+# wrong constant name clean
+# wrong constant name mb_chars
+# wrong constant name proxy_class
+# wrong constant name proxy_class=
+# wrong constant name valid_character
+# wrong constant name verify
+# wrong constant name verify!
 # uninitialized constant Mail::OptionalField::ASTERISK
 # uninitialized constant Mail::OptionalField::ATOM_UNSAFE
 # uninitialized constant Mail::OptionalField::B_VALUES
@@ -11109,6 +10668,393 @@
 # wrong constant name settings
 # wrong constant name settings=
 # wrong constant name <static-init>
+# uninitialized constant Mail::ParameterHash::ASTERISK
+# uninitialized constant Mail::ParameterHash::ATOM_UNSAFE
+# uninitialized constant Mail::ParameterHash::B_VALUES
+# uninitialized constant Mail::ParameterHash::CAPITAL_M
+# uninitialized constant Mail::ParameterHash::COLON
+# uninitialized constant Mail::ParameterHash::CONTROL_CHAR
+# uninitialized constant Mail::ParameterHash::CR
+# uninitialized constant Mail::ParameterHash::CRLF
+# uninitialized constant Mail::ParameterHash::CR_ENCODED
+# uninitialized constant Mail::ParameterHash::EMPTY
+# uninitialized constant Mail::ParameterHash::ENCODED_VALUE
+# uninitialized constant Mail::ParameterHash::EQUAL_LF
+# uninitialized constant Mail::ParameterHash::Elem
+# uninitialized constant Mail::ParameterHash::FIELD_BODY
+# uninitialized constant Mail::ParameterHash::FIELD_LINE
+# uninitialized constant Mail::ParameterHash::FIELD_NAME
+# uninitialized constant Mail::ParameterHash::FIELD_PREFIX
+# uninitialized constant Mail::ParameterHash::FIELD_SPLIT
+# uninitialized constant Mail::ParameterHash::FULL_ENCODED_VALUE
+# uninitialized constant Mail::ParameterHash::FWS
+# uninitialized constant Mail::ParameterHash::HEADER_LINE
+# uninitialized constant Mail::ParameterHash::HEADER_SPLIT
+# uninitialized constant Mail::ParameterHash::HYPHEN
+# uninitialized constant Mail::ParameterHash::K
+# uninitialized constant Mail::ParameterHash::LF
+# uninitialized constant Mail::ParameterHash::LF_ENCODED
+# uninitialized constant Mail::ParameterHash::NULL_SENDER
+# uninitialized constant Mail::ParameterHash::PHRASE_UNSAFE
+# uninitialized constant Mail::ParameterHash::QP_SAFE
+# uninitialized constant Mail::ParameterHash::QP_UNSAFE
+# uninitialized constant Mail::ParameterHash::Q_VALUES
+# uninitialized constant Mail::ParameterHash::SPACE
+# uninitialized constant Mail::ParameterHash::TEXT
+# uninitialized constant Mail::ParameterHash::TOKEN_UNSAFE
+# uninitialized constant Mail::ParameterHash::TO_CRLF_REGEX
+# uninitialized constant Mail::ParameterHash::UNDERSCORE
+# uninitialized constant Mail::ParameterHash::V
+# uninitialized constant Mail::ParameterHash::WSP
+# wrong constant name []
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name <static-init>
+# wrong constant name chars
+# wrong constant name <static-init>
+# wrong constant name <Class:AddressListsParser>
+# wrong constant name <Class:ContentDispositionParser>
+# wrong constant name <Class:ContentLocationParser>
+# wrong constant name <Class:ContentTransferEncodingParser>
+# wrong constant name <Class:ContentTypeParser>
+# wrong constant name <Class:DateTimeParser>
+# wrong constant name <Class:EnvelopeFromParser>
+# wrong constant name <Class:MessageIdsParser>
+# wrong constant name <Class:MimeVersionParser>
+# wrong constant name <Class:PhraseListsParser>
+# wrong constant name <Class:ReceivedParser>
+# wrong constant name <Class:AddressListStruct>
+# wrong constant name <Class:AddressStruct>
+# uninitialized constant Mail::Parsers::AddressListsParser::AddressListStruct::Elem
+# wrong constant name addresses
+# wrong constant name addresses=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name group_names
+# wrong constant name group_names=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# uninitialized constant Mail::Parsers::AddressListsParser::AddressStruct::Elem
+# wrong constant name comments
+# wrong constant name comments=
+# wrong constant name display_name
+# wrong constant name display_name=
+# wrong constant name domain
+# wrong constant name domain=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name group
+# wrong constant name group=
+# wrong constant name local
+# wrong constant name local=
+# wrong constant name obs_domain_list
+# wrong constant name obs_domain_list=
+# wrong constant name raw
+# wrong constant name raw=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:ContentDispositionStruct>
+# uninitialized constant Mail::Parsers::ContentDispositionParser::ContentDispositionStruct::Elem
+# wrong constant name disposition_type
+# wrong constant name disposition_type=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name parameters
+# wrong constant name parameters=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:ContentLocationStruct>
+# uninitialized constant Mail::Parsers::ContentLocationParser::ContentLocationStruct::Elem
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name location
+# wrong constant name location=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:ContentTransferEncodingStruct>
+# uninitialized constant Mail::Parsers::ContentTransferEncodingParser::ContentTransferEncodingStruct::Elem
+# wrong constant name encoding
+# wrong constant name encoding=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:ContentTypeStruct>
+# uninitialized constant Mail::Parsers::ContentTypeParser::ContentTypeStruct::Elem
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name main_type
+# wrong constant name main_type=
+# wrong constant name parameters
+# wrong constant name parameters=
+# wrong constant name sub_type
+# wrong constant name sub_type=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:DateTimeStruct>
+# uninitialized constant Mail::Parsers::DateTimeParser::DateTimeStruct::Elem
+# wrong constant name date_string
+# wrong constant name date_string=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name time_string
+# wrong constant name time_string=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:EnvelopeFromStruct>
+# uninitialized constant Mail::Parsers::EnvelopeFromParser::EnvelopeFromStruct::Elem
+# wrong constant name address
+# wrong constant name address=
+# wrong constant name ctime_date
+# wrong constant name ctime_date=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:MessageIdsStruct>
+# uninitialized constant Mail::Parsers::MessageIdsParser::MessageIdsStruct::Elem
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name message_ids
+# wrong constant name message_ids=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:MimeVersionStruct>
+# uninitialized constant Mail::Parsers::MimeVersionParser::MimeVersionStruct::Elem
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name major
+# wrong constant name major=
+# wrong constant name minor
+# wrong constant name minor=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:PhraseListsStruct>
+# uninitialized constant Mail::Parsers::PhraseListsParser::PhraseListsStruct::Elem
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name phrases
+# wrong constant name phrases=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <Class:ReceivedStruct>
+# uninitialized constant Mail::Parsers::ReceivedParser::ReceivedStruct::Elem
+# wrong constant name date
+# wrong constant name date=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name info
+# wrong constant name info=
+# wrong constant name time
+# wrong constant name time=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name en_comment_tail
+# wrong constant name en_comment_tail=
+# wrong constant name en_main
+# wrong constant name en_main=
+# wrong constant name error
+# wrong constant name error=
+# wrong constant name first_final
+# wrong constant name first_final=
+# wrong constant name parse
+# wrong constant name start
+# wrong constant name start=
+# wrong constant name <static-init>
+# undefined method `add_content_id<defaultArg>1' for class `Mail::Part'
+# uninitialized constant Mail::Part::ASTERISK
+# uninitialized constant Mail::Part::ATOM_UNSAFE
+# uninitialized constant Mail::Part::B_VALUES
+# uninitialized constant Mail::Part::CAPITAL_M
+# uninitialized constant Mail::Part::COLON
+# uninitialized constant Mail::Part::CONTROL_CHAR
+# uninitialized constant Mail::Part::CR
+# uninitialized constant Mail::Part::CRLF
+# uninitialized constant Mail::Part::CR_ENCODED
+# uninitialized constant Mail::Part::EMPTY
+# uninitialized constant Mail::Part::ENCODED_VALUE
+# uninitialized constant Mail::Part::EQUAL_LF
+# uninitialized constant Mail::Part::FIELD_BODY
+# uninitialized constant Mail::Part::FIELD_LINE
+# uninitialized constant Mail::Part::FIELD_NAME
+# uninitialized constant Mail::Part::FIELD_PREFIX
+# uninitialized constant Mail::Part::FIELD_SPLIT
+# uninitialized constant Mail::Part::FULL_ENCODED_VALUE
+# uninitialized constant Mail::Part::FWS
+# uninitialized constant Mail::Part::HEADER_LINE
+# uninitialized constant Mail::Part::HEADER_SEPARATOR
+# uninitialized constant Mail::Part::HEADER_SPLIT
+# uninitialized constant Mail::Part::HYPHEN
+# uninitialized constant Mail::Part::LF
+# uninitialized constant Mail::Part::LF_ENCODED
+# uninitialized constant Mail::Part::NULL_SENDER
+# uninitialized constant Mail::Part::PHRASE_UNSAFE
+# uninitialized constant Mail::Part::QP_SAFE
+# uninitialized constant Mail::Part::QP_UNSAFE
+# uninitialized constant Mail::Part::Q_VALUES
+# uninitialized constant Mail::Part::SPACE
+# uninitialized constant Mail::Part::TEXT
+# uninitialized constant Mail::Part::TOKEN_UNSAFE
+# uninitialized constant Mail::Part::TO_CRLF_REGEX
+# uninitialized constant Mail::Part::UNDERSCORE
+# uninitialized constant Mail::Part::WSP
+# wrong constant name add_content_id<defaultArg>1
+# wrong constant name add_content_id
+# wrong constant name cid
+# wrong constant name delivery_status_data
+# wrong constant name delivery_status_report_part?
+# wrong constant name has_content_id?
+# wrong constant name inline?
+# wrong constant name inline_content_id
+# wrong constant name url
+# wrong constant name <static-init>
+# undefined method `to_yaml<defaultArg>1' for class `Mail::PartsList'
+# wrong constant name attachments
+# wrong constant name collect
+# wrong constant name collect!
+# wrong constant name encode_with
+# wrong constant name initialize
+# wrong constant name map
+# wrong constant name map!
+# wrong constant name parts
+# wrong constant name sort
+# wrong constant name sort!
+# wrong constant name to_yaml<defaultArg>1
+# wrong constant name to_yaml
+# wrong constant name <static-init>
 # wrong constant name initialize
 # wrong constant name phrases
 # wrong constant name <static-init>
@@ -11152,6 +11098,11 @@
 # wrong constant name initialize
 # wrong constant name to_s
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ReceivedField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ReceivedField'
+# Did you mean?  initialize_dup
+# undefined method `parse<defaultArg>1' for class `Mail::ReceivedField'
 # uninitialized constant Mail::ReceivedField::ASTERISK
 # uninitialized constant Mail::ReceivedField::ATOM_UNSAFE
 # uninitialized constant Mail::ReceivedField::B_VALUES
@@ -11187,6 +11138,22 @@
 # uninitialized constant Mail::ReceivedField::TO_CRLF_REGEX
 # uninitialized constant Mail::ReceivedField::UNDERSCORE
 # uninitialized constant Mail::ReceivedField::WSP
+# wrong constant name date_time
+# wrong constant name decoded
+# wrong constant name element
+# wrong constant name encoded
+# wrong constant name formatted_date
+# wrong constant name info
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name parse<defaultArg>1
+# wrong constant name parse
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ReferencesField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ReferencesField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ReferencesField::ASTERISK
 # uninitialized constant Mail::ReferencesField::ATOM_UNSAFE
 # uninitialized constant Mail::ReferencesField::B_VALUES
@@ -11222,6 +11189,16 @@
 # uninitialized constant Mail::ReferencesField::TO_CRLF_REGEX
 # uninitialized constant Mail::ReferencesField::UNDERSCORE
 # uninitialized constant Mail::ReferencesField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ReplyToField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ReplyToField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ReplyToField::ASTERISK
 # uninitialized constant Mail::ReplyToField::ATOM_UNSAFE
 # uninitialized constant Mail::ReplyToField::B_VALUES
@@ -11257,6 +11234,16 @@
 # uninitialized constant Mail::ReplyToField::TO_CRLF_REGEX
 # uninitialized constant Mail::ReplyToField::UNDERSCORE
 # uninitialized constant Mail::ReplyToField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ResentBccField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ResentBccField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ResentBccField::ASTERISK
 # uninitialized constant Mail::ResentBccField::ATOM_UNSAFE
 # uninitialized constant Mail::ResentBccField::B_VALUES
@@ -11292,6 +11279,16 @@
 # uninitialized constant Mail::ResentBccField::TO_CRLF_REGEX
 # uninitialized constant Mail::ResentBccField::UNDERSCORE
 # uninitialized constant Mail::ResentBccField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ResentCcField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ResentCcField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ResentCcField::ASTERISK
 # uninitialized constant Mail::ResentCcField::ATOM_UNSAFE
 # uninitialized constant Mail::ResentCcField::B_VALUES
@@ -11327,6 +11324,16 @@
 # uninitialized constant Mail::ResentCcField::TO_CRLF_REGEX
 # uninitialized constant Mail::ResentCcField::UNDERSCORE
 # uninitialized constant Mail::ResentCcField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ResentDateField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ResentDateField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ResentDateField::ASTERISK
 # uninitialized constant Mail::ResentDateField::ATOM_UNSAFE
 # uninitialized constant Mail::ResentDateField::B_VALUES
@@ -11362,6 +11369,16 @@
 # uninitialized constant Mail::ResentDateField::TO_CRLF_REGEX
 # uninitialized constant Mail::ResentDateField::UNDERSCORE
 # uninitialized constant Mail::ResentDateField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ResentFromField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ResentFromField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ResentFromField::ASTERISK
 # uninitialized constant Mail::ResentFromField::ATOM_UNSAFE
 # uninitialized constant Mail::ResentFromField::B_VALUES
@@ -11397,6 +11414,16 @@
 # uninitialized constant Mail::ResentFromField::TO_CRLF_REGEX
 # uninitialized constant Mail::ResentFromField::UNDERSCORE
 # uninitialized constant Mail::ResentFromField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ResentMessageIdField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ResentMessageIdField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ResentMessageIdField::ASTERISK
 # uninitialized constant Mail::ResentMessageIdField::ATOM_UNSAFE
 # uninitialized constant Mail::ResentMessageIdField::B_VALUES
@@ -11432,6 +11459,16 @@
 # uninitialized constant Mail::ResentMessageIdField::TO_CRLF_REGEX
 # uninitialized constant Mail::ResentMessageIdField::UNDERSCORE
 # uninitialized constant Mail::ResentMessageIdField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ResentSenderField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ResentSenderField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ResentSenderField::ASTERISK
 # uninitialized constant Mail::ResentSenderField::ATOM_UNSAFE
 # uninitialized constant Mail::ResentSenderField::B_VALUES
@@ -11467,6 +11504,17 @@
 # uninitialized constant Mail::ResentSenderField::TO_CRLF_REGEX
 # uninitialized constant Mail::ResentSenderField::UNDERSCORE
 # uninitialized constant Mail::ResentSenderField::WSP
+# wrong constant name address
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ResentToField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ResentToField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ResentToField::ASTERISK
 # uninitialized constant Mail::ResentToField::ATOM_UNSAFE
 # uninitialized constant Mail::ResentToField::B_VALUES
@@ -11502,6 +11550,29 @@
 # uninitialized constant Mail::ResentToField::TO_CRLF_REGEX
 # uninitialized constant Mail::ResentToField::UNDERSCORE
 # uninitialized constant Mail::ResentToField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `all<defaultArg>1' for class `Mail::Retriever'
+# undefined method `find_and_delete<defaultArg>1' for class `Mail::Retriever'
+# undefined method `first<defaultArg>1' for class `Mail::Retriever'
+# undefined method `last<defaultArg>1' for class `Mail::Retriever'
+# wrong constant name all<defaultArg>1
+# wrong constant name all
+# wrong constant name find_and_delete<defaultArg>1
+# wrong constant name find_and_delete
+# wrong constant name first<defaultArg>1
+# wrong constant name first
+# wrong constant name last<defaultArg>1
+# wrong constant name last
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::ReturnPathField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ReturnPathField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ReturnPathField::ASTERISK
 # uninitialized constant Mail::ReturnPathField::ATOM_UNSAFE
 # uninitialized constant Mail::ReturnPathField::B_VALUES
@@ -11537,6 +11608,53 @@
 # uninitialized constant Mail::ReturnPathField::TO_CRLF_REGEX
 # uninitialized constant Mail::ReturnPathField::UNDERSCORE
 # uninitialized constant Mail::ReturnPathField::WSP
+# wrong constant name address
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name <Class:BestEffortCharsetEncoder>
+# wrong constant name <Class:StrictCharsetEncoder>
+# wrong constant name encode
+# wrong constant name <static-init>
+# wrong constant name encode
+# wrong constant name <static-init>
+# undefined singleton method `b_value_encode<defaultArg>1' for `Mail::Ruby19'
+# undefined singleton method `q_value_encode<defaultArg>1' for `Mail::Ruby19'
+# undefined singleton method `transcode_charset<defaultArg>1' for `Mail::Ruby19'
+# wrong constant name <static-init>
+# wrong constant name b_value_decode
+# wrong constant name b_value_encode<defaultArg>1
+# wrong constant name b_value_encode
+# wrong constant name bracket
+# wrong constant name charset_encoder
+# wrong constant name charset_encoder=
+# wrong constant name decode_base64
+# wrong constant name decode_utf7
+# wrong constant name encode_base64
+# wrong constant name encode_utf7
+# wrong constant name escape_bracket
+# wrong constant name escape_paren
+# wrong constant name get_constant
+# wrong constant name has_constant?
+# wrong constant name param_decode
+# wrong constant name param_encode
+# wrong constant name paren
+# wrong constant name pick_encoding
+# wrong constant name q_value_decode
+# wrong constant name q_value_encode<defaultArg>1
+# wrong constant name q_value_encode
+# wrong constant name string_byteslice
+# wrong constant name transcode_charset<defaultArg>1
+# wrong constant name transcode_charset
+# wrong constant name uri_parser
+# wrong constant name deliver!
+# wrong constant name initialize
+# wrong constant name settings
+# wrong constant name settings=
+# wrong constant name <static-init>
 # wrong constant name deliver!
 # wrong constant name initialize
 # wrong constant name settings
@@ -11544,6 +11662,10 @@
 # wrong constant name smtp
 # wrong constant name smtp=
 # wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::SenderField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::SenderField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::SenderField::ASTERISK
 # uninitialized constant Mail::SenderField::ATOM_UNSAFE
 # uninitialized constant Mail::SenderField::B_VALUES
@@ -11579,6 +11701,75 @@
 # uninitialized constant Mail::SenderField::TO_CRLF_REGEX
 # uninitialized constant Mail::SenderField::UNDERSCORE
 # uninitialized constant Mail::SenderField::WSP
+# wrong constant name address
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name deliver!
+# wrong constant name initialize
+# wrong constant name settings
+# wrong constant name settings=
+# wrong constant name <static-init>
+# wrong constant name call
+# wrong constant name popen
+# wrong constant name shellquote
+# undefined method `initialize<defaultArg>1' for class `Mail::StructuredField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::StructuredField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>3' for class `Mail::StructuredField'
+# Did you mean?  initialize_dup
+# uninitialized constant Mail::StructuredField::ASTERISK
+# uninitialized constant Mail::StructuredField::ATOM_UNSAFE
+# uninitialized constant Mail::StructuredField::B_VALUES
+# uninitialized constant Mail::StructuredField::CAPITAL_M
+# uninitialized constant Mail::StructuredField::COLON
+# uninitialized constant Mail::StructuredField::CONTROL_CHAR
+# uninitialized constant Mail::StructuredField::CR
+# uninitialized constant Mail::StructuredField::CRLF
+# uninitialized constant Mail::StructuredField::CR_ENCODED
+# uninitialized constant Mail::StructuredField::EMPTY
+# uninitialized constant Mail::StructuredField::ENCODED_VALUE
+# uninitialized constant Mail::StructuredField::EQUAL_LF
+# uninitialized constant Mail::StructuredField::FIELD_BODY
+# uninitialized constant Mail::StructuredField::FIELD_LINE
+# uninitialized constant Mail::StructuredField::FIELD_NAME
+# uninitialized constant Mail::StructuredField::FIELD_PREFIX
+# uninitialized constant Mail::StructuredField::FIELD_SPLIT
+# uninitialized constant Mail::StructuredField::FILENAME_RE
+# uninitialized constant Mail::StructuredField::FULL_ENCODED_VALUE
+# uninitialized constant Mail::StructuredField::FWS
+# uninitialized constant Mail::StructuredField::HEADER_LINE
+# uninitialized constant Mail::StructuredField::HEADER_SPLIT
+# uninitialized constant Mail::StructuredField::HYPHEN
+# uninitialized constant Mail::StructuredField::LF
+# uninitialized constant Mail::StructuredField::LF_ENCODED
+# uninitialized constant Mail::StructuredField::NULL_SENDER
+# uninitialized constant Mail::StructuredField::PHRASE_UNSAFE
+# uninitialized constant Mail::StructuredField::QP_SAFE
+# uninitialized constant Mail::StructuredField::QP_UNSAFE
+# uninitialized constant Mail::StructuredField::Q_VALUES
+# uninitialized constant Mail::StructuredField::SPACE
+# uninitialized constant Mail::StructuredField::TEXT
+# uninitialized constant Mail::StructuredField::TOKEN_UNSAFE
+# uninitialized constant Mail::StructuredField::TO_CRLF_REGEX
+# uninitialized constant Mail::StructuredField::UNDERSCORE
+# uninitialized constant Mail::StructuredField::WSP
+# wrong constant name charset
+# wrong constant name charset=
+# wrong constant name errors
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize<defaultArg>3
+# wrong constant name initialize
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::SubjectField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::SubjectField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::SubjectField::ASTERISK
 # uninitialized constant Mail::SubjectField::ATOM_UNSAFE
 # uninitialized constant Mail::SubjectField::B_VALUES
@@ -11614,6 +11805,17 @@
 # uninitialized constant Mail::SubjectField::TO_CRLF_REGEX
 # uninitialized constant Mail::SubjectField::UNDERSCORE
 # uninitialized constant Mail::SubjectField::WSP
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name deliver!
+# wrong constant name initialize
+# wrong constant name settings
+# wrong constant name settings=
+# wrong constant name <static-init>
+# wrong constant name deliveries
+# wrong constant name deliveries=
 # undefined method `find<defaultArg>1' for class `Mail::TestRetriever'
 # wrong constant name find<defaultArg>1
 # wrong constant name find
@@ -11621,6 +11823,10 @@
 # wrong constant name <static-init>
 # wrong constant name emails
 # wrong constant name emails=
+# undefined method `initialize<defaultArg>1' for class `Mail::ToField'
+# Did you mean?  initialize_dup
+# undefined method `initialize<defaultArg>2' for class `Mail::ToField'
+# Did you mean?  initialize_dup
 # uninitialized constant Mail::ToField::ASTERISK
 # uninitialized constant Mail::ToField::ATOM_UNSAFE
 # uninitialized constant Mail::ToField::B_VALUES
@@ -11656,6 +11862,60 @@
 # uninitialized constant Mail::ToField::TO_CRLF_REGEX
 # uninitialized constant Mail::ToField::UNDERSCORE
 # uninitialized constant Mail::ToField::WSP
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize<defaultArg>2
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name <static-init>
+# undefined method `initialize<defaultArg>1' for class `Mail::UnstructuredField'
+# Did you mean?  initialize_dup
+# uninitialized constant Mail::UnstructuredField::ASTERISK
+# uninitialized constant Mail::UnstructuredField::ATOM_UNSAFE
+# uninitialized constant Mail::UnstructuredField::B_VALUES
+# uninitialized constant Mail::UnstructuredField::CAPITAL_M
+# uninitialized constant Mail::UnstructuredField::COLON
+# uninitialized constant Mail::UnstructuredField::CONTROL_CHAR
+# uninitialized constant Mail::UnstructuredField::CR
+# uninitialized constant Mail::UnstructuredField::CRLF
+# uninitialized constant Mail::UnstructuredField::CR_ENCODED
+# uninitialized constant Mail::UnstructuredField::EMPTY
+# uninitialized constant Mail::UnstructuredField::ENCODED_VALUE
+# uninitialized constant Mail::UnstructuredField::EQUAL_LF
+# uninitialized constant Mail::UnstructuredField::FIELD_BODY
+# uninitialized constant Mail::UnstructuredField::FIELD_LINE
+# uninitialized constant Mail::UnstructuredField::FIELD_NAME
+# uninitialized constant Mail::UnstructuredField::FIELD_PREFIX
+# uninitialized constant Mail::UnstructuredField::FIELD_SPLIT
+# uninitialized constant Mail::UnstructuredField::FILENAME_RE
+# uninitialized constant Mail::UnstructuredField::FULL_ENCODED_VALUE
+# uninitialized constant Mail::UnstructuredField::FWS
+# uninitialized constant Mail::UnstructuredField::HEADER_LINE
+# uninitialized constant Mail::UnstructuredField::HEADER_SPLIT
+# uninitialized constant Mail::UnstructuredField::HYPHEN
+# uninitialized constant Mail::UnstructuredField::LF
+# uninitialized constant Mail::UnstructuredField::LF_ENCODED
+# uninitialized constant Mail::UnstructuredField::NULL_SENDER
+# uninitialized constant Mail::UnstructuredField::PHRASE_UNSAFE
+# uninitialized constant Mail::UnstructuredField::QP_SAFE
+# uninitialized constant Mail::UnstructuredField::QP_UNSAFE
+# uninitialized constant Mail::UnstructuredField::Q_VALUES
+# uninitialized constant Mail::UnstructuredField::SPACE
+# uninitialized constant Mail::UnstructuredField::TEXT
+# uninitialized constant Mail::UnstructuredField::TOKEN_UNSAFE
+# uninitialized constant Mail::UnstructuredField::TO_CRLF_REGEX
+# uninitialized constant Mail::UnstructuredField::UNDERSCORE
+# uninitialized constant Mail::UnstructuredField::WSP
+# wrong constant name charset
+# wrong constant name charset=
+# wrong constant name decoded
+# wrong constant name encoded
+# wrong constant name errors
+# wrong constant name initialize<defaultArg>1
+# wrong constant name initialize
+# wrong constant name parse
+# wrong constant name <static-init>
 # uninitialized constant Mail::Utilities::ASTERISK
 # uninitialized constant Mail::Utilities::ATOM_UNSAFE
 # uninitialized constant Mail::Utilities::B_VALUES
@@ -11688,6 +11948,63 @@
 # uninitialized constant Mail::Utilities::TOKEN_UNSAFE
 # uninitialized constant Mail::Utilities::UNDERSCORE
 # uninitialized constant Mail::Utilities::WSP
+# wrong constant name atom_safe?
+# wrong constant name bracket
+# wrong constant name capitalize_field
+# wrong constant name constantize
+# wrong constant name dasherize
+# wrong constant name dquote
+# wrong constant name escape_paren
+# wrong constant name map_lines
+# wrong constant name map_with_index
+# wrong constant name match_to_s
+# wrong constant name paren
+# wrong constant name quote_atom
+# wrong constant name quote_phrase
+# wrong constant name quote_token
+# wrong constant name token_safe?
+# wrong constant name unbracket
+# wrong constant name underscoreize
+# wrong constant name unparen
+# wrong constant name uri_escape
+# wrong constant name uri_parser
+# wrong constant name uri_unescape
+# wrong constant name <static-init>
+# wrong constant name binary_unsafe_to_crlf
+# wrong constant name binary_unsafe_to_lf
+# wrong constant name blank?
+# wrong constant name safe_for_line_ending_conversion?
+# wrong constant name to_crlf
+# wrong constant name to_lf
+# wrong constant name unescape
+# wrong constant name unquote
+# wrong constant name <static-init>
+# wrong constant name version
+# wrong constant name all
+# wrong constant name connection
+# wrong constant name defaults
+# wrong constant name delete_all
+# wrong constant name deliver
+# wrong constant name delivery_method
+# wrong constant name eager_autoload!
+# wrong constant name find
+# wrong constant name find_and_delete
+# wrong constant name first
+# wrong constant name inform_interceptors
+# wrong constant name inform_observers
+# wrong constant name last
+# wrong constant name new
+# wrong constant name random_tag
+# wrong constant name read
+# wrong constant name read_from_string
+# wrong constant name register_autoload
+# wrong constant name register_interceptor
+# wrong constant name register_observer
+# wrong constant name retriever_method
+# wrong constant name something_random
+# wrong constant name uniq
+# wrong constant name unregister_interceptor
+# wrong constant name unregister_observer
 # undefined method `arg_config<defaultArg>1' for module `MakeMakefile'
 # undefined method `cc_command<defaultArg>1' for module `MakeMakefile'
 # undefined method `check_signedness<defaultArg>1' for module `MakeMakefile'
@@ -15269,7 +15586,7 @@
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007f9e02d6ec08>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fd570a02ab0>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
@@ -15343,339 +15660,12 @@
 # uninitialized constant Rails::WelcomeController::URL_OPTIONS
 # wrong constant name index
 # wrong constant name <static-init>
-# wrong constant name <Class:Application>
-# wrong constant name <Class:Backtrace>
-# wrong constant name <Class:CommandLineOptionError>
-# wrong constant name <Class:CpuCounter>
-# wrong constant name <Class:DSL>
-# wrong constant name <Class:DefaultLoader>
-# wrong constant name <Class:EarlyTime>
-# wrong constant name <Class:FileCreationTask>
-# wrong constant name <Class:FileTask>
-# wrong constant name <Class:InvocationChain>
-# wrong constant name <Class:InvocationExceptionMixin>
-# wrong constant name <Class:LateTime>
-# wrong constant name <Class:LinkedList>
-# wrong constant name <Class:MultiTask>
-# wrong constant name <Class:NameSpace>
-# wrong constant name <Class:PrivateReader>
-# wrong constant name <Class:Promise>
-# wrong constant name <Class:PseudoStatus>
-# wrong constant name <Class:RuleRecursionOverflowError>
-# wrong constant name <Class:Scope>
-# wrong constant name <Class:Task>
-# wrong constant name <Class:TaskArgumentError>
-# wrong constant name <Class:TaskArguments>
-# wrong constant name <Class:TaskManager>
-# wrong constant name <Class:ThreadHistoryDisplay>
-# wrong constant name <Class:ThreadPool>
-# wrong constant name <Class:TraceOutput>
-# wrong constant name <Class:Version>
-# wrong constant name <Class:Win32>
-# undefined method `init<defaultArg>1' for class `Rake::Application'
-# undefined method `init<defaultArg>2' for class `Rake::Application'
-# undefined method `rake_require<defaultArg>1' for class `Rake::Application'
-# undefined method `rake_require<defaultArg>2' for class `Rake::Application'
-# undefined method `rakefile_location<defaultArg>1' for class `Rake::Application'
-# undefined method `run<defaultArg>1' for class `Rake::Application'
-# wrong constant name add_import
-# wrong constant name add_loader
-# wrong constant name collect_command_line_tasks
-# wrong constant name default_task_name
-# wrong constant name deprecate
-# wrong constant name display_cause_details
-# wrong constant name display_error_message
-# wrong constant name display_exception_backtrace
-# wrong constant name display_exception_details
-# wrong constant name display_exception_details_seen
-# wrong constant name display_exception_message_details
-# wrong constant name display_prerequisites
-# wrong constant name display_tasks_and_comments
-# wrong constant name dynamic_width
-# wrong constant name dynamic_width_stty
-# wrong constant name dynamic_width_tput
-# wrong constant name exit_because_of_exception
-# wrong constant name find_rakefile_location
-# wrong constant name handle_options
-# wrong constant name has_cause?
-# wrong constant name have_rakefile
-# wrong constant name init<defaultArg>1
-# wrong constant name init<defaultArg>2
-# wrong constant name init
-# wrong constant name invoke_task
-# wrong constant name load_imports
-# wrong constant name load_rakefile
-# wrong constant name name
-# wrong constant name options
-# wrong constant name original_dir
-# wrong constant name parse_task_string
-# wrong constant name print_rakefile_directory
-# wrong constant name rake_require<defaultArg>1
-# wrong constant name rake_require<defaultArg>2
-# wrong constant name rake_require
-# wrong constant name rakefile
-# wrong constant name rakefile_location<defaultArg>1
-# wrong constant name rakefile_location
-# wrong constant name raw_load_rakefile
-# wrong constant name run<defaultArg>1
-# wrong constant name run
-# wrong constant name run_with_threads
-# wrong constant name set_default_options
-# wrong constant name standard_exception_handling
-# wrong constant name standard_rake_options
-# wrong constant name system_dir
-# wrong constant name terminal_columns
-# wrong constant name terminal_columns=
-# wrong constant name terminal_width
-# wrong constant name thread_pool
-# wrong constant name top_level
-# wrong constant name top_level_tasks
-# wrong constant name trace
-# wrong constant name truncate
-# wrong constant name truncate_output?
-# wrong constant name tty_output=
-# wrong constant name tty_output?
-# wrong constant name unix?
-# wrong constant name windows?
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name collapse
-# wrong constant name <static-init>
-# undefined method `count_with_default<defaultArg>1' for class `Rake::CpuCounter'
-# wrong constant name count
-# wrong constant name count_with_default<defaultArg>1
-# wrong constant name count_with_default
-# wrong constant name <static-init>
-# wrong constant name count
-# uninitialized constant Rake::DSL::DEFAULT
-# uninitialized constant Rake::DSL::LN_SUPPORTED
-# uninitialized constant Rake::DSL::LOW_METHODS
-# uninitialized constant Rake::DSL::METHODS
-# uninitialized constant Rake::DSL::OPT_TABLE
-# uninitialized constant Rake::DSL::RUBY
-# uninitialized constant Rake::DSL::VERSION
-# wrong constant name <static-init>
-# wrong constant name load
-# wrong constant name <static-init>
-# wrong constant name <=>
-# wrong constant name <static-init>
-# wrong constant name instance
-# wrong constant name <static-init>
-# wrong constant name <static-init>
 # uninitialized constant Rake::FileUtilsExt::LN_SUPPORTED
 # uninitialized constant Rake::FileUtilsExt::LOW_METHODS
 # uninitialized constant Rake::FileUtilsExt::METHODS
 # uninitialized constant Rake::FileUtilsExt::OPT_TABLE
 # uninitialized constant Rake::FileUtilsExt::RUBY
 # uninitialized constant Rake::FileUtilsExt::VERSION
-# uninitialized constant Rake::InvocationChain::Elem
-# wrong constant name <Class:EmptyInvocationChain>
-# wrong constant name append
-# wrong constant name member?
-# uninitialized constant Rake::InvocationChain::EmptyInvocationChain::EMPTY
-# uninitialized constant Rake::InvocationChain::EmptyInvocationChain::Elem
-# wrong constant name append
-# wrong constant name member?
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name append
-# wrong constant name chain
-# wrong constant name chain=
-# wrong constant name <static-init>
-# wrong constant name <=>
-# wrong constant name <static-init>
-# wrong constant name instance
-# undefined method `initialize<defaultArg>1' for class `Rake::LinkedList'
-# Did you mean?  initialize_dup
-# wrong constant name ==
-# uninitialized constant Rake::LinkedList::Elem
-# wrong constant name <Class:EmptyLinkedList>
-# wrong constant name conj
-# wrong constant name each
-# wrong constant name empty?
-# wrong constant name head
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name tail
-# uninitialized constant Rake::LinkedList::EmptyLinkedList::EMPTY
-# uninitialized constant Rake::LinkedList::EmptyLinkedList::Elem
-# wrong constant name initialize
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name cons
-# wrong constant name empty
-# wrong constant name make
-# wrong constant name <static-init>
-# wrong constant name []
-# wrong constant name initialize
-# wrong constant name scope
-# wrong constant name tasks
-# wrong constant name <static-init>
-# wrong constant name <Class:ClassMethods>
-# wrong constant name private_reader
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name included
-# wrong constant name initialize
-# wrong constant name recorder
-# wrong constant name recorder=
-# wrong constant name value
-# wrong constant name work
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Rake::PseudoStatus'
-# Did you mean?  initialize_dup
-# wrong constant name >>
-# wrong constant name exited?
-# wrong constant name exitstatus
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name stopped?
-# wrong constant name to_i
-# wrong constant name <static-init>
-# wrong constant name add_target
-# wrong constant name initialize
-# wrong constant name <static-init>
-# uninitialized constant Rake::Scope::Elem
-# wrong constant name <Class:EmptyScope>
-# wrong constant name path
-# wrong constant name path_with_task_name
-# wrong constant name trim
-# uninitialized constant Rake::Scope::EmptyScope::EMPTY
-# uninitialized constant Rake::Scope::EmptyScope::Elem
-# wrong constant name path
-# wrong constant name path_with_task_name
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# undefined method `enhance<defaultArg>1' for class `Rake::Task'
-# undefined method `execute<defaultArg>1' for class `Rake::Task'
-# wrong constant name actions
-# wrong constant name add_description
-# wrong constant name all_prerequisite_tasks
-# wrong constant name already_invoked
-# wrong constant name application
-# wrong constant name application=
-# wrong constant name arg_description
-# wrong constant name arg_names
-# wrong constant name clear
-# wrong constant name clear_actions
-# wrong constant name clear_args
-# wrong constant name clear_comments
-# wrong constant name clear_prerequisites
-# wrong constant name collect_prerequisites
-# wrong constant name comment
-# wrong constant name comment=
-# wrong constant name enhance<defaultArg>1
-# wrong constant name enhance
-# wrong constant name execute<defaultArg>1
-# wrong constant name execute
-# wrong constant name full_comment
-# wrong constant name initialize
-# wrong constant name investigation
-# wrong constant name invoke
-# wrong constant name invoke_prerequisites
-# wrong constant name invoke_prerequisites_concurrently
-# wrong constant name invoke_with_call_chain
-# wrong constant name locations
-# wrong constant name name
-# wrong constant name name_with_args
-# wrong constant name needed?
-# wrong constant name order_only_prerequisites
-# wrong constant name prereqs
-# wrong constant name prerequisite_tasks
-# wrong constant name prerequisites
-# wrong constant name reenable
-# wrong constant name scope
-# wrong constant name set_arg_names
-# wrong constant name source
-# wrong constant name sources
-# wrong constant name sources=
-# wrong constant name timestamp
-# wrong constant name |
-# wrong constant name <static-init>
-# wrong constant name []
-# wrong constant name clear
-# wrong constant name create_rule
-# wrong constant name define_task
-# wrong constant name format_deps
-# wrong constant name scope_name
-# wrong constant name task_defined?
-# wrong constant name tasks
-# wrong constant name <static-init>
-# undefined method `initialize<defaultArg>1' for class `Rake::TaskArguments'
-# Did you mean?  initialize_dup
-# uninitialized constant Rake::TaskArguments::Elem
-# wrong constant name []
-# wrong constant name each
-# wrong constant name extras
-# wrong constant name fetch
-# wrong constant name has_key?
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name key?
-# wrong constant name lookup
-# wrong constant name method_missing
-# wrong constant name names
-# wrong constant name new_scope
-# wrong constant name to_a
-# wrong constant name to_hash
-# wrong constant name values_at
-# wrong constant name with_defaults
-# wrong constant name <static-init>
-# undefined method `[]<defaultArg>1' for module `Rake::TaskManager'
-# undefined method `enhance_with_matching_rule<defaultArg>1' for module `Rake::TaskManager'
-# undefined method `lookup<defaultArg>1' for module `Rake::TaskManager'
-# wrong constant name []<defaultArg>1
-# wrong constant name []
-# wrong constant name clear
-# wrong constant name create_rule
-# wrong constant name current_scope
-# wrong constant name define_task
-# wrong constant name enhance_with_matching_rule<defaultArg>1
-# wrong constant name enhance_with_matching_rule
-# wrong constant name generate_did_you_mean_suggestions
-# wrong constant name generate_message_for_undefined_task
-# wrong constant name in_namespace
-# wrong constant name initialize
-# wrong constant name intern
-# wrong constant name last_description
-# wrong constant name last_description=
-# wrong constant name lookup<defaultArg>1
-# wrong constant name lookup
-# wrong constant name resolve_args
-# wrong constant name synthesize_file_task
-# wrong constant name tasks
-# wrong constant name tasks_in_scope
-# wrong constant name <static-init>
-# wrong constant name record_task_metadata
-# wrong constant name record_task_metadata=
-# wrong constant name initialize
-# wrong constant name show
-# wrong constant name <static-init>
-# wrong constant name future
-# wrong constant name gather_history
-# wrong constant name history
-# wrong constant name initialize
-# wrong constant name join
-# wrong constant name statistics
-# wrong constant name <static-init>
-# wrong constant name trace_on
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name <Class:Win32HomeError>
-# wrong constant name <static-init>
-# wrong constant name <static-init>
-# wrong constant name normalize
-# wrong constant name win32_system_dir
-# wrong constant name windows?
-# undefined singleton method `with_application<defaultArg>1' for `Rake'
-# wrong constant name add_rakelib
-# wrong constant name application
-# wrong constant name application=
-# wrong constant name load_rakefile
-# wrong constant name original_dir
-# wrong constant name suggested_thread_count
-# wrong constant name with_application<defaultArg>1
-# wrong constant name with_application
 # undefined method `alphanumeric<defaultArg>1' for module `Random::Formatter'
 # undefined method `random_bytes<defaultArg>1' for module `Random::Formatter'
 # undefined method `urlsafe_base64<defaultArg>1' for module `Random::Formatter'
