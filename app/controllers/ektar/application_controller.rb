@@ -69,6 +69,6 @@ module Ektar
     end
 
     helper_method :collection, :resource,
-      :super_admin?, :select_options
+      :super_admin?
   end
 end
