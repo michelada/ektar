@@ -35,10 +35,10 @@ module Ektar
 
     test "user password is invalid" do
       user = Ektar::User.new
-      
+
       user.email = "user_with_invalid_password@example.com"
-      user.encrypted_password = "password"
-      
+      user.password = "password"
+
       assert_not user.valid?
     end
 
