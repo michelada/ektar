@@ -4,7 +4,6 @@ es:
     add_user: Agregar usuario
 
 # Models views will implement lazy lokup
-
   ektar:
     application:
       navbar:

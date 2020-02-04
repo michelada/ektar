@@ -22,9 +22,11 @@ module Ektar
     end
 
     def destroy
-      cookies.delete("#{Ektar.configuration.session_name}_remember_me")
-
-      set_flash(klass: "session", action: action_name)
+      if cookies.delete("#{Ektar.configuration.session_name}_remember_me")
+        set_flash(klass: "session", action: action_name)
+      else
+        set_flash(errors: true, klass: "session", action: action_name)
+      end
       redirect_to root_path
     end
   end

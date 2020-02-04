@@ -43,3 +43,4 @@ es:
 
       session:
         notice: "Sesión cerrada correctamente"
+        alert: "No se ha podido iniciar sesión"
