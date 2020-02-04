@@ -1,0 +1,7 @@
+es:
+  routes:
+    organizations: "organizaciones"
+    plans: "planes"
+    users: "usuarios"
+    registration: "registro"
+    session: sesion

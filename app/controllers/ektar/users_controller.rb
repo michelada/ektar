@@ -21,9 +21,17 @@ module Ektar
 
     sig { void }
     def create
-      params = secure_params
-      T.must(params["memberships_attributes"]).first[:role] = "admin"
-      T.must(params["memberships_attributes"]).first[:owner] = true
+      @resource = Ektar::User.new secure_params
+
+      @resource.tap do |user|
+        user.last_ip = format_ip(request.remote_ip)
+        user.last_activity_at = Time.now
+
+        user.memberships.first.tap do |membership|
+          membership.role = "admin"
+          membership.owner = true
+        end
+      end
 
       @resource = Ektar::User.new params
       if @resource.save

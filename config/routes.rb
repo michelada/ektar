@@ -2,11 +2,10 @@
 Ektar::Engine.routes.draw do
   root to: "organizations#index"
 
-  resources :organizations
-  resources :plans
+  resources :organizations, path: I18n.t("routes.organizations")
+  resources :plans, path: I18n.t("routes.plans")
 
-  resources :users, except: :new
-  get "/registro", to: "users#new", as: :registration
-
-  resources :sessions, only: [:new, :create, :destroy]
+  get I18n.t("routes.registration"), to: "users#new", as: :registration
+  resources :users, path: I18n.t("routes.users")
+  resources :sessions, path: I18n.t("routes.session"), only: [:new, :create, :destroy]
 end

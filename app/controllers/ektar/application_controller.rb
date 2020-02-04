@@ -84,6 +84,11 @@ module Ektar
       current_user.present?
     end
 
+    sig { params(ip: String).returns(String) }
+    def format_ip(ip)
+      T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
+    end
+
     helper_method :collection, :resource,
       :super_admin?, :select_options,
       :current_user, :user_signed_in?
