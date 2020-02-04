@@ -64,11 +64,6 @@ module Ektar
       end
     end
 
-    sig { returns(T.untyped) }
-    def cookies
-      super
-    end
-
     sig { returns(T::Boolean) }
     def super_admin?
       @super_admin ||= session[:super_admin].present?

@@ -34,7 +34,7 @@ module Ektar
       @organization_username = "superadmin"
       @organization_password = "superadmin123"
       @session_name = "_ektar"
-      @session_expiration = 5.days
+      @session_expiration = 1.days.from_now
     end
   end
 
