@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 # frozen_string_literal: true
 
 module Ektar
@@ -27,8 +27,9 @@ module Ektar
 
     private
 
+    sig { params(attributes: T::Hash[String, String]).returns(T::Boolean) }
     def reject_empty_organization!(attributes)
-      T.must(attributes["organization_attributes"])["name"].blank?
+      attributes.dig("organization_attributes", "name").blank?
     end
   end
 end

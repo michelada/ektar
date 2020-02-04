@@ -47,3 +47,108 @@ class BCrypt::Password < String
   def valid_hash?(h); end
   def version; end
 end
+module Ektar
+end
+module Ektar::User::GeneratedAttributeMethods
+end
+class Ektar::User < Ektar::ApplicationRecord
+  def after_add_for_memberships; end
+  def after_add_for_memberships=(val); end
+  def after_add_for_memberships?; end
+  def after_add_for_organizations; end
+  def after_add_for_organizations=(val); end
+  def after_add_for_organizations?; end
+  def after_remove_for_memberships; end
+  def after_remove_for_memberships=(val); end
+  def after_remove_for_memberships?; end
+  def after_remove_for_organizations; end
+  def after_remove_for_organizations=(val); end
+  def after_remove_for_organizations?; end
+  def autosave_associated_records_for_memberships(*args); end
+  def autosave_associated_records_for_organizations(*args); end
+  def before_add_for_memberships; end
+  def before_add_for_memberships=(val); end
+  def before_add_for_memberships?; end
+  def before_add_for_organizations; end
+  def before_add_for_organizations=(val); end
+  def before_add_for_organizations?; end
+  def before_remove_for_memberships; end
+  def before_remove_for_memberships=(val); end
+  def before_remove_for_memberships?; end
+  def before_remove_for_organizations; end
+  def before_remove_for_organizations=(val); end
+  def before_remove_for_organizations?; end
+  def password_confirmation; end
+  def self.__callbacks; end
+  def self._reflections; end
+  def self._validators; end
+  def self.after_add_for_memberships; end
+  def self.after_add_for_memberships=(val); end
+  def self.after_add_for_memberships?; end
+  def self.after_add_for_organizations; end
+  def self.after_add_for_organizations=(val); end
+  def self.after_add_for_organizations?; end
+  def self.after_remove_for_memberships; end
+  def self.after_remove_for_memberships=(val); end
+  def self.after_remove_for_memberships?; end
+  def self.after_remove_for_organizations; end
+  def self.after_remove_for_organizations=(val); end
+  def self.after_remove_for_organizations?; end
+  def self.attribute_type_decorations; end
+  def self.before_add_for_memberships; end
+  def self.before_add_for_memberships=(val); end
+  def self.before_add_for_memberships?; end
+  def self.before_add_for_organizations; end
+  def self.before_add_for_organizations=(val); end
+  def self.before_add_for_organizations?; end
+  def self.before_remove_for_memberships; end
+  def self.before_remove_for_memberships=(val); end
+  def self.before_remove_for_memberships?; end
+  def self.before_remove_for_organizations; end
+  def self.before_remove_for_organizations=(val); end
+  def self.before_remove_for_organizations?; end
+  def self.defined_enums; end
+  def self.nested_attributes_options; end
+  def validate_associated_records_for_memberships(*args); end
+  def validate_associated_records_for_organizations(*args); end
+  extend T::Sig
+  include ActiveModel::Validations
+  include Anonymous_ActiveModel_SecurePassword_InstanceMethodsOnActivation_13
+  include Ektar::User::GeneratedAssociationMethods
+  include Ektar::User::GeneratedAttributeMethods
+end
+module Ektar::User::GeneratedAssociationMethods
+  def membership_ids; end
+  def membership_ids=(ids); end
+  def memberships; end
+  def memberships=(value); end
+  def memberships_attributes=(attributes); end
+  def organization_ids; end
+  def organization_ids=(ids); end
+  def organizations; end
+  def organizations=(value); end
+end
+class Ektar::User::ActiveRecord_Relation < ActiveRecord::Relation
+  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
+  include ActiveRecord::Delegation::ClassSpecificRelation
+  include Ektar::User::GeneratedRelationMethods
+end
+module Ektar::User::GeneratedRelationMethods
+end
+class Ektar::User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
+  include ActiveRecord::Delegation::ClassSpecificRelation
+  include Ektar::User::GeneratedRelationMethods
+end
+class Ektar::User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
+  extend ActiveRecord::Delegation::ClassSpecificRelation::ClassMethods
+  include ActiveRecord::Delegation::ClassSpecificRelation
+  include Ektar::User::GeneratedRelationMethods
+end
+module Anonymous_ActiveModel_SecurePassword_InstanceMethodsOnActivation_13
+  def authenticate(unencrypted_password); end
+  def authenticate_password(unencrypted_password); end
+  def password; end
+  def password=(unencrypted_password); end
+  def password_confirmation=(unencrypted_password); end
+end

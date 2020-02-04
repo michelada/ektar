@@ -8,7 +8,4 @@ end
 class Ektar::Organization
   extend PgSearch::Model::ClassMethods
   extend T::Sig
-
-  sig { returns(String) }
-  def global_id; end
 end
