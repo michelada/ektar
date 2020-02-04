@@ -1,4 +1,4 @@
-# typed: false
+# typed: strict
 # frozen_string_literal: true
 
 module Ektar
@@ -8,7 +8,7 @@ module Ektar
     belongs_to :user, class_name: "Ektar::User", foreign_key: :ektar_user_id
 
     accepts_nested_attributes_for :organization
-    validates :organization, presence: true
+    validates_presence_of :organization
 
     enum role: {admin: "admin", member: "member"}
   end

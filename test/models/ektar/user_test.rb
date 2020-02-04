@@ -33,6 +33,15 @@ module Ektar
       assert user.super_admin?
     end
 
+    test "user password is invalid" do
+      user = Ektar::User.new
+
+      user.email = "user_with_invalid_password@example.com"
+      user.password = "password"
+
+      assert_not user.valid?
+    end
+
     test "is valid" do
       subject = User.new valid_params
 
@@ -43,7 +52,7 @@ module Ektar
       subject = User.new invalid_params_email
 
       refute subject.valid?
-      assert_equal 3, subject.errors.count
+      assert_equal 2, subject.errors.count
     end
 
     test "is invalid without unique email" do

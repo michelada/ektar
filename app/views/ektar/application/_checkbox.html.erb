@@ -1,6 +1,6 @@
 <div class="control">
   <label class="checkbox">
-    <%= form.check_box attribute_name, class: "checkbox" %>
+    <%= form.check_box attribute_name, merge_resource_attributes({class: "checkbox"}, input_html)  %>
     <%= resource_class.human_attribute_name(attribute_name) %>
   </label>
 </div>

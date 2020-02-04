@@ -1,0 +1,26 @@
+es:
+  activerecord:
+    models:
+      ektar/organization:
+        one: Organización
+        other: Organizaciones
+      
+      ektar/user:
+        one: Usuario
+        other: Usuarios
+      
+      ektar/plan:
+        one: Plan
+        other: Planes
+
+    attributes:
+      ektar/organization:
+        enable: "Activa"
+      
+      ektar/plan:
+        active: Activo 
+        free: Gratuito
+        price: Precio
+        price_cents: Precio
+        price_currency: Moneda
+        trial: Prueba

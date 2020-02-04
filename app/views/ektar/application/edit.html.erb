@@ -3,10 +3,18 @@
 <div class="columns">
   <div class="column is-half">
     <%= form_with(model: resource, local: true) do |form| %>
-      <% form_attributes.each do |attribute_name, attribute_type|%>
-        <div class="field">
-          <%= render partial: "#{attribute_type}", locals: { attribute_name: attribute_name, form: form, disable: false} %>
-        </div>
+      <% form_attributes.each do |attribute_name, attribute_options|%>
+        <% attributes = resource_attributes(attribute_options) %>
+
+        <%= content_tag(:div, attributes.dig(:control_html)) do %>
+          <div class="field">
+            <%= render partial: "#{attributes.dig(:type)}", 
+                      locals: { attribute_name: attribute_name,
+                                form: form,
+                                input_html: attributes.dig(:input_html),
+                                options: attributes.dig(:options)} %>
+          </div>
+        <% end %>
       <% end %>
 
       <%= render partial: "submit", locals: { form: form } %>
