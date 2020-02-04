@@ -1,4 +1,4 @@
-# typed: ignore
+# typed: false
 require "webpacker/helper"
 require "pagy"
 
@@ -76,12 +76,13 @@ module Ektar
         default: I18n.t("table.actions.delete"))
     end
 
-    sig { params(field_name: Symbol).returns(T::Hash[Symbol, T.any(Integer, String)]) }
+    sig { params(field_name: T.any(Symbol, String)).returns(T::Hash[Symbol, T.untyped]) }
     def input_attributes(field_name)
-      key = resource_class.i18n_key
+      key = resource_class.model_name.i18n_key
       {
-        placeholder: t("form.placeholders.#{key}.#{field_name}", default: ""),
-        maxlength: t("form.maxlength.#{key}.#{field_name}", default: t("form.maxlength.size")),
+        class: "input",
+        placeholder: t("placeholders.#{key}.#{field_name}", default: ""),
+        maxlength: t("maxlength.#{key}.#{field_name}", default: t("maxlength.size")),
       }
     end
   end

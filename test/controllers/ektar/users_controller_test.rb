@@ -2,7 +2,7 @@
 require "test_helper"
 
 module Ektar
-  class UserControllerTest < ActionDispatch::IntegrationTest
+  class UsersControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
     def setup
       @user = ektar_users(:user)

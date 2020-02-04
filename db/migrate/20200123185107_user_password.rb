@@ -1,3 +1,4 @@
+# typed: true
 class UserPassword < ActiveRecord::Migration[6.0]
   def change
     remove_column :ektar_users, :encrypted_password

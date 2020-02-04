@@ -1,12 +1,8 @@
 <div class="control">
-  <% attributes_options.each do |attribute|%>
-    <% if attribute.keys[0] == attribute_name %>
-      <% attribute.values[0].split(',') do |option|%>
-        <label class="radio">
-          <input type="radio" name="question">
-          <%= t('form.options_checkbox', option: option)%>
-        </label>
-      <% end %>
-    <%end%>
+  <% options.each do |option| %>
+    <label class="radio">
+      <%= form.radio_button attribute_name, option, merge_resource_attributes({class: "checkbox"}, input_html)  %>
+      <%= t('forms.options_checkbox', option: option)%>
+    </label>
   <% end %>
 </div>

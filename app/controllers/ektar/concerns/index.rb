@@ -19,6 +19,11 @@ module Ektar
                             @pagination, collection = pagy(scope, i18n_key: "activerecord.models.#{resource_class.model_name.i18n_key}")
                             collection
                           end
+
+          respond_to do |format|
+            format.html
+            format.json { render json: @collection }
+          end
         end
         alias_method :index!, :index
       end

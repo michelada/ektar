@@ -5,9 +5,9 @@
 
 <div class="control">
   <div class="select">
-    <%= form.select attribute_name, options_for_select(currency, resource.send(attribute_name)) %>
+    <%= form.select attribute_name, options_for_select(currency, resource.send(attribute_name)), {}, input_html %>
   </div>
   <% if error.present? %>
-    <p class="help is-danger"><%= error %><p/>
+    <p class="help is-danger"><%= error %></p>
   <% end %>
 </div>

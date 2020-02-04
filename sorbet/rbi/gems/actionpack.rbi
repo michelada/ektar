@@ -2571,3 +2571,206 @@ end
 module Anonymous_Module_16
   def inherited(klass); end
 end
+module Ektar
+end
+class Ektar::ApplicationController < ActionController::Base
+  def self._helpers; end
+  def self._wrapper_options; end
+end
+module Ektar::ApplicationHelper
+  extend T::Sig
+  include Kernel
+  include Pagy::Frontend
+  include Webpacker::Helper
+end
+class Ektar::ResourcefulController < Ektar::ApplicationController
+  def _layout(lookup_context, formats); end
+  def find_by; end
+  def find_by?; end
+  def form_attributes; end
+  def form_attributes?; end
+  def list_attributes; end
+  def list_attributes?; end
+  def resource_class; end
+  def resource_class?; end
+  def self._helpers; end
+  def self._routes; end
+  def self._wrapper_options; end
+  def self.find_by; end
+  def self.find_by=(val); end
+  def self.find_by?; end
+  def self.form_attributes; end
+  def self.form_attributes=(val); end
+  def self.form_attributes?; end
+  def self.helpers_path; end
+  def self.list_attributes; end
+  def self.list_attributes=(val); end
+  def self.list_attributes?; end
+  def self.middleware_stack; end
+  def self.resource_class; end
+  def self.resource_class=(val); end
+  def self.resource_class?; end
+  def self.show_attributes; end
+  def self.show_attributes=(val); end
+  def self.show_attributes?; end
+  def show_attributes; end
+  def show_attributes?; end
+  extend T::Sig
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_17
+end
+module Anonymous_Module_17
+  def _generate_paths_by_default; end
+  def _routes; end
+  def self._routes; end
+  def self.full_url_for(options); end
+  def self.optimize_routes_generation?; end
+  def self.polymorphic_path(record_or_hash_or_array, options = nil); end
+  def self.polymorphic_url(record_or_hash_or_array, options = nil); end
+  def self.route_for(name, *args); end
+  def self.url_for(options); end
+  def self.url_options; end
+  extend ActiveSupport::Concern
+  extend Anonymous_Module_18
+  extend Anonymous_Module_19
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_18
+  include Anonymous_Module_19
+end
+class Ektar::ResourcefulController < Ektar::ApplicationController
+  def _layout(lookup_context, formats); end
+  def find_by; end
+  def find_by?; end
+  def form_attributes; end
+  def form_attributes?; end
+  def list_attributes; end
+  def list_attributes?; end
+  def resource_class; end
+  def resource_class?; end
+  def self._helpers; end
+  def self._routes; end
+  def self._wrapper_options; end
+  def self.find_by; end
+  def self.find_by=(val); end
+  def self.find_by?; end
+  def self.form_attributes; end
+  def self.form_attributes=(val); end
+  def self.form_attributes?; end
+  def self.helpers_path; end
+  def self.list_attributes; end
+  def self.list_attributes=(val); end
+  def self.list_attributes?; end
+  def self.middleware_stack; end
+  def self.resource_class; end
+  def self.resource_class=(val); end
+  def self.resource_class?; end
+  def self.show_attributes; end
+  def self.show_attributes=(val); end
+  def self.show_attributes?; end
+  def show_attributes; end
+  def show_attributes?; end
+  extend T::Sig
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_20
+end
+module Anonymous_Module_20
+  def _generate_paths_by_default; end
+  def _routes; end
+  def self._routes; end
+  def self.full_url_for(options); end
+  def self.optimize_routes_generation?; end
+  def self.polymorphic_path(record_or_hash_or_array, options = nil); end
+  def self.polymorphic_url(record_or_hash_or_array, options = nil); end
+  def self.route_for(name, *args); end
+  def self.url_for(options); end
+  def self.url_options; end
+  extend ActiveSupport::Concern
+  extend Anonymous_Module_18
+  extend Anonymous_Module_19
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_18
+  include Anonymous_Module_19
+end
+class Ektar::ResourcefulController < Ektar::ApplicationController
+  def _layout(lookup_context, formats); end
+  def find_by; end
+  def find_by?; end
+  def form_attributes; end
+  def form_attributes?; end
+  def list_attributes; end
+  def list_attributes?; end
+  def resource_class; end
+  def resource_class?; end
+  def self._helpers; end
+  def self._routes; end
+  def self._wrapper_options; end
+  def self.find_by; end
+  def self.find_by=(val); end
+  def self.find_by?; end
+  def self.form_attributes; end
+  def self.form_attributes=(val); end
+  def self.form_attributes?; end
+  def self.helpers_path; end
+  def self.list_attributes; end
+  def self.list_attributes=(val); end
+  def self.list_attributes?; end
+  def self.middleware_stack; end
+  def self.resource_class; end
+  def self.resource_class=(val); end
+  def self.resource_class?; end
+  def self.show_attributes; end
+  def self.show_attributes=(val); end
+  def self.show_attributes?; end
+  def show_attributes; end
+  def show_attributes?; end
+  extend T::Sig
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_21
+end
+module Anonymous_Module_21
+  def _generate_paths_by_default; end
+  def _routes; end
+  def self._routes; end
+  def self.full_url_for(options); end
+  def self.optimize_routes_generation?; end
+  def self.polymorphic_path(record_or_hash_or_array, options = nil); end
+  def self.polymorphic_url(record_or_hash_or_array, options = nil); end
+  def self.route_for(name, *args); end
+  def self.url_for(options); end
+  def self.url_options; end
+  extend ActiveSupport::Concern
+  extend Anonymous_Module_18
+  extend Anonymous_Module_19
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_18
+  include Anonymous_Module_19
+end
+class Ektar::UsersController < Ektar::ResourcefulController
+  def _layout(lookup_context, formats); end
+  def self._helpers; end
+  def self._routes; end
+  def self._wrapper_options; end
+  def self.helpers_path; end
+  def self.middleware_stack; end
+  extend T::Sig
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_22
+end
+module Anonymous_Module_22
+  def _generate_paths_by_default; end
+  def _routes; end
+  def self._routes; end
+  def self.full_url_for(options); end
+  def self.optimize_routes_generation?; end
+  def self.polymorphic_path(record_or_hash_or_array, options = nil); end
+  def self.polymorphic_url(record_or_hash_or_array, options = nil); end
+  def self.route_for(name, *args); end
+  def self.url_for(options); end
+  def self.url_options; end
+  extend ActiveSupport::Concern
+  extend Anonymous_Module_18
+  extend Anonymous_Module_19
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_18
+  include Anonymous_Module_19
+end

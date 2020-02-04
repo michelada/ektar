@@ -1,3 +1,4 @@
+# typed: strong
 module Ektar
   module ApplicationHelper
     def model_name; end

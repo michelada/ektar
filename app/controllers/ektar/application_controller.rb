@@ -10,7 +10,7 @@ module Ektar
     protect_from_forgery with: :exception
     extend T::Sig
     include Kernel
-    include Rack::Request::Helpers
+
     class ResourceResponse
       extend T::Sig
       sig { params(block: T.untyped).returns(T.untyped) }
@@ -62,6 +62,11 @@ module Ektar
       else
         flash[result] = flash_message
       end
+    end
+
+    sig { returns(T.untyped) }
+    def cookies
+      super
     end
 
     sig { returns(T::Boolean) }

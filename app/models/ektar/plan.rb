@@ -1,4 +1,4 @@
-# typed: false
+# typed: strict
 module Ektar
   class Plan < ApplicationRecord
     extend ActionText::Attribute::ClassMethods
@@ -9,6 +9,8 @@ module Ektar
     T.unsafe(self).monetize :price_cents
 
     validates :name, uniqueness: true
-    validates :name, :price_cents, :trial, presence: true
+    validates_presence_of :name
+    validates_presence_of :price_cents
+    validates_presence_of :trial
   end
 end

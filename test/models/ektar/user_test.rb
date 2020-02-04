@@ -43,7 +43,7 @@ module Ektar
       subject = User.new invalid_params_email
 
       refute subject.valid?
-      assert_equal 3, subject.errors.count
+      assert_equal 2, subject.errors.count
     end
 
     test "is invalid without unique email" do
