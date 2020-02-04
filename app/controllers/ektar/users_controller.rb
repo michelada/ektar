@@ -21,12 +21,17 @@ module Ektar
 
     sig { void }
     def create
-      T.must(params["memberships_attributes"]).first[:role] = "admin"
-      T.must(params["memberships_attributes"]).first[:owner] = true
+      @resource = Ektar::User.new secure_params
 
-      @resource = Ektar::User.new params
-      @resource.last_ip = format_ip(request.remote_ip)
-      @resource.last_activity_at = Time.now
+      @resource.tap do |user|
+        user.last_ip = format_ip(request.remote_ip)
+        user.last_activity_at = Time.zone.now
+
+        user.memberships.first.tap do |membership|
+          membership.role = "admin"
+          membership.owner = true
+        end
+      end
 
       if @resource.save
         cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"] = @resource.global_id
