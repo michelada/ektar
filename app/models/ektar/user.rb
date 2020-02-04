@@ -15,7 +15,7 @@ module Ektar
     accepts_nested_attributes_for :memberships, limit: 1, reject_if: :reject_empty_organization!
     validates_presence_of :memberships
 
-    validates :password, presence: true, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}
+    validates :password, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}, unless: proc { |user| user.password.blank? }
 
     sig { returns(String) }
     def to_param

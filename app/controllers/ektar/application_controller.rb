@@ -76,7 +76,7 @@ module Ektar
 
     sig { returns(T.nilable(Ektar::User)) }
     def current_user
-      @_current_user ||= Ektar::User.find_by(global_id: cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"])
+      @current_user ||= Ektar::User.find_by(global_id: cookies.encrypted[session_cookie])
     end
 
     sig { returns(T::Boolean) }
@@ -87,6 +87,11 @@ module Ektar
     sig { params(ip: String).returns(String) }
     def format_ip(ip)
       T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
+    end
+
+    sig { returns(String) }
+    def session_cookie
+      @session_cookie ||= "#{Ektar.configuration.session_name}_remember_me"
     end
 
     helper_method :collection, :resource,

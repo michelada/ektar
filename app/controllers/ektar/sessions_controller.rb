@@ -11,13 +11,10 @@ module Ektar
     def create
       @resource = User.find_by(email: params.dig(:user, :email))
 
-      @resource.tap do |user|
-        user.last_ip = format_ip(request.remote_ip)
-        user.last_activity_at = Time.now
-      end
-
       if @resource&.authenticate(params.dig(:user, :password))
-        cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"] = {value: @resource.global_id, expires: Ektar.configuration.session_expiration || 2.weeks}
+        @resource.update last_ip: format_ip(request.remote_ip), last_activity_at: Time.zone.now
+        cookies.encrypted[session_cookie] = {value: @resource.global_id, expires: Ektar.configuration.session_expiration}
+
         set_flash(klass: "session", action: action_name)
         redirect_to root_path
       else
@@ -27,7 +24,7 @@ module Ektar
     end
 
     def destroy
-      if cookies.delete("#{Ektar.configuration.session_name}_remember_me")
+      if cookies.delete(session_cookie)
         set_flash(klass: "session", action: action_name)
       else
         set_flash(errors: true, klass: "session", action: action_name)
