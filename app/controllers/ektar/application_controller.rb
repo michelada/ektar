@@ -68,7 +68,7 @@ module Ektar
       @super_admin ||= session[:super_admin].present?
     end
 
-    helper_method :action_response_dual, :collection, :resource,
+    helper_method :collection, :resource,
       :super_admin?
   end
 end
