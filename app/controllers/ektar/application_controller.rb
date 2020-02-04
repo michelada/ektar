@@ -64,11 +64,33 @@ module Ektar
       end
     end
 
+    sig { returns(T::Boolean) }
     def super_admin?
       @super_admin ||= session[:super_admin].present?
     end
 
+    sig { returns(T.nilable(Ektar::User)) }
+    def current_user
+      @current_user ||= Ektar::User.find_by(global_id: cookies.encrypted[session_cookie])
+    end
+
+    sig { returns(T::Boolean) }
+    def user_signed_in?
+      current_user.present?
+    end
+
+    sig { params(ip: String).returns(String) }
+    def format_ip(ip)
+      T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
+    end
+
+    sig { returns(String) }
+    def session_cookie
+      @session_cookie ||= "#{Ektar.configuration.session_name}_remember_me"
+    end
+
     helper_method :collection, :resource,
-      :super_admin?
+      :super_admin?, :select_options,
+      :current_user, :user_signed_in?
   end
 end

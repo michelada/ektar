@@ -13,6 +13,10 @@ es:
         notice: "El usuario ha sido registrado exitosamente"
         alert: "Error al registrar el usuario"
 
+      session:
+        notice: "Sesión Iniciada correctamente"
+        alert: "El usuario o contraseña son incorrectos"
+
     update:
       notice: "Actualizado"
       alert: "Error al actualizar"
@@ -36,3 +40,7 @@ es:
       user:
         notice: "El usuario ha sido eliminado exitosamente"
         alert: "Error al eliminar el usuario"
+
+      session:
+        notice: "Sesión cerrada correctamente"
+        alert: "No se ha podido iniciar sesión"

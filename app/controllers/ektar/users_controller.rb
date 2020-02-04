@@ -26,13 +26,15 @@ module Ektar
         user.last_activity_at = Time.zone.now
 
         user.memberships.first.tap do |membership|
-          membership.role = "admin"
-          membership.owner = true
+          if membership.present?
+            membership.role = "admin"
+            membership.owner = true
+          end
         end
       end
 
       if @resource.save
-        cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"] = {value: @resource.global_id, expires: Ektar.configuration.session_expiration}
+        cookies.encrypted[session_cookie] = {value: @resource.global_id, expires: Ektar.configuration.session_expiration}
         redirect_to users_path
       else
         @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
@@ -56,11 +58,6 @@ module Ektar
     def verify_role
       redirect_to root_path unless resource.admin?
       true
-    end
-
-    sig { params(ip: String).returns(String) }
-    def format_ip(ip)
-      T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
     end
   end
 end

@@ -4,3 +4,4 @@ es:
     plans: "planes"
     users: "usuarios"
     registration: "registro"
+    session: sesion

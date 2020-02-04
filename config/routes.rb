@@ -7,4 +7,5 @@ Ektar::Engine.routes.draw do
 
   get I18n.t("routes.registration"), to: "users#new", as: :registration
   resources :users, path: I18n.t("routes.users")
+  resources :sessions, path: I18n.t("routes.session"), only: [:new, :create, :destroy]
 end
