@@ -1,0 +1,13 @@
+es:
+  navbar:
+    add_org: Agregar organizacion
+    add_user: Agregar usuario
+
+# Models views will implement lazy lokup
+
+  ektar:
+    application:
+      navbar:
+        logout: Cerrar sesión
+        login: Iniciar sesión
+        sign_up: Registrarse

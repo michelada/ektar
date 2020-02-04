@@ -20,4 +20,8 @@ es:
       size: 50
       ektar/organization:
         name: 40
-    
+  
+  ektar:
+    sessions:
+      new:
+        login: Iniciar sesión

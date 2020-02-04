@@ -10,7 +10,7 @@ module Ektar
     protect_from_forgery with: :exception
     extend T::Sig
     include Kernel
-
+    include Rack::Request::Helpers
     class ResourceResponse
       extend T::Sig
       sig { params(block: T.untyped).returns(T.untyped) }
@@ -64,11 +64,23 @@ module Ektar
       end
     end
 
+    sig { returns(T::Boolean) }
     def super_admin?
       @super_admin ||= session[:super_admin].present?
     end
 
+    sig { returns(T.nilable(Ektar::User)) }
+    def current_user
+      @_current_user ||= Ektar::User.find_by(global_id: cookies.encrypted["#{Ektar.configuration.session_name}_remember_me"])
+    end
+
+    sig { returns(T::Boolean) }
+    def user_signed_in?
+      current_user.present?
+    end
+
     helper_method :collection, :resource,
-      :super_admin?, :select_options
+      :super_admin?, :select_options,
+      :current_user, :user_signed_in?
   end
 end
