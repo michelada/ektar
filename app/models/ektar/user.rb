@@ -15,6 +15,8 @@ module Ektar
     accepts_nested_attributes_for :memberships, limit: 1, reject_if: :reject_empty_organization!
     validates_presence_of :memberships
 
+    validates :password, presence: true, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}
+
     sig { returns(String) }
     def to_param
       global_id
@@ -27,7 +29,7 @@ module Ektar
 
     private
 
-    sig { params(attributes: T::Hash[String, String]).returns(T::Boolean) }
+    sig { params(attributes: T::Hash[String, T.any(String, T::Hash[String, String])]).returns(T::Boolean) }
     def reject_empty_organization!(attributes)
       attributes.dig("organization_attributes", "name").blank?
     end
