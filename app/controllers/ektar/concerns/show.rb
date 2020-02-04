@@ -14,6 +14,10 @@ module Ektar
           set_resource_ivar @resource
 
           yield @resource if block_given?
+          respond_to do |format|
+            format.html
+            format.json { render json: @resource }
+          end
         end
 
         alias_method :show!, :show
