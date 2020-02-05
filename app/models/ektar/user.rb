@@ -11,7 +11,7 @@ module Ektar
     has_many :organizations, class_name: "Ektar::Organization", through: :memberships, source: :organization
 
     validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false}
-    validates :password, presence: true, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}
+    validates :password, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}, unless: proc { |user| user.password.blank? }
     validates :memberships, presence: true, if: ->(user) { !user.super_admin }
 
     accepts_nested_attributes_for :memberships, limit: 1, reject_if: :reject_empty_organization!
@@ -24,6 +24,11 @@ module Ektar
     sig { returns(T::Boolean) }
     def blocked?
       blocked_at?
+    end
+
+    sig { returns(T.nilable(Ektar::Membership)) }
+    def membership
+      memberships.first
     end
 
     private
