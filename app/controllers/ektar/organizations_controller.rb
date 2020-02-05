@@ -10,7 +10,7 @@ module Ektar
                 show_attributes: %i[name enable updated_at],
                 find_by: :global_id)
 
-    before_action :authenticate_superadmin!, except: :show
+    before_action :verify_super_admin!
 
     sig { void }
     def destroy

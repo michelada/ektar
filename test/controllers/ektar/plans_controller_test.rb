@@ -6,7 +6,6 @@ module Ektar
     include Engine.routes.url_helpers
 
     def setup
-      @headers = {headers: http_login}
       @plan = ektar_plans(:plan)
     end
 
@@ -38,7 +37,7 @@ module Ektar
 
     test "can create plan" do
       assert_difference "Ektar::Plan.count", 1 do
-        post plans_path, {params: valid_plan, headers: http_login}
+        post plans_path, {params: valid_plan}
       end
 
       assert_equal "Plan test", Ektar::Plan.last.name
@@ -52,7 +51,7 @@ module Ektar
     end
 
     test "can update plan" do
-      put plan_path(@plan.id), {params: {plan: {name: "Test"}}, headers: http_login}
+      put plan_path(@plan.id), {params: {plan: {name: "Test"}}}
       @plan.reload
 
       assert_equal "Test", @plan.name
@@ -70,12 +69,6 @@ module Ektar
 
     def valid_plan
       {plan: {name: "Plan test"}}
-    end
-
-    def http_login
-      username = Ektar.configuration.organization_username
-      password = Ektar.configuration.organization_password
-      {HTTP_AUTHORIZATION: ActionController::HttpAuthentication::Basic.encode_credentials(username, password)}
     end
   end
 end

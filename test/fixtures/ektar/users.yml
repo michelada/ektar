@@ -1,5 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+super_user:
+  email: "super_user@example.com"
+  password_digest: "Password12"
+  super_admin: true
+
 user:
   email: "fixture_user@example.com"
   password_digest: "Password14"
