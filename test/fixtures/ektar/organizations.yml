@@ -9,3 +9,8 @@ alternate_organization:
   name: "Alternate Fixture Organization"
   enable: true
   plan: :alternate_plan
+
+organization_no_admin:
+  name: "Organization with no admin"
+  enable: true
+  plan: plan

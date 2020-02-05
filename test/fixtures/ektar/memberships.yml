@@ -3,3 +3,12 @@
 membership:
   organization: organization
   user: user
+
+alternate_membership:
+  organization: alternate_organization
+  user: alternate_user
+
+admin_membership:
+  organization: organization
+  user: admin_user
+  role: admin

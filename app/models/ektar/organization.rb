@@ -17,5 +17,15 @@ module Ektar
     def to_param
       global_id
     end
+
+    sig { returns(Ektar::User::ActiveRecord_AssociationRelation) }
+    def admins
+      users.joins(:memberships).where(ektar_memberships: {role: "admin"})
+    end
+
+    sig { returns(T::Boolean) }
+    def admin?
+      admins.any?
+    end
   end
 end

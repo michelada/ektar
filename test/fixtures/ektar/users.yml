@@ -8,3 +8,6 @@ alternate_user:
   email: "alternate_fixture_user@example.com"
   password_digest: "Password14"
 
+admin_user:
+  email: "admin@ektar.com"
+  password_digest: "EktarRu135!"
