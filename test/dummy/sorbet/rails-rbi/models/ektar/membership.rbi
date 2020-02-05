@@ -35,6 +35,15 @@ module Ektar::Membership::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def active?; end
 
+  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
+  def blocked_at; end
+
+  sig { params(value: T.nilable(T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone))).void }
+  def blocked_at=(value); end
+
+  sig { returns(T::Boolean) }
+  def blocked_at?; end
+
   sig { returns(ActiveSupport::TimeWithZone) }
   def created_at; end
 
@@ -70,6 +79,15 @@ module Ektar::Membership::GeneratedAttributeMethods
 
   sig { returns(T::Boolean) }
   def id?; end
+
+  sig { returns(T::Boolean) }
+  def owner; end
+
+  sig { params(value: T::Boolean).void }
+  def owner=(value); end
+
+  sig { returns(T::Boolean) }
+  def owner?; end
 
   sig { returns(String) }
   def role; end

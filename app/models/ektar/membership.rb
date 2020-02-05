@@ -11,5 +11,10 @@ module Ektar
     validates_presence_of :organization
 
     enum role: {admin: "admin", member: "member"}
+
+    sig { returns(T::Boolean) }
+    def blocked?
+      blocked_at?
+    end
   end
 end
