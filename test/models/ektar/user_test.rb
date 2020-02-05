@@ -82,6 +82,47 @@ module Ektar
       end
     end
 
+    test "user cannot repeat password" do
+      subject = User.create(valid_params)
+
+      subject.password = "Password18"
+      subject.password_confirmation = "Password18"
+
+      assert subject.save
+
+      assert_equal 0, subject.errors.count
+
+      subject.password = "Password17"
+      subject.password_confirmation = "Password17"
+
+      refute subject.valid?
+
+      assert_equal 1, subject.errors.count
+    end
+
+    test "user can only have #{Ektar.configuration.saved_password_number} of passwords stored" do
+      subject = User.create(valid_params)
+
+      assert 1, subject.last_passwords.count
+
+      subject.password = "Password18"
+      subject.password_confirmation = "Password18"
+
+      assert subject.save
+
+      subject.password = "Password19"
+      subject.password_confirmation = "Password19"
+
+      assert subject.save
+
+      subject.password = "Password20"
+      subject.password_confirmation = "Password20"
+
+      assert subject.save
+
+      assert 3, subject.last_passwords
+    end
+
     # test "is invalid without valid encrypted_password" do
     #   subject = User.new valid_params.merge(encrypted_password: "123")
 
