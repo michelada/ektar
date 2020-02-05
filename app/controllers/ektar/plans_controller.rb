@@ -15,7 +15,7 @@ module Ektar
                                   price_currency: :currency,},
                 show_attributes: %i[name description free trial active price])
 
-    before_action :authenticate_superadmin!, except: :show
+    before_action :verify_super_admin!
 
     sig { void }
     def destroy

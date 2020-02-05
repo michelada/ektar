@@ -5,7 +5,6 @@ module Ektar
   class OrganizationsControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
     def setup
-      @headers = {headers: http_login}
       @organization = ektar_organizations(:organization)
     end
 
@@ -38,7 +37,7 @@ module Ektar
     test "can create organization" do
       skip
       assert_difference "Ektar::Organization.count", 1 do
-        post organizations_path, {params: valid_organization, headers: http_login}
+        post organizations_path, {params: valid_organization}
 
         assert_response :success
       end
@@ -54,7 +53,7 @@ module Ektar
     end
 
     test "can update organization" do
-      put organization_path(@organization.global_id), {params: {organization: {name: "Fixture Organization"}}, headers: http_login}
+      put organization_path(@organization.global_id), {params: {organization: {name: "Fixture Organization"}}}
       @organization.reload
 
       assert_equal "Fixture Organization", @organization.name
@@ -72,12 +71,6 @@ module Ektar
 
     def valid_organization
       {organization: {name: "Organization test", enable: true, plan: ektar_plans(:plan)}}
-    end
-
-    def http_login
-      username = "manager"
-      password = "secrets"
-      {HTTP_AUTHORIZATION: ActionController::HttpAuthentication::Basic.encode_credentials(username, password)}
     end
   end
 end
