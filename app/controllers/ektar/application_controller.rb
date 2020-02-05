@@ -60,14 +60,23 @@ module Ektar
       end
     end
 
-    sig { returns(T::Boolean) }
+    sig { returns(T.nilable(T::Boolean)) }
     def super_admin?
-      @super_admin ||= T.must(current_user).super_admin?
+      @super_admin ||= current_user&.super_admin?
     end
 
     sig { returns(T.nilable(Ektar::User)) }
     def current_user
       @current_user ||= Ektar::User.find_by(global_id: cookies.encrypted[session_cookie])
+    end
+
+    def authenticate_user!
+      redirect_to new_session_path, alert: t("flash.session.authenticate!") unless user_signed_in?
+    end
+
+    sig { returns(T.nilable(Ektar::Organization)) }
+    def current_organization
+      @current_organization ||= user_signed_in? && T.must(current_user).organizations.first
     end
 
     sig { returns(T::Boolean) }
