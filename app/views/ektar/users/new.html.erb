@@ -28,7 +28,7 @@
             <label class="label"><%= organization.label :name %></label>
             <%= organization.text_field :name, class: "input"%>
             <% if  form.object.errors[:memberships].first&.first.present? %>
-              <p class="help is-danger"><%= form.object.errors[:password].first %><p/>
+              <p class="help is-danger"><%= form.object.errors[:memberships].first %><p/>
             <% end %>
           <% end %>
         <% end %>
