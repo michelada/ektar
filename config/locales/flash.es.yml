@@ -1,5 +1,7 @@
 es:
   flash:
+    session:
+      authenticate!: "Debes de iniciar sesión primero"
     
     create:
       notice: "Creado"

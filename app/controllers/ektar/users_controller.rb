@@ -12,9 +12,11 @@ module Ektar
                 show_attributes: %i[id email updated_at],
                 find_by: :global_id, except: :new)
 
+    before_action :authenticate_user!
+
     sig { void }
     def index
-      scope = Ektar::User.joins(:memberships).where(ektar_memberships: {ektar_organization_id: current_user.organizations.first.id})
+      scope = current_organization.users
       @pagination, @collection = pagy(scope, i18n_key: "activerecord.models.ektar/user")
 
       render layout: "ektar/application"
