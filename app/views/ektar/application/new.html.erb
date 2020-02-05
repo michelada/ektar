@@ -6,14 +6,12 @@
       <% form_attributes.each do |attribute_name, attribute_options|%>
         <% attributes = resource_attributes(attribute_options) %>
 
-        <%= content_tag(:div, attributes.dig(:control_html)) do %>
-          <div class="field">
-            <%= render partial: "#{attributes.dig(:type)}", 
-                      locals: { attribute_name: attribute_name,
-                                form: form,
-                                input_html: attributes.dig(:input_html),
-                                options: attributes.dig(:options)} %>
-          </div>
+        <%= content_tag(:div, field_attributes(attributes)) do %>
+          <%= render partial: "#{attributes.dig(:type)}",
+                    locals: { attribute_name: attribute_name,
+                              form: form,
+                              input_html: attributes.dig(:input_html),
+                              options: attributes.dig(:options)} %>
         <% end %>
       <% end %>
 
