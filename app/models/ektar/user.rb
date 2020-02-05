@@ -14,6 +14,7 @@ module Ektar
     validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false}
     validates :password, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}, unless: proc { |user| user.password.blank? }
     validates :memberships, presence: true, if: ->(user) { !user.super_admin }
+    validate :validate_password_not_used, if: ->(user) { user.password_digest_changed? }
 
     accepts_nested_attributes_for :memberships, limit: 1, reject_if: :reject_empty_organization!
 
@@ -48,5 +49,15 @@ module Ektar
     def reject_empty_organization!(attributes)
       attributes.dig("organization_attributes", "name").blank?
     end
+
+    def validate_password_not_used
+      last_passwords.each do |last_password|
+        bcrypt = ::BCrypt::Password.new(last_password.password_digest)
+        hashed_value = ::BCrypt::Engine.hash_secret(password, bcrypt.salt)
+
+        errors.add(:password, :password_already_used) if hashed_value == last_password.password_digest
+      end
+    end
+
   end
 end
