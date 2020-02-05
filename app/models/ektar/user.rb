@@ -9,6 +9,7 @@ module Ektar
 
     has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_user_id, inverse_of: :user
     has_many :organizations, class_name: "Ektar::Organization", through: :memberships, source: :organization
+    has_many :last_passwords, class_name: "Ektar::LastPassword", foreign_key: :ektar_user_id
 
     validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false}
     validates :password, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}, unless: proc { |user| user.password.blank? }
@@ -31,7 +32,17 @@ module Ektar
       memberships.first
     end
 
+    after_create :add_last_password
+    before_update :add_last_password, if: :password_digest_changed?
+
     private
+
+    def add_last_password
+      if last_passwords.count == Ektar.configuration.saved_password_number
+        last_passwords.first.destroy
+      end
+      last_passwords.create(password_digest: password_digest)
+    end
 
     sig { params(attributes: T::Hash[String, T.any(String, T::Hash[String, String])]).returns(T::Boolean) }
     def reject_empty_organization!(attributes)
