@@ -21,7 +21,9 @@
 
   <div class="level-right">
     <div class="level-item">
-      <% if super_admin? %>
+      <% if controller_name == "users" && !super_admin? %>
+        <%= link_to new_title, new_resource_path, class: "button is-primary" %>
+      <% elsif  controller_name != "users" && super_admin? %>
         <%= link_to new_title, new_resource_path, class: "button is-primary" %>
       <% end %>
     </div>

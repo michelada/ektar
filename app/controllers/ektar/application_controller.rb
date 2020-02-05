@@ -26,13 +26,9 @@ module Ektar
 
     attr_reader :pagination, :resource, :collection
 
-    sig { returns(NilClass) }
-    def authenticate_superadmin!
-      session[:super_admin] = authenticate_or_request_with_http_basic("Restricted Access") { |username, password|
-        username == Ektar.configuration.organization_username && password == Ektar.configuration.organization_password
-      }
-
-      return render status: :not_authorized unless super_admin?
+    sig { void }
+    def verify_super_admin!
+      redirect_to root_path unless super_admin?
     end
 
     sig { params(object: ActiveRecord::Base, options: T::Hash[Symbol, T.untyped], block: T.untyped).returns(String) }
@@ -66,7 +62,7 @@ module Ektar
 
     sig { returns(T::Boolean) }
     def super_admin?
-      @super_admin ||= session[:super_admin].present?
+      @super_admin ||= T.must(current_user).super_admin?
     end
 
     sig { returns(T.nilable(Ektar::User)) }
@@ -87,6 +83,14 @@ module Ektar
     sig { returns(String) }
     def session_cookie
       @session_cookie ||= "#{Ektar.configuration.session_name}_remember_me"
+    end
+
+    def root_path
+      if super_admin?
+        super
+      else
+        users_path
+      end
     end
 
     helper_method :collection, :resource,

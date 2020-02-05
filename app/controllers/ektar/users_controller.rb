@@ -3,7 +3,7 @@
 
 module Ektar
   class UsersController < ResourcefulController
-    # before_action :verify_role, only: [:create, :destroy]
+    before_action :is_normal_user, only: [:new, :create, :update, :edit]
     extend T::Sig
 
     resourceful(list_attributes: %i[id email updated_at],
@@ -54,10 +54,9 @@ module Ektar
       params.require_typed(:user, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys, memberships_attributes: [{organization_attributes: [:name]}])
     end
 
-    sig { returns(TrueClass) }
-    def verify_role
-      redirect_to root_path unless resource.admin?
-      true
+    sig { void }
+    def is_normal_user
+      redirect_to users_path if super_admin?
     end
   end
 end
