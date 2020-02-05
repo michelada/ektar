@@ -20,7 +20,9 @@
         <div class="navbar-item">
           <%= link_to model_human_name(Ektar::Plan), plans_path, class: "navbar-item" %>
         </div>
-      <% else %>
+      <% end %>
+
+      <% if user_signed_in? %>
         <div class="navbar-item">
           <%= link_to model_human_name(Ektar::User), users_path, class: "navbar-item" %>
         </div>
