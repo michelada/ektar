@@ -76,6 +76,14 @@ module Ektar
         default: I18n.t("table.actions.delete"))
     end
 
+    sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(T::Hash[Symbol, T.untyped]) }
+    def field_attributes(attributes = {})
+      control_html = attributes.fetch(:control_html, {})
+      css_class = control_html.delete(:class)
+      control_html[:class] = "field #{css_class}"
+      control_html
+    end
+
     sig { params(field_name: T.any(Symbol, String)).returns(T::Hash[Symbol, T.untyped]) }
     def input_attributes(field_name)
       key = resource_class.model_name.i18n_key
