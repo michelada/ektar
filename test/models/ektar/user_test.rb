@@ -100,10 +100,10 @@ module Ektar
       assert_equal 1, subject.errors.count
     end
 
-    test "user can only have #{Ektar.configuration.saved_password_number} of passwords stored" do
+    test "user can only have #{Ektar.configuration.password_retain_count} of passwords stored" do
       subject = User.create(valid_params)
 
-      assert 1, subject.last_passwords.count
+      assert 1, subject.used_passwords.count
 
       subject.password = "Password18"
       subject.password_confirmation = "Password18"
@@ -120,7 +120,7 @@ module Ektar
 
       assert subject.save
 
-      assert 3, subject.last_passwords
+      assert 3, subject.used_passwords
     end
 
     # test "is invalid without valid encrypted_password" do

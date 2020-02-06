@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 module Ektar
-  class LastPasswordTest < ActiveSupport::TestCase
+  class UsedPasswordTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true
     # end

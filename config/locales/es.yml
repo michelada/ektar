@@ -7,11 +7,6 @@ es:
         restrict_dependent_destroy:
           has_one: No se puede eliminar el registro porque existe un %{record} dependiente
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
-      models:
-        ektar/user:
-          attributes:
-            password:
-              password_already_used: "Contraseña ya fue usada"
   date:
     abbr_day_names:
     - dom
