@@ -1,3 +1,4 @@
+# typed: true
 require_dependency "ektar/application_controller"
 
 module Ektar

@@ -8,7 +8,6 @@ es:
       ektar/user:
         one: Usuario
         other: Usuarios
-      
       ektar/plan:
         one: Plan
         other: Planes
@@ -24,3 +23,10 @@ es:
         price_cents: Precio
         price_currency: Moneda
         trial: Prueba
+
+    errors:
+      models:
+        ektar/user:
+          attributes:
+            password:
+              password_already_used: "Contraseña ya fue usada"

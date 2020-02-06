@@ -133,6 +133,12 @@ module Ektar::User::GeneratedAssociationMethods
 
   sig { params(value: T::Enumerable[::Ektar::Organization]).void }
   def organizations=(value); end
+
+  sig { returns(::Ektar::UsedPassword::ActiveRecord_Associations_CollectionProxy) }
+  def used_passwords; end
+
+  sig { params(value: T::Enumerable[::Ektar::UsedPassword]).void }
+  def used_passwords=(value); end
 end
 
 module Ektar::User::CustomFinderMethods
