@@ -1,4 +1,6 @@
-# typed: strict
+# typed: true
+# frozen_string_literal: true
+
 module Ektar
   module ResourcefulHelper
     include ApplicationHelper

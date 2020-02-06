@@ -1,8 +1,8 @@
-# typed: strict
+# typed: true
 # frozen_string_literal: true
 
 module Ektar
-  class OrganizationsController < ResourcefulController
+  class OrganizationsController < Ektar::ResourcefulController
     extend T::Sig
 
     resourceful(list_attributes: %i[id name enable updated_at],

@@ -1,4 +1,6 @@
-# typed: strict
+# typed: false
+# frozen_string_literal: true
+
 module Ektar
   class UsedPassword < ApplicationRecord
     belongs_to :user, class_name: "Ektar::User", foreign_key: :ektar_user_id

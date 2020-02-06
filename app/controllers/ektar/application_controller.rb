@@ -1,15 +1,19 @@
-# typed: true
+# typed: false
 # frozen_string_literal: true
 
 require "pagy"
 require "pagy/extras/bulma"
 require "pagy/extras/i18n"
+require "pundit"
 
 module Ektar
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     extend T::Sig
     include Kernel
+    include Pundit
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     class ResourceResponse
       extend T::Sig
@@ -65,23 +69,8 @@ module Ektar
       @super_admin ||= current_user&.super_admin?
     end
 
-    sig { returns(T.nilable(Ektar::User)) }
-    def current_user
-      @current_user ||= Ektar::User.find_by(global_id: cookies.encrypted[session_cookie])
-    end
-
     def authenticate_user!
       redirect_to new_session_path, alert: t("flash.session.authenticate!") unless user_signed_in?
-    end
-
-    sig { returns(T.nilable(Ektar::Organization)) }
-    def current_organization
-      @current_organization ||= user_signed_in? && T.must(current_user).organizations.first
-    end
-
-    sig { returns(T::Boolean) }
-    def user_signed_in?
-      current_user.present?
     end
 
     sig { params(ip: String).returns(String) }
@@ -89,9 +78,29 @@ module Ektar
       T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
     end
 
-    sig { returns(String) }
+    sig { returns(T.nilable(Ektar::User)) }
+    def current_user
+      @current_user ||= Ektar::User.find_by(global_id: session_cookie["user"])
+    end
+
+    sig { returns(T::Boolean) }
+    def user_signed_in?
+      current_user.present?
+    end
+
+    sig { returns(T.nilable(Ektar::Organization)) }
+    def current_organization
+      @current_organization ||= Ektar::Organization.find_by(global_id: session_cookie["organization"])
+    end
+
+    sig { returns(T::Hash[String, String]) }
     def session_cookie
-      @session_cookie ||= "#{Ektar.configuration.session_name}_remember_me"
+      @session_cookie ||= cookies.encrypted[session_cookie_name] || {}
+    end
+
+    sig { returns(String) }
+    def session_cookie_name
+      @session_cookie_name ||= "#{Ektar.configuration.session_name}_remember_me"
     end
 
     def root_path
@@ -100,6 +109,11 @@ module Ektar
       else
         users_path
       end
+    end
+
+    def user_not_authorized
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(request.referrer || new_session_path)
     end
 
     helper_method :collection, :resource,

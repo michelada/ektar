@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 # frozen_string_literal: true
 
 module Ektar
@@ -12,14 +12,14 @@ module Ektar
                 show_attributes: %i[id email updated_at],
                 find_by: :global_id, except: :new)
 
-    before_action :authenticate_user!
-
     sig { void }
     def index
-      scope = current_organization.users
-      @pagination, @collection = pagy(scope, i18n_key: "activerecord.models.ektar/user")
+      authorize current_organization, policy_class: Ektar::UserPolicy
 
-      render layout: "ektar/application"
+      index! do |scope|
+        scope.includes(memberships: :organization)
+          .where(ektar_memberships: {ektar_organization_id: current_organization})
+      end
     end
 
     sig { void }
@@ -45,7 +45,13 @@ module Ektar
       end
 
       if @resource.save
-        cookies.encrypted[session_cookie] = {value: @resource.global_id, expires: Ektar.configuration.session_expiration}
+        cookies.encrypted[session_cookie_name] = {
+          value: {
+            user: @resource.global_id,
+            organization: @resource.memberships.first.organization.global_id,
+          },
+          expires: Ektar.configuration.session_expiration,
+        }
         redirect_to users_path
       else
         @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
