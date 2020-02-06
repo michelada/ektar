@@ -10,3 +10,6 @@ es:
         logout: Cerrar sesión
         login: Iniciar sesión
         sign_up: Registrarse
+    users:
+      index:
+        organization: Organización

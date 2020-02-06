@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 # frozen_string_literal: true
 
 module Ektar
@@ -17,7 +17,7 @@ module Ektar
     sig { void }
     def index
       @pagination, @collection = pagy(current_organization.users, i18n_key: "activerecord.models.ektar/user")
-      @user_organizations = current_user.organizations.pluck(:name, :id)
+      @user_organizations = T.must(current_user).organizations.pluck(:name, :id)
 
       render layout: "ektar/application"
     end
@@ -90,7 +90,7 @@ module Ektar
     def current_organization
       org_id = params.dig("/ektar/usuarios", "organization_id")
 
-      @organization ||= org_id ? Ektar::Organization.joins(:users).find(org_id) : current_user.organizations.first
+      @organization ||= org_id ? Ektar::Organization.joins(:users).find(org_id) : T.must(current_user).organizations.first
     end
   end
 end

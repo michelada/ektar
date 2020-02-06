@@ -1,14 +1,24 @@
 <% content_for :custom_actions do %>
+  <div class="level">
+    <div class="level-left">
+      <% if current_user.organizations.size > 1 %>
+        <%= form_for users_path, method: :get, class: "level-item" do |filter_form| %>
+        <%= filter_form.label t(".organization"), class: "label" %>
+          <%= render partial: "ektar/application/select", locals: {
+                                                            attribute_name: :organization_id,
+                                                            options: @user_organizations, 
+                                                            form: filter_form, 
+                                                            input_html: {onchange: "this.form.submit()", selected: current_organization.id}} %>
+        <% end %>
+      <% end %>
+    </div>
 
-  <% if current_user.organizations.size > 1 %>
-    <%= form_for users_path, method: :get do |filter_form| %>
-      <%= render partial: "ektar/application/select", locals: {
-                                                        attribute_name: :organization_id,
-                                                        options: @user_organizations, 
-                                                        form: filter_form, 
-                                                        input_html: {onchange: "this.form.submit()", selected: current_organization.id}} %>
-    <% end %>
-  <% end %>
+    <div class="level-right">
+      <% if current_user.admin_of?(current_organization) %>
+        <%= link_to "Invitar", "#", class: "button is-success level-item" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
 <%= render partial: "ektar/application/index" %>
