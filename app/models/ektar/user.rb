@@ -5,14 +5,15 @@ module Ektar
   class User < ApplicationRecord
     extend T::Sig
 
-    has_secure_password :password, validations: true
+    has_secure_password :password, validations: false
 
     has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_user_id, inverse_of: :user
     has_many :organizations, class_name: "Ektar::Organization", through: :memberships, source: :organization
 
     validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false}
+    validates :password, presence: true, if: proc { |user| user.invitation_created_at.blank? }
     validates :password, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, message: "Invalid format"}, unless: proc { |user| user.password.blank? }
-    validates :memberships, presence: true, if: ->(user) { !user.super_admin }
+    validates :memberships, presence: true, if: ->(user) { !user.super_admin && user.invitation_created_at.blank? }
 
     accepts_nested_attributes_for :memberships, limit: 1, reject_if: :reject_empty_organization!
 
