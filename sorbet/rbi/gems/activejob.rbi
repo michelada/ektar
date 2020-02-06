@@ -193,6 +193,10 @@ class ActiveJob::QueueAdapters::AsyncAdapter::Scheduler
   def initialize(**options); end
   def shutdown(wait: nil); end
 end
+class ActiveJob::QueueAdapters::InlineAdapter
+  def enqueue(job); end
+  def enqueue_at(*arg0); end
+end
 class ActiveJob::Base
   def __callbacks; end
   def __callbacks?; end

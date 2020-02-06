@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pg_search", "~> 2.3.0"
   spec.add_dependency "money-rails", "~> 1.12"
   spec.add_dependency "bcrypt", "~> 3.1.7"
+  spec.add_dependency "pundit", "~> 2.1"
   spec.add_development_dependency "lefthook"
   spec.add_development_dependency "pg"
   spec.add_development_dependency "sorbet"

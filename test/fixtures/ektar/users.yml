@@ -1,15 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+user:
+  email: "current@example.com"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
+
+admin_user:
+  email: "admin_current@example.com"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
+
 super_user:
   email: "super_user@example.com"
-  password_digest: "Password12"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
   super_admin: true
-
-user:
-  email: "fixture_user@example.com"
-  password_digest: "Password14"
 
 alternate_user:
   email: "alternate_fixture_user@example.com"
-  password_digest: "Password14"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
 

@@ -4,7 +4,7 @@ es:
       ektar/organization:
         one: Organización
         other: Organizaciones
-      
+
       ektar/user:
         one: Usuario
         other: Usuarios
@@ -15,9 +15,9 @@ es:
     attributes:
       ektar/organization:
         enable: "Activa"
-      
+
       ektar/plan:
-        active: Activo 
+        active: Activo
         free: Gratuito
         price: Precio
         price_cents: Precio
@@ -29,4 +29,5 @@ es:
         ektar/user:
           attributes:
             password:
-              password_already_used: "Contraseña ya fue usada"
+              invalid: "contraseña necesita de al menos una mayúscula, una minúscula y un número"
+              password_already_used: "contraseña ya fue usada"
