@@ -1,5 +1,5 @@
 <div class="control">
   <div class="select">
-    <%= form.select "#{attribute_name}".to_sym, options_for_select(options, {prompt: t('forms.dropdown_select', name_option: attribute_name)}), {}, input_html %>
+    <%= form.select "#{attribute_name}".to_sym, options_for_select(options, selected: input_html[:selected]), {}, input_html %>
   </div>
 </div>

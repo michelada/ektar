@@ -1,0 +1,14 @@
+<% content_for :custom_actions do %>
+
+  <% if current_user.organizations.size > 1 %>
+    <%= form_for users_path, method: :get do |filter_form| %>
+      <%= render partial: "ektar/application/select", locals: {
+                                                        attribute_name: :organization_id,
+                                                        options: @user_organizations, 
+                                                        form: filter_form, 
+                                                        input_html: {onchange: "this.form.submit()", selected: current_organization.id}} %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render partial: "ektar/application/index" %>

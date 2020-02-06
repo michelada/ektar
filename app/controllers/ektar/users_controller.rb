@@ -3,21 +3,21 @@
 
 module Ektar
   class UsersController < ResourcefulController
-    before_action :is_normal_user, only: [:new, :create, :update, :edit]
+    before_action :is_normal_user, only: [:new, :create, :update]
     extend T::Sig
     include Pagy::Backend
 
-    resourceful(list_attributes: %i[id email updated_at],
+    resourceful(list_attributes: %i[email updated_at last_activity_at],
                 form_attributes: {email: :input, password: :password, password_confirmation: :password},
                 show_attributes: %i[id email updated_at],
-                find_by: :global_id, except: :new)
+                find_by: :global_id, except: [:new, :index, :create, :delete])
 
     before_action :authenticate_user!
 
     sig { void }
     def index
-      scope = current_organization.users
-      @pagination, @collection = pagy(scope, i18n_key: "activerecord.models.ektar/user")
+      @pagination, @collection = pagy(current_organization.users, i18n_key: "activerecord.models.ektar/user")
+      @user_organizations = current_user.organizations.pluck(:name, :id)
 
       render layout: "ektar/application"
     end
@@ -63,12 +63,12 @@ module Ektar
       redirect_to collection_path
     end
 
+    private
+
     sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_delete?(resource)
-      !resource.memberships.first.blocked?
+      current_organization.has_active_user?(resource)
     end
-
-    private
 
     sig { returns(String) }
     def new_resource_path
@@ -85,6 +85,12 @@ module Ektar
     sig { void }
     def is_normal_user
       redirect_to users_path if super_admin?
+    end
+
+    def current_organization
+      org_id = params.dig("/ektar/usuarios", "organization_id")
+
+      @organization ||= org_id ? Ektar::Organization.joins(:users).find(org_id) : current_user.organizations.first
     end
   end
 end

@@ -23,6 +23,16 @@ module Ektar
       users.joins(:memberships).where(ektar_memberships: {role: "admin"})
     end
 
+    sig { returns(Ektar::User::ActiveRecord_AssociationRelation) }
+    def active_users
+      users.where(blocked_at: nil)
+    end
+
+    sig { params(user: Ektar::User).returns(T::Boolean) }
+    def has_active_user?(user)
+      active_users.include?(user)
+    end
+
     sig { returns(T::Boolean) }
     def admin?
       admins.any?

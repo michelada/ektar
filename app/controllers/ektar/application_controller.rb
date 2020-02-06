@@ -104,6 +104,7 @@ module Ektar
 
     helper_method :collection, :resource,
       :super_admin?, :select_options,
-      :current_user, :user_signed_in?
+      :current_user, :user_signed_in?,
+      :current_organization
   end
 end
