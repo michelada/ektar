@@ -5,13 +5,17 @@ module Ektar
   end
 
   class ApplicationController < ActionController::Base
+    extend T::Sig
     include ApplicationHelper
-    
-    def cookies
-    end
+
+    sig { params(klasses: T::Array[Class], with: Symbol).void }
+    def rescue_from(*klasses, with:); end
+
+    sig { returns(T.untyped) }
+    def cookies; end
   end
 
-  class UsersController < ResourcefulController
+  class UsersController < Ektar::ResourcefulController
     include ActionDispatch::Cookies::ChainedCookieJars
   end
 end

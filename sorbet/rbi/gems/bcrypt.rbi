@@ -139,7 +139,7 @@ class Ektar::User < Ektar::ApplicationRecord
   def validate_associated_records_for_used_passwords(*args); end
   extend T::Sig
   include ActiveModel::Validations
-  include Anonymous_ActiveModel_SecurePassword_InstanceMethodsOnActivation_14
+  include Anonymous_ActiveModel_SecurePassword_InstanceMethodsOnActivation_25
   include Ektar::User::GeneratedAssociationMethods
   include Ektar::User::GeneratedAttributeMethods
 end
@@ -175,10 +175,13 @@ class Ektar::User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationR
   include ActiveRecord::Delegation::ClassSpecificRelation
   include Ektar::User::GeneratedRelationMethods
 end
-module Anonymous_ActiveModel_SecurePassword_InstanceMethodsOnActivation_14
+module Anonymous_ActiveModel_SecurePassword_InstanceMethodsOnActivation_25
   def authenticate(unencrypted_password); end
   def authenticate_password(unencrypted_password); end
   def password; end
   def password=(unencrypted_password); end
   def password_confirmation=(unencrypted_password); end
+end
+class ActiveRecord::Scoping::ScopeRegistry
+  def self.set_value_for(*args, &block); end
 end

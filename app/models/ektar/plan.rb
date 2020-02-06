@@ -1,4 +1,6 @@
-# typed: strict
+# typed: false
+# frozen_string_literal: true
+
 module Ektar
   class Plan < ApplicationRecord
     extend ActionText::Attribute::ClassMethods

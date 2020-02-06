@@ -59,3 +59,9 @@ class Pagy::OverflowError < Pagy::VariableError
 end
 module Ektar
 end
+module Ektar::ApplicationHelper
+  extend T::Sig
+  include Kernel
+  include Pagy::Frontend
+  include Webpacker::Helper
+end

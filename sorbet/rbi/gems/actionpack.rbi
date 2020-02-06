@@ -1544,7 +1544,7 @@ module ActionController::ParamsWrapper
   def process_action(*args); end
   extend ActiveSupport::Concern
 end
-class Anonymous_Struct_15 < Struct
+class Anonymous_Struct_14 < Struct
   def exclude; end
   def exclude=(_); end
   def format; end
@@ -1562,7 +1562,7 @@ class Anonymous_Struct_15 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class ActionController::ParamsWrapper::Options < Anonymous_Struct_15
+class ActionController::ParamsWrapper::Options < Anonymous_Struct_14
   def _default_wrap_model; end
   def include; end
   def initialize(name, format, include, exclude, klass, model); end
@@ -1699,7 +1699,7 @@ class ActionDispatch::Response
   include MonitorMixin
   include Rack::Response::Helpers
 end
-class ActionDispatch::Response::Header < Anonymous_Delegator_16
+class ActionDispatch::Response::Header < Anonymous_Delegator_15
   def []=(k, v); end
   def initialize(response, header); end
   def merge(other); end
@@ -2507,7 +2507,7 @@ class ActionController::Base < ActionController::Metal
   extend ActiveSupport::Callbacks::ClassMethods
   extend ActiveSupport::DescendantsTracker
   extend ActiveSupport::Rescuable::ClassMethods
-  extend Anonymous_Module_17
+  extend Anonymous_Module_16
   include AbstractController::AssetPaths
   include AbstractController::Caching
   include AbstractController::Caching::Fragments
@@ -2568,7 +2568,7 @@ class ActionController::Base < ActionController::Metal
   include ActiveSupport::Callbacks
   include ActiveSupport::Rescuable
 end
-module Anonymous_Module_17
+module Anonymous_Module_16
   def inherited(klass); end
 end
 module Ektar
@@ -2579,58 +2579,23 @@ class Ektar::ApplicationController < ActionController::Base
 end
 module Ektar::ApplicationHelper
   extend T::Sig
+  extend T::Sig
+  extend T::Sig
+  include Kernel
+  include Kernel
   include Kernel
   include Pagy::Frontend
+  include Pagy::Frontend
+  include Pagy::Frontend
+  include Webpacker::Helper
+  include Webpacker::Helper
   include Webpacker::Helper
 end
-class Ektar::ResourcefulController < Ektar::ApplicationController
+class Ektar::ApplicationController < ActionController::Base
   def self._helpers; end
   def self._wrapper_options; end
 end
-module Ektar::ResourcefulHelper
-  extend T::Sig
-  extend T::Sig
-  extend T::Sig
-  include Ektar::ApplicationHelper
-  include Ektar::ApplicationHelper
-  include Ektar::ApplicationHelper
-end
-class Ektar::ResourcefulController < Ektar::ApplicationController
+class Ektar::ApplicationController < ActionController::Base
   def self._helpers; end
   def self._wrapper_options; end
-end
-class Ektar::ResourcefulController < Ektar::ApplicationController
-  def self._helpers; end
-  def self._wrapper_options; end
-end
-class Ektar::UsersController < Ektar::ResourcefulController
-  def _layout(lookup_context, formats); end
-  def self.__callbacks; end
-  def self._helpers; end
-  def self._routes; end
-  def self._wrapper_options; end
-  def self.helpers_path; end
-  def self.middleware_stack; end
-  extend T::Sig
-  include ActionDispatch::Routing::UrlFor
-  include Anonymous_Module_18
-  include Pagy::Backend
-end
-module Anonymous_Module_18
-  def _generate_paths_by_default; end
-  def _routes; end
-  def self._routes; end
-  def self.full_url_for(options); end
-  def self.optimize_routes_generation?; end
-  def self.polymorphic_path(record_or_hash_or_array, options = nil); end
-  def self.polymorphic_url(record_or_hash_or_array, options = nil); end
-  def self.route_for(name, *args); end
-  def self.url_for(options); end
-  def self.url_options; end
-  extend ActiveSupport::Concern
-  extend Anonymous_Module_19
-  extend Anonymous_Module_20
-  include ActionDispatch::Routing::UrlFor
-  include Anonymous_Module_19
-  include Anonymous_Module_20
 end
