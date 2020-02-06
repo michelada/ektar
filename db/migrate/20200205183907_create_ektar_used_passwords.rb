@@ -1,3 +1,4 @@
+# typed: true
 class CreateEktarUsedPasswords < ActiveRecord::Migration[6.0]
   def change
     create_table :ektar_used_passwords do |t|

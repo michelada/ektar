@@ -38,9 +38,10 @@ module Ektar
 
     private
 
+    sig { returns(Ektar::UsedPassword) }
     def add_used_password
       if used_passwords.count == Ektar.configuration.password_retain_count
-        used_passwords.first.destroy
+        T.must(used_passwords.first).destroy
       end
       used_passwords.create(password_digest: password_digest)
     end
@@ -50,6 +51,7 @@ module Ektar
       attributes.dig("organization_attributes", "name").blank?
     end
 
+    sig { void }
     def validate_password_not_used
       used_passwords.each do |used_password|
         bcrypt = ::BCrypt::Password.new(used_password.password_digest)
