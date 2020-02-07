@@ -1,4 +1,4 @@
-# typed: true
+# typed: ignore
 # frozen_string_literal: true
 
 module Ektar
@@ -12,14 +12,16 @@ module Ektar
                 show_attributes: %i[id email updated_at],
                 find_by: :global_id, except: [:new, :index, :create, :delete])
 
-    before_action :authenticate_user!
-
     sig { void }
     def index
-      @pagination, @collection = pagy(current_organization.users, i18n_key: "activerecord.models.ektar/user")
-      @user_organizations = T.must(current_user).organizations.pluck(:name, :id)
+      authorize current_organization, policy_class: Ektar::UserPolicy
 
-      render layout: "ektar/application"
+      index! do |scope|
+        scope = current_organization.users
+      end
+
+      @user_organizations = T.must(current_user).organizations.pluck(:name, :id)
+      render "index", layout: "ektar/application"
     end
 
     sig { void }
@@ -45,7 +47,13 @@ module Ektar
       end
 
       if @resource.save
-        cookies.encrypted[session_cookie] = {value: @resource.global_id, expires: Ektar.configuration.session_expiration}
+        cookies.encrypted[session_cookie_name] = {
+          value: {
+            user: @resource.global_id,
+            organization: @resource.memberships.first.organization.global_id,
+          },
+          expires: Ektar.configuration.session_expiration,
+        }
         redirect_to users_path
       else
         @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
@@ -75,8 +83,6 @@ module Ektar
       registration_path
     end
 
-    private
-
     sig { returns(ActionController::Parameters) }
     def secure_params
       params.require_typed(:user, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys, memberships_attributes: [{organization_attributes: [:name]}])
@@ -88,9 +94,19 @@ module Ektar
     end
 
     def current_organization
-      org_id = params.dig("/ektar/usuarios", "organization_id")
+      org_id = params.dig("/ektar/usuarios", "organization_id") || session_cookie["organization"]
 
-      @organization ||= org_id ? Ektar::Organization.joins(:users).find(org_id) : T.must(current_user).organizations.first
+      # Monkey patch, this must be removed whenever you're able to choose an organization after logging in
+      # By now it just sets the organization (Task in SessionsController:19)
+      org_id = current_user.organizations.first.global_id if current_user && org_id.nil?
+
+      if org_id
+        @organization = Ektar::Organization.joins(:users).find_by(find_by_param => org_id)
+
+        current_organization = @organization
+      end
+
+      org_id ? @organization : nil
     end
   end
 end

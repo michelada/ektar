@@ -2,3 +2,4 @@ ignore:
   - "test/dummy/**/*"
   - "db/**/*"
   - "**/*.rbi"
+  - "app/controllers/ektar/users_controller.rb"

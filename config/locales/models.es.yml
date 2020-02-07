@@ -4,11 +4,10 @@ es:
       ektar/organization:
         one: Organización
         other: Organizaciones
-      
+
       ektar/user:
         one: Usuario
         other: Usuarios
-      
       ektar/plan:
         one: Plan
         other: Planes
@@ -16,15 +15,23 @@ es:
     attributes:
       ektar/organization:
         enable: "Activa"
-      
+
       ektar/plan:
-        active: Activo 
+        active: Activo
         free: Gratuito
         price: Precio
         price_cents: Precio
         price_currency: Moneda
         trial: Prueba
 
-  mailers:
-    invitation:
-      subject: "%{inviter} te ha invitado a su organización"
+    errors:
+      models:
+        ektar/user:
+          attributes:
+            password:
+              invalid: "contraseña necesita de al menos una mayúscula, una minúscula y un número"
+              password_already_used: "contraseña ya fue usada"
+
+    mailers:
+      invitation:
+        subject: "%{inviter} te ha invitado a su organización"

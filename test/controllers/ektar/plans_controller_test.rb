@@ -1,12 +1,16 @@
 # typed: ignore
 require "test_helper"
+require "login_helper"
 
 module Ektar
   class PlansControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
+    include LoginHelper
 
     def setup
       @plan = ektar_plans(:plan)
+
+      sign_in(ektar_users(:admin_user))
     end
 
     test "should get index" do

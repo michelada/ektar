@@ -1,8 +1,8 @@
-# typed: strict
+# typed: true
 # frozen_string_literal: true
 
 module Ektar
-  class PlansController < ResourcefulController
+  class PlansController < Ektar::ResourcefulController
     extend T::Sig
 
     resourceful(list_attributes: %i[name price active updated_at],

@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-membership:
+user_membership:
   organization: organization
   user: user
 
@@ -12,3 +12,7 @@ admin_membership:
   organization: organization
   user: admin_user
   role: admin
+admin_user_membership:
+  organization: organization
+  user: admin_user
+  role: "admin"
