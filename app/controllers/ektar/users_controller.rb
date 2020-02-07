@@ -14,11 +14,10 @@ module Ektar
 
     sig { void }
     def index
+      filter_organization(params.dig("/ektar/usuarios", "organization_id"))
       authorize current_organization, policy_class: Ektar::UserPolicy
 
-      index! do |scope|
-        scope = current_organization.users
-      end
+      index! { |scope| current_organization.users }
 
       @user_organizations = T.must(current_user).admin_of.pluck(:name, :global_id)
       render "index", layout: "ektar/application"
@@ -93,21 +92,12 @@ module Ektar
       redirect_to users_path if super_admin?
     end
 
-    def current_organization
-      @current_organization ||=
-        org_id = params.dig("/ektar/usuarios", "organization_id") || session_cookie["organization"]
-
-        # This must be removed whenever you're able to choose an organization after logging in
-        # By now it just sets the organization (Task in SessionsController:19)
-        org_id = current_user.organizations.first.global_id if current_user && org_id.nil?
-
-        if org_id
-          @organization = Ektar::Organization.joins(:users).find_by(find_by_param => org_id)
-          @current_organization = nil
-          current_organization = @organization
-        end
-
-        org_id ? @organization : nil
+    sig { params(global_id: T.nilable(String)).void }
+    def filter_organization(global_id)
+      if global_id.present?
+        @organization = Ektar::Organization.joins(:users).find_by(find_by_param => global_id)
+        update_session_cookie(organization: @organization)
+      end
     end
   end
 end

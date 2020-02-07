@@ -97,18 +97,6 @@ module Ektar
       @current_organization ||= Ektar::Organization.find_by(global_id: session_cookie["organization"])
     end
 
-    sig { params(user: Ektar::User).returns(Ektar::User) }
-    def current_user=(user)
-      overwrite_session_cookies(user, current_organization)
-      current_user
-    end
-
-    sig { params(organization: Ektar::Organization).returns(Ektar::Organization) }
-    def current_organization=(organization)
-      overwrite_session_cookies(current_user, organization)
-      current_organization
-    end
-
     sig { returns(T::Boolean) }
     def user_signed_in?
       current_user.present?
@@ -131,16 +119,19 @@ module Ektar
 
     private
 
-    sig { params(user: Ektar::User, organization: Ektar::Organization).void }
-    def overwrite_session_cookies(user, organization)
+    sig { params(user: Ektar::User, organization: T.nilable(Ektar::Organization)).void }
+    def update_session_cookie(user: current_user, organization: current_organization)
       cookies.encrypted[session_cookie_name] = {
         value: {
           user: user.global_id,
-          organization: organization.global_id,
+          organization: organization&.global_id,
         },
         expires: Ektar.configuration.session_expiration,
       }
+
       @session_cookie = nil
+      @current_user = user
+      @current_organization = organization
     end
 
     helper_method :collection, :resource,

@@ -18,16 +18,9 @@ module Ektar
 
         # TODO: Si un usuario tiene más de 1 organización hay que llevarlo a
         # una página dónde seleccione cuál quiere que sea la organización activa.
-        default_organization = nil
-        default_organization = @resource.organizations.first if @resource.memberships.size == 1
+        default_organization = @resource.organizations.first
 
-        cookies.encrypted[session_cookie_name] = {
-          value: {
-            user: @resource.global_id,
-            organization: default_organization&.global_id,
-          },
-          expires: Ektar.configuration.session_expiration,
-        }
+        update_session_cookie(user: @resource, organization: default_organization)
 
         set_flash(klass: "session", action: action_name)
         redirect_to root_path
