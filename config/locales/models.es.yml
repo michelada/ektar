@@ -24,3 +24,7 @@ es:
         price_cents: Precio
         price_currency: Moneda
         trial: Prueba
+
+  mailers:
+    invitation:
+      subject: "%{inviter} te ha invitado a su organización"

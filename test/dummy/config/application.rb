@@ -19,5 +19,7 @@ module Dummy
 
     config.i18n.available_locales = :es
     config.i18n.default_locale = :es
+
+    config.action_mailer.preview_path = Rails.root.to_s.gsub("/dummy", "/mailers/previews") if Rails.env.development?
   end
 end
