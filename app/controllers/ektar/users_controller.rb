@@ -19,7 +19,6 @@ module Ektar
 
       index! { |scope| current_organization.users }
 
-      @user_organizations = T.must(current_user).admin_of.pluck(:name, :global_id)
       render "index", layout: "ektar/application"
     end
 
