@@ -40,7 +40,7 @@ module Ektar
     end
 
     def destroy
-      if cookies.delete(session_cookie)
+      if cookies.delete(session_cookie_name)
         set_flash(klass: "session", action: action_name)
       else
         set_flash(errors: true, klass: "session", action: action_name)

@@ -46,3 +46,6 @@ es:
       session:
         notice: "Sesión cerrada correctamente"
         alert: "No se ha podido iniciar sesión"
+
+    policy:
+      not_authorized: "No está autorizado para realizar esta acción"

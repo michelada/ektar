@@ -15,11 +15,49 @@ module Ektar
                                   price_currency: :currency,},
                 show_attributes: %i[name description free trial active price])
 
-    before_action :verify_super_admin!
+    def index
+      index! do |resource|
+        authorize resource
+        resource
+      end
+    end
+
+    def show
+      show! do |resource|
+        authorize resource
+      end
+    end
+
+    def new
+      new! do |resource|
+        authorize resource
+      end
+    end
+
+    def crate
+      create! do |resource|
+        authorize resource
+      end
+    end
+
+    def edit
+      edit! do |resource|
+        authorize resource
+      end
+    end
+
+    def update
+      update! do |resource|
+        authorize resource
+      end
+    end
 
     sig { void }
     def destroy
       object = Ektar::Plan.find_by!(find_by_param => params[:id])
+
+      authorize object
+
       object.active = false
 
       object.save

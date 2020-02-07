@@ -10,11 +10,49 @@ module Ektar
                 show_attributes: %i[name enable updated_at],
                 find_by: :global_id)
 
-    before_action :verify_super_admin!
+    def index
+      index! do |resource|
+        authorize resource
+        resource
+      end
+    end
+
+    def show
+      show! do |resource|
+        authorize resource
+      end
+    end
+
+    def new
+      new! do |resource|
+        authorize resource
+      end
+    end
+
+    def crate
+      create! do |resource|
+        authorize resource
+      end
+    end
+
+    def edit
+      edit! do |resource|
+        authorize resource
+      end
+    end
+
+    def update
+      update! do |resource|
+        authorize resource
+      end
+    end
 
     sig { void }
     def destroy
       object = Ektar::Organization.find_by!(find_by_param => params[:id])
+
+      authorize object
+
       object.enable = false
 
       object.save
