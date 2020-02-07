@@ -40,12 +40,13 @@ module Ektar
     end
 
     def destroy
-      if cookies.delete(session_cookie)
+      if cookies.delete(session_cookie_name)
+        @current_user = nil
         set_flash(klass: "session", action: action_name)
       else
         set_flash(errors: true, klass: "session", action: action_name)
       end
-      redirect_to root_path
+      redirect_to new_session_path
     end
   end
 end

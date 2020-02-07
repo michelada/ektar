@@ -20,7 +20,7 @@ module Ektar
         scope = current_organization.users
       end
 
-      @user_organizations = T.must(current_user).organizations.pluck(:name, :id)
+      @user_organizations = T.must(current_user).admin_of.pluck(:name, :global_id)
       render "index", layout: "ektar/application"
     end
 
@@ -94,19 +94,20 @@ module Ektar
     end
 
     def current_organization
-      org_id = params.dig("/ektar/usuarios", "organization_id") || session_cookie["organization"]
+      @current_organization ||=
+        org_id = params.dig("/ektar/usuarios", "organization_id") || session_cookie["organization"]
 
-      # Monkey patch, this must be removed whenever you're able to choose an organization after logging in
-      # By now it just sets the organization (Task in SessionsController:19)
-      org_id = current_user.organizations.first.global_id if current_user && org_id.nil?
+        # This must be removed whenever you're able to choose an organization after logging in
+        # By now it just sets the organization (Task in SessionsController:19)
+        org_id = current_user.organizations.first.global_id if current_user && org_id.nil?
 
-      if org_id
-        @organization = Ektar::Organization.joins(:users).find_by(find_by_param => org_id)
+        if org_id
+          @organization = Ektar::Organization.joins(:users).find_by(find_by_param => org_id)
+          @current_organization = nil
+          current_organization = @organization
+        end
 
-        current_organization = @organization
-      end
-
-      org_id ? @organization : nil
+        org_id ? @organization : nil
     end
   end
 end

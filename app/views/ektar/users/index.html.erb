@@ -9,7 +9,7 @@
                                                             attribute_name: :organization_id,
                                                             options: @user_organizations, 
                                                             form: filter_form, 
-                                                            input_html: {onchange: "this.form.submit()", selected: current_organization.id}} %>
+                                                            input_html: {onchange: "this.form.submit()", selected: current_organization.global_id}} %>
         <% end %>
       <% end %>
     </div>

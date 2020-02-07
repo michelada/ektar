@@ -78,6 +78,37 @@ module Ektar
       T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
     end
 
+    def root_path
+      if super_admin?
+        super
+      else
+        users_path
+      end
+    end
+
+    # Session methods
+    sig { returns(T.nilable(Ektar::User)) }
+    def current_user
+      @current_user ||= Ektar::User.find_by(global_id: session_cookie["user"])
+    end
+
+    sig { returns(T.nilable(Ektar::Organization)) }
+    def current_organization
+      @current_organization ||= Ektar::Organization.find_by(global_id: session_cookie["organization"])
+    end
+
+    sig { params(user: Ektar::User).returns(Ektar::User) }
+    def current_user=(user)
+      overwrite_session_cookies(user, current_organization)
+      current_user
+    end
+
+    sig { params(organization: Ektar::Organization).returns(Ektar::Organization) }
+    def current_organization=(organization)
+      overwrite_session_cookies(current_user, organization)
+      current_organization
+    end
+
     sig { returns(T::Boolean) }
     def user_signed_in?
       current_user.present?
@@ -93,41 +124,9 @@ module Ektar
       @session_cookie_name ||= "#{Ektar.configuration.session_name}_remember_me"
     end
 
-    def root_path
-      if super_admin?
-        super
-      else
-        users_path
-      end
-    end
-
     def user_not_authorized
       flash[:alert] = "You are not authorized to perform this action."
       redirect_to(request.referrer || new_session_path)
-    end
-
-    sig { returns(T.nilable(Ektar::User)) }
-    def current_user
-      @current_user ||= Ektar::User.find_by(global_id: session_cookie["user"])
-    end
-
-    sig { returns(T.nilable(Ektar::Organization)) }
-    def current_organization
-      @current_organization ||= Ektar::Organization.find_by(global_id: session_cookie["organization"])
-    end
-
-    sig { params(user: Ektar::User).returns(Ektar::User) }
-    def current_user=(user)
-      @current_user = nil
-      overwrite_session_cookies(user, current_organization)
-      current_user
-    end
-
-    sig { params(organization: Ektar::Organization).returns(Ektar::Organization) }
-    def current_organization=(organization)
-      @current_organization = nil
-      overwrite_session_cookies(current_user, organization)
-      current_organization
     end
 
     private
@@ -141,6 +140,7 @@ module Ektar
         },
         expires: Ektar.configuration.session_expiration,
       }
+      @session_cookie = nil
     end
 
     helper_method :collection, :resource,
