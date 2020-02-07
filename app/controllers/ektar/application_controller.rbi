@@ -20,13 +20,15 @@ module Ektar
     
     def new!; end
     
-    def create!; end
+    sig{ params(before_save: T.proc.params(arg0: T.untyped).returns(T.untyped)).void }
+    def create!(before_save:); end
     
     def edit!; end
     
-    def update!; end
+    sig{ params(before_save: T.proc.params(arg0: T.untyped).returns(T.untyped)).void }
+    def update!(before_save:); end
     
-    def delete; end
+    def destroy!; end
   end
 
   class UsersController < Ektar::ResourcefulController

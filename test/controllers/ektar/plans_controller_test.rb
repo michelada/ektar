@@ -5,70 +5,79 @@ module Ektar
   class PlansControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
 
-    def setup
-      @plan = ektar_plans(:plan)
-    end
+    test "super_admin user should get index" do
+      sign_in(ektar_users(:super_user))
 
-    test "should get index" do
-      get plans_path, @headers
+      get plans_path
 
       assert_response :success
     end
 
-    test "should get new" do
-      get new_plan_path, @headers
+    test "normal user should not get index" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_response :success
+      get plans_path
+
+      assert_response :redirect
+      assert_redirected_to users_path
     end
 
-    test "should get show" do
-      get plan_path(@plan.id)
+    test "super_admin should create plan" do
+      sign_in(ektar_users(:super_user))
 
-      assert_response :success
-      assert_select ".control", value: @plan.name
+      post plans_path, params: plan_params
+
+      assert_redirected_to plans_path
+      assert_equal plan_params.dig(:plan, :name), Plan.last.name
     end
 
-    test "should get edit" do
-      get edit_plan_path(@plan.id), @headers
+    test "user should not create plan" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_response :success
-      assert_select ".input", value: @plan.name
+      post plans_path, params: plan_params(name: "new")
+
+      assert_redirected_to plans_path
+      refute_equal "new", Plan.first.name
     end
 
-    test "can create plan" do
-      assert_difference "Ektar::Plan.count", 1 do
-        post plans_path, {params: valid_plan}
-      end
+    test "super_admin user should get edit plan" do
+      sign_in(ektar_users(:super_user))
 
-      assert_equal "Plan test", Ektar::Plan.last.name
+      put plan_path(Plan.first), params: plan_params(name: "edited")
+
+      assert_redirected_to plans_path
+      assert_equal "edited", Plan.first.name
     end
 
-    test "can show plan" do
-      get plan_path(@plan.id)
+    test "user should not edit plan" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_select ".control"
-      assert_select "span", value: @plan.name
+      put plan_path(Plan.first), params: plan_params(name: "edited")
+
+      assert_redirected_to users_path
+      refute_equal "edited", Plan.first.name
     end
 
-    test "can update plan" do
-      put plan_path(@plan.id), {params: {plan: {name: "Test"}}}
-      @plan.reload
+    test "super_admin user should destroy edit plan" do
+      sign_in(ektar_users(:super_user))
 
-      assert_equal "Test", @plan.name
+      delete plan_path(Plan.last)
+
+      assert_redirected_to plans_path
+      refute Plan.last.active?
     end
 
-    test "can delete plan" do
-      plan_delete = ektar_plans(:plan_delete)
+    test "user should not destroy plan" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_no_difference "Plan.count", -1 do
-        delete plan_path(plan_delete.id), @headers
-      end
+      delete plan_path(Plan.last)
 
-      assert_equal false, plan_delete.reload.active
+      assert_redirected_to users_path
+      assert Plan.last.active?
     end
 
-    def valid_plan
-      {plan: {name: "Plan test"}}
+    def plan_params(attrs = {})
+      {plan: {name: "Plan test"}.merge(attrs)}
     end
   end
 end

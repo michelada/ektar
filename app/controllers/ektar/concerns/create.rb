@@ -9,8 +9,12 @@ module Ektar
       extend ActiveSupport::Concern
 
       included do
-        def create(options = {}, &block)
-          @resource ||= resource_class.new(resource_secure_params).tap { |r| r.save }
+        def create(options = {}, before_save: nil, &block)
+          @resource ||= resource_class.new(resource_secure_params)
+
+          before_save&.call(@resource)
+
+          @resource.save
           set_resource_ivar @resource
 
           options[:location] = collection_path

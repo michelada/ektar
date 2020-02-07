@@ -29,10 +29,8 @@ module Ektar
       end
     end
 
-    def crate
-      create! do |resource|
-        authorize resource
-      end
+    def create
+      create!(before_save: ->(r) { authorize r })
     end
 
     def edit
@@ -42,9 +40,7 @@ module Ektar
     end
 
     def update
-      update! do |resource|
-        authorize resource
-      end
+      update!(before_save: ->(r) { authorize r })
     end
 
     sig { void }
