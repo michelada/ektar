@@ -1,19 +1,5 @@
 <% content_for :custom_actions do %>
   <div class="level">
-    <div class="level-left">
-      <% if current_user.organizations.size > 1 %>
-        <%= form_for users_path, method: :get, class: "level-item" do |filter_form| %>
-          <%= filter_form.label t(".organization"), class: "label" %>
-
-          <%= render partial: "ektar/application/select", locals: {
-                                                            attribute_name: :organization_id,
-                                                            options: @user_organizations, 
-                                                            form: filter_form, 
-                                                            input_html: {onchange: "this.form.submit()", selected: current_organization.global_id}} %>
-        <% end %>
-      <% end %>
-    </div>
-
     <div class="level-right">
       <% if current_user.admin_of?(current_organization) %>
         <%= form_for Ektar::User.new, url: invitations_path do |invitation_form|%>
