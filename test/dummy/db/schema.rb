@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_193718) do
+ActiveRecord::Schema.define(version: 2020_02_05_183907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,9 +108,6 @@ ActiveRecord::Schema.define(version: 2020_02_06_193718) do
     t.string "recovery_password_digest"
     t.datetime "last_activity_at"
     t.string "last_ip"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_accepted_at"
-    t.string "invitation_token"
     t.index ["ektar_organization_id"], name: "index_ektar_users_on_ektar_organization_id"
     t.index ["email"], name: "index_ektar_users_on_email", unique: true
     t.index ["global_id"], name: "index_ektar_users_on_global_id", unique: true

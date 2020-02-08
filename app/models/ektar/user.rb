@@ -12,9 +12,8 @@ module Ektar
     has_many :used_passwords, class_name: "Ektar::UsedPassword", foreign_key: :ektar_user_id
 
     validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false}
-    validates :password, presence: true, if: proc { |user| user.invitation_created_at.blank? }
     validates :password, format: {with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/}, unless: proc { |user| user.password.blank? }
-    validates :memberships, presence: true, if: ->(user) { !user.super_admin && user.invitation_created_at.blank? }
+    validates :memberships, presence: true, if: ->(user) { !user.super_admin }
     validate :validate_unique_password, if: ->(user) { user.password_digest_changed? }
 
     accepts_nested_attributes_for :memberships, limit: 1, reject_if: :reject_empty_organization!

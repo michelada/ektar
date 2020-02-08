@@ -11,6 +11,7 @@ module Ektar
     end
 
     test "it sends an email when an invitation is created" do
+      skip # Removed logic related to invitations by now
       assert_emails 1 do
         post invitations_path, params: {user: {organization_id: @organization.id, email: "test_invitation@ektar.com"}}
       end
