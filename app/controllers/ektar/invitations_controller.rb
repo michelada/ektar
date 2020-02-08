@@ -9,9 +9,11 @@ module Ektar
 
       membership = T.must(organization).memberships.new.tap do |invited_membership|
         @new_user = invited_membership.build_user(new_user_params).tap do |invited_user|
-          invited_user.invitation_token = Time.zone.now.to_i
+          verifier = ActiveSupport::MessageVerifier.new "s3cr3t"
+
+          invited_user.invitation_token = verifier.generate(organization.global_id)
           invited_user.invitation_created_at = Time.zone.now
-          invited_user.password_digest = ""
+          invited_user.password_digest = SecureRandom.hex
         end
       end
 
