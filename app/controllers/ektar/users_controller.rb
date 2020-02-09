@@ -14,7 +14,6 @@ module Ektar
 
     sig { void }
     def index
-      filter_organization(params.dig("/ektar/usuarios", "organization_id"))
       authorize current_organization, policy_class: Ektar::UserPolicy
 
       index! { |scope| current_organization.users }
@@ -45,13 +44,7 @@ module Ektar
       end
 
       if @resource.save
-        cookies.encrypted[session_cookie_name] = {
-          value: {
-            user: @resource.global_id,
-            organization: @resource.memberships.first.organization.global_id,
-          },
-          expires: Ektar.configuration.session_expiration,
-        }
+        update_session_cookie(user: @resource, organization: @resource.organizations.first)
         redirect_to users_path
       else
         @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
@@ -89,14 +82,6 @@ module Ektar
     sig { void }
     def is_normal_user
       redirect_to users_path if super_admin?
-    end
-
-    sig { params(global_id: T.nilable(String)).void }
-    def filter_organization(global_id)
-      if global_id.present?
-        @organization = Ektar::Organization.joins(:users).find_by(find_by_param => global_id)
-        update_session_cookie(organization: @organization)
-      end
     end
   end
 end

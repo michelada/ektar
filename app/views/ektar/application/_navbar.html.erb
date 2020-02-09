@@ -32,7 +32,7 @@
     <div class="navbar-end">
       <% if current_user.organizations.size > 1 %>
         <div class="navbar-item">
-          <%= form_for users_path, method: :get do |filter_form| %>
+          <%= form_for :organization, url: switch_organization_index_path, method: :post do |filter_form| %>
             <%= render partial: "ektar/application/select", locals: {
                                                               attribute_name: :organization_id,
                                                               options: current_user.organizations.pluck(:name, :global_id), 
