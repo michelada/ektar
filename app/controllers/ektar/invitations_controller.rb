@@ -3,15 +3,17 @@
 
 module Ektar
   class InvitationsController < ApplicationController
+    extend T::Sig
+
     sig { void }
     def create
       organization = Ektar::Organization.find_by(id: params.dig(:user, :organization_id))
 
       membership = T.must(organization).memberships.new.tap do |invited_membership|
         @new_user = invited_membership.build_user(new_user_params).tap do |invited_user|
-          verifier = ActiveSupport::MessageVerifier.new "s3cr3t"
+          verifier = ActiveSupport::MessageVerifier.new("s3cr3t")
 
-          invited_user.invitation_token = verifier.generate(organization.global_id)
+          invited_user.invitation_token = verifier.generate(T.must(organization).global_id)
           invited_user.invitation_created_at = Time.zone.now
           invited_user.password_digest = SecureRandom.hex
         end

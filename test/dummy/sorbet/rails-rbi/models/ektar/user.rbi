@@ -65,33 +65,6 @@ module Ektar::User::GeneratedAttributeMethods
   def id?; end
 
   sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
-  def invitation_accepted_at; end
-
-  sig { params(value: T.nilable(T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone))).void }
-  def invitation_accepted_at=(value); end
-
-  sig { returns(T::Boolean) }
-  def invitation_accepted_at?; end
-
-  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
-  def invitation_created_at; end
-
-  sig { params(value: T.nilable(T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone))).void }
-  def invitation_created_at=(value); end
-
-  sig { returns(T::Boolean) }
-  def invitation_created_at?; end
-
-  sig { returns(T.nilable(String)) }
-  def invitation_token; end
-
-  sig { params(value: T.nilable(String)).void }
-  def invitation_token=(value); end
-
-  sig { returns(T::Boolean) }
-  def invitation_token?; end
-
-  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
   def last_activity_at; end
 
   sig { params(value: T.nilable(T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone))).void }

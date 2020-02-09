@@ -16,13 +16,12 @@
         </div>
       <% end %>
     </div>
-
   </div>
 
   <div class="level-right">
     <div class="level-item">
-      <% if controller_name == "users" && !super_admin? %>
-        <%= link_to new_title, new_resource_path, class: "button is-primary" %>
+      <% if controller_name == "users" && (current_user.admin_of?(current_organization) || !super_admin?) %>
+        <%= link_to "Invitar usuario", new_invitation_path, class: "button is-primary" %>
       <% elsif  controller_name != "users" && super_admin? %>
         <%= link_to new_title, new_resource_path, class: "button is-primary" %>
       <% end %>

@@ -18,7 +18,7 @@ module Ektar
 
       index! { |scope| current_organization.users }
 
-      render "index", layout: "ektar/application"
+      render layout: "ektar/application"
     end
 
     sig { void }
