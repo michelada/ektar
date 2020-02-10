@@ -7,7 +7,7 @@ module Ektar
     end
 
     test "invitation is valid" do
-      valid_invitation = Ektar::Invitation.new(organization: @organization)
+      valid_invitation = Ektar::Invitation.new(invitation_params)
 
       assert valid_invitation.valid?
     end
@@ -36,6 +36,13 @@ module Ektar
     test "invitations can tell if they were accepted" do
       assert ektar_invitations(:accepted_invitation).accepted?
       refute ektar_invitations(:pending_invitation).accepted?
+    end
+
+    private
+
+    def invitation_params(attrs = {})
+      {email: "invited_test@ektar.com",
+       organization: @organization,}.merge(attrs)
     end
   end
 end
