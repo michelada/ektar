@@ -1,9 +1,10 @@
 module Ektar
   class UserMailer < ApplicationMailer
     def new_invitation_email
-      @user = params[:user]
+      @user_email = params[:email]
+      @organization = params[:organization]
 
-      mail(to: @user.email, subject: t("mailers.invitation.subject", params[:current_user]))
+      mail(to: @user_email, subject: t("mailers.invitation.subject", @organization.name))
     end
   end
 end

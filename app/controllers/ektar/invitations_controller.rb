@@ -6,6 +6,26 @@ module Ektar
     extend T::Sig
 
     sig { void }
+    def new
+      organization_id = params.dig(:organization_id)
+      user_email = params.dig(:email)
+      organization = Ektar::Organization.find_by(global_id: organization_id)
+
+      verifier = ActiveSupport::MessageVerifier.new("s3cr3t")
+      invitation_token = verifier.generate(organization_id)
+
+      invitation = Ektar::Invitation.new(organization: organization, invitation_token: invitation_token)
+      if invitation.save
+        Ektar::UserMailer.with(organization: organization, invitation_token: invitation_token, email: user_email).new_invitation_email.deliver_now
+        flash[:notice] = t("flash.create.invitation.notice", email: user_email)
+      else
+        flash[:alert] = t("flash.create.invitation.alert")
+      end
+
+      redirect_to users_path
+    end
+
+    sig { void }
     def create
       organization = Ektar::Organization.find_by(id: params.dig(:user, :organization_id))
 
@@ -21,12 +41,7 @@ module Ektar
 
       if @new_user.save && membership.save
         Ektar::UserMailer.with(user: @new_user, current_user: current_user).new_invitation_email.deliver_now
-        flash[:notice] = t("flash.create.invitation.notice", email: @new_user.email)
-      else
-        flash[:alert] = t("flash.create.invitation.alert")
       end
-
-      redirect_to users_path
     end
 
     private

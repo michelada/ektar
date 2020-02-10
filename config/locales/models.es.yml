@@ -34,4 +34,4 @@ es:
 
     mailers:
       invitation:
-        subject: "%{inviter} te ha invitado a su organización"
+        subject: "Has sido invitado a la organización %{organization_name}"
