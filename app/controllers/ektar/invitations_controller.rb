@@ -7,6 +7,10 @@ module Ektar
 
     sig { void }
     def new
+    end
+
+    sig { void }
+    def create
       organization_id = params.dig(:organization_id)
       user_email = params.dig(:email)
       organization = Ektar::Organization.find_by(global_id: organization_id)
@@ -14,7 +18,7 @@ module Ektar
       verifier = ActiveSupport::MessageVerifier.new("s3cr3t")
       invitation_token = verifier.generate(organization_id)
 
-      invitation = Ektar::Invitation.new(organization: organization, invitation_token: invitation_token)
+      invitation = Ektar::Invitation.new(organization: organization, email: user_email, invitation_token: invitation_token)
       if invitation.save
         Ektar::UserMailer.with(organization: organization, invitation_token: invitation_token, email: user_email).new_invitation_email.deliver_now
         flash[:notice] = t("flash.create.invitation.notice", email: user_email)
@@ -23,25 +27,6 @@ module Ektar
       end
 
       redirect_to users_path
-    end
-
-    sig { void }
-    def create
-      organization = Ektar::Organization.find_by(id: params.dig(:user, :organization_id))
-
-      membership = T.must(organization).memberships.new.tap do |invited_membership|
-        @new_user = invited_membership.build_user(new_user_params).tap do |invited_user|
-          verifier = ActiveSupport::MessageVerifier.new("s3cr3t")
-
-          invited_user.invitation_token = verifier.generate(T.must(organization).global_id)
-          invited_user.invitation_created_at = Time.zone.now
-          invited_user.password_digest = SecureRandom.hex
-        end
-      end
-
-      if @new_user.save && membership.save
-        Ektar::UserMailer.with(user: @new_user, current_user: current_user).new_invitation_email.deliver_now
-      end
     end
 
     private

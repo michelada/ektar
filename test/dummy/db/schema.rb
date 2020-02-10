@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_203730) do
   create_table "ektar_invitations", force: :cascade do |t|
     t.string "invitation_token"
     t.datetime "invitation_accepted_at"
+    t.string "email", null: false
     t.bigint "ektar_organization_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

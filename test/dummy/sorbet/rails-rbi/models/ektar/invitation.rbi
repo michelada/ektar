@@ -28,6 +28,15 @@ module Ektar::Invitation::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def ektar_organization_id?; end
 
+  sig { returns(String) }
+  def email; end
+
+  sig { params(value: T.any(String, Symbol)).void }
+  def email=(value); end
+
+  sig { returns(T::Boolean) }
+  def email?; end
+
   sig { returns(Integer) }
   def id; end
 

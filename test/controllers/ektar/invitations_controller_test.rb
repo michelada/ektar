@@ -12,7 +12,7 @@ module Ektar
 
     test "it sends an email when an invitation is created" do
       assert_emails 1 do
-        get new_invitation_path(organization_id: @organization, email: "test_invitation@ektar.com")
+        post invitations_path, params: {invitation: {organization: @organization, email: "test_invitation@ektar.com"}}
       end
     end
   end
