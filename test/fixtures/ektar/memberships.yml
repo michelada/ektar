@@ -12,7 +12,13 @@ admin_membership:
   organization: organization
   user: admin_user
   role: admin
+
 admin_user_membership:
   organization: organization
   user: admin_user
   role: "admin"
+
+super_user_membership:
+  organization: organization
+  user: super_user
+  role: admin

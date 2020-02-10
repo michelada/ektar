@@ -5,7 +5,7 @@ module Ektar
   class User < ApplicationRecord
     extend T::Sig
 
-    has_secure_password :password, validations: false
+    has_secure_password :password, validations: true
 
     has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_user_id, inverse_of: :user
     has_many :organizations, class_name: "Ektar::Organization", through: :memberships, source: :organization

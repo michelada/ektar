@@ -1,6 +1,6 @@
 # typed: ignore
 require "test_helper"
-require "login_helper"
+require "support/login_helper"
 
 module Ektar
   class PlansControllerTest < ActionDispatch::IntegrationTest
@@ -10,17 +10,17 @@ module Ektar
     def setup
       @plan = ektar_plans(:plan)
 
-      sign_in(ektar_users(:admin_user))
+      sign_in(ektar_users(:super_user))
     end
 
     test "should get index" do
-      get plans_path, @headers
+      get plans_path
 
       assert_response :success
     end
 
     test "should get new" do
-      get new_plan_path, @headers
+      get new_plan_path
 
       assert_response :success
     end
@@ -33,7 +33,7 @@ module Ektar
     end
 
     test "should get edit" do
-      get edit_plan_path(@plan.id), @headers
+      get edit_plan_path(@plan.id)
 
       assert_response :success
       assert_select ".input", value: @plan.name
@@ -65,7 +65,7 @@ module Ektar
       plan_delete = ektar_plans(:plan_delete)
 
       assert_no_difference "Plan.count", -1 do
-        delete plan_path(plan_delete.id), @headers
+        delete plan_path(plan_delete.id)
       end
 
       assert_equal false, plan_delete.reload.active
