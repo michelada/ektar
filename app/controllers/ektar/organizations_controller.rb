@@ -8,39 +8,24 @@ module Ektar
     resourceful(list_attributes: %i[id name enable updated_at],
                 form_attributes: {name: :input, enable: :checkbox},
                 show_attributes: %i[name enable updated_at],
-                find_by: :global_id)
+                find_by: :global_id,
+                policy_class: Ektar::OrganizationPolicy)
 
     def index
-      index! do |resource|
-        authorize resource
-        resource
-      end
+      authorize resource, policy_class: policy_class
+      index!
     end
 
     def show
-      show! do |resource|
-        authorize resource
-      end
+      show! { |resource| authorize resource }
     end
 
     def new
-      new! do |resource|
-        authorize resource
-      end
-    end
-
-    def create
-      create!(before_save: ->(r) { authorize r })
+      new! { |resource| authorize resource }
     end
 
     def edit
-      edit! do |resource|
-        authorize resource
-      end
-    end
-
-    def update
-      update!(before_save: ->(r) { authorize r })
+      edit! { |resource| authorize resource }
     end
 
     sig { void }

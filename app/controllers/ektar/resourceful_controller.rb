@@ -18,6 +18,7 @@ module Ektar
     class_attribute :form_attributes, instance_writer: false
     class_attribute :show_attributes, instance_writer: false
     class_attribute :find_by, instance_writer: false
+    class_attribute :policy_class, instance_writer: false
 
     # +resourceful+ method helps you define the actions that will be included on your controller. It also lets you
     # specify the attributes that must be shown in some views, such as +show+, +index+, +new+ and +edit+
@@ -100,15 +101,17 @@ module Ektar
         resource_class: T.untyped,
         only: T.untyped,
         except: T.nilable(T.any(T::Array[Symbol], Symbol)),
-        find_by: Symbol
+        find_by: Symbol,
+        policy_class: T.nilable(Class)
       ).void
     end
-    def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id)
+    def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id, policy_class: nil)
       self.list_attributes = list_attributes
       self.form_attributes = form_attributes
       self.show_attributes = show_attributes
       self.resource_class = resource_class || controller_path.classify.constantize
       self.find_by = find_by
+      self.policy_class = policy_class
 
       only_actions = [only].compact
       except_actions = [except].compact

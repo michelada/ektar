@@ -9,12 +9,16 @@ module Ektar
       extend ActiveSupport::Concern
 
       included do
-        def create(options = {}, before_save: nil, &block)
-          @resource ||= resource_class.new(resource_secure_params)
+        def create(options = {}, &block)
+          @resource ||= begin
+            resource = resource_class.new(resource_secure_params)
 
-          before_save&.call(@resource)
+            authorize resource, policy_class: policy_class if policy_class.present?
+            resource.save
 
-          @resource.save
+            resource
+          end
+
           set_resource_ivar @resource
 
           options[:location] = collection_path

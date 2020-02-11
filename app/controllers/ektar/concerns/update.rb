@@ -9,12 +9,16 @@ module Ektar
       extend ActiveSupport::Concern
 
       included do
-        def update(options = {}, before_save: nil, &block)
-          @resource ||= resource_class.find_by(find_by_param => params[:id])
+        def update(options = {}, &block)
+          @resource ||=
+            begin
+              resource = resource_class.find_by(find_by_param => params[:id])
 
-          before_save&.call(@resource)
+              authorize resource, policy_class: policy_class if policy_class.present?
 
-          @resource.update(resource_secure_params)
+              resource.update(resource_secure_params)
+            end
+
           set_resource_ivar @resource
 
           options[:location] = collection_path

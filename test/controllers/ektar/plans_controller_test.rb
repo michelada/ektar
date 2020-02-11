@@ -36,7 +36,7 @@ module Ektar
 
       post plans_path, params: plan_params(name: "new")
 
-      assert_redirected_to plans_path
+      assert_redirected_to users_path
       refute_equal "new", Plan.first.name
     end
 

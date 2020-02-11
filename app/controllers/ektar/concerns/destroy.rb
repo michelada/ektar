@@ -9,10 +9,10 @@ module Ektar
       extend ActiveSupport::Concern
 
       included do
-        def destroy(options = {}, before_delete: nil, &block)
+        def destroy(options = {}, &block)
           object = resource_class.find_by(find_by_param => params[:id])
 
-          before_delete&.call(object)
+          authorize object, policy_class: policy_class if policy_class.present?
 
           object.destroy
           options[:location] = collection_path
