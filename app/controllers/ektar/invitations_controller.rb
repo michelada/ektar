@@ -18,17 +18,18 @@ module Ektar
     sig { void }
     def create
       organization_id = params.dig(:invitation, :ektar_organization_id)
+      user_email = params.dig(:invitation, :email)
 
-      verifier = ActiveSupport::MessageVerifier.new("s3cr3t")
+      verifier = ActiveSupport::MessageVerifier.new(Rails.application.secret_key_base)
 
       organization = Ektar::Organization.find_by(id: organization_id)
-      invitation_token = verifier.generate(organization.global_id)
+      invitation_token = verifier.generate("#{user_email}@#{organization.global_id}")
 
       @resource = Ektar::Invitation.new(invitation_params.merge(invitation_token: invitation_token))
 
       if @resource.save
         Ektar::UserMailer.with(organization: organization, invitation_token: invitation_token, email: @resource.email).new_invitation_email.deliver_now
-        flash[:notice] = t("flash.create.invitation.notice", email: @resource.email)
+        flash[:notice] = t("flash.create.invitation.notice", email: user_email)
         redirect_to users_path
       else
         flash[:alert] = t("flash.create.invitation.alert")

@@ -85,13 +85,13 @@ module Ektar
       assert_includes admin.organizations, organization
     end
 
-    test "member_of? method returns wether or not an user belongs to a given organization" do
+    test "member?(resource) method returns wether or not an user belongs to a given organization" do
       org_user = ektar_users(:user)
       non_org_user = ektar_users(:alternate_user)
       organization = ektar_organizations(:organization)
 
-      assert org_user.member_of?(organization)
-      refute non_org_user.member_of?(organization)
+      assert org_user.is_member?(organization)
+      refute non_org_user.is_member?(organization)
     end
 
     test "user can tell which organizations his admin of" do
@@ -123,13 +123,13 @@ module Ektar
       refute user.admin?
     end
 
-    test "admin_of? method tells if the given user is admin of a given organization" do
+    test "is_admin?(resource) method tells if the given user is admin of a given organization" do
       user_admin = ektar_users(:admin_user)
       user_no_admin = ektar_users(:user)
       organization = ektar_organizations(:organization)
 
-      assert user_admin.admin_of?(organization)
-      refute user_no_admin.admin_of?(organization)
+      assert user_admin.is_admin?(organization)
+      refute user_no_admin.is_admin?(organization)
     end
 
     private

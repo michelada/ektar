@@ -8,7 +8,7 @@ module Ektar
       admin_membership = false
 
       if user_organization
-        admin_membership = user.admin_of?(record)
+        admin_membership = user.is_admin?(record)
       end
 
       user_organization && admin_membership

@@ -1,7 +1,7 @@
 # typed: true
 
 module Ektar
-  class SwitchOrganizationController < ApplicationController
+  class SelectOrganizationController < ApplicationController
     sig { void }
     def create
       organization_id = params.dig(:organization, :organization_id)
