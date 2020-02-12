@@ -11,23 +11,6 @@ module Ektar
                 find_by: :global_id,
                 policy_class: Ektar::OrganizationPolicy)
 
-    def index
-      authorize resource, policy_class: policy_class
-      index!
-    end
-
-    def show
-      show! { |resource| authorize resource }
-    end
-
-    def new
-      new! { |resource| authorize resource }
-    end
-
-    def edit
-      edit! { |resource| authorize resource }
-    end
-
     sig { void }
     def destroy
       object = Ektar::Organization.find_by!(find_by_param => params[:id])

@@ -16,23 +16,6 @@ module Ektar
                 show_attributes: %i[name description free trial active price],
                 policy_class: Ektar::PlanPolicy)
 
-    def index
-      authorize resource, policy_class: policy_class
-      index!
-    end
-
-    def show
-      show! { |resource| authorize resource }
-    end
-
-    def new
-      new! { |resource| authorize resource }
-    end
-
-    def edit
-      edit! { |resource| authorize resource }
-    end
-
     sig { void }
     def destroy
       object = Ektar::Plan.find_by!(find_by_param => params[:id])
