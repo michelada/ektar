@@ -4,8 +4,11 @@ Ektar::Engine.routes.draw do
 
   resources :organizations, path: I18n.t("routes.organizations")
   resources :plans, path: I18n.t("routes.plans")
+  resources :invitations, path: I18n.t("routes.invitations"), only: [:new, :create]
 
   get I18n.t("routes.registration"), to: "users#new", as: :registration
   resources :users, path: I18n.t("routes.users")
   resources :sessions, path: I18n.t("routes.session"), only: [:new, :create, :destroy]
+
+  resources :switch_organization, only: [:create]
 end

@@ -19,6 +19,10 @@ es:
         notice: "Sesión Iniciada correctamente"
         alert: "El usuario o contraseña son incorrectos"
 
+      invitation:
+        notice: "La invitación se ha enviado a %{email}"
+        alert: "No se ha podido enviar la invitación"
+
     update:
       notice: "Actualizado"
       alert: "Error al actualizar"

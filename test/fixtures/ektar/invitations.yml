@@ -1,0 +1,14 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pending_invitation:
+  invitation_token: BAhJIilkZjQyMmU2ZC05YjEzLTQ2ZDYtOTMxMy05ODhlMGU4NWI2MGYGOgZFVA==--d13b3574adbe29c7bc0a3a319cab33c6aecabd52
+  organization: organization
+  created_at: 2020-02-09 14:37:30
+  email: "dummy@email.com"
+
+accepted_invitation:
+  invitation_token: BAhJIilkZjQyMmU2ZC05YjEzLTQ2ZDYtOTMxMy05ODhlMGU4NWI2MGYGOgZFVA==--d13b3574adbe29c7bc0a3a319cab33c6aecabd52
+  organization: organization
+  invitation_accepted_at: 2020-02-09 14:37:30
+  created_at: 2020-02-09 14:37:29
+  email: "dummy@email.com"

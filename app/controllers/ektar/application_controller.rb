@@ -78,14 +78,18 @@ module Ektar
       T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
     end
 
+    def root_path
+      if super_admin?
+        super
+      else
+        users_path
+      end
+    end
+
+    # Session methods
     sig { returns(T.nilable(Ektar::User)) }
     def current_user
       @current_user ||= Ektar::User.find_by(global_id: session_cookie["user"])
-    end
-
-    sig { returns(T::Boolean) }
-    def user_signed_in?
-      current_user.present?
     end
 
     sig { returns(T.nilable(Ektar::Organization)) }
@@ -93,7 +97,12 @@ module Ektar
       @current_organization ||= Ektar::Organization.find_by(global_id: session_cookie["organization"])
     end
 
-    sig { returns(T::Hash[String, T.nilable(String)]) }
+    sig { returns(T::Boolean) }
+    def user_signed_in?
+      current_user.present?
+    end
+    
+    sig { returns(T::Hash[T.untyped, T.untyped]) }
     def session_cookie
       @session_cookie ||= cookies.encrypted[session_cookie_name] || {}
     end
@@ -118,8 +127,25 @@ module Ektar
       redirect_to(request.referrer || root_path)
     end
 
+    private
+
+    sig { params(user: Ektar::User, organization: T.nilable(Ektar::Organization)).void }
+    def update_session_cookie(user: @current_user, organization: @current_organization)
+      @session_cookie = cookies.encrypted[session_cookie_name] = {
+        value: {
+          user: user.global_id,
+          organization: organization.global_id,
+        },
+        expires: Ektar.configuration.session_expiration,
+      }
+
+      @current_user = user
+      @current_organization = organization
+    end
+
     helper_method :collection, :resource,
       :super_admin?, :select_options,
-      :current_user, :user_signed_in?
+      :current_user, :user_signed_in?,
+      :current_organization
   end
 end

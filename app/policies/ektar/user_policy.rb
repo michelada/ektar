@@ -8,11 +8,7 @@ module Ektar
       admin_membership = false
 
       if user_organization
-        admin_membership = record
-          .memberships
-          .where(user: user)
-          .where(role: "admin")
-          .exists?
+        admin_membership = user.is_admin?(record)
       end
 
       user_organization && admin_membership

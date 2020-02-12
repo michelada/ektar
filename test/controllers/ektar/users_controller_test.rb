@@ -39,7 +39,7 @@ module Ektar
     test "shoud redirect to sign in when user not logged" do
       get users_path
 
-      assert_redirected_to new_session_path
+      assert_redirected_to registration_path
     end
 
     test "should list organization users for logged user" do

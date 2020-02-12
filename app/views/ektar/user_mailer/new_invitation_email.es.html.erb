@@ -1,0 +1,5 @@
+<p> Salu2 <%= @email_email %> </p>
+
+<p> Te han invitado a unirte a <%= @organization.name %>
+
+<p> Para unirte, has click <%= ActionController::Base.helpers.link_to("Aquí", invitations_url, params: {invitation_token: @invitation_token}, method: :post) %>

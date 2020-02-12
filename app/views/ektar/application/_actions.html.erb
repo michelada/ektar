@@ -1,7 +1,9 @@
 <td class="has-text-right">
-  <%= link_to edit_action, edit_resource_path(resource), class: "button is-info" %>
-  <% if allow_delete?(resource) %>
-    <%= link_to delete_action, resource_path(resource), class: "button is-danger",
-      method: :delete, data: { confirm: delete_confirmation(resource) } %>
+  <% if (@organization && current_user.is_admin?(@organization)) || current_user.super_admin? %>
+    <%= link_to edit_action, edit_resource_path(resource), class: "button is-info" %>
+    <% if allow_delete?(resource) %>
+      <%= link_to delete_action, resource_path(resource), class: "button is-danger",
+        method: :delete, data: { confirm: delete_confirmation(resource) } %>
+    <% end %>
   <% end %>
 </td>

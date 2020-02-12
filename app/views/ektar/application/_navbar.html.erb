@@ -30,6 +30,18 @@
     </div>
 
     <div class="navbar-end">
+      <% if current_user.organizations.size > 1 %>
+        <div class="navbar-item">
+          <%= form_for :organization, url: switch_organization_index_path, method: :post do |filter_form| %>
+            <%= render partial: "ektar/application/select", locals: {
+                                                              attribute_name: :organization_id,
+                                                              options: current_user.organizations.pluck(:name, :global_id), 
+                                                              form: filter_form, 
+                                                              input_html: {onchange: "this.form.submit()", selected: current_organization.global_id}} %>
+          <% end %>
+        </div>
+      <% end %>
+
       <% if user_signed_in? %>
         <div class="navbar-item">
           <%= link_to t(".logout"), session_path(current_user.global_id), method: :delete, class: "navbar-item" %>

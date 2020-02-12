@@ -3,11 +3,32 @@ require "test_helper"
 
 module Ektar
   class OrganizationTest < ActiveSupport::TestCase
+    test "is valid" do
+      subject = Organization.new organization_params
+
+      assert subject.valid?
+    end
+
+    test "is invalid" do
+      subject = Organization.new
+
+      refute subject.valid?
+      assert_equal 1, subject.errors.count
+    end
+
+    test "is invalid without unique name" do
+      organization = ektar_organizations(:organization)
+      subject = Organization.new organization_params.merge(name: organization.name)
+
+      refute subject.valid?
+      assert_equal 1, subject.errors.count
+    end
+
     test "it can have more than one user" do
       subject = ektar_organizations(:organization)
       alternate_user = ektar_users(:alternate_user)
 
-      assert_difference "subject.users.reload.size", 1 do
+      assert_difference("subject.users.reload.size", 1) do
         subject.users << alternate_user
         subject.save
       end
@@ -29,33 +50,40 @@ module Ektar
       assert_equal subject.reload.plan, ektar_plans(:alternate_plan)
     end
 
-    #   test "is valid" do
-    #     subject = Organization.new valid_params
+    test "organization can tel its users" do
+      organization = ektar_organizations(:organization)
+      organization_user = ektar_users(:user)
 
-    #     assert subject.valid?
-    #   end
+      assert_includes organization.users, organization_user
+    end
 
-    #   test "is invalid" do
-    #     subject = Organization.new invalid_params
+    test "organization can tell its admins" do
+      organization = ektar_organizations(:organization)
+      admin = ektar_users(:admin_user)
 
-    #     refute subject.valid?
-    #     assert_equal 1, subject.errors.count
-    #   end
+      assert_includes organization.admins, admin
+    end
 
-    #   test "is invalid without unique name" do
-    #     organization = ektar_organizations(:main_organization)
-    #     subject = Organization.new valid_params.merge(name: organization.name)
+    test "organization can tell if it has any admin" do
+      organization = ektar_organizations(:organization)
 
-    #     refute subject.valid?
-    #     assert_equal 1, subject.errors.count
-    #   end
+      assert organization.admin?
+    end
 
-    #   def valid_params
-    #     {name: "Sample Organization"}
-    #   end
+    test "an organization can have many invitations" do
+      organization = ektar_organizations(:organization)
 
-    #   def invalid_params
-    #     {}
-    #   end
+      assert_difference "organization.invitations.count", 1 do
+        @new_invitation = organization.invitations.create(email: "invited.user@ektar.com")
+      end
+
+      assert_includes organization.invitations, @new_invitation
+    end
+
+    private
+
+    def organization_params(attrs = {})
+      {name: "Sample Organization"}.merge(attrs)
+    end
   end
 end

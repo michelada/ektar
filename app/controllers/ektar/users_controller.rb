@@ -3,23 +3,22 @@
 
 module Ektar
   class UsersController < ResourcefulController
-    before_action :is_normal_user, only: [:new, :create, :update, :edit]
+    before_action :is_normal_user, only: [:new, :create, :update]
     extend T::Sig
     include Pagy::Backend
 
-    resourceful(list_attributes: %i[id email updated_at],
+    resourceful(list_attributes: %i[email updated_at last_activity_at],
                 form_attributes: {email: :input, password: :password, password_confirmation: :password},
                 show_attributes: %i[id email updated_at],
-                find_by: :global_id, except: :new)
+                find_by: :global_id, except: [:new, :index, :create, :delete])
 
     sig { void }
     def index
       authorize current_organization, policy_class: Ektar::UserPolicy
 
-      index! do |scope|
-        scope.includes(memberships: :organization)
-          .where(ektar_memberships: {ektar_organization_id: current_organization})
-      end
+      index! { |scope| current_organization.users }
+
+      render layout: "ektar/application"
     end
 
     sig { void }
@@ -45,13 +44,7 @@ module Ektar
       end
 
       if @resource.save
-        cookies.encrypted[session_cookie_name] = {
-          value: {
-            user: @resource.global_id,
-            organization: @resource.memberships.first.organization.global_id,
-          },
-          expires: Ektar.configuration.session_expiration,
-        }
+        update_session_cookie(user: @resource, organization: @resource.organizations.first)
         redirect_to users_path
       else
         @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
@@ -69,19 +62,17 @@ module Ektar
       redirect_to collection_path
     end
 
+    private
+
     sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_delete?(resource)
-      !resource.memberships.first.blocked?
+      current_organization.has_active_user?(resource)
     end
-
-    private
 
     sig { returns(String) }
     def new_resource_path
       registration_path
     end
-
-    private
 
     sig { returns(ActionController::Parameters) }
     def secure_params

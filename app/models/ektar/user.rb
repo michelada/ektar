@@ -31,6 +31,26 @@ module Ektar
       blocked_at?
     end
 
+    sig { params(organization: Ektar::Organization).returns(T::Boolean) }
+    def is_member?(organization)
+      organizations.include?(organization)
+    end
+
+    sig { returns(T::Boolean) }
+    def admin?
+      admin_of.any?
+    end
+
+    sig { params(organization: Ektar::Organization).returns(T::Boolean) }
+    def is_admin?(organization)
+      admin_of.include?(organization)
+    end
+
+    sig { returns(Ektar::Organization::ActiveRecord_AssociationRelation) }
+    def admin_of
+      organizations.where(ektar_memberships: {ektar_user_id: id, role: "admin"})
+    end
+
     sig { returns(T.nilable(Ektar::Membership)) }
     def membership
       memberships.first
