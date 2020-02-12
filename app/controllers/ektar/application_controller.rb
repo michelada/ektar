@@ -121,7 +121,7 @@ module Ektar
 
     sig { params(user: Ektar::User, organization: T.nilable(Ektar::Organization)).void }
     def update_session_cookie(user: @current_user, organization: @current_organization)
-      cookies.encrypted[session_cookie_name] = {
+      @session_cookie = cookies.encrypted[session_cookie_name] = {
         value: {
           user: user.global_id,
           organization: organization.global_id,
@@ -129,7 +129,6 @@ module Ektar
         expires: Ektar.configuration.session_expiration,
       }
 
-      @session_cookie = nil
       @current_user = user
       @current_organization = organization
     end
