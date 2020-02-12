@@ -78,6 +78,62 @@ module Ektar
       assert_equal 3, subject.used_passwords.count
     end
 
+    test "user can tell its organizations" do
+      organization = ektar_organizations(:organization)
+      admin = ektar_users(:user)
+
+      assert_includes admin.organizations, organization
+    end
+
+    test "member?(resource) method returns wether or not an user belongs to a given organization" do
+      org_user = ektar_users(:user)
+      non_org_user = ektar_users(:alternate_user)
+      organization = ektar_organizations(:organization)
+
+      assert org_user.is_member?(organization)
+      refute non_org_user.is_member?(organization)
+    end
+
+    test "user can tell which organizations his admin of" do
+      organization = ektar_organizations(:organization)
+      admin = ektar_users(:admin_user)
+
+      assert_includes admin.admin_of, organization
+    end
+
+    test "Organizations of `admin_of` method can be added through memberships" do
+      non_admin_user = ektar_users(:user)
+      organization = ektar_organizations(:organization)
+
+      refute_includes non_admin_user.admin_of, organization
+      refute non_admin_user.admin?
+
+      non_admin_user.memberships.create(organization: organization, role: :admin)
+      now_admin_user = non_admin_user
+
+      assert_includes now_admin_user.admin_of, organization
+      assert now_admin_user.admin?
+    end
+
+    test "admin? method tells if the user is admin of any organization" do
+      user_admin = ektar_users(:admin_user)
+      user = ektar_users(:user)
+
+      assert user_admin.admin?
+      refute user.admin?
+    end
+
+    test "is_admin?(resource) method tells if the given user is admin of a given organization" do
+      user_admin = ektar_users(:admin_user)
+      user_no_admin = ektar_users(:user)
+      organization = ektar_organizations(:organization)
+
+      assert user_admin.is_admin?(organization)
+      refute user_no_admin.is_admin?(organization)
+    end
+
+    private
+
     def user_params(attrs = {})
       {email: "mario@gmail.com",
        password: "Password17",

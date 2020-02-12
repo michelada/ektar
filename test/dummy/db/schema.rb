@@ -1,4 +1,3 @@
-# typed: false
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_183907) do
+ActiveRecord::Schema.define(version: 2020_02_09_203730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +50,16 @@ ActiveRecord::Schema.define(version: 2020_02_05_183907) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "ektar_invitations", force: :cascade do |t|
+    t.string "invitation_token"
+    t.datetime "invitation_accepted_at"
+    t.string "email", null: false
+    t.bigint "ektar_organization_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ektar_organization_id"], name: "index_ektar_invitations_on_ektar_organization_id"
   end
 
   create_table "ektar_memberships", force: :cascade do |t|
@@ -115,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_02_05_183907) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "ektar_invitations", "ektar_organizations"
   add_foreign_key "ektar_memberships", "ektar_organizations"
   add_foreign_key "ektar_memberships", "ektar_users"
   add_foreign_key "ektar_used_passwords", "ektar_users"

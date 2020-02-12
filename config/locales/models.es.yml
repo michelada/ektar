@@ -31,3 +31,7 @@ es:
             password:
               invalid: "contraseña necesita de al menos una mayúscula, una minúscula y un número"
               password_already_used: "contraseña ya fue usada"
+
+    mailers:
+      invitation:
+        subject: "Has sido invitado a la organización %{organization_name}"

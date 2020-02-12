@@ -17,3 +17,14 @@ alternate_user:
   email: "alternate_fixture_user@example.com"
   password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
 
+admin_user:
+  email: "admin@ektar.com"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
+
+invited_user:
+  email: "invited_user@ektar.com"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
+
+user_invite_accepted:
+  email: "accepted_invite_user@ektar.com"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"

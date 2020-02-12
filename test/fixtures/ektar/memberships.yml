@@ -4,7 +4,21 @@ user_membership:
   organization: organization
   user: user
 
+alternate_membership:
+  organization: alternate_organization
+  user: alternate_user
+
+admin_membership:
+  organization: organization
+  user: admin_user
+  role: admin
+
 admin_user_membership:
   organization: organization
   user: admin_user
   role: "admin"
+
+super_user_membership:
+  organization: organization
+  user: super_user
+  role: admin
