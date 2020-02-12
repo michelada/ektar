@@ -11,6 +11,9 @@ module Ektar
       included do
         def destroy(options = {}, &block)
           object = resource_class.find_by(find_by_param => params[:id])
+
+          authorize object, policy_class: policy_class if policy_class.present?
+
           object.destroy
           options[:location] = collection_path
           options[:action] = :destroy

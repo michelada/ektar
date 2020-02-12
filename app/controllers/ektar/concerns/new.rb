@@ -13,6 +13,8 @@ module Ektar
           @resource ||= resource_class.new
           set_resource_ivar @resource
 
+          authorize @resource, policy_class: policy_class if policy_class.present?
+
           yield @resource if block_given?
         end
         alias_method :new!, :new

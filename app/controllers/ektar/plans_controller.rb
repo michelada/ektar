@@ -13,13 +13,15 @@ module Ektar
                                   free: :checkbox,
                                   price_cents: :number,
                                   price_currency: :currency,},
-                show_attributes: %i[name description free trial active price])
-
-    before_action :verify_super_admin!
+                show_attributes: %i[name description free trial active price],
+                policy_class: Ektar::PlanPolicy)
 
     sig { void }
     def destroy
       object = Ektar::Plan.find_by!(find_by_param => params[:id])
+
+      authorize object
+
       object.active = false
 
       object.save

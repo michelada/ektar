@@ -13,6 +13,22 @@ module Ektar
 
     sig { returns(T.untyped) }
     def cookies; end
+
+    def index!; end
+
+    def show!; end
+    
+    def new!; end
+    
+    sig{ params(before_save: T.proc.params(arg0: T.untyped).returns(T.untyped)).void }
+    def create!(before_save:); end
+    
+    def edit!; end
+    
+    sig{ params(before_save: T.proc.params(arg0: T.untyped).returns(T.untyped)).void }
+    def update!(before_save:); end
+    
+    def destroy!; end
   end
 
   class UsersController < Ektar::ResourcefulController

@@ -1,11 +1,13 @@
 # typed: ignore
 require "test_helper"
-require "support/login_helper"
 
 module Ektar
   class UsersControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
-    include LoginHelper
+
+    def current_user
+      @current_user ||= ektar_users(:user)
+    end
 
     # Registration cases
 
@@ -37,7 +39,7 @@ module Ektar
     test "shoud redirect to sign in when user not logged" do
       get users_path
 
-      assert_redirected_to new_session_path
+      assert_redirected_to registration_path
     end
 
     test "should list organization users for logged user" do

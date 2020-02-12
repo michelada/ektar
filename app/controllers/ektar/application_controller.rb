@@ -101,7 +101,7 @@ module Ektar
     def user_signed_in?
       current_user.present?
     end
-
+    
     sig { returns(T::Hash[T.untyped, T.untyped]) }
     def session_cookie
       @session_cookie ||= cookies.encrypted[session_cookie_name] || {}
@@ -112,9 +112,19 @@ module Ektar
       @session_cookie_name ||= "#{Ektar.configuration.session_name}_remember_me"
     end
 
+    def root_path
+      if super_admin?
+        super
+      elsif current_user.present?
+        users_path
+      else
+        registration_path
+      end
+    end
+
     def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
-      redirect_to(request.referrer || new_session_path)
+      flash[:alert] = t("flash.policy.not_authorized")
+      redirect_to(request.referrer || root_path)
     end
 
     private

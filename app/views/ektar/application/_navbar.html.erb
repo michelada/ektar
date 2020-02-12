@@ -50,12 +50,14 @@
         <%= link_to t(".login"), new_session_path, class: "navbar-item" %>
         <%= link_to t(".sign_up"), registration_path , class: "navbar-item" %>
       <% end %>
-      
-      <% if super_admin? %>
-        <div class="navbar-item">
+
+      <div class="navbar-item">
+        <% if super_admin? %>
           <span>Administrador</span>
-        </div>
-      <% end %>
+        <% elsif current_user %>
+          <span><%= current_user.email %></span>
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>

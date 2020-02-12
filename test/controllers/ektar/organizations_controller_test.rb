@@ -1,81 +1,89 @@
 # typed: ignore
 require "test_helper"
-require "support/login_helper"
 
 module Ektar
   class OrganizationsControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
-    include LoginHelper
 
-    def setup
-      @organization = ektar_organizations(:organization)
-
+    test "super_admin user should get index" do
       sign_in(ektar_users(:super_user))
-    end
 
-    test "should get index" do
       get organizations_path
 
       assert_response :success
     end
 
-    test "should get new" do
-      get new_organization_path
+    test "normal user should not get index" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_response :success
+      get organizations_path
+
+      assert_response :redirect
+      assert_redirected_to users_path
     end
 
-    test "should get show" do
-      get organization_path(@organization.global_id)
+    test "super_admin should create organization" do
+      sign_in(ektar_users(:super_user))
 
-      assert_response :success
-      assert_select "h2", value: "Organización"
+      post organizations_path, params: organization_params
+
+      assert_redirected_to organizations_path
+      assert_equal organization_params.dig(:organization, :name), Organization.last.name
     end
 
-    test "should get edit" do
-      get edit_organization_path(@organization.global_id)
+    test "user should not create organization" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_response :success
-      assert_select ".input", value: @organization.name
+      post organizations_path, params: organization_params(name: "new")
+
+      assert_redirected_to users_path
+      refute_equal "new", Organization.first.name
     end
 
-    test "can create organization" do
-      assert_difference "Ektar::Organization.count", 1 do
-        post organizations_path, {params: valid_organization}
+    test "super_admin user should get edit organization" do
+      sign_in(ektar_users(:super_user))
 
-        assert_response :redirect
-        assert_redirected_to organizations_path
-      end
+      put organization_path(Organization.first), params: organization_params(name: "edited")
 
-      assert_equal "Organization test", Ektar::Organization.last.name
+      assert_redirected_to organizations_path
+      assert_equal "edited", Organization.first.name
     end
 
-    test "can show organization" do
-      get organization_path(@organization.global_id)
+    test "user should not edit organization" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_response :success
-      assert_select "h2", "Organización"
+      put organization_path(Organization.first), params: organization_params(name: "edited")
+
+      assert_redirected_to users_path
+      refute_equal "edited", Organization.first.name
     end
 
-    test "can update organization" do
-      put organization_path(@organization.global_id), {params: {organization: {name: "Fixture Organization"}}}
-      @organization.reload
+    test "super_admin user should destroy edit organization" do
+      sign_in(ektar_users(:super_user))
 
-      assert_equal "Fixture Organization", @organization.name
+      delete organization_path(Organization.last)
+
+      assert_redirected_to organizations_path
+      refute Organization.last.enable?
     end
 
-    test "can delete organization" do
-      organization_delete = ektar_organizations(:alternate_organization)
+    test "user should not destroy organization" do
+      sign_in(ektar_users(:admin_user))
 
-      assert_no_difference "Organization.count", -1 do
-        delete organization_path(organization_delete.global_id)
-      end
+      delete organization_path(Organization.last)
 
-      refute organization_delete.reload.enable
+      assert_redirected_to users_path
+      assert Organization.last.enable?
     end
 
-    def valid_organization
-      {organization: {name: "Organization test", enable: true, plan: ektar_plans(:plan)}}
+    def organization_params(attrs = {})
+      {
+        organization: {
+          name: "Organization test",
+          enable: true,
+          plan: ektar_plans(:plan),
+        }.merge(attrs),
+      }
     end
   end
 end
