@@ -23,5 +23,14 @@ module Ektar
       assert_equal "index", @controller.action_name
       assert_equal "organizations", @controller.controller_name
     end
+
+    test "blocked user can not log in" do
+      blocked_user = ektar_users(:super_user)
+
+      post sessions_path, params: {user: {email: blocked_user.email, password: blocked_user.password_digest}}
+
+      assert_equal "sessions", @controller.controller_name
+      assert_equal I18n.t("flash.create.session.alert"), flash[:alert]
+    end
   end
 end

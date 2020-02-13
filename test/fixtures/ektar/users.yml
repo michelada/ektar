@@ -28,3 +28,8 @@ invited_user:
 user_invite_accepted:
   email: "accepted_invite_user@ektar.com"
   password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
+
+blocked_user:
+  email: "blocked@ektar.com"
+  password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
+  blocked_at: <%= Time.zone.now %>

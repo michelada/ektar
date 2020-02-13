@@ -13,7 +13,7 @@ module Ektar
       user_email = params.dig(:user, :email)
       @resource = User.find_by(email: user_email)
 
-      if @resource&.authenticate(params.dig(:user, :password))
+      if @resource&.authenticate(params.dig(:user, :password)) && !@resource.blocked_at?
         @resource.update last_ip: format_ip(request.remote_ip), last_activity_at: Time.zone.now
 
         # TODO: Si un usuario tiene más de 1 organización hay que llevarlo a
