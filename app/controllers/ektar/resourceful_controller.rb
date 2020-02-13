@@ -161,6 +161,11 @@ module Ektar
       true
     end
 
+    sig { params(resource: T.untyped).returns(T::Boolean) }
+    def allow_edit?(resource)
+      true
+    end
+
     sig { returns(Symbol) }
     def link_attribute
       :name
@@ -262,6 +267,6 @@ module Ektar
     end
 
     helper_method :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
-      :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :set_resource_ivar
+      :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :allow_edit?, :set_resource_ivar
   end
 end

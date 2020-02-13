@@ -11,7 +11,7 @@ module Ektar
         admin_membership = user.is_admin?(record)
       end
 
-      user_organization && admin_membership
+      user_organization && admin_membership || user&.super_admin?
     end
   end
 end
