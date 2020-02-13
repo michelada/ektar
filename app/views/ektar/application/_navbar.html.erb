@@ -43,21 +43,19 @@
       <% end %>
 
       <% if user_signed_in? %>
-        <div class="navbar-item">
-          <%= link_to t(".logout"), session_path(current_user.global_id), method: :delete, class: "navbar-item" %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <% user_name = current_user.super_admin? ? t(".admin") : current_user.email %>
+
+          <%= link_to user_name, "#", class: "navbar-link" %>
+
+          <div class="navbar-dropdown">
+            <%= link_to t(".logout"), session_path(current_user.global_id), method: :delete, class: "navbar-item" %>
+          </div>
         </div>
       <% else %>
         <%= link_to t(".login"), new_session_path, class: "navbar-item" %>
         <%= link_to t(".sign_up"), registration_path , class: "navbar-item" %>
       <% end %>
-
-      <div class="navbar-item">
-        <% if super_admin? %>
-          <span>Administrador</span>
-        <% elsif current_user %>
-          <span><%= current_user.email %></span>
-        <% end %>
-      </div>
     </div>
   </div>
 </nav>
