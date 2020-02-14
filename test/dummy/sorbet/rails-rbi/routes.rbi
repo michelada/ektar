@@ -193,7 +193,7 @@ module GeneratedUrlHelpers
 
   # Sigs for route /registro(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def registration_path(*args, **kwargs); end
+  def registrations_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def registration_url(*args, **kwargs); end

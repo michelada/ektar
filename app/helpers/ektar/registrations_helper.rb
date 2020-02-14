@@ -1,5 +1,5 @@
 # typed: strong
 module Ektar
-  module InvitationsHelper
+  module RegistrationsHelper
   end
 end
