@@ -51,7 +51,7 @@ module Ektar
     end
 
     test "organization can tel its users" do
-      organization = ektar_organizations(:organization)
+      organization = ektar_organizations(:organization_no_plan)
       organization_user = ektar_users(:user)
 
       assert_includes organization.users, organization_user

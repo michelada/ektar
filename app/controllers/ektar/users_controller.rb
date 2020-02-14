@@ -63,7 +63,7 @@ module Ektar
 
     sig { void }
     def organization_has_plan
-      redirect_to new_select_plan_path if current_organization&.plan.nil?
+      redirect_to new_select_plan_path if current_user && current_organization&.plan.nil?
     end
   end
 end

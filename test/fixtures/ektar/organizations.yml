@@ -15,3 +15,7 @@ organization_no_admin:
   name: "Organization with no admin"
   enable: true
   plan: plan
+
+organization_no_plan:
+  name: "Organization with no plan"
+  enable: true
