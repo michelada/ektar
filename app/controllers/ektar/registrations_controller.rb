@@ -3,8 +3,13 @@
 require_dependency "ektar/application_controller"
 
 module Ektar
-  class RegistrationsController < ApplicationController
+  class RegistrationsController < UsersController
     extend T::Sig
+
+    resourceful(form_attributes: {email: :input, password: :password, password_confirmation: :password},
+                find_by: :global_id,
+                only: [:new, :create],
+                resource_class: Ektar::User)
 
     sig { void }
     def new
@@ -29,19 +34,12 @@ module Ektar
       end
 
       if @resource.save
-        update_session_cookie(user: @resource, organization: @resource.organizations.first)
+        update_session_cookie(user: @resource.reload, organization: @resource.organizations.first)
         redirect_to users_path
       else
         @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
         render :new, layout: "ektar/users"
       end
-    end
-
-    private
-
-    sig { returns(ActionController::Parameters) }
-    def secure_params
-      params.require_typed(:user, TA[ActionController::Parameters].new).permit(:email, :password, :password_confirmation, memberships_attributes: [{organization_attributes: [:name]}])
     end
   end
 end
