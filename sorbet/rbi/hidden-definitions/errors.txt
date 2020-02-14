@@ -521,29 +521,13 @@
 # wrong constant name remove_connection
 # wrong constant name setup_heartbeat_timer
 # wrong constant name <static-init>
-# undefined method `async_invoke<defaultArg>1' for class `ActionCable::Server::Worker'
-# undefined method `initialize<defaultArg>1' for class `ActionCable::Server::Worker'
-# Did you mean?  initialize_dup
-# wrong constant name <Class:ActiveRecordConnectionManagement>
 # uninitialized constant ActionCable::Server::Worker::CALLBACK_FILTER_TYPES
 # wrong constant name __callbacks
 # wrong constant name __callbacks?
 # wrong constant name _run_work_callbacks
 # wrong constant name _work_callbacks
-# wrong constant name async_exec
-# wrong constant name async_invoke<defaultArg>1
-# wrong constant name async_invoke
 # wrong constant name connection
 # wrong constant name connection=
-# wrong constant name executor
-# wrong constant name halt
-# wrong constant name initialize<defaultArg>1
-# wrong constant name initialize
-# wrong constant name invoke
-# wrong constant name stopping?
-# wrong constant name work
-# wrong constant name with_database_connections
-# wrong constant name <static-init>
 # wrong constant name <static-init>
 # wrong constant name __callbacks
 # wrong constant name __callbacks=
@@ -7028,7 +7012,7 @@
 # wrong constant name initialize
 # wrong constant name to_hash
 # wrong constant name <static-init>
-# undefined method `resolve<defaultArg>1' for class `#<Class:0x00007fac88b1e950>'
+# undefined method `resolve<defaultArg>1' for class `#<Class:0x00007fdd6c833078>'
 # wrong constant name configurations
 # wrong constant name initialize
 # wrong constant name resolve<defaultArg>1
@@ -14120,61 +14104,91 @@
 # uninitialized constant Ektar::Organization::NAME_COMPILABLE_REGEXP
 # uninitialized constant Ektar::Organization::RESTRICTED_CLASS_METHODS
 # uninitialized constant Ektar::Organization::UNASSIGNABLE_KEYS
+# wrong constant name after_add_for_invitations
+# wrong constant name after_add_for_invitations=
+# wrong constant name after_add_for_invitations?
 # wrong constant name after_add_for_memberships
 # wrong constant name after_add_for_memberships=
 # wrong constant name after_add_for_memberships?
 # wrong constant name after_add_for_users
 # wrong constant name after_add_for_users=
 # wrong constant name after_add_for_users?
+# wrong constant name after_remove_for_invitations
+# wrong constant name after_remove_for_invitations=
+# wrong constant name after_remove_for_invitations?
 # wrong constant name after_remove_for_memberships
 # wrong constant name after_remove_for_memberships=
 # wrong constant name after_remove_for_memberships?
 # wrong constant name after_remove_for_users
 # wrong constant name after_remove_for_users=
 # wrong constant name after_remove_for_users?
+# wrong constant name autosave_associated_records_for_invitations
 # wrong constant name autosave_associated_records_for_memberships
 # wrong constant name autosave_associated_records_for_plan
 # wrong constant name autosave_associated_records_for_users
+# wrong constant name before_add_for_invitations
+# wrong constant name before_add_for_invitations=
+# wrong constant name before_add_for_invitations?
 # wrong constant name before_add_for_memberships
 # wrong constant name before_add_for_memberships=
 # wrong constant name before_add_for_memberships?
 # wrong constant name before_add_for_users
 # wrong constant name before_add_for_users=
 # wrong constant name before_add_for_users?
+# wrong constant name before_remove_for_invitations
+# wrong constant name before_remove_for_invitations=
+# wrong constant name before_remove_for_invitations?
 # wrong constant name before_remove_for_memberships
 # wrong constant name before_remove_for_memberships=
 # wrong constant name before_remove_for_memberships?
 # wrong constant name before_remove_for_users
 # wrong constant name before_remove_for_users=
 # wrong constant name before_remove_for_users?
+# wrong constant name validate_associated_records_for_invitations
 # wrong constant name validate_associated_records_for_memberships
 # wrong constant name validate_associated_records_for_users
 # wrong constant name build_plan
 # wrong constant name create_plan
 # wrong constant name create_plan!
+# wrong constant name invitation_ids
+# wrong constant name invitation_ids=
+# wrong constant name invitations
+# wrong constant name invitations=
 # wrong constant name membership_ids
 # wrong constant name membership_ids=
 # wrong constant name reload_plan
 # wrong constant name user_ids
 # wrong constant name user_ids=
+# wrong constant name after_add_for_invitations
+# wrong constant name after_add_for_invitations=
+# wrong constant name after_add_for_invitations?
 # wrong constant name after_add_for_memberships
 # wrong constant name after_add_for_memberships=
 # wrong constant name after_add_for_memberships?
 # wrong constant name after_add_for_users
 # wrong constant name after_add_for_users=
 # wrong constant name after_add_for_users?
+# wrong constant name after_remove_for_invitations
+# wrong constant name after_remove_for_invitations=
+# wrong constant name after_remove_for_invitations?
 # wrong constant name after_remove_for_memberships
 # wrong constant name after_remove_for_memberships=
 # wrong constant name after_remove_for_memberships?
 # wrong constant name after_remove_for_users
 # wrong constant name after_remove_for_users=
 # wrong constant name after_remove_for_users?
+# wrong constant name before_add_for_invitations
+# wrong constant name before_add_for_invitations=
+# wrong constant name before_add_for_invitations?
 # wrong constant name before_add_for_memberships
 # wrong constant name before_add_for_memberships=
 # wrong constant name before_add_for_memberships?
 # wrong constant name before_add_for_users
 # wrong constant name before_add_for_users=
 # wrong constant name before_add_for_users?
+# wrong constant name before_remove_for_invitations
+# wrong constant name before_remove_for_invitations=
+# wrong constant name before_remove_for_invitations?
 # wrong constant name before_remove_for_memberships
 # wrong constant name before_remove_for_memberships=
 # wrong constant name before_remove_for_memberships?
@@ -14449,12 +14463,43 @@
 # wrong constant name stress=
 # wrong constant name verify_internal_consistency
 # wrong constant name verify_transient_heap_internal_consistency
+# wrong constant name oct_or_256based
+# wrong constant name <Class:FetchError>
+# wrong constant name <Class:UnknownHostError>
+# wrong constant name s3_uri_signer
 # wrong constant name initialize
 # wrong constant name uri
 # wrong constant name uri=
 # wrong constant name <static-init>
 # wrong constant name <static-init>
 # uninitialized constant Gem::Resolver::Molinillo::DependencyGraph::Log::Elem
+# undefined method `sign<defaultArg>1' for class `Gem::S3URISigner'
+# wrong constant name <Class:ConfigurationError>
+# wrong constant name <Class:InstanceProfileError>
+# wrong constant name <Class:S3Config>
+# wrong constant name initialize
+# wrong constant name sign<defaultArg>1
+# wrong constant name sign
+# wrong constant name uri
+# wrong constant name uri=
+# wrong constant name initialize
+# wrong constant name <static-init>
+# wrong constant name initialize
+# wrong constant name <static-init>
+# uninitialized constant Gem::S3URISigner::S3Config::Elem
+# wrong constant name access_key_id
+# wrong constant name access_key_id=
+# wrong constant name region
+# wrong constant name region=
+# wrong constant name secret_access_key
+# wrong constant name secret_access_key=
+# wrong constant name security_token
+# wrong constant name security_token=
+# wrong constant name <static-init>
+# wrong constant name []
+# wrong constant name members
+# wrong constant name <static-init>
+# wrong constant name correct_for_windows_path
 # wrong constant name <Class:BaseLocator>
 # wrong constant name <Class:BlockLocator>
 # wrong constant name <Class:UnscopedLocator>
@@ -19166,7 +19211,6 @@
 # uninitialized constant Net::IMAP::OPENSSL_VERSION
 # uninitialized constant Net::IMAP::OPENSSL_VERSION_NUMBER
 # uninitialized constant Net::IMAP::OP_ALL
-# uninitialized constant Net::IMAP::OP_ALLOW_NO_DHE_KEX
 # uninitialized constant Net::IMAP::OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION
 # uninitialized constant Net::IMAP::OP_CIPHER_SERVER_PREFERENCE
 # uninitialized constant Net::IMAP::OP_CRYPTOPRO_TLSEXT_BUG
@@ -19181,8 +19225,6 @@
 # uninitialized constant Net::IMAP::OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG
 # uninitialized constant Net::IMAP::OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG
 # uninitialized constant Net::IMAP::OP_NO_COMPRESSION
-# uninitialized constant Net::IMAP::OP_NO_ENCRYPT_THEN_MAC
-# uninitialized constant Net::IMAP::OP_NO_RENEGOTIATION
 # uninitialized constant Net::IMAP::OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION
 # uninitialized constant Net::IMAP::OP_NO_SSLv2
 # uninitialized constant Net::IMAP::OP_NO_SSLv3
@@ -19190,7 +19232,6 @@
 # uninitialized constant Net::IMAP::OP_NO_TLSv1
 # uninitialized constant Net::IMAP::OP_NO_TLSv1_1
 # uninitialized constant Net::IMAP::OP_NO_TLSv1_2
-# uninitialized constant Net::IMAP::OP_NO_TLSv1_3
 # uninitialized constant Net::IMAP::OP_PKCS1_CHECK_1
 # uninitialized constant Net::IMAP::OP_PKCS1_CHECK_2
 # uninitialized constant Net::IMAP::OP_SAFARI_ECDHE_ECDSA_BUG
@@ -19206,7 +19247,6 @@
 # uninitialized constant Net::IMAP::SSL3_VERSION
 # uninitialized constant Net::IMAP::TLS1_1_VERSION
 # uninitialized constant Net::IMAP::TLS1_2_VERSION
-# uninitialized constant Net::IMAP::TLS1_3_VERSION
 # uninitialized constant Net::IMAP::TLS1_VERSION
 # uninitialized constant Net::IMAP::VERIFY_CLIENT_ONCE
 # uninitialized constant Net::IMAP::VERIFY_FAIL_IF_NO_PEER_CERT
@@ -19514,18 +19554,10 @@
 # wrong constant name -@
 # wrong constant name /
 # wrong constant name negative?
-# uninitialized constant OpenSSL::Digest::DSS
-# uninitialized constant OpenSSL::Digest::DSS
-# uninitialized constant OpenSSL::Digest::DSS1
-# uninitialized constant OpenSSL::Digest::DSS1
-# uninitialized constant OpenSSL::Digest::SHA
-# uninitialized constant OpenSSL::Digest::SHA
 # wrong constant name <Class:KDFError>
 # wrong constant name <static-init>
 # wrong constant name <static-init>
-# wrong constant name hkdf
 # wrong constant name pbkdf2_hmac
-# wrong constant name scrypt
 # wrong constant name signed?
 # uninitialized constant OpenSSL::PKCS5::PKCS5Error
 # uninitialized constant OpenSSL::PKCS5::PKCS5Error
@@ -22079,7 +22111,7 @@
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fac87eaae80>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fdd6cd96240>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=

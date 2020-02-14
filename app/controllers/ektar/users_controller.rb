@@ -9,52 +9,17 @@ module Ektar
     resourceful(list_attributes: %i[email updated_at last_activity_at blocked_at],
                 form_attributes: {email: :input, password: :password, password_confirmation: :password},
                 show_attributes: %i[id email updated_at],
-                find_by: :global_id, except: [:new, :index, :create, :delete])
+                find_by: :global_id,
+                except: [:new, :index, :create, :delete],
+                resource_class: Ektar::User)
 
     sig { void }
     def index
       authorize current_organization, policy_class: Ektar::UserPolicy
 
-      index! do |scope|
-        if current_user.super_admin?
-          Ektar::User.super_admins
-        else
-          current_organization.users
-        end
-      end
+      index! { |scope| current_user.super_admin? ? scope.where(super_admin: true) : scope.joins(:memberships).where(memberships: [organization: current_organization]) }
 
       render layout: "ektar/application"
-    end
-
-    sig { void }
-    def new
-      @resource = T.let(Ektar::User.new, T.nilable(Ektar::User))
-      @resource.memberships.build.build_organization if @resource.present?
-
-      render :new, layout: "ektar/users"
-    end
-
-    sig { void }
-    def create
-      @resource = Ektar::User.new(secure_params).tap do |user|
-        user.last_ip = format_ip(request.remote_ip)
-        user.last_activity_at = Time.zone.now
-
-        user.memberships.first.tap do |membership|
-          if membership.present?
-            membership.role = "admin"
-            membership.owner = true
-          end
-        end
-      end
-
-      if @resource.save
-        update_session_cookie(user: @resource.reload, organization: @resource.organizations.first)
-        redirect_to root_path
-      else
-        @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
-        render :new, layout: "ektar/users"
-      end
     end
 
     sig { void }
@@ -86,7 +51,7 @@ module Ektar
 
     sig { returns(String) }
     def new_resource_path
-      registration_path
+      registrations_path
     end
 
     sig { returns(ActionController::Parameters) }

@@ -766,7 +766,6 @@ end
 
 class ActionCable::Server::Worker
   include ::ActiveSupport::Callbacks
-  include ::ActionCable::Server::Worker::ActiveRecordConnectionManagement
   def __callbacks(); end
 
   def __callbacks?(); end
@@ -775,33 +774,9 @@ class ActionCable::Server::Worker
 
   def _work_callbacks(); end
 
-  def async_exec(receiver, *args, connection:, &block); end
-
-  def async_invoke(receiver, method, *args, connection: T.unsafe(nil), &block); end
-
   def connection(); end
 
   def connection=(obj); end
-
-  def executor(); end
-
-  def halt(); end
-
-  def initialize(max_size: T.unsafe(nil)); end
-
-  def invoke(receiver, method, *args, connection:, &block); end
-
-  def stopping?(); end
-
-  def work(connection); end
-end
-
-module ActionCable::Server::Worker::ActiveRecordConnectionManagement
-  def with_database_connections(); end
-end
-
-module ActionCable::Server::Worker::ActiveRecordConnectionManagement
-  extend ::ActiveSupport::Concern
 end
 
 class ActionCable::Server::Worker
@@ -24016,6 +23991,12 @@ class Ektar::Membership
 end
 
 class Ektar::Organization
+  def after_add_for_invitations(); end
+
+  def after_add_for_invitations=(val); end
+
+  def after_add_for_invitations?(); end
+
   def after_add_for_memberships(); end
 
   def after_add_for_memberships=(val); end
@@ -24027,6 +24008,12 @@ class Ektar::Organization
   def after_add_for_users=(val); end
 
   def after_add_for_users?(); end
+
+  def after_remove_for_invitations(); end
+
+  def after_remove_for_invitations=(val); end
+
+  def after_remove_for_invitations?(); end
 
   def after_remove_for_memberships(); end
 
@@ -24040,11 +24027,19 @@ class Ektar::Organization
 
   def after_remove_for_users?(); end
 
+  def autosave_associated_records_for_invitations(*args); end
+
   def autosave_associated_records_for_memberships(*args); end
 
   def autosave_associated_records_for_plan(*args); end
 
   def autosave_associated_records_for_users(*args); end
+
+  def before_add_for_invitations(); end
+
+  def before_add_for_invitations=(val); end
+
+  def before_add_for_invitations?(); end
 
   def before_add_for_memberships(); end
 
@@ -24058,6 +24053,12 @@ class Ektar::Organization
 
   def before_add_for_users?(); end
 
+  def before_remove_for_invitations(); end
+
+  def before_remove_for_invitations=(val); end
+
+  def before_remove_for_invitations?(); end
+
   def before_remove_for_memberships(); end
 
   def before_remove_for_memberships=(val); end
@@ -24070,6 +24071,8 @@ class Ektar::Organization
 
   def before_remove_for_users?(); end
 
+  def validate_associated_records_for_invitations(*args); end
+
   def validate_associated_records_for_memberships(*args); end
 
   def validate_associated_records_for_users(*args); end
@@ -24081,6 +24084,14 @@ module Ektar::Organization::GeneratedAssociationMethods
   def create_plan(*args, &block); end
 
   def create_plan!(*args, &block); end
+
+  def invitation_ids(); end
+
+  def invitation_ids=(ids); end
+
+  def invitations(); end
+
+  def invitations=(value); end
 
   def membership_ids(); end
 
@@ -24099,6 +24110,12 @@ end
 
 class Ektar::Organization
   extend ::T::Sig
+  def self.after_add_for_invitations(); end
+
+  def self.after_add_for_invitations=(val); end
+
+  def self.after_add_for_invitations?(); end
+
   def self.after_add_for_memberships(); end
 
   def self.after_add_for_memberships=(val); end
@@ -24110,6 +24127,12 @@ class Ektar::Organization
   def self.after_add_for_users=(val); end
 
   def self.after_add_for_users?(); end
+
+  def self.after_remove_for_invitations(); end
+
+  def self.after_remove_for_invitations=(val); end
+
+  def self.after_remove_for_invitations?(); end
 
   def self.after_remove_for_memberships(); end
 
@@ -24123,6 +24146,12 @@ class Ektar::Organization
 
   def self.after_remove_for_users?(); end
 
+  def self.before_add_for_invitations(); end
+
+  def self.before_add_for_invitations=(val); end
+
+  def self.before_add_for_invitations?(); end
+
   def self.before_add_for_memberships(); end
 
   def self.before_add_for_memberships=(val); end
@@ -24134,6 +24163,12 @@ class Ektar::Organization
   def self.before_add_for_users=(val); end
 
   def self.before_add_for_users?(); end
+
+  def self.before_remove_for_invitations(); end
+
+  def self.before_remove_for_invitations=(val); end
+
+  def self.before_remove_for_invitations?(); end
 
   def self.before_remove_for_memberships(); end
 
@@ -24261,6 +24296,13 @@ module Ektar::UsedPassword::GeneratedAttributeMethods
   extend ::Mutex_m
 end
 
+class Ektar::UserMailerPreview
+end
+
+class Ektar::UsersController
+  extend ::T::Sig
+end
+
 module Ektar
   def self.railtie_helpers_paths(); end
 
@@ -24272,6 +24314,8 @@ module Ektar
 
   def self.use_relative_model_naming?(); end
 end
+
+Emitter = Psych::Stream::Emitter
 
 class Encoding
   def _dump(*_); end
@@ -24816,6 +24860,14 @@ module GC
   def self.verify_transient_heap_internal_consistency(); end
 end
 
+class Gem::Package::TarHeader
+  def self.oct_or_256based(str); end
+end
+
+class Gem::RemoteFetcher
+  def s3_uri_signer(uri); end
+end
+
 class Gem::RemoteFetcher::FetchError
   def initialize(message, uri); end
 
@@ -24837,8 +24889,65 @@ class Gem::Resolver::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
+class Gem::S3URISigner
+  def initialize(uri); end
+
+  def sign(expiration=T.unsafe(nil)); end
+
+  def uri(); end
+
+  def uri=(uri); end
+  BASE64_URI_TRANSLATE = ::T.let(nil, ::T.untyped)
+  EC2_METADATA_CREDENTIALS = ::T.let(nil, ::T.untyped)
+end
+
+class Gem::S3URISigner::ConfigurationError
+  def initialize(message); end
+end
+
+class Gem::S3URISigner::ConfigurationError
+end
+
+class Gem::S3URISigner::InstanceProfileError
+  def initialize(message); end
+end
+
+class Gem::S3URISigner::InstanceProfileError
+end
+
+class Gem::S3URISigner::S3Config
+  def access_key_id(); end
+
+  def access_key_id=(_); end
+
+  def region(); end
+
+  def region=(_); end
+
+  def secret_access_key(); end
+
+  def secret_access_key=(_); end
+
+  def security_token(); end
+
+  def security_token=(_); end
+end
+
+class Gem::S3URISigner::S3Config
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class Gem::S3URISigner
+end
+
 class Gem::Specification
   extend ::Enumerable
+end
+
+module Gem::Util
+  def self.correct_for_windows_path(path); end
 end
 
 module GlobalID::Locator
@@ -26165,6 +26274,8 @@ JSON::Parser = JSON::Ext::Parser
 JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
+
+JSONTree = Psych::Visitors::JSONTree
 
 module JaroWinkler
   VERSION = ::T.let(nil, ::T.untyped)
@@ -30749,11 +30860,7 @@ class OpenSSL::KDF::KDFError
 end
 
 module OpenSSL::KDF
-  def self.hkdf(*_); end
-
   def self.pbkdf2_hmac(*_); end
-
-  def self.scrypt(*_); end
 end
 
 class OpenSSL::OCSP::Request
@@ -30761,10 +30868,6 @@ class OpenSSL::OCSP::Request
 end
 
 OpenSSL::PKCS7::Signer = OpenSSL::PKCS7::SignerInfo
-
-class OpenSSL::PKey::EC
-  EXPLICIT_CURVE = ::T.let(nil, ::T.untyped)
-end
 
 class OpenSSL::PKey::EC::Point
   def to_octet_string(_); end
@@ -30777,25 +30880,19 @@ class OpenSSL::PKey::RSA
 end
 
 module OpenSSL::SSL
-  OP_ALLOW_NO_DHE_KEX = ::T.let(nil, ::T.untyped)
   OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION = ::T.let(nil, ::T.untyped)
   OP_CRYPTOPRO_TLSEXT_BUG = ::T.let(nil, ::T.untyped)
   OP_LEGACY_SERVER_CONNECT = ::T.let(nil, ::T.untyped)
-  OP_NO_ENCRYPT_THEN_MAC = ::T.let(nil, ::T.untyped)
-  OP_NO_RENEGOTIATION = ::T.let(nil, ::T.untyped)
-  OP_NO_TLSv1_3 = ::T.let(nil, ::T.untyped)
   OP_SAFARI_ECDHE_ECDSA_BUG = ::T.let(nil, ::T.untyped)
   OP_TLSEXT_PADDING = ::T.let(nil, ::T.untyped)
   SSL2_VERSION = ::T.let(nil, ::T.untyped)
   SSL3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_1_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_2_VERSION = ::T.let(nil, ::T.untyped)
-  TLS1_3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 module OpenSSL::X509
-  V_FLAG_NO_CHECK_TIME = ::T.let(nil, ::T.untyped)
   V_FLAG_TRUSTED_FIRST = ::T.let(nil, ::T.untyped)
 end
 
@@ -41330,6 +41427,8 @@ end
 module UnicodeNormalize
 end
 
+Visitor = Psych::Visitors::Visitor
+
 module Warning
   def warn(_); end
 end
@@ -41492,6 +41591,8 @@ class Webpacker::Env
 end
 
 YAML = Psych
+
+YAMLTree = Psych::Visitors::YAMLTree
 
 module Zeitwerk::ExplicitNamespace
   extend ::Zeitwerk::RealModName

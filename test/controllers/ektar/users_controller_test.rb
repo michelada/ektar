@@ -9,24 +9,6 @@ module Ektar
       @current_user ||= ektar_users(:user)
     end
 
-    # Registration cases
-
-    test "should register user and organization with valid params" do
-      post users_path, params: user_params
-
-      assert_redirected_to users_path
-      refute_nil cookies[COOKIE_NAME]
-
-      registered_user = User.last
-
-      assert_equal 1, registered_user.memberships.size
-      assert registered_user.memberships.first.admin?
-      assert_equal 1, registered_user.used_passwords.size
-
-      refute_nil registered_user.last_ip
-      refute_nil registered_user.last_activity_at
-    end
-
     test "should not register user and organization with invalid params" do
       post users_path, params: user_params(email: nil)
 
@@ -39,7 +21,7 @@ module Ektar
     test "shoud redirect to sign in when user not logged" do
       get users_path
 
-      assert_redirected_to registration_path
+      assert_redirected_to registrations_path
     end
 
     test "should list organization users for logged user" do
@@ -49,6 +31,8 @@ module Ektar
 
       assert_response :success
     end
+
+    private
 
     def user_params(attrs = {})
       {

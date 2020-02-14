@@ -1,7 +1,8 @@
 # typed: ignore
 require "test_helper"
+
 module Ektar
-  class SessionsControllerTest < ActionDispatch::IntegrationTest
+  class SessionControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
     include LoginHelper
 

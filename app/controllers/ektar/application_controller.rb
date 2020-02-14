@@ -111,7 +111,7 @@ module Ektar
       elsif current_user.present?
         users_path
       else
-        registration_path
+        new_registrations_path
       end
     end
 
