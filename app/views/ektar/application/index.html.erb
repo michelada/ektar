@@ -9,7 +9,7 @@
         </th>
       <% end %>
 
-      <% if super_admin? %>
+      <% if current_user.super_admin? || current_user.is_admin?(current_organization) %>
         <th class="has-text-right"><%= t("table.actions.name") %></th>
       <% end %>
     </tr>

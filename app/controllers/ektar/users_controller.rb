@@ -3,12 +3,12 @@
 
 module Ektar
   class UsersController < ResourcefulController
-    before_action :is_normal_user, only: [:new, :create, :update]
-    before_action :organization_has_plan, only: [:index]
     extend T::Sig
     include Pagy::Backend
 
-    resourceful(list_attributes: %i[email updated_at last_activity_at],
+    before_action :organization_has_plan, only: [:index]
+
+    resourceful(list_attributes: %i[email updated_at last_activity_at blocked_at],
                 form_attributes: {email: :input, password: :password, password_confirmation: :password},
                 show_attributes: %i[id email updated_at],
                 find_by: :global_id,
@@ -19,7 +19,7 @@ module Ektar
     def index
       authorize current_organization, policy_class: Ektar::UserPolicy
 
-      index! { |scope| current_organization.users }
+      index! { |scope| current_user.super_admin? ? scope.where(super_admin: true) : scope.joins(:memberships).where(memberships: [organization: current_organization]) }
 
       render layout: "ektar/application"
     end
@@ -38,7 +38,17 @@ module Ektar
 
     sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_delete?(resource)
-      current_organization.has_active_user?(resource)
+      current_organization.has_active_user?(resource) || current_user.super_admin?
+    end
+
+    sig { params(resource: T.untyped).returns(T::Boolean) }
+    def allow_edit?(resource)
+      current_organization.has_active_user?(resource) && !current_user.super_admin?
+    end
+
+    sig { returns(Symbol) }
+    def link_attribute
+      :email
     end
 
     sig { returns(String) }
@@ -49,11 +59,6 @@ module Ektar
     sig { returns(ActionController::Parameters) }
     def secure_params
       params.require_typed(:user, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys, memberships_attributes: [{organization_attributes: [:name]}])
-    end
-
-    sig { void }
-    def is_normal_user
-      redirect_to users_path if super_admin?
     end
 
     sig { void }

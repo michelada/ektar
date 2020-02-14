@@ -21,6 +21,8 @@ module Ektar
     after_create :store_password
     before_update :store_password, if: :password_digest_changed?
 
+    scope :super_admins, -> { where(super_admin: true) }
+
     sig { returns(String) }
     def to_param
       global_id

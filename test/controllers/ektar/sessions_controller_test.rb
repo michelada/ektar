@@ -4,33 +4,34 @@ require "test_helper"
 module Ektar
   class SessionControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
+    include LoginHelper
 
-    def current_user
-      @current_user ||= ektar_users(:user)
+    test "normal user is redirected_to [ND]" do
+      skip # ND
     end
 
-    test "shoud redirect to sign in when user not logged" do
-      get users_path
+    test "admin user is redirected_to users#index" do
+      sign_in ektar_users(:admin_user)
+      get root_path
 
-      assert_redirected_to registrations_path
+      assert_redirected_to users_path
     end
 
-    test "should list organization users for logged user" do
-      sign_in(ektar_users(:admin_user))
+    test "super_admin user is redirected to organizations#index" do
+      sign_in ektar_users(:super_user)
+      get root_path
 
-      get users_path
-
-      assert_response :success
+      assert_equal "index", @controller.action_name
+      assert_equal "organizations", @controller.controller_name
     end
 
-    def user_params(attrs = {})
-      {
-        user: {
-          email: "user@example.com",
-          password: "Password17",
-          memberships_attributes: [organization_attributes: {name: "My Organization"}],
-        }.merge(attrs),
-      }
+    test "blocked user can not log in" do
+      blocked_user = ektar_users(:super_user)
+
+      post sessions_path, params: {user: {email: blocked_user.email, password: blocked_user.password_digest}}
+
+      assert_equal "sessions", @controller.controller_name
+      assert_equal I18n.t("flash.create.session.alert"), flash[:alert]
     end
   end
 end
