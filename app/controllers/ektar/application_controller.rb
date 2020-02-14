@@ -78,14 +78,6 @@ module Ektar
       T.must(ip.split(".")[0..-2]).join(".") + ".XXX"
     end
 
-    def root_path
-      if super_admin?
-        super
-      else
-        users_path
-      end
-    end
-
     # Session methods
     sig { returns(T.nilable(Ektar::User)) }
     def current_user
@@ -101,7 +93,7 @@ module Ektar
     def user_signed_in?
       current_user.present?
     end
-    
+
     sig { returns(T::Hash[T.untyped, T.untyped]) }
     def session_cookie
       @session_cookie ||= cookies.encrypted[session_cookie_name] || {}
@@ -118,7 +110,7 @@ module Ektar
       elsif current_user.present?
         users_path
       else
-        registration_path
+        registrations_path
       end
     end
 

@@ -1,3 +1,4 @@
+# typed: true
 module Ektar
   class UserMailer < ApplicationMailer
     def new_invitation_email
