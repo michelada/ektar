@@ -32,7 +32,7 @@
     <div class="navbar-end">
       <% if current_user.organizations.size > 1 %>
         <div class="navbar-item">
-          <%= form_for :organization, url: switch_organization_index_path, method: :post do |filter_form| %>
+          <%= form_for :organization, url: select_organization_index_path, method: :post do |filter_form| %>
             <%= render partial: "ektar/application/select", locals: {
                                                               attribute_name: :organization_id,
                                                               options: current_user.organizations.pluck(:name, :global_id), 
@@ -43,21 +43,19 @@
       <% end %>
 
       <% if user_signed_in? %>
-        <div class="navbar-item">
-          <%= link_to t(".logout"), session_path(current_user.global_id), method: :delete, class: "navbar-item" %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <% user_name = current_user.super_admin? ? t(".admin") : current_user.email %>
+
+          <%= link_to user_name, "#", class: "navbar-link" %>
+
+          <div class="navbar-dropdown">
+            <%= link_to t(".logout"), session_path(current_user.global_id), method: :delete, class: "navbar-item" %>
+          </div>
         </div>
       <% else %>
         <%= link_to t(".login"), new_session_path, class: "navbar-item" %>
         <%= link_to t(".sign_up"), registrations_path , class: "navbar-item" %>
       <% end %>
-
-      <div class="navbar-item">
-        <% if super_admin? %>
-          <span>Administrador</span>
-        <% elsif current_user %>
-          <span><%= current_user.email %></span>
-        <% end %>
-      </div>
     </div>
   </div>
 </nav>

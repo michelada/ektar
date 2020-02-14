@@ -104,6 +104,7 @@ module Ektar
       @session_cookie_name ||= "#{Ektar.configuration.session_name}_remember_me"
     end
 
+    sig { returns(T.untyped) }
     def root_path
       if super_admin?
         super

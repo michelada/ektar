@@ -22,3 +22,7 @@ super_user_membership:
   organization: organization
   user: super_user
   role: admin
+
+blocked_user_membership:
+  organization: organization
+  user: blocked_user

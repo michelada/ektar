@@ -1,6 +1,5 @@
 # typed: ignore
 require "test_helper"
-require "support/login_helper"
 
 module Ektar
   class InvitationsControllerTest < ActionDispatch::IntegrationTest
