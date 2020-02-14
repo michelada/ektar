@@ -4,6 +4,7 @@
 module Ektar
   class UsersController < ResourcefulController
     before_action :is_normal_user, only: [:new, :create, :update]
+    before_action :organization_has_plan, only: [:index]
     extend T::Sig
     include Pagy::Backend
 
@@ -53,6 +54,11 @@ module Ektar
     sig { void }
     def is_normal_user
       redirect_to users_path if super_admin?
+    end
+
+    sig { void }
+    def organization_has_plan
+      redirect_to new_select_plan_path if current_organization&.plan.nil?
     end
   end
 end

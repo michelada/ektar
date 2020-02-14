@@ -1,0 +1,10 @@
+<h1>Seleccionar plan</h1>
+
+<%= form_for :plan, url: select_plan_index_path do |f| %>
+
+  <% @plans.each do |plan| %>
+    <%= f.radio_button :id, plan.id, onchange: "this.form.submit()" %>
+    <%= f.label :id, plan.name %>
+  <% end %>
+
+<% end %>
