@@ -1,10 +1,30 @@
 <h1>Seleccionar plan</h1>
 
-<%= form_for :plan, url: select_plan_index_path do |f| %>
+<%= form_for :plan, url: select_plan_index_path, html: { class: "container" } do |f| %>
 
-  <% @plans.each do |plan| %>
-    <%= f.radio_button :id, plan.id, onchange: "this.form.submit()" %>
-    <%= f.label :id, plan.name %>
-  <% end %>
+  <div class="columns">
+    <% @plans.each do |plan| %>
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-4"><%= plan.name %></p>
+
+            <div class="content">
+              <%= plan.description %>
+            </div>
+          </div>
+
+          <footer class="card-footer">
+            <a onclick="this.form.submit()" class="card-footer-item">Seleccionar</a>
+          </footer>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
 <% end %>

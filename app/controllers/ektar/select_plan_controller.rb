@@ -5,8 +5,6 @@ module Ektar
     def new
       @plans = Ektar::Plan.all
       @organization = current_organization
-
-      render layout: "ektar/users"
     end
 
     def create
