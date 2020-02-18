@@ -1,4 +1,4 @@
-<h1>Seleccionar plan</h1>
+<h1> <%= t(".title") %> </h1>
 
 <%= form_for :plan, url: select_plan_index_path, html: { class: "container" } do |f| %>
 
@@ -20,7 +20,7 @@
           </div>
 
           <footer class="card-footer">
-            <%= link_to "Seleccionar", select_plan_index_path(plan_id: plan.id), method: :post, class: "card-footer-item"  %>
+            <%= link_to t(".select"), select_plan_index_path(plan_id: plan.id), method: :post, class: "card-footer-item"  %>
           </footer>
         </div>
       </div>

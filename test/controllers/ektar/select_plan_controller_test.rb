@@ -33,7 +33,7 @@ module Ektar
     test "user can select a plan for organization" do
       sign_in @user
 
-      post select_plan_index_path, params: {plan: {id: @plan.id}}
+      post select_plan_index_path, params: {plan_id: @plan.id}
 
       assert_equal @user.organizations.first.plan, @plan
     end
