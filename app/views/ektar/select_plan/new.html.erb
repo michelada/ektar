@@ -20,11 +20,10 @@
           </div>
 
           <footer class="card-footer">
-            <a onclick="this.form.submit()" class="card-footer-item">Seleccionar</a>
+            <%= link_to "Seleccionar", select_plan_index_path(plan_id: plan.id), method: :post, class: "card-footer-item"  %>
           </footer>
         </div>
       </div>
     <% end %>
   </div>
-
 <% end %>

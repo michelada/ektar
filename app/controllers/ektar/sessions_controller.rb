@@ -3,8 +3,6 @@ require_dependency "ektar/application_controller"
 
 module Ektar
   class SessionsController < ApplicationController
-    before_action :organization_has_plan, only: [:destroy]
-
     def new
       @resource = Ektar::User.new
 
@@ -42,11 +40,6 @@ module Ektar
         set_flash(errors: true, klass: "session", action: action_name)
       end
       redirect_to new_session_path
-    end
-
-    sig { void }
-    def organization_has_plan
-      redirect_to new_select_plan_path if current_organization&.plan.nil?
     end
   end
 end

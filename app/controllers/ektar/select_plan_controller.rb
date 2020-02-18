@@ -8,9 +8,9 @@ module Ektar
     end
 
     def create
-      plan_id = params.dig(:plan, :id)
+      plan_id = params[:plan_id]
 
-      if current_organization.update(plan: Ektar::Plan.find_by(id: plan_id))
+      if plan_id && current_organization.update(plan: Ektar::Plan.find_by(id: plan_id))
         redirect_to root_path
       else
         render :new
