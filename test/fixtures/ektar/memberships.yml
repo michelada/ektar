@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 user_membership:
-  organization: organization
+  organization: organization_no_plan
   user: user
 
 alternate_membership:

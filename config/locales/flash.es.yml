@@ -23,6 +23,10 @@ es:
         notice: "La invitación se ha enviado a %{email}"
         alert: "No se ha podido enviar la invitación"
 
+      select_plan:
+        notice: "Se ha guardado el plan exitosamente"
+        alert: "Error al establecer el plan"
+
     update:
       notice: "Actualizado"
       alert: "Error al actualizar"

@@ -79,7 +79,7 @@ module Ektar
     end
 
     test "user can tell its organizations" do
-      organization = ektar_organizations(:organization)
+      organization = ektar_organizations(:organization_no_plan)
       admin = ektar_users(:user)
 
       assert_includes admin.organizations, organization
@@ -88,7 +88,7 @@ module Ektar
     test "member?(resource) method returns wether or not an user belongs to a given organization" do
       org_user = ektar_users(:user)
       non_org_user = ektar_users(:alternate_user)
-      organization = ektar_organizations(:organization)
+      organization = ektar_organizations(:organization_no_plan)
 
       assert org_user.is_member?(organization)
       refute non_org_user.is_member?(organization)

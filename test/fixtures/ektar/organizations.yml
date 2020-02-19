@@ -4,14 +4,18 @@ organization:
   global_id: df422e6d-9b13-46d6-9313-988e0e85b60f
   name: "Fixture Organization"
   enable: true
-  plan: :plan
+  plan: plan
 
 alternate_organization:
   name: "Alternate Fixture Organization"
   enable: true
-  plan: :alternate_plan
+  plan: alternate_plan
 
 organization_no_admin:
   name: "Organization with no admin"
   enable: true
   plan: plan
+
+organization_no_plan:
+  name: "Organization with no plan"
+  enable: true

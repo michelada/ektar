@@ -6,6 +6,8 @@ module Ektar
     extend T::Sig
     include Pagy::Backend
 
+    before_action :organization_has_plan, only: [:index]
+
     resourceful(list_attributes: %i[email updated_at last_activity_at blocked_at],
                 form_attributes: {email: :input, password: :password, password_confirmation: :password},
                 show_attributes: %i[id email updated_at],
@@ -57,6 +59,11 @@ module Ektar
     sig { returns(ActionController::Parameters) }
     def secure_params
       params.require_typed(:user, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys, memberships_attributes: [{organization_attributes: [:name]}])
+    end
+
+    sig { void }
+    def organization_has_plan
+      redirect_to new_select_plan_path if current_user && current_organization&.plan.nil?
     end
   end
 end

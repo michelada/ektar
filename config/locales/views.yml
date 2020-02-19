@@ -11,3 +11,8 @@ es:
         logout: Cerrar sesión
         login: Iniciar sesión
         sign_up: Registrarse
+
+    select_plan:
+      new:
+        title: Selecciona un plan
+        select: Seleccionar
