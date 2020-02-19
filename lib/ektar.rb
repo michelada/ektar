@@ -2,6 +2,7 @@
 require "ektar/engine"
 require "activerecord/postgres_enum"
 require "money-rails"
+require "sorbet-rails"
 
 module Ektar
   ROOT_PATH = Pathname.new(File.join(__dir__, ".."))
