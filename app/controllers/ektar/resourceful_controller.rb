@@ -136,24 +136,24 @@ module Ektar
     sig { returns(String) }
     def new_resource_path
       path = "new_#{resource_class.model_name.singular_route_key}_path"
-      ektar_url_helpers.send(path)
+      send(path)
     end
 
     sig { params(resource: ActiveRecord::Base).returns(String) }
     def edit_resource_path(resource)
       path = "edit_#{resource.model_name.singular_route_key}_path"
-      ektar_url_helpers.send(path, resource)
+      send(path, resource)
     end
 
     sig { params(resource: ActiveRecord::Base).returns(String) }
     def resource_path(resource)
       path = "#{resource.model_name.singular_route_key}_path"
-      ektar_url_helpers.send(path, resource)
+      send(path, resource)
     end
 
     sig { returns(String) }
     def collection_path
-      ektar_url_helpers.send "#{resource_class.model_name.route_key}_path"
+      send "#{resource_class.model_name.route_key}_path"
     end
 
     sig { params(resource: T.untyped).returns(T::Boolean) }

@@ -9,11 +9,11 @@ module Ektar
       @organizations = current_user.organizations
 
       if current_user.super_admin?
-        redirect_to ektar_url_helpers.super_admin_organizations_path
+        redirect_to super_admin_organizations_path
       elsif @organizations.size > 1
         render layout: "ektar/users"
       else
-        redirect_to ektar_url_helpers.admin_users_path
+        redirect_to admin_users_path
       end
     end
 
@@ -41,7 +41,7 @@ module Ektar
     end
 
     def select_plan_or(path)
-      current_user.is_admin?(@organization) && @organization.plan_present? ? path : ektar_url_helpers.admin_new_select_plan_path
+      current_user.is_admin?(@organization) && @organization.plan_present? ? path : admin_new_select_plan_path
     end
 
     sig { void }

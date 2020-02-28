@@ -45,7 +45,7 @@ module Ektar
 
       sig { returns(String) }
       def new_resource_path
-        ektar_url_helpers.registrations_path
+        registrations_path
       end
 
       sig { returns(ActionController::Parameters) }

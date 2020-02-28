@@ -65,7 +65,7 @@ module Ektar
     end
 
     def authenticate_user!
-      redirect_to ektar_url_helpers.new_session_path, alert: t("flash.session.authenticate!") unless user_signed_in?
+      redirect_to new_session_path, alert: t("flash.session.authenticate!") unless user_signed_in?
     end
 
     sig { params(ip: String).returns(String) }
@@ -103,14 +103,10 @@ module Ektar
       flash[:alert] = t("flash.policy.not_authorized")
 
       if current_organization && current_user.is_admin?(current_organization)
-        redirect_to(ektar_url_helpers.root_path)
+        redirect_to(root_path)
       else
         redirect_to Ektar.configuration.root_app_path
       end
-    end
-
-    def ektar_url_helpers
-      Ektar::Engine.routes.url_helpers
     end
 
     private
@@ -135,6 +131,6 @@ module Ektar
     helper_method :collection, :resource,
       :super_admin?, :select_options,
       :current_user, :user_signed_in?,
-      :current_organization, :ektar_url_helpers
+      :current_organization
   end
 end
