@@ -33,7 +33,7 @@ module Ektar
         if @resource.save
           Ektar::UserMailer.with(organization: organization, invitation_token: invitation_token, email: @resource.email).new_invitation_email.deliver_now
           flash[:notice] = t("flash.create.invitation.notice", email: user_email)
-          redirect_to root_path
+          redirect_to ektar_url_helpers.root_path
         else
           flash[:alert] = t("flash.create.invitation.alert")
           render :new
@@ -54,9 +54,9 @@ module Ektar
           else
             flash[:alert] = t("edit.invitations.alert")
           end
-          redirect_to root_path
+          redirect_to ektar_url_helpers.root_path
         else
-          redirect_to new_reset_password_path(invitation_token: invitation_token)
+          redirect_to ektar_url_helpers.new_reset_password_path(invitation_token: invitation_token)
         end
       end
 

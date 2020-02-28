@@ -23,7 +23,7 @@ module Ektar
 
       if @resource.save
         update_session_cookie(user: @resource.reload, organization: @resource.organizations.first)
-        redirect_to admin_users_path
+        redirect_to ektar_url_helpers.admin_users_path
       else
         @resource.memberships.build.build_organization if @resource.memberships.empty?
         render :new, layout: "ektar/users"
