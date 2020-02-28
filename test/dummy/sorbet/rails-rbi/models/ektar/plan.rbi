@@ -129,6 +129,7 @@ class Ektar::Plan < Ektar::ApplicationRecord
   include Ektar::Plan::GeneratedAttributeMethods
   include Ektar::Plan::GeneratedAssociationMethods
   extend Ektar::Plan::CustomFinderMethods
+  extend PgSearch::Model::ClassMethods
   extend T::Sig
   extend T::Generic
 

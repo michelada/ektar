@@ -77,6 +77,12 @@ end
 module Ektar::Organization::GeneratedAssociationMethods
   extend T::Sig
 
+  sig { returns(::Ektar::Invitation::ActiveRecord_Associations_CollectionProxy) }
+  def invitations; end
+
+  sig { params(value: T::Enumerable[::Ektar::Invitation]).void }
+  def invitations=(value); end
+
   sig { returns(::Ektar::Membership::ActiveRecord_Associations_CollectionProxy) }
   def memberships; end
 

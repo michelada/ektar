@@ -766,6 +766,7 @@ end
 
 class ActionCable::Server::Worker
   include ::ActiveSupport::Callbacks
+  include ::ActionCable::Server::Worker::ActiveRecordConnectionManagement
   def __callbacks(); end
 
   def __callbacks?(); end
@@ -774,9 +775,33 @@ class ActionCable::Server::Worker
 
   def _work_callbacks(); end
 
+  def async_exec(receiver, *args, connection:, &block); end
+
+  def async_invoke(receiver, method, *args, connection: T.unsafe(nil), &block); end
+
   def connection(); end
 
   def connection=(obj); end
+
+  def executor(); end
+
+  def halt(); end
+
+  def initialize(max_size: T.unsafe(nil)); end
+
+  def invoke(receiver, method, *args, connection:, &block); end
+
+  def stopping?(); end
+
+  def work(connection); end
+end
+
+module ActionCable::Server::Worker::ActiveRecordConnectionManagement
+  def with_database_connections(); end
+end
+
+module ActionCable::Server::Worker::ActiveRecordConnectionManagement
+  extend ::ActiveSupport::Concern
 end
 
 class ActionCable::Server::Worker
@@ -16985,8 +17010,6 @@ end
 
 class ActiveRecord::Scoping::ScopeRegistry
   extend ::ActiveSupport::PerThreadRegistry
-  def self.set_value_for(*args, &block); end
-
   def self.value_for(*args, &block); end
 end
 
@@ -17226,6 +17249,7 @@ end
 
 class ActiveRecord::SuppressorRegistry
   extend ::ActiveSupport::PerThreadRegistry
+  def self.suppressed(*args, &block); end
 end
 
 class ActiveRecord::TableMetadata
@@ -17976,88 +18000,6 @@ module ActiveRecord
   def self.version(); end
 end
 
-module ActiveStorage
-  def analyzers(); end
-
-  def analyzers=(obj); end
-
-  def binary_content_type(); end
-
-  def binary_content_type=(obj); end
-
-  def content_types_allowed_inline(); end
-
-  def content_types_allowed_inline=(obj); end
-
-  def content_types_to_serve_as_binary(); end
-
-  def content_types_to_serve_as_binary=(obj); end
-
-  def logger(); end
-
-  def logger=(obj); end
-
-  def paths(); end
-
-  def paths=(obj); end
-
-  def previewers(); end
-
-  def previewers=(obj); end
-
-  def queues(); end
-
-  def queues=(obj); end
-
-  def replace_on_assign_to_many(); end
-
-  def replace_on_assign_to_many=(obj); end
-
-  def routes_prefix(); end
-
-  def routes_prefix=(obj); end
-
-  def service_urls_expire_in(); end
-
-  def service_urls_expire_in=(obj); end
-
-  def variable_content_types(); end
-
-  def variable_content_types=(obj); end
-
-  def variant_processor(); end
-
-  def variant_processor=(obj); end
-
-  def verifier(); end
-
-  def verifier=(obj); end
-end
-
-class ActiveStorage::Analyzer
-  def blob(); end
-
-  def initialize(blob); end
-
-  def metadata(); end
-end
-
-class ActiveStorage::Analyzer::ImageAnalyzer
-end
-
-class ActiveStorage::Analyzer::ImageAnalyzer
-end
-
-class ActiveStorage::Analyzer::VideoAnalyzer
-end
-
-class ActiveStorage::Analyzer::VideoAnalyzer
-end
-
-class ActiveStorage::Analyzer
-  def self.accept?(blob); end
-end
-
 class ActiveStorage::Attached
   def initialize(name, record); end
 
@@ -18202,113 +18144,10 @@ class ActiveStorage::Attached::One
   def purge_later(); end
 end
 
-class ActiveStorage::Engine
-end
-
-class ActiveStorage::Engine
-end
-
-class ActiveStorage::Error
-end
-
-class ActiveStorage::Error
-end
-
-class ActiveStorage::FileNotFoundError
-end
-
-class ActiveStorage::FileNotFoundError
-end
-
-class ActiveStorage::IntegrityError
-end
-
-class ActiveStorage::IntegrityError
-end
-
-class ActiveStorage::InvariableError
-end
-
-class ActiveStorage::InvariableError
-end
-
-class ActiveStorage::Previewer
-  def blob(); end
-
-  def initialize(blob); end
-
-  def preview(); end
-end
-
-class ActiveStorage::Previewer::MuPDFPreviewer
-end
-
-class ActiveStorage::Previewer::MuPDFPreviewer
-  def self.mutool_exists?(); end
-
-  def self.mutool_path(); end
-end
-
-class ActiveStorage::Previewer::PopplerPDFPreviewer
-end
-
-class ActiveStorage::Previewer::PopplerPDFPreviewer
-  def self.pdftoppm_exists?(); end
-
-  def self.pdftoppm_path(); end
-end
-
-class ActiveStorage::Previewer::VideoPreviewer
-end
-
-class ActiveStorage::Previewer::VideoPreviewer
-end
-
-class ActiveStorage::Previewer
-  def self.accept?(blob); end
-end
-
-module ActiveStorage::Reflection
-end
-
-module ActiveStorage::Reflection::ActiveRecordExtensions
-end
-
-module ActiveStorage::Reflection::ActiveRecordExtensions::ClassMethods
-  def reflect_on_all_attachments(); end
-
-  def reflect_on_attachment(attachment); end
-end
-
-module ActiveStorage::Reflection::ActiveRecordExtensions::ClassMethods
-end
-
-module ActiveStorage::Reflection::ActiveRecordExtensions
-  extend ::ActiveSupport::Concern
-end
-
-class ActiveStorage::Reflection::HasManyAttachedReflection
-  def macro(); end
-end
-
 class ActiveStorage::Reflection::HasManyAttachedReflection
 end
 
 class ActiveStorage::Reflection::HasOneAttachedReflection
-  def macro(); end
-end
-
-class ActiveStorage::Reflection::HasOneAttachedReflection
-end
-
-module ActiveStorage::Reflection::ReflectionExtension
-  def add_attachment_reflection(model, name, reflection); end
-end
-
-module ActiveStorage::Reflection::ReflectionExtension
-end
-
-module ActiveStorage::Reflection
 end
 
 class ActiveStorage::Service
@@ -18354,9 +18193,6 @@ class ActiveStorage::Service
   def self.configure(service_name, configurations); end
 end
 
-module ActiveStorage::Transformers
-end
-
 class ActiveStorage::Transformers::MiniMagickTransformer
 end
 
@@ -18374,104 +18210,12 @@ end
 class ActiveStorage::Transformers::Transformer
 end
 
-module ActiveStorage::Transformers
-  extend ::ActiveSupport::Autoload
-end
-
-class ActiveStorage::UnpreviewableError
-end
-
-class ActiveStorage::UnpreviewableError
-end
-
-class ActiveStorage::UnrepresentableError
-end
-
-class ActiveStorage::UnrepresentableError
-end
-
 module ActiveStorage::VERSION
   MAJOR = ::T.let(nil, ::T.untyped)
   MINOR = ::T.let(nil, ::T.untyped)
   PRE = ::T.let(nil, ::T.untyped)
   STRING = ::T.let(nil, ::T.untyped)
   TINY = ::T.let(nil, ::T.untyped)
-end
-
-module ActiveStorage::VERSION
-end
-
-module ActiveStorage
-  extend ::ActiveSupport::Autoload
-  def self.analyzers(); end
-
-  def self.analyzers=(obj); end
-
-  def self.binary_content_type(); end
-
-  def self.binary_content_type=(obj); end
-
-  def self.content_types_allowed_inline(); end
-
-  def self.content_types_allowed_inline=(obj); end
-
-  def self.content_types_to_serve_as_binary(); end
-
-  def self.content_types_to_serve_as_binary=(obj); end
-
-  def self.gem_version(); end
-
-  def self.logger(); end
-
-  def self.logger=(obj); end
-
-  def self.paths(); end
-
-  def self.paths=(obj); end
-
-  def self.previewers(); end
-
-  def self.previewers=(obj); end
-
-  def self.queues(); end
-
-  def self.queues=(obj); end
-
-  def self.railtie_helpers_paths(); end
-
-  def self.railtie_namespace(); end
-
-  def self.railtie_routes_url_helpers(include_path_helpers=T.unsafe(nil)); end
-
-  def self.replace_on_assign_to_many(); end
-
-  def self.replace_on_assign_to_many=(obj); end
-
-  def self.routes_prefix(); end
-
-  def self.routes_prefix=(obj); end
-
-  def self.service_urls_expire_in(); end
-
-  def self.service_urls_expire_in=(obj); end
-
-  def self.table_name_prefix(); end
-
-  def self.use_relative_model_naming?(); end
-
-  def self.variable_content_types(); end
-
-  def self.variable_content_types=(obj); end
-
-  def self.variant_processor(); end
-
-  def self.variant_processor=(obj); end
-
-  def self.verifier(); end
-
-  def self.verifier=(obj); end
-
-  def self.version(); end
 end
 
 class ActiveSupport::BacktraceCleaner
@@ -20999,95 +20743,13 @@ class Array
 end
 
 class Array
-  def self.wrap(object); end
-end
-
-module BCrypt
+  def self.try_convert(_); end
 end
 
 class BCrypt::Engine
   DEFAULT_COST = ::T.let(nil, ::T.untyped)
   MAX_SALT_LENGTH = ::T.let(nil, ::T.untyped)
   MIN_COST = ::T.let(nil, ::T.untyped)
-end
-
-class BCrypt::Engine
-  def self.autodetect_cost(salt); end
-
-  def self.calibrate(upper_time_limit_in_ms); end
-
-  def self.cost(); end
-
-  def self.cost=(cost); end
-
-  def self.generate_salt(cost=T.unsafe(nil)); end
-
-  def self.hash_secret(secret, salt, _=T.unsafe(nil)); end
-
-  def self.valid_salt?(salt); end
-
-  def self.valid_secret?(secret); end
-end
-
-class BCrypt::Error
-end
-
-class BCrypt::Error
-end
-
-module BCrypt::Errors
-end
-
-class BCrypt::Errors::InvalidCost
-end
-
-class BCrypt::Errors::InvalidCost
-end
-
-class BCrypt::Errors::InvalidHash
-end
-
-class BCrypt::Errors::InvalidHash
-end
-
-class BCrypt::Errors::InvalidSalt
-end
-
-class BCrypt::Errors::InvalidSalt
-end
-
-class BCrypt::Errors::InvalidSecret
-end
-
-class BCrypt::Errors::InvalidSecret
-end
-
-module BCrypt::Errors
-end
-
-class BCrypt::Password
-  def ==(secret); end
-
-  def checksum(); end
-
-  def cost(); end
-
-  def initialize(raw_hash); end
-
-  def is_password?(secret); end
-
-  def salt(); end
-
-  def version(); end
-end
-
-class BCrypt::Password
-  def self.create(secret, options=T.unsafe(nil)); end
-
-  def self.valid_hash?(h); end
-end
-
-module BCrypt
 end
 
 BasicObject::BasicObject = BasicObject
@@ -24089,10 +23751,6 @@ module Ektar::Organization::GeneratedAssociationMethods
 
   def invitation_ids=(ids); end
 
-  def invitations(); end
-
-  def invitations=(value); end
-
   def membership_ids(); end
 
   def membership_ids=(ids); end
@@ -24276,6 +23934,12 @@ class Ektar::Plan
   def self.before_remove_for_organizations=(val); end
 
   def self.before_remove_for_organizations?(); end
+
+  def self.search_full(*args); end
+end
+
+class Ektar::ResetPasswordController
+  extend ::T::Sig
 end
 
 class Ektar::UsedPassword
@@ -24296,6 +23960,370 @@ module Ektar::UsedPassword::GeneratedAttributeMethods
   extend ::Mutex_m
 end
 
+module Ektar::User::GeneratedAttributeMethods
+  def blocked_at_before_last_save(*args); end
+
+  def blocked_at_before_type_cast(*args); end
+
+  def blocked_at_came_from_user?(*args); end
+
+  def blocked_at_change(*args); end
+
+  def blocked_at_change_to_be_saved(*args); end
+
+  def blocked_at_changed?(*args); end
+
+  def blocked_at_in_database(*args); end
+
+  def blocked_at_previous_change(*args); end
+
+  def blocked_at_previously_changed?(*args); end
+
+  def blocked_at_was(*args); end
+
+  def blocked_at_will_change!(*args); end
+
+  def created_at_before_last_save(*args); end
+
+  def created_at_before_type_cast(*args); end
+
+  def created_at_came_from_user?(*args); end
+
+  def created_at_change(*args); end
+
+  def created_at_change_to_be_saved(*args); end
+
+  def created_at_changed?(*args); end
+
+  def created_at_in_database(*args); end
+
+  def created_at_previous_change(*args); end
+
+  def created_at_previously_changed?(*args); end
+
+  def created_at_was(*args); end
+
+  def created_at_will_change!(*args); end
+
+  def ektar_organization_id_before_last_save(*args); end
+
+  def ektar_organization_id_before_type_cast(*args); end
+
+  def ektar_organization_id_came_from_user?(*args); end
+
+  def ektar_organization_id_change(*args); end
+
+  def ektar_organization_id_change_to_be_saved(*args); end
+
+  def ektar_organization_id_changed?(*args); end
+
+  def ektar_organization_id_in_database(*args); end
+
+  def ektar_organization_id_previous_change(*args); end
+
+  def ektar_organization_id_previously_changed?(*args); end
+
+  def ektar_organization_id_was(*args); end
+
+  def ektar_organization_id_will_change!(*args); end
+
+  def email_before_last_save(*args); end
+
+  def email_before_type_cast(*args); end
+
+  def email_came_from_user?(*args); end
+
+  def email_change(*args); end
+
+  def email_change_to_be_saved(*args); end
+
+  def email_changed?(*args); end
+
+  def email_in_database(*args); end
+
+  def email_previous_change(*args); end
+
+  def email_previously_changed?(*args); end
+
+  def email_was(*args); end
+
+  def email_will_change!(*args); end
+
+  def global_id_before_last_save(*args); end
+
+  def global_id_before_type_cast(*args); end
+
+  def global_id_came_from_user?(*args); end
+
+  def global_id_change(*args); end
+
+  def global_id_change_to_be_saved(*args); end
+
+  def global_id_changed?(*args); end
+
+  def global_id_in_database(*args); end
+
+  def global_id_previous_change(*args); end
+
+  def global_id_previously_changed?(*args); end
+
+  def global_id_was(*args); end
+
+  def global_id_will_change!(*args); end
+
+  def id_before_last_save(*args); end
+
+  def id_came_from_user?(*args); end
+
+  def id_change(*args); end
+
+  def id_change_to_be_saved(*args); end
+
+  def id_changed?(*args); end
+
+  def id_previous_change(*args); end
+
+  def id_previously_changed?(*args); end
+
+  def id_will_change!(*args); end
+
+  def last_activity_at_before_last_save(*args); end
+
+  def last_activity_at_before_type_cast(*args); end
+
+  def last_activity_at_came_from_user?(*args); end
+
+  def last_activity_at_change(*args); end
+
+  def last_activity_at_change_to_be_saved(*args); end
+
+  def last_activity_at_changed?(*args); end
+
+  def last_activity_at_in_database(*args); end
+
+  def last_activity_at_previous_change(*args); end
+
+  def last_activity_at_previously_changed?(*args); end
+
+  def last_activity_at_was(*args); end
+
+  def last_activity_at_will_change!(*args); end
+
+  def last_ip_before_last_save(*args); end
+
+  def last_ip_before_type_cast(*args); end
+
+  def last_ip_came_from_user?(*args); end
+
+  def last_ip_change(*args); end
+
+  def last_ip_change_to_be_saved(*args); end
+
+  def last_ip_changed?(*args); end
+
+  def last_ip_in_database(*args); end
+
+  def last_ip_previous_change(*args); end
+
+  def last_ip_previously_changed?(*args); end
+
+  def last_ip_was(*args); end
+
+  def last_ip_will_change!(*args); end
+
+  def password_digest_before_last_save(*args); end
+
+  def password_digest_before_type_cast(*args); end
+
+  def password_digest_came_from_user?(*args); end
+
+  def password_digest_change(*args); end
+
+  def password_digest_change_to_be_saved(*args); end
+
+  def password_digest_changed?(*args); end
+
+  def password_digest_in_database(*args); end
+
+  def password_digest_previous_change(*args); end
+
+  def password_digest_previously_changed?(*args); end
+
+  def password_digest_was(*args); end
+
+  def password_digest_will_change!(*args); end
+
+  def recovery_password_digest_before_last_save(*args); end
+
+  def recovery_password_digest_before_type_cast(*args); end
+
+  def recovery_password_digest_came_from_user?(*args); end
+
+  def recovery_password_digest_change(*args); end
+
+  def recovery_password_digest_change_to_be_saved(*args); end
+
+  def recovery_password_digest_changed?(*args); end
+
+  def recovery_password_digest_in_database(*args); end
+
+  def recovery_password_digest_previous_change(*args); end
+
+  def recovery_password_digest_previously_changed?(*args); end
+
+  def recovery_password_digest_was(*args); end
+
+  def recovery_password_digest_will_change!(*args); end
+
+  def restore_blocked_at!(*args); end
+
+  def restore_created_at!(*args); end
+
+  def restore_ektar_organization_id!(*args); end
+
+  def restore_email!(*args); end
+
+  def restore_global_id!(*args); end
+
+  def restore_id!(*args); end
+
+  def restore_last_activity_at!(*args); end
+
+  def restore_last_ip!(*args); end
+
+  def restore_password_digest!(*args); end
+
+  def restore_recovery_password_digest!(*args); end
+
+  def restore_super_admin!(*args); end
+
+  def restore_updated_at!(*args); end
+
+  def saved_change_to_blocked_at(*args); end
+
+  def saved_change_to_blocked_at?(*args); end
+
+  def saved_change_to_created_at(*args); end
+
+  def saved_change_to_created_at?(*args); end
+
+  def saved_change_to_ektar_organization_id(*args); end
+
+  def saved_change_to_ektar_organization_id?(*args); end
+
+  def saved_change_to_email(*args); end
+
+  def saved_change_to_email?(*args); end
+
+  def saved_change_to_global_id(*args); end
+
+  def saved_change_to_global_id?(*args); end
+
+  def saved_change_to_id(*args); end
+
+  def saved_change_to_id?(*args); end
+
+  def saved_change_to_last_activity_at(*args); end
+
+  def saved_change_to_last_activity_at?(*args); end
+
+  def saved_change_to_last_ip(*args); end
+
+  def saved_change_to_last_ip?(*args); end
+
+  def saved_change_to_password_digest(*args); end
+
+  def saved_change_to_password_digest?(*args); end
+
+  def saved_change_to_recovery_password_digest(*args); end
+
+  def saved_change_to_recovery_password_digest?(*args); end
+
+  def saved_change_to_super_admin(*args); end
+
+  def saved_change_to_super_admin?(*args); end
+
+  def saved_change_to_updated_at(*args); end
+
+  def saved_change_to_updated_at?(*args); end
+
+  def super_admin_before_last_save(*args); end
+
+  def super_admin_before_type_cast(*args); end
+
+  def super_admin_came_from_user?(*args); end
+
+  def super_admin_change(*args); end
+
+  def super_admin_change_to_be_saved(*args); end
+
+  def super_admin_changed?(*args); end
+
+  def super_admin_in_database(*args); end
+
+  def super_admin_previous_change(*args); end
+
+  def super_admin_previously_changed?(*args); end
+
+  def super_admin_was(*args); end
+
+  def super_admin_will_change!(*args); end
+
+  def updated_at_before_last_save(*args); end
+
+  def updated_at_before_type_cast(*args); end
+
+  def updated_at_came_from_user?(*args); end
+
+  def updated_at_change(*args); end
+
+  def updated_at_change_to_be_saved(*args); end
+
+  def updated_at_changed?(*args); end
+
+  def updated_at_in_database(*args); end
+
+  def updated_at_previous_change(*args); end
+
+  def updated_at_previously_changed?(*args); end
+
+  def updated_at_was(*args); end
+
+  def updated_at_will_change!(*args); end
+
+  def will_save_change_to_blocked_at?(*args); end
+
+  def will_save_change_to_created_at?(*args); end
+
+  def will_save_change_to_ektar_organization_id?(*args); end
+
+  def will_save_change_to_email?(*args); end
+
+  def will_save_change_to_global_id?(*args); end
+
+  def will_save_change_to_id?(*args); end
+
+  def will_save_change_to_last_activity_at?(*args); end
+
+  def will_save_change_to_last_ip?(*args); end
+
+  def will_save_change_to_password_digest?(*args); end
+
+  def will_save_change_to_recovery_password_digest?(*args); end
+
+  def will_save_change_to_super_admin?(*args); end
+
+  def will_save_change_to_updated_at?(*args); end
+end
+
+module Ektar::User::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+class Ektar::User
+  extend ::T::Sig
+end
+
 class Ektar::UserMailerPreview
 end
 
@@ -24314,8 +24342,6 @@ module Ektar
 
   def self.use_relative_model_naming?(); end
 end
-
-Emitter = Psych::Stream::Emitter
 
 class Encoding
   def _dump(*_); end
@@ -24860,14 +24886,6 @@ module GC
   def self.verify_transient_heap_internal_consistency(); end
 end
 
-class Gem::Package::TarHeader
-  def self.oct_or_256based(str); end
-end
-
-class Gem::RemoteFetcher
-  def s3_uri_signer(uri); end
-end
-
 class Gem::RemoteFetcher::FetchError
   def initialize(message, uri); end
 
@@ -24889,65 +24907,8 @@ class Gem::Resolver::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
-class Gem::S3URISigner
-  def initialize(uri); end
-
-  def sign(expiration=T.unsafe(nil)); end
-
-  def uri(); end
-
-  def uri=(uri); end
-  BASE64_URI_TRANSLATE = ::T.let(nil, ::T.untyped)
-  EC2_METADATA_CREDENTIALS = ::T.let(nil, ::T.untyped)
-end
-
-class Gem::S3URISigner::ConfigurationError
-  def initialize(message); end
-end
-
-class Gem::S3URISigner::ConfigurationError
-end
-
-class Gem::S3URISigner::InstanceProfileError
-  def initialize(message); end
-end
-
-class Gem::S3URISigner::InstanceProfileError
-end
-
-class Gem::S3URISigner::S3Config
-  def access_key_id(); end
-
-  def access_key_id=(_); end
-
-  def region(); end
-
-  def region=(_); end
-
-  def secret_access_key(); end
-
-  def secret_access_key=(_); end
-
-  def security_token(); end
-
-  def security_token=(_); end
-end
-
-class Gem::S3URISigner::S3Config
-  def self.[](*_); end
-
-  def self.members(); end
-end
-
-class Gem::S3URISigner
-end
-
 class Gem::Specification
   extend ::Enumerable
-end
-
-module Gem::Util
-  def self.correct_for_windows_path(path); end
 end
 
 module GlobalID::Locator
@@ -25043,6 +25004,8 @@ end
 
 class Hash
   def self.from_trusted_xml(xml); end
+
+  def self.try_convert(_); end
 end
 
 HashWithIndifferentAccess = ActiveSupport::HashWithIndifferentAccess
@@ -26274,8 +26237,6 @@ JSON::Parser = JSON::Ext::Parser
 JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
-
-JSONTree = Psych::Visitors::JSONTree
 
 module JaroWinkler
   VERSION = ::T.let(nil, ::T.untyped)
@@ -30860,7 +30821,11 @@ class OpenSSL::KDF::KDFError
 end
 
 module OpenSSL::KDF
+  def self.hkdf(*_); end
+
   def self.pbkdf2_hmac(*_); end
+
+  def self.scrypt(*_); end
 end
 
 class OpenSSL::OCSP::Request
@@ -30868,6 +30833,10 @@ class OpenSSL::OCSP::Request
 end
 
 OpenSSL::PKCS7::Signer = OpenSSL::PKCS7::SignerInfo
+
+class OpenSSL::PKey::EC
+  EXPLICIT_CURVE = ::T.let(nil, ::T.untyped)
+end
 
 class OpenSSL::PKey::EC::Point
   def to_octet_string(_); end
@@ -30880,19 +30849,25 @@ class OpenSSL::PKey::RSA
 end
 
 module OpenSSL::SSL
+  OP_ALLOW_NO_DHE_KEX = ::T.let(nil, ::T.untyped)
   OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION = ::T.let(nil, ::T.untyped)
   OP_CRYPTOPRO_TLSEXT_BUG = ::T.let(nil, ::T.untyped)
   OP_LEGACY_SERVER_CONNECT = ::T.let(nil, ::T.untyped)
+  OP_NO_ENCRYPT_THEN_MAC = ::T.let(nil, ::T.untyped)
+  OP_NO_RENEGOTIATION = ::T.let(nil, ::T.untyped)
+  OP_NO_TLSv1_3 = ::T.let(nil, ::T.untyped)
   OP_SAFARI_ECDHE_ECDSA_BUG = ::T.let(nil, ::T.untyped)
   OP_TLSEXT_PADDING = ::T.let(nil, ::T.untyped)
   SSL2_VERSION = ::T.let(nil, ::T.untyped)
   SSL3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_1_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_2_VERSION = ::T.let(nil, ::T.untyped)
+  TLS1_3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 module OpenSSL::X509
+  V_FLAG_NO_CHECK_TIME = ::T.let(nil, ::T.untyped)
   V_FLAG_TRUSTED_FIRST = ::T.let(nil, ::T.untyped)
 end
 
@@ -41427,8 +41402,6 @@ end
 module UnicodeNormalize
 end
 
-Visitor = Psych::Visitors::Visitor
-
 module Warning
   def warn(_); end
 end
@@ -41591,8 +41564,6 @@ class Webpacker::Env
 end
 
 YAML = Psych
-
-YAMLTree = Psych::Visitors::YAMLTree
 
 module Zeitwerk::ExplicitNamespace
   extend ::Zeitwerk::RealModName

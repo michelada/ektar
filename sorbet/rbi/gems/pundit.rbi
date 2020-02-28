@@ -64,3 +64,5 @@ end
 module Pundit::Helper
   def policy_scope(scope); end
 end
+module Ektar
+end

@@ -162,8 +162,12 @@ class Ektar::User < Ektar::ApplicationRecord
   include Ektar::User::GeneratedAttributeMethods
   include Ektar::User::GeneratedAssociationMethods
   extend Ektar::User::CustomFinderMethods
+  extend PgSearch::Model::ClassMethods
   extend T::Sig
   extend T::Generic
+
+  sig { params(args: T.untyped).returns(Ektar::User::ActiveRecord_Relation) }
+  def self.super_admins(*args); end
 
   sig { returns(Ektar::User::ActiveRecord_Relation) }
   def self.all; end
@@ -342,6 +346,9 @@ class Ektar::User::ActiveRecord_Relation < ActiveRecord::Relation
   extend T::Generic
   Elem = type_member(fixed: Ektar::User)
 
+  sig { params(args: T.untyped).returns(Ektar::User::ActiveRecord_Relation) }
+  def super_admins(*args); end
+
   sig { returns(Ektar::User::ActiveRecord_Relation) }
   def all; end
 
@@ -449,6 +456,9 @@ class Ektar::User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationR
   extend T::Sig
   extend T::Generic
   Elem = type_member(fixed: Ektar::User)
+
+  sig { params(args: T.untyped).returns(Ektar::User::ActiveRecord_AssociationRelation) }
+  def super_admins(*args); end
 
   sig { returns(Ektar::User::ActiveRecord_AssociationRelation) }
   def all; end
@@ -633,6 +643,9 @@ class Ektar::User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Ass
   extend T::Sig
   extend T::Generic
   Elem = type_member(fixed: Ektar::User)
+
+  sig { params(args: T.untyped).returns(Ektar::User::ActiveRecord_AssociationRelation) }
+  def super_admins(*args); end
 
   sig { returns(Ektar::User::ActiveRecord_AssociationRelation) }
   def all; end

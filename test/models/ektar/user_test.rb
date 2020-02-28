@@ -87,7 +87,7 @@ module Ektar
 
     test "member?(resource) method returns wether or not an user belongs to a given organization" do
       org_user = ektar_users(:user)
-      non_org_user = ektar_users(:alternate_user)
+      non_org_user = ektar_users(:regular_user)
       organization = ektar_organizations(:organization_no_plan)
 
       assert org_user.is_member?(organization)
@@ -102,7 +102,7 @@ module Ektar
     end
 
     test "Organizations of `admin_of` method can be added through memberships" do
-      non_admin_user = ektar_users(:user)
+      non_admin_user = ektar_users(:regular_user)
       organization = ektar_organizations(:organization)
 
       refute_includes non_admin_user.admin_of, organization
@@ -117,7 +117,7 @@ module Ektar
 
     test "admin? method tells if the user is admin of any organization" do
       user_admin = ektar_users(:admin_user)
-      user = ektar_users(:user)
+      user = ektar_users(:regular_user)
 
       assert user_admin.admin?
       refute user.admin?

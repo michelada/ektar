@@ -1,9 +1,10 @@
-# typed: ignore
+# typed: true
 # frozen_string_literal: true
 
 module Ektar
   class User < ApplicationRecord
     extend T::Sig
+    include PgSearch::Model
 
     has_secure_password :password, validations: true
 
@@ -22,6 +23,9 @@ module Ektar
     before_update :store_password, if: :password_digest_changed?
 
     scope :super_admins, -> { where(super_admin: true) }
+
+    pg_search_scope :search_full, against: :email,
+                                  using: {tsearch: {prefix: true, any_word: true}}
 
     sig { returns(String) }
     def to_param
@@ -43,7 +47,7 @@ module Ektar
       admin_of.any?
     end
 
-    sig { params(organization: Ektar::Organization).returns(T::Boolean) }
+    sig { params(organization: T.nilable(Ektar::Organization)).returns(T::Boolean) }
     def is_admin?(organization)
       admin_of.include?(organization)
     end

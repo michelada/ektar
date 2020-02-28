@@ -11,7 +11,10 @@ es:
         logout: Cerrar sesión
         login: Iniciar sesión
         sign_up: Registrarse
-
+    select_organization:
+      new:
+        title: Selecciona una organización
+        select: Seleccionar
     select_plan:
       new:
         title: Selecciona un plan

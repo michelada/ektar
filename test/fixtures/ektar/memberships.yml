@@ -3,10 +3,11 @@
 user_membership:
   organization: organization_no_plan
   user: user
+  role: admin
 
 alternate_membership:
   organization: alternate_organization
-  user: alternate_user
+  user: regular_user
 
 admin_membership:
   organization: organization
@@ -14,7 +15,7 @@ admin_membership:
   role: admin
 
 admin_user_membership:
-  organization: organization
+  organization: alternate_organization
   user: admin_user
   role: "admin"
 

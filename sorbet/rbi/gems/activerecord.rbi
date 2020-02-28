@@ -4811,27 +4811,40 @@ end
 module Ektar::Organization::GeneratedAttributeMethods
 end
 class Ektar::Organization < Ektar::ApplicationRecord
+  def after_add_for_invitations; end
+  def after_add_for_invitations=(val); end
+  def after_add_for_invitations?; end
   def after_add_for_memberships; end
   def after_add_for_memberships=(val); end
   def after_add_for_memberships?; end
   def after_add_for_users; end
   def after_add_for_users=(val); end
   def after_add_for_users?; end
+  def after_remove_for_invitations; end
+  def after_remove_for_invitations=(val); end
+  def after_remove_for_invitations?; end
   def after_remove_for_memberships; end
   def after_remove_for_memberships=(val); end
   def after_remove_for_memberships?; end
   def after_remove_for_users; end
   def after_remove_for_users=(val); end
   def after_remove_for_users?; end
+  def autosave_associated_records_for_invitations(*args); end
   def autosave_associated_records_for_memberships(*args); end
   def autosave_associated_records_for_plan(*args); end
   def autosave_associated_records_for_users(*args); end
+  def before_add_for_invitations; end
+  def before_add_for_invitations=(val); end
+  def before_add_for_invitations?; end
   def before_add_for_memberships; end
   def before_add_for_memberships=(val); end
   def before_add_for_memberships?; end
   def before_add_for_users; end
   def before_add_for_users=(val); end
   def before_add_for_users?; end
+  def before_remove_for_invitations; end
+  def before_remove_for_invitations=(val); end
+  def before_remove_for_invitations?; end
   def before_remove_for_memberships; end
   def before_remove_for_memberships=(val); end
   def before_remove_for_memberships?; end
@@ -4841,12 +4854,18 @@ class Ektar::Organization < Ektar::ApplicationRecord
   def self.__callbacks; end
   def self._reflections; end
   def self._validators; end
+  def self.after_add_for_invitations; end
+  def self.after_add_for_invitations=(val); end
+  def self.after_add_for_invitations?; end
   def self.after_add_for_memberships; end
   def self.after_add_for_memberships=(val); end
   def self.after_add_for_memberships?; end
   def self.after_add_for_users; end
   def self.after_add_for_users=(val); end
   def self.after_add_for_users?; end
+  def self.after_remove_for_invitations; end
+  def self.after_remove_for_invitations=(val); end
+  def self.after_remove_for_invitations?; end
   def self.after_remove_for_memberships; end
   def self.after_remove_for_memberships=(val); end
   def self.after_remove_for_memberships?; end
@@ -4854,12 +4873,18 @@ class Ektar::Organization < Ektar::ApplicationRecord
   def self.after_remove_for_users=(val); end
   def self.after_remove_for_users?; end
   def self.attribute_type_decorations; end
+  def self.before_add_for_invitations; end
+  def self.before_add_for_invitations=(val); end
+  def self.before_add_for_invitations?; end
   def self.before_add_for_memberships; end
   def self.before_add_for_memberships=(val); end
   def self.before_add_for_memberships?; end
   def self.before_add_for_users; end
   def self.before_add_for_users=(val); end
   def self.before_add_for_users?; end
+  def self.before_remove_for_invitations; end
+  def self.before_remove_for_invitations=(val); end
+  def self.before_remove_for_invitations?; end
   def self.before_remove_for_memberships; end
   def self.before_remove_for_memberships=(val); end
   def self.before_remove_for_memberships?; end
@@ -4868,6 +4893,7 @@ class Ektar::Organization < Ektar::ApplicationRecord
   def self.before_remove_for_users?; end
   def self.defined_enums; end
   def self.search_full(*args); end
+  def validate_associated_records_for_invitations(*args); end
   def validate_associated_records_for_memberships(*args); end
   def validate_associated_records_for_users(*args); end
   extend PgSearch::Model::ClassMethods
@@ -4880,6 +4906,10 @@ module Ektar::Organization::GeneratedAssociationMethods
   def build_plan(*args, &block); end
   def create_plan!(*args, &block); end
   def create_plan(*args, &block); end
+  def invitation_ids; end
+  def invitation_ids=(ids); end
+  def invitations; end
+  def invitations=(value); end
   def membership_ids; end
   def membership_ids=(ids); end
   def memberships; end

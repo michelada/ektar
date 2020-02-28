@@ -26,10 +26,10 @@ module Ektar
 
     test "it can have more than one user" do
       subject = ektar_organizations(:organization)
-      alternate_user = ektar_users(:alternate_user)
+      regular_user = ektar_users(:regular_user)
 
       assert_difference("subject.users.reload.size", 1) do
-        subject.users << alternate_user
+        subject.users << regular_user
         subject.save
       end
     end

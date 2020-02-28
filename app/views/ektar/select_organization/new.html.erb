@@ -1,0 +1,24 @@
+<h1> <%= t(".title") %> </h1>
+
+<%= form_for :organization, url: select_organization_index_path, html: { class: "container" } do |f| %>
+  <div class="columns">
+    <% @organizations.each do |org| %>
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-4"><%= org.name %></p>
+          </div>
+
+          <footer class="card-footer">
+            <%= link_to t(".select"), select_organization_index_path(organization_id: org.global_id), method: :post, class: "card-footer-item"  %>
+          </footer>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
