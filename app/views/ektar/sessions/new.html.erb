@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <h2>Bienvenido a Ektar</h2>
-      <%= form_with model: @resource, local: true, url: sessions_path do |form| %>
+      <%= form_with model: @resource, local: true, url: ektar_url_helpers.sessions_path do |form| %>
         <div class="field">
           <label class="label"><%= form.label :email %></label>
           <div class="control">
