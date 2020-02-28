@@ -10,7 +10,7 @@ module Ektar
     private
 
     def authenticate_admin!
-      redirect_to(new_session_path, alert: t("flash.session.authenticate!")) && return unless user_signed_in?
+      redirect_to(ektar_url_helpers.new_session_path, alert: t("flash.session.authenticate!")) && return unless user_signed_in?
       redirect_to Ektar.configuration.root_app_path unless current_user&.admin?
     end
 

@@ -20,7 +20,7 @@ module Ektar
 
         set_flash(klass: "session", action: action_name)
 
-        redirect_to super_admin_organizations_path
+        redirect_to ektar_url_helpers.super_admin_organizations_path
         # redirect_to after_sign_in_path
       else
         @resource = Ektar::User.new(email: user_email)
@@ -32,18 +32,18 @@ module Ektar
 
     def after_sign_in_path
       if super_admin?
-        organizations_path
+        ektar_url_helpers.organizations_path
       elsif current_user
         if current_user.organizations.size > 1
-          new_select_organization_path
+          ektar_url_helpers.new_select_organization_path
         else
           organization = current_user.organizations.first
           update_session_cookie(organization: organization)
 
-          root_path
+          ektar_url_helpers.root_path
         end
       else
-        new_registration_path
+        ektar_url_helpers.new_registration_path
       end
     end
 
@@ -54,7 +54,7 @@ module Ektar
       else
         set_flash(errors: true, klass: "session", action: action_name)
       end
-      redirect_to new_session_path
+      redirect_to ektar_url_helpers.new_session_path
     end
   end
 end

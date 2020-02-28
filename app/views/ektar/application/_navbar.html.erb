@@ -1,7 +1,7 @@
 <nav class="navbar is-light" role="navigation" aria-label="main navigation">
   <div class="container">
     <div class="navbar-brand">
-      <%= link_to root_path, class: "navbar-item" do %>
+      <%= link_to ektar_url_helpers.root_path, class: "navbar-item" do %>
         <img src="<%= asset_pack_path('media/images/ektar.svg') %>" heigth="25" width="128" />
       <% end %>
 
@@ -15,17 +15,17 @@
     <div id="navbarMain" class="navbar-menu">
       <% if super_admin? %>
         <div class="navbar-item">
-          <%= link_to model_human_name(Ektar::Organization), super_admin_organizations_path, class: "navbar-item" %>
+          <%= link_to model_human_name(Ektar::Organization), ektar_url_helpers.super_admin_organizations_path, class: "navbar-item" %>
         </div>
         <div class="navbar-item">
-          <%= link_to model_human_name(Ektar::Plan), super_admin_plans_path, class: "navbar-item" %>
+          <%= link_to model_human_name(Ektar::Plan), ektar_url_helpers.super_admin_plans_path, class: "navbar-item" %>
         </div>
         <div class="navbar-item">
-          <%= link_to model_human_name(Ektar::User), super_admin_users_path, class: "navbar-item" %>
+          <%= link_to model_human_name(Ektar::User), ektar_url_helpers.super_admin_users_path, class: "navbar-item" %>
         </div>
       <% else user_signed_in? %>
         <div class="navbar-item">
-          <%= link_to model_human_name(Ektar::User), admin_users_path, class: "navbar-item" %>
+          <%= link_to model_human_name(Ektar::User), ektar_url_helpers.admin_users_path, class: "navbar-item" %>
         </div>
       <% end %>
     </div>
@@ -40,7 +40,7 @@
           <div class="navbar-dropdown">
             <% if current_user.organizations.size > 1 %>
               <% current_user.organizations.each do |org| %> 
-                <%= link_to select_organization_path(current_organization, organization_id: org.global_id), method: :put, class: "navbar-item" do %>
+                <%= link_to ektar_url_helpers.select_organization_path(current_organization, organization_id: org.global_id), method: :put, class: "navbar-item" do %>
                   <span class="icon has-text-orange">
                     <img src="<%= asset_pack_path('media/images/organization-icon.svg') %>" width=".875em" />
                   </span>
@@ -50,12 +50,12 @@
               <hr class="navbar-divider">
             <% end %>
 
-            <%= link_to t(".logout"), session_path(current_user.global_id), method: :delete, class: "navbar-item" %>
+            <%= link_to t(".logout"), ektar_url_helpers.session_path(current_user.global_id), method: :delete, class: "navbar-item" %>
           </div>
         </div>
       <% else %>
-        <%= link_to t(".login"), new_session_path, class: "navbar-item" %>
-        <%= link_to t(".sign_up"), registrations_path , class: "navbar-item" %>
+        <%= link_to t(".login"), ektar_url_helpers.new_session_path, class: "navbar-item" %>
+        <%= link_to t(".sign_up"), ektar_url_helpers.registrations_path , class: "navbar-item" %>
       <% end %>
     </div>
   </div>
