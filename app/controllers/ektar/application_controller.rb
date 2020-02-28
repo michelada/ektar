@@ -30,11 +30,6 @@ module Ektar
 
     attr_reader :pagination, :resource, :collection
 
-    sig { void }
-    def verify_super_admin!
-      redirect_to root_path unless super_admin?
-    end
-
     sig { params(object: ActiveRecord::Base, options: T::Hash[Symbol, T.untyped], block: T.untyped).returns(String) }
     def redirect_with(object, options, &block)
       set_flash options
@@ -91,7 +86,7 @@ module Ektar
 
     sig { returns(T::Boolean) }
     def user_signed_in?
-      current_user.present?
+      !!current_user
     end
 
     sig { returns(T::Hash[T.untyped, T.untyped]) }
@@ -104,30 +99,27 @@ module Ektar
       @session_cookie_name ||= "#{Ektar.configuration.session_name}_remember_me"
     end
 
-    sig { returns(T.untyped) }
-    def root_path
-      if super_admin?
-        super
-      elsif current_user.present?
-        users_path
-      else
-        new_registrations_path
-      end
-    end
-
     def user_not_authorized
       flash[:alert] = t("flash.policy.not_authorized")
-      redirect_to(request.referrer || root_path)
+
+      if current_organization && current_user.is_admin?(current_organization)
+        redirect_to(root_path)
+      else
+        redirect_to Ektar.configuration.root_app_path
+      end
     end
 
     private
 
     sig { params(user: Ektar::User, organization: T.nilable(Ektar::Organization)).void }
     def update_session_cookie(user: @current_user, organization: @current_organization)
+      user_id = user&.global_id || 0
+      organization_id = organization&.global_id || 0
+
       @session_cookie = cookies.encrypted[session_cookie_name] = {
         value: {
-          user: user.global_id,
-          organization: organization.global_id,
+          user: user_id,
+          organization: organization_id,
         },
         expires: Ektar.configuration.session_expiration,
       }

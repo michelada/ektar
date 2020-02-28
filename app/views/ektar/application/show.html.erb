@@ -23,6 +23,12 @@
         <%= link_to edit_action, edit_resource_path(resource), class: "button is-link" %>
       </div>
       <div class="control">
+        <% if allow_delete?(resource) %>
+          <%= link_to delete_action, resource_path(resource), class: "button is-danger",
+            method: :delete, data: { confirm: delete_confirmation(resource) } %>
+        <% end %>
+      </div>
+      <div class="control">
         <%= link_to t("form.back"), collection_path, class: "button is-text" %>
       </div>
     </div>

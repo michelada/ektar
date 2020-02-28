@@ -6,3 +6,5 @@ es:
     registration: "registro"
     session: sesion
     invitations: invitaciones
+    reset_password: cambiar_contrasena
+    select_organization: seleccionar_organizacion

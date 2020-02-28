@@ -27,6 +27,11 @@ es:
         notice: "Se ha guardado el plan exitosamente"
         alert: "Error al establecer el plan"
 
+    edit:
+      invitations:
+        notice: "Se ha agregado %{organization_name} a tus organizaciones"
+        alert: "No se ha podido agregar la organización"
+
     update:
       notice: "Actualizado"
       alert: "Error al actualizar"

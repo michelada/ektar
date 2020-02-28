@@ -1,4 +1,5 @@
 import "../images/ektar.svg";
+import "../images/organization-icon.svg";
 import "../stylesheets/application.scss";
 
 import "trix";

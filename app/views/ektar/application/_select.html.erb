@@ -1,5 +1,11 @@
+<label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
+<% error = form.object.errors[attribute_name].first %>
+
 <div class="control">
   <div class="select">
     <%= form.select "#{attribute_name}".to_sym, options_for_select(options, selected: input_html[:selected]), {}, input_html %>
   </div>
+  <% if error.present? %>
+    <p class="help is-danger"><%= error %></p>
+  <% end %>
 </div>

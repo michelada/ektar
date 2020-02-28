@@ -5,7 +5,7 @@ require "test_helper"
 module Ektar
   class MembershipTest < ActiveSupport::TestCase
     test "membership role is member by default improved" do
-      membership = ektar_memberships(:user_membership)
+      membership = ektar_memberships(:alternate_membership)
 
       assert_equal membership.role, "member"
     end

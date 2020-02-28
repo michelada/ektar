@@ -13,7 +13,7 @@ super_user:
   password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
   super_admin: true
 
-alternate_user:
+regular_user:
   email: "alternate_fixture_user@example.com"
   password_digest: "$2a$12$Omy15pM.vjvsStSw4phF9.5B6nacLNnWxFIBBo36q/b0hEyvXDh7G"
 

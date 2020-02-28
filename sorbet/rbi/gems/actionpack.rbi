@@ -2579,23 +2579,91 @@ class Ektar::ApplicationController < ActionController::Base
 end
 module Ektar::ApplicationHelper
   extend T::Sig
-  extend T::Sig
-  extend T::Sig
-  include Kernel
-  include Kernel
   include Kernel
   include Pagy::Frontend
-  include Pagy::Frontend
-  include Pagy::Frontend
-  include Webpacker::Helper
-  include Webpacker::Helper
   include Webpacker::Helper
 end
-class Ektar::ApplicationController < ActionController::Base
+class Ektar::ResourcefulController < Ektar::ApplicationController
   def self._helpers; end
   def self._wrapper_options; end
 end
-class Ektar::ApplicationController < ActionController::Base
+module Ektar::ResourcefulHelper
+  extend T::Sig
+  extend T::Sig
+  extend T::Sig
+  extend T::Sig
+  include Ektar::ApplicationHelper
+  include Ektar::ApplicationHelper
+  include Ektar::ApplicationHelper
+  include Ektar::ApplicationHelper
+end
+class Ektar::ResourcefulController < Ektar::ApplicationController
   def self._helpers; end
   def self._wrapper_options; end
+end
+class Ektar::ResourcefulController < Ektar::ApplicationController
+  def self._helpers; end
+  def self._wrapper_options; end
+end
+class Ektar::ResetPasswordController < Ektar::ApplicationController
+  def _layout(lookup_context, formats); end
+  def self._helpers; end
+  def self._routes; end
+  def self._wrapper_options; end
+  def self.helpers_path; end
+  def self.middleware_stack; end
+  extend T::Sig
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_17
+end
+module Anonymous_Module_17
+  def _generate_paths_by_default; end
+  def _routes; end
+  def self._routes; end
+  def self.full_url_for(options); end
+  def self.optimize_routes_generation?; end
+  def self.polymorphic_path(record_or_hash_or_array, options = nil); end
+  def self.polymorphic_url(record_or_hash_or_array, options = nil); end
+  def self.route_for(name, *args); end
+  def self.url_for(options); end
+  def self.url_options; end
+  extend ActiveSupport::Concern
+  extend Anonymous_Module_18
+  extend Anonymous_Module_19
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_18
+  include Anonymous_Module_19
+end
+class Ektar::ResourcefulController < Ektar::ApplicationController
+  def self._helpers; end
+  def self._wrapper_options; end
+end
+class Ektar::SelectOrganizationController < Ektar::ApplicationController
+  def _layout(lookup_context, formats); end
+  def self.__callbacks; end
+  def self._helpers; end
+  def self._routes; end
+  def self._wrapper_options; end
+  def self.helpers_path; end
+  def self.middleware_stack; end
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_20
+end
+module Anonymous_Module_20
+  def _generate_paths_by_default; end
+  def _routes; end
+  def self._routes; end
+  def self.full_url_for(options); end
+  def self.optimize_routes_generation?; end
+  def self.polymorphic_path(record_or_hash_or_array, options = nil); end
+  def self.polymorphic_url(record_or_hash_or_array, options = nil); end
+  def self.route_for(name, *args); end
+  def self.url_for(options); end
+  def self.url_options; end
+  extend ActiveSupport::Concern
+  extend Anonymous_Module_18
+  extend Anonymous_Module_19
+  include ActionDispatch::Routing::UrlFor
+  include Anonymous_Module_18
+  include Anonymous_Module_19
 end

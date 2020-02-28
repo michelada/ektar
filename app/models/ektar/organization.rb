@@ -39,5 +39,10 @@ module Ektar
     def admin?
       admins.any?
     end
+
+    sig { returns(T::Boolean) }
+    def plan_present?
+      !!ektar_plan_id
+    end
   end
 end

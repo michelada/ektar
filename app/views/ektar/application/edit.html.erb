@@ -2,7 +2,7 @@
 
 <div class="columns">
   <div class="column is-half">
-    <%= form_with(model: resource, local: true) do |form| %>
+    <%= form_with(model: resource, local: true, url: resource_path(resource)) do |form| %>
       <% form_attributes.each do |attribute_name, attribute_options|%>
         <% attributes = resource_attributes(attribute_options) %>
 

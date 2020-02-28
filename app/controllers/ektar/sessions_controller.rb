@@ -16,19 +16,34 @@ module Ektar
       if @resource&.authenticate(params.dig(:user, :password)) && !@resource.blocked_at?
         @resource.update last_ip: format_ip(request.remote_ip), last_activity_at: Time.zone.now
 
-        # TODO: Si un usuario tiene más de 1 organización hay que llevarlo a
-        # una página dónde seleccione cuál quiere que sea la organización activa.
-        default_organization = @resource.organizations.first
-
-        update_session_cookie(user: @resource, organization: default_organization)
+        update_session_cookie(user: @resource)
 
         set_flash(klass: "session", action: action_name)
-        redirect_to root_path
+
+        redirect_to super_admin_organizations_path
+        # redirect_to after_sign_in_path
       else
         @resource = Ektar::User.new(email: user_email)
         set_flash(errors: true, klass: "session", action: action_name)
 
         render :new, layout: "ektar/users"
+      end
+    end
+
+    def after_sign_in_path
+      if super_admin?
+        organizations_path
+      elsif current_user
+        if current_user.organizations.size > 1
+          new_select_organization_path
+        else
+          organization = current_user.organizations.first
+          update_session_cookie(organization: organization)
+
+          root_path
+        end
+      else
+        new_registration_path
       end
     end
 
