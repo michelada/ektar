@@ -61,7 +61,7 @@ module Ektar
       def organization_has_plan
         return if current_organization&.plan_present?
 
-        redirect_to ektar_url_helpers.new_admin_select_plan_path
+        redirect_to ektar.new_admin_select_plan_path
       end
     end
   end

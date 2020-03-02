@@ -1,6 +1,6 @@
 <h1> <%= t(".title") %> </h1>
 
-<%= form_for :organization, url: ektar_url_helpers.select_organization_index_path, html: { class: "container" } do |f| %>
+<%= form_for :organization, url: ektar.select_organization_index_path, html: { class: "container" } do |f| %>
   <div class="columns">
     <% @organizations.each do |org| %>
       <div class="column is-one-third">
@@ -15,7 +15,7 @@
           </div>
 
           <footer class="card-footer">
-            <%= link_to t(".select"), ektar_url_helpers.select_organization_index_path(organization_id: org.global_id), method: :post, class: "card-footer-item"  %>
+            <%= link_to t(".select"), ektar.select_organization_index_path(organization_id: org.global_id), method: :post, class: "card-footer-item"  %>
           </footer>
         </div>
       </div>
