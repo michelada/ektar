@@ -15,7 +15,7 @@ module Ektar
         plan_id = params[:plan_id]
 
         if plan_id && current_organization.update(plan: Ektar::Plan.find_by(id: plan_id))
-          redirect_to root_path, notice: t("flash.create.select_plan.notice")
+          redirect_to ektar.root_path, notice: t("flash.create.select_plan.notice")
         else
           @plans = Ektar::Plan.all
 
