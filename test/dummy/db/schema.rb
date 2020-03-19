@@ -1,4 +1,3 @@
-# typed: false
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_203730) do
+ActiveRecord::Schema.define(version: 2020_03_10_174801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,12 +65,12 @@ ActiveRecord::Schema.define(version: 2020_02_09_203730) do
   create_table "ektar_memberships", force: :cascade do |t|
     t.bigint "ektar_organization_id", null: false
     t.bigint "ektar_user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.enum "role", default: "member", null: false, enum_name: "role"
     t.boolean "active", default: true, null: false
     t.boolean "owner", default: false, null: false
     t.datetime "blocked_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.enum "role", default: "member", null: false, enum_name: "role"
     t.index ["ektar_organization_id"], name: "index_ektar_memberships_on_ektar_organization_id"
     t.index ["ektar_user_id"], name: "index_ektar_memberships_on_ektar_user_id"
   end
@@ -79,10 +78,10 @@ ActiveRecord::Schema.define(version: 2020_02_09_203730) do
   create_table "ektar_organizations", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "enable", default: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false
     t.bigint "ektar_plan_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["ektar_plan_id"], name: "index_ektar_organizations_on_ektar_plan_id"
     t.index ["global_id"], name: "index_ektar_organizations_on_global_id", unique: true
     t.index ["name"], name: "index_ektar_organizations_on_name", unique: true
@@ -110,15 +109,15 @@ ActiveRecord::Schema.define(version: 2020_02_09_203730) do
   create_table "ektar_users", force: :cascade do |t|
     t.string "email", null: false
     t.bigint "ektar_organization_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false
     t.boolean "super_admin", default: false
     t.datetime "blocked_at"
     t.string "password_digest", null: false
     t.string "recovery_password_digest"
     t.datetime "last_activity_at"
     t.string "last_ip"
+    t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["ektar_organization_id"], name: "index_ektar_users_on_ektar_organization_id"
     t.index ["email"], name: "index_ektar_users_on_email", unique: true
     t.index ["global_id"], name: "index_ektar_users_on_global_id", unique: true
