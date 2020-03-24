@@ -99,7 +99,7 @@ module Ektar
         form_attributes: T.nilable(T::Hash[Symbol, T.untyped]),
         show_attributes: T.nilable(T::Array[Symbol]),
         resource_class: T.untyped,
-        only: T.untyped,
+        only: T.nilable(T.any(T::Array[Symbol], Symbol)),
         except: T.nilable(T.any(T::Array[Symbol], Symbol)),
         find_by: Symbol,
         policy_class: T.nilable(Class)
@@ -113,8 +113,8 @@ module Ektar
       self.find_by = find_by
       self.policy_class = policy_class
 
-      only_actions = [only].compact
-      except_actions = [except].compact
+      only_actions = [only].flatten
+      except_actions = [except].flatten
 
       actions_keys = VALID_RESOURCE_ACTIONS.keys
 
