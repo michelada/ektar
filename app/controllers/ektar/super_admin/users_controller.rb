@@ -11,7 +11,7 @@ module Ektar
                   form_attributes: {email: :input, password: :password, password_confirmation: :password},
                   show_attributes: %i[id email updated_at],
                   find_by: :global_id,
-                  except: [:new, :index, :delete],
+                  except: [:delete],
                   resource_class: Ektar::User)
 
       sig { void }
