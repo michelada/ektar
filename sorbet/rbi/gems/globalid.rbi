@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/globalid/all/globalid.rbi
 #
 # globalid-0.4.2
+
 module URI
 end
 class URI::GID < URI::Generic
@@ -59,36 +60,4 @@ class GlobalID
   extend ActiveSupport::Autoload
 end
 class GlobalID::Railtie < Rails::Railtie
-end
-class SignedGlobalID < GlobalID
-  def ==(other); end
-  def encoded_expiration; end
-  def expires_at; end
-  def initialize(gid, options = nil); end
-  def pick_expiration(options); end
-  def purpose; end
-  def self.expires_in; end
-  def self.expires_in=(arg0); end
-  def self.parse(sgid, options = nil); end
-  def self.pick_purpose(options); end
-  def self.pick_verifier(options); end
-  def self.raise_if_expired(expires_at); end
-  def self.verifier; end
-  def self.verifier=(arg0); end
-  def self.verify(sgid, options); end
-  def to_h; end
-  def to_param; end
-  def to_s; end
-  def verifier; end
-end
-class SignedGlobalID::ExpiredMessage < StandardError
-end
-module GlobalID::Identification
-  def to_gid(options = nil); end
-  def to_gid_param(options = nil); end
-  def to_global_id(options = nil); end
-  def to_sgid(options = nil); end
-  def to_sgid_param(options = nil); end
-  def to_signed_global_id(options = nil); end
-  extend ActiveSupport::Concern
 end

@@ -20,8 +20,7 @@ module Ektar
 
         set_flash(klass: "session", action: action_name)
 
-        redirect_to ektar.super_admin_organizations_path
-        # redirect_to after_sign_in_path
+        redirect_to after_sign_in_path
       else
         @resource = Ektar::User.new(email: user_email)
         set_flash(errors: true, klass: "session", action: action_name)
@@ -40,7 +39,7 @@ module Ektar
           organization = current_user.organizations.first
           update_session_cookie(organization: organization)
 
-          ektar.root_path
+          Ektar.configuration.root_app_path || ektar.root_path
         end
       else
         ektar.new_registration_path
@@ -54,7 +53,7 @@ module Ektar
       else
         set_flash(errors: true, klass: "session", action: action_name)
       end
-      redirect_to ektar.new_session_path
+      redirect_to Ektar.configuration.sign_out_path || Ektar.configuration.root_path || ektar.new_session_path
     end
   end
 end

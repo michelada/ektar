@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/bundle-audit/all/bundle-audit.rbi
 #
 # bundle-audit-0.1.0
+
 module Bundle
 end
 module Bundle::Audit

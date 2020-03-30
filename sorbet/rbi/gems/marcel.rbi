@@ -8,5 +8,6 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/marcel/all/marcel.rbi
 #
 # marcel-0.3.3
+
 module Marcel
 end

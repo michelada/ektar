@@ -27,9 +27,9 @@ class ActionDispatch::IntegrationTest
     my_cookies.encrypted[COOKIE_NAME] = {
       value: {
         user: user.global_id,
-        organization: user.memberships.first&.organization&.global_id,
+        organization: user.memberships.first&.organization&.global_id
       },
-      expires: 1.day.from_now,
+      expires: 1.day.from_now
     }
     cookies[COOKIE_NAME] = my_cookies[COOKIE_NAME]
   end

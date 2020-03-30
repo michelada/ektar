@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/rake/all/rake.rbi
 #
 # rake-13.0.1
+
 module Rake
   def self.each_dir_parent(dir); end
   def self.from_pathname(path); end
@@ -200,7 +201,6 @@ class Rake::FileList
   def prepend(*args, &block); end
   def product(*args, &block); end
   def push(*args, &block); end
-  def quote(*args, &block); end
   def rassoc(*args, &block); end
   def reduce(*args, &block); end
   def reject!(*args, &block); end

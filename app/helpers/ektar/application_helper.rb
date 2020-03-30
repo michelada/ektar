@@ -26,7 +26,7 @@ module Ektar
         I18n.t("table.true")
       when FalseClass
         I18n.t("table.false")
-      when ActiveSupport::TimeWithZone
+      when ActiveSupport::TimeWithZone, Date
         I18n.l value, format: :short
       when ActionText::RichText
         value.body&.html_safe
@@ -78,9 +78,10 @@ module Ektar
 
     sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(T::Hash[Symbol, T.untyped]) }
     def field_attributes(attributes = {})
-      control_html = attributes.fetch(:control_html, {})
+      attrs = attributes.dup
+      control_html = attrs.fetch(:control_html, {})
       css_class = control_html.delete(:class)
-      control_html[:class] = "field #{css_class}"
+      control_html[:class] = css_class&.include?("group-fields") ? css_class : "field #{css_class}"
       control_html
     end
 
@@ -90,7 +91,7 @@ module Ektar
       {
         class: "input",
         placeholder: t("form.placeholders.#{key}.#{field_name}", default: ""),
-        maxlength: t("form.maxlength.#{key}.#{field_name}", default: t("form.maxlength.size")),
+        maxlength: t("form.maxlength.#{key}.#{field_name}", default: t("form.maxlength.size"))
       }
     end
   end

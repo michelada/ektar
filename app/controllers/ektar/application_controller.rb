@@ -65,7 +65,10 @@ module Ektar
     end
 
     def authenticate_user!
-      redirect_to ektar.new_session_path, alert: t("flash.session.authenticate!") unless user_signed_in?
+      unless user_signed_in?
+        session[:return_to] = request.fullpath
+        redirect_to (Ektar.configuration.sign_in_path || ektar.new_session_path), alert: t("flash.session.authenticate!")
+      end
     end
 
     sig { params(ip: String).returns(String) }
@@ -119,9 +122,9 @@ module Ektar
       @session_cookie = cookies.encrypted[session_cookie_name] = {
         value: {
           user: user_id,
-          organization: organization_id,
+          organization: organization_id
         },
-        expires: Ektar.configuration.session_expiration,
+        expires: Ektar.configuration.session_expiration
       }
 
       @current_user = user

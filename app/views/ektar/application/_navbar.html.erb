@@ -39,7 +39,7 @@
 
           <div class="navbar-dropdown">
             <% if current_user.organizations.size > 1 %>
-              <% current_user.organizations.each do |org| %> 
+              <% current_user.organizations.each do |org| %>
                 <%= link_to ektar.select_organization_path(current_organization, organization_id: org.global_id), method: :put, class: "navbar-item" do %>
                   <span class="icon has-text-orange">
                     <img src="<%= asset_pack_path('media/images/organization-icon.svg') %>" width=".875em" />

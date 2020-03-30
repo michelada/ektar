@@ -17,6 +17,7 @@ module Ektar
               authorize resource, policy_class: policy_class if policy_class.present?
 
               resource.update(resource_secure_params)
+              resource
             end
 
           set_resource_ivar @resource

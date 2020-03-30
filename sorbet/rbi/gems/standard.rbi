@@ -7,7 +7,8 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/standard/all/standard.rbi
 #
-# standard-0.1.7
+# standard-0.2.3
+
 module RuboCop
 end
 class RuboCop::Cop::Lint::AssignmentInCondition < RuboCop::Cop::Cop
@@ -92,6 +93,8 @@ end
 class Standard::Cli
   def initialize(argv); end
   def run; end
+end
+class Standard::Railtie < Rails::Railtie
 end
 class Standard::DetectsFixability
   def call(offenses); end

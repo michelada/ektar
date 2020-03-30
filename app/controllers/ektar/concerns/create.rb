@@ -11,15 +11,14 @@ module Ektar
       included do
         def create(options = {}, &block)
           @resource ||= begin
-            resource = resource_class.new(resource_secure_params)
+            local_resource = resource_class.new(resource_secure_params)
 
-            authorize resource, policy_class: policy_class if policy_class.present?
-            resource.save
+            authorize local_resource, policy_class: policy_class if policy_class.present?
+            local_resource.save
 
-            resource
+            set_resource_ivar local_resource
+            local_resource
           end
-
-          set_resource_ivar @resource
 
           options[:location] = collection_path
           options[:action] = :create

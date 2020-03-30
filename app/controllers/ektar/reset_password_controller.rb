@@ -9,7 +9,7 @@ module Ektar
       invitation_token = params.dig(:invitation_token)
       @invitation = Ektar::Invitation.find_by(invitation_token: invitation_token)
 
-      @resource = Ektar::User.new(email: T.must(@invitation).email)
+      @resource = Ektar::User.new(email: @invitation&.email)
       @resource.memberships.build.build_organization if @resource.present?
 
       render :new, layout: "ektar/users"

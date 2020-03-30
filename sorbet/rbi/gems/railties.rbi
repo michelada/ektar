@@ -7,7 +7,8 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/railties/all/railties.rbi
 #
-# railties-6.0.2.1
+# railties-6.0.2.2
+
 module Rails
   def self.app_class; end
   def self.app_class=(arg0); end
@@ -88,113 +89,6 @@ class Rails::Railtie
   def self.subclasses; end
   extend Rails::Initializable::ClassMethods
   include Rails::Initializable
-end
-module Rails::Paths
-end
-class Rails::Paths::Root
-  def [](path); end
-  def []=(path, value); end
-  def add(path, options = nil); end
-  def all_paths; end
-  def autoload_once; end
-  def autoload_paths; end
-  def eager_load; end
-  def filter_by(&block); end
-  def initialize(path); end
-  def keys; end
-  def load_paths; end
-  def path; end
-  def path=(arg0); end
-  def values; end
-  def values_at(*list); end
-end
-class Rails::Paths::Path
-  def <<(path); end
-  def absolute_current; end
-  def autoload!; end
-  def autoload?; end
-  def autoload_once!; end
-  def autoload_once?; end
-  def children; end
-  def concat(paths); end
-  def each(&block); end
-  def eager_load!; end
-  def eager_load?; end
-  def existent; end
-  def existent_directories; end
-  def expanded; end
-  def extensions; end
-  def files_in(path); end
-  def first; end
-  def glob; end
-  def glob=(arg0); end
-  def initialize(root, current, paths, options = nil); end
-  def last; end
-  def load_path!; end
-  def load_path?; end
-  def push(path); end
-  def skip_autoload!; end
-  def skip_autoload_once!; end
-  def skip_eager_load!; end
-  def skip_load_path!; end
-  def to_a; end
-  def to_ary; end
-  def unshift(*paths); end
-  include Enumerable
-end
-module Rails::Rack
-end
-module Rails::Configuration
-end
-class Rails::Configuration::MiddlewareStackProxy
-  def +(other); end
-  def delete(*args, &block); end
-  def delete_operations; end
-  def initialize(operations = nil, delete_operations = nil); end
-  def insert(*args, &block); end
-  def insert_after(*args, &block); end
-  def insert_before(*args, &block); end
-  def merge_into(other); end
-  def operations; end
-  def swap(*args, &block); end
-  def unshift(*args, &block); end
-  def use(*args, &block); end
-end
-class Rails::Configuration::Generators
-  def aliases; end
-  def aliases=(arg0); end
-  def api_only; end
-  def api_only=(arg0); end
-  def colorize_logging; end
-  def colorize_logging=(arg0); end
-  def fallbacks; end
-  def fallbacks=(arg0); end
-  def hidden_namespaces; end
-  def hide_namespace(namespace); end
-  def initialize; end
-  def initialize_copy(source); end
-  def method_missing(method, *args); end
-  def options; end
-  def options=(arg0); end
-  def templates; end
-  def templates=(arg0); end
-end
-class Rails::Railtie::Configuration
-  def after_initialize(&block); end
-  def app_generators; end
-  def app_middleware; end
-  def before_configuration(&block); end
-  def before_eager_load(&block); end
-  def before_initialize(&block); end
-  def eager_load_namespaces; end
-  def initialize; end
-  def method_missing(name, *args, &blk); end
-  def respond_to?(name, include_private = nil); end
-  def self.eager_load_namespaces; end
-  def to_prepare(&blk); end
-  def to_prepare_blocks; end
-  def watchable_dirs; end
-  def watchable_files; end
 end
 class Rails::Engine < Rails::Railtie
   def _all_autoload_once_paths; end
@@ -345,6 +239,113 @@ module Rails::Autoloaders
   def self.once; end
   def self.zeitwerk_enabled?; end
 end
+module Rails::Paths
+end
+class Rails::Paths::Root
+  def [](path); end
+  def []=(path, value); end
+  def add(path, options = nil); end
+  def all_paths; end
+  def autoload_once; end
+  def autoload_paths; end
+  def eager_load; end
+  def filter_by(&block); end
+  def initialize(path); end
+  def keys; end
+  def load_paths; end
+  def path; end
+  def path=(arg0); end
+  def values; end
+  def values_at(*list); end
+end
+class Rails::Paths::Path
+  def <<(path); end
+  def absolute_current; end
+  def autoload!; end
+  def autoload?; end
+  def autoload_once!; end
+  def autoload_once?; end
+  def children; end
+  def concat(paths); end
+  def each(&block); end
+  def eager_load!; end
+  def eager_load?; end
+  def existent; end
+  def existent_directories; end
+  def expanded; end
+  def extensions; end
+  def files_in(path); end
+  def first; end
+  def glob; end
+  def glob=(arg0); end
+  def initialize(root, current, paths, options = nil); end
+  def last; end
+  def load_path!; end
+  def load_path?; end
+  def push(path); end
+  def skip_autoload!; end
+  def skip_autoload_once!; end
+  def skip_eager_load!; end
+  def skip_load_path!; end
+  def to_a; end
+  def to_ary; end
+  def unshift(*paths); end
+  include Enumerable
+end
+module Rails::Rack
+end
+module Rails::Configuration
+end
+class Rails::Configuration::MiddlewareStackProxy
+  def +(other); end
+  def delete(*args, &block); end
+  def delete_operations; end
+  def initialize(operations = nil, delete_operations = nil); end
+  def insert(*args, &block); end
+  def insert_after(*args, &block); end
+  def insert_before(*args, &block); end
+  def merge_into(other); end
+  def operations; end
+  def swap(*args, &block); end
+  def unshift(*args, &block); end
+  def use(*args, &block); end
+end
+class Rails::Configuration::Generators
+  def aliases; end
+  def aliases=(arg0); end
+  def api_only; end
+  def api_only=(arg0); end
+  def colorize_logging; end
+  def colorize_logging=(arg0); end
+  def fallbacks; end
+  def fallbacks=(arg0); end
+  def hidden_namespaces; end
+  def hide_namespace(namespace); end
+  def initialize; end
+  def initialize_copy(source); end
+  def method_missing(method, *args); end
+  def options; end
+  def options=(arg0); end
+  def templates; end
+  def templates=(arg0); end
+end
+class Rails::Railtie::Configuration
+  def after_initialize(&block); end
+  def app_generators; end
+  def app_middleware; end
+  def before_configuration(&block); end
+  def before_eager_load(&block); end
+  def before_initialize(&block); end
+  def eager_load_namespaces; end
+  def initialize; end
+  def method_missing(name, *args, &blk); end
+  def respond_to?(name, include_private = nil); end
+  def self.eager_load_namespaces; end
+  def to_prepare(&blk); end
+  def to_prepare_blocks; end
+  def watchable_dirs; end
+  def watchable_files; end
+end
 class Rails::Engine::Configuration < Rails::Railtie::Configuration
   def autoload_once_paths; end
   def autoload_once_paths=(arg0); end
@@ -401,7 +402,7 @@ class Rails::SourceAnnotationExtractor
   def self.enumerate(tag = nil, options = nil); end
   def tag; end
 end
-class Anonymous_Struct_1 < Struct
+class Anonymous_Struct_2 < Struct
   def line; end
   def line=(_); end
   def self.[](*arg0); end
@@ -413,7 +414,7 @@ class Anonymous_Struct_1 < Struct
   def text; end
   def text=(_); end
 end
-class Rails::SourceAnnotationExtractor::Annotation < Anonymous_Struct_1
+class Rails::SourceAnnotationExtractor::Annotation < Anonymous_Struct_2
   def self.directories; end
   def self.extensions; end
   def self.notes_task_deprecation_warning; end
@@ -564,9 +565,4 @@ class Rails::Application::RoutesReloader
   def route_sets; end
   def updated?(*args, &block); end
   def updater; end
-end
-class Rails::BacktraceCleaner < ActiveSupport::BacktraceCleaner
-  def initialize; end
-end
-class Rails::Rack::Logger < ActiveSupport::LogSubscriber
 end

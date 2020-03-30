@@ -5,6 +5,7 @@ es:
     enable: "Activo"
     email: "Correo electrónico"
     updated_at: "Modificado el"
+    password: "Contraseña"
     last_activity_at: "Última vez visto el"
 
   new:

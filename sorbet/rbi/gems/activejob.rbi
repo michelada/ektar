@@ -7,7 +7,8 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/activejob/all/activejob.rbi
 #
-# activejob-6.0.2.1
+# activejob-6.0.2.2
+
 module ActiveJob
   def self.gem_version; end
   def self.version; end
@@ -192,10 +193,6 @@ class ActiveJob::QueueAdapters::AsyncAdapter::Scheduler
   def immediate=(arg0); end
   def initialize(**options); end
   def shutdown(wait: nil); end
-end
-class ActiveJob::QueueAdapters::InlineAdapter
-  def enqueue(job); end
-  def enqueue_at(*arg0); end
 end
 class ActiveJob::Base
   def __callbacks; end

@@ -138,7 +138,7 @@ module Ektar
       {email: "mario@gmail.com",
        password: "Password17",
        password_confirmation: "Password17",
-       memberships_attributes: [organization_attributes: {name: "organization example"}],}.merge(attrs)
+       memberships_attributes: [organization_attributes: {name: "organization example"}]}.merge(attrs)
     end
   end
 end

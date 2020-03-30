@@ -82,8 +82,8 @@ module Ektar
           organization: {
             name: "Organization test",
             enable: true,
-            plan: ektar_plans(:plan),
-          }.merge(attrs),
+            plan: ektar_plans(:plan)
+          }.merge(attrs)
         }
       end
     end

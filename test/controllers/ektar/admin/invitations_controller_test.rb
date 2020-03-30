@@ -41,7 +41,7 @@ module Ektar
         {invitation: {
           ektar_organization_id: @organization.id,
           email: "test_invitation@ektar.com",
-          invitation_token: "BAhJIilkZjQyMmU2ZC05YjEzLTQ2ZDYtOTMxMy05ODhlMGU4NWI2MGYGOgZFVA==--d13b3574adbe29c7bc0a3a319cab33c6aecabd52",
+          invitation_token: "BAhJIilkZjQyMmU2ZC05YjEzLTQ2ZDYtOTMxMy05ODhlMGU4NWI2MGYGOgZFVA==--d13b3574adbe29c7bc0a3a319cab33c6aecabd52"
         }.merge(attrs)}
       end
     end

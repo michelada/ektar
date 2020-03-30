@@ -43,7 +43,7 @@ module Ektar
 
     def invitation_params(attrs = {})
       {email: "invited_test@ektar.com",
-       organization: @organization,}.merge(attrs)
+       organization: @organization}.merge(attrs)
     end
   end
 end

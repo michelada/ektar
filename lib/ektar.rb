@@ -5,15 +5,14 @@ require "money-rails"
 require "sorbet-rails"
 
 module Ektar
-  ROOT_PATH = Pathname.new(File.join(__dir__, ".."))
-
   class << self
     attr_accessor :configuration
 
     def webpacker
+      @root_path ||= Ektar.configuration.rails_root || Pathname.new(File.join(__dir__, ".."))
       @webpacker ||= ::Webpacker::Instance.new(
-        root_path: ROOT_PATH,
-        config_path: ROOT_PATH.join("config", "webpacker.yml")
+        root_path: @root_path,
+        config_path: @root_path.join("config", "webpacker.yml")
       )
     end
 
@@ -28,7 +27,8 @@ module Ektar
     # Host where is running webpacker (Useful while developing)
     # It sets the `:host` attribute of the `javascript_pack_tag` helper.
     attr_accessor :webpacker_host, :title, :organization_username, :organization_password,
-      :session_name, :session_expiration, :password_retain_count, :root_app_path
+      :session_name, :session_expiration, :password_retain_count, :root_app_path, :sign_in_path,
+      :sign_out_path, :rails_root
 
     def initialize
       @title = "Ektar administration"
@@ -38,6 +38,9 @@ module Ektar
       @session_expiration = 1.days.from_now
       @password_retain_count = 3
       @root_app_path = "/"
+      @sign_in_path = nil
+      @sign_out_path = "/"
+      @rails_root = nil
     end
   end
 
