@@ -31,7 +31,7 @@ module Ektar
 
     def after_sign_in_path
       if super_admin?
-        ektar.organizations_path
+        ektar.super_admin_organizations_path
       elsif current_user
         if current_user.organizations.size > 1
           ektar.new_select_organization_path
