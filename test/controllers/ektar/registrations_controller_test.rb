@@ -36,7 +36,7 @@ module Ektar
         {user: {
           email: "user@example.com",
           password: "Password17",
-          memberships_attributes: [organization_attributes: {name: "My Organization"}],
+          memberships_attributes: [organization_attributes: {name: "My Organization"}]
         }.merge(attrs)}
       end
     end

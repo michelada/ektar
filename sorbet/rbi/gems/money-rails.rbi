@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/money-rails/all/money-rails.rbi
 #
 # money-rails-1.13.3
+
 module MoneyRails
   extend MoneyRails::Configuration
 end
@@ -110,44 +111,7 @@ module MoneyRails::ActiveRecord::Monetizable::ClassMethods
   def register_currency(currency_name); end
   def track_monetized_attribute(name, value); end
 end
-module MoneyRails::ActiveRecord::MigrationExtensions
-end
-class MoneyRails::ActiveRecord::MigrationExtensions::OptionsExtractor
-  def self.extract(attribute, table_name, accessor, options = nil); end
-end
-module MoneyRails::ActiveRecord::MigrationExtensions::SchemaStatements
-  def add_monetize(table_name, accessor, options = nil); end
-  def remove_monetize(table_name, accessor, options = nil); end
-end
-module MoneyRails::ActiveRecord::MigrationExtensions::Table
-  def monetize(accessor, options = nil); end
-  def remove_monetize(accessor, options = nil); end
-end
-module MoneyRails::ActionViewExtension
-  def currency_symbol; end
-  def humanized_money(value, options = nil); end
-  def humanized_money_with_symbol(value, options = nil); end
-  def money_only_cents(value); end
-  def money_without_cents(value, options = nil); end
-  def money_without_cents_and_with_symbol(value); end
-end
-class ActiveSupport::Executor < ActiveSupport::ExecutionWrapper
-  def self.__callbacks; end
-end
 class ActiveRecord::Base
   extend MoneyRails::ActiveRecord::Monetizable::ClassMethods
-  include GlobalID::Identification
   include MoneyRails::ActiveRecord::Monetizable
-end
-class ActiveRecord::Migration
-  include MoneyRails::ActiveRecord::MigrationExtensions::SchemaStatements
-end
-class ActiveRecord::ConnectionAdapters::TableDefinition
-  include MoneyRails::ActiveRecord::MigrationExtensions::Table
-end
-class ActiveRecord::ConnectionAdapters::Table
-  include MoneyRails::ActiveRecord::MigrationExtensions::Table
-end
-class ActionView::Base
-  include MoneyRails::ActionViewExtension
 end

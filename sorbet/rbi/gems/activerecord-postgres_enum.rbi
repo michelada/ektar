@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/activerecord-postgres_enum/all/activerecord-postgres_enum.rbi
 #
 # activerecord-postgres_enum-0.6.0
+
 module ActiveRecord
 end
 module ActiveRecord::PostgresEnum

@@ -970,8 +970,6 @@ class ActionController::API
   include ::ActionController::Rescue
   include ::ActionController::Instrumentation
   include ::ActionController::ParamsWrapper
-  include ::ActionDispatch::Routing::RouteSet::MountedHelpers
-  include ::ActiveRecord::Railties::ControllerRuntime
   def __callbacks(); end
 
   def __callbacks?(); end
@@ -1026,7 +1024,6 @@ class ActionController::API
   extend ::ActionController::DefaultHeaders::ClassMethods
   extend ::ActionController::Instrumentation::ClassMethods
   extend ::ActionController::ParamsWrapper::ClassMethods
-  extend ::ActionController::Railties::Helpers
   def self.__callbacks(); end
 
   def self.__callbacks=(val); end
@@ -1145,8 +1142,6 @@ class ActionController::Base
   include ::ActionController::Rescue
   include ::ActionController::Instrumentation
   include ::ActionController::ParamsWrapper
-  include ::ActionDispatch::Routing::RouteSet::MountedHelpers
-  include ::ActiveRecord::Railties::ControllerRuntime
   def __callbacks(); end
 
   def __callbacks?(); end
@@ -1324,7 +1319,6 @@ class ActionController::Base
   extend ::ActionController::DefaultHeaders::ClassMethods
   extend ::ActionController::Instrumentation::ClassMethods
   extend ::ActionController::ParamsWrapper::ClassMethods
-  extend ::ActionController::Railties::Helpers
   def self.__callbacks(); end
 
   def self.__callbacks=(val); end
@@ -1894,6 +1888,17 @@ end
 
 module ActionController::Live
   extend ::ActiveSupport::Concern
+end
+
+class ActionController::LiveTestResponse
+  def error?(); end
+
+  def missing?(); end
+
+  def success?(); end
+end
+
+class ActionController::LiveTestResponse
 end
 
 class ActionController::LogSubscriber
@@ -2490,6 +2495,34 @@ class ActionController::TestCase
   def self._controller_class=(val); end
 
   def self._controller_class?(); end
+end
+
+class ActionController::TestRequest
+  def assign_parameters(routes, controller_path, action, parameters, generated_path, query_string_keys); end
+
+  def content_type=(type); end
+
+  def initialize(env, session, controller_class); end
+
+  def query_string=(string); end
+  DEFAULT_ENV = ::T.let(nil, ::T.untyped)
+  ENCODER = ::T.let(nil, ::T.untyped)
+end
+
+class ActionController::TestRequest
+  def self.create(controller_class); end
+
+  def self.new_session(); end
+end
+
+class ActionController::TestSession
+  def fetch(key, *args, &block); end
+
+  def initialize(session=T.unsafe(nil)); end
+  DEFAULT_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class ActionController::TestSession
 end
 
 module ActionController::Testing
@@ -3324,20 +3357,6 @@ module ActionDispatch::Http::Parameters
   PARAMETERS_KEY = ::T.let(nil, ::T.untyped)
 end
 
-module ActionDispatch::Http::Parameters::ClassMethods
-  def parameter_parsers=(parsers); end
-end
-
-module ActionDispatch::Http::Parameters::ClassMethods
-end
-
-class ActionDispatch::Http::Parameters::ParseError
-  def initialize(); end
-end
-
-class ActionDispatch::Http::Parameters::ParseError
-end
-
 module ActionDispatch::Http::Parameters
   extend ::ActiveSupport::Concern
 end
@@ -3619,9 +3638,6 @@ class ActionDispatch::IntegrationTest
   include ::ActionDispatch::Routing::UrlFor
   include ::ActionDispatch::Routing::PolymorphicRoutes
   include ::ActionDispatch::IntegrationTest::UrlOptions
-  include ::ActionMailer::TestHelper
-  include ::ActiveJob::TestHelper
-  include ::ActionMailer::TestCase::ClearTestDeliveries
 end
 
 module ActionDispatch::IntegrationTest::Behavior
@@ -4756,8 +4772,6 @@ class ActionDispatch::Request
 
   def server_addr(); end
 
-  def server_name(); end
-
   def server_protocol(); end
 
   def server_software(); end
@@ -4804,131 +4818,7 @@ class ActionDispatch::Request
   RFC5789 = ::T.let(nil, ::T.untyped)
 end
 
-class ActionDispatch::Request::PASS_NOT_FOUND
-end
-
-class ActionDispatch::Request::PASS_NOT_FOUND
-  def self.action(_); end
-
-  def self.binary_params_for?(action); end
-
-  def self.call(_); end
-end
-
-class ActionDispatch::Request::Session
-  def [](key); end
-
-  def []=(key, value); end
-
-  def clear(); end
-
-  def delete(key); end
-
-  def destroy(); end
-
-  def dig(*keys); end
-
-  def each(&block); end
-
-  def empty?(); end
-
-  def exists?(); end
-
-  def fetch(key, default=T.unsafe(nil), &block); end
-
-  def has_key?(key); end
-
-  def id(); end
-
-  def include?(key); end
-
-  def initialize(by, req); end
-
-  def key?(key); end
-
-  def keys(); end
-
-  def loaded?(); end
-
-  def merge!(other); end
-
-  def options(); end
-
-  def to_h(); end
-
-  def to_hash(); end
-
-  def update(hash); end
-
-  def values(); end
-  ENV_SESSION_KEY = ::T.let(nil, ::T.untyped)
-  ENV_SESSION_OPTIONS_KEY = ::T.let(nil, ::T.untyped)
-  Unspecified = ::T.let(nil, ::T.untyped)
-end
-
-class ActionDispatch::Request::Session::Options
-  def [](key); end
-
-  def []=(k, v); end
-
-  def id(req); end
-
-  def initialize(by, default_options); end
-
-  def to_hash(); end
-
-  def values_at(*args); end
-end
-
-class ActionDispatch::Request::Session::Options
-  def self.find(req); end
-
-  def self.set(req, options); end
-end
-
-class ActionDispatch::Request::Session
-  def self.create(store, req, default_options); end
-
-  def self.find(req); end
-
-  def self.set(req, session); end
-end
-
-class ActionDispatch::Request::Utils
-  def perform_deep_munge(); end
-
-  def perform_deep_munge=(obj); end
-end
-
-class ActionDispatch::Request::Utils::NoNilParamEncoder
-end
-
-class ActionDispatch::Request::Utils::NoNilParamEncoder
-end
-
-class ActionDispatch::Request::Utils::ParamEncoder
-end
-
-class ActionDispatch::Request::Utils::ParamEncoder
-  def self.handle_array(params); end
-
-  def self.normalize_encode_params(params); end
-end
-
-class ActionDispatch::Request::Utils
-  def self.check_param_encoding(params); end
-
-  def self.each_param_value(params, &block); end
-
-  def self.normalize_encode_params(params); end
-
-  def self.perform_deep_munge(); end
-
-  def self.perform_deep_munge=(obj); end
-end
-
 class ActionDispatch::Request
-  extend ::ActionDispatch::Http::Parameters::ClassMethods
   def self.empty(); end
 
   def self.ignore_accept_header(); end
@@ -4984,8 +4874,6 @@ class ActionDispatch::Response
   def commit!(); end
 
   def committed?(); end
-
-  def content_type=(content_type); end
 
   def cookies(); end
 
@@ -6102,10 +5990,6 @@ class ActionMailer::Base
   include ::AbstractController::Caching::ConfigMethods
   include ::ActionView::Rendering
   include ::ActionView::Layouts
-  include ::ActionDispatch::Routing::UrlFor
-  include ::ActionDispatch::Routing::PolymorphicRoutes
-  include ::AbstractController::UrlFor
-  include ::ActionDispatch::Routing::RouteSet::MountedHelpers
   def __callbacks(); end
 
   def __callbacks?(); end
@@ -6155,12 +6039,6 @@ class ActionMailer::Base
   def default_static_extension(); end
 
   def default_static_extension=(value); end
-
-  def default_url_options(); end
-
-  def default_url_options=(val); end
-
-  def default_url_options?(); end
 
   def deliver_later_queue_name(); end
 
@@ -6308,7 +6186,6 @@ class ActionMailer::Base
   extend ::AbstractController::Caching::Fragments::ClassMethods
   extend ::AbstractController::Caching::ClassMethods
   extend ::AbstractController::Caching::ConfigMethods
-  extend ::AbstractController::UrlFor::ClassMethods
   def self.__callbacks(); end
 
   def self.__callbacks=(val); end
@@ -6372,12 +6249,6 @@ class ActionMailer::Base
   def self.default_static_extension(); end
 
   def self.default_static_extension=(value); end
-
-  def self.default_url_options(); end
-
-  def self.default_url_options=(val); end
-
-  def self.default_url_options?(); end
 
   def self.deliver_later_queue_name(); end
 
@@ -6614,13 +6485,6 @@ class ActionMailer::MessageDelivery
 end
 
 class ActionMailer::MessageDelivery
-end
-
-class ActionMailer::NonInferrableMailerError
-  def initialize(name); end
-end
-
-class ActionMailer::NonInferrableMailerError
 end
 
 module ActionMailer::Parameterized
@@ -7495,6 +7359,37 @@ module ActionView::Context
 end
 
 module ActionView::Context
+end
+
+class ActionView::DependencyTracker
+end
+
+class ActionView::DependencyTracker::ERBTracker
+  def dependencies(); end
+
+  def initialize(name, template, view_paths=T.unsafe(nil)); end
+  EXPLICIT_DEPENDENCY = ::T.let(nil, ::T.untyped)
+  IDENTIFIER = ::T.let(nil, ::T.untyped)
+  LAYOUT_DEPENDENCY = ::T.let(nil, ::T.untyped)
+  LAYOUT_HASH_KEY = ::T.let(nil, ::T.untyped)
+  PARTIAL_HASH_KEY = ::T.let(nil, ::T.untyped)
+  RENDER_ARGUMENTS = ::T.let(nil, ::T.untyped)
+  STRING = ::T.let(nil, ::T.untyped)
+  VARIABLE_OR_METHOD_CHAIN = ::T.let(nil, ::T.untyped)
+end
+
+class ActionView::DependencyTracker::ERBTracker
+  def self.call(name, template, view_paths=T.unsafe(nil)); end
+
+  def self.supports_view_paths?(); end
+end
+
+class ActionView::DependencyTracker
+  def self.find_dependencies(name, template, view_paths=T.unsafe(nil)); end
+
+  def self.register_tracker(extension, tracker); end
+
+  def self.remove_tracker(handler); end
 end
 
 class ActionView::Digestor
@@ -8427,26 +8322,8 @@ end
 class ActionView::OutputFlow
 end
 
-class ActionView::PartialIteration
-  def first?(); end
-
-  def index(); end
-
-  def initialize(size); end
-
-  def iterate!(); end
-
-  def last?(); end
-
-  def size(); end
-end
-
-class ActionView::PartialIteration
-end
-
 class ActionView::PartialRenderer
   include ::ActionView::CollectionCaching
-  include ::ActiveRecord::Railties::CollectionCacheAssociationLoading
   def collection_cache(); end
 
   def collection_cache=(obj); end
@@ -8706,6 +8583,13 @@ class ActionView::StreamingTemplateRenderer::Body
 end
 
 class ActionView::StreamingTemplateRenderer
+end
+
+class ActionView::SyntaxErrorInTemplate
+  def initialize(template, offending_code_string); end
+end
+
+class ActionView::SyntaxErrorInTemplate
 end
 
 class ActionView::Template
@@ -9323,6 +9207,15 @@ end
 
 class ActiveJob::QueueAdapters::AsyncAdapter::Scheduler
   DEFAULT_EXECUTOR_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class ActiveJob::QueueAdapters::InlineAdapter
+  def enqueue(job); end
+
+  def enqueue_at(*_); end
+end
+
+class ActiveJob::QueueAdapters::InlineAdapter
 end
 
 class ActiveJob::QueueAdapters::TestAdapter
@@ -14232,7 +14125,6 @@ end
 
 class ActiveRecord::ExplainRegistry
   extend ::ActiveSupport::PerThreadRegistry
-  def self.collect?(*args, &block); end
 end
 
 class ActiveRecord::ExplainSubscriber
@@ -16079,35 +15971,6 @@ end
 class ActiveRecord::Railtie
 end
 
-module ActiveRecord::Railties
-end
-
-module ActiveRecord::Railties::CollectionCacheAssociationLoading
-  def collection_with_template(*_); end
-
-  def collection_without_template(*_); end
-
-  def relation_from_options(cached: T.unsafe(nil), partial: T.unsafe(nil), collection: T.unsafe(nil), **_); end
-
-  def setup(context, options, as, block); end
-end
-
-module ActiveRecord::Railties::CollectionCacheAssociationLoading
-end
-
-module ActiveRecord::Railties::ControllerRuntime
-  def db_runtime(); end
-
-  def db_runtime=(db_runtime); end
-end
-
-module ActiveRecord::Railties::ControllerRuntime
-  extend ::ActiveSupport::Concern
-end
-
-module ActiveRecord::Railties
-end
-
 class ActiveRecord::RangeError
 end
 
@@ -17010,7 +16873,6 @@ end
 
 class ActiveRecord::Scoping::ScopeRegistry
   extend ::ActiveSupport::PerThreadRegistry
-  def self.value_for(*args, &block); end
 end
 
 module ActiveRecord::Scoping
@@ -17249,7 +17111,6 @@ end
 
 class ActiveRecord::SuppressorRegistry
   extend ::ActiveSupport::PerThreadRegistry
-  def self.suppressed(*args, &block); end
 end
 
 class ActiveRecord::TableMetadata
@@ -18232,17 +18093,10 @@ end
 
 class ActiveSupport::Cache::FileStore
   include ::ActiveSupport::Cache::Strategy::LocalCache
-  def cache_path(); end
-
-  def initialize(cache_path, options=T.unsafe(nil)); end
   DIR_FORMATTER = ::T.let(nil, ::T.untyped)
   FILENAME_MAX_SIZE = ::T.let(nil, ::T.untyped)
   FILEPATH_MAX_SIZE = ::T.let(nil, ::T.untyped)
   GITKEEP_FILES = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveSupport::Cache::FileStore
-  def self.supports_cache_versioning?(); end
 end
 
 class ActiveSupport::Cache::MemoryStore
@@ -18255,56 +18109,6 @@ end
 
 module ActiveSupport::Callbacks
   CALLBACK_FILTER_TYPES = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveSupport::CurrentAttributes
-  include ::ActiveSupport::Callbacks
-  def __callbacks(); end
-
-  def __callbacks?(); end
-
-  def _reset_callbacks(); end
-
-  def _run_reset_callbacks(&block); end
-
-  def attributes(); end
-
-  def attributes=(attributes); end
-
-  def reset(); end
-
-  def set(set_attributes); end
-end
-
-class ActiveSupport::CurrentAttributes
-  extend ::ActiveSupport::DescendantsTracker
-  def self.__callbacks(); end
-
-  def self.__callbacks=(val); end
-
-  def self.__callbacks?(); end
-
-  def self._reset_callbacks(); end
-
-  def self._reset_callbacks=(value); end
-
-  def self.after_reset(&block); end
-
-  def self.attribute(*names); end
-
-  def self.before_reset(&block); end
-
-  def self.clear_all(); end
-
-  def self.instance(); end
-
-  def self.reset(*args, &block); end
-
-  def self.reset_all(); end
-
-  def self.resets(&block); end
-
-  def self.set(*args, &block); end
 end
 
 module ActiveSupport::Dependencies
@@ -18328,17 +18132,6 @@ class ActiveSupport::Deprecation
   extend ::ActiveSupport::Deprecation::InstanceDelegator::OverrideDelegators
 end
 
-class ActiveSupport::Digest
-end
-
-class ActiveSupport::Digest
-  def self.hash_digest_class(); end
-
-  def self.hash_digest_class=(klass); end
-
-  def self.hexdigest(arg); end
-end
-
 class ActiveSupport::Duration
   PARTS = ::T.let(nil, ::T.untyped)
   PARTS_IN_SECONDS = ::T.let(nil, ::T.untyped)
@@ -18351,21 +18144,6 @@ class ActiveSupport::Duration
 end
 
 class ActiveSupport::Duration::ISO8601Parser
-  def initialize(string); end
-
-  def mode(); end
-
-  def mode=(mode); end
-
-  def parse!(); end
-
-  def parts(); end
-
-  def scanner(); end
-
-  def sign(); end
-
-  def sign=(sign); end
   COMMA = ::T.let(nil, ::T.untyped)
   DATE_COMPONENT = ::T.let(nil, ::T.untyped)
   DATE_COMPONENTS = ::T.let(nil, ::T.untyped)
@@ -18380,73 +18158,12 @@ class ActiveSupport::Duration::ISO8601Parser
   TIME_TO_PART = ::T.let(nil, ::T.untyped)
 end
 
-class ActiveSupport::Duration::ISO8601Parser::ParsingError
-end
-
-class ActiveSupport::Duration::ISO8601Parser::ParsingError
-end
-
-class ActiveSupport::Duration::ISO8601Parser
-end
-
-class ActiveSupport::Duration::ISO8601Serializer
-  def initialize(duration, precision: T.unsafe(nil)); end
-
-  def serialize(); end
-end
-
-class ActiveSupport::Duration::ISO8601Serializer
-end
-
 class ActiveSupport::EncryptedFile
   CIPHER = ::T.let(nil, ::T.untyped)
 end
 
-class ActiveSupport::EventedFileUpdateChecker
-  def execute(); end
-
-  def execute_if_updated(); end
-
-  def initialize(files, dirs=T.unsafe(nil), &block); end
-
-  def updated?(); end
-end
-
-class ActiveSupport::EventedFileUpdateChecker::PathHelper
-  def existing_parent(dir); end
-
-  def filter_out_descendants(dirs); end
-
-  def longest_common_subpath(paths); end
-
-  def normalize_extension(ext); end
-
-  def xpath(path); end
-end
-
-class ActiveSupport::EventedFileUpdateChecker::PathHelper
-end
-
-class ActiveSupport::EventedFileUpdateChecker
-end
-
 class ActiveSupport::ExecutionWrapper
   Null = ::T.let(nil, ::T.untyped)
-end
-
-module ActiveSupport::Gzip
-end
-
-class ActiveSupport::Gzip::Stream
-end
-
-class ActiveSupport::Gzip::Stream
-end
-
-module ActiveSupport::Gzip
-  def self.compress(source, level=T.unsafe(nil), strategy=T.unsafe(nil)); end
-
-  def self.decompress(source); end
 end
 
 module ActiveSupport::JSON
@@ -18503,132 +18220,24 @@ module ActiveSupport::Multibyte::Unicode
 end
 
 class ActiveSupport::NumberHelper::NumberConverter
-  def execute(); end
-
-  def initialize(number, options); end
-
-  def namespace(); end
-
-  def namespace=(val); end
-
-  def namespace?(); end
-
-  def number(); end
-
-  def opts(); end
-
-  def validate_float(); end
-
-  def validate_float=(val); end
-
-  def validate_float?(); end
   DEFAULTS = ::T.let(nil, ::T.untyped)
 end
 
-class ActiveSupport::NumberHelper::NumberConverter
-  def self.convert(number, options); end
-
-  def self.namespace(); end
-
-  def self.namespace=(val); end
-
-  def self.namespace?(); end
-
-  def self.validate_float(); end
-
-  def self.validate_float=(val); end
-
-  def self.validate_float?(); end
-end
-
-class ActiveSupport::NumberHelper::NumberToCurrencyConverter
-  def convert(); end
-end
-
-class ActiveSupport::NumberHelper::NumberToCurrencyConverter
-end
-
 class ActiveSupport::NumberHelper::NumberToDelimitedConverter
-  def convert(); end
   DEFAULT_DELIMITER_REGEX = ::T.let(nil, ::T.untyped)
 end
 
-class ActiveSupport::NumberHelper::NumberToDelimitedConverter
-end
-
 class ActiveSupport::NumberHelper::NumberToHumanConverter
-  def convert(); end
   DECIMAL_UNITS = ::T.let(nil, ::T.untyped)
   INVERTED_DECIMAL_UNITS = ::T.let(nil, ::T.untyped)
 end
 
-class ActiveSupport::NumberHelper::NumberToHumanConverter
-end
-
 class ActiveSupport::NumberHelper::NumberToHumanSizeConverter
-  def convert(); end
   STORAGE_UNITS = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveSupport::NumberHelper::NumberToHumanSizeConverter
-end
-
-class ActiveSupport::NumberHelper::NumberToPercentageConverter
-  def convert(); end
-end
-
-class ActiveSupport::NumberHelper::NumberToPercentageConverter
-end
-
-class ActiveSupport::NumberHelper::NumberToPhoneConverter
-  def convert(); end
-end
-
-class ActiveSupport::NumberHelper::NumberToPhoneConverter
-end
-
-class ActiveSupport::NumberHelper::NumberToRoundedConverter
-  def convert(); end
-end
-
-class ActiveSupport::NumberHelper::NumberToRoundedConverter
-end
-
-class ActiveSupport::NumberHelper::RoundingHelper
-  def digit_count(number); end
-
-  def initialize(options); end
-
-  def options(); end
-
-  def round(number); end
-end
-
-class ActiveSupport::NumberHelper::RoundingHelper
-end
-
-class ActiveSupport::OrderedHash
-  def encode_with(coder); end
-
-  def reject(*args, &block); end
-
-  def select(*args, &block); end
-
-  def to_yaml_type(); end
-end
-
-class ActiveSupport::OrderedHash
 end
 
 class ActiveSupport::ParameterFilter
   FILTERED = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveSupport::ProxyObject
-  def raise(*args); end
-end
-
-class ActiveSupport::ProxyObject
 end
 
 module ActiveSupport::RangeWithFormat
@@ -18649,283 +18258,19 @@ class ActiveSupport::Subscriber
 end
 
 class ActiveSupport::TestCase
-  include ::ActiveSupport::Testing::TaggedLogging
-  include ::ActiveSupport::Callbacks
-  include ::ActiveSupport::Testing::Assertions
-  include ::ActiveSupport::Testing::Deprecation
-  include ::ActiveSupport::Testing::TimeHelpers
-  include ::ActiveSupport::Testing::FileFixtures
   include ::ActiveSupport::Testing::SetupAndTeardown
-  def __callbacks(); end
-
-  def __callbacks?(); end
-
-  def _run_setup_callbacks(&block); end
-
-  def _run_teardown_callbacks(&block); end
-
-  def _setup_callbacks(); end
-
-  def _teardown_callbacks(); end
-
-  def assert_no_match(matcher, obj, msg=T.unsafe(nil)); end
-
-  def assert_not_empty(obj, msg=T.unsafe(nil)); end
-
-  def assert_not_equal(exp, act, msg=T.unsafe(nil)); end
-
-  def assert_not_in_delta(exp, act, delta=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def assert_not_in_epsilon(a, b, epsilon=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def assert_not_includes(collection, obj, msg=T.unsafe(nil)); end
-
-  def assert_not_instance_of(cls, obj, msg=T.unsafe(nil)); end
-
-  def assert_not_kind_of(cls, obj, msg=T.unsafe(nil)); end
-
-  def assert_not_nil(obj, msg=T.unsafe(nil)); end
-
-  def assert_not_operator(o1, op, o2=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def assert_not_predicate(o1, op, msg=T.unsafe(nil)); end
-
-  def assert_not_respond_to(obj, meth, msg=T.unsafe(nil)); end
-
-  def assert_not_same(exp, act, msg=T.unsafe(nil)); end
-
-  def assert_raise(*exp); end
-
-  def file_fixture_path(); end
-
-  def file_fixture_path?(); end
-
-  def method_name(); end
-end
-
-class ActiveSupport::TestCase
-  extend ::ActiveSupport::DescendantsTracker
-  extend ::ActiveSupport::Testing::Declarative
-  extend ::Rails::LineFiltering
-  def self.__callbacks(); end
-
-  def self.__callbacks=(val); end
-
-  def self.__callbacks?(); end
-
-  def self._setup_callbacks(); end
-
-  def self._setup_callbacks=(value); end
-
-  def self._teardown_callbacks(); end
-
-  def self._teardown_callbacks=(value); end
-
-  def self.file_fixture_path(); end
-
-  def self.file_fixture_path=(val); end
-
-  def self.file_fixture_path?(); end
-
-  def self.parallelize(workers: T.unsafe(nil), with: T.unsafe(nil)); end
-
-  def self.parallelize_setup(&block); end
-
-  def self.parallelize_teardown(&block); end
-
-  def self.test_order=(new_order); end
-end
-
-module ActiveSupport::Testing
 end
 
 module ActiveSupport::Testing::Assertions
-  def assert_changes(expression, message=T.unsafe(nil), from: T.unsafe(nil), to: T.unsafe(nil), &block); end
-
-  def assert_difference(expression, *args, &block); end
-
-  def assert_no_changes(expression, message=T.unsafe(nil), &block); end
-
-  def assert_no_difference(expression, message=T.unsafe(nil), &block); end
-
-  def assert_not(object, message=T.unsafe(nil)); end
-
-  def assert_nothing_raised(); end
   UNTRACKED = ::T.let(nil, ::T.untyped)
 end
 
-module ActiveSupport::Testing::Assertions
-end
-
-module ActiveSupport::Testing::ConstantLookup
-end
-
-module ActiveSupport::Testing::ConstantLookup
-  extend ::ActiveSupport::Concern
-end
-
-module ActiveSupport::Testing::Declarative
-  def test(name, &block); end
-end
-
-module ActiveSupport::Testing::Declarative
-end
-
-module ActiveSupport::Testing::Deprecation
-  def assert_deprecated(match=T.unsafe(nil), deprecator=T.unsafe(nil), &block); end
-
-  def assert_not_deprecated(deprecator=T.unsafe(nil), &block); end
-
-  def collect_deprecations(deprecator=T.unsafe(nil)); end
-end
-
-module ActiveSupport::Testing::Deprecation
-end
-
-module ActiveSupport::Testing::FileFixtures
-  def file_fixture(fixture_name); end
-end
-
-module ActiveSupport::Testing::FileFixtures
-  extend ::ActiveSupport::Concern
-end
-
-module ActiveSupport::Testing::Isolation
-  include ::ActiveSupport::Testing::Isolation::Forking
-  def run(); end
-end
-
-module ActiveSupport::Testing::Isolation::Forking
-  def run_in_isolation(&blk); end
-end
-
-module ActiveSupport::Testing::Isolation::Forking
-end
-
 module ActiveSupport::Testing::Isolation::Subprocess
-  def run_in_isolation(&blk); end
   ORIG_ARGV = ::T.let(nil, ::T.untyped)
-end
-
-module ActiveSupport::Testing::Isolation::Subprocess
-end
-
-module ActiveSupport::Testing::Isolation
-  def self.forking_env?(); end
-
-  def self.included(klass); end
-end
-
-class ActiveSupport::Testing::Parallelization
-  def <<(work); end
-
-  def after_fork(worker); end
-
-  def after_fork_hooks(); end
-
-  def initialize(queue_size); end
-
-  def run_cleanup(worker); end
-
-  def run_cleanup_hooks(); end
-
-  def shutdown(); end
-
-  def start(); end
 end
 
 class ActiveSupport::Testing::Parallelization::Server
   include ::DRb::DRbUndumped
-  def <<(o); end
-
-  def length(); end
-
-  def pop(); end
-
-  def record(reporter, result); end
-end
-
-class ActiveSupport::Testing::Parallelization::Server
-end
-
-class ActiveSupport::Testing::Parallelization
-  def self.after_fork_hook(&blk); end
-
-  def self.after_fork_hooks(); end
-
-  def self.run_cleanup_hook(&blk); end
-
-  def self.run_cleanup_hooks(); end
-end
-
-module ActiveSupport::Testing::SetupAndTeardown
-  def after_teardown(); end
-
-  def before_setup(); end
-end
-
-module ActiveSupport::Testing::SetupAndTeardown
-  def self.prepended(klass); end
-end
-
-class ActiveSupport::Testing::SimpleStubs
-  def stub_object(object, method_name, &block); end
-
-  def stubbing(object, method_name); end
-
-  def unstub_all!(); end
-end
-
-class ActiveSupport::Testing::SimpleStubs::Stub
-  def method_name(); end
-
-  def method_name=(_); end
-
-  def object(); end
-
-  def object=(_); end
-
-  def original_method(); end
-
-  def original_method=(_); end
-end
-
-class ActiveSupport::Testing::SimpleStubs::Stub
-  def self.[](*_); end
-
-  def self.members(); end
-end
-
-class ActiveSupport::Testing::SimpleStubs
-end
-
-module ActiveSupport::Testing::TaggedLogging
-  def before_setup(); end
-
-  def tagged_logger=(tagged_logger); end
-end
-
-module ActiveSupport::Testing::TaggedLogging
-end
-
-module ActiveSupport::Testing::TimeHelpers
-  def after_teardown(); end
-
-  def freeze_time(&block); end
-
-  def travel(duration, &block); end
-
-  def travel_back(); end
-
-  def travel_to(date_or_time); end
-
-  def unfreeze_time(); end
-end
-
-module ActiveSupport::Testing::TimeHelpers
-end
-
-module ActiveSupport::Testing
 end
 
 class ActiveSupport::TimeWithZone
@@ -20732,8 +20077,6 @@ class Array
 
   def pack(*_); end
 
-  def quote(); end
-
   def replace(_); end
 
   def shelljoin(); end
@@ -20743,7 +20086,974 @@ class Array
 end
 
 class Array
-  def self.try_convert(_); end
+  def self.wrap(object); end
+end
+
+module Aws
+  CORE_GEM_VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::ClientSideMonitoring::RequestMetrics
+  FIELD_MAX_LENGTH = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::ECSCredentials
+  NETWORK_ERRORS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::EndpointCache
+  MAX_ENTRIES = ::T.let(nil, ::T.untyped)
+  MAX_THREADS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::EndpointCache::Endpoint
+  CACHE_PERIOD = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::EventStream::Decoder
+  ONE_MEGABYTE = ::T.let(nil, ::T.untyped)
+  OVERHEAD_LENGTH = ::T.let(nil, ::T.untyped)
+  PRELUDE_LENGTH = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::EventStream::Encoder
+  MAX_HEADERS_LENGTH = ::T.let(nil, ::T.untyped)
+  MAX_PAYLOAD_LENGTH = ::T.let(nil, ::T.untyped)
+  OVERHEAD_LENGTH = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::InstanceProfileCredentials
+  METADATA_PATH_BASE = ::T.let(nil, ::T.untyped)
+  METADATA_TOKEN_PATH = ::T.let(nil, ::T.untyped)
+  NETWORK_ERRORS = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::Json
+  ENGINE_DUMP_OPTIONS = ::T.let(nil, ::T.untyped)
+  ENGINE_ERRORS = ::T.let(nil, ::T.untyped)
+  ENGINE_LOAD_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+Aws::Json::ENGINE = JSON
+
+class Aws::Json::Handler
+  CONTENT_TYPE = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::KMS
+  GEM_VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::KMS::ClientApi
+  API = ::T.let(nil, ::T.untyped)
+  AWSAccountIdType = ::T.let(nil, ::T.untyped)
+  AlgorithmSpec = ::T.let(nil, ::T.untyped)
+  AliasList = ::T.let(nil, ::T.untyped)
+  AliasListEntry = ::T.let(nil, ::T.untyped)
+  AliasNameType = ::T.let(nil, ::T.untyped)
+  AlreadyExistsException = ::T.let(nil, ::T.untyped)
+  ArnType = ::T.let(nil, ::T.untyped)
+  BooleanType = ::T.let(nil, ::T.untyped)
+  CancelKeyDeletionRequest = ::T.let(nil, ::T.untyped)
+  CancelKeyDeletionResponse = ::T.let(nil, ::T.untyped)
+  CiphertextType = ::T.let(nil, ::T.untyped)
+  CloudHsmClusterIdType = ::T.let(nil, ::T.untyped)
+  CloudHsmClusterInUseException = ::T.let(nil, ::T.untyped)
+  CloudHsmClusterInvalidConfigurationException = ::T.let(nil, ::T.untyped)
+  CloudHsmClusterNotActiveException = ::T.let(nil, ::T.untyped)
+  CloudHsmClusterNotFoundException = ::T.let(nil, ::T.untyped)
+  CloudHsmClusterNotRelatedException = ::T.let(nil, ::T.untyped)
+  ConnectCustomKeyStoreRequest = ::T.let(nil, ::T.untyped)
+  ConnectCustomKeyStoreResponse = ::T.let(nil, ::T.untyped)
+  ConnectionErrorCodeType = ::T.let(nil, ::T.untyped)
+  ConnectionStateType = ::T.let(nil, ::T.untyped)
+  CreateAliasRequest = ::T.let(nil, ::T.untyped)
+  CreateCustomKeyStoreRequest = ::T.let(nil, ::T.untyped)
+  CreateCustomKeyStoreResponse = ::T.let(nil, ::T.untyped)
+  CreateGrantRequest = ::T.let(nil, ::T.untyped)
+  CreateGrantResponse = ::T.let(nil, ::T.untyped)
+  CreateKeyRequest = ::T.let(nil, ::T.untyped)
+  CreateKeyResponse = ::T.let(nil, ::T.untyped)
+  CustomKeyStoreHasCMKsException = ::T.let(nil, ::T.untyped)
+  CustomKeyStoreIdType = ::T.let(nil, ::T.untyped)
+  CustomKeyStoreInvalidStateException = ::T.let(nil, ::T.untyped)
+  CustomKeyStoreNameInUseException = ::T.let(nil, ::T.untyped)
+  CustomKeyStoreNameType = ::T.let(nil, ::T.untyped)
+  CustomKeyStoreNotFoundException = ::T.let(nil, ::T.untyped)
+  CustomKeyStoresList = ::T.let(nil, ::T.untyped)
+  CustomKeyStoresListEntry = ::T.let(nil, ::T.untyped)
+  CustomerMasterKeySpec = ::T.let(nil, ::T.untyped)
+  DataKeyPairSpec = ::T.let(nil, ::T.untyped)
+  DataKeySpec = ::T.let(nil, ::T.untyped)
+  DateType = ::T.let(nil, ::T.untyped)
+  DecryptRequest = ::T.let(nil, ::T.untyped)
+  DecryptResponse = ::T.let(nil, ::T.untyped)
+  DeleteAliasRequest = ::T.let(nil, ::T.untyped)
+  DeleteCustomKeyStoreRequest = ::T.let(nil, ::T.untyped)
+  DeleteCustomKeyStoreResponse = ::T.let(nil, ::T.untyped)
+  DeleteImportedKeyMaterialRequest = ::T.let(nil, ::T.untyped)
+  DependencyTimeoutException = ::T.let(nil, ::T.untyped)
+  DescribeCustomKeyStoresRequest = ::T.let(nil, ::T.untyped)
+  DescribeCustomKeyStoresResponse = ::T.let(nil, ::T.untyped)
+  DescribeKeyRequest = ::T.let(nil, ::T.untyped)
+  DescribeKeyResponse = ::T.let(nil, ::T.untyped)
+  DescriptionType = ::T.let(nil, ::T.untyped)
+  DisableKeyRequest = ::T.let(nil, ::T.untyped)
+  DisableKeyRotationRequest = ::T.let(nil, ::T.untyped)
+  DisabledException = ::T.let(nil, ::T.untyped)
+  DisconnectCustomKeyStoreRequest = ::T.let(nil, ::T.untyped)
+  DisconnectCustomKeyStoreResponse = ::T.let(nil, ::T.untyped)
+  EnableKeyRequest = ::T.let(nil, ::T.untyped)
+  EnableKeyRotationRequest = ::T.let(nil, ::T.untyped)
+  EncryptRequest = ::T.let(nil, ::T.untyped)
+  EncryptResponse = ::T.let(nil, ::T.untyped)
+  EncryptionAlgorithmSpec = ::T.let(nil, ::T.untyped)
+  EncryptionAlgorithmSpecList = ::T.let(nil, ::T.untyped)
+  EncryptionContextKey = ::T.let(nil, ::T.untyped)
+  EncryptionContextType = ::T.let(nil, ::T.untyped)
+  EncryptionContextValue = ::T.let(nil, ::T.untyped)
+  ErrorMessageType = ::T.let(nil, ::T.untyped)
+  ExpirationModelType = ::T.let(nil, ::T.untyped)
+  ExpiredImportTokenException = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyPairRequest = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyPairResponse = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyPairWithoutPlaintextRequest = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyPairWithoutPlaintextResponse = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyRequest = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyResponse = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyWithoutPlaintextRequest = ::T.let(nil, ::T.untyped)
+  GenerateDataKeyWithoutPlaintextResponse = ::T.let(nil, ::T.untyped)
+  GenerateRandomRequest = ::T.let(nil, ::T.untyped)
+  GenerateRandomResponse = ::T.let(nil, ::T.untyped)
+  GetKeyPolicyRequest = ::T.let(nil, ::T.untyped)
+  GetKeyPolicyResponse = ::T.let(nil, ::T.untyped)
+  GetKeyRotationStatusRequest = ::T.let(nil, ::T.untyped)
+  GetKeyRotationStatusResponse = ::T.let(nil, ::T.untyped)
+  GetParametersForImportRequest = ::T.let(nil, ::T.untyped)
+  GetParametersForImportResponse = ::T.let(nil, ::T.untyped)
+  GetPublicKeyRequest = ::T.let(nil, ::T.untyped)
+  GetPublicKeyResponse = ::T.let(nil, ::T.untyped)
+  GrantConstraints = ::T.let(nil, ::T.untyped)
+  GrantIdType = ::T.let(nil, ::T.untyped)
+  GrantList = ::T.let(nil, ::T.untyped)
+  GrantListEntry = ::T.let(nil, ::T.untyped)
+  GrantNameType = ::T.let(nil, ::T.untyped)
+  GrantOperation = ::T.let(nil, ::T.untyped)
+  GrantOperationList = ::T.let(nil, ::T.untyped)
+  GrantTokenList = ::T.let(nil, ::T.untyped)
+  GrantTokenType = ::T.let(nil, ::T.untyped)
+  ImportKeyMaterialRequest = ::T.let(nil, ::T.untyped)
+  ImportKeyMaterialResponse = ::T.let(nil, ::T.untyped)
+  IncorrectKeyException = ::T.let(nil, ::T.untyped)
+  IncorrectKeyMaterialException = ::T.let(nil, ::T.untyped)
+  IncorrectTrustAnchorException = ::T.let(nil, ::T.untyped)
+  InvalidAliasNameException = ::T.let(nil, ::T.untyped)
+  InvalidArnException = ::T.let(nil, ::T.untyped)
+  InvalidCiphertextException = ::T.let(nil, ::T.untyped)
+  InvalidGrantIdException = ::T.let(nil, ::T.untyped)
+  InvalidGrantTokenException = ::T.let(nil, ::T.untyped)
+  InvalidImportTokenException = ::T.let(nil, ::T.untyped)
+  InvalidKeyUsageException = ::T.let(nil, ::T.untyped)
+  InvalidMarkerException = ::T.let(nil, ::T.untyped)
+  KMSInternalException = ::T.let(nil, ::T.untyped)
+  KMSInvalidSignatureException = ::T.let(nil, ::T.untyped)
+  KMSInvalidStateException = ::T.let(nil, ::T.untyped)
+  KeyIdType = ::T.let(nil, ::T.untyped)
+  KeyList = ::T.let(nil, ::T.untyped)
+  KeyListEntry = ::T.let(nil, ::T.untyped)
+  KeyManagerType = ::T.let(nil, ::T.untyped)
+  KeyMetadata = ::T.let(nil, ::T.untyped)
+  KeyState = ::T.let(nil, ::T.untyped)
+  KeyStorePasswordType = ::T.let(nil, ::T.untyped)
+  KeyUnavailableException = ::T.let(nil, ::T.untyped)
+  KeyUsageType = ::T.let(nil, ::T.untyped)
+  LimitExceededException = ::T.let(nil, ::T.untyped)
+  LimitType = ::T.let(nil, ::T.untyped)
+  ListAliasesRequest = ::T.let(nil, ::T.untyped)
+  ListAliasesResponse = ::T.let(nil, ::T.untyped)
+  ListGrantsRequest = ::T.let(nil, ::T.untyped)
+  ListGrantsResponse = ::T.let(nil, ::T.untyped)
+  ListKeyPoliciesRequest = ::T.let(nil, ::T.untyped)
+  ListKeyPoliciesResponse = ::T.let(nil, ::T.untyped)
+  ListKeysRequest = ::T.let(nil, ::T.untyped)
+  ListKeysResponse = ::T.let(nil, ::T.untyped)
+  ListResourceTagsRequest = ::T.let(nil, ::T.untyped)
+  ListResourceTagsResponse = ::T.let(nil, ::T.untyped)
+  ListRetirableGrantsRequest = ::T.let(nil, ::T.untyped)
+  MalformedPolicyDocumentException = ::T.let(nil, ::T.untyped)
+  MarkerType = ::T.let(nil, ::T.untyped)
+  MessageType = ::T.let(nil, ::T.untyped)
+  NotFoundException = ::T.let(nil, ::T.untyped)
+  NumberOfBytesType = ::T.let(nil, ::T.untyped)
+  OriginType = ::T.let(nil, ::T.untyped)
+  PendingWindowInDaysType = ::T.let(nil, ::T.untyped)
+  PlaintextType = ::T.let(nil, ::T.untyped)
+  PolicyNameList = ::T.let(nil, ::T.untyped)
+  PolicyNameType = ::T.let(nil, ::T.untyped)
+  PolicyType = ::T.let(nil, ::T.untyped)
+  PrincipalIdType = ::T.let(nil, ::T.untyped)
+  PublicKeyType = ::T.let(nil, ::T.untyped)
+  PutKeyPolicyRequest = ::T.let(nil, ::T.untyped)
+  ReEncryptRequest = ::T.let(nil, ::T.untyped)
+  ReEncryptResponse = ::T.let(nil, ::T.untyped)
+  RetireGrantRequest = ::T.let(nil, ::T.untyped)
+  RevokeGrantRequest = ::T.let(nil, ::T.untyped)
+  ScheduleKeyDeletionRequest = ::T.let(nil, ::T.untyped)
+  ScheduleKeyDeletionResponse = ::T.let(nil, ::T.untyped)
+  SignRequest = ::T.let(nil, ::T.untyped)
+  SignResponse = ::T.let(nil, ::T.untyped)
+  SigningAlgorithmSpec = ::T.let(nil, ::T.untyped)
+  SigningAlgorithmSpecList = ::T.let(nil, ::T.untyped)
+  Tag = ::T.let(nil, ::T.untyped)
+  TagException = ::T.let(nil, ::T.untyped)
+  TagKeyList = ::T.let(nil, ::T.untyped)
+  TagKeyType = ::T.let(nil, ::T.untyped)
+  TagList = ::T.let(nil, ::T.untyped)
+  TagResourceRequest = ::T.let(nil, ::T.untyped)
+  TagValueType = ::T.let(nil, ::T.untyped)
+  TrustAnchorCertificateType = ::T.let(nil, ::T.untyped)
+  UnsupportedOperationException = ::T.let(nil, ::T.untyped)
+  UntagResourceRequest = ::T.let(nil, ::T.untyped)
+  UpdateAliasRequest = ::T.let(nil, ::T.untyped)
+  UpdateCustomKeyStoreRequest = ::T.let(nil, ::T.untyped)
+  UpdateCustomKeyStoreResponse = ::T.let(nil, ::T.untyped)
+  UpdateKeyDescriptionRequest = ::T.let(nil, ::T.untyped)
+  VerifyRequest = ::T.let(nil, ::T.untyped)
+  VerifyResponse = ::T.let(nil, ::T.untyped)
+  WrappingKeySpec = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Log::ParamFilter
+  SENSITIVE = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Log::ParamFormatter
+  MAX_STRING_SIZE = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::ParamValidator
+  EXPECTED_GOT = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Partitions::EndpointProvider
+  STS_LEGACY_REGIONS = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::Partitions
+  extend ::Enumerable
+end
+
+class Aws::Plugins::RegionalEndpoint
+  MISSING_REGION = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Plugins::Retries::ClientRateLimiter
+  BETA = ::T.let(nil, ::T.untyped)
+  MIN_CAPACITY = ::T.let(nil, ::T.untyped)
+  MIN_FILL_RATE = ::T.let(nil, ::T.untyped)
+  SCALE_CONSTANT = ::T.let(nil, ::T.untyped)
+  SMOOTH = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Plugins::Retries::ClockSkew
+  CLOCK_SKEW_THRESHOLD = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Plugins::Retries::ErrorInspector
+  CHECKSUM_ERRORS = ::T.let(nil, ::T.untyped)
+  CLOCK_SKEW_ERRORS = ::T.let(nil, ::T.untyped)
+  EXPIRED_CREDS = ::T.let(nil, ::T.untyped)
+  NETWORKING_ERRORS = ::T.let(nil, ::T.untyped)
+  THROTTLING_ERRORS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Plugins::Retries::RetryQuota
+  INITIAL_RETRY_TOKENS = ::T.let(nil, ::T.untyped)
+  NO_RETRY_INCREMENT = ::T.let(nil, ::T.untyped)
+  RETRY_COST = ::T.let(nil, ::T.untyped)
+  TIMEOUT_RETRY_COST = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Plugins::RetryErrors
+  DEFAULT_BACKOFF = ::T.let(nil, ::T.untyped)
+  EQUAL_JITTER = ::T.let(nil, ::T.untyped)
+  FULL_JITTER = ::T.let(nil, ::T.untyped)
+  JITTERS = ::T.let(nil, ::T.untyped)
+  NO_JITTER = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Plugins::RetryErrors::Handler
+  MAX_BACKOFF = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Query::Handler
+  CONTENT_TYPE = ::T.let(nil, ::T.untyped)
+  METADATA_REF = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::S3
+  BUCKET_REGIONS = ::T.let(nil, ::T.untyped)
+  GEM_VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::S3::ClientApi
+  API = ::T.let(nil, ::T.untyped)
+  AbortDate = ::T.let(nil, ::T.untyped)
+  AbortIncompleteMultipartUpload = ::T.let(nil, ::T.untyped)
+  AbortMultipartUploadOutput = ::T.let(nil, ::T.untyped)
+  AbortMultipartUploadRequest = ::T.let(nil, ::T.untyped)
+  AbortRuleId = ::T.let(nil, ::T.untyped)
+  AccelerateConfiguration = ::T.let(nil, ::T.untyped)
+  AcceptRanges = ::T.let(nil, ::T.untyped)
+  AccessControlPolicy = ::T.let(nil, ::T.untyped)
+  AccessControlTranslation = ::T.let(nil, ::T.untyped)
+  AccountId = ::T.let(nil, ::T.untyped)
+  AllowQuotedRecordDelimiter = ::T.let(nil, ::T.untyped)
+  AllowedHeader = ::T.let(nil, ::T.untyped)
+  AllowedHeaders = ::T.let(nil, ::T.untyped)
+  AllowedMethod = ::T.let(nil, ::T.untyped)
+  AllowedMethods = ::T.let(nil, ::T.untyped)
+  AllowedOrigin = ::T.let(nil, ::T.untyped)
+  AllowedOrigins = ::T.let(nil, ::T.untyped)
+  AnalyticsAndOperator = ::T.let(nil, ::T.untyped)
+  AnalyticsConfiguration = ::T.let(nil, ::T.untyped)
+  AnalyticsConfigurationList = ::T.let(nil, ::T.untyped)
+  AnalyticsExportDestination = ::T.let(nil, ::T.untyped)
+  AnalyticsFilter = ::T.let(nil, ::T.untyped)
+  AnalyticsId = ::T.let(nil, ::T.untyped)
+  AnalyticsS3BucketDestination = ::T.let(nil, ::T.untyped)
+  AnalyticsS3ExportFileFormat = ::T.let(nil, ::T.untyped)
+  Body = ::T.let(nil, ::T.untyped)
+  Bucket = ::T.let(nil, ::T.untyped)
+  BucketAccelerateStatus = ::T.let(nil, ::T.untyped)
+  BucketAlreadyExists = ::T.let(nil, ::T.untyped)
+  BucketAlreadyOwnedByYou = ::T.let(nil, ::T.untyped)
+  BucketCannedACL = ::T.let(nil, ::T.untyped)
+  BucketLifecycleConfiguration = ::T.let(nil, ::T.untyped)
+  BucketLocationConstraint = ::T.let(nil, ::T.untyped)
+  BucketLoggingStatus = ::T.let(nil, ::T.untyped)
+  BucketLogsPermission = ::T.let(nil, ::T.untyped)
+  BucketName = ::T.let(nil, ::T.untyped)
+  BucketVersioningStatus = ::T.let(nil, ::T.untyped)
+  Buckets = ::T.let(nil, ::T.untyped)
+  BypassGovernanceRetention = ::T.let(nil, ::T.untyped)
+  BytesProcessed = ::T.let(nil, ::T.untyped)
+  BytesReturned = ::T.let(nil, ::T.untyped)
+  BytesScanned = ::T.let(nil, ::T.untyped)
+  CORSConfiguration = ::T.let(nil, ::T.untyped)
+  CORSRule = ::T.let(nil, ::T.untyped)
+  CORSRules = ::T.let(nil, ::T.untyped)
+  CSVInput = ::T.let(nil, ::T.untyped)
+  CSVOutput = ::T.let(nil, ::T.untyped)
+  CacheControl = ::T.let(nil, ::T.untyped)
+  CloudFunction = ::T.let(nil, ::T.untyped)
+  CloudFunctionConfiguration = ::T.let(nil, ::T.untyped)
+  CloudFunctionInvocationRole = ::T.let(nil, ::T.untyped)
+  Code = ::T.let(nil, ::T.untyped)
+  Comments = ::T.let(nil, ::T.untyped)
+  CommonPrefix = ::T.let(nil, ::T.untyped)
+  CommonPrefixList = ::T.let(nil, ::T.untyped)
+  CompleteMultipartUploadOutput = ::T.let(nil, ::T.untyped)
+  CompleteMultipartUploadRequest = ::T.let(nil, ::T.untyped)
+  CompletedMultipartUpload = ::T.let(nil, ::T.untyped)
+  CompletedPart = ::T.let(nil, ::T.untyped)
+  CompletedPartList = ::T.let(nil, ::T.untyped)
+  CompressionType = ::T.let(nil, ::T.untyped)
+  Condition = ::T.let(nil, ::T.untyped)
+  ConfirmRemoveSelfBucketAccess = ::T.let(nil, ::T.untyped)
+  ContentDisposition = ::T.let(nil, ::T.untyped)
+  ContentEncoding = ::T.let(nil, ::T.untyped)
+  ContentLanguage = ::T.let(nil, ::T.untyped)
+  ContentLength = ::T.let(nil, ::T.untyped)
+  ContentMD5 = ::T.let(nil, ::T.untyped)
+  ContentRange = ::T.let(nil, ::T.untyped)
+  ContentType = ::T.let(nil, ::T.untyped)
+  ContinuationEvent = ::T.let(nil, ::T.untyped)
+  CopyObjectOutput = ::T.let(nil, ::T.untyped)
+  CopyObjectRequest = ::T.let(nil, ::T.untyped)
+  CopyObjectResult = ::T.let(nil, ::T.untyped)
+  CopyPartResult = ::T.let(nil, ::T.untyped)
+  CopySource = ::T.let(nil, ::T.untyped)
+  CopySourceIfMatch = ::T.let(nil, ::T.untyped)
+  CopySourceIfModifiedSince = ::T.let(nil, ::T.untyped)
+  CopySourceIfNoneMatch = ::T.let(nil, ::T.untyped)
+  CopySourceIfUnmodifiedSince = ::T.let(nil, ::T.untyped)
+  CopySourceRange = ::T.let(nil, ::T.untyped)
+  CopySourceSSECustomerAlgorithm = ::T.let(nil, ::T.untyped)
+  CopySourceSSECustomerKey = ::T.let(nil, ::T.untyped)
+  CopySourceSSECustomerKeyMD5 = ::T.let(nil, ::T.untyped)
+  CopySourceVersionId = ::T.let(nil, ::T.untyped)
+  CreateBucketConfiguration = ::T.let(nil, ::T.untyped)
+  CreateBucketOutput = ::T.let(nil, ::T.untyped)
+  CreateBucketRequest = ::T.let(nil, ::T.untyped)
+  CreateMultipartUploadOutput = ::T.let(nil, ::T.untyped)
+  CreateMultipartUploadRequest = ::T.let(nil, ::T.untyped)
+  CreationDate = ::T.let(nil, ::T.untyped)
+  Date = ::T.let(nil, ::T.untyped)
+  Days = ::T.let(nil, ::T.untyped)
+  DaysAfterInitiation = ::T.let(nil, ::T.untyped)
+  DefaultRetention = ::T.let(nil, ::T.untyped)
+  Delete = ::T.let(nil, ::T.untyped)
+  DeleteBucketAnalyticsConfigurationRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketCorsRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketEncryptionRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketInventoryConfigurationRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketLifecycleRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketMetricsConfigurationRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketPolicyRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketReplicationRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketTaggingRequest = ::T.let(nil, ::T.untyped)
+  DeleteBucketWebsiteRequest = ::T.let(nil, ::T.untyped)
+  DeleteMarker = ::T.let(nil, ::T.untyped)
+  DeleteMarkerEntry = ::T.let(nil, ::T.untyped)
+  DeleteMarkerReplication = ::T.let(nil, ::T.untyped)
+  DeleteMarkerReplicationStatus = ::T.let(nil, ::T.untyped)
+  DeleteMarkerVersionId = ::T.let(nil, ::T.untyped)
+  DeleteMarkers = ::T.let(nil, ::T.untyped)
+  DeleteObjectOutput = ::T.let(nil, ::T.untyped)
+  DeleteObjectRequest = ::T.let(nil, ::T.untyped)
+  DeleteObjectTaggingOutput = ::T.let(nil, ::T.untyped)
+  DeleteObjectTaggingRequest = ::T.let(nil, ::T.untyped)
+  DeleteObjectsOutput = ::T.let(nil, ::T.untyped)
+  DeleteObjectsRequest = ::T.let(nil, ::T.untyped)
+  DeletePublicAccessBlockRequest = ::T.let(nil, ::T.untyped)
+  DeletedObject = ::T.let(nil, ::T.untyped)
+  DeletedObjects = ::T.let(nil, ::T.untyped)
+  Delimiter = ::T.let(nil, ::T.untyped)
+  Description = ::T.let(nil, ::T.untyped)
+  Destination = ::T.let(nil, ::T.untyped)
+  DisplayName = ::T.let(nil, ::T.untyped)
+  ETag = ::T.let(nil, ::T.untyped)
+  EmailAddress = ::T.let(nil, ::T.untyped)
+  EnableRequestProgress = ::T.let(nil, ::T.untyped)
+  EncodingType = ::T.let(nil, ::T.untyped)
+  Encryption = ::T.let(nil, ::T.untyped)
+  EncryptionConfiguration = ::T.let(nil, ::T.untyped)
+  End = ::T.let(nil, ::T.untyped)
+  EndEvent = ::T.let(nil, ::T.untyped)
+  Error = ::T.let(nil, ::T.untyped)
+  ErrorDocument = ::T.let(nil, ::T.untyped)
+  Errors = ::T.let(nil, ::T.untyped)
+  Event = ::T.let(nil, ::T.untyped)
+  EventList = ::T.let(nil, ::T.untyped)
+  ExistingObjectReplication = ::T.let(nil, ::T.untyped)
+  ExistingObjectReplicationStatus = ::T.let(nil, ::T.untyped)
+  Expiration = ::T.let(nil, ::T.untyped)
+  ExpirationStatus = ::T.let(nil, ::T.untyped)
+  ExpiredObjectDeleteMarker = ::T.let(nil, ::T.untyped)
+  Expires = ::T.let(nil, ::T.untyped)
+  ExpiresString = ::T.let(nil, ::T.untyped)
+  ExposeHeader = ::T.let(nil, ::T.untyped)
+  ExposeHeaders = ::T.let(nil, ::T.untyped)
+  Expression = ::T.let(nil, ::T.untyped)
+  ExpressionType = ::T.let(nil, ::T.untyped)
+  FetchOwner = ::T.let(nil, ::T.untyped)
+  FieldDelimiter = ::T.let(nil, ::T.untyped)
+  FileHeaderInfo = ::T.let(nil, ::T.untyped)
+  FilterRule = ::T.let(nil, ::T.untyped)
+  FilterRuleList = ::T.let(nil, ::T.untyped)
+  FilterRuleName = ::T.let(nil, ::T.untyped)
+  FilterRuleValue = ::T.let(nil, ::T.untyped)
+  GetBucketAccelerateConfigurationOutput = ::T.let(nil, ::T.untyped)
+  GetBucketAccelerateConfigurationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketAclOutput = ::T.let(nil, ::T.untyped)
+  GetBucketAclRequest = ::T.let(nil, ::T.untyped)
+  GetBucketAnalyticsConfigurationOutput = ::T.let(nil, ::T.untyped)
+  GetBucketAnalyticsConfigurationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketCorsOutput = ::T.let(nil, ::T.untyped)
+  GetBucketCorsRequest = ::T.let(nil, ::T.untyped)
+  GetBucketEncryptionOutput = ::T.let(nil, ::T.untyped)
+  GetBucketEncryptionRequest = ::T.let(nil, ::T.untyped)
+  GetBucketInventoryConfigurationOutput = ::T.let(nil, ::T.untyped)
+  GetBucketInventoryConfigurationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketLifecycleConfigurationOutput = ::T.let(nil, ::T.untyped)
+  GetBucketLifecycleConfigurationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketLifecycleOutput = ::T.let(nil, ::T.untyped)
+  GetBucketLifecycleRequest = ::T.let(nil, ::T.untyped)
+  GetBucketLocationOutput = ::T.let(nil, ::T.untyped)
+  GetBucketLocationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketLoggingOutput = ::T.let(nil, ::T.untyped)
+  GetBucketLoggingRequest = ::T.let(nil, ::T.untyped)
+  GetBucketMetricsConfigurationOutput = ::T.let(nil, ::T.untyped)
+  GetBucketMetricsConfigurationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketNotificationConfigurationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketPolicyOutput = ::T.let(nil, ::T.untyped)
+  GetBucketPolicyRequest = ::T.let(nil, ::T.untyped)
+  GetBucketPolicyStatusOutput = ::T.let(nil, ::T.untyped)
+  GetBucketPolicyStatusRequest = ::T.let(nil, ::T.untyped)
+  GetBucketReplicationOutput = ::T.let(nil, ::T.untyped)
+  GetBucketReplicationRequest = ::T.let(nil, ::T.untyped)
+  GetBucketRequestPaymentOutput = ::T.let(nil, ::T.untyped)
+  GetBucketRequestPaymentRequest = ::T.let(nil, ::T.untyped)
+  GetBucketTaggingOutput = ::T.let(nil, ::T.untyped)
+  GetBucketTaggingRequest = ::T.let(nil, ::T.untyped)
+  GetBucketVersioningOutput = ::T.let(nil, ::T.untyped)
+  GetBucketVersioningRequest = ::T.let(nil, ::T.untyped)
+  GetBucketWebsiteOutput = ::T.let(nil, ::T.untyped)
+  GetBucketWebsiteRequest = ::T.let(nil, ::T.untyped)
+  GetObjectAclOutput = ::T.let(nil, ::T.untyped)
+  GetObjectAclRequest = ::T.let(nil, ::T.untyped)
+  GetObjectLegalHoldOutput = ::T.let(nil, ::T.untyped)
+  GetObjectLegalHoldRequest = ::T.let(nil, ::T.untyped)
+  GetObjectLockConfigurationOutput = ::T.let(nil, ::T.untyped)
+  GetObjectLockConfigurationRequest = ::T.let(nil, ::T.untyped)
+  GetObjectOutput = ::T.let(nil, ::T.untyped)
+  GetObjectRequest = ::T.let(nil, ::T.untyped)
+  GetObjectRetentionOutput = ::T.let(nil, ::T.untyped)
+  GetObjectRetentionRequest = ::T.let(nil, ::T.untyped)
+  GetObjectTaggingOutput = ::T.let(nil, ::T.untyped)
+  GetObjectTaggingRequest = ::T.let(nil, ::T.untyped)
+  GetObjectTorrentOutput = ::T.let(nil, ::T.untyped)
+  GetObjectTorrentRequest = ::T.let(nil, ::T.untyped)
+  GetPublicAccessBlockOutput = ::T.let(nil, ::T.untyped)
+  GetPublicAccessBlockRequest = ::T.let(nil, ::T.untyped)
+  GlacierJobParameters = ::T.let(nil, ::T.untyped)
+  Grant = ::T.let(nil, ::T.untyped)
+  GrantFullControl = ::T.let(nil, ::T.untyped)
+  GrantRead = ::T.let(nil, ::T.untyped)
+  GrantReadACP = ::T.let(nil, ::T.untyped)
+  GrantWrite = ::T.let(nil, ::T.untyped)
+  GrantWriteACP = ::T.let(nil, ::T.untyped)
+  Grantee = ::T.let(nil, ::T.untyped)
+  Grants = ::T.let(nil, ::T.untyped)
+  HeadBucketRequest = ::T.let(nil, ::T.untyped)
+  HeadObjectOutput = ::T.let(nil, ::T.untyped)
+  HeadObjectRequest = ::T.let(nil, ::T.untyped)
+  HostName = ::T.let(nil, ::T.untyped)
+  HttpErrorCodeReturnedEquals = ::T.let(nil, ::T.untyped)
+  HttpRedirectCode = ::T.let(nil, ::T.untyped)
+  ID = ::T.let(nil, ::T.untyped)
+  IfMatch = ::T.let(nil, ::T.untyped)
+  IfModifiedSince = ::T.let(nil, ::T.untyped)
+  IfNoneMatch = ::T.let(nil, ::T.untyped)
+  IfUnmodifiedSince = ::T.let(nil, ::T.untyped)
+  IndexDocument = ::T.let(nil, ::T.untyped)
+  Initiated = ::T.let(nil, ::T.untyped)
+  Initiator = ::T.let(nil, ::T.untyped)
+  InputSerialization = ::T.let(nil, ::T.untyped)
+  InventoryConfiguration = ::T.let(nil, ::T.untyped)
+  InventoryConfigurationList = ::T.let(nil, ::T.untyped)
+  InventoryDestination = ::T.let(nil, ::T.untyped)
+  InventoryEncryption = ::T.let(nil, ::T.untyped)
+  InventoryFilter = ::T.let(nil, ::T.untyped)
+  InventoryFormat = ::T.let(nil, ::T.untyped)
+  InventoryFrequency = ::T.let(nil, ::T.untyped)
+  InventoryId = ::T.let(nil, ::T.untyped)
+  InventoryIncludedObjectVersions = ::T.let(nil, ::T.untyped)
+  InventoryOptionalField = ::T.let(nil, ::T.untyped)
+  InventoryOptionalFields = ::T.let(nil, ::T.untyped)
+  InventoryS3BucketDestination = ::T.let(nil, ::T.untyped)
+  InventorySchedule = ::T.let(nil, ::T.untyped)
+  IsEnabled = ::T.let(nil, ::T.untyped)
+  IsLatest = ::T.let(nil, ::T.untyped)
+  IsPublic = ::T.let(nil, ::T.untyped)
+  IsTruncated = ::T.let(nil, ::T.untyped)
+  JSONInput = ::T.let(nil, ::T.untyped)
+  JSONOutput = ::T.let(nil, ::T.untyped)
+  JSONType = ::T.let(nil, ::T.untyped)
+  KMSContext = ::T.let(nil, ::T.untyped)
+  KeyCount = ::T.let(nil, ::T.untyped)
+  KeyMarker = ::T.let(nil, ::T.untyped)
+  KeyPrefixEquals = ::T.let(nil, ::T.untyped)
+  LambdaFunctionArn = ::T.let(nil, ::T.untyped)
+  LambdaFunctionConfiguration = ::T.let(nil, ::T.untyped)
+  LambdaFunctionConfigurationList = ::T.let(nil, ::T.untyped)
+  LastModified = ::T.let(nil, ::T.untyped)
+  LifecycleConfiguration = ::T.let(nil, ::T.untyped)
+  LifecycleExpiration = ::T.let(nil, ::T.untyped)
+  LifecycleRule = ::T.let(nil, ::T.untyped)
+  LifecycleRuleAndOperator = ::T.let(nil, ::T.untyped)
+  LifecycleRuleFilter = ::T.let(nil, ::T.untyped)
+  LifecycleRules = ::T.let(nil, ::T.untyped)
+  ListBucketAnalyticsConfigurationsOutput = ::T.let(nil, ::T.untyped)
+  ListBucketAnalyticsConfigurationsRequest = ::T.let(nil, ::T.untyped)
+  ListBucketInventoryConfigurationsOutput = ::T.let(nil, ::T.untyped)
+  ListBucketInventoryConfigurationsRequest = ::T.let(nil, ::T.untyped)
+  ListBucketMetricsConfigurationsOutput = ::T.let(nil, ::T.untyped)
+  ListBucketMetricsConfigurationsRequest = ::T.let(nil, ::T.untyped)
+  ListBucketsOutput = ::T.let(nil, ::T.untyped)
+  ListMultipartUploadsOutput = ::T.let(nil, ::T.untyped)
+  ListMultipartUploadsRequest = ::T.let(nil, ::T.untyped)
+  ListObjectVersionsOutput = ::T.let(nil, ::T.untyped)
+  ListObjectVersionsRequest = ::T.let(nil, ::T.untyped)
+  ListObjectsOutput = ::T.let(nil, ::T.untyped)
+  ListObjectsRequest = ::T.let(nil, ::T.untyped)
+  ListObjectsV2Output = ::T.let(nil, ::T.untyped)
+  ListObjectsV2Request = ::T.let(nil, ::T.untyped)
+  ListPartsOutput = ::T.let(nil, ::T.untyped)
+  ListPartsRequest = ::T.let(nil, ::T.untyped)
+  Location = ::T.let(nil, ::T.untyped)
+  LocationPrefix = ::T.let(nil, ::T.untyped)
+  LoggingEnabled = ::T.let(nil, ::T.untyped)
+  MFA = ::T.let(nil, ::T.untyped)
+  MFADelete = ::T.let(nil, ::T.untyped)
+  MFADeleteStatus = ::T.let(nil, ::T.untyped)
+  Marker = ::T.let(nil, ::T.untyped)
+  MaxAgeSeconds = ::T.let(nil, ::T.untyped)
+  MaxKeys = ::T.let(nil, ::T.untyped)
+  MaxParts = ::T.let(nil, ::T.untyped)
+  MaxUploads = ::T.let(nil, ::T.untyped)
+  Message = ::T.let(nil, ::T.untyped)
+  Metadata = ::T.let(nil, ::T.untyped)
+  MetadataDirective = ::T.let(nil, ::T.untyped)
+  MetadataEntry = ::T.let(nil, ::T.untyped)
+  MetadataKey = ::T.let(nil, ::T.untyped)
+  MetadataValue = ::T.let(nil, ::T.untyped)
+  Metrics = ::T.let(nil, ::T.untyped)
+  MetricsAndOperator = ::T.let(nil, ::T.untyped)
+  MetricsConfiguration = ::T.let(nil, ::T.untyped)
+  MetricsConfigurationList = ::T.let(nil, ::T.untyped)
+  MetricsFilter = ::T.let(nil, ::T.untyped)
+  MetricsId = ::T.let(nil, ::T.untyped)
+  MetricsStatus = ::T.let(nil, ::T.untyped)
+  Minutes = ::T.let(nil, ::T.untyped)
+  MissingMeta = ::T.let(nil, ::T.untyped)
+  MultipartUpload = ::T.let(nil, ::T.untyped)
+  MultipartUploadId = ::T.let(nil, ::T.untyped)
+  MultipartUploadList = ::T.let(nil, ::T.untyped)
+  NextKeyMarker = ::T.let(nil, ::T.untyped)
+  NextMarker = ::T.let(nil, ::T.untyped)
+  NextPartNumberMarker = ::T.let(nil, ::T.untyped)
+  NextToken = ::T.let(nil, ::T.untyped)
+  NextUploadIdMarker = ::T.let(nil, ::T.untyped)
+  NextVersionIdMarker = ::T.let(nil, ::T.untyped)
+  NoSuchBucket = ::T.let(nil, ::T.untyped)
+  NoSuchKey = ::T.let(nil, ::T.untyped)
+  NoSuchUpload = ::T.let(nil, ::T.untyped)
+  NoncurrentVersionExpiration = ::T.let(nil, ::T.untyped)
+  NoncurrentVersionTransition = ::T.let(nil, ::T.untyped)
+  NoncurrentVersionTransitionList = ::T.let(nil, ::T.untyped)
+  NotificationConfiguration = ::T.let(nil, ::T.untyped)
+  NotificationConfigurationDeprecated = ::T.let(nil, ::T.untyped)
+  NotificationConfigurationFilter = ::T.let(nil, ::T.untyped)
+  NotificationId = ::T.let(nil, ::T.untyped)
+  Object = ::T.let(nil, ::T.untyped)
+  ObjectAlreadyInActiveTierError = ::T.let(nil, ::T.untyped)
+  ObjectCannedACL = ::T.let(nil, ::T.untyped)
+  ObjectIdentifier = ::T.let(nil, ::T.untyped)
+  ObjectIdentifierList = ::T.let(nil, ::T.untyped)
+  ObjectKey = ::T.let(nil, ::T.untyped)
+  ObjectList = ::T.let(nil, ::T.untyped)
+  ObjectLockConfiguration = ::T.let(nil, ::T.untyped)
+  ObjectLockEnabled = ::T.let(nil, ::T.untyped)
+  ObjectLockEnabledForBucket = ::T.let(nil, ::T.untyped)
+  ObjectLockLegalHold = ::T.let(nil, ::T.untyped)
+  ObjectLockLegalHoldStatus = ::T.let(nil, ::T.untyped)
+  ObjectLockMode = ::T.let(nil, ::T.untyped)
+  ObjectLockRetainUntilDate = ::T.let(nil, ::T.untyped)
+  ObjectLockRetention = ::T.let(nil, ::T.untyped)
+  ObjectLockRetentionMode = ::T.let(nil, ::T.untyped)
+  ObjectLockRule = ::T.let(nil, ::T.untyped)
+  ObjectLockToken = ::T.let(nil, ::T.untyped)
+  ObjectNotInActiveTierError = ::T.let(nil, ::T.untyped)
+  ObjectStorageClass = ::T.let(nil, ::T.untyped)
+  ObjectVersion = ::T.let(nil, ::T.untyped)
+  ObjectVersionId = ::T.let(nil, ::T.untyped)
+  ObjectVersionList = ::T.let(nil, ::T.untyped)
+  ObjectVersionStorageClass = ::T.let(nil, ::T.untyped)
+  OutputLocation = ::T.let(nil, ::T.untyped)
+  OutputSerialization = ::T.let(nil, ::T.untyped)
+  Owner = ::T.let(nil, ::T.untyped)
+  OwnerOverride = ::T.let(nil, ::T.untyped)
+  ParquetInput = ::T.let(nil, ::T.untyped)
+  Part = ::T.let(nil, ::T.untyped)
+  PartNumber = ::T.let(nil, ::T.untyped)
+  PartNumberMarker = ::T.let(nil, ::T.untyped)
+  Parts = ::T.let(nil, ::T.untyped)
+  PartsCount = ::T.let(nil, ::T.untyped)
+  Payer = ::T.let(nil, ::T.untyped)
+  Permission = ::T.let(nil, ::T.untyped)
+  Policy = ::T.let(nil, ::T.untyped)
+  PolicyStatus = ::T.let(nil, ::T.untyped)
+  Prefix = ::T.let(nil, ::T.untyped)
+  Priority = ::T.let(nil, ::T.untyped)
+  Progress = ::T.let(nil, ::T.untyped)
+  ProgressEvent = ::T.let(nil, ::T.untyped)
+  Protocol = ::T.let(nil, ::T.untyped)
+  PublicAccessBlockConfiguration = ::T.let(nil, ::T.untyped)
+  PutBucketAccelerateConfigurationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketAclRequest = ::T.let(nil, ::T.untyped)
+  PutBucketAnalyticsConfigurationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketCorsRequest = ::T.let(nil, ::T.untyped)
+  PutBucketEncryptionRequest = ::T.let(nil, ::T.untyped)
+  PutBucketInventoryConfigurationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketLifecycleConfigurationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketLifecycleRequest = ::T.let(nil, ::T.untyped)
+  PutBucketLoggingRequest = ::T.let(nil, ::T.untyped)
+  PutBucketMetricsConfigurationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketNotificationConfigurationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketNotificationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketPolicyRequest = ::T.let(nil, ::T.untyped)
+  PutBucketReplicationRequest = ::T.let(nil, ::T.untyped)
+  PutBucketRequestPaymentRequest = ::T.let(nil, ::T.untyped)
+  PutBucketTaggingRequest = ::T.let(nil, ::T.untyped)
+  PutBucketVersioningRequest = ::T.let(nil, ::T.untyped)
+  PutBucketWebsiteRequest = ::T.let(nil, ::T.untyped)
+  PutObjectAclOutput = ::T.let(nil, ::T.untyped)
+  PutObjectAclRequest = ::T.let(nil, ::T.untyped)
+  PutObjectLegalHoldOutput = ::T.let(nil, ::T.untyped)
+  PutObjectLegalHoldRequest = ::T.let(nil, ::T.untyped)
+  PutObjectLockConfigurationOutput = ::T.let(nil, ::T.untyped)
+  PutObjectLockConfigurationRequest = ::T.let(nil, ::T.untyped)
+  PutObjectOutput = ::T.let(nil, ::T.untyped)
+  PutObjectRequest = ::T.let(nil, ::T.untyped)
+  PutObjectRetentionOutput = ::T.let(nil, ::T.untyped)
+  PutObjectRetentionRequest = ::T.let(nil, ::T.untyped)
+  PutObjectTaggingOutput = ::T.let(nil, ::T.untyped)
+  PutObjectTaggingRequest = ::T.let(nil, ::T.untyped)
+  PutPublicAccessBlockRequest = ::T.let(nil, ::T.untyped)
+  QueueArn = ::T.let(nil, ::T.untyped)
+  QueueConfiguration = ::T.let(nil, ::T.untyped)
+  QueueConfigurationDeprecated = ::T.let(nil, ::T.untyped)
+  QueueConfigurationList = ::T.let(nil, ::T.untyped)
+  Quiet = ::T.let(nil, ::T.untyped)
+  QuoteCharacter = ::T.let(nil, ::T.untyped)
+  QuoteEscapeCharacter = ::T.let(nil, ::T.untyped)
+  QuoteFields = ::T.let(nil, ::T.untyped)
+  Range = ::T.let(nil, ::T.untyped)
+  RecordDelimiter = ::T.let(nil, ::T.untyped)
+  RecordsEvent = ::T.let(nil, ::T.untyped)
+  Redirect = ::T.let(nil, ::T.untyped)
+  RedirectAllRequestsTo = ::T.let(nil, ::T.untyped)
+  ReplaceKeyPrefixWith = ::T.let(nil, ::T.untyped)
+  ReplaceKeyWith = ::T.let(nil, ::T.untyped)
+  ReplicaKmsKeyID = ::T.let(nil, ::T.untyped)
+  ReplicationConfiguration = ::T.let(nil, ::T.untyped)
+  ReplicationRule = ::T.let(nil, ::T.untyped)
+  ReplicationRuleAndOperator = ::T.let(nil, ::T.untyped)
+  ReplicationRuleFilter = ::T.let(nil, ::T.untyped)
+  ReplicationRuleStatus = ::T.let(nil, ::T.untyped)
+  ReplicationRules = ::T.let(nil, ::T.untyped)
+  ReplicationStatus = ::T.let(nil, ::T.untyped)
+  ReplicationTime = ::T.let(nil, ::T.untyped)
+  ReplicationTimeStatus = ::T.let(nil, ::T.untyped)
+  ReplicationTimeValue = ::T.let(nil, ::T.untyped)
+  RequestCharged = ::T.let(nil, ::T.untyped)
+  RequestPayer = ::T.let(nil, ::T.untyped)
+  RequestPaymentConfiguration = ::T.let(nil, ::T.untyped)
+  RequestProgress = ::T.let(nil, ::T.untyped)
+  ResponseCacheControl = ::T.let(nil, ::T.untyped)
+  ResponseContentDisposition = ::T.let(nil, ::T.untyped)
+  ResponseContentEncoding = ::T.let(nil, ::T.untyped)
+  ResponseContentLanguage = ::T.let(nil, ::T.untyped)
+  ResponseContentType = ::T.let(nil, ::T.untyped)
+  ResponseExpires = ::T.let(nil, ::T.untyped)
+  Restore = ::T.let(nil, ::T.untyped)
+  RestoreObjectOutput = ::T.let(nil, ::T.untyped)
+  RestoreObjectRequest = ::T.let(nil, ::T.untyped)
+  RestoreOutputPath = ::T.let(nil, ::T.untyped)
+  RestoreRequest = ::T.let(nil, ::T.untyped)
+  RestoreRequestType = ::T.let(nil, ::T.untyped)
+  Role = ::T.let(nil, ::T.untyped)
+  RoutingRule = ::T.let(nil, ::T.untyped)
+  RoutingRules = ::T.let(nil, ::T.untyped)
+  Rule = ::T.let(nil, ::T.untyped)
+  Rules = ::T.let(nil, ::T.untyped)
+  S3KeyFilter = ::T.let(nil, ::T.untyped)
+  S3Location = ::T.let(nil, ::T.untyped)
+  SSECustomerAlgorithm = ::T.let(nil, ::T.untyped)
+  SSECustomerKey = ::T.let(nil, ::T.untyped)
+  SSECustomerKeyMD5 = ::T.let(nil, ::T.untyped)
+  SSEKMS = ::T.let(nil, ::T.untyped)
+  SSEKMSEncryptionContext = ::T.let(nil, ::T.untyped)
+  SSEKMSKeyId = ::T.let(nil, ::T.untyped)
+  SSES3 = ::T.let(nil, ::T.untyped)
+  ScanRange = ::T.let(nil, ::T.untyped)
+  SelectObjectContentEventStream = ::T.let(nil, ::T.untyped)
+  SelectObjectContentOutput = ::T.let(nil, ::T.untyped)
+  SelectObjectContentRequest = ::T.let(nil, ::T.untyped)
+  SelectParameters = ::T.let(nil, ::T.untyped)
+  ServerSideEncryption = ::T.let(nil, ::T.untyped)
+  ServerSideEncryptionByDefault = ::T.let(nil, ::T.untyped)
+  ServerSideEncryptionConfiguration = ::T.let(nil, ::T.untyped)
+  ServerSideEncryptionRule = ::T.let(nil, ::T.untyped)
+  ServerSideEncryptionRules = ::T.let(nil, ::T.untyped)
+  Setting = ::T.let(nil, ::T.untyped)
+  Size = ::T.let(nil, ::T.untyped)
+  SourceSelectionCriteria = ::T.let(nil, ::T.untyped)
+  SseKmsEncryptedObjects = ::T.let(nil, ::T.untyped)
+  SseKmsEncryptedObjectsStatus = ::T.let(nil, ::T.untyped)
+  Start = ::T.let(nil, ::T.untyped)
+  StartAfter = ::T.let(nil, ::T.untyped)
+  Stats = ::T.let(nil, ::T.untyped)
+  StatsEvent = ::T.let(nil, ::T.untyped)
+  StorageClass = ::T.let(nil, ::T.untyped)
+  StorageClassAnalysis = ::T.let(nil, ::T.untyped)
+  StorageClassAnalysisDataExport = ::T.let(nil, ::T.untyped)
+  StorageClassAnalysisSchemaVersion = ::T.let(nil, ::T.untyped)
+  Suffix = ::T.let(nil, ::T.untyped)
+  Tag = ::T.let(nil, ::T.untyped)
+  TagCount = ::T.let(nil, ::T.untyped)
+  TagSet = ::T.let(nil, ::T.untyped)
+  Tagging = ::T.let(nil, ::T.untyped)
+  TaggingDirective = ::T.let(nil, ::T.untyped)
+  TaggingHeader = ::T.let(nil, ::T.untyped)
+  TargetBucket = ::T.let(nil, ::T.untyped)
+  TargetGrant = ::T.let(nil, ::T.untyped)
+  TargetGrants = ::T.let(nil, ::T.untyped)
+  TargetPrefix = ::T.let(nil, ::T.untyped)
+  Tier = ::T.let(nil, ::T.untyped)
+  Token = ::T.let(nil, ::T.untyped)
+  TopicArn = ::T.let(nil, ::T.untyped)
+  TopicConfiguration = ::T.let(nil, ::T.untyped)
+  TopicConfigurationDeprecated = ::T.let(nil, ::T.untyped)
+  TopicConfigurationList = ::T.let(nil, ::T.untyped)
+  Transition = ::T.let(nil, ::T.untyped)
+  TransitionList = ::T.let(nil, ::T.untyped)
+  TransitionStorageClass = ::T.let(nil, ::T.untyped)
+  Type = ::T.let(nil, ::T.untyped)
+  URI = ::T.let(nil, ::T.untyped)
+  UploadIdMarker = ::T.let(nil, ::T.untyped)
+  UploadPartCopyOutput = ::T.let(nil, ::T.untyped)
+  UploadPartCopyRequest = ::T.let(nil, ::T.untyped)
+  UploadPartOutput = ::T.let(nil, ::T.untyped)
+  UploadPartRequest = ::T.let(nil, ::T.untyped)
+  UserMetadata = ::T.let(nil, ::T.untyped)
+  Value = ::T.let(nil, ::T.untyped)
+  VersionIdMarker = ::T.let(nil, ::T.untyped)
+  VersioningConfiguration = ::T.let(nil, ::T.untyped)
+  WebsiteConfiguration = ::T.let(nil, ::T.untyped)
+  WebsiteRedirectLocation = ::T.let(nil, ::T.untyped)
+  Years = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::Encryption::DecryptHandler
+  POSSIBLE_ENCRYPTION_FORMATS = ::T.let(nil, ::T.untyped)
+  POSSIBLE_ENVELOPE_KEYS = ::T.let(nil, ::T.untyped)
+  V1_ENVELOPE_KEYS = ::T.let(nil, ::T.untyped)
+  V2_ENVELOPE_KEYS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::Encryption::IOEncrypter
+  ONE_MEGABYTE = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::S3::Encryption::Utils
+  UNSAFE_MSG = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::FileDownloader
+  MAX_PARTS = ::T.let(nil, ::T.untyped)
+  MIN_CHUNK_SIZE = ::T.let(nil, ::T.untyped)
+  THREAD_COUNT = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::FileUploader
+  FIFTEEN_MEGABYTES = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::LegacySigner
+  SIGNED_QUERYSTRING_PARAMS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::MultipartFileUploader
+  CREATE_OPTIONS = ::T.let(nil, ::T.untyped)
+  FILE_TOO_SMALL = ::T.let(nil, ::T.untyped)
+  MAX_PARTS = ::T.let(nil, ::T.untyped)
+  MIN_PART_SIZE = ::T.let(nil, ::T.untyped)
+  THREAD_COUNT = ::T.let(nil, ::T.untyped)
+  UPLOAD_PART_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::MultipartStreamUploader
+  CREATE_OPTIONS = ::T.let(nil, ::T.untyped)
+  PART_SIZE = ::T.let(nil, ::T.untyped)
+  TEMPFILE_PREIX = ::T.let(nil, ::T.untyped)
+  THREAD_COUNT = ::T.let(nil, ::T.untyped)
+  UPLOAD_PART_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::ObjectMultipartCopier
+  API_OPTIONS = ::T.let(nil, ::T.untyped)
+  FILE_TOO_SMALL = ::T.let(nil, ::T.untyped)
+  FIVE_MB = ::T.let(nil, ::T.untyped)
+  MAX_PARTS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::Plugins::Md5s
+  REQUIRED_OPERATIONS = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::Plugins::Md5s::Handler
+  CHUNK_SIZE = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::S3::Presigner
+  BLACKLISTED_HEADERS = ::T.let(nil, ::T.untyped)
+  FIFTEEN_MINUTES = ::T.let(nil, ::T.untyped)
+  ONE_WEEK = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::STS
+  GEM_VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Aws::STS::ClientApi
+  API = ::T.let(nil, ::T.untyped)
+  AssumeRoleRequest = ::T.let(nil, ::T.untyped)
+  AssumeRoleResponse = ::T.let(nil, ::T.untyped)
+  AssumeRoleWithSAMLRequest = ::T.let(nil, ::T.untyped)
+  AssumeRoleWithSAMLResponse = ::T.let(nil, ::T.untyped)
+  AssumeRoleWithWebIdentityRequest = ::T.let(nil, ::T.untyped)
+  AssumeRoleWithWebIdentityResponse = ::T.let(nil, ::T.untyped)
+  AssumedRoleUser = ::T.let(nil, ::T.untyped)
+  Audience = ::T.let(nil, ::T.untyped)
+  Credentials = ::T.let(nil, ::T.untyped)
+  DecodeAuthorizationMessageRequest = ::T.let(nil, ::T.untyped)
+  DecodeAuthorizationMessageResponse = ::T.let(nil, ::T.untyped)
+  ExpiredTokenException = ::T.let(nil, ::T.untyped)
+  FederatedUser = ::T.let(nil, ::T.untyped)
+  GetAccessKeyInfoRequest = ::T.let(nil, ::T.untyped)
+  GetAccessKeyInfoResponse = ::T.let(nil, ::T.untyped)
+  GetCallerIdentityRequest = ::T.let(nil, ::T.untyped)
+  GetCallerIdentityResponse = ::T.let(nil, ::T.untyped)
+  GetFederationTokenRequest = ::T.let(nil, ::T.untyped)
+  GetFederationTokenResponse = ::T.let(nil, ::T.untyped)
+  GetSessionTokenRequest = ::T.let(nil, ::T.untyped)
+  GetSessionTokenResponse = ::T.let(nil, ::T.untyped)
+  IDPCommunicationErrorException = ::T.let(nil, ::T.untyped)
+  IDPRejectedClaimException = ::T.let(nil, ::T.untyped)
+  InvalidAuthorizationMessageException = ::T.let(nil, ::T.untyped)
+  InvalidIdentityTokenException = ::T.let(nil, ::T.untyped)
+  Issuer = ::T.let(nil, ::T.untyped)
+  MalformedPolicyDocumentException = ::T.let(nil, ::T.untyped)
+  NameQualifier = ::T.let(nil, ::T.untyped)
+  PackedPolicyTooLargeException = ::T.let(nil, ::T.untyped)
+  PolicyDescriptorType = ::T.let(nil, ::T.untyped)
+  RegionDisabledException = ::T.let(nil, ::T.untyped)
+  SAMLAssertionType = ::T.let(nil, ::T.untyped)
+  Subject = ::T.let(nil, ::T.untyped)
+  SubjectType = ::T.let(nil, ::T.untyped)
+  Tag = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::SharedCredentials
+  KEY_MAP = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Waiters::Errors::FailureStateError
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Waiters::Errors::NoSuchWaiterError
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Waiters::Errors::TooManyAttemptsError
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class Aws::Waiters::Errors::UnexpectedError
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+Aws::Waiters::Poller::RAISE_HANDLER = Seahorse::Client::Plugins::RaiseResponseErrors::Handler
+
+Aws::Waiters::Waiter::RAISE_HANDLER = Seahorse::Client::Plugins::RaiseResponseErrors::Handler
+
+class Aws::Xml::Parser
+  FRAME_CLASSES = ::T.let(nil, ::T.untyped)
 end
 
 class BCrypt::Engine
@@ -20756,24 +21066,10 @@ BasicObject::BasicObject = BasicObject
 
 class Benchmark::Job
   def initialize(width); end
-
-  def item(label=T.unsafe(nil), &blk); end
-
-  def list(); end
-
-  def report(label=T.unsafe(nil), &blk); end
-
-  def width(); end
 end
 
 class Benchmark::Report
   def initialize(width=T.unsafe(nil), format=T.unsafe(nil)); end
-
-  def item(label=T.unsafe(nil), *format, &blk); end
-
-  def list(); end
-
-  def report(label=T.unsafe(nil), *format, &blk); end
 end
 
 class Benchmark::Tms
@@ -20821,7 +21117,6 @@ class BigDecimal
 
   def to_digits(); end
   EXCEPTION_NaN = ::T.let(nil, ::T.untyped)
-  SIGN_NaN = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
@@ -20835,6 +21130,26 @@ class Binding
   def clone(); end
 
   def irb(); end
+end
+
+class BooleanString
+end
+
+class BooleanString
+  def self.===(other); end
+end
+
+module BooleanStringImpl
+  def _is_a_boolean_string?(); end
+
+  def instance_of?(type); end
+
+  def is_a?(type); end
+
+  def kind_of?(type); end
+end
+
+module BooleanStringImpl
 end
 
 module Brakeman
@@ -20851,12 +21166,15 @@ module Bundle::Audit
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-class Bundler::Dependency
-  def branch(); end
+module Bundler::Audit
+  VERSION = ::T.let(nil, ::T.untyped)
+end
 
-  def expanded_platforms(); end
-
-  def git(); end
+class Bundler::Audit::Database
+  URL = ::T.let(nil, ::T.untyped)
+  USER_PATH = ::T.let(nil, ::T.untyped)
+  VENDORED_PATH = ::T.let(nil, ::T.untyped)
+  VENDORED_TIMESTAMP = ::T.let(nil, ::T.untyped)
 end
 
 Bundler::Deprecate = Gem::Deprecate
@@ -20870,6 +21188,12 @@ class Bundler::Env
   def self.report(options=T.unsafe(nil)); end
 
   def self.write(io); end
+end
+
+class Bundler::FeatureFlag
+  def github_https?(); end
+
+  def lockfile_upgrade_warning?(); end
 end
 
 class Bundler::Fetcher
@@ -21004,12 +21328,6 @@ class Bundler::Fetcher::SSLError
   def initialize(msg=T.unsafe(nil)); end
 end
 
-class Bundler::Fetcher::TooManyRequestsError
-end
-
-class Bundler::Fetcher::TooManyRequestsError
-end
-
 class Bundler::Fetcher
   def self.api_timeout(); end
 
@@ -21056,8 +21374,6 @@ class Bundler::GemHelper
   def clean?(); end
 
   def committed?(); end
-
-  def gem_command(); end
 
   def gem_key(); end
 
@@ -21106,6 +21422,12 @@ class Bundler::GemHelper
   def self.instance(); end
 
   def self.instance=(instance); end
+end
+
+class Bundler::GemRemoteFetcher
+end
+
+class Bundler::GemRemoteFetcher
 end
 
 class Bundler::GemVersionPromoter
@@ -21218,12 +21540,6 @@ class Bundler::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
-class Bundler::Molinillo::DependencyGraph::Vertex
-  def _recursive_predecessors(vertices=T.unsafe(nil)); end
-
-  def _recursive_successors(vertices=T.unsafe(nil)); end
-end
-
 module Bundler::Plugin::API::Source
   def ==(other); end
 
@@ -21300,12 +21616,6 @@ module Bundler::Plugin::Events
   GEM_BEFORE_INSTALL_ALL = ::T.let(nil, ::T.untyped)
 end
 
-class Bundler::Plugin::Index
-  def installed_plugins(); end
-
-  def plugin_commands(plugin); end
-end
-
 class Bundler::Plugin::Index::CommandConflict
   def initialize(plugin, commands); end
 end
@@ -21346,10 +21656,6 @@ class Bundler::Plugin::SourceList
 end
 
 class Bundler::Plugin::SourceList
-end
-
-module Bundler::Plugin
-  def self.list(); end
 end
 
 class Bundler::ProcessLock
@@ -21393,28 +21699,8 @@ end
 class Bundler::RubyGemsGemInstaller
 end
 
-class Bundler::RubygemsIntegration
-  def add_to_load_path(paths); end
-
-  def all_specs(); end
-
-  def backport_ext_builder_monitor(); end
-
-  def correct_for_windows_path(path); end
-
+class Bundler::RubygemsIntegration::MoreFuture
   def default_stubs(); end
-
-  def find_name(name); end
-
-  def gem_remote_fetcher(); end
-
-  def plain_specs(); end
-
-  def plain_specs=(specs); end
-
-  def stub_rubygems(specs); end
-
-  def use_gemdeps(gemfile); end
 end
 
 class Bundler::Settings::Mirror
@@ -21476,1122 +21762,8 @@ class Bundler::Settings::Validator
   def self.validate!(key, value, settings); end
 end
 
-class Bundler::Source::Git
-  def glob(); end
-end
-
 class Bundler::SpecSet
   include ::Enumerable
-end
-
-class Bundler::Thor
-  include ::Bundler::Thor::Base
-  include ::Bundler::Thor::Invocation
-  include ::Bundler::Thor::Shell
-  def help(command=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-  HELP_MAPPINGS = ::T.let(nil, ::T.untyped)
-  TEMPLATE_EXTNAME = ::T.let(nil, ::T.untyped)
-  THOR_RESERVED_WORDS = ::T.let(nil, ::T.untyped)
-end
-
-module Bundler::Thor::Actions
-  def _cleanup_options_and_set(options, key); end
-
-  def _shared_configuration(); end
-
-  def action(instance); end
-
-  def add_file(destination, *args, &block); end
-
-  def add_link(destination, *args); end
-
-  def append_file(path, *args, &block); end
-
-  def append_to_file(path, *args, &block); end
-
-  def apply(path, config=T.unsafe(nil)); end
-
-  def behavior(); end
-
-  def behavior=(behavior); end
-
-  def chmod(path, mode, config=T.unsafe(nil)); end
-
-  def comment_lines(path, flag, *args); end
-
-  def copy_file(source, *args, &block); end
-
-  def create_file(destination, *args, &block); end
-
-  def create_link(destination, *args); end
-
-  def destination_root(); end
-
-  def destination_root=(root); end
-
-  def directory(source, *args, &block); end
-
-  def empty_directory(destination, config=T.unsafe(nil)); end
-
-  def find_in_source_paths(file); end
-
-  def get(source, *args, &block); end
-
-  def gsub_file(path, flag, *args, &block); end
-
-  def in_root(); end
-
-  def initialize(args=T.unsafe(nil), options=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def inject_into_class(path, klass, *args, &block); end
-
-  def inject_into_file(destination, *args, &block); end
-
-  def inject_into_module(path, module_name, *args, &block); end
-
-  def insert_into_file(destination, *args, &block); end
-
-  def inside(dir=T.unsafe(nil), config=T.unsafe(nil), &block); end
-
-  def link_file(source, *args); end
-
-  def prepend_file(path, *args, &block); end
-
-  def prepend_to_file(path, *args, &block); end
-
-  def relative_to_original_destination_root(path, remove_dot=T.unsafe(nil)); end
-
-  def remove_dir(path, config=T.unsafe(nil)); end
-
-  def remove_file(path, config=T.unsafe(nil)); end
-
-  def run(command, config=T.unsafe(nil)); end
-
-  def run_ruby_script(command, config=T.unsafe(nil)); end
-
-  def source_paths(); end
-
-  def template(source, *args, &block); end
-
-  def thor(command, *args); end
-
-  def uncomment_lines(path, flag, *args); end
-  WARNINGS = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Actions::CapturableERB
-end
-
-class Bundler::Thor::Actions::CapturableERB
-end
-
-module Bundler::Thor::Actions::ClassMethods
-  def add_runtime_options!(); end
-
-  def source_paths(); end
-
-  def source_paths_for_search(); end
-
-  def source_root(path=T.unsafe(nil)); end
-end
-
-module Bundler::Thor::Actions::ClassMethods
-end
-
-class Bundler::Thor::Actions::CreateFile
-  def data(); end
-
-  def force_on_collision?(); end
-
-  def force_or_skip_or_conflict(force, skip, &block); end
-
-  def identical?(); end
-
-  def initialize(base, destination, data, config=T.unsafe(nil)); end
-
-  def on_conflict_behavior(&block); end
-
-  def render(); end
-end
-
-class Bundler::Thor::Actions::CreateFile
-end
-
-class Bundler::Thor::Actions::CreateLink
-end
-
-class Bundler::Thor::Actions::CreateLink
-end
-
-class Bundler::Thor::Actions::Directory
-  def execute!(); end
-
-  def file_level_lookup(previous_lookup); end
-
-  def files(lookup); end
-
-  def initialize(base, source, destination=T.unsafe(nil), config=T.unsafe(nil), &block); end
-
-  def source(); end
-end
-
-class Bundler::Thor::Actions::Directory
-end
-
-class Bundler::Thor::Actions::EmptyDirectory
-  def base(); end
-
-  def config(); end
-
-  def convert_encoded_instructions(filename); end
-
-  def destination(); end
-
-  def destination=(destination); end
-
-  def exists?(); end
-
-  def given_destination(); end
-
-  def initialize(base, destination, config=T.unsafe(nil)); end
-
-  def invoke!(); end
-
-  def invoke_with_conflict_check(&block); end
-
-  def on_conflict_behavior(); end
-
-  def on_file_clash_behavior(); end
-
-  def pretend?(); end
-
-  def relative_destination(); end
-
-  def revoke!(); end
-
-  def say_status(status, color); end
-end
-
-class Bundler::Thor::Actions::EmptyDirectory
-end
-
-class Bundler::Thor::Actions::InjectIntoFile
-  def behavior(); end
-
-  def flag(); end
-
-  def initialize(base, destination, data, config); end
-
-  def replace!(regexp, string, force); end
-
-  def replacement(); end
-
-  def say_status(behavior, warning: T.unsafe(nil), color: T.unsafe(nil)); end
-end
-
-class Bundler::Thor::Actions::InjectIntoFile
-end
-
-module Bundler::Thor::Actions
-  def self.included(base); end
-end
-
-class Bundler::Thor::AmbiguousCommandError
-end
-
-class Bundler::Thor::AmbiguousCommandError
-end
-
-Bundler::Thor::AmbiguousTaskError = Bundler::Thor::AmbiguousCommandError
-
-class Bundler::Thor::Argument
-  def banner(); end
-
-  def default(); end
-
-  def default_banner(); end
-
-  def description(); end
-
-  def enum(); end
-
-  def human_name(); end
-
-  def initialize(name, options=T.unsafe(nil)); end
-
-  def name(); end
-
-  def required(); end
-
-  def required?(); end
-
-  def show_default?(); end
-
-  def type(); end
-
-  def usage(); end
-
-  def valid_type?(type); end
-
-  def validate!(); end
-  VALID_TYPES = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Argument
-end
-
-class Bundler::Thor::Arguments
-  def initialize(arguments=T.unsafe(nil)); end
-
-  def parse(args); end
-
-  def remaining(); end
-  NUMERIC = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Arguments
-  def self.parse(*args); end
-
-  def self.split(args); end
-end
-
-module Bundler::Thor::Base
-  def args(); end
-
-  def args=(args); end
-
-  def initialize(args=T.unsafe(nil), local_options=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def options(); end
-
-  def options=(options); end
-
-  def parent_options(); end
-
-  def parent_options=(parent_options); end
-end
-
-module Bundler::Thor::Base::ClassMethods
-  def all_commands(); end
-
-  def all_tasks(); end
-
-  def allow_incompatible_default_type!(); end
-
-  def argument(name, options=T.unsafe(nil)); end
-
-  def arguments(); end
-
-  def attr_accessor(*_); end
-
-  def attr_reader(*_); end
-
-  def attr_writer(*_); end
-
-  def baseclass(); end
-
-  def basename(); end
-
-  def build_option(name, options, scope); end
-
-  def build_options(options, scope); end
-
-  def check_default_type(); end
-
-  def check_default_type!(); end
-
-  def check_unknown_options(); end
-
-  def check_unknown_options!(); end
-
-  def check_unknown_options?(config); end
-
-  def class_option(name, options=T.unsafe(nil)); end
-
-  def class_options(options=T.unsafe(nil)); end
-
-  def class_options_help(shell, groups=T.unsafe(nil)); end
-
-  def commands(); end
-
-  def create_command(meth); end
-
-  def create_task(meth); end
-
-  def disable_required_check?(command_name); end
-
-  def dispatch(command, given_args, given_opts, config); end
-
-  def exit_on_failure?(); end
-
-  def find_and_refresh_command(name); end
-
-  def find_and_refresh_task(name); end
-
-  def from_superclass(method, default=T.unsafe(nil)); end
-
-  def group(name=T.unsafe(nil)); end
-
-  def handle_argument_error(command, error, args, arity); end
-
-  def handle_no_command_error(command, has_namespace=T.unsafe(nil)); end
-
-  def handle_no_task_error(command, has_namespace=T.unsafe(nil)); end
-
-  def inherited(klass); end
-
-  def initialize_added(); end
-
-  def is_thor_reserved_word?(word, type); end
-
-  def method_added(meth); end
-
-  def namespace(name=T.unsafe(nil)); end
-
-  def no_commands(&block); end
-
-  def no_commands?(); end
-
-  def no_commands_context(); end
-
-  def no_tasks(&block); end
-
-  def print_options(shell, options, group_name=T.unsafe(nil)); end
-
-  def public_command(*names); end
-
-  def public_task(*names); end
-
-  def remove_argument(*names); end
-
-  def remove_class_option(*names); end
-
-  def remove_command(*names); end
-
-  def remove_task(*names); end
-
-  def start(given_args=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def stop_on_unknown_option?(command_name); end
-
-  def strict_args_position(); end
-
-  def strict_args_position!(); end
-
-  def strict_args_position?(config); end
-
-  def tasks(); end
-end
-
-module Bundler::Thor::Base::ClassMethods
-end
-
-module Bundler::Thor::Base
-  def self.included(base); end
-
-  def self.register_klass_file(klass); end
-
-  def self.shell(); end
-
-  def self.shell=(shell); end
-
-  def self.subclass_files(); end
-
-  def self.subclasses(); end
-end
-
-class Bundler::Thor::Command
-  def formatted_usage(klass, namespace=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def handle_argument_error?(instance, error, caller); end
-
-  def handle_no_method_error?(instance, error, caller); end
-
-  def hidden?(); end
-
-  def initialize(name, description, long_description, usage, options=T.unsafe(nil)); end
-
-  def local_method?(instance, name); end
-
-  def not_debugging?(instance); end
-
-  def private_method?(instance); end
-
-  def public_method?(instance); end
-
-  def required_arguments_for(klass, usage); end
-
-  def required_options(); end
-
-  def run(instance, args=T.unsafe(nil)); end
-
-  def sans_backtrace(backtrace, caller); end
-  FILE_REGEXP = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Command
-end
-
-module Bundler::Thor::CoreExt
-end
-
-class Bundler::Thor::CoreExt::HashWithIndifferentAccess
-  def [](key); end
-
-  def []=(key, value); end
-
-  def convert_key(key); end
-
-  def delete(key); end
-
-  def fetch(key, *args); end
-
-  def initialize(hash=T.unsafe(nil)); end
-
-  def key?(key); end
-
-  def merge(other); end
-
-  def merge!(other); end
-
-  def method_missing(method, *args); end
-
-  def replace(other_hash); end
-
-  def reverse_merge(other); end
-
-  def values_at(*indices); end
-end
-
-class Bundler::Thor::CoreExt::HashWithIndifferentAccess
-end
-
-module Bundler::Thor::CoreExt
-end
-
-Bundler::Thor::Correctable = DidYouMean::Correctable
-
-class Bundler::Thor::DynamicCommand
-  def initialize(name, options=T.unsafe(nil)); end
-end
-
-class Bundler::Thor::DynamicCommand
-end
-
-Bundler::Thor::DynamicTask = Bundler::Thor::DynamicCommand
-
-class Bundler::Thor::Error
-end
-
-class Bundler::Thor::Error
-end
-
-class Bundler::Thor::Group
-  include ::Bundler::Thor::Base
-  include ::Bundler::Thor::Invocation
-  include ::Bundler::Thor::Shell
-  def _invoke_for_class_method(klass, command=T.unsafe(nil), *args, &block); end
-end
-
-class Bundler::Thor::Group
-  extend ::Bundler::Thor::Base::ClassMethods
-  extend ::Bundler::Thor::Invocation::ClassMethods
-  def self.banner(); end
-
-  def self.desc(description=T.unsafe(nil)); end
-
-  def self.get_options_from_invocations(group_options, base_options); end
-
-  def self.handle_argument_error(command, error, _args, arity); end
-
-  def self.help(shell); end
-
-  def self.invocation_blocks(); end
-
-  def self.invocations(); end
-
-  def self.invoke(*names, &block); end
-
-  def self.invoke_from_option(*names, &block); end
-
-  def self.printable_commands(*_); end
-
-  def self.printable_tasks(*_); end
-
-  def self.remove_invocation(*names); end
-
-  def self.self_command(); end
-
-  def self.self_task(); end
-end
-
-class Bundler::Thor::HiddenCommand
-end
-
-class Bundler::Thor::HiddenCommand
-end
-
-Bundler::Thor::HiddenTask = Bundler::Thor::HiddenCommand
-
-module Bundler::Thor::Invocation
-  def _parse_initialization_options(args, opts, config); end
-
-  def _retrieve_class_and_command(name, sent_command=T.unsafe(nil)); end
-
-  def _retrieve_class_and_task(name, sent_command=T.unsafe(nil)); end
-
-  def _shared_configuration(); end
-
-  def current_command_chain(); end
-
-  def initialize(args=T.unsafe(nil), options=T.unsafe(nil), config=T.unsafe(nil), &block); end
-
-  def invoke(name=T.unsafe(nil), *args); end
-
-  def invoke_all(); end
-
-  def invoke_command(command, *args); end
-
-  def invoke_task(command, *args); end
-
-  def invoke_with_padding(*args); end
-end
-
-module Bundler::Thor::Invocation::ClassMethods
-  def prepare_for_invocation(key, name); end
-end
-
-module Bundler::Thor::Invocation::ClassMethods
-end
-
-module Bundler::Thor::Invocation
-  def self.included(base); end
-end
-
-class Bundler::Thor::InvocationError
-end
-
-class Bundler::Thor::InvocationError
-end
-
-module Bundler::Thor::LineEditor
-end
-
-class Bundler::Thor::LineEditor::Basic
-  def initialize(prompt, options); end
-
-  def options(); end
-
-  def prompt(); end
-
-  def readline(); end
-end
-
-class Bundler::Thor::LineEditor::Basic
-  def self.available?(); end
-end
-
-class Bundler::Thor::LineEditor::Readline
-end
-
-class Bundler::Thor::LineEditor::Readline::PathCompletion
-  def initialize(text); end
-
-  def matches(); end
-end
-
-class Bundler::Thor::LineEditor::Readline::PathCompletion
-end
-
-class Bundler::Thor::LineEditor::Readline
-end
-
-module Bundler::Thor::LineEditor
-  def self.best_available(); end
-
-  def self.readline(prompt, options=T.unsafe(nil)); end
-end
-
-class Bundler::Thor::MalformattedArgumentError
-end
-
-class Bundler::Thor::MalformattedArgumentError
-end
-
-class Bundler::Thor::NestedContext
-  def enter(); end
-
-  def entered?(); end
-end
-
-class Bundler::Thor::NestedContext
-end
-
-class Bundler::Thor::NoKwargSpellChecker
-  def initialize(dictionary); end
-end
-
-class Bundler::Thor::NoKwargSpellChecker
-end
-
-class Bundler::Thor::Option
-  def aliases(); end
-
-  def array?(); end
-
-  def boolean?(); end
-
-  def dasherize(str); end
-
-  def dasherized?(); end
-
-  def group(); end
-
-  def hash?(); end
-
-  def hide(); end
-
-  def lazy_default(); end
-
-  def numeric?(); end
-
-  def repeatable(); end
-
-  def string?(); end
-
-  def switch_name(); end
-
-  def undasherize(str); end
-
-  def usage(padding=T.unsafe(nil)); end
-
-  def validate_default_type!(); end
-  VALID_TYPES = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Option
-  def self.parse(key, value); end
-end
-
-class Bundler::Thor::Options
-  def assign_result!(option, result); end
-
-  def check_unknown!(); end
-
-  def current_is_switch?(); end
-
-  def current_is_switch_formatted?(); end
-
-  def initialize(hash_options=T.unsafe(nil), defaults=T.unsafe(nil), stop_on_unknown=T.unsafe(nil), disable_required_check=T.unsafe(nil)); end
-
-  def normalize_switch(arg); end
-
-  def parse_boolean(switch); end
-
-  def parse_peek(switch, option); end
-
-  def parsing_options?(); end
-
-  def switch?(arg); end
-
-  def switch_option(arg); end
-  EQ_RE = ::T.let(nil, ::T.untyped)
-  LONG_RE = ::T.let(nil, ::T.untyped)
-  OPTS_END = ::T.let(nil, ::T.untyped)
-  SHORT_NUM = ::T.let(nil, ::T.untyped)
-  SHORT_RE = ::T.let(nil, ::T.untyped)
-  SHORT_SQ_RE = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Options
-  def self.to_switches(options); end
-end
-
-module Bundler::Thor::RakeCompat
-  include ::Rake::DSL
-  include ::Rake::FileUtilsExt
-  include ::FileUtils
-  include ::FileUtils::StreamUtils_
-end
-
-module Bundler::Thor::RakeCompat
-  def self.included(base); end
-
-  def self.rake_classes(); end
-end
-
-class Bundler::Thor::RequiredArgumentMissingError
-end
-
-class Bundler::Thor::RequiredArgumentMissingError
-end
-
-module Bundler::Thor::Sandbox
-end
-
-module Bundler::Thor::Sandbox
-end
-
-module Bundler::Thor::Shell
-  def _shared_configuration(); end
-
-  def ask(*args, &block); end
-
-  def error(*args, &block); end
-
-  def file_collision(*args, &block); end
-
-  def initialize(args=T.unsafe(nil), options=T.unsafe(nil), config=T.unsafe(nil)); end
-
-  def no?(*args, &block); end
-
-  def print_in_columns(*args, &block); end
-
-  def print_table(*args, &block); end
-
-  def print_wrapped(*args, &block); end
-
-  def say(*args, &block); end
-
-  def say_status(*args, &block); end
-
-  def set_color(*args, &block); end
-
-  def shell(); end
-
-  def shell=(shell); end
-
-  def terminal_width(*args, &block); end
-
-  def with_padding(); end
-
-  def yes?(*args, &block); end
-  SHELL_DELEGATED_METHODS = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::Basic
-  def answer_match(possibilities, answer, case_insensitive); end
-
-  def as_unicode(); end
-
-  def ask(statement, *args); end
-
-  def ask_filtered(statement, color, options); end
-
-  def ask_simply(statement, color, options); end
-
-  def base(); end
-
-  def base=(base); end
-
-  def can_display_colors?(); end
-
-  def dynamic_width(); end
-
-  def dynamic_width_stty(); end
-
-  def dynamic_width_tput(); end
-
-  def error(statement); end
-
-  def file_collision(destination); end
-
-  def file_collision_help(); end
-
-  def git_merge_tool(); end
-
-  def indent(count=T.unsafe(nil)); end
-
-  def is?(value); end
-
-  def lookup_color(color); end
-
-  def merge(destination, content); end
-
-  def merge_tool(); end
-
-  def mute(); end
-
-  def mute?(); end
-
-  def no?(statement, color=T.unsafe(nil)); end
-
-  def padding(); end
-
-  def padding=(value); end
-
-  def prepare_message(message, *color); end
-
-  def print_in_columns(array); end
-
-  def print_table(array, options=T.unsafe(nil)); end
-
-  def print_wrapped(message, options=T.unsafe(nil)); end
-
-  def quiet?(); end
-
-  def say(message=T.unsafe(nil), color=T.unsafe(nil), force_new_line=T.unsafe(nil)); end
-
-  def say_status(status, message, log_status=T.unsafe(nil)); end
-
-  def set_color(string, *_); end
-
-  def show_diff(destination, content); end
-
-  def stderr(); end
-
-  def stdout(); end
-
-  def terminal_width(); end
-
-  def truncate(string, width); end
-
-  def unix?(); end
-
-  def yes?(statement, color=T.unsafe(nil)); end
-  DEFAULT_TERMINAL_WIDTH = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::Basic
-end
-
-class Bundler::Thor::Shell::Color
-  def are_colors_disabled?(); end
-
-  def diff_lcs_loaded?(); end
-
-  def output_diff_line(diff); end
-
-  def set_color(string, *colors); end
-  BLACK = ::T.let(nil, ::T.untyped)
-  BLUE = ::T.let(nil, ::T.untyped)
-  BOLD = ::T.let(nil, ::T.untyped)
-  CLEAR = ::T.let(nil, ::T.untyped)
-  CYAN = ::T.let(nil, ::T.untyped)
-  GREEN = ::T.let(nil, ::T.untyped)
-  MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_BLACK = ::T.let(nil, ::T.untyped)
-  ON_BLUE = ::T.let(nil, ::T.untyped)
-  ON_CYAN = ::T.let(nil, ::T.untyped)
-  ON_GREEN = ::T.let(nil, ::T.untyped)
-  ON_MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_RED = ::T.let(nil, ::T.untyped)
-  ON_WHITE = ::T.let(nil, ::T.untyped)
-  ON_YELLOW = ::T.let(nil, ::T.untyped)
-  RED = ::T.let(nil, ::T.untyped)
-  WHITE = ::T.let(nil, ::T.untyped)
-  YELLOW = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::Color
-end
-
-class Bundler::Thor::Shell::HTML
-  def ask(statement, color=T.unsafe(nil)); end
-
-  def diff_lcs_loaded?(); end
-
-  def output_diff_line(diff); end
-
-  def set_color(string, *colors); end
-  BLACK = ::T.let(nil, ::T.untyped)
-  BLUE = ::T.let(nil, ::T.untyped)
-  BOLD = ::T.let(nil, ::T.untyped)
-  CYAN = ::T.let(nil, ::T.untyped)
-  GREEN = ::T.let(nil, ::T.untyped)
-  MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_BLACK = ::T.let(nil, ::T.untyped)
-  ON_BLUE = ::T.let(nil, ::T.untyped)
-  ON_CYAN = ::T.let(nil, ::T.untyped)
-  ON_GREEN = ::T.let(nil, ::T.untyped)
-  ON_MAGENTA = ::T.let(nil, ::T.untyped)
-  ON_RED = ::T.let(nil, ::T.untyped)
-  ON_WHITE = ::T.let(nil, ::T.untyped)
-  ON_YELLOW = ::T.let(nil, ::T.untyped)
-  RED = ::T.let(nil, ::T.untyped)
-  WHITE = ::T.let(nil, ::T.untyped)
-  YELLOW = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::Thor::Shell::HTML
-end
-
-module Bundler::Thor::Shell
-end
-
-Bundler::Thor::Task = Bundler::Thor::Command
-
-class Bundler::Thor::UndefinedCommandError
-  include ::DidYouMean::Correctable
-  def all_commands(); end
-
-  def command(); end
-
-  def initialize(command, all_commands, namespace); end
-end
-
-class Bundler::Thor::UndefinedCommandError::SpellChecker
-  def corrections(); end
-
-  def error(); end
-
-  def initialize(error); end
-
-  def spell_checker(); end
-end
-
-class Bundler::Thor::UndefinedCommandError::SpellChecker
-end
-
-class Bundler::Thor::UndefinedCommandError
-end
-
-Bundler::Thor::UndefinedTaskError = Bundler::Thor::UndefinedCommandError
-
-class Bundler::Thor::UnknownArgumentError
-  include ::DidYouMean::Correctable
-  def initialize(switches, unknown); end
-
-  def switches(); end
-
-  def unknown(); end
-end
-
-class Bundler::Thor::UnknownArgumentError::SpellChecker
-  def corrections(); end
-
-  def error(); end
-
-  def initialize(error); end
-
-  def spell_checker(); end
-end
-
-class Bundler::Thor::UnknownArgumentError::SpellChecker
-end
-
-class Bundler::Thor::UnknownArgumentError
-end
-
-module Bundler::Thor::Util
-end
-
-module Bundler::Thor::Util
-  def self.camel_case(str); end
-
-  def self.escape_globs(path); end
-
-  def self.escape_html(string); end
-
-  def self.find_by_namespace(namespace); end
-
-  def self.find_class_and_command_by_namespace(namespace, fallback=T.unsafe(nil)); end
-
-  def self.find_class_and_task_by_namespace(namespace, fallback=T.unsafe(nil)); end
-
-  def self.globs_for(path); end
-
-  def self.load_thorfile(path, content=T.unsafe(nil), debug=T.unsafe(nil)); end
-
-  def self.namespace_from_thor_class(constant); end
-
-  def self.namespaces_in_content(contents, file=T.unsafe(nil)); end
-
-  def self.ruby_command(); end
-
-  def self.snake_case(str); end
-
-  def self.thor_classes_in(klass); end
-
-  def self.thor_root(); end
-
-  def self.thor_root_glob(); end
-
-  def self.user_home(); end
-end
-
-class Bundler::Thor
-  extend ::Bundler::Thor::Base::ClassMethods
-  extend ::Bundler::Thor::Invocation::ClassMethods
-  def self.banner(command, namespace=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def self.check_unknown_options!(options=T.unsafe(nil)); end
-
-  def self.command_help(shell, command_name); end
-
-  def self.default_command(meth=T.unsafe(nil)); end
-
-  def self.default_task(meth=T.unsafe(nil)); end
-
-  def self.deprecation_warning(message); end
-
-  def self.desc(usage, description, options=T.unsafe(nil)); end
-
-  def self.disable_required_check(); end
-
-  def self.disable_required_check!(*command_names); end
-
-  def self.disable_required_check?(command); end
-
-  def self.dispatch(meth, given_args, given_opts, config); end
-
-  def self.dynamic_command_class(); end
-
-  def self.find_command_possibilities(meth); end
-
-  def self.find_task_possibilities(meth); end
-
-  def self.help(shell, subcommand=T.unsafe(nil)); end
-
-  def self.long_desc(long_description, options=T.unsafe(nil)); end
-
-  def self.map(mappings=T.unsafe(nil), **kw); end
-
-  def self.method_option(name, options=T.unsafe(nil)); end
-
-  def self.method_options(options=T.unsafe(nil)); end
-
-  def self.normalize_command_name(meth); end
-
-  def self.normalize_task_name(meth); end
-
-  def self.option(name, options=T.unsafe(nil)); end
-
-  def self.options(options=T.unsafe(nil)); end
-
-  def self.package_name(name, _=T.unsafe(nil)); end
-
-  def self.printable_commands(all=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def self.printable_tasks(all=T.unsafe(nil), subcommand=T.unsafe(nil)); end
-
-  def self.register(klass, subcommand_name, usage, description, options=T.unsafe(nil)); end
-
-  def self.retrieve_command_name(args); end
-
-  def self.retrieve_task_name(args); end
-
-  def self.stop_on_unknown_option(); end
-
-  def self.stop_on_unknown_option!(*command_names); end
-
-  def self.stop_on_unknown_option?(command); end
-
-  def self.subcommand(subcommand, subcommand_class); end
-
-  def self.subcommand_classes(); end
-
-  def self.subcommand_help(cmd); end
-
-  def self.subcommands(); end
-
-  def self.subtask(subcommand, subcommand_class); end
-
-  def self.subtask_help(cmd); end
-
-  def self.subtasks(); end
-
-  def self.task_help(shell, command_name); end
 end
 
 class Bundler::UI::Shell
@@ -22634,449 +21806,6 @@ class Bundler::UI::Shell
 end
 
 class Bundler::UI::Shell
-end
-
-module Bundler::URI
-  include ::Bundler::URI::RFC2396_REGEXP
-  ABS_PATH = ::T.let(nil, ::T.untyped)
-  ABS_URI = ::T.let(nil, ::T.untyped)
-  ABS_URI_REF = ::T.let(nil, ::T.untyped)
-  DEFAULT_PARSER = ::T.let(nil, ::T.untyped)
-  ESCAPED = ::T.let(nil, ::T.untyped)
-  FRAGMENT = ::T.let(nil, ::T.untyped)
-  HOST = ::T.let(nil, ::T.untyped)
-  OPAQUE = ::T.let(nil, ::T.untyped)
-  PORT = ::T.let(nil, ::T.untyped)
-  QUERY = ::T.let(nil, ::T.untyped)
-  REGISTRY = ::T.let(nil, ::T.untyped)
-  REL_PATH = ::T.let(nil, ::T.untyped)
-  REL_URI = ::T.let(nil, ::T.untyped)
-  REL_URI_REF = ::T.let(nil, ::T.untyped)
-  RFC3986_PARSER = ::T.let(nil, ::T.untyped)
-  SCHEME = ::T.let(nil, ::T.untyped)
-  TBLDECWWWCOMP_ = ::T.let(nil, ::T.untyped)
-  TBLENCWWWCOMP_ = ::T.let(nil, ::T.untyped)
-  UNSAFE = ::T.let(nil, ::T.untyped)
-  URI_REF = ::T.let(nil, ::T.untyped)
-  USERINFO = ::T.let(nil, ::T.untyped)
-  VERSION = ::T.let(nil, ::T.untyped)
-  VERSION_CODE = ::T.let(nil, ::T.untyped)
-  WEB_ENCODINGS_ = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::BadURIError
-end
-
-class Bundler::URI::BadURIError
-end
-
-class Bundler::URI::Error
-end
-
-class Bundler::URI::Error
-end
-
-module Bundler::URI::Escape
-  def decode(*arg); end
-
-  def encode(*arg); end
-
-  def escape(*arg); end
-
-  def unescape(*arg); end
-end
-
-module Bundler::URI::Escape
-end
-
-class Bundler::URI::FTP
-  def set_typecode(v); end
-
-  def typecode(); end
-
-  def typecode=(typecode); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  TYPECODE = ::T.let(nil, ::T.untyped)
-  TYPECODE_PREFIX = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::FTP
-  def self.new2(user, password, host, port, path, typecode=T.unsafe(nil), arg_check=T.unsafe(nil)); end
-end
-
-class Bundler::URI::File
-  def check_password(user); end
-
-  def check_user(user); end
-
-  def check_userinfo(user); end
-
-  def set_userinfo(v); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::File
-end
-
-class Bundler::URI::Generic
-  include ::Bundler::URI
-  include ::Bundler::URI::RFC2396_REGEXP
-  def +(oth); end
-
-  def -(oth); end
-
-  def ==(oth); end
-
-  def absolute(); end
-
-  def absolute?(); end
-
-  def coerce(oth); end
-
-  def component(); end
-
-  def component_ary(); end
-
-  def default_port(); end
-
-  def eql?(oth); end
-
-  def find_proxy(env=T.unsafe(nil)); end
-
-  def fragment(); end
-
-  def fragment=(v); end
-
-  def hierarchical?(); end
-
-  def host(); end
-
-  def host=(v); end
-
-  def hostname(); end
-
-  def hostname=(v); end
-
-  def initialize(scheme, userinfo, host, port, registry, path, opaque, query, fragment, parser=T.unsafe(nil), arg_check=T.unsafe(nil)); end
-
-  def merge(oth); end
-
-  def merge!(oth); end
-
-  def normalize(); end
-
-  def normalize!(); end
-
-  def opaque(); end
-
-  def opaque=(v); end
-
-  def parser(); end
-
-  def password(); end
-
-  def password=(password); end
-
-  def path(); end
-
-  def path=(v); end
-
-  def port(); end
-
-  def port=(v); end
-
-  def query(); end
-
-  def query=(v); end
-
-  def registry(); end
-
-  def registry=(v); end
-
-  def relative?(); end
-
-  def route_from(oth); end
-
-  def route_to(oth); end
-
-  def scheme(); end
-
-  def scheme=(v); end
-
-  def select(*components); end
-
-  def set_host(v); end
-
-  def set_opaque(v); end
-
-  def set_password(v); end
-
-  def set_path(v); end
-
-  def set_port(v); end
-
-  def set_registry(v); end
-
-  def set_scheme(v); end
-
-  def set_user(v); end
-
-  def set_userinfo(user, password=T.unsafe(nil)); end
-
-  def user(); end
-
-  def user=(user); end
-
-  def userinfo(); end
-
-  def userinfo=(userinfo); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  USE_REGISTRY = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::Generic
-  def self.build(args); end
-
-  def self.build2(args); end
-
-  def self.component(); end
-
-  def self.default_port(); end
-
-  def self.use_proxy?(hostname, addr, port, no_proxy); end
-
-  def self.use_registry(); end
-end
-
-class Bundler::URI::HTTP
-  def request_uri(); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::HTTP
-end
-
-class Bundler::URI::HTTPS
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::HTTPS
-end
-
-class Bundler::URI::InvalidComponentError
-end
-
-class Bundler::URI::InvalidComponentError
-end
-
-class Bundler::URI::InvalidURIError
-end
-
-class Bundler::URI::InvalidURIError
-end
-
-class Bundler::URI::LDAP
-  def attributes(); end
-
-  def attributes=(val); end
-
-  def dn(); end
-
-  def dn=(val); end
-
-  def extensions(); end
-
-  def extensions=(val); end
-
-  def filter(); end
-
-  def filter=(val); end
-
-  def initialize(*arg); end
-
-  def scope(); end
-
-  def scope=(val); end
-
-  def set_attributes(val); end
-
-  def set_dn(val); end
-
-  def set_extensions(val); end
-
-  def set_filter(val); end
-
-  def set_scope(val); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  SCOPE = ::T.let(nil, ::T.untyped)
-  SCOPE_BASE = ::T.let(nil, ::T.untyped)
-  SCOPE_ONE = ::T.let(nil, ::T.untyped)
-  SCOPE_SUB = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::LDAP
-end
-
-class Bundler::URI::LDAPS
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::LDAPS
-end
-
-class Bundler::URI::MailTo
-  def headers(); end
-
-  def headers=(v); end
-
-  def initialize(*arg); end
-
-  def set_headers(v); end
-
-  def set_to(v); end
-
-  def to(); end
-
-  def to=(v); end
-
-  def to_mailtext(); end
-
-  def to_rfc822text(); end
-  COMPONENT = ::T.let(nil, ::T.untyped)
-  DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-  EMAIL_REGEXP = ::T.let(nil, ::T.untyped)
-  HEADER_REGEXP = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::MailTo
-end
-
-Bundler::URI::Parser = Bundler::URI::RFC2396_Parser
-
-Bundler::URI::REGEXP = Bundler::URI::RFC2396_REGEXP
-
-class Bundler::URI::RFC2396_Parser
-  include ::Bundler::URI::RFC2396_REGEXP
-  def escape(str, unsafe=T.unsafe(nil)); end
-
-  def extract(str, schemes=T.unsafe(nil)); end
-
-  def initialize(opts=T.unsafe(nil)); end
-
-  def join(*uris); end
-
-  def make_regexp(schemes=T.unsafe(nil)); end
-
-  def parse(uri); end
-
-  def pattern(); end
-
-  def regexp(); end
-
-  def split(uri); end
-
-  def unescape(str, escaped=T.unsafe(nil)); end
-end
-
-class Bundler::URI::RFC2396_Parser
-end
-
-module Bundler::URI::RFC2396_REGEXP
-end
-
-module Bundler::URI::RFC2396_REGEXP::PATTERN
-  ABS_PATH = ::T.let(nil, ::T.untyped)
-  ABS_URI = ::T.let(nil, ::T.untyped)
-  ALNUM = ::T.let(nil, ::T.untyped)
-  ALPHA = ::T.let(nil, ::T.untyped)
-  DOMLABEL = ::T.let(nil, ::T.untyped)
-  ESCAPED = ::T.let(nil, ::T.untyped)
-  FRAGMENT = ::T.let(nil, ::T.untyped)
-  HEX = ::T.let(nil, ::T.untyped)
-  HIER_PART = ::T.let(nil, ::T.untyped)
-  HOST = ::T.let(nil, ::T.untyped)
-  HOSTNAME = ::T.let(nil, ::T.untyped)
-  HOSTPORT = ::T.let(nil, ::T.untyped)
-  IPV4ADDR = ::T.let(nil, ::T.untyped)
-  IPV6ADDR = ::T.let(nil, ::T.untyped)
-  IPV6REF = ::T.let(nil, ::T.untyped)
-  NET_PATH = ::T.let(nil, ::T.untyped)
-  OPAQUE_PART = ::T.let(nil, ::T.untyped)
-  PATH_SEGMENTS = ::T.let(nil, ::T.untyped)
-  PORT = ::T.let(nil, ::T.untyped)
-  QUERY = ::T.let(nil, ::T.untyped)
-  REG_NAME = ::T.let(nil, ::T.untyped)
-  REL_PATH = ::T.let(nil, ::T.untyped)
-  REL_SEGMENT = ::T.let(nil, ::T.untyped)
-  REL_URI = ::T.let(nil, ::T.untyped)
-  RESERVED = ::T.let(nil, ::T.untyped)
-  SCHEME = ::T.let(nil, ::T.untyped)
-  TOPLABEL = ::T.let(nil, ::T.untyped)
-  UNRESERVED = ::T.let(nil, ::T.untyped)
-  URIC = ::T.let(nil, ::T.untyped)
-  URIC_NO_SLASH = ::T.let(nil, ::T.untyped)
-  URI_REF = ::T.let(nil, ::T.untyped)
-  USERINFO = ::T.let(nil, ::T.untyped)
-  X_ABS_URI = ::T.let(nil, ::T.untyped)
-  X_REL_URI = ::T.let(nil, ::T.untyped)
-end
-
-module Bundler::URI::RFC2396_REGEXP::PATTERN
-end
-
-module Bundler::URI::RFC2396_REGEXP
-end
-
-class Bundler::URI::RFC3986_Parser
-  def join(*uris); end
-
-  def parse(uri); end
-
-  def regexp(); end
-
-  def split(uri); end
-  RFC3986_URI = ::T.let(nil, ::T.untyped)
-  RFC3986_relative_ref = ::T.let(nil, ::T.untyped)
-end
-
-class Bundler::URI::RFC3986_Parser
-end
-
-module Bundler::URI::Util
-end
-
-module Bundler::URI::Util
-  def self.make_components_hash(klass, array_hash); end
-end
-
-module Bundler::URI
-  extend ::Bundler::URI::Escape
-  def self.decode_www_form(str, enc=T.unsafe(nil), separator: T.unsafe(nil), use__charset_: T.unsafe(nil), isindex: T.unsafe(nil)); end
-
-  def self.decode_www_form_component(str, enc=T.unsafe(nil)); end
-
-  def self.encode_www_form(enum, enc=T.unsafe(nil)); end
-
-  def self.encode_www_form_component(str, enc=T.unsafe(nil)); end
-
-  def self.extract(str, schemes=T.unsafe(nil), &block); end
-
-  def self.get_encoding(label); end
-
-  def self.join(*str); end
-
-  def self.parse(uri); end
-
-  def self.regexp(schemes=T.unsafe(nil)); end
-
-  def self.scheme_list(); end
-
-  def self.split(uri); end
 end
 
 module Bundler::VersionRanges
@@ -23141,20 +21870,6 @@ module Bundler::VersionRanges
   def self.for(requirement); end
 
   def self.for_many(requirements); end
-end
-
-module Bundler
-  def self.original_exec(*args); end
-
-  def self.original_system(*args); end
-
-  def self.unbundled_env(); end
-
-  def self.unbundled_exec(*args); end
-
-  def self.unbundled_system(*args); end
-
-  def self.with_unbundled_env(); end
 end
 
 module Byebug
@@ -23293,7 +22008,6 @@ class Complex
 end
 
 module Concurrent
-  AtExit = ::T.let(nil, ::T.untyped)
   NULL = ::T.let(nil, ::T.untyped)
   NULL_LOGGER = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
@@ -23399,12 +22113,360 @@ class Crass::Tokenizer
   RE_WHITESPACE_ANCHORED = ::T.let(nil, ::T.untyped)
 end
 
+module DRb
+end
+
+class DRb::DRbArray
+  def _dump(lv); end
+
+  def initialize(ary); end
+end
+
+class DRb::DRbArray
+  def self._load(s); end
+end
+
+class DRb::DRbBadScheme
+end
+
+class DRb::DRbBadScheme
+end
+
+class DRb::DRbBadURI
+end
+
+class DRb::DRbBadURI
+end
+
+class DRb::DRbConn
+  def alive?(); end
+
+  def close(); end
+
+  def initialize(remote_uri); end
+
+  def send_message(ref, msg_id, arg, block); end
+
+  def uri(); end
+  POOL_SIZE = ::T.let(nil, ::T.untyped)
+end
+
+class DRb::DRbConn
+  def self.open(remote_uri); end
+end
+
+class DRb::DRbConnError
+end
+
+class DRb::DRbConnError
+end
+
+class DRb::DRbError
+end
+
+class DRb::DRbError
+end
+
+class DRb::DRbIdConv
+  def to_id(obj); end
+
+  def to_obj(ref); end
+end
+
+class DRb::DRbIdConv
+end
+
+class DRb::DRbMessage
+  def dump(obj, error=T.unsafe(nil)); end
+
+  def initialize(config); end
+
+  def load(soc); end
+
+  def recv_reply(stream); end
+
+  def recv_request(stream); end
+
+  def send_reply(stream, succ, result); end
+
+  def send_request(stream, ref, msg_id, arg, b); end
+end
+
+class DRb::DRbMessage
+end
+
+class DRb::DRbObject
+  def ==(other); end
+
+  def __drbref(); end
+
+  def __drburi(); end
+
+  def _dump(lv); end
+
+  def eql?(other); end
+
+  def initialize(obj, uri=T.unsafe(nil)); end
+
+  def method_missing(msg_id, *a, &b); end
+
+  def respond_to?(msg_id, priv=T.unsafe(nil)); end
+end
+
+class DRb::DRbObject
+  def self._load(s); end
+
+  def self.new_with(uri, ref); end
+
+  def self.new_with_uri(uri); end
+
+  def self.prepare_backtrace(uri, result); end
+
+  def self.with_friend(uri); end
+end
+
+module DRb::DRbProtocol
+end
+
+module DRb::DRbProtocol
+  def self.add_protocol(prot); end
+
+  def self.auto_load(uri); end
+
+  def self.open(uri, config, first=T.unsafe(nil)); end
+
+  def self.open_server(uri, config, first=T.unsafe(nil)); end
+
+  def self.uri_option(uri, config, first=T.unsafe(nil)); end
+end
+
+class DRb::DRbRemoteError
+  def initialize(error); end
+
+  def reason(); end
+end
+
+class DRb::DRbRemoteError
+end
+
+class DRb::DRbServer
+  def alive?(); end
+
+  def check_insecure_method(obj, msg_id); end
+
+  def config(); end
+
+  def front(); end
+
+  def here?(uri); end
+
+  def initialize(uri=T.unsafe(nil), front=T.unsafe(nil), config_or_acl=T.unsafe(nil)); end
+
+  def safe_level(); end
+
+  def stop_service(); end
+
+  def thread(); end
+
+  def to_id(obj); end
+
+  def to_obj(ref); end
+
+  def uri(); end
+
+  def verbose(); end
+
+  def verbose=(v); end
+  INSECURE_METHOD = ::T.let(nil, ::T.untyped)
+end
+
+class DRb::DRbServer::InvokeMethod
+  include ::DRb::DRbServer::InvokeMethod18Mixin
+  def initialize(drb_server, client); end
+
+  def perform(); end
+end
+
+class DRb::DRbServer::InvokeMethod
+end
+
+module DRb::DRbServer::InvokeMethod18Mixin
+  def block_yield(x); end
+
+  def perform_with_block(); end
+end
+
+module DRb::DRbServer::InvokeMethod18Mixin
+end
+
+class DRb::DRbServer
+  def self.default_acl(acl); end
+
+  def self.default_argc_limit(argc); end
+
+  def self.default_id_conv(idconv); end
+
+  def self.default_load_limit(sz); end
+
+  def self.default_safe_level(level); end
+
+  def self.make_config(hash=T.unsafe(nil)); end
+
+  def self.verbose(); end
+
+  def self.verbose=(on); end
+end
+
+class DRb::DRbServerNotFound
+end
+
+class DRb::DRbServerNotFound
+end
+
+class DRb::DRbTCPSocket
+  def accept(); end
+
+  def alive?(); end
+
+  def close(); end
+
+  def initialize(uri, soc, config=T.unsafe(nil)); end
+
+  def peeraddr(); end
+
+  def recv_reply(); end
+
+  def recv_request(); end
+
+  def send_reply(succ, result); end
+
+  def send_request(ref, msg_id, arg, b); end
+
+  def set_sockopt(soc); end
+
+  def shutdown(); end
+
+  def stream(); end
+
+  def uri(); end
+end
+
+class DRb::DRbTCPSocket
+  def self.getservername(); end
+
+  def self.open(uri, config); end
+
+  def self.open_server(uri, config); end
+
+  def self.open_server_inaddr_any(host, port); end
+
+  def self.parse_uri(uri); end
+
+  def self.uri_option(uri, config); end
+end
+
+class DRb::DRbUNIXSocket
+  def initialize(uri, soc, config=T.unsafe(nil), server_mode=T.unsafe(nil)); end
+  Max_try = ::T.let(nil, ::T.untyped)
+end
+
+class DRb::DRbUNIXSocket
+  def self.temp_server(); end
+end
+
+class DRb::DRbURIOption
+  def ==(other); end
+
+  def eql?(other); end
+
+  def initialize(option); end
+
+  def option(); end
+end
+
+class DRb::DRbURIOption
+end
+
 module DRb::DRbUndumped
   def _dump(dummy); end
 end
 
 module DRb::DRbUndumped
 end
+
+class DRb::DRbUnknown
+  def _dump(lv); end
+
+  def buf(); end
+
+  def exception(); end
+
+  def initialize(err, buf); end
+
+  def name(); end
+
+  def reload(); end
+end
+
+class DRb::DRbUnknown
+  def self._load(s); end
+end
+
+class DRb::DRbUnknownError
+  def _dump(lv); end
+
+  def initialize(unknown); end
+
+  def unknown(); end
+end
+
+class DRb::DRbUnknownError
+  def self._load(s); end
+end
+
+module DRb
+  def self.config(); end
+
+  def self.current_server(); end
+
+  def self.fetch_server(uri); end
+
+  def self.front(); end
+
+  def self.here?(uri); end
+
+  def self.install_acl(acl); end
+
+  def self.install_id_conv(idconv); end
+
+  def self.mutex(); end
+
+  def self.primary_server(); end
+
+  def self.primary_server=(primary_server); end
+
+  def self.regist_server(server); end
+
+  def self.remove_server(server); end
+
+  def self.start_service(uri=T.unsafe(nil), front=T.unsafe(nil), config=T.unsafe(nil)); end
+
+  def self.stop_service(); end
+
+  def self.thread(); end
+
+  def self.to_id(obj); end
+
+  def self.to_obj(ref); end
+
+  def self.uri(); end
+end
+
+DRbIdConv = DRb::DRbIdConv
+
+DRbObject = DRb::DRbObject
+
+DRbUndumped = DRb::DRbUndumped
 
 class Date
   DATE_FORMATS = ::T.let(nil, ::T.untyped)
@@ -23592,6 +22654,63 @@ module ERB::Util
   JSON_ESCAPE_REGEXP = ::T.let(nil, ::T.untyped)
 end
 
+class Ektar::Admin::InvitationsController
+  include ::Ektar::Concerns::Index
+  include ::Pagy::Backend
+  include ::Ektar::Concerns::New
+  include ::Ektar::Concerns::Create
+  include ::Ektar::Concerns::Edit
+  include ::Ektar::Concerns::Update
+  include ::Ektar::Concerns::Show
+  include ::Ektar::Concerns::Destroy
+  def create!(options=T.unsafe(nil), &block); end
+
+  def destroy(options=T.unsafe(nil), &block); end
+
+  def destroy!(options=T.unsafe(nil), &block); end
+
+  def edit!(options=T.unsafe(nil), &block); end
+
+  def index(options=T.unsafe(nil), &block); end
+
+  def index!(options=T.unsafe(nil), &block); end
+
+  def new!(options=T.unsafe(nil), &block); end
+
+  def show(options=T.unsafe(nil), &block); end
+
+  def show!(options=T.unsafe(nil), &block); end
+
+  def update(options=T.unsafe(nil), &block); end
+
+  def update!(options=T.unsafe(nil), &block); end
+end
+
+class Ektar::Admin::UsersController
+  include ::Ektar::Concerns::Index
+  include ::Ektar::Concerns::New
+  def index!(options=T.unsafe(nil), &block); end
+
+  def new(options=T.unsafe(nil), &block); end
+
+  def new!(options=T.unsafe(nil), &block); end
+end
+
+class Ektar::ApplicationController::ResourceResponse
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Ektar::ApplicationController
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module Ektar::ApplicationHelper
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 class Ektar::ApplicationRecord
   include ::Ektar::ApplicationRecord::GeneratedAttributeMethods
   include ::Ektar::ApplicationRecord::GeneratedAssociationMethods
@@ -23614,6 +22733,32 @@ class Ektar::Engine
 end
 
 class Ektar::Engine
+end
+
+class Ektar::Invitation
+  def accepted?(*args, &blk); end
+
+  def autosave_associated_records_for_organization(*args); end
+end
+
+module Ektar::Invitation::GeneratedAssociationMethods
+  def build_organization(*args, &block); end
+
+  def create_organization(*args, &block); end
+
+  def create_organization!(*args, &block); end
+
+  def reload_organization(); end
+end
+
+module Ektar::Invitation::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+class Ektar::Invitation
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Ektar::Membership
@@ -23650,6 +22795,8 @@ end
 
 class Ektar::Membership
   extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Ektar::Organization
@@ -23768,6 +22915,8 @@ end
 
 class Ektar::Organization
   extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_invitations(); end
 
   def self.after_add_for_invitations=(val); end
@@ -23938,8 +23087,106 @@ class Ektar::Plan
   def self.search_full(*args); end
 end
 
-class Ektar::ResetPasswordController
-  extend ::T::Sig
+module Ektar::ResourcefulHelper
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Ektar::SuperAdmin::OrganizationsController
+  include ::Ektar::Concerns::Index
+  include ::Pagy::Backend
+  include ::Ektar::Concerns::New
+  include ::Ektar::Concerns::Create
+  include ::Ektar::Concerns::Edit
+  include ::Ektar::Concerns::Update
+  include ::Ektar::Concerns::Show
+  include ::Ektar::Concerns::Destroy
+  def create(options=T.unsafe(nil), &block); end
+
+  def create!(options=T.unsafe(nil), &block); end
+
+  def destroy!(options=T.unsafe(nil), &block); end
+
+  def edit(options=T.unsafe(nil), &block); end
+
+  def edit!(options=T.unsafe(nil), &block); end
+
+  def index(options=T.unsafe(nil), &block); end
+
+  def index!(options=T.unsafe(nil), &block); end
+
+  def new(options=T.unsafe(nil), &block); end
+
+  def new!(options=T.unsafe(nil), &block); end
+
+  def show(options=T.unsafe(nil), &block); end
+
+  def show!(options=T.unsafe(nil), &block); end
+
+  def update(options=T.unsafe(nil), &block); end
+
+  def update!(options=T.unsafe(nil), &block); end
+end
+
+class Ektar::SuperAdmin::PlansController
+  include ::Ektar::Concerns::Index
+  include ::Pagy::Backend
+  include ::Ektar::Concerns::New
+  include ::Ektar::Concerns::Create
+  include ::Ektar::Concerns::Edit
+  include ::Ektar::Concerns::Update
+  include ::Ektar::Concerns::Show
+  include ::Ektar::Concerns::Destroy
+  def create(options=T.unsafe(nil), &block); end
+
+  def create!(options=T.unsafe(nil), &block); end
+
+  def destroy!(options=T.unsafe(nil), &block); end
+
+  def edit(options=T.unsafe(nil), &block); end
+
+  def edit!(options=T.unsafe(nil), &block); end
+
+  def index(options=T.unsafe(nil), &block); end
+
+  def index!(options=T.unsafe(nil), &block); end
+
+  def new(options=T.unsafe(nil), &block); end
+
+  def new!(options=T.unsafe(nil), &block); end
+
+  def show(options=T.unsafe(nil), &block); end
+
+  def show!(options=T.unsafe(nil), &block); end
+
+  def update(options=T.unsafe(nil), &block); end
+
+  def update!(options=T.unsafe(nil), &block); end
+end
+
+class Ektar::SuperAdmin::UsersController
+  include ::Ektar::Concerns::Create
+  include ::Ektar::Concerns::Edit
+  include ::Ektar::Concerns::Update
+  include ::Ektar::Concerns::Show
+  include ::Ektar::Concerns::Destroy
+  def create(options=T.unsafe(nil), &block); end
+
+  def create!(options=T.unsafe(nil), &block); end
+
+  def destroy!(options=T.unsafe(nil), &block); end
+
+  def edit(options=T.unsafe(nil), &block); end
+
+  def edit!(options=T.unsafe(nil), &block); end
+
+  def show(options=T.unsafe(nil), &block); end
+
+  def show!(options=T.unsafe(nil), &block); end
+
+  def update(options=T.unsafe(nil), &block); end
+
+  def update!(options=T.unsafe(nil), &block); end
 end
 
 class Ektar::UsedPassword
@@ -23960,360 +23207,108 @@ module Ektar::UsedPassword::GeneratedAttributeMethods
   extend ::Mutex_m
 end
 
-module Ektar::User::GeneratedAttributeMethods
-  def blocked_at_before_last_save(*args); end
+class Ektar::User
+  def after_add_for_memberships(); end
 
-  def blocked_at_before_type_cast(*args); end
+  def after_add_for_memberships=(val); end
 
-  def blocked_at_came_from_user?(*args); end
+  def after_add_for_memberships?(); end
 
-  def blocked_at_change(*args); end
+  def after_add_for_organizations(); end
 
-  def blocked_at_change_to_be_saved(*args); end
+  def after_add_for_organizations=(val); end
 
-  def blocked_at_changed?(*args); end
+  def after_add_for_organizations?(); end
 
-  def blocked_at_in_database(*args); end
+  def after_add_for_used_passwords(); end
 
-  def blocked_at_previous_change(*args); end
+  def after_add_for_used_passwords=(val); end
 
-  def blocked_at_previously_changed?(*args); end
+  def after_add_for_used_passwords?(); end
 
-  def blocked_at_was(*args); end
+  def after_remove_for_memberships(); end
 
-  def blocked_at_will_change!(*args); end
+  def after_remove_for_memberships=(val); end
 
-  def created_at_before_last_save(*args); end
+  def after_remove_for_memberships?(); end
 
-  def created_at_before_type_cast(*args); end
+  def after_remove_for_organizations(); end
 
-  def created_at_came_from_user?(*args); end
+  def after_remove_for_organizations=(val); end
 
-  def created_at_change(*args); end
+  def after_remove_for_organizations?(); end
 
-  def created_at_change_to_be_saved(*args); end
+  def after_remove_for_used_passwords(); end
 
-  def created_at_changed?(*args); end
+  def after_remove_for_used_passwords=(val); end
 
-  def created_at_in_database(*args); end
+  def after_remove_for_used_passwords?(); end
 
-  def created_at_previous_change(*args); end
+  def autosave_associated_records_for_memberships(*args); end
 
-  def created_at_previously_changed?(*args); end
+  def autosave_associated_records_for_organizations(*args); end
 
-  def created_at_was(*args); end
+  def autosave_associated_records_for_used_passwords(*args); end
 
-  def created_at_will_change!(*args); end
+  def before_add_for_memberships(); end
 
-  def ektar_organization_id_before_last_save(*args); end
+  def before_add_for_memberships=(val); end
 
-  def ektar_organization_id_before_type_cast(*args); end
+  def before_add_for_memberships?(); end
 
-  def ektar_organization_id_came_from_user?(*args); end
+  def before_add_for_organizations(); end
 
-  def ektar_organization_id_change(*args); end
+  def before_add_for_organizations=(val); end
 
-  def ektar_organization_id_change_to_be_saved(*args); end
+  def before_add_for_organizations?(); end
 
-  def ektar_organization_id_changed?(*args); end
+  def before_add_for_used_passwords(); end
 
-  def ektar_organization_id_in_database(*args); end
+  def before_add_for_used_passwords=(val); end
 
-  def ektar_organization_id_previous_change(*args); end
+  def before_add_for_used_passwords?(); end
 
-  def ektar_organization_id_previously_changed?(*args); end
+  def before_remove_for_memberships(); end
 
-  def ektar_organization_id_was(*args); end
+  def before_remove_for_memberships=(val); end
 
-  def ektar_organization_id_will_change!(*args); end
+  def before_remove_for_memberships?(); end
 
-  def email_before_last_save(*args); end
+  def before_remove_for_organizations(); end
 
-  def email_before_type_cast(*args); end
+  def before_remove_for_organizations=(val); end
 
-  def email_came_from_user?(*args); end
+  def before_remove_for_organizations?(); end
 
-  def email_change(*args); end
+  def before_remove_for_used_passwords(); end
 
-  def email_change_to_be_saved(*args); end
+  def before_remove_for_used_passwords=(val); end
 
-  def email_changed?(*args); end
+  def before_remove_for_used_passwords?(); end
 
-  def email_in_database(*args); end
+  def password_confirmation(); end
 
-  def email_previous_change(*args); end
+  def validate_associated_records_for_memberships(*args); end
 
-  def email_previously_changed?(*args); end
+  def validate_associated_records_for_organizations(*args); end
 
-  def email_was(*args); end
+  def validate_associated_records_for_used_passwords(*args); end
+end
 
-  def email_will_change!(*args); end
+module Ektar::User::GeneratedAssociationMethods
+  def membership_ids(); end
 
-  def global_id_before_last_save(*args); end
+  def membership_ids=(ids); end
 
-  def global_id_before_type_cast(*args); end
+  def memberships_attributes=(attributes); end
 
-  def global_id_came_from_user?(*args); end
+  def organization_ids(); end
 
-  def global_id_change(*args); end
+  def organization_ids=(ids); end
 
-  def global_id_change_to_be_saved(*args); end
+  def used_password_ids(); end
 
-  def global_id_changed?(*args); end
-
-  def global_id_in_database(*args); end
-
-  def global_id_previous_change(*args); end
-
-  def global_id_previously_changed?(*args); end
-
-  def global_id_was(*args); end
-
-  def global_id_will_change!(*args); end
-
-  def id_before_last_save(*args); end
-
-  def id_came_from_user?(*args); end
-
-  def id_change(*args); end
-
-  def id_change_to_be_saved(*args); end
-
-  def id_changed?(*args); end
-
-  def id_previous_change(*args); end
-
-  def id_previously_changed?(*args); end
-
-  def id_will_change!(*args); end
-
-  def last_activity_at_before_last_save(*args); end
-
-  def last_activity_at_before_type_cast(*args); end
-
-  def last_activity_at_came_from_user?(*args); end
-
-  def last_activity_at_change(*args); end
-
-  def last_activity_at_change_to_be_saved(*args); end
-
-  def last_activity_at_changed?(*args); end
-
-  def last_activity_at_in_database(*args); end
-
-  def last_activity_at_previous_change(*args); end
-
-  def last_activity_at_previously_changed?(*args); end
-
-  def last_activity_at_was(*args); end
-
-  def last_activity_at_will_change!(*args); end
-
-  def last_ip_before_last_save(*args); end
-
-  def last_ip_before_type_cast(*args); end
-
-  def last_ip_came_from_user?(*args); end
-
-  def last_ip_change(*args); end
-
-  def last_ip_change_to_be_saved(*args); end
-
-  def last_ip_changed?(*args); end
-
-  def last_ip_in_database(*args); end
-
-  def last_ip_previous_change(*args); end
-
-  def last_ip_previously_changed?(*args); end
-
-  def last_ip_was(*args); end
-
-  def last_ip_will_change!(*args); end
-
-  def password_digest_before_last_save(*args); end
-
-  def password_digest_before_type_cast(*args); end
-
-  def password_digest_came_from_user?(*args); end
-
-  def password_digest_change(*args); end
-
-  def password_digest_change_to_be_saved(*args); end
-
-  def password_digest_changed?(*args); end
-
-  def password_digest_in_database(*args); end
-
-  def password_digest_previous_change(*args); end
-
-  def password_digest_previously_changed?(*args); end
-
-  def password_digest_was(*args); end
-
-  def password_digest_will_change!(*args); end
-
-  def recovery_password_digest_before_last_save(*args); end
-
-  def recovery_password_digest_before_type_cast(*args); end
-
-  def recovery_password_digest_came_from_user?(*args); end
-
-  def recovery_password_digest_change(*args); end
-
-  def recovery_password_digest_change_to_be_saved(*args); end
-
-  def recovery_password_digest_changed?(*args); end
-
-  def recovery_password_digest_in_database(*args); end
-
-  def recovery_password_digest_previous_change(*args); end
-
-  def recovery_password_digest_previously_changed?(*args); end
-
-  def recovery_password_digest_was(*args); end
-
-  def recovery_password_digest_will_change!(*args); end
-
-  def restore_blocked_at!(*args); end
-
-  def restore_created_at!(*args); end
-
-  def restore_ektar_organization_id!(*args); end
-
-  def restore_email!(*args); end
-
-  def restore_global_id!(*args); end
-
-  def restore_id!(*args); end
-
-  def restore_last_activity_at!(*args); end
-
-  def restore_last_ip!(*args); end
-
-  def restore_password_digest!(*args); end
-
-  def restore_recovery_password_digest!(*args); end
-
-  def restore_super_admin!(*args); end
-
-  def restore_updated_at!(*args); end
-
-  def saved_change_to_blocked_at(*args); end
-
-  def saved_change_to_blocked_at?(*args); end
-
-  def saved_change_to_created_at(*args); end
-
-  def saved_change_to_created_at?(*args); end
-
-  def saved_change_to_ektar_organization_id(*args); end
-
-  def saved_change_to_ektar_organization_id?(*args); end
-
-  def saved_change_to_email(*args); end
-
-  def saved_change_to_email?(*args); end
-
-  def saved_change_to_global_id(*args); end
-
-  def saved_change_to_global_id?(*args); end
-
-  def saved_change_to_id(*args); end
-
-  def saved_change_to_id?(*args); end
-
-  def saved_change_to_last_activity_at(*args); end
-
-  def saved_change_to_last_activity_at?(*args); end
-
-  def saved_change_to_last_ip(*args); end
-
-  def saved_change_to_last_ip?(*args); end
-
-  def saved_change_to_password_digest(*args); end
-
-  def saved_change_to_password_digest?(*args); end
-
-  def saved_change_to_recovery_password_digest(*args); end
-
-  def saved_change_to_recovery_password_digest?(*args); end
-
-  def saved_change_to_super_admin(*args); end
-
-  def saved_change_to_super_admin?(*args); end
-
-  def saved_change_to_updated_at(*args); end
-
-  def saved_change_to_updated_at?(*args); end
-
-  def super_admin_before_last_save(*args); end
-
-  def super_admin_before_type_cast(*args); end
-
-  def super_admin_came_from_user?(*args); end
-
-  def super_admin_change(*args); end
-
-  def super_admin_change_to_be_saved(*args); end
-
-  def super_admin_changed?(*args); end
-
-  def super_admin_in_database(*args); end
-
-  def super_admin_previous_change(*args); end
-
-  def super_admin_previously_changed?(*args); end
-
-  def super_admin_was(*args); end
-
-  def super_admin_will_change!(*args); end
-
-  def updated_at_before_last_save(*args); end
-
-  def updated_at_before_type_cast(*args); end
-
-  def updated_at_came_from_user?(*args); end
-
-  def updated_at_change(*args); end
-
-  def updated_at_change_to_be_saved(*args); end
-
-  def updated_at_changed?(*args); end
-
-  def updated_at_in_database(*args); end
-
-  def updated_at_previous_change(*args); end
-
-  def updated_at_previously_changed?(*args); end
-
-  def updated_at_was(*args); end
-
-  def updated_at_will_change!(*args); end
-
-  def will_save_change_to_blocked_at?(*args); end
-
-  def will_save_change_to_created_at?(*args); end
-
-  def will_save_change_to_ektar_organization_id?(*args); end
-
-  def will_save_change_to_email?(*args); end
-
-  def will_save_change_to_global_id?(*args); end
-
-  def will_save_change_to_id?(*args); end
-
-  def will_save_change_to_last_activity_at?(*args); end
-
-  def will_save_change_to_last_ip?(*args); end
-
-  def will_save_change_to_password_digest?(*args); end
-
-  def will_save_change_to_recovery_password_digest?(*args); end
-
-  def will_save_change_to_super_admin?(*args); end
-
-  def will_save_change_to_updated_at?(*args); end
+  def used_password_ids=(ids); end
 end
 
 module Ektar::User::GeneratedAttributeMethods
@@ -24322,13 +23317,84 @@ end
 
 class Ektar::User
   extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.after_add_for_memberships(); end
+
+  def self.after_add_for_memberships=(val); end
+
+  def self.after_add_for_memberships?(); end
+
+  def self.after_add_for_organizations(); end
+
+  def self.after_add_for_organizations=(val); end
+
+  def self.after_add_for_organizations?(); end
+
+  def self.after_add_for_used_passwords(); end
+
+  def self.after_add_for_used_passwords=(val); end
+
+  def self.after_add_for_used_passwords?(); end
+
+  def self.after_remove_for_memberships(); end
+
+  def self.after_remove_for_memberships=(val); end
+
+  def self.after_remove_for_memberships?(); end
+
+  def self.after_remove_for_organizations(); end
+
+  def self.after_remove_for_organizations=(val); end
+
+  def self.after_remove_for_organizations?(); end
+
+  def self.after_remove_for_used_passwords(); end
+
+  def self.after_remove_for_used_passwords=(val); end
+
+  def self.after_remove_for_used_passwords?(); end
+
+  def self.before_add_for_memberships(); end
+
+  def self.before_add_for_memberships=(val); end
+
+  def self.before_add_for_memberships?(); end
+
+  def self.before_add_for_organizations(); end
+
+  def self.before_add_for_organizations=(val); end
+
+  def self.before_add_for_organizations?(); end
+
+  def self.before_add_for_used_passwords(); end
+
+  def self.before_add_for_used_passwords=(val); end
+
+  def self.before_add_for_used_passwords?(); end
+
+  def self.before_remove_for_memberships(); end
+
+  def self.before_remove_for_memberships=(val); end
+
+  def self.before_remove_for_memberships?(); end
+
+  def self.before_remove_for_organizations(); end
+
+  def self.before_remove_for_organizations=(val); end
+
+  def self.before_remove_for_organizations?(); end
+
+  def self.before_remove_for_used_passwords(); end
+
+  def self.before_remove_for_used_passwords=(val); end
+
+  def self.before_remove_for_used_passwords?(); end
+
+  def self.search_full(*args); end
 end
 
 class Ektar::UserMailerPreview
-end
-
-class Ektar::UsersController
-  extend ::T::Sig
 end
 
 module Ektar
@@ -24886,29 +23952,30 @@ module GC
   def self.verify_transient_heap_internal_consistency(); end
 end
 
-class Gem::RemoteFetcher::FetchError
-  def initialize(message, uri); end
-
-  def uri(); end
-
-  def uri=(uri); end
-end
-
-class Gem::RemoteFetcher::FetchError
-end
-
-class Gem::RemoteFetcher::UnknownHostError
-end
-
-class Gem::RemoteFetcher::UnknownHostError
-end
-
 class Gem::Resolver::Molinillo::DependencyGraph::Log
   extend ::Enumerable
 end
 
 class Gem::Specification
   extend ::Enumerable
+end
+
+module GlobalID::Identification
+  def to_gid(options=T.unsafe(nil)); end
+
+  def to_gid_param(options=T.unsafe(nil)); end
+
+  def to_global_id(options=T.unsafe(nil)); end
+
+  def to_sgid(options=T.unsafe(nil)); end
+
+  def to_sgid_param(options=T.unsafe(nil)); end
+
+  def to_signed_global_id(options=T.unsafe(nil)); end
+end
+
+module GlobalID::Identification
+  extend ::ActiveSupport::Concern
 end
 
 module GlobalID::Locator
@@ -24959,6 +24026,10 @@ end
 class GlobalID::Verifier
 end
 
+class HTMLSelector
+  NO_STRIP = ::T.let(nil, ::T.untyped)
+end
+
 class Hash
   include ::JSON::Ext::Generator::GeneratorMethods::Hash
   def <(_); end
@@ -24995,17 +24066,13 @@ class Hash
 
   def transform_keys!(); end
 
-  def transform_values(); end
-
   def transform_values!(); end
 
   def update(*_); end
 end
 
 class Hash
-  def self.from_trusted_xml(xml); end
-
-  def self.try_convert(_); end
+  def self.from_xml(xml, disallowed_types=T.unsafe(nil)); end
 end
 
 HashWithIndifferentAccess = ActiveSupport::HashWithIndifferentAccess
@@ -25559,12 +24626,110 @@ class IO
 end
 
 class IPAddr
+  include ::Comparable
+  def &(other); end
+
+  def <<(num); end
+
+  def ==(other); end
+
+  def ===(other); end
+
+  def >>(num); end
+
+  def eql?(other); end
+
+  def family(); end
+
+  def hton(); end
+
+  def include?(other); end
+
+  def initialize(addr=T.unsafe(nil), family=T.unsafe(nil)); end
+
+  def ip6_arpa(); end
+
+  def ip6_int(); end
+
+  def ipv4?(); end
+
+  def ipv4_compat(); end
+
+  def ipv4_compat?(); end
+
+  def ipv4_mapped(); end
+
+  def ipv4_mapped?(); end
+
+  def ipv6?(); end
+
+  def link_local?(); end
+
+  def loopback?(); end
+
+  def mask(prefixlen); end
+
+  def mask!(mask); end
+
+  def native(); end
+
+  def prefix(); end
+
+  def prefix=(prefix); end
+
+  def private?(); end
+
+  def reverse(); end
+
+  def set(addr, *family); end
+
+  def succ(); end
+
+  def to_i(); end
+
+  def to_range(); end
+
+  def to_string(); end
+
+  def |(other); end
+
+  def ~(); end
   IN4MASK = ::T.let(nil, ::T.untyped)
   IN6FORMAT = ::T.let(nil, ::T.untyped)
   IN6MASK = ::T.let(nil, ::T.untyped)
   RE_IPV4ADDRLIKE = ::T.let(nil, ::T.untyped)
   RE_IPV6ADDRLIKE_COMPRESSED = ::T.let(nil, ::T.untyped)
   RE_IPV6ADDRLIKE_FULL = ::T.let(nil, ::T.untyped)
+end
+
+class IPAddr::AddressFamilyError
+end
+
+class IPAddr::AddressFamilyError
+end
+
+class IPAddr::Error
+end
+
+class IPAddr::Error
+end
+
+class IPAddr::InvalidAddressError
+end
+
+class IPAddr::InvalidAddressError
+end
+
+class IPAddr::InvalidPrefixError
+end
+
+class IPAddr::InvalidPrefixError
+end
+
+class IPAddr
+  def self.new_ntoh(addr); end
+
+  def self.ntop(addr); end
 end
 
 module IRB
@@ -26202,6 +25367,17 @@ module IRB
   def self.version(); end
 end
 
+module ITypeAssert
+  def get_type(); end
+end
+
+module ITypeAssert
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 class Integer
   include ::JSON::Ext::Generator::GeneratorMethods::Integer
   include ::ActiveSupport::NumericWithFormat
@@ -26218,10 +25394,118 @@ class Integer
   def to_bn(); end
 
   def to_d(); end
+  GMP_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 class Integer
   def self.sqrt(_); end
+end
+
+class IntegerString
+end
+
+class IntegerString
+  def self.===(other); end
+end
+
+module IntegerStringImpl
+  def _is_a_integer_string?(); end
+
+  def instance_of?(type); end
+
+  def is_a?(type); end
+
+  def kind_of?(type); end
+end
+
+module IntegerStringImpl
+end
+
+module JMESPath
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class JMESPath::Lexer
+  NUMBERS = ::T.let(nil, ::T.untyped)
+  SIMPLE_TOKENS = ::T.let(nil, ::T.untyped)
+  STATE_AND = ::T.let(nil, ::T.untyped)
+  STATE_EQ = ::T.let(nil, ::T.untyped)
+  STATE_GT = ::T.let(nil, ::T.untyped)
+  STATE_IDENTIFIER = ::T.let(nil, ::T.untyped)
+  STATE_JSON_LITERAL = ::T.let(nil, ::T.untyped)
+  STATE_LBRACKET = ::T.let(nil, ::T.untyped)
+  STATE_LT = ::T.let(nil, ::T.untyped)
+  STATE_NOT = ::T.let(nil, ::T.untyped)
+  STATE_NUMBER = ::T.let(nil, ::T.untyped)
+  STATE_PIPE = ::T.let(nil, ::T.untyped)
+  STATE_QUOTED_STRING = ::T.let(nil, ::T.untyped)
+  STATE_SINGLE_CHAR = ::T.let(nil, ::T.untyped)
+  STATE_STRING_LITERAL = ::T.let(nil, ::T.untyped)
+  STATE_WHITESPACE = ::T.let(nil, ::T.untyped)
+  TRANSLATION_TABLE = ::T.let(nil, ::T.untyped)
+  T_AND = ::T.let(nil, ::T.untyped)
+  T_COLON = ::T.let(nil, ::T.untyped)
+  T_COMMA = ::T.let(nil, ::T.untyped)
+  T_COMPARATOR = ::T.let(nil, ::T.untyped)
+  T_CURRENT = ::T.let(nil, ::T.untyped)
+  T_DOT = ::T.let(nil, ::T.untyped)
+  T_EOF = ::T.let(nil, ::T.untyped)
+  T_EXPREF = ::T.let(nil, ::T.untyped)
+  T_FILTER = ::T.let(nil, ::T.untyped)
+  T_FLATTEN = ::T.let(nil, ::T.untyped)
+  T_IDENTIFIER = ::T.let(nil, ::T.untyped)
+  T_LBRACE = ::T.let(nil, ::T.untyped)
+  T_LBRACKET = ::T.let(nil, ::T.untyped)
+  T_LITERAL = ::T.let(nil, ::T.untyped)
+  T_LPAREN = ::T.let(nil, ::T.untyped)
+  T_NOT = ::T.let(nil, ::T.untyped)
+  T_NUMBER = ::T.let(nil, ::T.untyped)
+  T_OR = ::T.let(nil, ::T.untyped)
+  T_PIPE = ::T.let(nil, ::T.untyped)
+  T_QUOTED_IDENTIFIER = ::T.let(nil, ::T.untyped)
+  T_RBRACE = ::T.let(nil, ::T.untyped)
+  T_RBRACKET = ::T.let(nil, ::T.untyped)
+  T_RPAREN = ::T.let(nil, ::T.untyped)
+  T_STAR = ::T.let(nil, ::T.untyped)
+  T_UNKNOWN = ::T.let(nil, ::T.untyped)
+  VALID_IDENTIFIERS = ::T.let(nil, ::T.untyped)
+end
+
+class JMESPath::Nodes::ComparatorCondition
+  COMPARATOR_TO_CONDITION = ::T.let(nil, ::T.untyped)
+end
+
+class JMESPath::Nodes::Function
+  FUNCTIONS = ::T.let(nil, ::T.untyped)
+end
+
+JMESPath::Nodes::Index = JMESPath::Nodes::Field
+
+JMESPath::Nodes::Pipe = JMESPath::Nodes::Subexpression
+
+module JMESPath::Nodes::TypeChecker
+  ARRAY_TYPE = ::T.let(nil, ::T.untyped)
+  BOOLEAN_TYPE = ::T.let(nil, ::T.untyped)
+  EXPRESSION_TYPE = ::T.let(nil, ::T.untyped)
+  NULL_TYPE = ::T.let(nil, ::T.untyped)
+  NUMBER_TYPE = ::T.let(nil, ::T.untyped)
+  OBJECT_TYPE = ::T.let(nil, ::T.untyped)
+  STRING_TYPE = ::T.let(nil, ::T.untyped)
+  TYPE_NAMES = ::T.let(nil, ::T.untyped)
+end
+
+class JMESPath::Parser
+  AFTER_DOT = ::T.let(nil, ::T.untyped)
+  COLON_RBRACKET = ::T.let(nil, ::T.untyped)
+  CURRENT_NODE = ::T.let(nil, ::T.untyped)
+  NUM_COLON_RBRACKET = ::T.let(nil, ::T.untyped)
+end
+
+JMESPath::Runtime::DEFAULT_PARSER = JMESPath::CachingParser
+
+class JMESPath::Token
+  BINDING_POWER = ::T.let(nil, ::T.untyped)
+  NULL_TOKEN = ::T.let(nil, ::T.untyped)
 end
 
 class JSON::Ext::Generator::State
@@ -26262,8 +25546,6 @@ module Kernel
   def object_id(); end
 
   def pretty_inspect(); end
-
-  def respond_to?(*_); end
 
   def then(); end
 
@@ -29280,240 +28562,6 @@ module Mail
   def self.unregister_observer(observer); end
 end
 
-module MakeMakefile
-  def append_cflags(flags, *opts); end
-
-  def append_cppflags(flags, *opts); end
-
-  def append_ldflags(flags, *opts); end
-
-  def append_library(libs, lib); end
-
-  def arg_config(config, default=T.unsafe(nil), &block); end
-
-  def cc_command(opt=T.unsafe(nil)); end
-
-  def check_signedness(type, headers=T.unsafe(nil), opts=T.unsafe(nil), &b); end
-
-  def check_sizeof(type, headers=T.unsafe(nil), opts=T.unsafe(nil), &b); end
-
-  def checking_for(m, fmt=T.unsafe(nil)); end
-
-  def checking_message(target, place=T.unsafe(nil), opt=T.unsafe(nil)); end
-
-  def configuration(srcdir); end
-
-  def convertible_int(type, headers=T.unsafe(nil), opts=T.unsafe(nil), &b); end
-
-  def cpp_command(outfile, opt=T.unsafe(nil)); end
-
-  def cpp_include(header); end
-
-  def create_header(header=T.unsafe(nil)); end
-
-  def create_makefile(target, srcprefix=T.unsafe(nil)); end
-
-  def create_tmpsrc(src); end
-
-  def depend_rules(depend); end
-
-  def dir_config(target, idefault=T.unsafe(nil), ldefault=T.unsafe(nil)); end
-
-  def dummy_makefile(srcdir); end
-
-  def each_compile_rules(); end
-
-  def egrep_cpp(pat, src, opt=T.unsafe(nil), &b); end
-
-  def enable_config(config, default=T.unsafe(nil)); end
-
-  def find_executable(bin, path=T.unsafe(nil)); end
-
-  def find_executable0(bin, path=T.unsafe(nil)); end
-
-  def find_header(header, *paths); end
-
-  def find_library(lib, func, *paths, &b); end
-
-  def find_type(type, opt, *headers, &b); end
-
-  def have_const(const, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def have_devel?(); end
-
-  def have_framework(fw, &b); end
-
-  def have_func(func, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def have_header(header, preheaders=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def have_library(lib, func=T.unsafe(nil), headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def have_macro(macro, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def have_struct_member(type, member, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def have_type(type, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def have_typeof?(); end
-
-  def have_var(var, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def init_mkmf(config=T.unsafe(nil), rbconfig=T.unsafe(nil)); end
-
-  def install_dirs(target_prefix=T.unsafe(nil)); end
-
-  def install_files(mfile, ifiles, map=T.unsafe(nil), srcprefix=T.unsafe(nil)); end
-
-  def install_rb(mfile, dest, srcdir=T.unsafe(nil)); end
-
-  def libpath_env(); end
-
-  def libpathflag(libpath=T.unsafe(nil)); end
-
-  def link_command(ldflags, opt=T.unsafe(nil), libpath=T.unsafe(nil)); end
-
-  def log_src(src, heading=T.unsafe(nil)); end
-
-  def macro_defined?(macro, src, opt=T.unsafe(nil), &b); end
-
-  def map_dir(dir, map=T.unsafe(nil)); end
-
-  def merge_libs(*libs); end
-
-  def message(*s); end
-
-  def mkintpath(path); end
-
-  def mkmf_failed(path); end
-
-  def modified?(target, times); end
-
-  def pkg_config(pkg, option=T.unsafe(nil)); end
-
-  def relative_from(path, base); end
-
-  def scalar_ptr_type?(type, member=T.unsafe(nil), headers=T.unsafe(nil), &b); end
-
-  def scalar_type?(type, member=T.unsafe(nil), headers=T.unsafe(nil), &b); end
-
-  def split_libs(*strs); end
-
-  def timestamp_file(name, target_prefix=T.unsafe(nil)); end
-
-  def try_cflags(flags, opts=T.unsafe(nil)); end
-
-  def try_compile(src, opt=T.unsafe(nil), *opts, &b); end
-
-  def try_const(const, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def try_constant(const, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def try_cpp(src, opt=T.unsafe(nil), *opts, &b); end
-
-  def try_cppflags(flags, opts=T.unsafe(nil)); end
-
-  def try_do(src, command, *opts, &b); end
-
-  def try_func(func, libs, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def try_header(src, opt=T.unsafe(nil), *opts, &b); end
-
-  def try_ldflags(flags, opts=T.unsafe(nil)); end
-
-  def try_link(src, opt=T.unsafe(nil), *opts, &b); end
-
-  def try_link0(src, opt=T.unsafe(nil), *opts, &b); end
-
-  def try_run(src, opt=T.unsafe(nil), &b); end
-
-  def try_signedness(type, member, headers=T.unsafe(nil), opts=T.unsafe(nil)); end
-
-  def try_static_assert(expr, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def try_type(type, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def try_var(var, headers=T.unsafe(nil), opt=T.unsafe(nil), &b); end
-
-  def typedef_expr(type, headers); end
-
-  def what_type?(type, member=T.unsafe(nil), headers=T.unsafe(nil), &b); end
-
-  def winsep(s); end
-
-  def with_cflags(flags); end
-
-  def with_config(config, default=T.unsafe(nil)); end
-
-  def with_cppflags(flags); end
-
-  def with_destdir(dir); end
-
-  def with_ldflags(flags); end
-
-  def with_werror(opt, opts=T.unsafe(nil)); end
-
-  def xpopen(command, *mode, &block); end
-
-  def xsystem(command, opts=T.unsafe(nil)); end
-  ASSEMBLE_C = ::T.let(nil, ::T.untyped)
-  ASSEMBLE_CXX = ::T.let(nil, ::T.untyped)
-  CLEANINGS = ::T.let(nil, ::T.untyped)
-  COMMON_HEADERS = ::T.let(nil, ::T.untyped)
-  COMMON_LIBS = ::T.let(nil, ::T.untyped)
-  COMPILE_C = ::T.let(nil, ::T.untyped)
-  COMPILE_CXX = ::T.let(nil, ::T.untyped)
-  COMPILE_RULES = ::T.let(nil, ::T.untyped)
-  CONFIG = ::T.let(nil, ::T.untyped)
-  CONFTEST = ::T.let(nil, ::T.untyped)
-  CONFTEST_C = ::T.let(nil, ::T.untyped)
-  COUTFLAG = ::T.let(nil, ::T.untyped)
-  CPPOUTFILE = ::T.let(nil, ::T.untyped)
-  CSRCFLAG = ::T.let(nil, ::T.untyped)
-  CXX_EXT = ::T.let(nil, ::T.untyped)
-  C_EXT = ::T.let(nil, ::T.untyped)
-  EXPORT_PREFIX = ::T.let(nil, ::T.untyped)
-  FailedMessage = ::T.let(nil, ::T.untyped)
-  HDR_EXT = ::T.let(nil, ::T.untyped)
-  INSTALL_DIRS = ::T.let(nil, ::T.untyped)
-  LIBARG = ::T.let(nil, ::T.untyped)
-  LIBPATHFLAG = ::T.let(nil, ::T.untyped)
-  LINK_SO = ::T.let(nil, ::T.untyped)
-  MAIN_DOES_NOTHING = ::T.let(nil, ::T.untyped)
-  ORIG_LIBPATH = ::T.let(nil, ::T.untyped)
-  OUTFLAG = ::T.let(nil, ::T.untyped)
-  RPATHFLAG = ::T.let(nil, ::T.untyped)
-  RULE_SUBST = ::T.let(nil, ::T.untyped)
-  SRC_EXT = ::T.let(nil, ::T.untyped)
-  STRING_OR_FAILED_FORMAT = ::T.let(nil, ::T.untyped)
-  TRY_LINK = ::T.let(nil, ::T.untyped)
-  UNIVERSAL_INTS = ::T.let(nil, ::T.untyped)
-end
-
-module MakeMakefile::Logging
-end
-
-module MakeMakefile::Logging
-  def self.log_close(); end
-
-  def self.log_open(); end
-
-  def self.log_opened?(); end
-
-  def self.logfile(file); end
-
-  def self.open(); end
-
-  def self.postpone(); end
-
-  def self.quiet(); end
-
-  def self.quiet=(quiet); end
-end
-
-module MakeMakefile
-end
-
 module Marcel
   VERSION = ::T.let(nil, ::T.untyped)
 end
@@ -29541,6 +28589,8 @@ module MethodSource::CodeHelpers::IncompleteExpression
   GENERIC_REGEXPS = ::T.let(nil, ::T.untyped)
   RBX_ONLY_REGEXPS = ::T.let(nil, ::T.untyped)
 end
+
+Methods = T::Private::Methods
 
 module Mime
   ALL = ::T.let(nil, ::T.untyped)
@@ -29712,226 +28762,47 @@ class MiniMime::Info
   BINARY_ENCODINGS = ::T.let(nil, ::T.untyped)
 end
 
+module Minitest
+end
+
+MiniTest::Assertions = Minitest::Assertions
+
+MiniTest::Guard = Minitest::Guard
+
+MiniTest::Reportable = Minitest::Reportable
+
+MiniTest::Runnable = Minitest::Runnable
+
+MiniTest::Test = Minitest::Test
+
+module Minitest
+end
+
+module Minitest
+  ENCS = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
 module Minitest::Assertions
-  def _synchronize(); end
-
-  def assert_in_delta(exp, act, delta=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def assert_in_epsilon(exp, act, epsilon=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def assert_instance_of(cls, obj, msg=T.unsafe(nil)); end
-
-  def assert_kind_of(cls, obj, msg=T.unsafe(nil)); end
-
-  def assert_match(matcher, obj, msg=T.unsafe(nil)); end
-
-  def assert_operator(o1, op, o2=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def assert_output(stdout=T.unsafe(nil), stderr=T.unsafe(nil)); end
-
-  def assert_path_exists(path, msg=T.unsafe(nil)); end
-
-  def assert_predicate(o1, op, msg=T.unsafe(nil)); end
-
-  def assert_respond_to(obj, meth, msg=T.unsafe(nil)); end
-
-  def assert_same(exp, act, msg=T.unsafe(nil)); end
-
-  def assert_send(send_ary, m=T.unsafe(nil)); end
-
-  def assert_silent(); end
-
-  def assert_throws(sym, msg=T.unsafe(nil)); end
-
-  def capture_io(); end
-
-  def capture_subprocess_io(); end
-
-  def diff(exp, act); end
-
-  def exception_details(e, msg); end
-
-  def fail_after(y, m, d, msg); end
-
-  def flunk(msg=T.unsafe(nil)); end
-
-  def message(msg=T.unsafe(nil), ending=T.unsafe(nil), &default); end
-
-  def mu_pp(obj); end
-
-  def mu_pp_for_diff(obj); end
-
-  def pass(_msg=T.unsafe(nil)); end
-
-  def refute_in_delta(exp, act, delta=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def refute_in_epsilon(a, b, epsilon=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def refute_instance_of(cls, obj, msg=T.unsafe(nil)); end
-
-  def refute_kind_of(cls, obj, msg=T.unsafe(nil)); end
-
-  def refute_match(matcher, obj, msg=T.unsafe(nil)); end
-
-  def refute_operator(o1, op, o2=T.unsafe(nil), msg=T.unsafe(nil)); end
-
-  def refute_path_exists(path, msg=T.unsafe(nil)); end
-
-  def refute_predicate(o1, op, msg=T.unsafe(nil)); end
-
-  def refute_respond_to(obj, meth, msg=T.unsafe(nil)); end
-
-  def refute_same(exp, act, msg=T.unsafe(nil)); end
-
-  def skip(msg=T.unsafe(nil), bt=T.unsafe(nil)); end
-
-  def skip_until(y, m, d, msg); end
-
-  def skipped?(); end
-
-  def things_to_diff(exp, act); end
   E = ::T.let(nil, ::T.untyped)
   UNDEFINED = ::T.let(nil, ::T.untyped)
 end
 
-module Minitest::Assertions
-  def self.diff(); end
-
-  def self.diff=(o); end
-end
-
-module Minitest::Guard
-  def jruby?(platform=T.unsafe(nil)); end
-
-  def maglev?(platform=T.unsafe(nil)); end
-
-  def mri?(platform=T.unsafe(nil)); end
-
-  def osx?(platform=T.unsafe(nil)); end
-
-  def rubinius?(platform=T.unsafe(nil)); end
-
-  def windows?(platform=T.unsafe(nil)); end
-end
-
-module Minitest::Guard
-end
-
-module Minitest::Reportable
-  def class_name(); end
-
-  def error?(); end
-
-  def location(); end
-
-  def passed?(); end
-
-  def result_code(); end
-
-  def skipped?(); end
-end
-
-module Minitest::Reportable
+class Minitest::BacktraceFilter
+  MT_RE = ::T.let(nil, ::T.untyped)
 end
 
 class Minitest::Runnable
-  def assertions(); end
-
-  def assertions=(assertions); end
-
-  def failure(); end
-
-  def failures(); end
-
-  def failures=(failures); end
-
-  def initialize(name); end
-
-  def marshal_dump(); end
-
-  def marshal_load(ary); end
-
-  def name(); end
-
-  def name=(o); end
-
-  def passed?(); end
-
-  def result_code(); end
-
-  def run(); end
-
-  def skipped?(); end
-
-  def time(); end
-
-  def time=(time); end
-
-  def time_it(); end
   SIGNALS = ::T.let(nil, ::T.untyped)
 end
 
-class Minitest::Runnable
-  def self.inherited(klass); end
-
-  def self.methods_matching(re); end
-
-  def self.on_signal(name, action); end
-
-  def self.reset(); end
-
-  def self.run(reporter, options=T.unsafe(nil)); end
-
-  def self.run_one_method(klass, method_name, reporter); end
-
-  def self.runnable_methods(); end
-
-  def self.runnables(); end
-
-  def self.with_info_handler(reporter, &block); end
-end
-
 class Minitest::Test
-  include ::Minitest::Reportable
-  include ::Minitest::Test::LifecycleHooks
-  include ::Minitest::Guard
-  def capture_exceptions(); end
-
-  def with_info_handler(&block); end
   PASSTHROUGH_EXCEPTIONS = ::T.let(nil, ::T.untyped)
   TEARDOWN_METHODS = ::T.let(nil, ::T.untyped)
 end
 
-module Minitest::Test::LifecycleHooks
-  def after_setup(); end
-
-  def after_teardown(); end
-
-  def before_setup(); end
-
-  def before_teardown(); end
-
-  def setup(); end
-
-  def teardown(); end
-end
-
-module Minitest::Test::LifecycleHooks
-end
-
-class Minitest::Test
-  extend ::Minitest::Guard
-  def self.i_suck_and_my_tests_are_order_dependent!(); end
-
-  def self.io_lock(); end
-
-  def self.io_lock=(io_lock); end
-
-  def self.make_my_diffs_pretty!(); end
-
-  def self.parallelize_me!(); end
-
-  def self.test_order(); end
+class Minitest::Unit
+  VERSION = ::T.let(nil, ::T.untyped)
 end
 
 class Module
@@ -30730,7 +29601,6 @@ end
 
 class Object
   include ::JSON::Ext::Generator::GeneratorMethods::Object
-  include ::MakeMakefile
   include ::PP::ObjectMixin
   include ::ActiveSupport::ToJsonWithActiveSupportEncoder
   def to_yaml(options=T.unsafe(nil)); end
@@ -30821,11 +29691,7 @@ class OpenSSL::KDF::KDFError
 end
 
 module OpenSSL::KDF
-  def self.hkdf(*_); end
-
   def self.pbkdf2_hmac(*_); end
-
-  def self.scrypt(*_); end
 end
 
 class OpenSSL::OCSP::Request
@@ -30833,10 +29699,6 @@ class OpenSSL::OCSP::Request
 end
 
 OpenSSL::PKCS7::Signer = OpenSSL::PKCS7::SignerInfo
-
-class OpenSSL::PKey::EC
-  EXPLICIT_CURVE = ::T.let(nil, ::T.untyped)
-end
 
 class OpenSSL::PKey::EC::Point
   def to_octet_string(_); end
@@ -30849,25 +29711,19 @@ class OpenSSL::PKey::RSA
 end
 
 module OpenSSL::SSL
-  OP_ALLOW_NO_DHE_KEX = ::T.let(nil, ::T.untyped)
   OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION = ::T.let(nil, ::T.untyped)
   OP_CRYPTOPRO_TLSEXT_BUG = ::T.let(nil, ::T.untyped)
   OP_LEGACY_SERVER_CONNECT = ::T.let(nil, ::T.untyped)
-  OP_NO_ENCRYPT_THEN_MAC = ::T.let(nil, ::T.untyped)
-  OP_NO_RENEGOTIATION = ::T.let(nil, ::T.untyped)
-  OP_NO_TLSv1_3 = ::T.let(nil, ::T.untyped)
   OP_SAFARI_ECDHE_ECDSA_BUG = ::T.let(nil, ::T.untyped)
   OP_TLSEXT_PADDING = ::T.let(nil, ::T.untyped)
   SSL2_VERSION = ::T.let(nil, ::T.untyped)
   SSL3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_1_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_2_VERSION = ::T.let(nil, ::T.untyped)
-  TLS1_3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 module OpenSSL::X509
-  V_FLAG_NO_CHECK_TIME = ::T.let(nil, ::T.untyped)
   V_FLAG_TRUSTED_FIRST = ::T.let(nil, ::T.untyped)
 end
 
@@ -32907,6 +31763,7 @@ class PG::ZeroLengthCharacterString
 end
 
 class Pagy
+  DEPRECATED_LOCALES = ::T.let(nil, ::T.untyped)
   I18n = ::T.let(nil, ::T.untyped)
   PAGE_PLACEHOLDER = ::T.let(nil, ::T.untyped)
   VARS = ::T.let(nil, ::T.untyped)
@@ -32926,6 +31783,320 @@ end
 
 class Parallel::UserInterruptHandler
   INTERRUPT_SIGNAL = ::T.let(nil, ::T.untyped)
+end
+
+module Parlour
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class Parlour::ConflictResolver
+  def resolve_conflicts(*args, &blk); end
+end
+
+class Parlour::ConflictResolver
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module Parlour::Debugging
+end
+
+module Parlour::Debugging::Tree
+  INDENT_SPACES = ::T.let(nil, ::T.untyped)
+end
+
+module Parlour::Debugging::Tree
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.begin(*args, &blk); end
+
+  def self.end(*args, &blk); end
+
+  def self.here(*args, &blk); end
+
+  def self.line_prefix(); end
+
+  def self.text_prefix(); end
+end
+
+module Parlour::Debugging
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.debug_mode=(*args, &blk); end
+
+  def self.debug_mode?(*args, &blk); end
+
+  def self.debug_puts(*args, &blk); end
+
+  def self.name_for_debug_caller(*args, &blk); end
+end
+
+class Parlour::Plugin
+  def generate(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def strictness(*args, &blk); end
+
+  def strictness=(strictness); end
+end
+
+class Parlour::Plugin
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(*args, &blk); end
+
+  def self.registered_plugins(*args, &blk); end
+
+  def self.run_plugins(*args, &blk); end
+end
+
+class Parlour::RbiGenerator
+  def current_plugin(*args, &blk); end
+
+  def current_plugin=(current_plugin); end
+
+  def initialize(*args, &blk); end
+
+  def options(*args, &blk); end
+
+  def rbi(*args, &blk); end
+
+  def root(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Arbitrary
+  def ==(*args, &blk); end
+
+  def code(*args, &blk); end
+
+  def code=(code); end
+end
+
+class Parlour::RbiGenerator::Arbitrary
+end
+
+class Parlour::RbiGenerator::Attribute
+  def class_attribute(*args, &blk); end
+
+  def kind(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Attribute
+end
+
+class Parlour::RbiGenerator::ClassNamespace
+  def abstract(*args, &blk); end
+
+  def superclass(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::ClassNamespace
+end
+
+class Parlour::RbiGenerator::Constant
+  def ==(*args, &blk); end
+
+  def value(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Constant
+end
+
+class Parlour::RbiGenerator::EnumClassNamespace
+  def enums(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::EnumClassNamespace
+end
+
+class Parlour::RbiGenerator::Extend
+  def ==(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Extend
+end
+
+class Parlour::RbiGenerator::Include
+  def ==(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Include
+end
+
+class Parlour::RbiGenerator::Method
+  def ==(*args, &blk); end
+
+  def abstract(*args, &blk); end
+
+  def class_method(*args, &blk); end
+
+  def final(*args, &blk); end
+
+  def implementation(*args, &blk); end
+
+  def overridable(*args, &blk); end
+
+  def override(*args, &blk); end
+
+  def parameters(*args, &blk); end
+
+  def return_type(*args, &blk); end
+
+  def type_parameters(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Method
+end
+
+class Parlour::RbiGenerator::ModuleNamespace
+  def interface(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::ModuleNamespace
+end
+
+class Parlour::RbiGenerator::Namespace
+  def add_comment_to_next_child(*args, &blk); end
+
+  def children(*args, &blk); end
+
+  def constants(*args, &blk); end
+
+  def create_arbitrary(code:, &block); end
+
+  def create_attr(*args, &blk); end
+
+  def create_attr_accessor(*args, &blk); end
+
+  def create_attr_reader(*args, &blk); end
+
+  def create_attr_writer(*args, &blk); end
+
+  def create_attribute(*args, &blk); end
+
+  def create_class(*args, &blk); end
+
+  def create_constant(*args, &blk); end
+
+  def create_enum_class(*args, &blk); end
+
+  def create_extend(*args, &blk); end
+
+  def create_extends(*args, &blk); end
+
+  def create_include(*args, &blk); end
+
+  def create_includes(*args, &blk); end
+
+  def create_method(*args, &blk); end
+
+  def create_module(*args, &blk); end
+
+  def create_type_alias(*args, &blk); end
+
+  def extends(*args, &blk); end
+
+  def final(*args, &blk); end
+
+  def includes(*args, &blk); end
+
+  def path(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Namespace
+end
+
+class Parlour::RbiGenerator::Options
+  def break_params(*args, &blk); end
+
+  def indented(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def tab_size(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Options
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbiGenerator::Parameter
+  def ==(*args, &blk); end
+
+  def default(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def kind(*args, &blk); end
+
+  def name(*args, &blk); end
+
+  def name_without_kind(*args, &blk); end
+
+  def to_def_param(*args, &blk); end
+
+  def to_sig_param(*args, &blk); end
+
+  def type(*args, &blk); end
+  PREFIXES = ::T.let(nil, ::T.untyped)
+end
+
+class Parlour::RbiGenerator::Parameter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbiGenerator::RbiObject
+  def add_comment(*args, &blk); end
+
+  def add_comments(*args, &blk); end
+
+  def comments(*args, &blk); end
+
+  def describe(*args, &blk); end
+
+  def generate_rbi(*args, &blk); end
+
+  def generated_by(*args, &blk); end
+
+  def generator(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def merge_into_self(*args, &blk); end
+
+  def mergeable?(*args, &blk); end
+
+  def name(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::RbiObject
+  extend ::T::Helpers
+  extend ::T::Sig
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbiGenerator
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module Parlour
 end
 
 ParseError = Racc::ParseError
@@ -33042,6 +32213,12 @@ end
 
 class PgSearch::ScopeOptions
   FEATURE_CLASSES = ::T.let(nil, ::T.untyped)
+end
+
+class PgSearchPlugin
+end
+
+class PgSearchPlugin
 end
 
 class Proc
@@ -33946,6 +33123,287 @@ module Pundit
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
+module REXML
+  COPYRIGHT = ::T.let(nil, ::T.untyped)
+  Copyright = ::T.let(nil, ::T.untyped)
+  DATE = ::T.let(nil, ::T.untyped)
+  REVISION = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+  Version = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Attribute
+  NEEDS_A_SECOND_CHECK = ::T.let(nil, ::T.untyped)
+  PATTERN = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::CData
+  ILLEGAL = ::T.let(nil, ::T.untyped)
+  START = ::T.let(nil, ::T.untyped)
+  STOP = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Comment
+  START = ::T.let(nil, ::T.untyped)
+  STOP = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::DocType
+  DEFAULT_ENTITIES = ::T.let(nil, ::T.untyped)
+  PUBLIC = ::T.let(nil, ::T.untyped)
+  START = ::T.let(nil, ::T.untyped)
+  STOP = ::T.let(nil, ::T.untyped)
+  SYSTEM = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Document
+  DECLARATION = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Element
+  UNDEFINED = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Entity
+  ENTITYDECL = ::T.let(nil, ::T.untyped)
+  ENTITYDEF = ::T.let(nil, ::T.untyped)
+  ENTITYVALUE = ::T.let(nil, ::T.untyped)
+  EXTERNALID = ::T.let(nil, ::T.untyped)
+  GEDECL = ::T.let(nil, ::T.untyped)
+  NDATADECL = ::T.let(nil, ::T.untyped)
+  PEDECL = ::T.let(nil, ::T.untyped)
+  PEDEF = ::T.let(nil, ::T.untyped)
+  PEREFERENCE = ::T.let(nil, ::T.untyped)
+  PEREFERENCE_RE = ::T.let(nil, ::T.untyped)
+  PUBIDCHAR = ::T.let(nil, ::T.untyped)
+  PUBIDLITERAL = ::T.let(nil, ::T.untyped)
+  SYSTEMLITERAL = ::T.let(nil, ::T.untyped)
+end
+
+module REXML::EntityConst
+  AMP = ::T.let(nil, ::T.untyped)
+  APOS = ::T.let(nil, ::T.untyped)
+  GT = ::T.let(nil, ::T.untyped)
+  LT = ::T.let(nil, ::T.untyped)
+  QUOT = ::T.let(nil, ::T.untyped)
+end
+
+module REXML::Functions
+  INTERNAL_METHODS = ::T.let(nil, ::T.untyped)
+end
+
+module REXML::Functions
+  def self.boolean(object=T.unsafe(nil)); end
+
+  def self.ceiling(number); end
+
+  def self.compare_language(lang1, lang2); end
+
+  def self.concat(*objects); end
+
+  def self.contains(string, test); end
+
+  def self.context=(value); end
+
+  def self.count(node_set); end
+
+  def self.false(); end
+
+  def self.floor(number); end
+
+  def self.get_namespace(node_set=T.unsafe(nil)); end
+
+  def self.id(object); end
+
+  def self.lang(language); end
+
+  def self.last(); end
+
+  def self.local_name(node_set=T.unsafe(nil)); end
+
+  def self.name(node_set=T.unsafe(nil)); end
+
+  def self.namespace_context(); end
+
+  def self.namespace_context=(x); end
+
+  def self.namespace_uri(node_set=T.unsafe(nil)); end
+
+  def self.normalize_space(string=T.unsafe(nil)); end
+
+  def self.not(object); end
+
+  def self.number(object=T.unsafe(nil)); end
+
+  def self.position(); end
+
+  def self.processing_instruction(node); end
+
+  def self.round(number); end
+
+  def self.send(name, *args); end
+
+  def self.singleton_method_added(name); end
+
+  def self.starts_with(string, test); end
+
+  def self.string(object=T.unsafe(nil)); end
+
+  def self.string_length(string); end
+
+  def self.string_value(o); end
+
+  def self.substring(string, start, length=T.unsafe(nil)); end
+
+  def self.substring_after(string, test); end
+
+  def self.substring_before(string, test); end
+
+  def self.sum(nodes); end
+
+  def self.text(); end
+
+  def self.translate(string, tr1, tr2); end
+
+  def self.true(); end
+
+  def self.variables(); end
+
+  def self.variables=(x); end
+end
+
+class REXML::Instruction
+  START = ::T.let(nil, ::T.untyped)
+  STOP = ::T.let(nil, ::T.untyped)
+end
+
+module REXML::Namespace
+  NAMESPLIT = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Parsers::BaseParser
+  ATTDEF = ::T.let(nil, ::T.untyped)
+  ATTDEF_RE = ::T.let(nil, ::T.untyped)
+  ATTLISTDECL_PATTERN = ::T.let(nil, ::T.untyped)
+  ATTLISTDECL_START = ::T.let(nil, ::T.untyped)
+  ATTRIBUTE_PATTERN = ::T.let(nil, ::T.untyped)
+  ATTTYPE = ::T.let(nil, ::T.untyped)
+  ATTVALUE = ::T.let(nil, ::T.untyped)
+  CDATA_END = ::T.let(nil, ::T.untyped)
+  CDATA_PATTERN = ::T.let(nil, ::T.untyped)
+  CDATA_START = ::T.let(nil, ::T.untyped)
+  CLOSE_MATCH = ::T.let(nil, ::T.untyped)
+  COMBININGCHAR = ::T.let(nil, ::T.untyped)
+  COMMENT_PATTERN = ::T.let(nil, ::T.untyped)
+  COMMENT_START = ::T.let(nil, ::T.untyped)
+  DEFAULTDECL = ::T.let(nil, ::T.untyped)
+  DEFAULT_ENTITIES = ::T.let(nil, ::T.untyped)
+  DIGIT = ::T.let(nil, ::T.untyped)
+  DOCTYPE_END = ::T.let(nil, ::T.untyped)
+  DOCTYPE_PATTERN = ::T.let(nil, ::T.untyped)
+  DOCTYPE_START = ::T.let(nil, ::T.untyped)
+  ELEMENTDECL_PATTERN = ::T.let(nil, ::T.untyped)
+  ELEMENTDECL_START = ::T.let(nil, ::T.untyped)
+  ENCODING = ::T.let(nil, ::T.untyped)
+  ENTITYDECL = ::T.let(nil, ::T.untyped)
+  ENTITYDEF = ::T.let(nil, ::T.untyped)
+  ENTITYVALUE = ::T.let(nil, ::T.untyped)
+  ENTITY_START = ::T.let(nil, ::T.untyped)
+  ENUMERATEDTYPE = ::T.let(nil, ::T.untyped)
+  ENUMERATION = ::T.let(nil, ::T.untyped)
+  EREFERENCE = ::T.let(nil, ::T.untyped)
+  EXTENDER = ::T.let(nil, ::T.untyped)
+  EXTERNALID = ::T.let(nil, ::T.untyped)
+  GEDECL = ::T.let(nil, ::T.untyped)
+  IDENTITY = ::T.let(nil, ::T.untyped)
+  INSTRUCTION_PATTERN = ::T.let(nil, ::T.untyped)
+  INSTRUCTION_START = ::T.let(nil, ::T.untyped)
+  LETTER = ::T.let(nil, ::T.untyped)
+  NAME = ::T.let(nil, ::T.untyped)
+  NAMECHAR = ::T.let(nil, ::T.untyped)
+  NCNAME_STR = ::T.let(nil, ::T.untyped)
+  NDATADECL = ::T.let(nil, ::T.untyped)
+  NMTOKEN = ::T.let(nil, ::T.untyped)
+  NMTOKENS = ::T.let(nil, ::T.untyped)
+  NOTATIONDECL_START = ::T.let(nil, ::T.untyped)
+  NOTATIONTYPE = ::T.let(nil, ::T.untyped)
+  PEDECL = ::T.let(nil, ::T.untyped)
+  PEDEF = ::T.let(nil, ::T.untyped)
+  PEREFERENCE = ::T.let(nil, ::T.untyped)
+  PUBIDCHAR = ::T.let(nil, ::T.untyped)
+  PUBIDLITERAL = ::T.let(nil, ::T.untyped)
+  PUBLIC = ::T.let(nil, ::T.untyped)
+  QNAME = ::T.let(nil, ::T.untyped)
+  QNAME_STR = ::T.let(nil, ::T.untyped)
+  REFERENCE = ::T.let(nil, ::T.untyped)
+  REFERENCE_RE = ::T.let(nil, ::T.untyped)
+  STANDALONE = ::T.let(nil, ::T.untyped)
+  SYSTEM = ::T.let(nil, ::T.untyped)
+  SYSTEMENTITY = ::T.let(nil, ::T.untyped)
+  SYSTEMLITERAL = ::T.let(nil, ::T.untyped)
+  TAG_MATCH = ::T.let(nil, ::T.untyped)
+  TEXT_PATTERN = ::T.let(nil, ::T.untyped)
+  UNAME_STR = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+  XMLDECL_PATTERN = ::T.let(nil, ::T.untyped)
+  XMLDECL_START = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Parsers::XPathParser
+  AXIS = ::T.let(nil, ::T.untyped)
+  LITERAL = ::T.let(nil, ::T.untyped)
+  LOCAL_NAME_WILDCARD = ::T.let(nil, ::T.untyped)
+  NODE_TYPE = ::T.let(nil, ::T.untyped)
+  NT = ::T.let(nil, ::T.untyped)
+  NUMBER = ::T.let(nil, ::T.untyped)
+  PI = ::T.let(nil, ::T.untyped)
+  PREFIX_WILDCARD = ::T.let(nil, ::T.untyped)
+  QNAME = ::T.let(nil, ::T.untyped)
+  VARIABLE_REFERENCE = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::Text
+  EREFERENCE = ::T.let(nil, ::T.untyped)
+  NEEDS_A_SECOND_CHECK = ::T.let(nil, ::T.untyped)
+  NUMERICENTITY = ::T.let(nil, ::T.untyped)
+  REFERENCE = ::T.let(nil, ::T.untyped)
+  SETUTITSBUS = ::T.let(nil, ::T.untyped)
+  SLAICEPS = ::T.let(nil, ::T.untyped)
+  SPECIALS = ::T.let(nil, ::T.untyped)
+  SUBSTITUTES = ::T.let(nil, ::T.untyped)
+  VALID_CHAR = ::T.let(nil, ::T.untyped)
+  VALID_XML_CHARS = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::XMLDecl
+  DEFAULT_ENCODING = ::T.let(nil, ::T.untyped)
+  DEFAULT_STANDALONE = ::T.let(nil, ::T.untyped)
+  DEFAULT_VERSION = ::T.let(nil, ::T.untyped)
+  START = ::T.let(nil, ::T.untyped)
+  STOP = ::T.let(nil, ::T.untyped)
+end
+
+module REXML::XMLTokens
+  NAME = ::T.let(nil, ::T.untyped)
+  NAMECHAR = ::T.let(nil, ::T.untyped)
+  NAME_CHAR = ::T.let(nil, ::T.untyped)
+  NAME_START_CHAR = ::T.let(nil, ::T.untyped)
+  NAME_STR = ::T.let(nil, ::T.untyped)
+  NCNAME_STR = ::T.let(nil, ::T.untyped)
+  NMTOKEN = ::T.let(nil, ::T.untyped)
+  NMTOKENS = ::T.let(nil, ::T.untyped)
+  REFERENCE = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::XPath
+  EMPTY_HASH = ::T.let(nil, ::T.untyped)
+end
+
+class REXML::XPathParser
+  DEBUG = ::T.let(nil, ::T.untyped)
+  LITERAL = ::T.let(nil, ::T.untyped)
+end
+
 module Racc
   Racc_No_Extensions = ::T.let(nil, ::T.untyped)
 end
@@ -33977,11 +33435,13 @@ module Rack
   CONTENT_TYPE = ::T.let(nil, ::T.untyped)
   DELETE = ::T.let(nil, ::T.untyped)
   ETAG = ::T.let(nil, ::T.untyped)
+  EXPIRES = ::T.let(nil, ::T.untyped)
   GET = ::T.let(nil, ::T.untyped)
   HEAD = ::T.let(nil, ::T.untyped)
   HTTPS = ::T.let(nil, ::T.untyped)
   HTTP_COOKIE = ::T.let(nil, ::T.untyped)
   HTTP_HOST = ::T.let(nil, ::T.untyped)
+  HTTP_PORT = ::T.let(nil, ::T.untyped)
   HTTP_VERSION = ::T.let(nil, ::T.untyped)
   LINK = ::T.let(nil, ::T.untyped)
   OPTIONS = ::T.let(nil, ::T.untyped)
@@ -34021,7 +33481,6 @@ module Rack
   REQUEST_METHOD = ::T.let(nil, ::T.untyped)
   REQUEST_PATH = ::T.let(nil, ::T.untyped)
   SCRIPT_NAME = ::T.let(nil, ::T.untyped)
-  SERVER_ADDR = ::T.let(nil, ::T.untyped)
   SERVER_NAME = ::T.let(nil, ::T.untyped)
   SERVER_PORT = ::T.let(nil, ::T.untyped)
   SERVER_PROTOCOL = ::T.let(nil, ::T.untyped)
@@ -34199,7 +33658,7 @@ class Rack::Cascade
 
   def include?(app); end
 
-  def initialize(apps, catch=T.unsafe(nil)); end
+  def initialize(apps, cascade_for=T.unsafe(nil)); end
   NotFound = ::T.let(nil, ::T.untyped)
 end
 
@@ -34300,13 +33759,12 @@ class Rack::Directory
 
   def list_path(env, path, path_info, script_name); end
 
-  def path(); end
-
   def root(); end
 
-  def stat(node); end
+  def stat(path); end
   DIR_FILE = ::T.let(nil, ::T.untyped)
-  DIR_PAGE = ::T.let(nil, ::T.untyped)
+  DIR_PAGE_FOOTER = ::T.let(nil, ::T.untyped)
+  DIR_PAGE_HEADER = ::T.let(nil, ::T.untyped)
   FILESIZE_FORMAT = ::T.let(nil, ::T.untyped)
 end
 
@@ -34330,6 +33788,54 @@ end
 class Rack::ETag
 end
 
+class Rack::Events
+  def call(env); end
+
+  def initialize(app, handlers); end
+end
+
+module Rack::Events::Abstract
+  def on_commit(req, res); end
+
+  def on_error(req, res, e); end
+
+  def on_finish(req, res); end
+
+  def on_send(req, res); end
+
+  def on_start(req, res); end
+end
+
+module Rack::Events::Abstract
+end
+
+class Rack::Events::BufferedResponse
+  def body(); end
+
+  def initialize(status, headers, body); end
+
+  def to_a(); end
+end
+
+class Rack::Events::BufferedResponse
+end
+
+class Rack::Events::EventedBodyProxy
+  def each(&blk); end
+
+  def initialize(body, request, response, handlers, &block); end
+
+  def request(); end
+
+  def response(); end
+end
+
+class Rack::Events::EventedBodyProxy
+end
+
+class Rack::Events
+end
+
 Rack::File = Rack::Files
 
 class Rack::Files
@@ -34344,19 +33850,29 @@ class Rack::Files
   def serving(request, path); end
   ALLOWED_VERBS = ::T.let(nil, ::T.untyped)
   ALLOW_HEADER = ::T.let(nil, ::T.untyped)
+  MULTIPART_BOUNDARY = ::T.let(nil, ::T.untyped)
 end
 
-class Rack::Files::Iterator
+class Rack::Files::BaseIterator
+  def bytesize(); end
+
   def close(); end
 
   def each(&blk); end
 
-  def initialize(path, range); end
+  def initialize(path, ranges, options); end
+
+  def options(); end
 
   def path(); end
 
-  def range(); end
+  def ranges(); end
+end
 
+class Rack::Files::BaseIterator
+end
+
+class Rack::Files::Iterator
   def to_path(); end
 end
 
@@ -34364,6 +33880,7 @@ class Rack::Files::Iterator
 end
 
 class Rack::Files
+  def self.method_added(name); end
 end
 
 class Rack::ForwardRequest
@@ -34384,7 +33901,7 @@ class Rack::Handler::CGI
 end
 
 class Rack::Handler::CGI
-  def self.run(app, options=T.unsafe(nil)); end
+  def self.run(app, **options); end
 
   def self.send_body(body); end
 
@@ -34398,7 +33915,7 @@ class Rack::Handler::WEBrick
 end
 
 class Rack::Handler::WEBrick
-  def self.run(app, options=T.unsafe(nil)); end
+  def self.run(app, **options); end
 
   def self.shutdown(); end
 
@@ -34559,6 +34076,12 @@ class Rack::MediaType
   SPLIT_PATTERN = ::T.let(nil, ::T.untyped)
 end
 
+class Rack::MediaType
+  def self.params(content_type); end
+
+  def self.type(content_type); end
+end
+
 class Rack::MethodOverride
   def call(env); end
 
@@ -34585,70 +34108,7 @@ module Rack::Mime
 end
 
 class Rack::MockRequest
-  def delete(uri, opts=T.unsafe(nil)); end
-
-  def get(uri, opts=T.unsafe(nil)); end
-
-  def head(uri, opts=T.unsafe(nil)); end
-
-  def initialize(app); end
-
-  def options(uri, opts=T.unsafe(nil)); end
-
-  def patch(uri, opts=T.unsafe(nil)); end
-
-  def post(uri, opts=T.unsafe(nil)); end
-
-  def put(uri, opts=T.unsafe(nil)); end
-
-  def request(method=T.unsafe(nil), uri=T.unsafe(nil), opts=T.unsafe(nil)); end
   DEFAULT_ENV = ::T.let(nil, ::T.untyped)
-end
-
-class Rack::MockRequest::FatalWarner
-  def flush(); end
-
-  def puts(warning); end
-
-  def string(); end
-
-  def write(warning); end
-end
-
-class Rack::MockRequest::FatalWarner
-end
-
-class Rack::MockRequest::FatalWarning
-end
-
-class Rack::MockRequest::FatalWarning
-end
-
-class Rack::MockRequest
-  def self.env_for(uri=T.unsafe(nil), opts=T.unsafe(nil)); end
-
-  def self.parse_uri_rfc2396(uri); end
-end
-
-class Rack::MockResponse
-  def =~(other); end
-
-  def cookie(name); end
-
-  def cookies(); end
-
-  def errors(); end
-
-  def errors=(errors); end
-
-  def initialize(status, headers, body, errors=T.unsafe(nil)); end
-
-  def match(other); end
-
-  def original_headers(); end
-end
-
-class Rack::MockResponse
 end
 
 module Rack::Multipart
@@ -34789,7 +34249,7 @@ class Rack::Multipart::UploadedFile
 
   def content_type=(content_type); end
 
-  def initialize(path, content_type=T.unsafe(nil), binary=T.unsafe(nil)); end
+  def initialize(filepath=T.unsafe(nil), ct=T.unsafe(nil), bin=T.unsafe(nil), path: T.unsafe(nil), content_type: T.unsafe(nil), binary: T.unsafe(nil), filename: T.unsafe(nil), io: T.unsafe(nil)); end
 
   def local_path(); end
 
@@ -34924,6 +34384,7 @@ end
 module Rack::Request::Helpers
   DEFAULT_PORTS = ::T.let(nil, ::T.untyped)
   FORM_DATA_MEDIA_TYPES = ::T.let(nil, ::T.untyped)
+  HTTP_X_FORWARDED_FOR = ::T.let(nil, ::T.untyped)
   HTTP_X_FORWARDED_HOST = ::T.let(nil, ::T.untyped)
   HTTP_X_FORWARDED_PORT = ::T.let(nil, ::T.untyped)
   HTTP_X_FORWARDED_PROTO = ::T.let(nil, ::T.untyped)
@@ -34935,6 +34396,23 @@ end
 class Rack::Response
   CHUNKED = ::T.let(nil, ::T.untyped)
   STATUS_WITH_NO_ENTITY_BODY = ::T.let(nil, ::T.untyped)
+end
+
+class Rack::RewindableInput
+  def close(); end
+
+  def each(&block); end
+
+  def gets(); end
+
+  def initialize(io); end
+
+  def read(*args); end
+
+  def rewind(); end
+end
+
+class Rack::RewindableInput
 end
 
 class Rack::Runtime
@@ -34966,7 +34444,7 @@ class Rack::Server
 
   def server(); end
 
-  def start(&blk); end
+  def start(&block); end
 end
 
 class Rack::Server::Options
@@ -35155,8 +34633,6 @@ class Rack::URLMap
   def initialize(map=T.unsafe(nil)); end
 
   def remap(map); end
-  INFINITY = ::T.let(nil, ::T.untyped)
-  NEGATIVE_INFINITY = ::T.let(nil, ::T.untyped)
 end
 
 class Rack::URLMap
@@ -35192,74 +34668,6 @@ end
 
 module Rails::Autoloaders
   extend ::Enumerable
-end
-
-class Rails::BacktraceCleaner
-  APP_DIRS_PATTERN = ::T.let(nil, ::T.untyped)
-  DOT_SLASH = ::T.let(nil, ::T.untyped)
-  EMPTY_STRING = ::T.let(nil, ::T.untyped)
-  RENDER_TEMPLATE_PATTERN = ::T.let(nil, ::T.untyped)
-  SLASH = ::T.let(nil, ::T.untyped)
-end
-
-module Rails::Dom
-end
-
-module Rails::Dom::Testing
-end
-
-module Rails::Dom::Testing::Assertions
-  include ::Rails::Dom::Testing::Assertions::DomAssertions
-  include ::Rails::Dom::Testing::Assertions::SelectorAssertions
-  include ::Rails::Dom::Testing::Assertions::SelectorAssertions::CountDescribable
-end
-
-module Rails::Dom::Testing::Assertions::DomAssertions
-  def assert_dom_equal(expected, actual, message=T.unsafe(nil)); end
-
-  def assert_dom_not_equal(expected, actual, message=T.unsafe(nil)); end
-
-  def compare_doms(expected, actual); end
-
-  def equal_attribute?(attr, other_attr); end
-
-  def equal_attribute_nodes?(nodes, other_nodes); end
-
-  def equal_children?(child, other_child); end
-end
-
-module Rails::Dom::Testing::Assertions::DomAssertions
-end
-
-module Rails::Dom::Testing::Assertions::SelectorAssertions
-  include ::Rails::Dom::Testing::Assertions::SelectorAssertions::CountDescribable
-  def assert_select(*args, &block); end
-
-  def assert_select_email(&block); end
-
-  def assert_select_encoded(element=T.unsafe(nil), &block); end
-
-  def css_select(*args); end
-end
-
-module Rails::Dom::Testing::Assertions::SelectorAssertions::CountDescribable
-end
-
-module Rails::Dom::Testing::Assertions::SelectorAssertions::CountDescribable
-  extend ::ActiveSupport::Concern
-end
-
-module Rails::Dom::Testing::Assertions::SelectorAssertions
-end
-
-module Rails::Dom::Testing::Assertions
-  extend ::ActiveSupport::Concern
-end
-
-module Rails::Dom::Testing
-end
-
-module Rails::Dom
 end
 
 module Rails::Html
@@ -35316,6 +34724,9 @@ class Rails::Rack::Logger
   def initialize(app, taggers=T.unsafe(nil)); end
 end
 
+class Rails::Rack::Logger
+end
+
 class Rails::Railtie
   ABSTRACT_RAILTIES = ::T.let(nil, ::T.untyped)
 end
@@ -35335,187 +34746,6 @@ end
 class Rails::WelcomeController
 end
 
-module Rake
-  EARLY = ::T.let(nil, ::T.untyped)
-  EMPTY_TASK_ARGS = ::T.let(nil, ::T.untyped)
-  LATE = ::T.let(nil, ::T.untyped)
-  VERSION = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Application
-  include ::Rake::TaskManager
-  include ::Rake::TraceOutput
-  def add_import(fn); end
-
-  def add_loader(ext, loader); end
-
-  def collect_command_line_tasks(args); end
-
-  def default_task_name(); end
-
-  def deprecate(old_usage, new_usage, call_site); end
-
-  def display_cause_details(ex); end
-
-  def display_error_message(ex); end
-
-  def display_exception_backtrace(ex); end
-
-  def display_exception_details(ex); end
-
-  def display_exception_details_seen(); end
-
-  def display_exception_message_details(ex); end
-
-  def display_prerequisites(); end
-
-  def display_tasks_and_comments(); end
-
-  def dynamic_width(); end
-
-  def dynamic_width_stty(); end
-
-  def dynamic_width_tput(); end
-
-  def exit_because_of_exception(ex); end
-
-  def find_rakefile_location(); end
-
-  def handle_options(argv); end
-
-  def has_cause?(ex); end
-
-  def have_rakefile(); end
-
-  def init(app_name=T.unsafe(nil), argv=T.unsafe(nil)); end
-
-  def invoke_task(task_string); end
-
-  def load_imports(); end
-
-  def load_rakefile(); end
-
-  def name(); end
-
-  def options(); end
-
-  def original_dir(); end
-
-  def parse_task_string(string); end
-
-  def print_rakefile_directory(location); end
-
-  def rake_require(file_name, paths=T.unsafe(nil), loaded=T.unsafe(nil)); end
-
-  def rakefile(); end
-
-  def rakefile_location(backtrace=T.unsafe(nil)); end
-
-  def raw_load_rakefile(); end
-
-  def run(argv=T.unsafe(nil)); end
-
-  def run_with_threads(); end
-
-  def set_default_options(); end
-
-  def standard_exception_handling(); end
-
-  def standard_rake_options(); end
-
-  def system_dir(); end
-
-  def terminal_columns(); end
-
-  def terminal_columns=(terminal_columns); end
-
-  def terminal_width(); end
-
-  def thread_pool(); end
-
-  def top_level(); end
-
-  def top_level_tasks(); end
-
-  def trace(*strings); end
-
-  def truncate(string, width); end
-
-  def truncate_output?(); end
-
-  def tty_output=(tty_output); end
-
-  def tty_output?(); end
-
-  def unix?(); end
-
-  def windows?(); end
-  DEFAULT_RAKEFILES = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Application
-end
-
-module Rake::Backtrace
-  SUPPRESSED_PATHS = ::T.let(nil, ::T.untyped)
-  SUPPRESSED_PATHS_RE = ::T.let(nil, ::T.untyped)
-  SUPPRESS_PATTERN = ::T.let(nil, ::T.untyped)
-  SYS_KEYS = ::T.let(nil, ::T.untyped)
-  SYS_PATHS = ::T.let(nil, ::T.untyped)
-end
-
-module Rake::Backtrace
-  def self.collapse(backtrace); end
-end
-
-class Rake::CommandLineOptionError
-end
-
-class Rake::CommandLineOptionError
-end
-
-class Rake::CpuCounter
-  def count(); end
-
-  def count_with_default(default=T.unsafe(nil)); end
-end
-
-class Rake::CpuCounter
-  def self.count(); end
-end
-
-module Rake::DSL
-  include ::Rake::FileUtilsExt
-  include ::FileUtils
-  include ::FileUtils::StreamUtils_
-end
-
-module Rake::DSL
-end
-
-class Rake::DefaultLoader
-  def load(fn); end
-end
-
-class Rake::DefaultLoader
-end
-
-class Rake::EarlyTime
-  include ::Comparable
-  include ::Singleton
-end
-
-class Rake::EarlyTime
-  extend ::Singleton::SingletonClassMethods
-  def self.instance(); end
-end
-
-class Rake::FileCreationTask
-end
-
-class Rake::FileCreationTask
-end
-
 class Rake::FileList
   ARRAY_METHODS = ::T.let(nil, ::T.untyped)
   DEFAULT_IGNORE_PATTERNS = ::T.let(nil, ::T.untyped)
@@ -35527,12 +34757,6 @@ class Rake::FileList
   SPECIAL_RETURN = ::T.let(nil, ::T.untyped)
 end
 
-class Rake::FileTask
-end
-
-class Rake::FileTask
-end
-
 module Rake::FileUtilsExt
   include ::FileUtils::StreamUtils_
   DEFAULT = ::T.let(nil, ::T.untyped)
@@ -35540,444 +34764,6 @@ end
 
 module Rake::FileUtilsExt
   extend ::FileUtils::StreamUtils_
-end
-
-class Rake::InvocationChain
-  def append(invocation); end
-
-  def member?(invocation); end
-  EMPTY = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::InvocationChain::EmptyInvocationChain
-  def append(invocation); end
-
-  def member?(obj); end
-end
-
-class Rake::InvocationChain::EmptyInvocationChain
-end
-
-class Rake::InvocationChain
-  def self.append(invocation, chain); end
-end
-
-module Rake::InvocationExceptionMixin
-  def chain(); end
-
-  def chain=(value); end
-end
-
-module Rake::InvocationExceptionMixin
-end
-
-class Rake::LateTime
-  include ::Comparable
-  include ::Singleton
-end
-
-class Rake::LateTime
-  extend ::Singleton::SingletonClassMethods
-  def self.instance(); end
-end
-
-class Rake::LinkedList
-  include ::Enumerable
-  def ==(other); end
-
-  def conj(item); end
-
-  def each(&blk); end
-
-  def empty?(); end
-
-  def head(); end
-
-  def initialize(head, tail=T.unsafe(nil)); end
-
-  def tail(); end
-  EMPTY = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::LinkedList::EmptyLinkedList
-  def initialize(); end
-end
-
-class Rake::LinkedList::EmptyLinkedList
-end
-
-class Rake::LinkedList
-  def self.cons(head, tail); end
-
-  def self.empty(); end
-
-  def self.make(*args); end
-end
-
-class Rake::MultiTask
-end
-
-class Rake::MultiTask
-end
-
-class Rake::NameSpace
-  def [](name); end
-
-  def initialize(task_manager, scope_list); end
-
-  def scope(); end
-
-  def tasks(); end
-end
-
-class Rake::NameSpace
-end
-
-module Rake::PrivateReader
-end
-
-module Rake::PrivateReader::ClassMethods
-  def private_reader(*names); end
-end
-
-module Rake::PrivateReader::ClassMethods
-end
-
-module Rake::PrivateReader
-  def self.included(base); end
-end
-
-class Rake::Promise
-  def initialize(args, &block); end
-
-  def recorder(); end
-
-  def recorder=(recorder); end
-
-  def value(); end
-
-  def work(); end
-  NOT_SET = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Promise
-end
-
-class Rake::PseudoStatus
-  def >>(n); end
-
-  def exited?(); end
-
-  def exitstatus(); end
-
-  def initialize(code=T.unsafe(nil)); end
-
-  def stopped?(); end
-
-  def to_i(); end
-end
-
-class Rake::PseudoStatus
-end
-
-class Rake::RuleRecursionOverflowError
-  def add_target(target); end
-
-  def initialize(*args); end
-end
-
-class Rake::RuleRecursionOverflowError
-end
-
-class Rake::Scope
-  def path(); end
-
-  def path_with_task_name(task_name); end
-
-  def trim(n); end
-  EMPTY = ::T.let(nil, ::T.untyped)
-end
-
-class Rake::Scope::EmptyScope
-  def path(); end
-
-  def path_with_task_name(task_name); end
-end
-
-class Rake::Scope::EmptyScope
-end
-
-class Rake::Scope
-end
-
-class Rake::Task
-  def actions(); end
-
-  def add_description(description); end
-
-  def all_prerequisite_tasks(); end
-
-  def already_invoked(); end
-
-  def application(); end
-
-  def application=(application); end
-
-  def arg_description(); end
-
-  def arg_names(); end
-
-  def clear(); end
-
-  def clear_actions(); end
-
-  def clear_args(); end
-
-  def clear_comments(); end
-
-  def clear_prerequisites(); end
-
-  def collect_prerequisites(seen); end
-
-  def comment(); end
-
-  def comment=(comment); end
-
-  def enhance(deps=T.unsafe(nil), &block); end
-
-  def execute(args=T.unsafe(nil)); end
-
-  def full_comment(); end
-
-  def initialize(task_name, app); end
-
-  def investigation(); end
-
-  def invoke(*args); end
-
-  def invoke_prerequisites(task_args, invocation_chain); end
-
-  def invoke_prerequisites_concurrently(task_args, invocation_chain); end
-
-  def invoke_with_call_chain(task_args, invocation_chain); end
-
-  def locations(); end
-
-  def name(); end
-
-  def name_with_args(); end
-
-  def needed?(); end
-
-  def order_only_prerequisites(); end
-
-  def prereqs(); end
-
-  def prerequisite_tasks(); end
-
-  def prerequisites(); end
-
-  def reenable(); end
-
-  def scope(); end
-
-  def set_arg_names(args); end
-
-  def source(); end
-
-  def sources(); end
-
-  def sources=(sources); end
-
-  def timestamp(); end
-
-  def |(deps); end
-end
-
-class Rake::Task
-  def self.[](task_name); end
-
-  def self.clear(); end
-
-  def self.create_rule(*args, &block); end
-
-  def self.define_task(*args, &block); end
-
-  def self.format_deps(deps); end
-
-  def self.scope_name(scope, task_name); end
-
-  def self.task_defined?(task_name); end
-
-  def self.tasks(); end
-end
-
-class Rake::TaskArgumentError
-end
-
-class Rake::TaskArgumentError
-end
-
-class Rake::TaskArguments
-  include ::Enumerable
-  def [](index); end
-
-  def each(&block); end
-
-  def extras(); end
-
-  def fetch(*args, &block); end
-
-  def has_key?(key); end
-
-  def initialize(names, values, parent=T.unsafe(nil)); end
-
-  def key?(key); end
-
-  def lookup(name); end
-
-  def method_missing(sym, *args); end
-
-  def names(); end
-
-  def new_scope(names); end
-
-  def to_a(); end
-
-  def to_hash(); end
-
-  def values_at(*keys); end
-
-  def with_defaults(defaults); end
-end
-
-class Rake::TaskArguments
-end
-
-module Rake::TaskManager
-  def [](task_name, scopes=T.unsafe(nil)); end
-
-  def clear(); end
-
-  def create_rule(*args, &block); end
-
-  def current_scope(); end
-
-  def define_task(task_class, *args, &block); end
-
-  def enhance_with_matching_rule(task_name, level=T.unsafe(nil)); end
-
-  def generate_did_you_mean_suggestions(task_name); end
-
-  def generate_message_for_undefined_task(task_name); end
-
-  def in_namespace(name); end
-
-  def initialize(); end
-
-  def intern(task_class, task_name); end
-
-  def last_description(); end
-
-  def last_description=(last_description); end
-
-  def lookup(task_name, initial_scope=T.unsafe(nil)); end
-
-  def resolve_args(args); end
-
-  def synthesize_file_task(task_name); end
-
-  def tasks(); end
-
-  def tasks_in_scope(scope); end
-end
-
-module Rake::TaskManager
-  def self.record_task_metadata(); end
-
-  def self.record_task_metadata=(record_task_metadata); end
-end
-
-class Rake::ThreadHistoryDisplay
-  include ::Rake::PrivateReader
-  def initialize(stats); end
-
-  def show(); end
-end
-
-class Rake::ThreadHistoryDisplay
-  extend ::Rake::PrivateReader::ClassMethods
-end
-
-class Rake::ThreadPool
-  def future(*args, &block); end
-
-  def gather_history(); end
-
-  def history(); end
-
-  def initialize(thread_count); end
-
-  def join(); end
-
-  def statistics(); end
-end
-
-class Rake::ThreadPool
-end
-
-module Rake::TraceOutput
-  def trace_on(out, *strings); end
-end
-
-module Rake::TraceOutput
-end
-
-module Rake::Version
-  BUILD = ::T.let(nil, ::T.untyped)
-  MAJOR = ::T.let(nil, ::T.untyped)
-  MINOR = ::T.let(nil, ::T.untyped)
-  NUMBERS = ::T.let(nil, ::T.untyped)
-  OTHER = ::T.let(nil, ::T.untyped)
-end
-
-module Rake::Version
-end
-
-module Rake::Win32
-end
-
-class Rake::Win32::Win32HomeError
-end
-
-class Rake::Win32::Win32HomeError
-end
-
-module Rake::Win32
-  def self.normalize(path); end
-
-  def self.win32_system_dir(); end
-
-  def self.windows?(); end
-end
-
-module Rake
-  extend ::Rake::FileUtilsExt
-  extend ::FileUtils
-  extend ::FileUtils::StreamUtils_
-  def self.add_rakelib(*files); end
-
-  def self.application(); end
-
-  def self.application=(app); end
-
-  def self.load_rakefile(path); end
-
-  def self.original_dir(); end
-
-  def self.suggested_thread_count(); end
-
-  def self.with_application(block_application=T.unsafe(nil)); end
 end
 
 module Random::Formatter
@@ -36099,10 +34885,6 @@ module Readline
   def self.vi_editing_mode(); end
 
   def self.vi_editing_mode?(); end
-end
-
-class Regexp
-  def match?(*_); end
 end
 
 class Resolv::DNS
@@ -36787,11 +35569,7 @@ end
 
 class RuboCop::ConfigValidator
   COMMON_PARAMS = ::T.let(nil, ::T.untyped)
-  DEFAULT_RUBY_VERSION = ::T.let(nil, ::T.untyped)
   INTERNAL_PARAMS = ::T.let(nil, ::T.untyped)
-  KNOWN_RUBIES = ::T.let(nil, ::T.untyped)
-  OBSOLETE_RUBIES = ::T.let(nil, ::T.untyped)
-  RUBY_VERSION_FILENAME = ::T.let(nil, ::T.untyped)
 end
 
 module RuboCop::Cop::Alignment
@@ -37055,7 +35833,7 @@ class RuboCop::Cop::Layout::FirstParameterIndentation
 end
 
 class RuboCop::Cop::Layout::HashAlignment
-  MSG = ::T.let(nil, ::T.untyped)
+  MESSAGES = ::T.let(nil, ::T.untyped)
 end
 
 class RuboCop::Cop::Layout::HeredocArgumentClosingParenthesis
@@ -37086,6 +35864,10 @@ class RuboCop::Cop::Layout::LeadingCommentSpace
 end
 
 class RuboCop::Cop::Layout::LeadingEmptyLines
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Layout::LineLength
   MSG = ::T.let(nil, ::T.untyped)
 end
 
@@ -37420,6 +36202,10 @@ class RuboCop::Cop::Lint::NextWithoutAccumulator
   MSG = ::T.let(nil, ::T.untyped)
 end
 
+class RuboCop::Cop::Lint::NonDeterministicRequireOrder
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
 class RuboCop::Cop::Lint::NonLocalExitFromIterator
   MSG = ::T.let(nil, ::T.untyped)
 end
@@ -37631,10 +36417,6 @@ class RuboCop::Cop::Metrics::CyclomaticComplexity
   MSG = ::T.let(nil, ::T.untyped)
 end
 
-class RuboCop::Cop::Metrics::LineLength
-  MSG = ::T.let(nil, ::T.untyped)
-end
-
 class RuboCop::Cop::Metrics::MethodLength
   LABEL = ::T.let(nil, ::T.untyped)
 end
@@ -37654,6 +36436,8 @@ class RuboCop::Cop::Metrics::Utils::AbcSizeCalculator
 end
 
 class RuboCop::Cop::Migration::DepartmentName
+  DISABLE_COMMENT_FORMAT = ::T.let(nil, ::T.untyped)
+  DISABLING_COPS_CONTENT_TOKEN = ::T.let(nil, ::T.untyped)
   MSG = ::T.let(nil, ::T.untyped)
 end
 
@@ -37731,6 +36515,128 @@ end
 
 class RuboCop::Cop::Offense
   COMPARISON_ATTRIBUTES = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::Caller
+  MSG_BRACE = ::T.let(nil, ::T.untyped)
+  MSG_FIRST = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::CaseWhenSplat
+  ARRAY_MSG = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::Casecmp
+  CASE_METHODS = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::ChainArrayAllocation
+  ALWAYS_RETURNS_NEW_ARRAY = ::T.let(nil, ::T.untyped)
+  HAS_MUTATION_ALTERNATIVE = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+  RETURNS_NEW_ARRAY_WHEN_NO_BLOCK = ::T.let(nil, ::T.untyped)
+  RETURN_NEW_ARRAY_WHEN_ARGS = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::CompareWithBlock
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::Count
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::Detect
+  MSG = ::T.let(nil, ::T.untyped)
+  REVERSE_MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::DoubleStartEndWith
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::EndWith
+  MSG = ::T.let(nil, ::T.untyped)
+  SINGLE_QUOTE = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::FixedSize
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::FlatMap
+  FLATTEN_MULTIPLE_LEVELS = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::OpenStruct
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::RangeInclude
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::RedundantBlockCall
+  CLOSE_PAREN = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+  OPEN_PAREN = ::T.let(nil, ::T.untyped)
+  SPACE = ::T.let(nil, ::T.untyped)
+  YIELD = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::RedundantMatch
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::RedundantMerge
+  AREF_ASGN = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+  WITH_MODIFIER_CORRECTION = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::RegexpMatch
+  MATCH_NODE_PATTERN = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+  TYPES_IMPLEMENTING_MATCH = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::ReverseEach
+  MSG = ::T.let(nil, ::T.untyped)
+  UNDERSCORE = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::Size
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::StartWith
+  MSG = ::T.let(nil, ::T.untyped)
+  SINGLE_QUOTE = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::StringReplacement
+  BANG = ::T.let(nil, ::T.untyped)
+  DELETE = ::T.let(nil, ::T.untyped)
+  DETERMINISTIC_REGEX = ::T.let(nil, ::T.untyped)
+  MSG = ::T.let(nil, ::T.untyped)
+  SINGLE_QUOTE = ::T.let(nil, ::T.untyped)
+  TR = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::TimesMap
+  MESSAGE = ::T.let(nil, ::T.untyped)
+  MESSAGE_ONLY_IF = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::UnfreezeString
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Performance::UriDefaultParser
+  MSG = ::T.let(nil, ::T.untyped)
 end
 
 class RuboCop::Cop::PreferredDelimiters
@@ -37822,10 +36728,7 @@ end
 
 class RuboCop::Cop::Style::BlockDelimiters
   ALWAYS_BRACES_MESSAGE = ::T.let(nil, ::T.untyped)
-end
-
-class RuboCop::Cop::Style::BracesAroundHashParameters
-  MSG = ::T.let(nil, ::T.untyped)
+  BRACES_REQUIRED_MESSAGE = ::T.let(nil, ::T.untyped)
 end
 
 class RuboCop::Cop::Style::CaseCorrector
@@ -38016,7 +36919,9 @@ class RuboCop::Cop::Style::FormatString
 end
 
 class RuboCop::Cop::Style::FrozenStringLiteralComment
-  MSG = ::T.let(nil, ::T.untyped)
+  MSG_DISABLED = ::T.let(nil, ::T.untyped)
+  MSG_MISSING = ::T.let(nil, ::T.untyped)
+  MSG_MISSING_TRUE = ::T.let(nil, ::T.untyped)
   MSG_UNNECESSARY = ::T.let(nil, ::T.untyped)
   SHEBANG = ::T.let(nil, ::T.untyped)
 end
@@ -38027,6 +36932,10 @@ class RuboCop::Cop::Style::GlobalVars
 end
 
 class RuboCop::Cop::Style::GuardClause
+  MSG = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::Cop::Style::HashEachMethods
   MSG = ::T.let(nil, ::T.untyped)
 end
 
@@ -38105,7 +37014,7 @@ class RuboCop::Cop::Style::LineEndConcatenation
   SIMPLE_STRING_TOKEN_TYPE = ::T.let(nil, ::T.untyped)
 end
 
-class RuboCop::Cop::Style::MethodCallWithArgsParentheses
+module RuboCop::Cop::Style::MethodCallWithArgsParentheses::OmitParentheses
   TRAILING_WHITESPACE_REGEX = ::T.let(nil, ::T.untyped)
 end
 
@@ -38525,6 +37434,7 @@ class RuboCop::Cop::Style::YodaCondition
   EQUALITY_OPERATORS = ::T.let(nil, ::T.untyped)
   MSG = ::T.let(nil, ::T.untyped)
   NONCOMMUTATIVE_OPERATORS = ::T.let(nil, ::T.untyped)
+  PROGRAM_NAMES = ::T.let(nil, ::T.untyped)
   REVERSE_COMPARISON = ::T.let(nil, ::T.untyped)
 end
 
@@ -38687,6 +37597,14 @@ module RuboCop::OptionsHelp
   TEXT = ::T.let(nil, ::T.untyped)
 end
 
+module RuboCop::Performance
+  CONFIG = ::T.let(nil, ::T.untyped)
+end
+
+module RuboCop::Performance::Version
+  STRING = ::T.let(nil, ::T.untyped)
+end
+
 class RuboCop::ProcessedSource
   STRING_SOURCE_NAME = ::T.let(nil, ::T.untyped)
 end
@@ -38706,6 +37624,14 @@ end
 class RuboCop::StringInterpreter
   STRING_ESCAPES = ::T.let(nil, ::T.untyped)
   STRING_ESCAPE_REGEX = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::TargetRuby
+  DEFAULT_VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class RuboCop::TargetRuby::RubyVersionFile
+  FILENAME = ::T.let(nil, ::T.untyped)
 end
 
 module RuboCop::Version
@@ -39763,6 +38689,30 @@ end
 
 ScanError = StringScanner::Error
 
+module Seahorse::Client::H2
+  DNS_ERROR_MESSAGES = ::T.let(nil, ::T.untyped)
+  NETWORK_ERRORS = ::T.let(nil, ::T.untyped)
+end
+
+class Seahorse::Client::H2::Connection
+  CHUNKSIZE = ::T.let(nil, ::T.untyped)
+  OPTIONS = ::T.let(nil, ::T.untyped)
+  SOCKET_FAMILY = ::T.let(nil, ::T.untyped)
+end
+
+class Seahorse::Client::HandlerListEntry
+  STEPS = ::T.let(nil, ::T.untyped)
+end
+
+class Seahorse::Client::NetHttp::ConnectionPool
+  OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class Seahorse::Client::NetHttp::Handler
+  DNS_ERROR_MESSAGES = ::T.let(nil, ::T.untyped)
+  NETWORK_ERRORS = ::T.let(nil, ::T.untyped)
+end
+
 module SecureRandom
   BASE36_ALPHABET = ::T.let(nil, ::T.untyped)
   BASE58_ALPHABET = ::T.let(nil, ::T.untyped)
@@ -39770,6 +38720,48 @@ end
 
 module SecureRandom
   def self.bytes(n); end
+end
+
+module SemanticRange
+  ANY = ::T.let(nil, ::T.untyped)
+  BUILD = ::T.let(nil, ::T.untyped)
+  BUILDIDENTIFIER = ::T.let(nil, ::T.untyped)
+  CARET = ::T.let(nil, ::T.untyped)
+  CARETLOOSE = ::T.let(nil, ::T.untyped)
+  CARETTRIM = ::T.let(nil, ::T.untyped)
+  COMPARATOR = ::T.let(nil, ::T.untyped)
+  COMPARATORLOOSE = ::T.let(nil, ::T.untyped)
+  COMPARATORTRIM = ::T.let(nil, ::T.untyped)
+  FULL = ::T.let(nil, ::T.untyped)
+  FULLPLAIN = ::T.let(nil, ::T.untyped)
+  GTLT = ::T.let(nil, ::T.untyped)
+  HYPHENRANGE = ::T.let(nil, ::T.untyped)
+  HYPHENRANGELOOSE = ::T.let(nil, ::T.untyped)
+  LONECARET = ::T.let(nil, ::T.untyped)
+  LONETILDE = ::T.let(nil, ::T.untyped)
+  LOOSE = ::T.let(nil, ::T.untyped)
+  LOOSEPLAIN = ::T.let(nil, ::T.untyped)
+  MAINVERSION = ::T.let(nil, ::T.untyped)
+  MAINVERSIONLOOSE = ::T.let(nil, ::T.untyped)
+  MAX_LENGTH = ::T.let(nil, ::T.untyped)
+  NONNUMERICIDENTIFIER = ::T.let(nil, ::T.untyped)
+  NUMERICIDENTIFIER = ::T.let(nil, ::T.untyped)
+  NUMERICIDENTIFIERLOOSE = ::T.let(nil, ::T.untyped)
+  PRERELEASE = ::T.let(nil, ::T.untyped)
+  PRERELEASEIDENTIFIER = ::T.let(nil, ::T.untyped)
+  PRERELEASEIDENTIFIERLOOSE = ::T.let(nil, ::T.untyped)
+  PRERELEASELOOSE = ::T.let(nil, ::T.untyped)
+  STAR = ::T.let(nil, ::T.untyped)
+  TILDE = ::T.let(nil, ::T.untyped)
+  TILDELOOSE = ::T.let(nil, ::T.untyped)
+  TILDETRIM = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+  XRANGE = ::T.let(nil, ::T.untyped)
+  XRANGEIDENTIFIER = ::T.let(nil, ::T.untyped)
+  XRANGEIDENTIFIERLOOSE = ::T.let(nil, ::T.untyped)
+  XRANGELOOSE = ::T.let(nil, ::T.untyped)
+  XRANGEPLAIN = ::T.let(nil, ::T.untyped)
+  XRANGEPLAINLOOSE = ::T.let(nil, ::T.untyped)
 end
 
 class Set
@@ -39818,6 +38810,40 @@ class SignalException
   def signm(); end
 
   def signo(); end
+end
+
+class SignedGlobalID
+  def expires_at(); end
+
+  def purpose(); end
+
+  def to_h(); end
+
+  def to_s(); end
+
+  def verifier(); end
+end
+
+class SignedGlobalID::ExpiredMessage
+end
+
+class SignedGlobalID::ExpiredMessage
+end
+
+class SignedGlobalID
+  def self.expires_in(); end
+
+  def self.expires_in=(expires_in); end
+
+  def self.parse(sgid, options=T.unsafe(nil)); end
+
+  def self.pick_purpose(options); end
+
+  def self.pick_verifier(options); end
+
+  def self.verifier(); end
+
+  def self.verifier=(verifier); end
 end
 
 module SingleForwardable
@@ -40038,409 +39064,227 @@ module Socket::Constants
   TCP_NOPUSH = ::T.let(nil, ::T.untyped)
 end
 
-class Sorbet::Private::ConstantLookupCache
-  def all_module_aliases(); end
+class SorbetRails::Config
+  def enabled_gem_plugins(*args, &blk); end
 
-  def all_module_names(); end
+  def enabled_gem_plugins=(enabled_gem_plugins); end
 
-  def all_named_modules(); end
+  def enabled_model_plugins(*args, &blk); end
 
-  def class_by_name(name); end
+  def enabled_model_plugins=(enabled_model_plugins); end
 
-  def name_by_class(klass); end
-  DEPRECATED_CONSTANTS = ::T.let(nil, ::T.untyped)
+  def enabled_plugins(*args, &blk); end
+
+  def extra_helper_includes(*args, &blk); end
+
+  def extra_helper_includes=(extra_helper_includes); end
+
+  def initialize(&blk); end
 end
 
-class Sorbet::Private::ConstantLookupCache::ConstantEntry
-  def aliases(); end
-
-  def aliases=(_); end
-
-  def const(); end
-
-  def const=(_); end
-
-  def const_name(); end
-
-  def const_name=(_); end
-
-  def found_name(); end
-
-  def found_name=(_); end
-
-  def owner(); end
-
-  def owner=(_); end
-
-  def primary_name(); end
-
-  def primary_name=(_); end
+class SorbetRails::Config
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-class Sorbet::Private::ConstantLookupCache::ConstantEntry
-  def self.[](*_); end
+module SorbetRails::ModelPlugins
+  include ::Kernel
+  def get_plugin_by_name(*args, &blk); end
 
-  def self.members(); end
+  def get_plugins(*args, &blk); end
+
+  def register_plugin(*args, &blk); end
+
+  def register_plugin_by_name(arg0, &blk); end
+
+  def set_plugins(*args, &blk); end
 end
 
-class Sorbet::Private::ConstantLookupCache
+class SorbetRails::ModelPlugins::ActiveRecordAssoc
+  def assoc_should_be_untyped?(*args, &blk); end
+
+  def polymorphic_assoc?(*args, &blk); end
+
+  def populate_collection_assoc_getter_setter(*args, &blk); end
+
+  def populate_single_assoc_getter_setter(*args, &blk); end
+
+  def relation_should_be_untyped?(*args, &blk); end
 end
 
-class Sorbet::Private::CreateConfig
-  include ::Sorbet::Private::StepInterface
-  SORBET_CONFIG_FILE = ::T.let(nil, ::T.untyped)
-  SORBET_DIR = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::ActiveRecordAssoc
 end
 
-class Sorbet::Private::CreateConfig
-  def self.main(); end
+class SorbetRails::ModelPlugins::ActiveRecordAttribute
+  def active_record_type_to_sorbet_type(*args, &blk); end
 
-  def self.output_file(); end
+  def time_zone_aware_column?(*args, &blk); end
+
+  def type_for_column_def(*args, &blk); end
+
+  def value_type_for_attr_writer(*args, &blk); end
 end
 
-class Sorbet::Private::FetchRBIs
-  include ::Sorbet::Private::StepInterface
-  HEADER = ::T.let(nil, ::T.untyped)
-  RBI_CACHE_DIR = ::T.let(nil, ::T.untyped)
-  SORBET_CONFIG_FILE = ::T.let(nil, ::T.untyped)
-  SORBET_DIR = ::T.let(nil, ::T.untyped)
-  SORBET_RBI_LIST = ::T.let(nil, ::T.untyped)
-  SORBET_RBI_SORBET_TYPED = ::T.let(nil, ::T.untyped)
-  SORBET_TYPED_REPO = ::T.let(nil, ::T.untyped)
-  SORBET_TYPED_REVISION = ::T.let(nil, ::T.untyped)
-  XDG_CACHE_HOME = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::ActiveRecordAttribute
 end
 
-class Sorbet::Private::FetchRBIs
-  def self.fetch_sorbet_typed(); end
-
-  def self.main(); end
-
-  def self.matching_version_directories(root, version); end
-
-  def self.output_file(); end
-
-  def self.paths_for_gem_version(gemspec); end
-
-  def self.paths_for_ruby_version(ruby_version); end
-
-  def self.vendor_rbis_within_paths(vendor_paths); end
+class SorbetRails::ModelPlugins::ActiveRecordEnum
 end
 
-class Sorbet::Private::FindGemRBIs
-  include ::Sorbet::Private::StepInterface
-  GEM_DIR = ::T.let(nil, ::T.untyped)
-  HEADER = ::T.let(nil, ::T.untyped)
-  RBI_CACHE_DIR = ::T.let(nil, ::T.untyped)
-  XDG_CACHE_HOME = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::ActiveRecordEnum
 end
 
-class Sorbet::Private::FindGemRBIs
-  def self.main(); end
-
-  def self.output_file(); end
-
-  def self.paths_within_gem_sources(gemspec); end
+class SorbetRails::ModelPlugins::ActiveRecordFactoryMethods
+  def add_factory_method(*args, &blk); end
 end
 
-module Sorbet::Private::GemGeneratorTracepoint
-  include ::Sorbet::Private::StepInterface
-  OUTPUT = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::ActiveRecordFactoryMethods
 end
 
-class Sorbet::Private::GemGeneratorTracepoint::ClassDefinition
-  def defs(); end
+class SorbetRails::ModelPlugins::ActiveRecordFinderMethods
+  def create_finder_method_pair(*args, &blk); end
 
-  def defs=(_); end
-
-  def id(); end
-
-  def id=(_); end
-
-  def klass(); end
-
-  def klass=(_); end
+  def create_finder_methods_for(*args, &blk); end
 end
 
-class Sorbet::Private::GemGeneratorTracepoint::ClassDefinition
-  def self.[](*_); end
-
-  def self.members(); end
+class SorbetRails::ModelPlugins::ActiveRecordFinderMethods
 end
 
-class Sorbet::Private::GemGeneratorTracepoint::TracepointSerializer
-  def initialize(files:, delegate_classes:); end
-
-  def serialize(output_dir); end
-  BAD_METHODS = ::T.let(nil, ::T.untyped)
-  HEADER = ::T.let(nil, ::T.untyped)
-  SPECIAL_METHOD_NAMES = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::ActiveRecordNamedScope
 end
 
-class Sorbet::Private::GemGeneratorTracepoint::TracepointSerializer
+class SorbetRails::ModelPlugins::ActiveRecordNamedScope
 end
 
-class Sorbet::Private::GemGeneratorTracepoint::Tracer
+class SorbetRails::ModelPlugins::ActiveRecordQuerying
 end
 
-class Sorbet::Private::GemGeneratorTracepoint::Tracer
-  def self.add_to_context(item); end
-
-  def self.disable_tracepoints(); end
-
-  def self.finish(); end
-
-  def self.install_tracepoints(); end
-
-  def self.on_method_added(mod, method, singleton); end
-
-  def self.on_module_created(mod); end
-
-  def self.on_module_extended(extended, extender); end
-
-  def self.on_module_included(included, includer); end
-
-  def self.pre_cache_module_methods(); end
-
-  def self.register_delegate_class(klass, delegate); end
-
-  def self.start(); end
-
-  def self.trace(); end
-
-  def self.trace_results(); end
+class SorbetRails::ModelPlugins::ActiveRecordQuerying
 end
 
-module Sorbet::Private::GemGeneratorTracepoint
-  def self.main(output_dir=T.unsafe(nil)); end
-
-  def self.output_file(); end
+class SorbetRails::ModelPlugins::ActiveRelationWhereNot
 end
 
-class Sorbet::Private::GemLoader
-  GEM_LOADER = ::T.let(nil, ::T.untyped)
-  NO_GEM = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::ActiveRelationWhereNot
 end
 
-class Sorbet::Private::GemLoader
-  def self.my_require(gem); end
+class SorbetRails::ModelPlugins::ActiveStorageMethods
+  def create_has_many_methods(*args, &blk); end
 
-  def self.require_all_gems(); end
-
-  def self.require_gem(gem); end
+  def create_has_one_methods(*args, &blk); end
 end
 
-class Sorbet::Private::HiddenMethodFinder
-  include ::Sorbet::Private::StepInterface
-  def all_modules_and_aliases(); end
-
-  def capture_stderr(); end
-
-  def constant_cache(); end
-
-  def gen_source_rbi(classes, aliases); end
-
-  def looks_like_stub_name(name); end
-
-  def main(); end
-
-  def mk_dir(); end
-
-  def read_constants(); end
-
-  def real_name(mod); end
-
-  def require_everything(); end
-
-  def rm_dir(); end
-
-  def serialize_alias(source_entry, rbi_entry, my_klass, source_symbols, rbi_symbols); end
-
-  def serialize_class(source_entry, rbi_entry, klass, source_symbols, rbi_symbols, source_by_name); end
-
-  def serialize_constants(source, rbi, klass, is_singleton, source_symbols, rbi_symbols); end
-
-  def symbols_id_to_name(entry, prefix); end
-
-  def write_constants(); end
-
-  def write_diff(source, rbi); end
-  BLACKLIST = ::T.let(nil, ::T.untyped)
-  DIFF_RBI = ::T.let(nil, ::T.untyped)
-  ERRORS_RBI = ::T.let(nil, ::T.untyped)
-  HEADER = ::T.let(nil, ::T.untyped)
-  HIDDEN_RBI = ::T.let(nil, ::T.untyped)
-  PATH = ::T.let(nil, ::T.untyped)
-  RBI_CONSTANTS = ::T.let(nil, ::T.untyped)
-  RBI_CONSTANTS_ERR = ::T.let(nil, ::T.untyped)
-  SOURCE_CONSTANTS = ::T.let(nil, ::T.untyped)
-  SOURCE_CONSTANTS_ERR = ::T.let(nil, ::T.untyped)
-  TMP_PATH = ::T.let(nil, ::T.untyped)
-  TMP_RBI = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::ActiveStorageMethods
 end
 
-class Sorbet::Private::HiddenMethodFinder
-  def self.main(); end
-
-  def self.output_file(); end
+class SorbetRails::ModelPlugins::Base
+  include ::SorbetRails::ModelUtils
+  def available_classes(*args, &blk); end
 end
 
-module Sorbet::Private::Main
+class SorbetRails::ModelPlugins::Base
 end
 
-module Sorbet::Private::Main
-  def self.cyan(msg); end
-
-  def self.emojify(emoji, msg); end
-
-  def self.init(); end
-
-  def self.main(argv); end
-
-  def self.make_step(step); end
-
-  def self.usage(); end
-
-  def self.yellow(msg); end
+class SorbetRails::ModelPlugins::CustomFinderMethods
 end
 
-module Sorbet::Private::RealStdlib
+class SorbetRails::ModelPlugins::CustomFinderMethods
 end
 
-module Sorbet::Private::RealStdlib
-  def self.real_ancestors(mod); end
-
-  def self.real_autoload?(o, klass); end
-
-  def self.real_const_get(obj, const, arg); end
-
-  def self.real_constants(mod); end
-
-  def self.real_eqeq(obj, other); end
-
-  def self.real_hash(o); end
-
-  def self.real_instance_methods(mod, arg); end
-
-  def self.real_is_a?(o, klass); end
-
-  def self.real_method(obj, sym); end
-
-  def self.real_name(o); end
-
-  def self.real_object_id(o); end
-
-  def self.real_private_instance_methods(mod, arg); end
-
-  def self.real_singleton_class(obj); end
-
-  def self.real_singleton_methods(mod, arg); end
-
-  def self.real_spaceship(obj, arg); end
-
-  def self.real_superclass(o); end
+class SorbetRails::ModelPlugins::EnumerableCollections
+  def create_enumerable_methods_for(*args, &blk); end
 end
 
-class Sorbet::Private::RequireEverything
+class SorbetRails::ModelPlugins::EnumerableCollections
 end
 
-class Sorbet::Private::RequireEverything
-  def self.excluded_rails_files(); end
-
-  def self.load_bundler(); end
-
-  def self.load_rails(); end
-
-  def self.my_require(abs_path, numerator, denominator); end
-
-  def self.patch_kernel(); end
-
-  def self.rails?(); end
-
-  def self.rails_load_paths(); end
-
-  def self.rb_file_paths(); end
-
-  def self.require_all_files(); end
-
-  def self.require_everything(); end
+class SorbetRails::ModelPlugins::UnrecognizedPluginName
 end
 
-class Sorbet::Private::Serialize
-  def alias(base, other_name); end
-
-  def ancestor_has_method(method, klass); end
-
-  def blacklisted_method(method); end
-
-  def class_or_module(class_name); end
-
-  def comparable?(value); end
-
-  def constant(const, value); end
-
-  def from_method(method); end
-
-  def initialize(constant_cache); end
-
-  def serialize_method(method, static=T.unsafe(nil), with_sig: T.unsafe(nil)); end
-
-  def serialize_sig(parameters); end
-
-  def to_sig(kind, name); end
-
-  def valid_class_name(name); end
-
-  def valid_method_name(name); end
-  BLACKLIST_CONSTANTS = ::T.let(nil, ::T.untyped)
-  KEYWORDS = ::T.let(nil, ::T.untyped)
-  SPECIAL_METHOD_NAMES = ::T.let(nil, ::T.untyped)
+class SorbetRails::ModelPlugins::UnrecognizedPluginName
 end
 
-class Sorbet::Private::Serialize
-  def self.header(typed=T.unsafe(nil), subcommand=T.unsafe(nil)); end
+module SorbetRails::ModelPlugins
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-module Sorbet::Private::Status
+class SorbetRails::ModelRbiFormatter
+  include ::SorbetRails::ModelUtils
+  def available_classes(*args, &blk); end
+
+  def generate_base_rbi(*args, &blk); end
+
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def run_plugins(*args, &blk); end
 end
 
-module Sorbet::Private::Status
-  def self.done(); end
-
-  def self.say(message, print_without_tty: T.unsafe(nil)); end
+class SorbetRails::ModelRbiFormatter
+  extend ::T::Sig
+  extend ::SorbetRails::ModelPlugins
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-module Sorbet::Private::StepInterface
+module SorbetRails::ModelUtils
+  def add_relation_query_method(*args, &blk); end
+
+  def exists_class_method?(*args, &blk); end
+
+  def exists_instance_method?(*args, &blk); end
+
+  def model_assoc_proxy_class_name(*args, &blk); end
+
+  def model_assoc_relation_class_name(*args, &blk); end
+
+  def model_class(*args, &blk); end
+
+  def model_class_name(*args, &blk); end
+
+  def model_module_name(*args, &blk); end
+
+  def model_relation_class_name(*args, &blk); end
 end
 
-module Sorbet::Private::StepInterface
-  def self.main(); end
-
-  def self.output_file(); end
+module SorbetRails::ModelUtils
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-class Sorbet::Private::SuggestTyped
-  include ::Sorbet::Private::StepInterface
+class SorbetRails::Railtie
 end
 
-class Sorbet::Private::SuggestTyped
-  def self.main(); end
-
-  def self.output_file(); end
-
-  def self.suggest_typed(); end
+class SorbetRails::Railtie
 end
 
-class Sorbet::Private::TodoRBI
-  include ::Sorbet::Private::StepInterface
-  HEADER = ::T.let(nil, ::T.untyped)
-  OUTPUT = ::T.let(nil, ::T.untyped)
+module SorbetRails::Utils
 end
 
-class Sorbet::Private::TodoRBI
-  def self.main(); end
+module SorbetRails::Utils
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.rails_eager_load_all!(*args, &blk); end
 
-  def self.output_file(); end
+  def self.valid_method_name?(*args, &blk); end
+end
+
+module SorbetRails
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.config(&blk); end
+
+  def self.configure(*args, &blk); end
+
+  def self.register_configured_plugins(&blk); end
 end
 
 class SortedSet
@@ -40725,6 +39569,8 @@ end
 
 class String
   include ::JSON::Ext::Generator::GeneratorMethods::String
+  include ::IntegerStringImpl
+  include ::BooleanStringImpl
   def []=(*_); end
 
   def casecmp?(_); end
@@ -40733,15 +39579,9 @@ class String
 
   def encode!(*_); end
 
-  def funcall_style(); end
-
   def grapheme_clusters(); end
 
-  def quote(); end
-
   def reverse!(); end
-
-  def sans_arguments(); end
 
   def shellescape(); end
 
@@ -40750,8 +39590,6 @@ class String
   def succ!(); end
 
   def to_d(); end
-
-  def tr_cpp(); end
 
   def undump(); end
 
@@ -40762,8 +39600,6 @@ class String
   def unicode_normalized?(*_); end
 
   def unpack1(_); end
-
-  def unspace(); end
   BLANK_RE = ::T.let(nil, ::T.untyped)
   ENCODED_BLANKS = ::T.let(nil, ::T.untyped)
 end
@@ -40910,6 +39746,11 @@ class SystemExit
   def status(); end
 
   def success?(); end
+end
+
+class TA
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 module TZInfo::RubyCoreSupport
@@ -41402,6 +40243,94 @@ end
 module UnicodeNormalize
 end
 
+class WEBrick::AccessLog::AccessLogError
+end
+
+class WEBrick::AccessLog::AccessLogError
+end
+
+module WEBrick::Config
+  BasicAuth = ::T.let(nil, ::T.untyped)
+  DigestAuth = ::T.let(nil, ::T.untyped)
+  FileHandler = ::T.let(nil, ::T.untyped)
+  General = ::T.let(nil, ::T.untyped)
+  HTTP = ::T.let(nil, ::T.untyped)
+  LIBDIR = ::T.let(nil, ::T.untyped)
+end
+
+module WEBrick::Config
+end
+
+WEBrick::HTTPAuth::Authenticator::AuthException = WEBrick::HTTPStatus::Unauthorized
+
+WEBrick::HTTPAuth::ProxyAuthenticator::AuthException = WEBrick::HTTPStatus::ProxyAuthenticationRequired
+
+class WEBrick::HTTPRequest
+  def body_reader(); end
+
+  def readpartial(size, buf=T.unsafe(nil)); end
+  MAX_HEADER_LENGTH = ::T.let(nil, ::T.untyped)
+end
+
+class WEBrick::HTTPResponse
+  def _rack_setup_header(); end
+
+  def rack(); end
+
+  def rack=(rack); end
+end
+
+class WEBrick::HTTPResponse::ChunkedWrapper
+  def <<(*buf); end
+
+  def initialize(socket, resp); end
+
+  def write(buf); end
+end
+
+class WEBrick::HTTPResponse::ChunkedWrapper
+end
+
+class WEBrick::HTTPResponse::InvalidHeader
+end
+
+class WEBrick::HTTPResponse::InvalidHeader
+end
+
+class WEBrick::HTTPServer
+  def create_request(with_webrick_config); end
+
+  def create_response(with_webrick_config); end
+end
+
+class WEBrick::HTTPServerError
+end
+
+class WEBrick::HTTPServerError
+end
+
+class WEBrick::HTTPServlet::DefaultFileHandler
+  def multipart_body(body, parts, boundary, mtype, filesize); end
+end
+
+class WEBrick::HTTPServlet::HTTPServletError
+end
+
+class WEBrick::HTTPServlet::HTTPServletError
+end
+
+class WEBrick::HTTPStatus::EOFError
+end
+
+class WEBrick::HTTPStatus::EOFError
+end
+
+class WEBrick::ServerError
+end
+
+class WEBrick::ServerError
+end
+
 module Warning
   def warn(_); end
 end
@@ -41484,15 +40413,69 @@ end
 class WebConsole::Injector
 end
 
+module WebConsole::Interceptor
+end
+
+module WebConsole::Interceptor
+  def self.call(request, exception); end
+end
+
 class WebConsole::Middleware
+  def call(env); end
+
+  def initialize(app); end
+
+  def mount_point(); end
+
+  def mount_point=(obj); end
+
+  def whiny_requests(); end
+
+  def whiny_requests=(obj); end
   TEMPLATES_PATH = ::T.let(nil, ::T.untyped)
 end
 
+class WebConsole::Middleware
+  def self.mount_point(); end
+
+  def self.mount_point=(obj); end
+
+  def self.whiny_requests(); end
+
+  def self.whiny_requests=(obj); end
+end
+
 class WebConsole::Permissions
+  def include?(network); end
+
+  def initialize(networks=T.unsafe(nil)); end
   ALWAYS_PERMITTED_NETWORKS = ::T.let(nil, ::T.untyped)
 end
 
+class WebConsole::Permissions
+end
+
+class WebConsole::Request
+  def permissions(); end
+
+  def permissions=(obj); end
+
+  def permitted?(); end
+
+  def strict_remote_ip(); end
+end
+
 class WebConsole::Request::GetSecureIp
+  def initialize(req, proxies); end
+end
+
+class WebConsole::Request::GetSecureIp
+end
+
+class WebConsole::Request
+  def self.permissions(); end
+
+  def self.permissions=(obj); end
 end
 
 class WebConsole::Session

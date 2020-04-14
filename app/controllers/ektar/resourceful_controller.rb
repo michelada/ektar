@@ -10,7 +10,7 @@ module Ektar
                                     edit: Ektar::Concerns::Edit,
                                     update: Ektar::Concerns::Update,
                                     show: Ektar::Concerns::Show,
-                                    destroy: Ektar::Concerns::Destroy,},
+                                    destroy: Ektar::Concerns::Destroy},
       T::Hash[Symbol, Module])
 
     class_attribute :resource_class, instance_writer: false
@@ -19,6 +19,7 @@ module Ektar
     class_attribute :show_attributes, instance_writer: false
     class_attribute :find_by, instance_writer: false
     class_attribute :policy_class, instance_writer: false
+    class_attribute :namespace, instance_writer: false
 
     # +resourceful+ method helps you define the actions that will be included on your controller. It also lets you
     # specify the attributes that must be shown in some views, such as +show+, +index+, +new+ and +edit+
@@ -102,19 +103,21 @@ module Ektar
         only: T.nilable(T.any(T::Array[Symbol], Symbol)),
         except: T.nilable(T.any(T::Array[Symbol], Symbol)),
         find_by: Symbol,
-        policy_class: T.nilable(Class)
+        policy_class: T.nilable(Class),
+        namespace: T.nilable(Module)
       ).void
     end
-    def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id, policy_class: nil)
+    def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id, policy_class: nil, namespace: nil)
       self.list_attributes = list_attributes
       self.form_attributes = form_attributes
       self.show_attributes = show_attributes
       self.resource_class = resource_class || controller_path.classify.constantize
       self.find_by = find_by
       self.policy_class = policy_class
+      self.namespace = namespace
 
-      only_actions = [only].flatten
-      except_actions = [except].flatten
+      only_actions = Array(only).compact
+      except_actions = Array(except).compact
 
       actions_keys = VALID_RESOURCE_ACTIONS.keys
 
@@ -135,25 +138,30 @@ module Ektar
 
     sig { returns(String) }
     def new_resource_path
-      path = "new_#{resource_class.model_name.singular_route_key}_path"
+      namespace_path = namespace.blank? ? "" : "#{namespace}_"
+      path = "new_#{namespace_path}#{resource_class.model_name.singular_route_key}_path"
       Rails.application.routes.url_helpers.send(path)
     end
 
     sig { params(resource: ActiveRecord::Base).returns(String) }
     def edit_resource_path(resource)
-      path = "edit_#{resource.model_name.singular_route_key}_path"
+      namespace_path = namespace.blank? ? "" : "#{namespace}_"
+      path = "edit_#{namespace_path}#{resource.model_name.singular_route_key}_path"
       Rails.application.routes.url_helpers.send(path, resource)
     end
 
     sig { params(resource: ActiveRecord::Base).returns(String) }
     def resource_path(resource)
-      path = "#{resource.model_name.singular_route_key}_path"
+      namespace_path = namespace.blank? ? "" : "#{namespace}_"
+      path = "#{namespace_path}#{resource.model_name.singular_route_key}_path"
       Rails.application.routes.url_helpers.send(path, resource)
     end
 
     sig { returns(String) }
     def collection_path
-      Rails.application.routes.url_helpers.send "#{resource_class.model_name.route_key}_path"
+      namespace_path = namespace.blank? ? "" : "#{namespace}_"
+      path = "#{namespace_path}#{resource_class.model_name.route_key}_path"
+      Rails.application.routes.url_helpers.send(path)
     end
 
     sig { params(resource: T.untyped).returns(T::Boolean) }
@@ -212,6 +220,19 @@ module Ektar
       instance_variable_set resource_ivar, object
     end
 
+    sig { returns(Object) }
+    def resource
+      @resource = T.let(@resource, T.nilable(Object))
+    end
+
+    sig { returns(T.nilable(String)) }
+    def namespace
+      @namespace = T.let(@namespace, T.nilable(String))
+      @namespace ||= begin
+                       self.class.namespace&.to_s&.underscore&.gsub("/", "_")
+                     end
+    end
+
     sig { params(object: ActiveRecord::Base, options: T.nilable(T.untyped), block: T.nilable(T.untyped)).returns(T.untyped) }
     def action_response_dual(object, options, &block)
       invalid_resource = T.unsafe(object)&.errors&.any?
@@ -220,6 +241,7 @@ module Ektar
         klass: resource_class.model_name.element,
         errors: invalid_resource
       )
+
       case block.try(:arity)
       when 2
         success = ResourceResponse.new
@@ -238,8 +260,8 @@ module Ektar
 
         if invalid_resource
           respond_to do |format|
+            format.json { render json: {errors: object.errors, flash: flash.alert || flash.alert.now, location: options[:location]}, status: :unprocessable_entity }
             format.html { render object.persisted? ? :edit : :new }
-            format.json { render json: object.errors, status: :unprocessable_entity }
           end
         elsif success.code.present?
           success.code.call
@@ -253,20 +275,20 @@ module Ektar
       else
         if invalid_resource
           respond_to do |format|
-            format.html { render object.persisted? ? :edit : :new }
-            format.json { render json: object.errors, status: :unprocessable_entity } unless options[:action] == :destroy
+            format.json { render json: {errors: object.errors, flash: flash.alert || flash.alert.now, location: options[:location]}, status: :unprocessable_entity } unless options[:action] == :destroy
             format.json { head :no_content } if options[:action] == :destroy
+            format.html { render object.persisted? ? :edit : :new }
           end
         else
           respond_to do |format|
-            format.html { redirect_to options[:location] }
             format.json { render json: object }
+            format.html { redirect_to options[:location] }
           end
         end
       end
     end
 
-    helper_method :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
+    helper_method :namespace, :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
       :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :allow_edit?, :set_resource_ivar
   end
 end

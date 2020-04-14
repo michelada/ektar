@@ -39,7 +39,7 @@ MoneyRails.configure do |config|
                             type: :string,
                             present: true,
                             null: false,
-                            default: "MXN",}
+                            default: "MXN"}
 
   # Register a custom currency
   #

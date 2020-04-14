@@ -7,7 +7,8 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/activemodel/all/activemodel.rbi
 #
-# activemodel-6.0.2.1
+# activemodel-6.0.2.2
+
 module ActiveModel
   def self.eager_load!; end
   def self.gem_version; end
@@ -18,6 +19,8 @@ module ActiveModel::VERSION
 end
 module ActiveModel::Serializers
   extend ActiveSupport::Autoload
+end
+class ActiveModel::Railtie < Rails::Railtie
 end
 class ActiveModel::Attribute
   def ==(other); end
@@ -250,64 +253,6 @@ class ActiveModel::UnknownAttributeError < NoMethodError
   def initialize(record, attribute); end
   def record; end
 end
-module ActiveModel::Callbacks
-  def _define_after_model_callback(klass, callback); end
-  def _define_around_model_callback(klass, callback); end
-  def _define_before_model_callback(klass, callback); end
-  def define_model_callbacks(*callbacks); end
-  def self.extended(base); end
-end
-class ActiveModel::Attribute::UserProvidedDefault < ActiveModel::Attribute::FromUser
-  def initialize(name, value, type, database_default); end
-  def marshal_dump; end
-  def marshal_load(values); end
-  def user_provided_value; end
-  def value_before_type_cast; end
-  def with_type(type); end
-end
-class ActiveModel::Name
-  def !~(*args, &block); end
-  def <=>(*args, &block); end
-  def ==(arg); end
-  def ===(arg); end
-  def =~(*args, &block); end
-  def _singularize(string); end
-  def as_json(*args, &block); end
-  def cache_key; end
-  def collection; end
-  def element; end
-  def eql?(*args, &block); end
-  def human(options = nil); end
-  def i18n_key; end
-  def initialize(klass, namespace = nil, name = nil); end
-  def match?(*args, &block); end
-  def name; end
-  def param_key; end
-  def plural; end
-  def route_key; end
-  def singular; end
-  def singular_route_key; end
-  def to_s(*args, &block); end
-  def to_str(*args, &block); end
-  include Comparable
-end
-module ActiveModel::Naming
-  def model_name; end
-  def self.extended(base); end
-  def self.model_name_from_record_or_class(record_or_class); end
-  def self.param_key(record_or_class); end
-  def self.plural(record_or_class); end
-  def self.route_key(record_or_class); end
-  def self.singular(record_or_class); end
-  def self.singular_route_key(record_or_class); end
-  def self.uncountable?(record_or_class); end
-end
-module ActiveModel::Translation
-  def human_attribute_name(attribute, options = nil); end
-  def i18n_scope; end
-  def lookup_ancestors; end
-  include ActiveModel::Naming
-end
 module ActiveModel::Type
   def self.default_value; end
   def self.lookup(*args, **kwargs); end
@@ -409,9 +354,9 @@ class ActiveModel::Type::Date < ActiveModel::Type::Value
   def type_cast_for_schema(value); end
   def value_from_multiparameter_assignment(*arg0); end
   include ActiveModel::Type::Helpers::Timezone
-  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_2
+  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_8
 end
-module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_2
+module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_8
   def assert_valid_value(value); end
   def cast(value); end
   def serialize(value); end
@@ -426,9 +371,9 @@ class ActiveModel::Type::DateTime < ActiveModel::Type::Value
   def value_from_multiparameter_assignment(values_hash); end
   include ActiveModel::Type::Helpers::TimeValue
   include ActiveModel::Type::Helpers::Timezone
-  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_3
+  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_9
 end
-module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_3
+module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_9
   def assert_valid_value(value); end
   def cast(value); end
   def serialize(value); end
@@ -465,9 +410,9 @@ class ActiveModel::Type::Time < ActiveModel::Type::Value
   def user_input_in_time_zone(value); end
   include ActiveModel::Type::Helpers::TimeValue
   include ActiveModel::Type::Helpers::Timezone
-  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_4
+  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_10
 end
-module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_4
+module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_10
   def assert_valid_value(value); end
   def cast(value); end
   def serialize(value); end
@@ -489,28 +434,23 @@ class ActiveModel::Type::Registration
   def matches?(type_name, *args, **kwargs); end
   def name; end
 end
-class ActiveModel::ForbiddenAttributesError < StandardError
+class ActiveModel::Validator
+  def initialize(options = nil); end
+  def kind; end
+  def options; end
+  def self.kind; end
+  def validate(record); end
 end
-module ActiveModel::ForbiddenAttributesProtection
-  def sanitize_for_mass_assignment(attributes); end
-  def sanitize_forbidden_attributes(attributes); end
+class ActiveModel::EachValidator < ActiveModel::Validator
+  def attributes; end
+  def check_validity!; end
+  def initialize(options); end
+  def validate(record); end
+  def validate_each(record, attribute, value); end
 end
-module ActiveModel::AttributeAssignment
-  def _assign_attribute(k, v); end
-  def _assign_attributes(attributes); end
-  def assign_attributes(new_attributes); end
-  def attributes=(new_attributes); end
-  include ActiveModel::ForbiddenAttributesProtection
-end
-module ActiveModel::Conversion
-  def to_key; end
-  def to_model; end
-  def to_param; end
-  def to_partial_path; end
-  extend ActiveSupport::Concern
-end
-module ActiveModel::Conversion::ClassMethods
-  def _to_partial_path; end
+class ActiveModel::BlockValidator < ActiveModel::EachValidator
+  def initialize(options, &block); end
+  def validate_each(record, attribute, value); end
 end
 module ActiveModel::Validations
   def errors; end
@@ -544,24 +484,6 @@ module ActiveModel::Validations::Clusivity
   def delimiter; end
   def include?(record, value); end
   def inclusion_method(enumerable); end
-end
-class ActiveModel::Validator
-  def initialize(options = nil); end
-  def kind; end
-  def options; end
-  def self.kind; end
-  def validate(record); end
-end
-class ActiveModel::EachValidator < ActiveModel::Validator
-  def attributes; end
-  def check_validity!; end
-  def initialize(options); end
-  def validate(record); end
-  def validate_each(record, attribute, value); end
-end
-class ActiveModel::BlockValidator < ActiveModel::EachValidator
-  def initialize(options, &block); end
-  def validate_each(record, attribute, value); end
 end
 class ActiveModel::Validations::InclusionValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value); end
@@ -649,6 +571,87 @@ end
 class ActiveModel::ValidationError < StandardError
   def initialize(model); end
   def model; end
+end
+module ActiveModel::Callbacks
+  def _define_after_model_callback(klass, callback); end
+  def _define_around_model_callback(klass, callback); end
+  def _define_before_model_callback(klass, callback); end
+  def define_model_callbacks(*callbacks); end
+  def self.extended(base); end
+end
+class ActiveModel::Attribute::UserProvidedDefault < ActiveModel::Attribute::FromUser
+  def initialize(name, value, type, database_default); end
+  def marshal_dump; end
+  def marshal_load(values); end
+  def user_provided_value; end
+  def value_before_type_cast; end
+  def with_type(type); end
+end
+class ActiveModel::Name
+  def !~(*args, &block); end
+  def <=>(*args, &block); end
+  def ==(arg); end
+  def ===(arg); end
+  def =~(*args, &block); end
+  def _singularize(string); end
+  def as_json(*args, &block); end
+  def cache_key; end
+  def collection; end
+  def element; end
+  def eql?(*args, &block); end
+  def human(options = nil); end
+  def i18n_key; end
+  def initialize(klass, namespace = nil, name = nil); end
+  def match?(*args, &block); end
+  def name; end
+  def param_key; end
+  def plural; end
+  def route_key; end
+  def singular; end
+  def singular_route_key; end
+  def to_s(*args, &block); end
+  def to_str(*args, &block); end
+  include Comparable
+end
+module ActiveModel::Naming
+  def model_name; end
+  def self.extended(base); end
+  def self.model_name_from_record_or_class(record_or_class); end
+  def self.param_key(record_or_class); end
+  def self.plural(record_or_class); end
+  def self.route_key(record_or_class); end
+  def self.singular(record_or_class); end
+  def self.singular_route_key(record_or_class); end
+  def self.uncountable?(record_or_class); end
+end
+module ActiveModel::Translation
+  def human_attribute_name(attribute, options = nil); end
+  def i18n_scope; end
+  def lookup_ancestors; end
+  include ActiveModel::Naming
+end
+class ActiveModel::ForbiddenAttributesError < StandardError
+end
+module ActiveModel::ForbiddenAttributesProtection
+  def sanitize_for_mass_assignment(attributes); end
+  def sanitize_forbidden_attributes(attributes); end
+end
+module ActiveModel::AttributeAssignment
+  def _assign_attribute(k, v); end
+  def _assign_attributes(attributes); end
+  def assign_attributes(new_attributes); end
+  def attributes=(new_attributes); end
+  include ActiveModel::ForbiddenAttributesProtection
+end
+module ActiveModel::Conversion
+  def to_key; end
+  def to_model; end
+  def to_param; end
+  def to_partial_path; end
+  extend ActiveSupport::Concern
+end
+module ActiveModel::Conversion::ClassMethods
+  def _to_partial_path; end
 end
 class ActiveModel::AttributeMutationTracker
   def any_changes?; end
@@ -744,6 +747,4 @@ module ActiveModel::Serializers::JSON
   def from_json(json, include_root = nil); end
   extend ActiveSupport::Concern
   include ActiveModel::Serialization
-end
-class ActiveModel::Railtie < Rails::Railtie
 end

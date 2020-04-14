@@ -7,7 +7,8 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/actionmailer/all/actionmailer.rbi
 #
-# actionmailer-6.0.2.1
+# actionmailer-6.0.2.2
+
 module ActionMailer
   def self.eager_load!; end
   def self.gem_version; end
@@ -133,13 +134,6 @@ module ActionMailer::MailHelper
   def mailer; end
   def message; end
 end
-class ActionMailer::MailDeliveryJob < ActiveJob::Base
-  def handle_exception_with_mailer_class(exception); end
-  def mailer_class; end
-  def perform(mailer, mail_method, delivery_method, args:, params: nil); end
-  def self.queue_name; end
-  def self.rescue_handlers; end
-end
 class ActionMailer::Base < AbstractController::Base
   def __callbacks; end
   def __callbacks?; end
@@ -177,9 +171,6 @@ class ActionMailer::Base < AbstractController::Base
   def default_params?; end
   def default_static_extension; end
   def default_static_extension=(value); end
-  def default_url_options; end
-  def default_url_options=(val); end
-  def default_url_options?; end
   def deliver_later_queue_name; end
   def deliver_later_queue_name=(obj); end
   def delivery_job; end
@@ -263,9 +254,6 @@ class ActionMailer::Base < AbstractController::Base
   def self.default_params?; end
   def self.default_static_extension; end
   def self.default_static_extension=(value); end
-  def self.default_url_options; end
-  def self.default_url_options=(val); end
-  def self.default_url_options?; end
   def self.deliver_later_queue_name; end
   def self.deliver_later_queue_name=(obj); end
   def self.deliver_mail(mail); end
@@ -352,7 +340,6 @@ class ActionMailer::Base < AbstractController::Base
   extend AbstractController::Caching::Fragments::ClassMethods
   extend AbstractController::Callbacks::ClassMethods
   extend AbstractController::Helpers::ClassMethods
-  extend AbstractController::UrlFor::ClassMethods
   extend ActionMailer::DeliveryMethods::ClassMethods
   extend ActionMailer::Parameterized::ClassMethods
   extend ActionMailer::Previews::ClassMethods
@@ -363,7 +350,6 @@ class ActionMailer::Base < AbstractController::Base
   extend ActiveSupport::Callbacks::ClassMethods
   extend ActiveSupport::DescendantsTracker
   extend ActiveSupport::Rescuable::ClassMethods
-  extend Anonymous_Module_22
   include AbstractController::AssetPaths
   include AbstractController::Caching
   include AbstractController::Caching::Fragments
@@ -372,10 +358,6 @@ class ActionMailer::Base < AbstractController::Base
   include AbstractController::Logger
   include AbstractController::Rendering
   include AbstractController::Translation
-  include AbstractController::UrlFor
-  include ActionDispatch::Routing::RouteSet::MountedHelpers
-  include ActionDispatch::Routing::UrlFor
-  include ActionDispatch::Routing::UrlFor
   include ActionMailer::DeliveryMethods
   include ActionMailer::Parameterized
   include ActionMailer::Previews
@@ -398,7 +380,4 @@ class ActionMailer::Base::LateAttachmentsProxy < SimpleDelegator
   def []=(_name, _content); end
   def _raise_error; end
   def inline; end
-end
-module Anonymous_Module_22
-  def inherited(klass); end
 end

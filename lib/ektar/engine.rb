@@ -19,7 +19,6 @@ module Ektar
     # Serves the engine's webpack when requested
     initializer "webpacker.static" do |app|
       public_path = File.expand_path(File.join(__dir__, "..", "..", "public"))
-      puts public_path
       app.config.middleware.use(
         Rack::Static,
         urls: ["/ektar-packs"],

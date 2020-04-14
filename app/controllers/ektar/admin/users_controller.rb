@@ -13,14 +13,20 @@ module Ektar
                   form_attributes: {email: :input, password: :password, password_confirmation: :password},
                   show_attributes: %i[id email updated_at],
                   find_by: :global_id,
-                  except: [:delete],
+                  only: [:new, :index, :delete],
                   resource_class: Ektar::User)
 
       sig { void }
       def index
         authorize current_organization, policy_class: Ektar::UserPolicy
 
-        index! { |scope| current_user.super_admin? ? scope.where(super_admin: true) : scope.joins(:memberships).where(memberships: [organization: current_organization]) }
+        index! do |scope|
+          if current_user.super_admin?
+            scope.where(super_admin: true)
+          else
+            scope.joins(:memberships).where(ektar_memberships: {ektar_organization_id: current_organization}).order(created_at: :desc)
+          end
+        end
 
         render layout: "ektar/application"
       end

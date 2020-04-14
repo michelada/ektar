@@ -13,7 +13,7 @@ module Ektar
                                     trial: :input,
                                     free: :checkbox,
                                     price_cents: :number,
-                                    price_currency: :currency,},
+                                    price_currency: :currency},
                   show_attributes: %i[name description free trial active price],
                   resource_class: Ektar::Plan,
                   policy_class: Ektar::PlanPolicy)

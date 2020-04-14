@@ -10,7 +10,7 @@ module Ektar
 
       resourceful(form_attributes: {email: :input,
                                     invitation_token: :hidden,
-                                    ektar_organization_id: :hidden,},
+                                    ektar_organization_id: :hidden},
                   resource_class: Ektar::Invitation,
                   policy_class: Ektar::InvitationPolicy)
 

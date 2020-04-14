@@ -2,7 +2,7 @@
 Ektar::Engine.routes.draw do
   root to: "select_organization#new"
 
-  resources :sessions, path: I18n.t("routes.session"), only: [:new, :create, :destroy]
+  resource :sessions, path: I18n.t("routes.session"), only: [:new, :create, :destroy]
   resources :registrations, path: I18n.t("routes.registration"), only: [:new, :create]
   resources :reset_password, path: I18n.t("routes.reset_password"), only: [:new, :create]
   resources :select_organization, path: I18n.t("routes.select_organization"), only: [:new, :create, :update]

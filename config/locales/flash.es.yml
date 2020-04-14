@@ -2,7 +2,7 @@ es:
   flash:
     session:
       authenticate!: "Debes de iniciar sesión primero"
-    
+
     create:
       notice: "Creado"
       alert: "Error al crear"
@@ -10,14 +10,14 @@ es:
       organization:
         notice: "La organización se ha sido registrado exitosamente"
         alert: "Error al registrar la organización"
-      
+
       user:
         notice: "El usuario ha sido registrado exitosamente"
         alert: "Error al registrar el usuario"
 
       session:
         notice: "Sesión Iniciada correctamente"
-        alert: "El usuario o contraseña son incorrectos"
+        alert: "El correo electrónico o contraseña son incorrectos"
 
       invitation:
         notice: "La invitación se ha enviado a %{email}"
@@ -39,7 +39,7 @@ es:
       organization:
         notice: "La organización ha sido actualizada exitosamente"
         alert: "Error al actualizar la organización"
-     
+
       user:
         notice: "El usuario ha sido actualizado exitosamente"
         alert: "Error al actualizar el usuario"
@@ -51,7 +51,7 @@ es:
       organization:
         notice: "La organización ha sido eliminada exitosamente"
         alert: "Error al eliminar la organización"
-        
+
       user:
         notice: "El usuario ha sido eliminado exitosamente"
         alert: "Error al eliminar el usuario"

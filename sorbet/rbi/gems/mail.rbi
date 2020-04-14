@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/mail/all/mail.rbi
 #
 # mail-2.7.1
+
 module Mail
   def self.all(*args, &block); end
   def self.connection(&block); end
@@ -505,7 +506,7 @@ class Mail::Header
   include Mail::Constants
   include Mail::Utilities
 end
-class Mail::PartsList < Anonymous_Delegator_23
+class Mail::PartsList < Anonymous_Delegator_428
   def attachments; end
   def collect!; end
   def collect; end
