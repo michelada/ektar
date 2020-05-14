@@ -42,9 +42,9 @@ module Ektar
     test "user can logout" do
       subject = ektar_users(:user)
       sign_in subject
-      delete session_path(subject.global_id)
+      delete sessions_path(subject.global_id)
 
-      assert_redirected_to new_session_path
+      assert_redirected_to new_sessions_path
     end
   end
 end

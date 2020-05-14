@@ -3,15 +3,15 @@ require_dependency "ektar/application_controller"
 
 module Ektar
   class SessionsController < ApplicationController
+    layout "ektar/users"
+
     def new
       @resource = Ektar::User.new
-
-      render :new, layout: "ektar/users"
     end
 
     def create
       user_email = params.dig(:user, :email)
-      @resource = User.find_by(email: user_email)
+      @resource = User.find_by(email: user_email) if user_email.present?
 
       if @resource&.authenticate(params.dig(:user, :password)) && !@resource.blocked_at?
         @resource.update last_ip: format_ip(request.remote_ip), last_activity_at: Time.zone.now
@@ -23,9 +23,14 @@ module Ektar
         redirect_to after_sign_in_path
       else
         @resource = Ektar::User.new(email: user_email)
+        @resource.valid?
+
         set_flash(errors: true, klass: "session", action: action_name)
 
-        render :new, layout: "ektar/users"
+        respond_to do |format|
+          format.json { render json: {errors: @resource.errors, flash: flash.alert || flash.notice, localtion: request.path}, status: :unprocessable_entity }
+          format.html { render :new }
+        end
       end
     end
 
