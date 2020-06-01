@@ -1,7 +1,7 @@
 # typed: false
 
 module Ektar
-  class SuperAdmin::BaseController < ResourcefulController
+  class SuperAdmin::ApplicationController < ResourcefulController
     extend T::Sig
 
     sig { returns(String) }

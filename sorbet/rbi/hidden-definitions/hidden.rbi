@@ -288,13 +288,13 @@ module AbstractController::Rendering
 end
 
 module AbstractController::Translation
-  def l(*args); end
+  def l(object, **options); end
 
-  def localize(*args); end
+  def localize(object, **options); end
 
-  def t(key, options=T.unsafe(nil)); end
+  def t(key, **options); end
 
-  def translate(key, options=T.unsafe(nil)); end
+  def translate(key, **options); end
 end
 
 module AbstractController::Translation
@@ -2516,6 +2516,8 @@ class ActionController::TestRequest
 end
 
 class ActionController::TestSession
+  def dig(*keys); end
+
   def fetch(key, *args, &block); end
 
   def initialize(session=T.unsafe(nil)); end
@@ -3479,7 +3481,7 @@ module ActionDispatch::Integration::RequestHelpers
 
   def get(path, **args); end
 
-  def head(path, *args); end
+  def head(path, **args); end
 
   def patch(path, **args); end
 
@@ -3501,11 +3503,15 @@ module ActionDispatch::Integration::Runner
   include ::ActionDispatch::Assertions::RoutingAssertions
   def app(); end
 
-  def assigns(*args); end
+  def assertions(); end
+
+  def assertions=(assertions); end
+
+  def assigns(*args, **options); end
 
   def before_setup(); end
 
-  def cookies(*args); end
+  def cookies(*args, **options); end
 
   def copy_session_variables!(); end
 
@@ -3515,13 +3521,13 @@ module ActionDispatch::Integration::Runner
 
   def default_url_options=(options); end
 
-  def delete(*args); end
+  def delete(*args, **options); end
 
-  def follow_redirect!(*args); end
+  def follow_redirect!(*args, **options); end
 
-  def get(*args); end
+  def get(*args, **options); end
 
-  def head(*args); end
+  def head(*args, **options); end
 
   def initialize(*args, &blk); end
 
@@ -3529,15 +3535,19 @@ module ActionDispatch::Integration::Runner
 
   def open_session(); end
 
-  def patch(*args); end
+  def patch(*args, **options); end
 
-  def post(*args); end
+  def post(*args, **options); end
 
-  def put(*args); end
+  def put(*args, **options); end
 
   def remove!(); end
 
   def reset!(); end
+
+  def root_session(); end
+
+  def root_session=(root_session); end
   APP_SESSIONS = ::T.let(nil, ::T.untyped)
 end
 
@@ -3660,7 +3670,7 @@ module ActionDispatch::IntegrationTest::Behavior::ClassMethods
 
   def app=(app); end
 
-  def register_encoder(*args); end
+  def register_encoder(*args, **options); end
 end
 
 module ActionDispatch::IntegrationTest::Behavior::ClassMethods
@@ -4600,6 +4610,12 @@ class ActionDispatch::MiddlewareStack::Middleware
 end
 
 class ActionDispatch::MiddlewareStack
+end
+
+class ActionDispatch::MissingController
+end
+
+class ActionDispatch::MissingController
 end
 
 class ActionDispatch::PublicExceptions
@@ -6445,7 +6461,7 @@ class ActionMailer::LogSubscriber
 end
 
 class ActionMailer::MailDeliveryJob
-  def perform(mailer, mail_method, delivery_method, args:, params: T.unsafe(nil)); end
+  def perform(mailer, mail_method, delivery_method, args:, kwargs: T.unsafe(nil), params: T.unsafe(nil)); end
 end
 
 class ActionMailer::MailDeliveryJob
@@ -8055,13 +8071,13 @@ module ActionView::Helpers::TextHelper
 end
 
 module ActionView::Helpers::TranslationHelper
-  def l(*args); end
+  def l(object, **options); end
 
-  def localize(*args); end
+  def localize(object, **options); end
 
-  def t(key, options=T.unsafe(nil)); end
+  def t(key, **options); end
 
-  def translate(key, options=T.unsafe(nil)); end
+  def translate(key, **options); end
 end
 
 module ActionView::Helpers::TranslationHelper
@@ -8653,7 +8669,7 @@ class ActionView::Template::Error
 
   def line_number(); end
 
-  def source_extract(indentation=T.unsafe(nil), output=T.unsafe(nil)); end
+  def source_extract(indentation=T.unsafe(nil)); end
 
   def sub_template_message(); end
 
@@ -9521,6 +9537,7 @@ end
 
 class ActiveModel::Validations::NumericalityValidator
   CHECKS = ::T.let(nil, ::T.untyped)
+  HEXADECIMAL_REGEX = ::T.let(nil, ::T.untyped)
   INTEGER_REGEX = ::T.let(nil, ::T.untyped)
   RESERVED_OPTIONS = ::T.let(nil, ::T.untyped)
 end
@@ -9541,6 +9558,27 @@ class ActiveRecord::AdapterNotSpecified
 end
 
 class ActiveRecord::AdapterNotSpecified
+end
+
+class ActiveRecord::AdvisoryLockBase
+  include ::ActiveRecord::AdvisoryLockBase::GeneratedAttributeMethods
+  include ::ActiveRecord::AdvisoryLockBase::GeneratedAssociationMethods
+end
+
+module ActiveRecord::AdvisoryLockBase::GeneratedAssociationMethods
+end
+
+module ActiveRecord::AdvisoryLockBase::GeneratedAssociationMethods
+end
+
+module ActiveRecord::AdvisoryLockBase::GeneratedAttributeMethods
+end
+
+module ActiveRecord::AdvisoryLockBase::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+class ActiveRecord::AdvisoryLockBase
 end
 
 module ActiveRecord::Aggregations
@@ -9572,7 +9610,7 @@ class ActiveRecord::AssociationNotFoundError
 end
 
 class ActiveRecord::AssociationRelation
-  def initialize(klass, association); end
+  def initialize(klass, association, **_); end
 
   def proxy_association(); end
 end
@@ -9650,8 +9688,6 @@ class ActiveRecord::Associations::Association
   def reset_scope(); end
 
   def scope(); end
-
-  def scoping(relation, &block); end
 
   def set_inverse_instance(record); end
 
@@ -9945,7 +9981,7 @@ class ActiveRecord::Associations::CollectionProxy
 
   def includes_values=(arg); end
 
-  def initialize(klass, association); end
+  def initialize(klass, association, **_); end
 
   def joins(*args, &block); end
 
@@ -10530,26 +10566,6 @@ module ActiveRecord::AttributeMethods::PrimaryKey
   def to_key(); end
 end
 
-module ActiveRecord::AttributeMethods::PrimaryKey::ClassMethods
-  def dangerous_attribute_method?(method_name); end
-
-  def get_primary_key(base_name); end
-
-  def instance_method_already_implemented?(method_name); end
-
-  def primary_key(); end
-
-  def primary_key=(value); end
-
-  def quoted_primary_key(); end
-
-  def reset_primary_key(); end
-  ID_ATTRIBUTE_METHODS = ::T.let(nil, ::T.untyped)
-end
-
-module ActiveRecord::AttributeMethods::PrimaryKey::ClassMethods
-end
-
 module ActiveRecord::AttributeMethods::PrimaryKey
   extend ::ActiveSupport::Concern
 end
@@ -10568,12 +10584,6 @@ module ActiveRecord::AttributeMethods::Read
   def read_attribute(attr_name, &block); end
 end
 
-module ActiveRecord::AttributeMethods::Read::ClassMethods
-end
-
-module ActiveRecord::AttributeMethods::Read::ClassMethods
-end
-
 module ActiveRecord::AttributeMethods::Read
   extend ::ActiveSupport::Concern
 end
@@ -10581,40 +10591,11 @@ end
 module ActiveRecord::AttributeMethods::Serialization
 end
 
-module ActiveRecord::AttributeMethods::Serialization::ClassMethods
-  def serialize(attr_name, class_name_or_coder=T.unsafe(nil)); end
-end
-
-module ActiveRecord::AttributeMethods::Serialization::ClassMethods
-end
-
-class ActiveRecord::AttributeMethods::Serialization::ColumnNotSerializableError
-  def initialize(name, type); end
-end
-
-class ActiveRecord::AttributeMethods::Serialization::ColumnNotSerializableError
-end
-
 module ActiveRecord::AttributeMethods::Serialization
   extend ::ActiveSupport::Concern
 end
 
 module ActiveRecord::AttributeMethods::TimeZoneConversion
-end
-
-module ActiveRecord::AttributeMethods::TimeZoneConversion::ClassMethods
-end
-
-module ActiveRecord::AttributeMethods::TimeZoneConversion::ClassMethods
-end
-
-class ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter
-  def cast(value); end
-
-  def deserialize(value); end
-end
-
-class ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter
 end
 
 module ActiveRecord::AttributeMethods::TimeZoneConversion
@@ -10625,12 +10606,6 @@ module ActiveRecord::AttributeMethods::Write
   def _write_attribute(attr_name, value); end
 
   def write_attribute(attr_name, value); end
-end
-
-module ActiveRecord::AttributeMethods::Write::ClassMethods
-end
-
-module ActiveRecord::AttributeMethods::Write::ClassMethods
 end
 
 module ActiveRecord::AttributeMethods::Write
@@ -10981,11 +10956,6 @@ class ActiveRecord::Base
   extend ::ActiveModel::Callbacks
   extend ::ActiveModel::AttributeMethods::ClassMethods
   extend ::ActiveRecord::AttributeMethods::ClassMethods
-  extend ::ActiveRecord::AttributeMethods::Read::ClassMethods
-  extend ::ActiveRecord::AttributeMethods::Write::ClassMethods
-  extend ::ActiveRecord::AttributeMethods::PrimaryKey::ClassMethods
-  extend ::ActiveRecord::AttributeMethods::TimeZoneConversion::ClassMethods
-  extend ::ActiveRecord::AttributeMethods::Serialization::ClassMethods
   extend ::ActiveRecord::Timestamp::ClassMethods
   extend ::ActiveRecord::Associations::ClassMethods
   extend ::ActiveModel::SecurePassword::ClassMethods
@@ -11406,7 +11376,7 @@ module ActiveRecord::Callbacks
 
   def increment!(attribute, by=T.unsafe(nil), touch: T.unsafe(nil)); end
 
-  def touch(*_); end
+  def touch(*_, **_1); end
   CALLBACKS = ::T.let(nil, ::T.untyped)
 end
 
@@ -11637,6 +11607,8 @@ class ActiveRecord::ConnectionAdapters::AbstractAdapter
 
   def supports_partial_index?(); end
 
+  def supports_partitioned_indexes?(); end
+
   def supports_savepoints?(); end
 
   def supports_transaction_isolation?(); end
@@ -11661,6 +11633,7 @@ class ActiveRecord::ConnectionAdapters::AbstractAdapter
 
   def visitor(); end
   ADAPTER_NAME = ::T.let(nil, ::T.untyped)
+  COMMENT_REGEX = ::T.let(nil, ::T.untyped)
   SIMPLE_INT = ::T.let(nil, ::T.untyped)
 end
 
@@ -11734,7 +11707,7 @@ class ActiveRecord::ConnectionAdapters::AddColumnDefinition
 end
 
 class ActiveRecord::ConnectionAdapters::AlterTable
-  def add_column(name, type, options); end
+  def add_column(name, type, **options); end
 
   def add_foreign_key(to_table, options); end
 
@@ -12695,7 +12668,7 @@ class ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaDumper
 end
 
 module ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements
-  def add_column(table_name, column_name, type, options=T.unsafe(nil)); end
+  def add_column(table_name, column_name, type, **options); end
 
   def add_index(table_name, column_name, options=T.unsafe(nil)); end
 
@@ -12881,7 +12854,7 @@ class ActiveRecord::ConnectionAdapters::PostgreSQL::TableDefinition
 
   def inet(*names, **options); end
 
-  def initialize(*_); end
+  def initialize(*_, **_1); end
 
   def int4range(*names, **options); end
 
@@ -13141,7 +13114,7 @@ end
 class ActiveRecord::ConnectionAdapters::SavepointTransaction
   def commit(); end
 
-  def initialize(connection, savepoint_name, parent_transaction, *args); end
+  def initialize(connection, savepoint_name, parent_transaction, *args, **options); end
 
   def rollback(); end
 end
@@ -13222,7 +13195,7 @@ module ActiveRecord::ConnectionAdapters::SchemaStatements
 
   def add_column(table_name, column_name, type, **options); end
 
-  def add_foreign_key(from_table, to_table, options=T.unsafe(nil)); end
+  def add_foreign_key(from_table, to_table, **options); end
 
   def add_index(table_name, column_name, options=T.unsafe(nil)); end
 
@@ -13230,7 +13203,7 @@ module ActiveRecord::ConnectionAdapters::SchemaStatements
 
   def add_reference(table_name, ref_name, **options); end
 
-  def add_timestamps(table_name, options=T.unsafe(nil)); end
+  def add_timestamps(table_name, **options); end
 
   def assume_migrated_upto_version(version, migrations_paths=T.unsafe(nil)); end
 
@@ -13242,7 +13215,7 @@ module ActiveRecord::ConnectionAdapters::SchemaStatements
 
   def change_column_null(table_name, column_name, null, default=T.unsafe(nil)); end
 
-  def change_table(table_name, options=T.unsafe(nil)); end
+  def change_table(table_name, **options); end
 
   def change_table_comment(table_name, comment_or_changes); end
 
@@ -13262,9 +13235,9 @@ module ActiveRecord::ConnectionAdapters::SchemaStatements
 
   def data_sources(); end
 
-  def drop_join_table(table_1, table_2, options=T.unsafe(nil)); end
+  def drop_join_table(table_1, table_2, **options); end
 
-  def drop_table(table_name, options=T.unsafe(nil)); end
+  def drop_table(table_name, **options); end
 
   def dump_schema_information(); end
 
@@ -13294,7 +13267,7 @@ module ActiveRecord::ConnectionAdapters::SchemaStatements
 
   def remove_belongs_to(table_name, ref_name, foreign_key: T.unsafe(nil), polymorphic: T.unsafe(nil), **options); end
 
-  def remove_column(table_name, column_name, type=T.unsafe(nil), options=T.unsafe(nil)); end
+  def remove_column(table_name, column_name, type=T.unsafe(nil), **options); end
 
   def remove_columns(table_name, *column_names); end
 
@@ -13304,7 +13277,7 @@ module ActiveRecord::ConnectionAdapters::SchemaStatements
 
   def remove_reference(table_name, ref_name, foreign_key: T.unsafe(nil), polymorphic: T.unsafe(nil), **options); end
 
-  def remove_timestamps(table_name, options=T.unsafe(nil)); end
+  def remove_timestamps(table_name, **options); end
 
   def rename_column(table_name, column_name, new_column_name); end
 
@@ -13394,7 +13367,7 @@ class ActiveRecord::ConnectionAdapters::Table
 
   def column(column_name, type, **options); end
 
-  def column_exists?(column_name, type=T.unsafe(nil), options=T.unsafe(nil)); end
+  def column_exists?(column_name, type=T.unsafe(nil), **options); end
 
   def date(*names, **options); end
 
@@ -13404,9 +13377,9 @@ class ActiveRecord::ConnectionAdapters::Table
 
   def float(*names, **options); end
 
-  def foreign_key(*args); end
+  def foreign_key(*args, **options); end
 
-  def foreign_key_exists?(*args); end
+  def foreign_key_exists?(*args, **options); end
 
   def index(column_name, options=T.unsafe(nil)); end
 
@@ -13428,13 +13401,13 @@ class ActiveRecord::ConnectionAdapters::Table
 
   def remove_belongs_to(*args, **options); end
 
-  def remove_foreign_key(*args); end
+  def remove_foreign_key(*args, **options); end
 
   def remove_index(options=T.unsafe(nil)); end
 
   def remove_references(*args, **options); end
 
-  def remove_timestamps(options=T.unsafe(nil)); end
+  def remove_timestamps(**options); end
 
   def rename(column_name, new_column_name); end
 
@@ -13448,7 +13421,7 @@ class ActiveRecord::ConnectionAdapters::Table
 
   def timestamp(*names, **options); end
 
-  def timestamps(options=T.unsafe(nil)); end
+  def timestamps(**options); end
 
   def virtual(*names, **options); end
 end
@@ -13485,7 +13458,7 @@ class ActiveRecord::ConnectionAdapters::TableDefinition
 
   def float(*names, **options); end
 
-  def foreign_key(table_name, options=T.unsafe(nil)); end
+  def foreign_key(table_name, **options); end
 
   def foreign_keys(); end
 
@@ -13955,7 +13928,7 @@ module ActiveRecord::Delegation
 end
 
 module ActiveRecord::Delegation::ClassMethods
-  def create(klass, *args); end
+  def create(klass, *args, **kwargs); end
 end
 
 module ActiveRecord::Delegation::ClassMethods
@@ -14035,7 +14008,7 @@ class ActiveRecord::DynamicMatchers::Method
 
   def define(); end
 
-  def initialize(model, name); end
+  def initialize(model, method_name); end
 
   def model(); end
 
@@ -14695,7 +14668,7 @@ class ActiveRecord::Migration::CommandRecorder
 
   def change_column_null(*args, &block); end
 
-  def change_table(table_name, options=T.unsafe(nil)); end
+  def change_table(table_name, **options); end
 
   def change_table_comment(*args, &block); end
 
@@ -14768,6 +14741,8 @@ end
 module ActiveRecord::Migration::CommandRecorder::StraightReversions
   def invert_add_column(args, &block); end
 
+  def invert_add_foreign_key(args, &block); end
+
   def invert_add_reference(args, &block); end
 
   def invert_add_timestamps(args, &block); end
@@ -14787,6 +14762,8 @@ module ActiveRecord::Migration::CommandRecorder::StraightReversions
   def invert_execute_block(args, &block); end
 
   def invert_remove_column(args, &block); end
+
+  def invert_remove_foreign_key(args, &block); end
 
   def invert_remove_reference(args, &block); end
 
@@ -14822,7 +14799,7 @@ end
 class ActiveRecord::Migration::Compatibility::V5_0
   def add_belongs_to(table_name, ref_name, **options); end
 
-  def add_column(table_name, column_name, type, options=T.unsafe(nil)); end
+  def add_column(table_name, column_name, type, **options); end
 
   def add_reference(table_name, ref_name, **options); end
 
@@ -14845,8 +14822,6 @@ end
 
 class ActiveRecord::Migration::Compatibility::V5_1
   def change_column(table_name, column_name, type, options=T.unsafe(nil)); end
-
-  def create_table(table_name, options=T.unsafe(nil)); end
 end
 
 class ActiveRecord::Migration::Compatibility::V5_2
@@ -15188,9 +15163,9 @@ end
 module ActiveRecord::NoTouching
   def no_touching?(); end
 
-  def touch(*_); end
+  def touch(*_, **_1); end
 
-  def touch_later(*_); end
+  def touch_later(*_, **_1); end
 end
 
 module ActiveRecord::NoTouching::ClassMethods
@@ -15295,9 +15270,9 @@ module ActiveRecord::Persistence
 
   def reload(options=T.unsafe(nil)); end
 
-  def save(*args, &block); end
+  def save(*args, **options, &block); end
 
-  def save!(*args, &block); end
+  def save!(*args, **options, &block); end
 
   def toggle(attribute); end
 
@@ -16460,6 +16435,8 @@ class ActiveRecord::Relation
 
   def cache_key(timestamp_column=T.unsafe(nil)); end
 
+  def cache_key_with_version(); end
+
   def cache_version(timestamp_column=T.unsafe(nil)); end
 
   def create(attributes=T.unsafe(nil), &block); end
@@ -16569,6 +16546,8 @@ class ActiveRecord::Relation
 end
 
 class ActiveRecord::Relation::FromClause
+  def ==(other); end
+
   def empty?(); end
 
   def initialize(value, name); end
@@ -17089,9 +17068,9 @@ class ActiveRecord::SubclassNotFound
 end
 
 module ActiveRecord::Suppressor
-  def save(*_); end
+  def save(*_, **_1); end
 
-  def save!(*_); end
+  def save!(*_, **_1); end
 end
 
 module ActiveRecord::Suppressor::ClassMethods
@@ -17118,6 +17097,8 @@ class ActiveRecord::TableMetadata
 
   def arel_attribute(column_name); end
 
+  def associated_predicate_builder(table_name); end
+
   def associated_table(table_name); end
 
   def associated_with?(association_name); end
@@ -17135,6 +17116,8 @@ class ActiveRecord::TableMetadata
   def initialize(klass, arel_table, association=T.unsafe(nil), types=T.unsafe(nil)); end
 
   def polymorphic_association?(); end
+
+  def predicate_builder(); end
 
   def reflect_on_aggregation(aggregation_name); end
 
@@ -17433,7 +17416,7 @@ end
 module ActiveRecord::TouchLater
   def touch(*names, time: T.unsafe(nil)); end
 
-  def touch_later(*names); end
+  def touch_later(*names, **_); end
 end
 
 module ActiveRecord::TouchLater
@@ -17461,11 +17444,11 @@ module ActiveRecord::Transactions
 
   def rolledback!(force_restore_state: T.unsafe(nil), should_run_callbacks: T.unsafe(nil)); end
 
-  def save(*_); end
+  def save(*_, **_1); end
 
-  def save!(*_); end
+  def save!(*_, **_1); end
 
-  def touch(*_); end
+  def touch(*_, **_1); end
 
   def transaction(options=T.unsafe(nil), &block); end
 
@@ -17496,7 +17479,7 @@ module ActiveRecord::Transactions::ClassMethods
 
   def before_commit_without_transaction_enrollment(*args, &block); end
 
-  def transaction(options=T.unsafe(nil), &block); end
+  def transaction(**options, &block); end
 end
 
 module ActiveRecord::Transactions::ClassMethods
@@ -17779,9 +17762,9 @@ module ActiveRecord::VERSION
 end
 
 module ActiveRecord::Validations
-  def save(options=T.unsafe(nil)); end
+  def save(**options); end
 
-  def save!(options=T.unsafe(nil)); end
+  def save!(**options); end
 
   def valid?(context=T.unsafe(nil)); end
 
@@ -17973,6 +17956,8 @@ end
 module ActiveStorage::Attached::Model
   def attachment_changes(); end
 
+  def changed_for_autosave?(); end
+
   def reload(*_); end
 end
 
@@ -18024,7 +18009,7 @@ class ActiveStorage::Service
 
   def headers_for_direct_upload(key, filename:, content_type:, content_length:, checksum:); end
 
-  def open(*args, &block); end
+  def open(*args, **options, &block); end
 
   def update_metadata(key, **metadata); end
 
@@ -22689,6 +22674,9 @@ end
 class Ektar::Admin::UsersController
   include ::Ektar::Concerns::Index
   include ::Ektar::Concerns::New
+  include ::Ektar::Concerns::Destroy
+  def destroy!(options=T.unsafe(nil), &block); end
+
   def index!(options=T.unsafe(nil), &block); end
 
   def new(options=T.unsafe(nil), &block); end
@@ -22729,6 +22717,12 @@ module Ektar::ApplicationRecord::GeneratedAttributeMethods
   extend ::Mutex_m
 end
 
+class Ektar::ApplicationRecord
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 class Ektar::Engine
 end
 
@@ -22736,6 +22730,7 @@ class Ektar::Engine
 end
 
 class Ektar::Invitation
+  include ::Ektar::Invitation::GeneratedAttributeMethods
   def accepted?(*args, &blk); end
 
   def autosave_associated_records_for_organization(*args); end
@@ -22752,13 +22747,10 @@ module Ektar::Invitation::GeneratedAssociationMethods
 end
 
 module Ektar::Invitation::GeneratedAttributeMethods
-  extend ::Mutex_m
 end
 
-class Ektar::Invitation
-  extend ::T::Sig
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
+module Ektar::Invitation::GeneratedAttributeMethods
+  extend ::Mutex_m
 end
 
 class Ektar::Membership
@@ -22791,12 +22783,6 @@ end
 
 module Ektar::Membership::GeneratedAttributeMethods
   extend ::Mutex_m
-end
-
-class Ektar::Membership
-  extend ::T::Sig
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Ektar::Organization
@@ -22914,9 +22900,6 @@ module Ektar::Organization::GeneratedAttributeMethods
 end
 
 class Ektar::Organization
-  extend ::T::Sig
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_invitations(); end
 
   def self.after_add_for_invitations=(val); end
@@ -23059,7 +23042,6 @@ module Ektar::Plan::GeneratedAttributeMethods
 end
 
 class Ektar::Plan
-  extend ::T::Sig
   def self.after_add_for_organizations(); end
 
   def self.after_add_for_organizations=(val); end
@@ -23090,103 +23072,6 @@ end
 module Ektar::ResourcefulHelper
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
-end
-
-class Ektar::SuperAdmin::OrganizationsController
-  include ::Ektar::Concerns::Index
-  include ::Pagy::Backend
-  include ::Ektar::Concerns::New
-  include ::Ektar::Concerns::Create
-  include ::Ektar::Concerns::Edit
-  include ::Ektar::Concerns::Update
-  include ::Ektar::Concerns::Show
-  include ::Ektar::Concerns::Destroy
-  def create(options=T.unsafe(nil), &block); end
-
-  def create!(options=T.unsafe(nil), &block); end
-
-  def destroy!(options=T.unsafe(nil), &block); end
-
-  def edit(options=T.unsafe(nil), &block); end
-
-  def edit!(options=T.unsafe(nil), &block); end
-
-  def index(options=T.unsafe(nil), &block); end
-
-  def index!(options=T.unsafe(nil), &block); end
-
-  def new(options=T.unsafe(nil), &block); end
-
-  def new!(options=T.unsafe(nil), &block); end
-
-  def show(options=T.unsafe(nil), &block); end
-
-  def show!(options=T.unsafe(nil), &block); end
-
-  def update(options=T.unsafe(nil), &block); end
-
-  def update!(options=T.unsafe(nil), &block); end
-end
-
-class Ektar::SuperAdmin::PlansController
-  include ::Ektar::Concerns::Index
-  include ::Pagy::Backend
-  include ::Ektar::Concerns::New
-  include ::Ektar::Concerns::Create
-  include ::Ektar::Concerns::Edit
-  include ::Ektar::Concerns::Update
-  include ::Ektar::Concerns::Show
-  include ::Ektar::Concerns::Destroy
-  def create(options=T.unsafe(nil), &block); end
-
-  def create!(options=T.unsafe(nil), &block); end
-
-  def destroy!(options=T.unsafe(nil), &block); end
-
-  def edit(options=T.unsafe(nil), &block); end
-
-  def edit!(options=T.unsafe(nil), &block); end
-
-  def index(options=T.unsafe(nil), &block); end
-
-  def index!(options=T.unsafe(nil), &block); end
-
-  def new(options=T.unsafe(nil), &block); end
-
-  def new!(options=T.unsafe(nil), &block); end
-
-  def show(options=T.unsafe(nil), &block); end
-
-  def show!(options=T.unsafe(nil), &block); end
-
-  def update(options=T.unsafe(nil), &block); end
-
-  def update!(options=T.unsafe(nil), &block); end
-end
-
-class Ektar::SuperAdmin::UsersController
-  include ::Ektar::Concerns::Create
-  include ::Ektar::Concerns::Edit
-  include ::Ektar::Concerns::Update
-  include ::Ektar::Concerns::Show
-  include ::Ektar::Concerns::Destroy
-  def create(options=T.unsafe(nil), &block); end
-
-  def create!(options=T.unsafe(nil), &block); end
-
-  def destroy!(options=T.unsafe(nil), &block); end
-
-  def edit(options=T.unsafe(nil), &block); end
-
-  def edit!(options=T.unsafe(nil), &block); end
-
-  def show(options=T.unsafe(nil), &block); end
-
-  def show!(options=T.unsafe(nil), &block); end
-
-  def update(options=T.unsafe(nil), &block); end
-
-  def update!(options=T.unsafe(nil), &block); end
 end
 
 class Ektar::UsedPassword
@@ -23316,9 +23201,6 @@ module Ektar::User::GeneratedAttributeMethods
 end
 
 class Ektar::User
-  extend ::T::Sig
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_memberships(); end
 
   def self.after_add_for_memberships=(val); end
@@ -28900,6 +28782,8 @@ module MonitorMixin
   def synchronize(); end
 
   def try_mon_enter(); end
+  EXCEPTION_IMMEDIATE = ::T.let(nil, ::T.untyped)
+  EXCEPTION_NEVER = ::T.let(nil, ::T.untyped)
 end
 
 class MonitorMixin::ConditionVariable
@@ -29691,7 +29575,11 @@ class OpenSSL::KDF::KDFError
 end
 
 module OpenSSL::KDF
+  def self.hkdf(*_); end
+
   def self.pbkdf2_hmac(*_); end
+
+  def self.scrypt(*_); end
 end
 
 class OpenSSL::OCSP::Request
@@ -29699,6 +29587,10 @@ class OpenSSL::OCSP::Request
 end
 
 OpenSSL::PKCS7::Signer = OpenSSL::PKCS7::SignerInfo
+
+class OpenSSL::PKey::EC
+  EXPLICIT_CURVE = ::T.let(nil, ::T.untyped)
+end
 
 class OpenSSL::PKey::EC::Point
   def to_octet_string(_); end
@@ -29711,19 +29603,25 @@ class OpenSSL::PKey::RSA
 end
 
 module OpenSSL::SSL
+  OP_ALLOW_NO_DHE_KEX = ::T.let(nil, ::T.untyped)
   OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION = ::T.let(nil, ::T.untyped)
   OP_CRYPTOPRO_TLSEXT_BUG = ::T.let(nil, ::T.untyped)
   OP_LEGACY_SERVER_CONNECT = ::T.let(nil, ::T.untyped)
+  OP_NO_ENCRYPT_THEN_MAC = ::T.let(nil, ::T.untyped)
+  OP_NO_RENEGOTIATION = ::T.let(nil, ::T.untyped)
+  OP_NO_TLSv1_3 = ::T.let(nil, ::T.untyped)
   OP_SAFARI_ECDHE_ECDSA_BUG = ::T.let(nil, ::T.untyped)
   OP_TLSEXT_PADDING = ::T.let(nil, ::T.untyped)
   SSL2_VERSION = ::T.let(nil, ::T.untyped)
   SSL3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_1_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_2_VERSION = ::T.let(nil, ::T.untyped)
+  TLS1_3_VERSION = ::T.let(nil, ::T.untyped)
   TLS1_VERSION = ::T.let(nil, ::T.untyped)
 end
 
 module OpenSSL::X509
+  V_FLAG_NO_CHECK_TIME = ::T.let(nil, ::T.untyped)
   V_FLAG_TRUSTED_FIRST = ::T.let(nil, ::T.untyped)
 end
 
@@ -40526,6 +40424,8 @@ class WebConsole::View
   def render_inlined_string(template); end
 
   def render_javascript(template); end
+
+  def t(key, options=T.unsafe(nil)); end
 end
 
 class WebConsole::View

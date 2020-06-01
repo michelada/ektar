@@ -109,7 +109,7 @@ module Ektar
     end
     def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id, policy_class: nil, namespace: nil)
       self.list_attributes = list_attributes
-      self.form_attributes = form_attributes
+      self.form_attributes = select_to_proc(form_attributes)
       self.show_attributes = show_attributes
       self.resource_class = resource_class || controller_path.classify.constantize
       self.find_by = find_by
@@ -134,6 +134,20 @@ module Ektar
           include T.must(VALID_RESOURCE_ACTIONS[name])
         end
       end
+    end
+
+    sig { params(form_attributes: T.nilable(T::Hash[Symbol, T.untyped])).returns(T.nilable(T::Hash[Symbol, T.untyped])) }
+    def self.select_to_proc(form_attributes)
+      return nil if form_attributes.nil?
+
+      form_attributes.each_pair do |field, attributes|
+        if attributes[:type] == :select && attributes[:options].is_a?(Symbol)
+          method_name = attributes[:options]
+          attributes[:options] = method_name.to_proc
+        end
+      end
+
+      form_attributes
     end
 
     sig { returns(String) }
@@ -166,17 +180,19 @@ module Ektar
 
     sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_delete?(resource)
-      true
+      return current_policy&.destroy? if policy_class.present?
+      false
     end
 
     sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_edit?(resource)
-      true
+      # binding.irb
+      false
     end
 
-    sig { returns(Symbol) }
+    sig { returns(T.nilable(Symbol)) }
     def link_attribute
-      :name
+      nil
     end
 
     sig { params(resource: ActiveRecord::Base).returns(String) }
@@ -289,6 +305,16 @@ module Ektar
     end
 
     helper_method :namespace, :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
-      :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :allow_edit?, :set_resource_ivar
+      :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :allow_edit?,
+      :set_resource_ivar
+
+    private
+
+    sig { returns(T.nilable(ApplicationPolicy)) }
+    def current_policy
+      return nil if policy_class.nil?
+      @current_policy = T.let(@current_policy, T.nilable(ApplicationPolicy))
+      @current_policy ||= policy_class.new(current_user, current_organization)
+    end
   end
 end

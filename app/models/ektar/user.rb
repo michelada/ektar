@@ -3,7 +3,6 @@
 
 module Ektar
   class User < ApplicationRecord
-    extend T::Sig
     include PgSearch::Model
 
     has_secure_password :password, validations: true
@@ -44,17 +43,17 @@ module Ektar
 
     sig { returns(T::Boolean) }
     def admin?
-      admin_of.any?
+      !admin_of.size.zero?
     end
 
     sig { params(organization: T.nilable(Ektar::Organization)).returns(T::Boolean) }
     def is_admin?(organization)
-      admin_of.include?(organization)
+      admin_of.detect { |membership| membership.ektar_organization_id == organization.id }.present?
     end
 
-    sig { returns(Ektar::Organization::ActiveRecord_AssociationRelation) }
+    sig { returns(T::Array[Ektar::Membership]) }
     def admin_of
-      organizations.where(ektar_memberships: {ektar_user_id: id, role: "admin"})
+      @memberships_admin ||= memberships.select { |membership| membership.role == "admin" }
     end
 
     sig { returns(T.nilable(Ektar::Membership)) }

@@ -23,7 +23,7 @@
         <div class="navbar-item">
           <%= link_to model_human_name(Ektar::User), ektar.super_admin_users_path, class: "navbar-item" %>
         </div>
-      <% else user_signed_in? %>
+      <% elsif user_signed_in? %>
         <div class="navbar-item">
           <%= link_to model_human_name(Ektar::User), ektar.admin_users_path, class: "navbar-item" %>
         </div>
@@ -38,14 +38,12 @@
           <%= link_to user_name, "#", class: "navbar-link" %>
 
           <div class="navbar-dropdown">
-            <% if current_user.organizations.size > 1 %>
-              <% current_user.organizations.each do |org| %>
-                <%= link_to ektar.select_organization_path(current_organization, organization_id: org.global_id), method: :put, class: "navbar-item" do %>
-                  <span class="icon has-text-orange">
-                    <img src="<%= asset_pack_path('media/images/organization-icon.svg') %>" width=".875em" />
-                  </span>
-                  <strong><%= org.name %></strong>
-                <% end %>
+            <% current_user.memberships.each do |membership| %>
+              <%= link_to ektar.select_organization_path(current_organization, organization_id: membership.organization.global_id), method: :put, class: "navbar-item" do %>
+                <span class="icon has-text-orange">
+                  <img src="<%= asset_pack_path('media/images/organization-icon.svg') %>" width=".875em" />
+                </span>
+                <strong><%= membership.organization.name %></strong>
               <% end %>
               <hr class="navbar-divider">
             <% end %>

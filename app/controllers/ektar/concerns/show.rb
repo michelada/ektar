@@ -13,7 +13,7 @@ module Ektar
           @resource ||= resource_class.find_by!(find_by_param => params[:id])
           set_resource_ivar @resource
 
-          authorize @resource, policy_class: policy_class if policy_class.present?
+          authorize current_organization, policy_class: policy_class if policy_class.present?
 
           yield @resource if block_given?
           respond_to do |format|

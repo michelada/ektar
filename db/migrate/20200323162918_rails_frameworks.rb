@@ -1,3 +1,4 @@
+# typed: false
 class RailsFrameworks < ActiveRecord::Migration[6.0]
   create_table :active_storage_blobs do |t|
     t.string :key, null: false

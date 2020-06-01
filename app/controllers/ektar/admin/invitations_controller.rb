@@ -3,7 +3,7 @@
 
 module Ektar
   module Admin
-    class InvitationsController < BaseController
+    class InvitationsController < ApplicationController
       extend T::Sig
 
       skip_before_action :authenticate_admin!, only: [:create, :edit]

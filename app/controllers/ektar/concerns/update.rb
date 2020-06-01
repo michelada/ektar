@@ -14,7 +14,7 @@ module Ektar
             begin
               resource = resource_class.find_by(find_by_param => params[:id])
 
-              authorize resource, policy_class: policy_class if policy_class.present?
+              authorize current_organization, policy_class: policy_class if policy_class.present?
 
               resource.update(resource_secure_params)
               resource

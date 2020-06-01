@@ -3,7 +3,7 @@
 
 module Ektar
   module SuperAdmin
-    class OrganizationsController < BaseController
+    class OrganizationsController < ApplicationController
       extend T::Sig
 
       resourceful(list_attributes: %i[id name enable updated_at],

@@ -3,7 +3,7 @@
 
 module Ektar
   module SuperAdmin
-    class UsersController < BaseController
+    class UsersController < ApplicationController
       extend T::Sig
       include Pagy::Backend
 

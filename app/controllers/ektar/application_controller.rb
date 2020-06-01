@@ -61,7 +61,7 @@ module Ektar
 
     sig { returns(T.nilable(T::Boolean)) }
     def super_admin?
-      @super_admin ||= current_user&.super_admin?
+      current_user&.super_admin?
     end
 
     def authenticate_user!
@@ -79,7 +79,9 @@ module Ektar
     # Session methods
     sig { returns(T.nilable(Ektar::User)) }
     def current_user
-      @current_user ||= Ektar::User.find_by(global_id: session_cookie["user"])
+      @current_user ||= Ektar::User
+        .eager_load(memberships: :organization)
+        .find_by(global_id: session_cookie["user"])
     end
 
     sig { returns(T.nilable(Ektar::Organization)) }
@@ -91,10 +93,12 @@ module Ektar
     def user_signed_in?
       !!current_user
     end
+    alias signed_in_user? user_signed_in?
 
     sig { returns(T::Hash[T.untyped, T.untyped]) }
     def session_cookie
-      @session_cookie ||= cookies.encrypted[session_cookie_name] || {}
+      @session_cookie = cookies.encrypted[session_cookie_name] || {} if @session_cookie.nil? || @session_cookie == {}
+      @session_cookie
     end
 
     sig { returns(String) }
@@ -114,6 +118,12 @@ module Ektar
 
     private
 
+    sig { returns(TrueClass) }
+    def debug_caller
+      code_caller = caller.select { |c| c.include?("ektar") }[0..1] || []
+      Rails.logger.debug "\e[31mDEBUG [#{code_caller[0]&.split(" ")&.last}] #{code_caller[1]}\033[0m"
+    end
+
     sig { params(user: Ektar::User, organization: T.nilable(Ektar::Organization)).void }
     def update_session_cookie(user: @current_user, organization: @current_organization)
       user_id = user&.global_id || 0
@@ -124,7 +134,8 @@ module Ektar
           user: user_id,
           organization: organization_id
         },
-        expires: Ektar.configuration.session_expiration
+        expires: Time.now + Ektar.configuration.session_expiration.day,
+        domain: Ektar.configuration.session_domain
       }
 
       @current_user = user

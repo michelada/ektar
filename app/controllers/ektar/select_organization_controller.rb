@@ -10,7 +10,7 @@ module Ektar
 
       if current_user.super_admin?
         redirect_to ektar.super_admin_organizations_path
-      elsif @organizations.size > 1
+      elsif @organizations.size > 1 && current_organization.nil?
         render layout: "ektar/users"
       else
         redirect_to ektar.admin_users_path

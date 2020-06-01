@@ -27,7 +27,7 @@ module Ektar
     # Host where is running webpacker (Useful while developing)
     # It sets the `:host` attribute of the `javascript_pack_tag` helper.
     attr_accessor :webpacker_host, :title, :organization_username, :organization_password,
-      :session_name, :session_expiration, :password_retain_count, :root_app_path, :sign_in_path,
+      :session_name, :session_expiration, :session_domain, :password_retain_count, :root_app_path, :sign_in_path,
       :sign_out_path, :rails_root
 
     def initialize
@@ -35,12 +35,13 @@ module Ektar
       @organization_username = "superadmin"
       @organization_password = "superadmin123"
       @session_name = "_ektar"
-      @session_expiration = 1.days.from_now
+      @session_expiration = 1
       @password_retain_count = 3
       @root_app_path = "/"
       @sign_in_path = nil
       @sign_out_path = "/"
       @rails_root = nil
+      @session_domain = nil
     end
   end
 

@@ -5,13 +5,14 @@ es:
     enable: "Activo"
     email: "Correo electrónico"
     updated_at: "Modificado el"
+    blocked_at: "Bloqueado el"
     password: "Contraseña"
     last_activity_at: "Última vez visto el"
 
   new:
     resource: "%{name}"
     attribute: "%{attribute}"
-    
+
   edit:
     resource: "%{name}"
     attribute: "%{attribute}"

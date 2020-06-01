@@ -7,73 +7,6 @@ module Ektar::Invitation::ActiveRelation_WhereNot
   def not(opts, *rest); end
 end
 
-module Ektar::Invitation::GeneratedAttributeMethods
-  extend T::Sig
-
-  sig { returns(ActiveSupport::TimeWithZone) }
-  def created_at; end
-
-  sig { params(value: T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone)).void }
-  def created_at=(value); end
-
-  sig { returns(T::Boolean) }
-  def created_at?; end
-
-  sig { returns(Integer) }
-  def ektar_organization_id; end
-
-  sig { params(value: T.any(Integer, Float, ActiveSupport::Duration)).void }
-  def ektar_organization_id=(value); end
-
-  sig { returns(T::Boolean) }
-  def ektar_organization_id?; end
-
-  sig { returns(String) }
-  def email; end
-
-  sig { params(value: T.any(String, Symbol)).void }
-  def email=(value); end
-
-  sig { returns(T::Boolean) }
-  def email?; end
-
-  sig { returns(Integer) }
-  def id; end
-
-  sig { params(value: T.any(Integer, Float, ActiveSupport::Duration)).void }
-  def id=(value); end
-
-  sig { returns(T::Boolean) }
-  def id?; end
-
-  sig { returns(T.nilable(ActiveSupport::TimeWithZone)) }
-  def invitation_accepted_at; end
-
-  sig { params(value: T.nilable(T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone))).void }
-  def invitation_accepted_at=(value); end
-
-  sig { returns(T::Boolean) }
-  def invitation_accepted_at?; end
-
-  sig { returns(T.nilable(String)) }
-  def invitation_token; end
-
-  sig { params(value: T.nilable(String)).void }
-  def invitation_token=(value); end
-
-  sig { returns(T::Boolean) }
-  def invitation_token?; end
-
-  sig { returns(ActiveSupport::TimeWithZone) }
-  def updated_at; end
-
-  sig { params(value: T.any(DateTime, Date, Time, ActiveSupport::TimeWithZone)).void }
-  def updated_at=(value); end
-
-  sig { returns(T::Boolean) }
-  def updated_at?; end
-end
-
 module Ektar::Invitation::GeneratedAssociationMethods
   extend T::Sig
 
@@ -102,7 +35,6 @@ module Ektar::Invitation::CustomFinderMethods
 end
 
 class Ektar::Invitation < Ektar::ApplicationRecord
-  include Ektar::Invitation::GeneratedAttributeMethods
   include Ektar::Invitation::GeneratedAssociationMethods
   extend Ektar::Invitation::CustomFinderMethods
   extend T::Sig

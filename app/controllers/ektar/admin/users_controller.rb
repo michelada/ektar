@@ -3,7 +3,7 @@
 
 module Ektar
   module Admin
-    class UsersController < BaseController
+    class UsersController < ApplicationController
       extend T::Sig
       include Pagy::Backend
 
@@ -13,17 +13,17 @@ module Ektar
                   form_attributes: {email: :input, password: :password, password_confirmation: :password},
                   show_attributes: %i[id email updated_at],
                   find_by: :global_id,
-                  only: [:new, :index, :delete],
+                  only: [:new, :index, :destroy],
+                  policy_class: Ektar::UserPolicy,
                   resource_class: Ektar::User)
 
       sig { void }
       def index
-        authorize current_organization, policy_class: Ektar::UserPolicy
-
         index! do |scope|
           if current_user.super_admin?
             scope.where(super_admin: true)
           else
+            Rails.logger.debug ">> #{current_organization.inspect}"
             scope.joins(:memberships).where(ektar_memberships: {ektar_organization_id: current_organization}).order(created_at: :desc)
           end
         end
@@ -44,18 +44,10 @@ module Ektar
       private
 
       sig { params(resource: T.untyped).returns(T::Boolean) }
-      def allow_delete?(resource)
-        current_organization&.has_active_user?(resource) || current_user.super_admin?
-      end
-
-      sig { params(resource: T.untyped).returns(T::Boolean) }
       def allow_edit?(resource)
-        !!(current_organization&.has_active_user?(resource) && !current_user.super_admin?)
-      end
-
-      sig { returns(Symbol) }
-      def link_attribute
-        :email
+        super
+        false
+        # !!(current_organization&.has_active_user?(resource) && !current_user.super_admin?)
       end
 
       sig { returns(ActionController::Parameters) }

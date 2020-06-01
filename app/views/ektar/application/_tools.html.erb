@@ -20,7 +20,7 @@
 
   <div class="level-right">
     <div class="level-item">
-      <% if controller_name == "users" && (!current_user.super_admin? && current_user.is_admin?(current_organization)) %>
+      <% if controller_name == "users" && (!super_admin? && current_user.is_admin?(current_organization)) %>
         <%= link_to "Invitar usuario", ektar.new_admin_invitation_path, class: "button is-primary" %>
       <% elsif  controller_name != "users" %>
         <%= link_to new_title, new_resource_path, class: "button is-primary" %>
