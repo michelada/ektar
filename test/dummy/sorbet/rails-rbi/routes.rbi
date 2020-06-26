@@ -21,13 +21,6 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def ektar_url(*args, **kwargs); end
 
-  # Sigs for route /rails/action_mailbox/mandrill/inbound_emails(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def rails_mandrill_inbound_emails_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def rails_mandrill_inbound_emails_url(*args, **kwargs); end
-
   # Sigs for route /rails/action_mailbox/postmark/inbound_emails(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_postmark_inbound_emails_path(*args, **kwargs); end
@@ -48,6 +41,20 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_sendgrid_inbound_emails_url(*args, **kwargs); end
+
+  # Sigs for route /rails/action_mailbox/mandrill/inbound_emails(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_mandrill_inbound_health_check_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_mandrill_inbound_health_check_url(*args, **kwargs); end
+
+  # Sigs for route /rails/action_mailbox/mandrill/inbound_emails(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_mandrill_inbound_emails_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_mandrill_inbound_emails_url(*args, **kwargs); end
 
   # Sigs for route /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
@@ -135,96 +142,12 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def root_url(*args, **kwargs); end
 
-  # Sigs for route /organizaciones(.:format)
+  # Sigs for route /sesion/new(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def organizations_path(*args, **kwargs); end
+  def new_sessions_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def organizations_url(*args, **kwargs); end
-
-  # Sigs for route /organizaciones/new(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_organization_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_organization_url(*args, **kwargs); end
-
-  # Sigs for route /organizaciones/:id/edit(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_organization_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_organization_url(*args, **kwargs); end
-
-  # Sigs for route /organizaciones/:id(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def organization_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def organization_url(*args, **kwargs); end
-
-  # Sigs for route /planes(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def plans_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def plans_url(*args, **kwargs); end
-
-  # Sigs for route /planes/new(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_plan_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_plan_url(*args, **kwargs); end
-
-  # Sigs for route /planes/:id/edit(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_plan_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_plan_url(*args, **kwargs); end
-
-  # Sigs for route /planes/:id(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def plan_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def plan_url(*args, **kwargs); end
-
-  # Sigs for route /registro(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def registrations_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def registration_url(*args, **kwargs); end
-
-  # Sigs for route /usuarios(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def users_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def users_url(*args, **kwargs); end
-
-  # Sigs for route /usuarios/new(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_user_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_user_url(*args, **kwargs); end
-
-  # Sigs for route /usuarios/:id/edit(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_user_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_user_url(*args, **kwargs); end
-
-  # Sigs for route /usuarios/:id(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def user_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def user_url(*args, **kwargs); end
+  def new_sessions_url(*args, **kwargs); end
 
   # Sigs for route /sesion(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
@@ -233,17 +156,220 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def sessions_url(*args, **kwargs); end
 
-  # Sigs for route /sesion/new(.:format)
+  # Sigs for route /registro(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_session_path(*args, **kwargs); end
+  def registrations_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_session_url(*args, **kwargs); end
+  def registrations_url(*args, **kwargs); end
 
-  # Sigs for route /sesion/:id(.:format)
+  # Sigs for route /registro/new(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def session_path(*args, **kwargs); end
+  def new_registration_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def session_url(*args, **kwargs); end
+  def new_registration_url(*args, **kwargs); end
+
+  # Sigs for route /cambiar_contrasena(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def reset_password_index_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def reset_password_index_url(*args, **kwargs); end
+
+  # Sigs for route /cambiar_contrasena/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_reset_password_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_reset_password_url(*args, **kwargs); end
+
+  # Sigs for route /seleccionar_organizacion(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def select_organization_index_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def select_organization_index_url(*args, **kwargs); end
+
+  # Sigs for route /seleccionar_organizacion/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_select_organization_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_select_organization_url(*args, **kwargs); end
+
+  # Sigs for route /seleccionar_organizacion/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def select_organization_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def select_organization_url(*args, **kwargs); end
+
+  # Sigs for route /contrasena/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_passwords_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_passwords_url(*args, **kwargs); end
+
+  # Sigs for route /contrasena(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def passwords_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def passwords_url(*args, **kwargs); end
+
+  # Sigs for route /registro(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_registrations_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_registrations_url(*args, **kwargs); end
+
+  # Sigs for route /invitacion(/:token)(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def accept_invitations_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def accept_invitations_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_root_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_root_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/organizaciones(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_organizations_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_organizations_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/organizaciones/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_super_admin_organization_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_super_admin_organization_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/organizaciones/:id/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_super_admin_organization_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_super_admin_organization_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/organizaciones/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_organization_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_organization_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/planes(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_plans_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_plans_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/planes/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_super_admin_plan_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_super_admin_plan_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/planes/:id/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_super_admin_plan_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_super_admin_plan_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/planes/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_plan_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_plan_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/usuarios(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_users_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_users_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/usuarios/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_super_admin_user_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_super_admin_user_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/usuarios/:id/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_super_admin_user_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_super_admin_user_url(*args, **kwargs); end
+
+  # Sigs for route /super_admin/usuarios/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_user_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def super_admin_user_url(*args, **kwargs); end
+
+  # Sigs for route /admin/usuarios(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_users_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_users_url(*args, **kwargs); end
+
+  # Sigs for route /admin/usuarios/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_user_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_user_url(*args, **kwargs); end
+
+  # Sigs for route /admin/usuarios/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_user_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_user_url(*args, **kwargs); end
+
+  # Sigs for route /admin/invitaciones(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_invitations_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_invitations_url(*args, **kwargs); end
+
+  # Sigs for route /admin/invitaciones/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_invitation_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_invitation_url(*args, **kwargs); end
+
+  # Sigs for route /admin/select_plan(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_select_plan_index_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def admin_select_plan_index_url(*args, **kwargs); end
+
+  # Sigs for route /admin/select_plan/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_select_plan_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_admin_select_plan_url(*args, **kwargs); end
 end

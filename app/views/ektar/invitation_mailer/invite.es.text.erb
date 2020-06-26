@@ -1,0 +1,6 @@
+<%= I18n.t(
+  "mailers.invitation.body_text",
+  email: @invitation.email,
+  organization_name: @invitation.organization.name,
+  invitation_url: accept_invitations_url(@invitation.invitation_token)
+) %>

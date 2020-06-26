@@ -1,10 +1,14 @@
 # typed: true
-class ApplicationPolicy
-  attr_reader :user, :record
+# frozen_string_literal: true
 
-  def initialize(user, record)
+class ApplicationPolicy
+  attr_reader :user, :organization
+  attr_accessor :resource
+
+  def initialize(user, organization, resource = nil)
     @user = user
-    @record = record
+    @organization = organization
+    @resource = resource
   end
 
   def index?
@@ -16,7 +20,7 @@ class ApplicationPolicy
   end
 
   def create?
-    true
+    false
   end
 
   def new?
@@ -46,5 +50,28 @@ class ApplicationPolicy
     def resolve
       scope.all
     end
+  end
+
+  protected
+
+  def user_membership?
+    return true if resource.nil?
+
+    resource.memberships.where(ektar_organization_id: organization.id, blocked_at: nil).exists?
+  end
+
+  def admin_membership?
+    if @admin_membership.nil?
+      @admin_membership ||= begin
+                              has_organization = user.present? && organization.present?
+                              has_organization && user.is_admin?(organization)
+                            end
+    end
+    @admin_membership
+  end
+
+  def super_admin?
+    @super_admin ||= user&.super_admin? if @super_admin.nil?
+    @super_admin
   end
 end

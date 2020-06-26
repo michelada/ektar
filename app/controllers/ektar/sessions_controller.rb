@@ -64,7 +64,7 @@ module Ektar
       else
         set_flash(errors: true, klass: "session", action: action_name)
       end
-      redirect_to Ektar.configuration.sign_out_path || Ektar.configuration.root_path || ektar.new_session_path
+      redirect_to Ektar.configuration.sign_out_path || Ektar.configuration.root_path || ektar.new_sessions_path
     end
   end
 end

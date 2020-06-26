@@ -2,6 +2,6 @@
 module Ektar
   class ApplicationMailer < ActionMailer::Base
     default from: "from@example.com"
-    layout "mailer"
+    layout "ektar/mailer"
   end
 end

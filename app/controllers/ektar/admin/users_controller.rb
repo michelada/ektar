@@ -4,9 +4,6 @@
 module Ektar
   module Admin
     class UsersController < ApplicationController
-      extend T::Sig
-      include Pagy::Backend
-
       before_action :organization_has_plan, only: [:index]
 
       resourceful(list_attributes: %i[email updated_at last_activity_at blocked_at],
@@ -23,12 +20,9 @@ module Ektar
           if current_user.super_admin?
             scope.where(super_admin: true)
           else
-            Rails.logger.debug ">> #{current_organization.inspect}"
             scope.joins(:memberships).where(ektar_memberships: {ektar_organization_id: current_organization}).order(created_at: :desc)
           end
         end
-
-        render layout: "ektar/application"
       end
 
       sig { void }
@@ -43,11 +37,19 @@ module Ektar
 
       private
 
-      sig { params(resource: T.untyped).returns(T::Boolean) }
-      def allow_edit?(resource)
-        super
-        false
-        # !!(current_organization&.has_active_user?(resource) && !current_user.super_admin?)
+      sig { returns(String) }
+      def collection_path
+        ektar.admin_users_path
+      end
+
+      sig { params(resource: ActiveRecord::Base).returns(String) }
+      def resource_path(resource)
+        ektar.admin_users_path(resource)
+      end
+
+      sig { params(resource: ActiveRecord::Base).returns(String) }
+      def edit_resource_path(resource)
+        ektar.edit_admin_user_path(resource)
       end
 
       sig { returns(ActionController::Parameters) }

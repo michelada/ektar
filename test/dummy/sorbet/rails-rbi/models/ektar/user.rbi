@@ -100,6 +100,15 @@ module Ektar::User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def recovery_password_digest?; end
 
+  sig { returns(T.nilable(String)) }
+  def reset_password_token; end
+
+  sig { params(value: T.nilable(String)).void }
+  def reset_password_token=(value); end
+
+  sig { returns(T::Boolean) }
+  def reset_password_token?; end
+
   sig { returns(T.nilable(T::Boolean)) }
   def super_admin; end
 

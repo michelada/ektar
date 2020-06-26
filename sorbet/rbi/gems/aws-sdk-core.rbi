@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/aws-sdk-core/all/aws-sdk-core.rbi
 #
-# aws-sdk-core-3.92.0
+# aws-sdk-core-3.102.1
 
 module Seahorse
 end
@@ -133,7 +133,7 @@ class Seahorse::Client::Plugin::PluginOption
   def default=(arg0); end
   def default_block; end
   def default_block=(arg0); end
-  def doc_default; end
+  def doc_default(options); end
   def doc_default=(arg0); end
   def doc_type; end
   def doc_type=(arg0); end
@@ -482,6 +482,8 @@ class Seahorse::Model::Api
   def operation(name); end
   def operation_names; end
   def operations(&block); end
+  def require_endpoint_discovery; end
+  def require_endpoint_discovery=(arg0); end
   def version; end
   def version=(arg0); end
 end
@@ -504,6 +506,8 @@ class Seahorse::Model::Operation
   def endpoint_pattern=(arg0); end
   def errors; end
   def errors=(arg0); end
+  def http_checksum_required; end
+  def http_checksum_required=(arg0); end
   def http_method; end
   def http_method=(arg0); end
   def http_request_uri; end
@@ -902,6 +906,10 @@ end
 class Aws::Errors::MissingRegionError < ArgumentError
   def initialize(*args); end
 end
+class Aws::Errors::InvalidRegionError < ArgumentError
+  def initialize(*args); end
+  def possible_regions; end
+end
 class Aws::Errors::NoSuchEndpointError < RuntimeError
   def context; end
   def endpoint; end
@@ -1107,9 +1115,9 @@ class Aws::Log::Formatter
   def self.short(options = nil); end
 end
 class Aws::Log::ParamFilter
-  def filter(value); end
-  def filter_array(values); end
-  def filter_hash(values); end
+  def filter(values, type); end
+  def filter_array(values, type); end
+  def filter_hash(values, type); end
   def initialize(options = nil); end
 end
 class Aws::Log::ParamFormatter
@@ -1177,6 +1185,8 @@ class Aws::Stubbing::Protocols::Rest
   def encode_error(opts, event_data); end
   def encode_event(opts, rules, event_data, builder); end
   def encode_eventstream_response(rules, data, builder); end
+  def encode_modeled_event(opts, rules, event_type, event_data, builder); end
+  def encode_unknown_event(opts, event_type, event_data); end
   def eventstream?(rules); end
   def head_operation(operation); end
   def new_http_response; end
@@ -2268,6 +2278,14 @@ class Aws::Plugins::TransferEncoding::Handler < Seahorse::Client::Handler
   def call(context); end
   def requires_length?(ref); end
   def streaming?(ref); end
+end
+class Aws::Plugins::HttpChecksum < Seahorse::Client::Plugin
+  def add_handlers(handlers, _config); end
+end
+class Aws::Plugins::HttpChecksum::Handler < Seahorse::Client::Handler
+  def call(context); end
+  def md5(value); end
+  def update_in_chunks(digest, io); end
 end
 class Aws::Plugins::SignatureV4 < Seahorse::Client::Plugin
   def add_handlers(handlers, cfg); end

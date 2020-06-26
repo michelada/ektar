@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/activemodel/all/activemodel.rbi
 #
-# activemodel-6.0.3.1
+# activemodel-6.0.3.2
 
 module ActiveModel
   def self.eager_load!; end

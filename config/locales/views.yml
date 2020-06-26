@@ -1,9 +1,11 @@
 es:
+  true_value: Sí
+  false_value: No
+
   navbar:
     add_org: Agregar organizacion
     add_user: Agregar usuario
 
-# Models views will implement lazy lokup
   ektar:
     application:
       navbar:
@@ -19,3 +21,33 @@ es:
       new:
         title: Selecciona un plan
         select: Seleccionar
+
+  edit:
+    name: Modificar %{resource_name}
+    ektar/organization: Modificar organización
+
+  show:
+    name: "%{resource_name}"
+
+  index:
+    actions:
+      name: Acciones
+      edit: Modificar
+      delete: Eliminar
+      ektar/organization:
+        delete: Desactivar
+      ektar/plan:
+        delete: Desactivar
+    delete: Eliminar
+    new:
+      name: Nuevo(a) %{resource_name}
+      ektar/organization: Nueva organización
+      ektar/user: Nuevo usuario
+      ektar/plan: Nuevo plan
+      ektar/invitation: Invitar usuario
+    confirmation:
+      ektar/organization:
+        delete: Está seguro de querer desactivar la organización?
+      ektar/plan:
+        delete: Está seguro de querer desactivar éste plan?
+      delete: Está seguro de eliminar el registro?

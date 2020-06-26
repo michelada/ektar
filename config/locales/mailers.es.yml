@@ -1,0 +1,19 @@
+es:
+  mailers:
+    invitation:
+      subject: Te han invitado para unirte a %{organization_name}
+      body_html: >
+        <p>Hola %{email}</p>
+        <p>Tienes una invitación para unirte a <strong>%{organization_name}</strong>. Puedes <a href="%{invitation_link}">Aceptar tu invitación</a> con este link. Crea tu cuenta si es que no tienes una.</p>
+      body_text: >
+        Hola %{email}
+
+
+        Tienes una invitación para unirte a %{organization_name}. Utiliza el link %{invitation_url} para aceptar la invitación y crear tu cuenta si es que no tienes una.
+    mailer:
+      text:
+        send_by: Enviado desde Ektar, México
+        powered: Ektar engine.
+      html:
+        send_by: Enviado desde Ektar, México
+        powered: Ektar engine.

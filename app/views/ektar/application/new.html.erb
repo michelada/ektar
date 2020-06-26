@@ -1,21 +1,3 @@
 <h2 class="title is-4"><%= new_title %></h2>
 
-<div class="columns">
-  <div class="column is-half">
-    <%= form_with(model: resource, local: true, url: collection_path) do |form| %>
-      <% form_attributes.each do |attribute_name, attribute_options|%>
-        <% attributes = resource_attributes(attribute_options) %>
-
-        <%= content_tag(:div, field_attributes(attributes)) do %>
-          <%= render partial: "#{attributes.dig(:type)}",
-                    locals: { attribute_name: attribute_name,
-                              form: form,
-                              input_html: attributes.dig(:input_html),
-                              options: attributes.dig(:options)} %>
-        <% end %>
-      <% end %>
-
-      <%= render partial: "submit", locals: { form: form } %>
-    <% end %>
-  </div>
-</div>
+<%= render partial: "form" %>

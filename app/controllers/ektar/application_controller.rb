@@ -10,7 +10,6 @@ module Ektar
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     extend T::Sig
-    include Kernel
     include Pundit
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -67,7 +66,7 @@ module Ektar
     def authenticate_user!
       unless user_signed_in?
         session[:return_to] = request.fullpath
-        redirect_to (Ektar.configuration.sign_in_path || ektar.new_session_path), alert: t("flash.session.authenticate!")
+        redirect_to (Ektar.configuration.sign_in_path || ektar.new_sessions_path), alert: t("flash.session.authenticate!")
       end
     end
 

@@ -8,6 +8,8 @@ module Ektar
 
     before_action :authenticate_admin!
 
+    layout "ektar/application"
+
     private
 
     def signed_in_admin_user?
@@ -19,7 +21,7 @@ module Ektar
     helper_method :signed_in_admin_user?
 
     def authenticate_admin!
-      redirect_to(Ektar.configuration.sign_in_path || ektar.new_session_path, alert: t("flash.session.authenticate!")) && return unless user_signed_in?
+      redirect_to(Ektar.configuration.sign_in_path || ektar.new_sessions_path, alert: t("flash.session.authenticate!")) && return unless user_signed_in?
       redirect_to Ektar.configuration.root_app_path unless signed_in_admin_user?
     end
   end

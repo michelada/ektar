@@ -141,7 +141,7 @@ module Ektar
       return nil if form_attributes.nil?
 
       form_attributes.each_pair do |field, attributes|
-        if attributes[:type] == :select && attributes[:options].is_a?(Symbol)
+        if attributes.is_a?(Hash) && attributes[:type] == :select && attributes[:options].is_a?(Symbol)
           method_name = attributes[:options]
           attributes[:options] = method_name.to_proc
         end
@@ -180,13 +180,21 @@ module Ektar
 
     sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_delete?(resource)
-      return current_policy&.destroy? if policy_class.present?
+      if policy_class.present?
+        current_policy&.resource = resource
+        return current_policy&.destroy?
+      end
+
       false
     end
 
     sig { params(resource: T.untyped).returns(T::Boolean) }
     def allow_edit?(resource)
-      # binding.irb
+      if policy_class.present?
+        current_policy&.resource = resource
+        return current_policy&.edit?
+      end
+
       false
     end
 
@@ -198,7 +206,7 @@ module Ektar
     sig { params(resource: ActiveRecord::Base).returns(String) }
     def delete_confirmation(resource)
       name = resource.model_name.i18n_key
-      T.unsafe(self).t("table.confirmation.#{name}.delete", default: T.unsafe(self).t("table.confirmation.delete"))
+      T.unsafe(self).t("index.confirmation.#{name}.delete", default: T.unsafe(self).t("index.confirmation.delete"))
     end
 
     sig { returns(T.untyped) }

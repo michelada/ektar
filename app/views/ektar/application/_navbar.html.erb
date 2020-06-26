@@ -32,6 +32,9 @@
 
     <div class="navbar-end">
       <% if user_signed_in? %>
+        <div class="navbar-item">
+          <strong><%= current_organization.name %></strong>
+        </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <% user_name = current_user.super_admin? ? t(".admin") : current_user.email %>
 
@@ -52,7 +55,7 @@
           </div>
         </div>
       <% else %>
-        <%= link_to t(".login"), ektar.new_session_path, class: "navbar-item" %>
+        <%= link_to t(".login"), ektar.new_sessions_path, class: "navbar-item" %>
         <%= link_to t(".sign_up"), ektar.registrations_path , class: "navbar-item" %>
       <% end %>
     </div>

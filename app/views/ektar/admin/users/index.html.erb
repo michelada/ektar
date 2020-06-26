@@ -1,0 +1,35 @@
+<div data-controller="modal-view">
+  <%= render partial: "tools" %>
+
+  <table class="table is-fullwidth is-hoverable">
+    <thead>
+      <tr>
+        <% list_attributes.each do |attribute| %>
+          <th>
+            <%= resource_class.human_attribute_name(attribute) %>
+          </th>
+        <% end %>
+
+        <% if current_user&.super_admin? || signed_in_admin_user? %>
+          <th class="has-text-right"><%= t("index.actions.name") %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <%= render partial: "resource", collection: collection, as: :resource %>
+  </table>
+
+  <h6 class="pagination-info"><%= pagy_info(@pagination) %></h6>
+  <%== pagy_bulma_nav(@pagination) if @pagination.pages > 1 %>
+
+  <% if current_user&.super_admin? || signed_in_admin_user? %>
+    <div class="modal" data-target="modal-view.modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box" data-target="modal-view.content" data-modal-view-url="<%= new_admin_invitation_path %>">
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close" data-action="modal-view#close"></button>
+    </div>
+  <% end %>
+</div>

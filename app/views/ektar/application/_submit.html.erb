@@ -1,8 +1,14 @@
+<div class="field spinner" data-target="remote-form.spinner">
+  <div class="control has-text-centered">
+    <%= image_tag asset_pack_path("media/images/spinner.gif") %>
+  </div>
+</div>
+
 <div class="field is-grouped">
   <div class="control">
-    <%= form.submit t("form.submit"), class: "button is-link" %>
+    <%= form.submit t("form.submit"), class: "button is-link", data: {target: "remote-form.submitButton", "disable-with": t("form.submit")} %>
   </div>
   <div class="control">
-    <%= link_to t("form.back"), collection_path, class: "button is-text" %>
+    <%= link_to t("form.back"), collection_path, class: "button is-text", data: {target: "remote-form.cancelButton", action: "click->modal-view#close"} %>
   </div>
 </div>

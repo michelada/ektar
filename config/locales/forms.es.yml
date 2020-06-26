@@ -10,7 +10,7 @@ es:
     options_checkbox: "%{option}"
     dropdown_select: "Selecciona %{name_option}"
     dropdown_options: "%{option}"
-    
+
     placeholders:
       search: "Buscar..."
       ektar/organization:
@@ -20,7 +20,7 @@ es:
       size: 50
       ektar/organization:
         name: 40
-  
+
   ektar:
     sessions:
       new:

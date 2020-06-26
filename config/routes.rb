@@ -7,8 +7,10 @@ Ektar::Engine.routes.draw do
   resources :reset_password, path: I18n.t("routes.reset_password"), only: [:new, :create]
   resources :select_organization, path: I18n.t("routes.select_organization"), only: [:new, :create, :update]
 
+  resource :passwords, path: I18n.t("routes.password"), only: [:edit, :update]
+
   get I18n.t("routes.registration"), to: "registrations#new", as: :new_registrations
-  get I18n.t("routes.invitations"), to: "admin/invitations#edit", as: :accept_invitation
+  get I18n.t("routes.accept_invitation"), to: "accept_invitations#new", as: :accept_invitations
 
   namespace :super_admin do
     root to: "super_admin/organizations#index"
@@ -20,7 +22,7 @@ Ektar::Engine.routes.draw do
 
   namespace :admin do
     resources :users, path: I18n.t("routes.users"), only: [:new, :index, :destroy]
-    resources :invitations, path: I18n.t("routes.invitations"), only: [:new, :create, :update]
+    resources :invitations, path: I18n.t("routes.invitations"), only: [:new, :create]
     resources :select_plan, only: [:new, :create]
   end
 end

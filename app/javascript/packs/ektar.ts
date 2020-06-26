@@ -8,11 +8,13 @@ import "@rails/actiontext";
 import Rails from "rails-ujs";
 import Turbolinks from "turbolinks";
 
+import "controllers";
 import Flash from "../js/flash";
 
 Rails.start();
 Turbolinks.start();
 Flash.setup();
+
 
 document.addEventListener("turbolinks:load", () => Flash.setup(), {
   once: true

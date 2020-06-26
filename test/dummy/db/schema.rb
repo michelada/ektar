@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_162918) do
+ActiveRecord::Schema.define(version: 2020_06_23_152252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_162918) do
     t.uuid "global_id", default: -> { "uuid_generate_v4()" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reset_password_token"
     t.index ["ektar_organization_id"], name: "index_ektar_users_on_ektar_organization_id"
     t.index ["email"], name: "index_ektar_users_on_email", unique: true
     t.index ["global_id"], name: "index_ektar_users_on_global_id", unique: true

@@ -32,6 +32,9 @@ es:
         notice: "Se ha agregado %{organization_name} a tus organizaciones"
         alert: "No se ha podido agregar la organización"
 
+      passwords:
+        alert_invalid_token: El código para cambiar su contraseña es inválido
+
     update:
       notice: "Actualizado"
       alert: "Error al actualizar"
@@ -43,6 +46,10 @@ es:
       user:
         notice: "El usuario ha sido actualizado exitosamente"
         alert: "Error al actualizar el usuario"
+
+      passwords:
+        mismatch_confirmation: La contraseña y su confirmación no son iguales
+        notice: Su contraseña fue actualizada
 
     destroy:
       notice: "Actualizado"
