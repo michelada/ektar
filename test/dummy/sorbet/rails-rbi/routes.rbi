@@ -205,7 +205,7 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def select_organization_url(*args, **kwargs); end
 
-  # Sigs for route /contrasena/edit(.:format)
+  # Sigs for route /contrasena(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def edit_passwords_path(*args, **kwargs); end
 

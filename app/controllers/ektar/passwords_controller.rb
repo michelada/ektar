@@ -3,6 +3,7 @@
 
 module Ektar
   class PasswordsController < ApplicationController
+    include Ektar::Concerns::Tokens
     layout "ektar/users"
     before_action :verify_token!, :verify_and_load_user!
 
@@ -44,9 +45,9 @@ module Ektar
     sig { void }
     def verify_and_load_user!
       @token ||= params[:token] || params[:reset_password_token]
-      @global_id ||= decode_user_global_id(@token)
+      @global_id ||= verify_reset_password_token_from_url(@token)
 
-      @resource = load_user(@global_id, @token)
+      @resource = load_user(@global_id, token_from_url(@token))
       if @resource.blank?
         redirect_to(redirect_path_on_failure, alert: t("flash.edit.passwords.alert_invalid_token"))
       end
@@ -55,7 +56,7 @@ module Ektar
     sig { void }
     def verify_token!
       @token ||= params[:token] || params[:reset_password_token]
-      @global_id ||= decode_user_global_id(@token)
+      @global_id ||= verify_reset_password_token_from_url(@token)
 
       if @global_id.blank?
         redirect_to(redirect_path_on_failure, alert: t("flash.edit.passwords.alert_invalid_token"))
@@ -65,14 +66,6 @@ module Ektar
     sig { params(global_id: String, reset_password_token: String).returns(T.nilable(Ektar::User)) }
     def load_user(global_id, reset_password_token)
       Ektar::User.find_by(global_id: global_id, reset_password_token: reset_password_token)
-    end
-
-    sig { params(token: T.nilable(String)).returns(T.nilable(String)) }
-    def decode_user_global_id(token)
-      return nil if token.blank?
-
-      verifier = ActiveSupport::MessageVerifier.new(Rails.application.secret_key_base)
-      verifier.verified(token, purpose: :reset_password)
     end
 
     sig { returns(String) }

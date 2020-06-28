@@ -6,9 +6,9 @@
 
 <div class="field is-grouped">
   <div class="control">
-    <%= form.submit t("form.submit"), class: "button is-link", data: {target: "remote-form.submitButton", "disable-with": t("form.submit")} %>
+    <%= form.submit t("form.#{form.object.model_name.i18n_key}.submit", default: t("form.submit")), class: "button is-link", data: {target: "remote-form.submitButton", "disable-with": t("form.submit")} %>
   </div>
   <div class="control">
-    <%= link_to t("form.back"), collection_path, class: "button is-text", data: {target: "remote-form.cancelButton", action: "click->modal-view#close"} %>
+    <%= link_to t("form.#{form.object.model_name.i18n_key}.back", default: t("form.back")), collection_path, class: "button is-text", data: {target: "remote-form.cancelButton", action: "click->modal-view#close"} %>
   </div>
 </div>

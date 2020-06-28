@@ -7,6 +7,13 @@ es:
     add_user: Agregar usuario
 
   ektar:
+    passwords:
+      edit:
+        title: Restablecer contraseña
+        info: "La contraseña necesita de al menos una mayúscula, una minúscula y un número."
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+
     application:
       navbar:
         admin: Administrador

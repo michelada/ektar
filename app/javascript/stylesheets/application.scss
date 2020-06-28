@@ -104,3 +104,25 @@ form {
     display: block;
   }
 }
+
+.user-actions {
+  background-color: $white-bis;
+
+  .container {
+    height: calc(100vh - 6rem);
+  }
+
+  .box {
+    margin: 0 auto;
+    width: 440px;
+
+    h2 {
+      @extend .is-size-4;
+      font-weight: bold;
+    }
+  }
+
+  form {
+    margin-top: 1rem;
+  }
+}

@@ -29,6 +29,11 @@ module Ektar
 
     attr_reader :pagination, :resource, :collection
 
+    sig { returns(String) }
+    def full_host
+      "#{request.protocol}#{request.host_with_port}"
+    end
+
     sig { params(object: ActiveRecord::Base, options: T::Hash[Symbol, T.untyped], block: T.untyped).returns(String) }
     def redirect_with(object, options, &block)
       set_flash options

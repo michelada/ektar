@@ -11,6 +11,12 @@ es:
     dropdown_select: "Selecciona %{name_option}"
     dropdown_options: "%{option}"
 
+    ektar/invitation:
+      submit: Invitar
+
+    passwords:
+      submit: Actualizar contraseña
+
     placeholders:
       search: "Buscar..."
       ektar/organization:

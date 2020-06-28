@@ -4,6 +4,7 @@
 module Ektar
   module Admin
     class InvitationsController < ApplicationController
+      include Ektar::Concerns::Tokens
       layout false
 
       resourceful(form_attributes: {email: {type: :input, input_html: {class: "input email", maxlength: 50}}},
@@ -42,7 +43,7 @@ module Ektar
 
         create! do |success|
           success.response do
-            Ektar::InvitationMailer.with(invitation: @resource).invite.deliver_now
+            Ektar::InvitationMailer.with(host: full_host, token: token_to_url(invitation_token), invitation: @resource).invite.deliver_now
             flash[:notice] = t("flash.create.invitation.notice", email: @resource.email)
             redirect_to ektar.admin_users_path
           end
@@ -59,12 +60,6 @@ module Ektar
       sig { params(resource: ActiveRecord::Base).returns(String) }
       def resource_path(resource)
         ektar.admin_invitations_path(resource)
-      end
-
-      sig { params(organization_global_id: String).returns(String) }
-      def generate_invitation_token(organization_global_id)
-        verifier = ActiveSupport::MessageVerifier.new(Rails.application.secret_key_base)
-        verifier.generate(organization_global_id, expires_in: 7.days)
       end
 
       sig { returns(ActionController::Parameters) }

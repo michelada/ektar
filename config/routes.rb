@@ -7,7 +7,9 @@ Ektar::Engine.routes.draw do
   resources :reset_password, path: I18n.t("routes.reset_password"), only: [:new, :create]
   resources :select_organization, path: I18n.t("routes.select_organization"), only: [:new, :create, :update]
 
-  resource :passwords, path: I18n.t("routes.password"), only: [:edit, :update]
+  # resource :passwords, path: I18n.t("routes.password"), only: [:edit, :update]
+  get I18n.t("routes.password"), to: "passwords#edit", as: :edit_passwords
+  patch I18n.t("routes.password"), to: "passwords#update", as: :passwords
 
   get I18n.t("routes.registration"), to: "registrations#new", as: :new_registrations
   get I18n.t("routes.accept_invitation"), to: "accept_invitations#new", as: :accept_invitations

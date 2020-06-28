@@ -3,13 +3,14 @@
 
 module Ektar
   class AcceptInvitationsController < ApplicationController
+    include Ektar::Concerns::Tokens
+
     sig { void }
     def new
       invitation_token = params[:token]
       return redirect_to Ektar.configuration.root_app_path || ektar.root_path if invitation_token.blank?
 
-      verifier = ActiveSupport::MessageVerifier.new(Rails.application.secret_key_base)
-      organization_global_id = verifier.verified(invitation_token)
+      organization_global_id = verify_invitation_token_from_url(invitation_token)
       return redirect_to Ektar.configuration.root_app_path || ektar.root_path if organization_global_id.blank?
 
       invitation = Ektar::Invitation
@@ -33,19 +34,25 @@ module Ektar
       if user.save
         invitation.invitation_accepted_at = Time.zone.now
         invitation.save
-        user.update_column(:reset_password_token, generate_reset_password_token(user)) if new_user
+
+        user.reload
+        reset_password_token = generate_reset_password_token(user.global_id)
+        user.update_column(:reset_password_token, reset_password_token) if new_user
       end
 
-      redirect_to main_app.respond_to?(:new_reset_password_path) ? main_app.new_reset_password_path : ektar.new_reset_password_path
+      redirect_to redirect_path_after_accept(token_to_url(reset_password_token))
     end
 
     private
 
-    def generate_reset_password_token(user)
-      verifier = ActiveSupport::MessageVerifier.new(Rails.application.secret_key_base)
-      verifier.generate(user.global_id, expires_in: 7.days, purpose: :reset_password)
+    sig { params(token: String).returns(String) }
+    def redirect_path_after_accept(token)
+      main_app.edit_passwords_path(token: token)
+    rescue
+      ektar.edit_passwords_path(token: token)
     end
 
+    sig { params(invitation: Ektar::Invitation).returns(Ektar::User) }
     def build_user(invitation)
       Ektar::User.new(email: invitation.email, password: SecureRandom.base64(15)).tap do |user|
         user.memberships.build(organization: invitation.organization)

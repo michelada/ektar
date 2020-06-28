@@ -4,7 +4,7 @@ module Ektar
   # Preview all emails at http://localhost:3000/rails/mailers/invitation_mailer
   class InvitationMailerPreview < ActionMailer::Preview
     def invite
-      Ektar::InvitationMailer.with(invitation: invitation).invite
+      Ektar::InvitationMailer.with(host: "https://ektar.io", invitation: invitation).invite
     end
 
     private

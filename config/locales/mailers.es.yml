@@ -1,5 +1,7 @@
 es:
   mailers:
+    default_from: no-reply@ektar.io
+
     invitation:
       subject: Te han invitado para unirte a %{organization_name}
       body_html: >

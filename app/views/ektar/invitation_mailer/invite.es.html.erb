@@ -2,5 +2,5 @@
   "mailers.invitation.body_html",
   email: @invitation.email,
   organization_name: @invitation.organization.name,
-  invitation_link: accept_invitations_url(@invitation.invitation_token)
+  invitation_link: accept_invitations_url(@token, **@url_options)
 ).html_safe %>
