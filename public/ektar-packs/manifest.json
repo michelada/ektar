@@ -1,0 +1,16 @@
+{
+  "ektar.js": "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js",
+  "ektar.js.map": "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js.map",
+  "entrypoints": {
+    "ektar": {
+      "js": [
+        "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js"
+      ],
+      "js.map": [
+        "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js.map"
+      ]
+    }
+  },
+  "media/images/ektar.svg": "/ektar-packs/media/images/ektar-071b246a5b34abc150eff647840dc281.svg",
+  "media/images/organization-icon.svg": "/ektar-packs/media/images/organization-icon-1267353741593bd411f6d709609bce86.svg"
+}
