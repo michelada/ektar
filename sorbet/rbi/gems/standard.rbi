@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/standard/all/standard.rbi
 #
-# standard-0.2.3
+# standard-0.4.7
 
 module RuboCop
 end
@@ -24,10 +24,9 @@ class Standard::ParsesCliOption
 end
 class Standard::LoadsYamlConfig
   def arrayify(object); end
-  def call(argv, search_path); end
-  def construct_config(yaml_path, standard_yaml); end
+  def call(standard_yaml_path, todo_yaml_path); end
+  def construct_config(yaml_path, standard_yaml, todo_path, todo_yaml); end
   def expand_ignore_config(ignore_config); end
-  def initialize; end
   def load_standard_yaml(yaml_path); end
 end
 class Standard::MergesSettings
@@ -85,6 +84,7 @@ class Standard::Config < Struct
 end
 class Standard::BuildsConfig
   def call(argv, search_path = nil); end
+  def determine_yaml_file(argv, search_path, option_name, default_file); end
   def initialize; end
 end
 class Standard::LoadsRunner
@@ -110,7 +110,9 @@ class Standard::Formatter < RuboCop::Formatter::BaseFormatter
   def print_call_for_feedback; end
   def print_fix_suggestion_once(offenses); end
   def print_header_once; end
+  def print_todo_warning; end
   def should_suggest_fix?(offenses); end
+  def started(_target_files); end
 end
 module RuboCop::Cop
 end
@@ -125,12 +127,14 @@ class RuboCop::Cop::Standard::SemanticBlocks < RuboCop::Cop::Cop
   def functional_method?(method_name); end
   def get_blocks(node, &block); end
   def message(node); end
+  def non_parenthesized_keyword_args?(node); end
   def on_block(node); end
   def on_send(node); end
   def procedural_method?(method_name); end
   def proper_block_style?(node); end
   def replace_braces_with_do_end(loc); end
   def replace_do_end_with_braces(loc); end
+  def rescue_child_block?(node); end
   def return_value_of_scope?(node); end
   def return_value_used?(node); end
   def whitespace_after?(range, length = nil); end

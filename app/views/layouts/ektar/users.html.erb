@@ -13,7 +13,7 @@
     <script type="text/javascript">
       fetch('<%= Ektar.configuration.webpacker_host %>/ektar-packs/manifest.json')
         .then(response => response.json())
-        .then(json => [json['application.js'], json['application.css']])
+        .then(json => [json['ektar.js'], json['ektar.css']])
         .then(([jsPath, cssPath]) => {
           if (cssPath) {
             // Equivalent to stylesheet_pack_tag 'application'
@@ -31,11 +31,11 @@
     </script>
 
   </head>
-  <body>
+  <body class="user-actions">
     <%= render "flash_notification" %>
 
-    <div class="container has-margin-top-1">
+    <section class="section">
       <%= yield %>
-    </div>
+    </section>
   </body>
 </html>

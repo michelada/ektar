@@ -23,9 +23,9 @@ module Ektar
     def attribute_value(value)
       case value
       when TrueClass
-        I18n.t("table.true")
+        I18n.t("true_value")
       when FalseClass
-        I18n.t("table.false")
+        I18n.t("false_value")
       when ActiveSupport::TimeWithZone, Date
         I18n.l value, format: :short
       when ActionText::RichText
@@ -44,36 +44,36 @@ module Ektar
     sig { returns(String) }
     def new_title
       model_name = resource_class.model_name
-      I18n.t("table.new.#{model_name.i18n_key}",
-        default: I18n.t("table.new.name", resource_name: model_name.human(count: 1)))
+      I18n.t("index.new.#{model_name.i18n_key}",
+        default: I18n.t("index.new.name", resource_name: model_name.human(count: 1)))
     end
 
     sig { returns(String) }
     def edit_title
       model_name = resource_class.model_name
-      I18n.t("table.edit.#{model_name.i18n_key}",
-        default: I18n.t("table.edit.name", resource_name: model_name.human(count: 1)))
+      I18n.t("edit.#{model_name.i18n_key}",
+        default: I18n.t("edit.name", resource_name: model_name.human(count: 1)))
     end
 
     sig { returns(String) }
     def show_title
       model_name = resource_class.model_name
-      I18n.t("table.show.#{model_name.i18n_key}",
-        default: I18n.t("table.show.name", resource_name: model_name.human(count: 1)))
+      I18n.t("show.#{model_name.i18n_key}",
+        default: I18n.t("show.name", resource_name: model_name.human(count: 1)))
     end
 
     sig { returns(String) }
     def edit_action
       model_name = resource_class.model_name
-      I18n.t("table.actions.#{model_name.i18n_key}.edit",
-        default: I18n.t("table.actions.edit"))
+      I18n.t("index.actions.#{model_name.i18n_key}.edit",
+        default: I18n.t("index.actions.edit"))
     end
 
     sig { returns(String) }
     def delete_action
       model_name = resource_class.model_name
-      I18n.t("table.actions.#{model_name.i18n_key}.delete",
-        default: I18n.t("table.actions.delete"))
+      I18n.t("index.actions.#{model_name.i18n_key}.delete",
+        default: I18n.t("index.actions.delete"))
     end
 
     sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(T::Hash[Symbol, T.untyped]) }

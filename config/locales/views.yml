@@ -1,10 +1,27 @@
 es:
+  true_value: Sí
+  false_value: No
+
   navbar:
     add_org: Agregar organizacion
     add_user: Agregar usuario
 
-# Models views will implement lazy lokup
   ektar:
+    reset_passwords:
+      new:
+        title: Restablecer contraseña
+        info: Introduzca el correo electrónico del cual desea restablecer su contraseña. Si su correo electrónico está registrado recibirá instrucciones para restablecer su contraseña.
+      create:
+        title: Restablecer contraseña
+        info: Revise su bandeja de correo electrónico por las instrucciones para restablecer su contraseña. No olvide revisar la bandeja de correo no deseado en caso de no encontrarlo en la bandeja principal.
+
+    passwords:
+      edit:
+        title: Restablecer contraseña
+        info: La contraseña necesita de al menos una mayúscula, una minúscula y un número.
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+
     application:
       navbar:
         admin: Administrador
@@ -19,3 +36,33 @@ es:
       new:
         title: Selecciona un plan
         select: Seleccionar
+
+  edit:
+    name: Modificar %{resource_name}
+    ektar/organization: Modificar organización
+
+  show:
+    name: "%{resource_name}"
+
+  index:
+    actions:
+      name: Acciones
+      edit: Modificar
+      delete: Eliminar
+      ektar/organization:
+        delete: Desactivar
+      ektar/plan:
+        delete: Desactivar
+    delete: Eliminar
+    new:
+      name: Nuevo(a) %{resource_name}
+      ektar/organization: Nueva organización
+      ektar/user: Nuevo usuario
+      ektar/plan: Nuevo plan
+      ektar/invitation: Invitar usuario
+    confirmation:
+      ektar/organization:
+        delete: Está seguro de querer desactivar la organización?
+      ektar/plan:
+        delete: Está seguro de querer desactivar éste plan?
+      delete: Está seguro de eliminar el registro?

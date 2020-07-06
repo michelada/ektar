@@ -2,6 +2,7 @@
 
 @import "~bulma/bulma";
 @import "trix/dist/trix";
+@import "~notyf/notyf.min";
 
 .has-margin-top-1 {
   margin-top: 2rem;
@@ -15,4 +16,113 @@ h6.pagination-info {
 
 .pagination-list {
   margin-top: 2rem;
+}
+
+.modal {
+  .box {
+    .is-half {
+      width: 100% !important;
+    }
+  }
+}
+
+form {
+  .file-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: $white-ter;
+    border: 2px dashed hsl(0, 0%, 93%);
+    text-align: center;
+  }
+
+  .field-image {
+    @extend .file-image;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 360px;
+    margin: 0 auto;
+    max-width: 480px;
+
+    input {
+      cursor: inherit;
+    }
+
+    .button {
+      font-size: 1rem;
+    }
+  }
+
+  .field-image.is-danger {
+    border-color: $red;
+  }
+
+  .field-image-loaded {
+    align-items: flex-start;
+    justify-content: left;
+
+    .button {
+      font-size: 1rem;
+      margin-left: .5rem;
+      margin-top: 0.5rem;
+      margin-right: 0;
+      // padding-bottom: calc(2.2em - 1px);
+      padding-right: 0;
+
+      .file-input {
+        display: none;
+      }
+
+      span {
+        display: none;
+      }
+
+      &:hover {
+        padding-right: 1em;
+
+        span {
+          display: block;
+        }
+
+        img {
+          margin-right: .25em;
+        }
+      }
+    }
+  }
+
+  .spinner {
+    display: none;
+
+    img {
+      width: 80px;
+    }
+  }
+
+  .spinner.is-loading {
+    display: block;
+  }
+}
+
+.user-actions {
+  background-color: $white-bis;
+
+  .container {
+    height: calc(100vh - 6rem);
+  }
+
+  .box {
+    margin: 0 auto;
+    width: 440px;
+
+    h2 {
+      @extend .is-size-4;
+      font-weight: bold;
+    }
+  }
+
+  form {
+    margin-top: 1rem;
+  }
 }

@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/aws-sdk-s3/all/aws-sdk-s3.rbi
 #
-# aws-sdk-s3-1.61.1
+# aws-sdk-s3-1.73.0
 
 module Aws::S3
 end
@@ -4496,6 +4496,35 @@ class Aws::S3::Plugins::BucketNameRestrictions::Handler < Seahorse::Client::Hand
   def _bucket_member(input); end
   def call(context); end
 end
+class Aws::S3::Plugins::RetryableBlockIO
+  def initialize(block_io); end
+  def read(*args, &block); end
+  def rewind; end
+  def size(*args, &block); end
+  def truncate(_integer); end
+  def write(*args, &block); end
+  extend Forwardable
+end
+class Aws::S3::Plugins::RetryableManagedFile
+  def close(*args, &block); end
+  def initialize(managed_file); end
+  def open?(*args, &block); end
+  def read(*args, &block); end
+  def rewind; end
+  def size(*args, &block); end
+  def truncate(_integer); end
+  def write(*args, &block); end
+  extend Forwardable
+end
+class Aws::S3::Plugins::StreamingRetry < Seahorse::Client::Plugin
+end
+class Aws::S3::Plugins::StreamingRetry::Handler < Seahorse::Client::Handler
+  def add_event_listeners(context, target); end
+  def call(context); end
+  def retryable_body?(context); end
+  def supported_target?(target); end
+  def truncated_body?(error); end
+end
 class Aws::S3::Client < Seahorse::Client::Base
   def abort_multipart_upload(params = nil, options = nil); end
   def build_request(operation_name, params = nil); end
@@ -5271,6 +5300,7 @@ end
 module Aws::S3::Encryption
 end
 class Aws::S3::Encryption::Client
+  def build_request(*args, &block); end
   def cipher_provider(options); end
   def client; end
   def config(*args, &block); end
@@ -5292,6 +5322,7 @@ class Aws::S3::Encryption::Client
   extend Forwardable
 end
 class Aws::S3::Encryption::DecryptHandler < Seahorse::Client::Handler
+  def apply_cse_user_agent(context); end
   def attach_http_event_listeners(context); end
   def authenticated_decrypter(context, cipher); end
   def body_contains_auth_tag?(context); end
@@ -5316,6 +5347,7 @@ class Aws::S3::Encryption::DefaultCipherProvider
   def materials_description; end
 end
 class Aws::S3::Encryption::EncryptHandler < Seahorse::Client::Handler
+  def apply_cse_user_agent(context); end
   def apply_encryption_cipher(context, cipher); end
   def apply_encryption_envelope(context, envelope, cipher); end
   def call(context); end
@@ -5339,6 +5371,7 @@ class Aws::S3::Encryption::IODecrypter
   def finalize; end
   def initialize(cipher, io); end
   def io; end
+  def size; end
   def write(chunk); end
 end
 class Aws::S3::Encryption::IOAuthDecrypter
@@ -5379,6 +5412,127 @@ class Aws::S3::Encryption::DefaultKeyProvider
   def initialize(options = nil); end
   def key_for(materials_description); end
   include Aws::S3::Encryption::KeyProvider
+end
+module Aws::S3::EncryptionV2
+end
+class Aws::S3::EncryptionV2::Client
+  def build_request(*args, &block); end
+  def cipher_provider(options); end
+  def client; end
+  def config(*args, &block); end
+  def delete_object(*args, &block); end
+  def envelope_location; end
+  def envelope_options(params); end
+  def extract_client(options); end
+  def extract_key_provider(options); end
+  def extract_location(options); end
+  def extract_suffix(options); end
+  def get_object(params = nil, &block); end
+  def head_object(*args, &block); end
+  def initialize(options = nil); end
+  def instruction_file_suffix; end
+  def key_provider; end
+  def kms_client(options); end
+  def put_object(params = nil); end
+  extend Aws::Deprecations
+  extend Forwardable
+end
+class Aws::S3::EncryptionV2::DecryptHandler < Seahorse::Client::Handler
+  def apply_cse_user_agent(context); end
+  def attach_http_event_listeners(context); end
+  def authenticated_decrypter(context, cipher, envelope); end
+  def body_contains_auth_tag?(envelope); end
+  def call(context); end
+  def decryption_cipher(context); end
+  def envelope_from_instr_file(context); end
+  def envelope_from_metadata(context); end
+  def extract_envelope(hash); end
+  def get_encryption_envelope(context); end
+  def v1_envelope(envelope); end
+  def v2_envelope(envelope); end
+end
+class Aws::S3::EncryptionV2::DefaultCipherProvider
+  def decode64(str); end
+  def decryption_cipher(envelope, options = nil); end
+  def encode64(str); end
+  def encrypt_aes_gcm(data, auth_data); end
+  def encrypt_rsa(data, auth_data); end
+  def encryption_cipher(options = nil); end
+  def envelope_iv(cipher); end
+  def envelope_key(cipher); end
+  def initialize(options = nil); end
+  def materials_description; end
+end
+class Aws::S3::EncryptionV2::EncryptHandler < Seahorse::Client::Handler
+  def apply_cse_user_agent(context); end
+  def apply_encryption_cipher(context, cipher); end
+  def apply_encryption_envelope(context, envelope); end
+  def call(context); end
+end
+module Aws::S3::EncryptionV2::Errors
+end
+class Aws::S3::EncryptionV2::Errors::DecryptionError < RuntimeError
+end
+class Aws::S3::EncryptionV2::Errors::EncryptionError < RuntimeError
+end
+class Aws::S3::EncryptionV2::IOEncrypter
+  def close; end
+  def encrypt_to_stringio(cipher, plain_text); end
+  def encrypt_to_tempfile(cipher, io); end
+  def initialize(cipher, io); end
+  def read(bytes = nil, output_buffer = nil); end
+  def rewind; end
+  def size; end
+end
+class Aws::S3::EncryptionV2::IODecrypter
+  def finalize; end
+  def initialize(cipher, io); end
+  def io; end
+  def write(chunk); end
+end
+class Aws::S3::EncryptionV2::IOAuthDecrypter
+  def finalize; end
+  def initialize(options = nil); end
+  def io; end
+  def truncate_chunk(chunk); end
+  def write(chunk); end
+end
+module Aws::S3::EncryptionV2::KeyProvider
+  def encryption_materials; end
+  def key_for(materials_description); end
+end
+class Aws::S3::EncryptionV2::KmsCipherProvider
+  def build_encryption_context(cek_alg, options = nil); end
+  def decode64(str); end
+  def decryption_cipher(envelope, options = nil); end
+  def encode64(str); end
+  def encryption_cipher(options = nil); end
+  def initialize(options = nil); end
+end
+class Aws::S3::EncryptionV2::Materials
+  def description; end
+  def initialize(options = nil); end
+  def key; end
+  def validate_desc(description); end
+  def validate_key(key); end
+end
+module Aws::S3::EncryptionV2::Utils
+  def self.aes_cipher(mode, block_mode, key, iv); end
+  def self.aes_decryption_cipher(block_mode, key = nil, iv = nil); end
+  def self.aes_encryption_cipher(block_mode, key = nil, iv = nil); end
+  def self.cipher_size(key); end
+  def self.decrypt(key, data); end
+  def self.decrypt_aes_gcm(key, data, auth_data); end
+  def self.decrypt_rsa(key, enc_data); end
+  def self.encrypt(key, data); end
+  def self.encrypt_aes_gcm(key, data, auth_data); end
+  def self.encrypt_rsa(key, data, auth_data); end
+end
+class Aws::S3::EncryptionV2::DefaultKeyProvider
+  def encryption_materials; end
+  def initialize(options = nil); end
+  def key_for(materials_description); end
+  include Aws::S3::EncryptionV2::KeyProvider
 end
 class Aws::S3::FilePart
   def close; end
@@ -5551,12 +5705,15 @@ class Aws::S3::PresignedPost
   def with(field_name, value); end
 end
 class Aws::S3::Presigner
+  def _presigned_request(method, params, hoist = nil); end
   def build_signer(cfg, unsigned_headers); end
   def expires_in(params); end
-  def http_scheme(params, virtual_host); end
+  def http_scheme(params); end
   def initialize(options = nil); end
+  def presigned_request(method, params = nil); end
   def presigned_url(method, params = nil); end
-  def sign_but_dont_send(req, expires_in, scheme, time, unsigned_headers); end
+  def sign_but_dont_send(req, expires_in, scheme, time, unsigned_headers, hoist = nil); end
+  def unsigned_headers(params); end
   def use_bucket_as_hostname(req); end
 end
 module Aws::S3::EventStreams
@@ -5572,4 +5729,5 @@ class Aws::S3::EventStreams::SelectObjectContentEventStream
   def on_progress_event(&block); end
   def on_records_event(&block); end
   def on_stats_event(&block); end
+  def on_unknown_event(&block); end
 end

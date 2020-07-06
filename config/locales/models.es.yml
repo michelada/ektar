@@ -29,8 +29,8 @@ es:
         ektar/user:
           attributes:
             password:
-              invalid: "contraseña necesita de al menos una mayúscula, una minúscula y un número"
-              password_already_used: "contraseña ya fue usada"
+              invalid: "la contraseña necesita de al menos una mayúscula, una minúscula y un número"
+              password_already_used: "la contraseña ya fue usada"
 
     mailers:
       invitation:

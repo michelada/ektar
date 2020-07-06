@@ -1,0 +1,37 @@
+<div class="columns">
+  <div class="column is-half">
+    <%= form_with(model: [namespace, resource].compact, data: {controller: "remote-form", target: "remote-form.form entries.form", action: "submit->remote-form#didSubmit ajax:error->remote-form#formError"}) do |form| %>
+
+      <div class="container" data-target="remote-form.notification">
+      </div>
+
+      <% form_attributes.each do |attribute_name, attribute_options|%>
+        <% attributes = resource_attributes(attribute_options) %>
+
+        <%= content_tag(:div, field_attributes(attributes)) do %>
+          <%= render partial: "#{attributes.dig(:type)}",
+            locals: { attribute_name: attribute_name,
+                      form: form,
+                      input_html: attributes.dig(:input_html),
+                      options: attributes.dig(:options)} %>
+        <% end %>
+      <% end %>
+
+      <div class="field spinner" data-target="remote-form.spinner">
+        <div class="control has-text-centered">
+          <%= image_tag asset_pack_path("media/images/spinner.gif") %>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= form.submit t("form.submit"), class: "button is-link", data: {target: "remote-form.submitButton", "disable-with": t("form.submit")} %>
+        </div>
+        <div class="control">
+          <%= link_to t("form.back"), collection_path, class: "button is-text", data: {target: "remote-form.cancelButton", action: "click->entries#onClose"} %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

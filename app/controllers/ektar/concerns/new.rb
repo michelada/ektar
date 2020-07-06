@@ -15,7 +15,7 @@ module Ektar
 
           yield @resource if block_given?
 
-          authorize @resource, policy_class: policy_class if policy_class.present?
+          authorize current_organization, policy_class: policy_class if policy_class.present?
         end
         alias_method :new!, :new
       end

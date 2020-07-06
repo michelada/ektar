@@ -13,7 +13,7 @@ module Ektar
           @resource ||= begin
             local_resource = resource_class.new(resource_secure_params)
 
-            authorize local_resource, policy_class: policy_class if policy_class.present?
+            authorize current_organization, policy_class: policy_class if policy_class.present?
             local_resource.save
 
             set_resource_ivar local_resource

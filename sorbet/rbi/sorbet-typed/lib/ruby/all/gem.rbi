@@ -5,7 +5,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/edit/master/lib/ruby/all/gem.rbi
 #
-# typed: strong
+# typed: false
 module Gem
   ConfigMap = T.let(nil, T.untyped)
   RbConfigPriorities = T.let(nil, T.untyped)
@@ -195,7 +195,6 @@ module Gem
 
   class AvailableSet
     include Enumerable
-    Elem = type_member(fixed: T.untyped)
 
     def <<(o); end
 
@@ -775,7 +774,6 @@ module Gem
   class DependencyList
     include Enumerable
     include TSort
-    Elem = type_member(fixed: T.untyped)
 
     def add(*gemspecs); end
 
@@ -1455,7 +1453,6 @@ module Gem
 
     class TarReader
       include Enumerable
-      Elem = type_member(fixed: T.untyped)
 
       def close; end
 
@@ -2498,7 +2495,6 @@ module Gem
       class DependencyGraph
         include Enumerable
         include TSort
-        Elem = type_member(fixed: T.untyped)
 
         def ==(other); end
 
@@ -2610,7 +2606,6 @@ module Gem
 
         class Log
           extend T::Enumerable
-          Elem = type_member(fixed: T.untyped)
 
           def add_edge_no_circular(graph, origin, destination, requirement); end
 
@@ -2902,7 +2897,6 @@ module Gem
 
     class RequirementList
       include Enumerable
-      Elem = type_member(fixed: T.untyped)
 
       def add(req); end
 
@@ -3442,7 +3436,6 @@ module Gem
 
   class SourceList
     include Enumerable
-    Elem = type_member(fixed: T.untyped)
 
     def <<(obj); end
 

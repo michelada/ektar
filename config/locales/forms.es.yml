@@ -10,7 +10,17 @@ es:
     options_checkbox: "%{option}"
     dropdown_select: "Selecciona %{name_option}"
     dropdown_options: "%{option}"
-    
+
+    ektar/invitation:
+      submit: Invitar
+
+    reset_passwords:
+      submit: Enviar instrucciones
+      go_home: Ir al Inicio
+
+    passwords:
+      submit: Actualizar contraseña
+
     placeholders:
       search: "Buscar..."
       ektar/organization:
@@ -20,7 +30,7 @@ es:
       size: 50
       ektar/organization:
         name: 40
-  
+
   ektar:
     sessions:
       new:

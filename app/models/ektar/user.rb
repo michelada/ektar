@@ -3,13 +3,12 @@
 
 module Ektar
   class User < ApplicationRecord
-    extend T::Sig
     include PgSearch::Model
 
     has_secure_password :password, validations: true
 
-    has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_user_id, inverse_of: :user
-    has_many :organizations, class_name: "Ektar::Organization", through: :memberships, source: :organization
+    has_many :memberships, class_name: "Ektar::Membership", foreign_key: :ektar_user_id, inverse_of: :user, autosave: true
+    has_many :organizations, class_name: "Ektar::Organization", through: :memberships, source: :organization, autosave: true
     has_many :used_passwords, class_name: "Ektar::UsedPassword", foreign_key: :ektar_user_id
 
     validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, uniqueness: {case_sensitive: false}
@@ -44,17 +43,17 @@ module Ektar
 
     sig { returns(T::Boolean) }
     def admin?
-      admin_of.any?
+      !admin_of.size.zero?
     end
 
     sig { params(organization: T.nilable(Ektar::Organization)).returns(T::Boolean) }
     def is_admin?(organization)
-      admin_of.include?(organization)
+      admin_of.detect { |membership| membership.ektar_organization_id == organization.id }.present?
     end
 
-    sig { returns(Ektar::Organization::ActiveRecord_AssociationRelation) }
+    sig { returns(T::Array[Ektar::Membership]) }
     def admin_of
-      organizations.where(ektar_memberships: {ektar_user_id: id, role: "admin"})
+      @memberships_admin ||= memberships.select { |membership| membership.role == "admin" }
     end
 
     sig { returns(T.nilable(Ektar::Membership)) }

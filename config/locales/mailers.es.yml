@@ -1,0 +1,34 @@
+es:
+  mailers:
+    default_from: no-reply@ektar.io
+
+    reset_password:
+      subject: Restablecer contraseña
+      body_html: >
+        <p>Hola</p>
+        <p>Has solicitado restabler tu contraseña. Realiza tu cambio de contraseña con este <a href="%{reset_password_link}">enlace</a> y sigue las indicaciones.</p>
+        <p>Si tu no solicitaste restablecer tu contraseña solo borra este corre y nunca se lo envies a alguien.</p>
+      body_text: >
+        Hola
+
+        Has solicitado restablecer tu contraseña. Realiza tu cambio de contraseña con el siguiente enlace %{reset_password_link}.
+
+        Si tu no solicitaste restablecer tu contraseña solo borra este correo y nunca se lo envies a alguien.
+
+    invitation:
+      subject: Te han invitado para unirte a %{organization_name}
+      body_html: >
+        <p>Hola %{email}</p>
+        <p>Tienes una invitación para unirte a <strong>%{organization_name}</strong>. Puedes <a href="%{invitation_link}">Aceptar tu invitación</a> con este enlace. Crea tu cuenta si es que no tienes una.</p>
+      body_text: >
+        Hola %{email}
+
+
+        Tienes una invitación para unirte a %{organization_name}. Utiliza el enlace %{invitation_url} para aceptar la invitación y crear tu cuenta si es que no tienes una.
+    mailer:
+      text:
+        send_by: Enviado desde Ektar, México
+        powered: Ektar engine.
+      html:
+        send_by: Enviado desde Ektar, México
+        powered: Ektar engine.

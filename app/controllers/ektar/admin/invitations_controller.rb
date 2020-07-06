@@ -3,17 +3,16 @@
 
 module Ektar
   module Admin
-    class InvitationsController < BaseController
-      extend T::Sig
+    class InvitationsController < ApplicationController
+      include Ektar::Concerns::Tokens
+      layout false
 
-      skip_before_action :authenticate_admin!, only: [:create, :edit]
-
-      resourceful(form_attributes: {email: :input,
-                                    invitation_token: :hidden,
-                                    ektar_organization_id: :hidden},
+      resourceful(form_attributes: {email: {type: :input, input_html: {class: "input email", maxlength: 50}}},
+                  only: [:new, :create],
                   resource_class: Ektar::Invitation,
                   policy_class: Ektar::InvitationPolicy)
 
+      sig { void }
       def new
         new! do |resource|
           resource.ektar_organization_id = current_organization.id
@@ -22,64 +21,50 @@ module Ektar
 
       sig { void }
       def create
-        organization_id = params.dig(:invitation, :ektar_organization_id)
-        user_email = params.dig(:invitation, :email)
+        authorize current_organization, policy_class: policy_class
 
-        organization = Ektar::Organization.find_by(id: organization_id)
-        invitation_token = generate_invitation_token(user_email, organization.global_id)
+        user_email = params.dig(:invitation, :email)&.strip
 
-        @resource = Ektar::Invitation.new(invitation_params.merge(invitation_token: invitation_token))
+        organization = current_organization
+        invitation_token = generate_invitation_token(organization.global_id)
 
-        if @resource.save
-          Ektar::UserMailer.with(organization: organization, invitation_token: invitation_token, email: @resource.email).new_invitation_email.deliver_now
-          flash[:notice] = t("flash.create.invitation.notice", email: user_email)
-          redirect_to ektar.root_path
+        @resource = Ektar::Invitation.find_by(email: user_email)
+
+        if @resource.present?
+          @resource.update_column(:invitation_token, invitation_token)
         else
-          flash[:alert] = t("flash.create.invitation.alert")
-          render :new
-        end
-      end
-
-      def edit
-        invitation_token = params.dig(:invitation_token)
-        invitation = Ektar::Invitation.find_by(invitation_token: invitation_token)
-
-        user = Ektar::User.find_by(email: invitation.email)
-
-        if user
-          update_session_cookie(user: user)
-
-          if build_user_membership.save
-            flash[:notice] = t("edit.invitations.notice")
-          else
-            flash[:alert] = t("edit.invitations.alert")
+          @resource = Ektar::Invitation.new(invitation_params).tap do |invitation|
+            invitation.invitation_token = invitation_token
+            invitation.organization = organization
+            invitation.email = user_email
+            invitation.save
           end
-          redirect_to ektar.root_path
-        else
-          redirect_to ektar.new_reset_password_path(invitation_token: invitation_token)
+        end
+
+        create! do |success|
+          success.response do
+            Ektar::InvitationMailer.with(host: full_host, token: token_to_url(invitation_token), invitation: @resource).invite.deliver_now
+            flash[:notice] = t("flash.create.invitation.notice", email: @resource.email)
+            redirect_to ektar.admin_users_path
+          end
         end
       end
 
       private
 
-      sig { params(email: String, organization_global_id: String).returns(String) }
-      def generate_invitation_token(email, organization_global_id)
-        verifier = ActiveSupport::MessageVerifier.new(Rails.application.secret_key_base)
-        verifier.generate("#{email}@#{organization_global_id}")
+      sig { returns(String) }
+      def collection_path
+        ektar.admin_invitations_path
+      end
+
+      sig { params(resource: ActiveRecord::Base).returns(String) }
+      def resource_path(resource)
+        ektar.admin_invitations_path(resource)
       end
 
       sig { returns(ActionController::Parameters) }
       def invitation_params
         params.require_typed(:invitation, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys)
-      end
-
-      def build_user_membership
-        invitation_token = params.dig(:invitation_token)
-        invitation = Ektar::Invitation.find_by(invitation_token: invitation_token)
-
-        user = Ektar::User.find_by(email: invitation.email)
-
-        user.memberships.new(ektar_organization_id: invitation.ektar_organization_id)
       end
     end
   end

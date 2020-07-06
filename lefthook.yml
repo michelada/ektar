@@ -38,11 +38,11 @@ pre-commit:
   commands:
     eslint:
       tags: javascript style
-      glob: "*.{js,ts}"
+      glob: "**/app/**/*.{js,ts}"
       run: "yarn prettier --write {staged_files} && yarn eslint {staged_files} && git add {staged_files}"
     csslint:
       tags: stylesheets style
-      glob: "*.{css,pcss,scss}"
+      glob: "**/app/**/*.{css,pcss,scss}"
       run: "yarn prettier --write {staged_files} && yarn stylelint --fix {staged_files} && git add {staged_files}"
     standard:
       tags: backend style

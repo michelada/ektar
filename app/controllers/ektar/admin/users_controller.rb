@@ -3,23 +3,19 @@
 
 module Ektar
   module Admin
-    class UsersController < BaseController
-      extend T::Sig
-      include Pagy::Backend
-
+    class UsersController < ApplicationController
       before_action :organization_has_plan, only: [:index]
 
       resourceful(list_attributes: %i[email updated_at last_activity_at blocked_at],
                   form_attributes: {email: :input, password: :password, password_confirmation: :password},
                   show_attributes: %i[id email updated_at],
                   find_by: :global_id,
-                  only: [:new, :index, :delete],
+                  only: [:new, :index, :destroy],
+                  policy_class: Ektar::UserPolicy,
                   resource_class: Ektar::User)
 
       sig { void }
       def index
-        authorize current_organization, policy_class: Ektar::UserPolicy
-
         index! do |scope|
           if current_user.super_admin?
             scope.where(super_admin: true)
@@ -27,8 +23,6 @@ module Ektar
             scope.joins(:memberships).where(ektar_memberships: {ektar_organization_id: current_organization}).order(created_at: :desc)
           end
         end
-
-        render layout: "ektar/application"
       end
 
       sig { void }
@@ -43,19 +37,19 @@ module Ektar
 
       private
 
-      sig { params(resource: T.untyped).returns(T::Boolean) }
-      def allow_delete?(resource)
-        current_organization&.has_active_user?(resource) || current_user.super_admin?
+      sig { returns(String) }
+      def collection_path
+        ektar.admin_users_path
       end
 
-      sig { params(resource: T.untyped).returns(T::Boolean) }
-      def allow_edit?(resource)
-        !!(current_organization&.has_active_user?(resource) && !current_user.super_admin?)
+      sig { params(resource: ActiveRecord::Base).returns(String) }
+      def resource_path(resource)
+        ektar.admin_users_path(resource)
       end
 
-      sig { returns(Symbol) }
-      def link_attribute
-        :email
+      sig { params(resource: ActiveRecord::Base).returns(String) }
+      def edit_resource_path(resource)
+        ektar.edit_admin_user_path(resource)
       end
 
       sig { returns(ActionController::Parameters) }

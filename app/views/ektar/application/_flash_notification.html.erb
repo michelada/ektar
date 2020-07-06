@@ -1,10 +1,3 @@
 <% if flash.alert.present? || flash.notice.present? %>
-  <div class="container message-container">
-    <article class="message <%= flash.alert.present? ? 'is-danger' : 'is-primary' %>">
-      <div class="message-header">
-        <p><%= flash.alert || flash.notice %></p>
-        <button class="delete" aria-label="delete"></button>
-      </div>
-    </article>
-  </div>
+  <div data-controller="notification" data-target="notification.notification" data-alert="<%= flash.alert %>" data-notice="<%= flash.notice %>"></div>
 <% end %>

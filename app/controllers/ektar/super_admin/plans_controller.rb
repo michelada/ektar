@@ -3,7 +3,7 @@
 
 module Ektar
   module SuperAdmin
-    class PlansController < BaseController
+    class PlansController < ApplicationController
       extend T::Sig
 
       resourceful(list_attributes: %i[name price active updated_at],

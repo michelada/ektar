@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/actionpack/all/actionpack.rbi
 #
-# actionpack-6.0.2.2
+# actionpack-6.0.3.2
 
 module ActionPack
   def self.gem_version; end
@@ -25,6 +25,8 @@ module ActionDispatch
   extend ActiveSupport::Autoload
 end
 class ActionDispatch::IllegalStateError < StandardError
+end
+class ActionDispatch::MissingController < NameError
 end
 module ActionDispatch::Http
   extend ActiveSupport::Autoload
@@ -1101,8 +1103,9 @@ class ActionController::LiveTestResponse < ActionController::Live::Response
   def missing?; end
   def success?; end
 end
-class ActionController::TestSession < Rack::Session::Abstract::SessionHash
+class ActionController::TestSession < Rack::Session::Abstract::PersistedSecure::SecureSessionHash
   def destroy; end
+  def dig(*keys); end
   def exists?; end
   def fetch(key, *args, &block); end
   def initialize(session = nil); end
@@ -1227,10 +1230,10 @@ module AbstractController::Rendering
   include ActionView::ViewPaths
 end
 module AbstractController::Translation
-  def l(*args); end
-  def localize(*args); end
-  def t(key, options = nil); end
-  def translate(key, options = nil); end
+  def l(object, **options); end
+  def localize(object, **options); end
+  def t(key, **options); end
+  def translate(key, **options); end
 end
 module AbstractController::AssetPaths
   extend ActiveSupport::Concern
@@ -1506,12 +1509,16 @@ class ActionController::InvalidCrossOriginRequest < ActionController::ActionCont
 end
 module ActionController::RequestForgeryProtection
   def any_authenticity_token_valid?; end
+  def compare_with_global_token(token, session); end
   def compare_with_real_token(token, session); end
+  def csrf_token_hmac(session, identifier); end
   def form_authenticity_param; end
   def form_authenticity_token(form_options: nil); end
+  def global_csrf_token(session); end
   def handle_unverified_request; end
   def mark_for_same_origin_verification!; end
   def marked_for_same_origin_verification?; end
+  def mask_token(raw_token); end
   def masked_authenticity_token(session, form_options: nil); end
   def non_xhr_javascript_response?; end
   def normalize_action_path(action_path); end

@@ -1,10 +1,12 @@
 es:
   routes:
-    organizations: "organizaciones"
-    plans: "planes"
-    users: "usuarios"
-    registration: "registro"
+    organizations: organizaciones
+    plans: planes
+    users: usuarios
+    registration: registro
     session: sesion
     invitations: invitaciones
-    reset_password: cambiar_contrasena
+    accept_invitation: "invitacion/(:token)"
+    reset_password: restablecer_contrasena
     select_organization: seleccionar_organizacion
+    password: contrasena

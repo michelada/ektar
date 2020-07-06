@@ -6,10 +6,14 @@ module Ektar
     layout "ektar/users"
 
     def new
+      redirect_to Ektar.configuration.root_app_path || ektar.root_path if current_user.present?
+
       @resource = Ektar::User.new
     end
 
     def create
+      redirect_to Ektar.configuration.root_app_path || ektar.root_path if current_user.present?
+
       user_email = params.dig(:user, :email)
       @resource = User.find_by(email: user_email) if user_email.present?
 
@@ -52,13 +56,15 @@ module Ektar
     end
 
     def destroy
-      if cookies.delete(session_cookie_name)
+      if cookies.delete(session_cookie_name, domain: Ektar.configuration.session_domain)
+        # Not sure why I have to delete the cookie twice but deleting it once does not work.
+        cookies.delete(session_cookie_name, domain: Ektar.configuration.session_domain)
         @current_user = nil
         set_flash(klass: "session", action: action_name)
       else
         set_flash(errors: true, klass: "session", action: action_name)
       end
-      redirect_to Ektar.configuration.sign_out_path || Ektar.configuration.root_path || ektar.new_session_path
+      redirect_to Ektar.configuration.sign_out_path || Ektar.configuration.root_path || ektar.new_sessions_path
     end
   end
 end

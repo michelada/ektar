@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="box">
+    <h2><%= t(".title") %></h2>
+    <p><%= t(".info") %></p>
+    <%= form_with method: :patch, local: true, url: ektar.passwords_path do |form| %>
+      <%= hidden_field_tag :reset_password_token, @resource.reset_password_token %>
+
+      <div class="field">
+        <label class="label"><%= t(".password") %></label>
+        <div class="control">
+          <%= password_field_tag :password, nil, class: "input", maxlength: 16 %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label"><%= t(".password_confirmation") %></label>
+        <div class="control">
+          <%= password_field_tag :password_confirmation, nil, class: "input", maxlength: 16 %>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= form.submit t("form.passwords.submit", default: t("form.submit")), class: "button is-primary is-medium" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

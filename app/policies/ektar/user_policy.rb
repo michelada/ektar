@@ -4,14 +4,15 @@
 module Ektar
   class UserPolicy < ApplicationPolicy
     def index?
-      user_organization = user.present? && record.present?
-      admin_membership = false
+      super_admin? || admin_membership?
+    end
 
-      if user_organization
-        admin_membership = user.is_admin?(record)
-      end
+    def new?
+      super_admin? || admin_membership?
+    end
 
-      user_organization && admin_membership || user&.super_admin?
+    def destroy?
+      (super_admin? || admin_membership?) && (user != resource && user_membership?)
     end
   end
 end

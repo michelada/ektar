@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/bundler-audit/all/bundler-audit.rbi
 #
-# bundler-audit-0.6.1
+# bundler-audit-0.7.0.1
 
 module Bundler
 end
@@ -18,10 +18,14 @@ class Anonymous_Struct_419 < Struct
   def cve=(_); end
   def cvss_v2; end
   def cvss_v2=(_); end
+  def cvss_v3; end
+  def cvss_v3=(_); end
   def date; end
   def date=(_); end
   def description; end
   def description=(_); end
+  def ghsa; end
+  def ghsa=(_); end
   def id; end
   def id=(_); end
   def osvdb; end
@@ -44,6 +48,8 @@ end
 class Bundler::Audit::Advisory < Anonymous_Struct_419
   def criticality; end
   def cve_id; end
+  def ghsa_id; end
+  def identifiers; end
   def osvdb_id; end
   def patched?(version); end
   def self.load(path); end

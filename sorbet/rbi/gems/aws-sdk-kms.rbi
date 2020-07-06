@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/aws-sdk-kms/all/aws-sdk-kms.rbi
 #
-# aws-sdk-kms-1.30.0
+# aws-sdk-kms-1.36.0
 
 module Aws::KMS
 end

@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/actionmailer/all/actionmailer.rbi
 #
-# actionmailer-6.0.2.2
+# actionmailer-6.0.3.2
 
 module ActionMailer
   def self.eager_load!; end
@@ -85,7 +85,6 @@ end
 class ActionMailer::MessageDelivery < Delegator
   def __getobj__; end
   def __setobj__(mail_message); end
-  def arguments_for(delivery_job, delivery_method); end
   def deliver_later!(options = nil); end
   def deliver_later(options = nil); end
   def deliver_now!; end
@@ -111,7 +110,6 @@ class ActionMailer::Parameterized::DeliveryJob < ActionMailer::DeliveryJob
   def perform(mailer, mail_method, delivery_method, params, *args); end
 end
 class ActionMailer::Parameterized::MessageDelivery < ActionMailer::MessageDelivery
-  def arguments_for(delivery_job, delivery_method); end
   def delivery_job_class; end
   def enqueue_delivery(delivery_method, options = nil); end
   def initialize(mailer_class, action, params, *args); end
