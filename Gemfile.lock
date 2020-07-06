@@ -8,7 +8,7 @@ PATH
       pagy (~> 3.7.0)
       pg_search (~> 2.3.0)
       pundit (~> 2.1)
-      rails (~> 6.0.2)
+      rails (~> 6.0.3)
       sorbet-rails (~> 0.5.0)
       sorbet-runtime (~> 0.5.0)
 
