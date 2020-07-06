@@ -113,7 +113,7 @@ module ActiveJob::Arguments
   extend ActiveJob::Arguments
 end
 class Hash
-  def self._ruby2_keywords_hash(*args); end
+  def self.[](*arg0); end
   def self.ruby2_keywords_hash(hash); end
   def self.ruby2_keywords_hash?(hash); end
 end

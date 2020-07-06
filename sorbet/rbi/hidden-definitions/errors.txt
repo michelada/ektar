@@ -7008,7 +7008,7 @@
 # wrong constant name initialize
 # wrong constant name to_hash
 # wrong constant name <static-init>
-# undefined method `resolve<defaultArg>1' for class `#<Class:0x00007fc4bbbbf210>'
+# undefined method `resolve<defaultArg>1' for class `#<Class:0x00007fef75fbfe48>'
 # wrong constant name configurations
 # wrong constant name initialize
 # wrong constant name resolve<defaultArg>1
@@ -12360,6 +12360,28 @@
 # wrong constant name def_module
 # wrong constant name initialize<defaultArg>4
 # wrong constant name initialize<defaultArg>5
+# uninitialized constant Ektar::AcceptInvitationsController::ACTION_OPTIONS
+# uninitialized constant Ektar::AcceptInvitationsController::AUTHENTICITY_TOKEN_LENGTH
+# uninitialized constant Ektar::AcceptInvitationsController::CALLBACK_FILTER_TYPES
+# uninitialized constant Ektar::AcceptInvitationsController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
+# uninitialized constant Ektar::AcceptInvitationsController::DEFAULT_SEND_FILE_DISPOSITION
+# uninitialized constant Ektar::AcceptInvitationsController::DEFAULT_SEND_FILE_TYPE
+# uninitialized constant Ektar::AcceptInvitationsController::EXCLUDE_PARAMETERS
+# uninitialized constant Ektar::AcceptInvitationsController::MODULES
+# uninitialized constant Ektar::AcceptInvitationsController::NULL_ORIGIN_MESSAGE
+# uninitialized constant Ektar::AcceptInvitationsController::PROTECTED_IVARS
+# uninitialized constant Ektar::AcceptInvitationsController::REDIRECT_OPTIONS
+# uninitialized constant Ektar::AcceptInvitationsController::RENDERERS
+# uninitialized constant Ektar::AcceptInvitationsController::RENDER_FORMATS_IN_PRIORITY
+# uninitialized constant Ektar::AcceptInvitationsController::SUFFIX
+# uninitialized constant Ektar::AcceptInvitationsController::URL_OPTIONS
+# uninitialized constant Ektar::AcceptInvitationsController::VERSION
+# wrong constant name generate_invitation_token
+# wrong constant name generate_reset_password_token
+# wrong constant name token_from_url
+# wrong constant name token_to_url
+# wrong constant name verify_invitation_token_from_url
+# wrong constant name verify_reset_password_token_from_url
 # undefined method `create!<defaultArg>1' for class `Ektar::Admin::InvitationsController'
 # undefined method `new!<defaultArg>1' for class `Ektar::Admin::InvitationsController'
 # uninitialized constant Ektar::Admin::InvitationsController::ACTION_OPTIONS
@@ -12381,8 +12403,14 @@
 # uninitialized constant Ektar::Admin::InvitationsController::VERSION
 # wrong constant name create!<defaultArg>1
 # wrong constant name create!
+# wrong constant name generate_invitation_token
+# wrong constant name generate_reset_password_token
 # wrong constant name new!<defaultArg>1
 # wrong constant name new!
+# wrong constant name token_from_url
+# wrong constant name token_to_url
+# wrong constant name verify_invitation_token_from_url
+# wrong constant name verify_reset_password_token_from_url
 # undefined method `destroy!<defaultArg>1' for class `Ektar::Admin::UsersController'
 # undefined method `index!<defaultArg>1' for class `Ektar::Admin::UsersController'
 # undefined method `new<defaultArg>1' for class `Ektar::Admin::UsersController'
@@ -12558,6 +12586,28 @@
 # wrong constant name before_remove_for_users=
 # wrong constant name before_remove_for_users?
 # wrong constant name search_full
+# uninitialized constant Ektar::PasswordsController::ACTION_OPTIONS
+# uninitialized constant Ektar::PasswordsController::AUTHENTICITY_TOKEN_LENGTH
+# uninitialized constant Ektar::PasswordsController::CALLBACK_FILTER_TYPES
+# uninitialized constant Ektar::PasswordsController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
+# uninitialized constant Ektar::PasswordsController::DEFAULT_SEND_FILE_DISPOSITION
+# uninitialized constant Ektar::PasswordsController::DEFAULT_SEND_FILE_TYPE
+# uninitialized constant Ektar::PasswordsController::EXCLUDE_PARAMETERS
+# uninitialized constant Ektar::PasswordsController::MODULES
+# uninitialized constant Ektar::PasswordsController::NULL_ORIGIN_MESSAGE
+# uninitialized constant Ektar::PasswordsController::PROTECTED_IVARS
+# uninitialized constant Ektar::PasswordsController::REDIRECT_OPTIONS
+# uninitialized constant Ektar::PasswordsController::RENDERERS
+# uninitialized constant Ektar::PasswordsController::RENDER_FORMATS_IN_PRIORITY
+# uninitialized constant Ektar::PasswordsController::SUFFIX
+# uninitialized constant Ektar::PasswordsController::URL_OPTIONS
+# uninitialized constant Ektar::PasswordsController::VERSION
+# wrong constant name generate_invitation_token
+# wrong constant name generate_reset_password_token
+# wrong constant name token_from_url
+# wrong constant name token_to_url
+# wrong constant name verify_invitation_token_from_url
+# wrong constant name verify_reset_password_token_from_url
 # uninitialized constant Ektar::Plan::ACTIONS
 # uninitialized constant Ektar::Plan::CALLBACKS
 # uninitialized constant Ektar::Plan::CALLBACK_FILTER_TYPES
@@ -12608,6 +12658,28 @@
 # wrong constant name before_remove_for_organizations=
 # wrong constant name before_remove_for_organizations?
 # wrong constant name search_full
+# uninitialized constant Ektar::ResetPasswordsController::ACTION_OPTIONS
+# uninitialized constant Ektar::ResetPasswordsController::AUTHENTICITY_TOKEN_LENGTH
+# uninitialized constant Ektar::ResetPasswordsController::CALLBACK_FILTER_TYPES
+# uninitialized constant Ektar::ResetPasswordsController::DEFAULT_PROTECTED_INSTANCE_VARIABLES
+# uninitialized constant Ektar::ResetPasswordsController::DEFAULT_SEND_FILE_DISPOSITION
+# uninitialized constant Ektar::ResetPasswordsController::DEFAULT_SEND_FILE_TYPE
+# uninitialized constant Ektar::ResetPasswordsController::EXCLUDE_PARAMETERS
+# uninitialized constant Ektar::ResetPasswordsController::MODULES
+# uninitialized constant Ektar::ResetPasswordsController::NULL_ORIGIN_MESSAGE
+# uninitialized constant Ektar::ResetPasswordsController::PROTECTED_IVARS
+# uninitialized constant Ektar::ResetPasswordsController::REDIRECT_OPTIONS
+# uninitialized constant Ektar::ResetPasswordsController::RENDERERS
+# uninitialized constant Ektar::ResetPasswordsController::RENDER_FORMATS_IN_PRIORITY
+# uninitialized constant Ektar::ResetPasswordsController::SUFFIX
+# uninitialized constant Ektar::ResetPasswordsController::URL_OPTIONS
+# uninitialized constant Ektar::ResetPasswordsController::VERSION
+# wrong constant name generate_invitation_token
+# wrong constant name generate_reset_password_token
+# wrong constant name token_from_url
+# wrong constant name token_to_url
+# wrong constant name verify_invitation_token_from_url
+# wrong constant name verify_reset_password_token_from_url
 # uninitialized constant Ektar::UsedPassword::ACTIONS
 # uninitialized constant Ektar::UsedPassword::CALLBACKS
 # uninitialized constant Ektar::UsedPassword::CALLBACK_FILTER_TYPES
@@ -19295,7 +19367,7 @@
 # uninitialized constant Rails::Autoloaders::Elem
 # wrong constant name properties
 # wrong constant name properties=
-# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fc4b85bcaa0>'
+# undefined singleton method `property<defaultArg>1' for `#<Module:0x00007fef7cfe26d0>'
 # wrong constant name <static-init>
 # wrong constant name properties
 # wrong constant name properties=

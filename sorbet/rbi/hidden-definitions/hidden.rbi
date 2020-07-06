@@ -23994,12 +23994,38 @@ module ERB::Util
   JSON_ESCAPE_REGEXP = ::T.let(nil, ::T.untyped)
 end
 
+class Ektar::AcceptInvitationsController
+  def generate_invitation_token(*args, &blk); end
+
+  def generate_reset_password_token(*args, &blk); end
+
+  def token_from_url(*args, &blk); end
+
+  def token_to_url(*args, &blk); end
+
+  def verify_invitation_token_from_url(*args, &blk); end
+
+  def verify_reset_password_token_from_url(*args, &blk); end
+end
+
 class Ektar::Admin::InvitationsController
   include ::Ektar::Concerns::New
   include ::Ektar::Concerns::Create
   def create!(options=T.unsafe(nil), &block); end
 
+  def generate_invitation_token(*args, &blk); end
+
+  def generate_reset_password_token(*args, &blk); end
+
   def new!(options=T.unsafe(nil), &block); end
+
+  def token_from_url(*args, &blk); end
+
+  def token_to_url(*args, &blk); end
+
+  def verify_invitation_token_from_url(*args, &blk); end
+
+  def verify_reset_password_token_from_url(*args, &blk); end
 end
 
 class Ektar::Admin::UsersController
@@ -24026,6 +24052,11 @@ class Ektar::ApplicationController
 end
 
 module Ektar::ApplicationHelper
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Ektar::ApplicationMailer
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end
@@ -24305,6 +24336,20 @@ class Ektar::Organization
   def self.search_full(*args); end
 end
 
+class Ektar::PasswordsController
+  def generate_invitation_token(*args, &blk); end
+
+  def generate_reset_password_token(*args, &blk); end
+
+  def token_from_url(*args, &blk); end
+
+  def token_to_url(*args, &blk); end
+
+  def verify_invitation_token_from_url(*args, &blk); end
+
+  def verify_reset_password_token_from_url(*args, &blk); end
+end
+
 class Ektar::Plan
   def after_add_for_organizations(); end
 
@@ -24397,6 +24442,20 @@ class Ektar::Plan
   def self.before_remove_for_organizations?(); end
 
   def self.search_full(*args); end
+end
+
+class Ektar::ResetPasswordsController
+  def generate_invitation_token(*args, &blk); end
+
+  def generate_reset_password_token(*args, &blk); end
+
+  def token_from_url(*args, &blk); end
+
+  def token_to_url(*args, &blk); end
+
+  def verify_invitation_token_from_url(*args, &blk); end
+
+  def verify_reset_password_token_from_url(*args, &blk); end
 end
 
 module Ektar::ResourcefulHelper
@@ -38810,7 +38869,6 @@ module URI
 end
 
 class URI::FTP
-  include ::OpenURI::OpenRead
   def buffer_open(buf, proxy, options); end
 end
 
@@ -38839,7 +38897,6 @@ class URI::GID
 end
 
 class URI::HTTP
-  include ::OpenURI::OpenRead
   def buffer_open(buf, proxy, options); end
 end
 

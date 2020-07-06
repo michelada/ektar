@@ -170,20 +170,6 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def new_registration_url(*args, **kwargs); end
 
-  # Sigs for route /cambiar_contrasena(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def reset_password_index_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def reset_password_index_url(*args, **kwargs); end
-
-  # Sigs for route /cambiar_contrasena/new(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_reset_password_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_reset_password_url(*args, **kwargs); end
-
   # Sigs for route /seleccionar_organizacion(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def select_organization_index_path(*args, **kwargs); end
@@ -204,6 +190,20 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def select_organization_url(*args, **kwargs); end
+
+  # Sigs for route /restablecer_contrasena(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_reset_password_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_reset_password_url(*args, **kwargs); end
+
+  # Sigs for route /restablecer_contrasena(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def reset_password_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def reset_password_url(*args, **kwargs); end
 
   # Sigs for route /contrasena(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }

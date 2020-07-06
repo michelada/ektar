@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/money/all/money.rbi
 #
-# money-6.13.7
+# money-6.13.8
 
 class Money
   def allocate(parts); end
