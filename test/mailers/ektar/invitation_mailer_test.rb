@@ -1,4 +1,6 @@
 # typed: false
+# frozen_string_literal: true
+
 require "test_helper"
 
 module Ektar
@@ -6,6 +8,7 @@ module Ektar
     test "invite" do
       invitation = ektar_invitations(:pending_invitation)
       host = "https://ektar.io"
+
       subject = InvitationMailer.with(host: host, token: "3333", invitation: invitation).invite
 
       assert_emails 1 do

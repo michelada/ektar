@@ -14,6 +14,10 @@ es:
     ektar/invitation:
       submit: Invitar
 
+    reset_passwords:
+      submit: Enviar instrucciones
+      go_home: Ir al Inicio
+
     passwords:
       submit: Actualizar contraseña
 

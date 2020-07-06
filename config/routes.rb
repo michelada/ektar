@@ -1,13 +1,16 @@
 # typed: ignore
+# frozen_string_literal: true
+
 Ektar::Engine.routes.draw do
   root to: "select_organization#new"
 
   resource :sessions, path: I18n.t("routes.session"), only: [:new, :create, :destroy]
   resources :registrations, path: I18n.t("routes.registration"), only: [:new, :create]
-  resources :reset_password, path: I18n.t("routes.reset_password"), only: [:new, :create]
   resources :select_organization, path: I18n.t("routes.select_organization"), only: [:new, :create, :update]
 
-  # resource :passwords, path: I18n.t("routes.password"), only: [:edit, :update]
+  get I18n.t("routes.reset_password"), to: "reset_passwords#new", as: :new_reset_password
+  post I18n.t("routes.reset_password"), to: "reset_passwords#create", as: :reset_password
+
   get I18n.t("routes.password"), to: "passwords#edit", as: :edit_passwords
   patch I18n.t("routes.password"), to: "passwords#update", as: :passwords
 

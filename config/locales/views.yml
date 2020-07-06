@@ -7,10 +7,18 @@ es:
     add_user: Agregar usuario
 
   ektar:
+    reset_passwords:
+      new:
+        title: Restablecer contraseña
+        info: Introduzca el correo electrónico del cual desea restablecer su contraseña. Si su correo electrónico está registrado recibirá instrucciones para restablecer su contraseña.
+      create:
+        title: Restablecer contraseña
+        info: Revise su bandeja de correo electrónico por las instrucciones para restablecer su contraseña. No olvide revisar la bandeja de correo no deseado en caso de no encontrarlo en la bandeja principal.
+
     passwords:
       edit:
         title: Restablecer contraseña
-        info: "La contraseña necesita de al menos una mayúscula, una minúscula y un número."
+        info: La contraseña necesita de al menos una mayúscula, una minúscula y un número.
         password: Contraseña
         password_confirmation: Confirmación de contraseña
 

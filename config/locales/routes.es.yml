@@ -7,6 +7,6 @@ es:
     session: sesion
     invitations: invitaciones
     accept_invitation: "invitacion/(:token)"
-    reset_password: cambiar_contrasena
+    reset_password: restablecer_contrasena
     select_organization: seleccionar_organizacion
     password: contrasena

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="box">
+    <h2><%= t(".title") %></h2>
+    <p class="mt-3"><%= t(".info") %></p>
+    <%= form_with model: @resource, url: ektar.reset_password_path, local: true do |form| %>
+
+      <div class="field">
+        <label class="label"><%= form.label :email %></label>
+        <div class="control">
+          <%= form.text_field :email, class: "input", maxlength: 50 %>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= form.submit t("form.reset_passwords.submit", default: t("form.submit")), class: "button is-primary is-medium" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
