@@ -262,7 +262,7 @@ module Ektar
       invalid_resource = T.unsafe(object)&.errors&.any?
 
       set_flash options.merge(
-        klass: resource_class.model_name.element,
+        klass: resource_class.model_name.i18n_key,
         errors: invalid_resource
       )
 

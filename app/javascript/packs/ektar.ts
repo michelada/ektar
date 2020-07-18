@@ -1,9 +1,10 @@
 import "../images/ektar.svg";
 import "../images/organization-icon.svg";
-import "../stylesheets/application.scss";
 
 import "trix";
 import "@rails/actiontext";
+
+import "../stylesheets/application.scss";
 
 import Rails from "rails-ujs";
 import Turbolinks from "turbolinks";

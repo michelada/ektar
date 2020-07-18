@@ -11,4 +11,4 @@ node_modules/
 tmp/*/*/*
 .DS_Store
 .byebug_history
-public/**/*
+public/packs-test/**/*

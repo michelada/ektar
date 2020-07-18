@@ -20,7 +20,9 @@ module Ektar
           if current_user.super_admin?
             scope.where(super_admin: true)
           else
-            scope.joins(:memberships).where(ektar_memberships: {ektar_organization_id: current_organization}).order(created_at: :desc)
+            scope.includes(:memberships)
+              .where(ektar_memberships: {ektar_organization_id: current_organization})
+              .order(created_at: :desc)
           end
         end
       end
@@ -44,7 +46,7 @@ module Ektar
 
       sig { params(resource: ActiveRecord::Base).returns(String) }
       def resource_path(resource)
-        ektar.admin_users_path(resource)
+        ektar.admin_user_path(resource)
       end
 
       sig { params(resource: ActiveRecord::Base).returns(String) }

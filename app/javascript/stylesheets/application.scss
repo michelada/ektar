@@ -126,3 +126,15 @@ form {
     margin-top: 1rem;
   }
 }
+
+.textarea {
+  min-height: 12em;
+  overflow: scroll;
+  resize: none;
+}
+
+.no-upload {
+  .trix-button-group--file-tools {
+    display: none;
+  }
+}

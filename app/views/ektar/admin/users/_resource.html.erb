@@ -1,0 +1,19 @@
+<tr data-id="<%= resource.id %>">
+  <% list_attributes.each do |attribute| %>
+    <td>
+      <% if attribute == link_attribute %>
+        <%= link_to attribute_value(resource[attribute]), resource_path(resource) %>
+      <% else %>
+        <% if attribute == :blocked_at %>
+          <%= attribute_value(resource.memberships.first.blocked_at) %>
+        <% else %>
+          <%= attribute_value(resource[attribute] || resource.send(attribute)) %>
+        <% end %>
+      <% end %>
+    </td>
+  <% end %>
+
+  <% if current_user&.super_admin? || signed_in_admin_user? %>
+    <%= render partial: "actions", locals: { resource: resource } %>
+  <% end %>
+</tr>

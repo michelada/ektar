@@ -56,7 +56,8 @@ module Ektar
     def user_membership?
       return true if resource.nil?
 
-      resource.memberships.where(ektar_organization_id: organization.id, blocked_at: nil).exists?
+      membership = resource.memberships.detect { |membership| membership.ektar_organization_id == organization.id && membership.blocked_at.nil? }
+      membership.present?
     end
 
     def admin_membership?

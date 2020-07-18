@@ -35,3 +35,8 @@ es:
     mailers:
       invitation:
         subject: "Has sido invitado a la organización %{organization_name}"
+
+  errors:
+    attributes:
+      image:
+        oversize: El tamaño de la imagen excede el tamaño máximo permitido de 4mb.
