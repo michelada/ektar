@@ -1,13 +1,13 @@
 {
-  "ektar.js": "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js",
-  "ektar.js.map": "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js.map",
+  "ektar.js": "/ektar-packs/js/ektar-4fcccd92b960c8650d54.js",
+  "ektar.js.map": "/ektar-packs/js/ektar-4fcccd92b960c8650d54.js.map",
   "entrypoints": {
     "ektar": {
       "js": [
-        "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js"
+        "/ektar-packs/js/ektar-4fcccd92b960c8650d54.js"
       ],
       "js.map": [
-        "/ektar-packs/js/ektar-6dc38f47b8cac9ef89ba.js.map"
+        "/ektar-packs/js/ektar-4fcccd92b960c8650d54.js.map"
       ]
     }
   },

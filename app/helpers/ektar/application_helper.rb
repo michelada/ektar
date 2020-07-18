@@ -32,48 +32,48 @@ module Ektar
         value.body&.html_safe
       when Money
         "#{number_to_currency(value.fractional, unit: value.currency.symbol,
-                                                format: "%u%n",
-                                                separator: ".",
-                                                delimiter: ",")}
+        format: "%u%n",
+        separator: ".",
+        delimiter: ",")}
                                                 #{value.currency.iso_code} "
       else
         value
-      end
+        end
     end
 
     sig { returns(String) }
     def new_title
       model_name = resource_class.model_name
       I18n.t("index.new.#{model_name.i18n_key}",
-        default: I18n.t("index.new.name", resource_name: model_name.human(count: 1)))
+             default: I18n.t("index.new.name", resource_name: model_name.human(count: 1)))
     end
 
     sig { returns(String) }
     def edit_title
       model_name = resource_class.model_name
       I18n.t("edit.#{model_name.i18n_key}",
-        default: I18n.t("edit.name", resource_name: model_name.human(count: 1)))
+             default: I18n.t("edit.name", resource_name: model_name.human(count: 1)))
     end
 
     sig { returns(String) }
     def show_title
       model_name = resource_class.model_name
       I18n.t("show.#{model_name.i18n_key}",
-        default: I18n.t("show.name", resource_name: model_name.human(count: 1)))
+             default: I18n.t("show.name", resource_name: model_name.human(count: 1)))
     end
 
     sig { returns(String) }
     def edit_action
       model_name = resource_class.model_name
       I18n.t("index.actions.#{model_name.i18n_key}.edit",
-        default: I18n.t("index.actions.edit"))
+             default: I18n.t("index.actions.edit"))
     end
 
     sig { returns(String) }
     def delete_action
       model_name = resource_class.model_name
       I18n.t("index.actions.#{model_name.i18n_key}.delete",
-        default: I18n.t("index.actions.delete"))
+             default: I18n.t("index.actions.delete"))
     end
 
     sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(T::Hash[Symbol, T.untyped]) }
@@ -93,6 +93,15 @@ module Ektar
         placeholder: t("form.placeholders.#{key}.#{field_name}", default: ""),
         maxlength: t("form.maxlength.#{key}.#{field_name}", default: t("form.maxlength.size"))
       }
+    end
+
+    sig { params(model: ActiveRecord::Base, field: Symbol).returns(T.nilable(String)) }
+    def field_help(model, field:)
+      help = t("form.help.#{model.model_name.i18n_key}.#{field}", default: t("form.help.#{field}"))
+      help = "" if help.include?("translation missing:")
+
+      return content_tag(:p, help, class: "help") if help.present?
+      ""
     end
   end
 end

@@ -1,6 +1,6 @@
 <label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
 <% error = form.object.errors[attribute_name].first %>
-<div class="control">
+<div class="control <%= input_html[:class].include?('no-upload') ? 'no-upload' : '' %>">
   <%= form.rich_text_area attribute_name, input_html %>
   <% if error.present? %>
     <p class="help is-danger"><%= error %><p/>

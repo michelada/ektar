@@ -1,7 +1,11 @@
-<figure class="image is-128x128">
-  <% if resource_edit.image_profile.attached?%>
-    <%= image_tag main_app.url_for(resource_edit.image_profile), input_html %>
-  <% else%>
-    <%= image_tag "user.png", input_html %>
-  <% end %>
-</figure>
+<label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
+
+<div class="<%= input_html.fetch(:class, 'field-image') %>" data-max-size="<%= input_html.fetch(:"data-max-size", 4000) %>" data-target="photo.background" data-controller="photo" data-image="<%= photo_url(form.object, field: attribute_name) %>" data-validation="<%= t("errors.attributes.#{form.object.model_name.i18n_key}.#{attribute_name}.oversize", default: t("errors.attributes.image.oversize")) %>">
+  <a class="button is-medium" data-target="photo.button" data-action="photo#choose">
+    <%= image_tag asset_pack_path("media/images/photo.svg"), class: "icon is-medium" %>
+    <span data-target="photo.buttonText" data-change="<%= t('.change_image') %>" data-new="<%= t('.new_image') %>"></span>
+  </a>
+  <%= form.file_field attribute_name, multiple: false, direct_upload: true, class: "is-hidden", data: { target: "photo.image",  action: "change->photo#changeImage" }, accept: ".jpg,.jpeg,.png" %>
+</div>
+
+<%= field_help(form.object, field: attribute_name) %>

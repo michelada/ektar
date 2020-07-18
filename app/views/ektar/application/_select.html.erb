@@ -3,8 +3,9 @@
 
 <div class="control">
   <div class="select">
-    <%= form.select "#{attribute_name}".to_sym, options_for_select(options.is_a?(Proc) ? options.call(controller) : options, selected: input_html[:selected]), {}, input_html %>
+    <%= form.select "#{attribute_name}".to_sym, options_for_select(options.is_a?(Proc) ? options.call(controller) : options, selected: input_html[:selected] || form.object[attribute_name]), {}, input_html %>
   </div>
+  <%= field_help(form.object, field: attribute_name) %>
   <% if error.present? %>
     <p class="help is-danger"><%= error %></p>
   <% end %>
