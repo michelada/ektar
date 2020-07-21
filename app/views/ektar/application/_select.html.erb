@@ -1,9 +1,13 @@
+<%- select_options = {selected: options.fetch(:selected, form.object[attribute_name]), include_blank: options.fetch(:include_blank, false)} %>
+<%- select_values = options.fetch(:values, []) %>
+
 <label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
 <% error = form.object.errors[attribute_name].first %>
-
 <div class="control">
-  <div class="select">
-    <%= form.select "#{attribute_name}".to_sym, options_for_select(options.is_a?(Proc) ? options.call(controller) : options, selected: input_html[:selected] || form.object[attribute_name]), {}, input_html %>
+  <div class="select <%= input_html.delete(:class) %>">
+    <%= form.select "#{attribute_name}".to_sym,
+      options_for_select(select_values.is_a?(Proc) ? select_values.call(controller) : select_values, select_options[:selected]),
+      select_options, input_html %>
   </div>
   <%= field_help(form.object, field: attribute_name) %>
   <% if error.present? %>

@@ -1,16 +1,17 @@
 <%= render partial: "tools" %>
 
+<%- cell_width = (100-20)/list_attributes.size %>
 <table class="table is-fullwidth is-hoverable">
   <thead>
     <tr>
       <% list_attributes.each do |attribute| %>
-        <th>
+        <th style="width: <%= cell_width %>%;">
           <%= resource_class.human_attribute_name(attribute) %>
         </th>
       <% end %>
 
       <% if current_user&.super_admin? || current_user&.is_admin?(current_organization) %>
-        <th class="has-text-right"><%= t("index.actions.name") %></th>
+        <th style="width: 20%" class="has-text-right"><%= t("index.actions.name") %></th>
       <% end %>
     </tr>
   </thead>

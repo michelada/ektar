@@ -103,6 +103,10 @@ form {
   .spinner.is-loading {
     display: block;
   }
+
+  .group-fields {
+    margin-bottom: 0.75rem;
+  }
 }
 
 .user-actions {
@@ -137,4 +141,16 @@ form {
   .trix-button-group--file-tools {
     display: none;
   }
+}
+
+.field.is-three-quarters {
+  width: 75%;
+}
+
+.field.is-half {
+  width: 50%;
+}
+
+.field.is-one-quarter {
+  width: 25%;
 }
