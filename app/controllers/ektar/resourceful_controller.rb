@@ -141,9 +141,9 @@ module Ektar
       return nil if form_attributes.nil?
 
       form_attributes.each_pair do |field, attributes|
-        if attributes.is_a?(Hash) && attributes[:type] == :select && attributes[:options].is_a?(Symbol)
-          method_name = attributes[:options]
-          attributes[:options] = method_name.to_proc
+        if attributes.is_a?(Hash) && attributes[:type] == :select && attributes.dig(:options, :values).is_a?(Symbol)
+          method_name = attributes.dig(:options, :values)
+          attributes[:options][:values] = method_name.to_proc
         end
       end
 

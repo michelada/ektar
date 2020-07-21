@@ -29,7 +29,7 @@ module Ektar
       when ActiveSupport::TimeWithZone, Date
         I18n.l value, format: :short
       when ActionText::RichText
-        value.body&.html_safe
+        value.to_plain_text.truncate_words(40)
       when Money
         "#{number_to_currency(value.fractional, unit: value.currency.symbol,
         format: "%u%n",
@@ -38,7 +38,7 @@ module Ektar
                                                 #{value.currency.iso_code} "
       else
         value
-        end
+      end
     end
 
     sig { returns(String) }
@@ -78,8 +78,7 @@ module Ektar
 
     sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(T::Hash[Symbol, T.untyped]) }
     def field_attributes(attributes = {})
-      attrs = attributes.dup
-      control_html = attrs.fetch(:control_html, {})
+      control_html = attributes.fetch(:control_html, {})
       css_class = control_html.delete(:class)
       control_html[:class] = css_class&.include?("group-fields") ? css_class : "field #{css_class}"
       control_html
