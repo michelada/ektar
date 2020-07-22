@@ -10,17 +10,15 @@ module Ektar
 
       included do
         def update(options = {}, &block)
-          @resource ||=
-            begin
-              resource = resource_class.find_by(find_by_param => params[:id])
+          @resource ||= begin
+            local_resource = resource_class.find_by(find_by_param => params[:id])
 
-              authorize current_organization, policy_class: policy_class if policy_class.present?
+            authorize current_organization, policy_class: policy_class if policy_class.present?
 
-              resource.update(resource_secure_params)
-              resource
-            end
-
-          set_resource_ivar @resource
+            local_resource.update(resource_secure_params)
+            set_resource_ivar local_resource
+            local_resource
+          end
 
           options[:location] = collection_path
           options[:action] = :update
