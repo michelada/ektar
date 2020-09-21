@@ -1,7 +1,8 @@
 es:
   form:
+    submit: 
+      save: "Guardar"
     back: "Regresar"
-    submit: "Guardar"
     cancel: "Cancelar"
     edit: "Editar"
     delete: "Eliminar"
