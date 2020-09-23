@@ -6,14 +6,14 @@ es:
       subject: Restablecer contraseña
       body_html: >
         <p>Hola</p>
-        <p>Has solicitado restabler tu contraseña. Realiza tu cambio de contraseña con este <a href="%{reset_password_link}">enlace</a> y sigue las indicaciones.</p>
-        <p>Si tu no solicitaste restablecer tu contraseña solo borra este corre y nunca se lo envies a alguien.</p>
+        <p>Has solicitado reestabler tu contraseña. Realiza tu cambio de contraseña con este <a href="%{reset_password_link}">enlace</a> y sigue las indicaciones.</p>
+        <p>Si tu no solicitaste restablecer tu contraseña solo borra este correo y nunca se lo envies a otra persona.</p>
       body_text: >
         Hola
 
-        Has solicitado restablecer tu contraseña. Realiza tu cambio de contraseña con el siguiente enlace %{reset_password_link}.
+        Has solicitado reestablecer tu contraseña. Realiza tu cambio de contraseña con el siguiente enlace %{reset_password_link}.
 
-        Si tu no solicitaste restablecer tu contraseña solo borra este correo y nunca se lo envies a alguien.
+        Si tu no solicitaste restablecer tu contraseña solo borra este correo y nunca se lo envies a otra persona.
 
     invitation:
       subject: Te han invitado para unirte a %{organization_name}

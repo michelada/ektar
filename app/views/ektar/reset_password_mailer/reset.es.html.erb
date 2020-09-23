@@ -1,4 +1,4 @@
 <%= I18n.t(
   "mailers.reset_password.body_html",
-  reset_password_link: new_reset_password_url(token: CGI.escape(@user.reset_password_token), **@url_options)
+  reset_password_link: edit_passwords_url(token: CGI.escape(@user.reset_password_token), **@url_options)
 ).html_safe %>
