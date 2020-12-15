@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 require "webpacker/helper"
 require "pagy"
 
@@ -23,9 +23,9 @@ module Ektar
     def attribute_value(value)
       case value
       when TrueClass
-        I18n.t("true_value")
+        I18n.t("yes_value")
       when FalseClass
-        I18n.t("false_value")
+        I18n.t("no_value")
       when ActiveSupport::TimeWithZone, Date
         I18n.l value, format: :short
       when ActionText::RichText
@@ -76,24 +76,30 @@ module Ektar
              default: I18n.t("index.actions.delete"))
     end
 
-    sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(T::Hash[Symbol, T.untyped]) }
-    def field_attributes(attributes = {})
-      control_html = attributes.fetch(:control_html, {})
-      css_class = control_html.delete(:class)
-      control_html[:class] = css_class&.include?("group-fields") ? css_class : "field #{css_class}"
-      control_html
+    sig { params(attributes: T.any(Symbol, T::Hash[Symbol, T.untyped])).returns(T::Hash[Symbol, T.untyped]) }
+    def field_attributes(attributes)
+      if attributes.is_a?(Hash)
+        control_html = attributes.fetch(:control_html, {})
+        css_class = control_html.delete(:class)
+        control_html[:class] = css_class&.include?("group-fields") ? css_class : "field #{css_class}"
+        return control_html
+      end
+      {}
     end
 
-    sig { params(field_name: T.any(Symbol, String)).returns(T::Hash[Symbol, T.untyped]) }
-    def input_attributes(field_name)
+    sig { params(field_name: T.any(Symbol, String), input_type: T.any(Symbol, String), css_classes: T.nilable(String)).returns(T::Hash[Symbol, T.untyped]) }
+    def input_attributes(field_name, input_type, css_classes = "")
+      css_classes = [input_type, field_name] + (css_classes&.split(" ") || [])
       key = resource_class.model_name.i18n_key
+
       {
-        class: "input",
+        class: css_classes.uniq.join(" "),
         placeholder: t("form.placeholders.#{key}.#{field_name}", default: ""),
         maxlength: t("form.maxlength.#{key}.#{field_name}", default: t("form.maxlength.size"))
       }
     end
 
+    # TODO: This API is not consistent with #input_attributes
     sig { params(model: ActiveRecord::Base, field: Symbol).returns(T.nilable(String)) }
     def field_help(model, field:)
       help = t("form.help.#{model.model_name.i18n_key}.#{field}", default: t("form.help.#{field}"))

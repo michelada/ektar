@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 # frozen_string_literal: true
 
 module Ektar
@@ -6,10 +6,12 @@ module Ektar
     class OrganizationsController < ApplicationController
       extend T::Sig
 
-      resourceful(list_attributes: %i[id name enable updated_at],
+      resourceful(list_attributes: %i[name enable updated_at],
                   form_attributes: {name: :input, enable: :checkbox},
                   show_attributes: %i[name enable updated_at],
                   find_by: :global_id,
+                  only: [:index, :show, :destroy],
+                  namespace: :super_admin,
                   resource_class: Ektar::Organization,
                   policy_class: Ektar::OrganizationPolicy)
 

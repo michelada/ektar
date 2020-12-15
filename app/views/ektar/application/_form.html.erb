@@ -1,23 +1,26 @@
 <div class="columns">
   <div class="column is-half">
-    <%= form_with(model: [namespace, resource].compact, data: {controller: "remote-form", target: "remote-form.form entries.form", action: "submit->remote-form#didSubmit ajax:error->remote-form#formError"}) do |form| %>
+    <% form_params = {local: false, data: {controller: "remote-form", target: "remote-form.form entries.form", action: "submit->remote-form#didSubmit ajax:error->remote-form#formError"}} %>
+    <% form_params[:url] = form_url if form_url.present? %>
+    <%= form_with(model: [namespace, resource].compact, **form_params) do |form| %>
 
       <div class="container" data-target="remote-form.notification">
       </div>
 
       <% form_attributes.each do |attribute_name, attribute_options|%>
-        <%= content_tag(:div, field_attributes(attribute_options)) do %>
-          <%= render partial: "#{attribute_options.fetch(:type, :input)}",
+        <% normalized_attribute_options = attribute_options.is_a?(Symbol) ? {type: attribute_options} : attribute_options.deep_dup %>
+        <%= content_tag(:div, field_attributes(normalized_attribute_options)) do %>
+          <%= render partial: "#{normalized_attribute_options.fetch(:type, :input)}",
             locals: { attribute_name: attribute_name,
                       form: form,
-                      input_html: attribute_options.fetch(:input_html, {}),
-                      options: attribute_options.fetch(:options, {}) } %>
+                      input_html: normalized_attribute_options.fetch(:input_html, {}),
+                      options: normalized_attribute_options.fetch(:options, {}) } %>
         <% end %>
       <% end %>
 
       <div class="field spinner" data-target="remote-form.spinner">
         <div class="control has-text-centered">
-          <%= image_tag asset_pack_path("media/images/spinner.gif") %>
+          <%#= image_tag asset_pack_path("media/images/spinner.gif") %>
         </div>
       </div>
 

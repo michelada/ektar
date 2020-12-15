@@ -1,22 +1,36 @@
-# typed: strict
+# typed: false
 # frozen_string_literal: true
 
 module Ektar
   module SuperAdmin
     class PlansController < ApplicationController
-      extend T::Sig
-
       resourceful(list_attributes: %i[name price active updated_at],
                   form_attributes: {name: :input,
                                     description: :rich_text,
-                                    active: :checkbox,
-                                    trial: :input,
                                     free: :checkbox,
-                                    price_cents: :number,
-                                    price_currency: :currency},
-                  show_attributes: %i[name description free trial active price],
-                  resource_class: Ektar::Plan,
-                  policy_class: Ektar::PlanPolicy)
+                                    trial: {type: :number, options: {control: {control_css: "is-one-quarter"}}},
+                                    price: {type: :number, options: {control: {control_css: "is-one-quarter"}}},
+                                    price_currency: :currency,
+                                    active: :checkbox},
+                  show_attributes: %i[name description free trial price active],
+                  except: [:show],
+                  namespace: :super_admin,
+                  policy_class: Ektar::PlanPolicy,
+                  resource_class: Ektar::Plan)
+
+      sig { void }
+      def create
+        create! do |success|
+          success.response { redirect_to super_admin_plans_path }
+        end
+      end
+
+      sig { void }
+      def update
+        update! do |success|
+          success.response { redirect_to super_admin_plans_path }
+        end
+      end
 
       sig { void }
       def destroy

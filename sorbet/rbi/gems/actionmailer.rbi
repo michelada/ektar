@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/actionmailer/all/actionmailer.rbi
 #
-# actionmailer-6.0.3.2
+# actionmailer-6.0.3.3
 
 module ActionMailer
   def self.eager_load!; end
@@ -70,7 +70,7 @@ module ActionMailer::DeliveryMethods
 end
 module ActionMailer::DeliveryMethods::ClassMethods
   def add_delivery_method(symbol, klass, default_options = nil); end
-  def deliveries(*args, &block); end
+  def deliveries(**, &&); end
   def deliveries=(arg); end
   def wrap_delivery_behavior(mail, method = nil, options = nil); end
 end

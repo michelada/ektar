@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar-brand">
       <%= link_to ektar.root_path, class: "navbar-item" do %>
-        <img src="<%= asset_pack_path('media/images/ektar.svg') %>" heigth="25" width="128" />
+        <p><strong><%= Ektar.configuration.title %></strong></p>
       <% end %>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
@@ -32,9 +32,11 @@
 
     <div class="navbar-end">
       <% if user_signed_in? %>
-        <div class="navbar-item">
-          <strong><%= current_organization.name %></strong>
-        </div>
+        <% if current_organization.present? %>
+          <div class="navbar-item">
+            <strong><%= current_organization.name %></strong>
+          </div>
+        <% end %>
         <div class="navbar-item has-dropdown is-hoverable">
           <% user_name = current_user.super_admin? ? t(".admin") : current_user.email %>
 
@@ -51,7 +53,7 @@
               <hr class="navbar-divider">
             <% end %>
 
-            <%= link_to t(".logout"), ektar.session_path(current_user.global_id), method: :delete, class: "navbar-item" %>
+            <%= link_to t(".logout"), ektar.sessions_path(current_user.global_id), method: :delete, class: "navbar-item" %>
           </div>
         </div>
       <% else %>

@@ -1,7 +1,11 @@
 <label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
 <% error = form.object.errors[attribute_name].first %>
-<div class="control <%= input_html[:class].include?('no-upload') ? 'no-upload' : '' %>">
-  <%= form.rich_text_area attribute_name, input_html %>
+
+<% css_classes = input_html.fetch(:class, "") %>
+<% control_classes = css_classes.split(" ").select{|klass| klass == "no-upload" || klass == "basic-toolbar"}.join(" ") %>
+
+<div class="control <%= control_classes %>">
+  <%= form.rich_text_area attribute_name, input_attributes(attribute_name, :textarea, input_html.delete(:class)).deep_merge(input_html)%>
   <% if error.present? %>
     <p class="help is-danger"><%= error %><p/>
   <% end %>

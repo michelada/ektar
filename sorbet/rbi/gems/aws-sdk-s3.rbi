@@ -7,13 +7,13 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/aws-sdk-s3/all/aws-sdk-s3.rbi
 #
-# aws-sdk-s3-1.73.0
+# aws-sdk-s3-1.81.0
 
 module Aws::S3
 end
 module Aws::S3::Types
 end
-class Anonymous_Struct_155 < Struct
+class Anonymous_Struct_170 < Struct
   def days_after_initiation; end
   def days_after_initiation=(_); end
   def self.[](*arg0); end
@@ -21,10 +21,10 @@ class Anonymous_Struct_155 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::AbortIncompleteMultipartUpload < Anonymous_Struct_155
+class Aws::S3::Types::AbortIncompleteMultipartUpload < Anonymous_Struct_170
   include Aws::Structure
 end
-class Anonymous_Struct_156 < Struct
+class Anonymous_Struct_171 < Struct
   def request_charged; end
   def request_charged=(_); end
   def self.[](*arg0); end
@@ -32,12 +32,14 @@ class Anonymous_Struct_156 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::AbortMultipartUploadOutput < Anonymous_Struct_156
+class Aws::S3::Types::AbortMultipartUploadOutput < Anonymous_Struct_171
   include Aws::Structure
 end
-class Anonymous_Struct_157 < Struct
+class Anonymous_Struct_172 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def request_payer; end
@@ -49,10 +51,10 @@ class Anonymous_Struct_157 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::AbortMultipartUploadRequest < Anonymous_Struct_157
+class Aws::S3::Types::AbortMultipartUploadRequest < Anonymous_Struct_172
   include Aws::Structure
 end
-class Anonymous_Struct_158 < Struct
+class Anonymous_Struct_173 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -60,10 +62,10 @@ class Anonymous_Struct_158 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::AccelerateConfiguration < Anonymous_Struct_158
+class Aws::S3::Types::AccelerateConfiguration < Anonymous_Struct_173
   include Aws::Structure
 end
-class Anonymous_Struct_159 < Struct
+class Anonymous_Struct_174 < Struct
   def grants; end
   def grants=(_); end
   def owner; end
@@ -73,10 +75,10 @@ class Anonymous_Struct_159 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::AccessControlPolicy < Anonymous_Struct_159
+class Aws::S3::Types::AccessControlPolicy < Anonymous_Struct_174
   include Aws::Structure
 end
-class Anonymous_Struct_160 < Struct
+class Anonymous_Struct_175 < Struct
   def owner; end
   def owner=(_); end
   def self.[](*arg0); end
@@ -84,10 +86,10 @@ class Anonymous_Struct_160 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::AccessControlTranslation < Anonymous_Struct_160
+class Aws::S3::Types::AccessControlTranslation < Anonymous_Struct_175
   include Aws::Structure
 end
-class Anonymous_Struct_161 < Struct
+class Anonymous_Struct_176 < Struct
   def prefix; end
   def prefix=(_); end
   def self.[](*arg0); end
@@ -97,10 +99,10 @@ class Anonymous_Struct_161 < Struct
   def tags; end
   def tags=(_); end
 end
-class Aws::S3::Types::AnalyticsAndOperator < Anonymous_Struct_161
+class Aws::S3::Types::AnalyticsAndOperator < Anonymous_Struct_176
   include Aws::Structure
 end
-class Anonymous_Struct_162 < Struct
+class Anonymous_Struct_177 < Struct
   def filter; end
   def filter=(_); end
   def id; end
@@ -112,10 +114,10 @@ class Anonymous_Struct_162 < Struct
   def storage_class_analysis; end
   def storage_class_analysis=(_); end
 end
-class Aws::S3::Types::AnalyticsConfiguration < Anonymous_Struct_162
+class Aws::S3::Types::AnalyticsConfiguration < Anonymous_Struct_177
   include Aws::Structure
 end
-class Anonymous_Struct_163 < Struct
+class Anonymous_Struct_178 < Struct
   def s3_bucket_destination; end
   def s3_bucket_destination=(_); end
   def self.[](*arg0); end
@@ -123,10 +125,10 @@ class Anonymous_Struct_163 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::AnalyticsExportDestination < Anonymous_Struct_163
+class Aws::S3::Types::AnalyticsExportDestination < Anonymous_Struct_178
   include Aws::Structure
 end
-class Anonymous_Struct_164 < Struct
+class Anonymous_Struct_179 < Struct
   def and; end
   def and=(_); end
   def prefix; end
@@ -138,10 +140,10 @@ class Anonymous_Struct_164 < Struct
   def tag; end
   def tag=(_); end
 end
-class Aws::S3::Types::AnalyticsFilter < Anonymous_Struct_164
+class Aws::S3::Types::AnalyticsFilter < Anonymous_Struct_179
   include Aws::Structure
 end
-class Anonymous_Struct_165 < Struct
+class Anonymous_Struct_180 < Struct
   def bucket; end
   def bucket=(_); end
   def bucket_account_id; end
@@ -155,10 +157,10 @@ class Anonymous_Struct_165 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::AnalyticsS3BucketDestination < Anonymous_Struct_165
+class Aws::S3::Types::AnalyticsS3BucketDestination < Anonymous_Struct_180
   include Aws::Structure
 end
-class Anonymous_Struct_166 < Struct
+class Anonymous_Struct_181 < Struct
   def creation_date; end
   def creation_date=(_); end
   def name; end
@@ -168,14 +170,14 @@ class Anonymous_Struct_166 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Bucket < Anonymous_Struct_166
+class Aws::S3::Types::Bucket < Anonymous_Struct_181
   include Aws::Structure
 end
 class Aws::S3::Types::BucketAlreadyExists < Aws::EmptyStructure
 end
 class Aws::S3::Types::BucketAlreadyOwnedByYou < Aws::EmptyStructure
 end
-class Anonymous_Struct_167 < Struct
+class Anonymous_Struct_182 < Struct
   def rules; end
   def rules=(_); end
   def self.[](*arg0); end
@@ -183,10 +185,10 @@ class Anonymous_Struct_167 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::BucketLifecycleConfiguration < Anonymous_Struct_167
+class Aws::S3::Types::BucketLifecycleConfiguration < Anonymous_Struct_182
   include Aws::Structure
 end
-class Anonymous_Struct_168 < Struct
+class Anonymous_Struct_183 < Struct
   def logging_enabled; end
   def logging_enabled=(_); end
   def self.[](*arg0); end
@@ -194,10 +196,10 @@ class Anonymous_Struct_168 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::BucketLoggingStatus < Anonymous_Struct_168
+class Aws::S3::Types::BucketLoggingStatus < Anonymous_Struct_183
   include Aws::Structure
 end
-class Anonymous_Struct_169 < Struct
+class Anonymous_Struct_184 < Struct
   def cors_rules; end
   def cors_rules=(_); end
   def self.[](*arg0); end
@@ -205,10 +207,10 @@ class Anonymous_Struct_169 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CORSConfiguration < Anonymous_Struct_169
+class Aws::S3::Types::CORSConfiguration < Anonymous_Struct_184
   include Aws::Structure
 end
-class Anonymous_Struct_170 < Struct
+class Anonymous_Struct_185 < Struct
   def allowed_headers; end
   def allowed_headers=(_); end
   def allowed_methods; end
@@ -224,10 +226,10 @@ class Anonymous_Struct_170 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CORSRule < Anonymous_Struct_170
+class Aws::S3::Types::CORSRule < Anonymous_Struct_185
   include Aws::Structure
 end
-class Anonymous_Struct_171 < Struct
+class Anonymous_Struct_186 < Struct
   def allow_quoted_record_delimiter; end
   def allow_quoted_record_delimiter=(_); end
   def comments; end
@@ -247,10 +249,10 @@ class Anonymous_Struct_171 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CSVInput < Anonymous_Struct_171
+class Aws::S3::Types::CSVInput < Anonymous_Struct_186
   include Aws::Structure
 end
-class Anonymous_Struct_172 < Struct
+class Anonymous_Struct_187 < Struct
   def field_delimiter; end
   def field_delimiter=(_); end
   def quote_character; end
@@ -266,10 +268,10 @@ class Anonymous_Struct_172 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CSVOutput < Anonymous_Struct_172
+class Aws::S3::Types::CSVOutput < Anonymous_Struct_187
   include Aws::Structure
 end
-class Anonymous_Struct_173 < Struct
+class Anonymous_Struct_188 < Struct
   def cloud_function; end
   def cloud_function=(_); end
   def event; end
@@ -285,10 +287,10 @@ class Anonymous_Struct_173 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CloudFunctionConfiguration < Anonymous_Struct_173
+class Aws::S3::Types::CloudFunctionConfiguration < Anonymous_Struct_188
   include Aws::Structure
 end
-class Anonymous_Struct_174 < Struct
+class Anonymous_Struct_189 < Struct
   def prefix; end
   def prefix=(_); end
   def self.[](*arg0); end
@@ -296,10 +298,10 @@ class Anonymous_Struct_174 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CommonPrefix < Anonymous_Struct_174
+class Aws::S3::Types::CommonPrefix < Anonymous_Struct_189
   include Aws::Structure
 end
-class Anonymous_Struct_175 < Struct
+class Anonymous_Struct_190 < Struct
   def bucket; end
   def bucket=(_); end
   def etag; end
@@ -323,12 +325,14 @@ class Anonymous_Struct_175 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::CompleteMultipartUploadOutput < Anonymous_Struct_175
+class Aws::S3::Types::CompleteMultipartUploadOutput < Anonymous_Struct_190
   include Aws::Structure
 end
-class Anonymous_Struct_176 < Struct
+class Anonymous_Struct_191 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def multipart_upload; end
@@ -342,10 +346,10 @@ class Anonymous_Struct_176 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::CompleteMultipartUploadRequest < Anonymous_Struct_176
+class Aws::S3::Types::CompleteMultipartUploadRequest < Anonymous_Struct_191
   include Aws::Structure
 end
-class Anonymous_Struct_177 < Struct
+class Anonymous_Struct_192 < Struct
   def parts; end
   def parts=(_); end
   def self.[](*arg0); end
@@ -353,10 +357,10 @@ class Anonymous_Struct_177 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CompletedMultipartUpload < Anonymous_Struct_177
+class Aws::S3::Types::CompletedMultipartUpload < Anonymous_Struct_192
   include Aws::Structure
 end
-class Anonymous_Struct_178 < Struct
+class Anonymous_Struct_193 < Struct
   def etag; end
   def etag=(_); end
   def part_number; end
@@ -366,10 +370,10 @@ class Anonymous_Struct_178 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CompletedPart < Anonymous_Struct_178
+class Aws::S3::Types::CompletedPart < Anonymous_Struct_193
   include Aws::Structure
 end
-class Anonymous_Struct_179 < Struct
+class Anonymous_Struct_194 < Struct
   def http_error_code_returned_equals; end
   def http_error_code_returned_equals=(_); end
   def key_prefix_equals; end
@@ -379,10 +383,10 @@ class Anonymous_Struct_179 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Condition < Anonymous_Struct_179
+class Aws::S3::Types::Condition < Anonymous_Struct_194
   include Aws::Structure
 end
-class Anonymous_Struct_180 < Struct
+class Anonymous_Struct_195 < Struct
   def event_type; end
   def event_type=(_); end
   def self.[](*arg0); end
@@ -390,10 +394,10 @@ class Anonymous_Struct_180 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ContinuationEvent < Anonymous_Struct_180
+class Aws::S3::Types::ContinuationEvent < Anonymous_Struct_195
   include Aws::Structure
 end
-class Anonymous_Struct_181 < Struct
+class Anonymous_Struct_196 < Struct
   def copy_object_result; end
   def copy_object_result=(_); end
   def copy_source_version_id; end
@@ -419,10 +423,10 @@ class Anonymous_Struct_181 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::CopyObjectOutput < Anonymous_Struct_181
+class Aws::S3::Types::CopyObjectOutput < Anonymous_Struct_196
   include Aws::Structure
 end
-class Anonymous_Struct_182 < Struct
+class Anonymous_Struct_197 < Struct
   def acl; end
   def acl=(_); end
   def bucket; end
@@ -453,6 +457,10 @@ class Anonymous_Struct_182 < Struct
   def copy_source_sse_customer_key=(_); end
   def copy_source_sse_customer_key_md5; end
   def copy_source_sse_customer_key_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
+  def expected_source_bucket_owner; end
+  def expected_source_bucket_owner=(_); end
   def expires; end
   def expires=(_); end
   def grant_full_control; end
@@ -502,10 +510,10 @@ class Anonymous_Struct_182 < Struct
   def website_redirect_location; end
   def website_redirect_location=(_); end
 end
-class Aws::S3::Types::CopyObjectRequest < Anonymous_Struct_182
+class Aws::S3::Types::CopyObjectRequest < Anonymous_Struct_197
   include Aws::Structure
 end
-class Anonymous_Struct_183 < Struct
+class Anonymous_Struct_198 < Struct
   def etag; end
   def etag=(_); end
   def last_modified; end
@@ -515,10 +523,10 @@ class Anonymous_Struct_183 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CopyObjectResult < Anonymous_Struct_183
+class Aws::S3::Types::CopyObjectResult < Anonymous_Struct_198
   include Aws::Structure
 end
-class Anonymous_Struct_184 < Struct
+class Anonymous_Struct_199 < Struct
   def etag; end
   def etag=(_); end
   def last_modified; end
@@ -528,10 +536,10 @@ class Anonymous_Struct_184 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CopyPartResult < Anonymous_Struct_184
+class Aws::S3::Types::CopyPartResult < Anonymous_Struct_199
   include Aws::Structure
 end
-class Anonymous_Struct_185 < Struct
+class Anonymous_Struct_200 < Struct
   def location_constraint; end
   def location_constraint=(_); end
   def self.[](*arg0); end
@@ -539,10 +547,10 @@ class Anonymous_Struct_185 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CreateBucketConfiguration < Anonymous_Struct_185
+class Aws::S3::Types::CreateBucketConfiguration < Anonymous_Struct_200
   include Aws::Structure
 end
-class Anonymous_Struct_186 < Struct
+class Anonymous_Struct_201 < Struct
   def location; end
   def location=(_); end
   def self.[](*arg0); end
@@ -550,10 +558,10 @@ class Anonymous_Struct_186 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CreateBucketOutput < Anonymous_Struct_186
+class Aws::S3::Types::CreateBucketOutput < Anonymous_Struct_201
   include Aws::Structure
 end
-class Anonymous_Struct_187 < Struct
+class Anonymous_Struct_202 < Struct
   def acl; end
   def acl=(_); end
   def bucket; end
@@ -577,10 +585,10 @@ class Anonymous_Struct_187 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::CreateBucketRequest < Anonymous_Struct_187
+class Aws::S3::Types::CreateBucketRequest < Anonymous_Struct_202
   include Aws::Structure
 end
-class Anonymous_Struct_188 < Struct
+class Anonymous_Struct_203 < Struct
   def abort_date; end
   def abort_date=(_); end
   def abort_rule_id; end
@@ -608,10 +616,10 @@ class Anonymous_Struct_188 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::CreateMultipartUploadOutput < Anonymous_Struct_188
+class Aws::S3::Types::CreateMultipartUploadOutput < Anonymous_Struct_203
   include Aws::Structure
 end
-class Anonymous_Struct_189 < Struct
+class Anonymous_Struct_204 < Struct
   def acl; end
   def acl=(_); end
   def bucket; end
@@ -626,6 +634,8 @@ class Anonymous_Struct_189 < Struct
   def content_language=(_); end
   def content_type; end
   def content_type=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def expires; end
   def expires=(_); end
   def grant_full_control; end
@@ -671,10 +681,10 @@ class Anonymous_Struct_189 < Struct
   def website_redirect_location; end
   def website_redirect_location=(_); end
 end
-class Aws::S3::Types::CreateMultipartUploadRequest < Anonymous_Struct_189
+class Aws::S3::Types::CreateMultipartUploadRequest < Anonymous_Struct_204
   include Aws::Structure
 end
-class Anonymous_Struct_190 < Struct
+class Anonymous_Struct_205 < Struct
   def days; end
   def days=(_); end
   def mode; end
@@ -686,10 +696,10 @@ class Anonymous_Struct_190 < Struct
   def years; end
   def years=(_); end
 end
-class Aws::S3::Types::DefaultRetention < Anonymous_Struct_190
+class Aws::S3::Types::DefaultRetention < Anonymous_Struct_205
   include Aws::Structure
 end
-class Anonymous_Struct_191 < Struct
+class Anonymous_Struct_206 < Struct
   def objects; end
   def objects=(_); end
   def quiet; end
@@ -699,12 +709,14 @@ class Anonymous_Struct_191 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Delete < Anonymous_Struct_191
+class Aws::S3::Types::Delete < Anonymous_Struct_206
   include Aws::Structure
 end
-class Anonymous_Struct_192 < Struct
+class Anonymous_Struct_207 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def self.[](*arg0); end
@@ -712,34 +724,40 @@ class Anonymous_Struct_192 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketAnalyticsConfigurationRequest < Anonymous_Struct_192
+class Aws::S3::Types::DeleteBucketAnalyticsConfigurationRequest < Anonymous_Struct_207
   include Aws::Structure
 end
-class Anonymous_Struct_193 < Struct
+class Anonymous_Struct_208 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketCorsRequest < Anonymous_Struct_193
+class Aws::S3::Types::DeleteBucketCorsRequest < Anonymous_Struct_208
   include Aws::Structure
 end
-class Anonymous_Struct_194 < Struct
+class Anonymous_Struct_209 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketEncryptionRequest < Anonymous_Struct_194
+class Aws::S3::Types::DeleteBucketEncryptionRequest < Anonymous_Struct_209
   include Aws::Structure
 end
-class Anonymous_Struct_195 < Struct
+class Anonymous_Struct_210 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def self.[](*arg0); end
@@ -747,23 +765,27 @@ class Anonymous_Struct_195 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketInventoryConfigurationRequest < Anonymous_Struct_195
+class Aws::S3::Types::DeleteBucketInventoryConfigurationRequest < Anonymous_Struct_210
   include Aws::Structure
 end
-class Anonymous_Struct_196 < Struct
+class Anonymous_Struct_211 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketLifecycleRequest < Anonymous_Struct_196
+class Aws::S3::Types::DeleteBucketLifecycleRequest < Anonymous_Struct_211
   include Aws::Structure
 end
-class Anonymous_Struct_197 < Struct
+class Anonymous_Struct_212 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def self.[](*arg0); end
@@ -771,65 +793,75 @@ class Anonymous_Struct_197 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketMetricsConfigurationRequest < Anonymous_Struct_197
+class Aws::S3::Types::DeleteBucketMetricsConfigurationRequest < Anonymous_Struct_212
   include Aws::Structure
 end
-class Anonymous_Struct_198 < Struct
+class Anonymous_Struct_213 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketPolicyRequest < Anonymous_Struct_198
+class Aws::S3::Types::DeleteBucketPolicyRequest < Anonymous_Struct_213
   include Aws::Structure
 end
-class Anonymous_Struct_199 < Struct
+class Anonymous_Struct_214 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketReplicationRequest < Anonymous_Struct_199
+class Aws::S3::Types::DeleteBucketReplicationRequest < Anonymous_Struct_214
   include Aws::Structure
 end
-class Anonymous_Struct_200 < Struct
+class Anonymous_Struct_215 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketRequest < Anonymous_Struct_200
+class Aws::S3::Types::DeleteBucketRequest < Anonymous_Struct_215
   include Aws::Structure
 end
-class Anonymous_Struct_201 < Struct
+class Anonymous_Struct_216 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketTaggingRequest < Anonymous_Struct_201
+class Aws::S3::Types::DeleteBucketTaggingRequest < Anonymous_Struct_216
   include Aws::Structure
 end
-class Anonymous_Struct_202 < Struct
+class Anonymous_Struct_217 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteBucketWebsiteRequest < Anonymous_Struct_202
+class Aws::S3::Types::DeleteBucketWebsiteRequest < Anonymous_Struct_217
   include Aws::Structure
 end
-class Anonymous_Struct_203 < Struct
+class Anonymous_Struct_218 < Struct
   def is_latest; end
   def is_latest=(_); end
   def key; end
@@ -845,10 +877,10 @@ class Anonymous_Struct_203 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::DeleteMarkerEntry < Anonymous_Struct_203
+class Aws::S3::Types::DeleteMarkerEntry < Anonymous_Struct_218
   include Aws::Structure
 end
-class Anonymous_Struct_204 < Struct
+class Anonymous_Struct_219 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -856,10 +888,10 @@ class Anonymous_Struct_204 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::DeleteMarkerReplication < Anonymous_Struct_204
+class Aws::S3::Types::DeleteMarkerReplication < Anonymous_Struct_219
   include Aws::Structure
 end
-class Anonymous_Struct_205 < Struct
+class Anonymous_Struct_220 < Struct
   def delete_marker; end
   def delete_marker=(_); end
   def request_charged; end
@@ -871,14 +903,16 @@ class Anonymous_Struct_205 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::DeleteObjectOutput < Anonymous_Struct_205
+class Aws::S3::Types::DeleteObjectOutput < Anonymous_Struct_220
   include Aws::Structure
 end
-class Anonymous_Struct_206 < Struct
+class Anonymous_Struct_221 < Struct
   def bucket; end
   def bucket=(_); end
   def bypass_governance_retention; end
   def bypass_governance_retention=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def mfa; end
@@ -892,10 +926,10 @@ class Anonymous_Struct_206 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::DeleteObjectRequest < Anonymous_Struct_206
+class Aws::S3::Types::DeleteObjectRequest < Anonymous_Struct_221
   include Aws::Structure
 end
-class Anonymous_Struct_207 < Struct
+class Anonymous_Struct_222 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -903,12 +937,14 @@ class Anonymous_Struct_207 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::DeleteObjectTaggingOutput < Anonymous_Struct_207
+class Aws::S3::Types::DeleteObjectTaggingOutput < Anonymous_Struct_222
   include Aws::Structure
 end
-class Anonymous_Struct_208 < Struct
+class Anonymous_Struct_223 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -918,10 +954,10 @@ class Anonymous_Struct_208 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::DeleteObjectTaggingRequest < Anonymous_Struct_208
+class Aws::S3::Types::DeleteObjectTaggingRequest < Anonymous_Struct_223
   include Aws::Structure
 end
-class Anonymous_Struct_209 < Struct
+class Anonymous_Struct_224 < Struct
   def deleted; end
   def deleted=(_); end
   def errors; end
@@ -933,16 +969,18 @@ class Anonymous_Struct_209 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteObjectsOutput < Anonymous_Struct_209
+class Aws::S3::Types::DeleteObjectsOutput < Anonymous_Struct_224
   include Aws::Structure
 end
-class Anonymous_Struct_210 < Struct
+class Anonymous_Struct_225 < Struct
   def bucket; end
   def bucket=(_); end
   def bypass_governance_retention; end
   def bypass_governance_retention=(_); end
   def delete; end
   def delete=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def mfa; end
   def mfa=(_); end
   def request_payer; end
@@ -952,21 +990,23 @@ class Anonymous_Struct_210 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeleteObjectsRequest < Anonymous_Struct_210
+class Aws::S3::Types::DeleteObjectsRequest < Anonymous_Struct_225
   include Aws::Structure
 end
-class Anonymous_Struct_211 < Struct
+class Anonymous_Struct_226 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::DeletePublicAccessBlockRequest < Anonymous_Struct_211
+class Aws::S3::Types::DeletePublicAccessBlockRequest < Anonymous_Struct_226
   include Aws::Structure
 end
-class Anonymous_Struct_212 < Struct
+class Anonymous_Struct_227 < Struct
   def delete_marker; end
   def delete_marker=(_); end
   def delete_marker_version_id; end
@@ -980,10 +1020,10 @@ class Anonymous_Struct_212 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::DeletedObject < Anonymous_Struct_212
+class Aws::S3::Types::DeletedObject < Anonymous_Struct_227
   include Aws::Structure
 end
-class Anonymous_Struct_213 < Struct
+class Anonymous_Struct_228 < Struct
   def access_control_translation; end
   def access_control_translation=(_); end
   def account; end
@@ -1003,10 +1043,10 @@ class Anonymous_Struct_213 < Struct
   def storage_class; end
   def storage_class=(_); end
 end
-class Aws::S3::Types::Destination < Anonymous_Struct_213
+class Aws::S3::Types::Destination < Anonymous_Struct_228
   include Aws::Structure
 end
-class Anonymous_Struct_214 < Struct
+class Anonymous_Struct_229 < Struct
   def encryption_type; end
   def encryption_type=(_); end
   def kms_context; end
@@ -1018,10 +1058,10 @@ class Anonymous_Struct_214 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Encryption < Anonymous_Struct_214
+class Aws::S3::Types::Encryption < Anonymous_Struct_229
   include Aws::Structure
 end
-class Anonymous_Struct_215 < Struct
+class Anonymous_Struct_230 < Struct
   def replica_kms_key_id; end
   def replica_kms_key_id=(_); end
   def self.[](*arg0); end
@@ -1029,10 +1069,10 @@ class Anonymous_Struct_215 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::EncryptionConfiguration < Anonymous_Struct_215
+class Aws::S3::Types::EncryptionConfiguration < Anonymous_Struct_230
   include Aws::Structure
 end
-class Anonymous_Struct_216 < Struct
+class Anonymous_Struct_231 < Struct
   def event_type; end
   def event_type=(_); end
   def self.[](*arg0); end
@@ -1040,10 +1080,10 @@ class Anonymous_Struct_216 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::EndEvent < Anonymous_Struct_216
+class Aws::S3::Types::EndEvent < Anonymous_Struct_231
   include Aws::Structure
 end
-class Anonymous_Struct_217 < Struct
+class Anonymous_Struct_232 < Struct
   def code; end
   def code=(_); end
   def key; end
@@ -1057,10 +1097,10 @@ class Anonymous_Struct_217 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::Error < Anonymous_Struct_217
+class Aws::S3::Types::Error < Anonymous_Struct_232
   include Aws::Structure
 end
-class Anonymous_Struct_218 < Struct
+class Anonymous_Struct_233 < Struct
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -1068,10 +1108,10 @@ class Anonymous_Struct_218 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ErrorDocument < Anonymous_Struct_218
+class Aws::S3::Types::ErrorDocument < Anonymous_Struct_233
   include Aws::Structure
 end
-class Anonymous_Struct_219 < Struct
+class Anonymous_Struct_234 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -1079,10 +1119,10 @@ class Anonymous_Struct_219 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::ExistingObjectReplication < Anonymous_Struct_219
+class Aws::S3::Types::ExistingObjectReplication < Anonymous_Struct_234
   include Aws::Structure
 end
-class Anonymous_Struct_220 < Struct
+class Anonymous_Struct_235 < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
@@ -1092,10 +1132,10 @@ class Anonymous_Struct_220 < Struct
   def value; end
   def value=(_); end
 end
-class Aws::S3::Types::FilterRule < Anonymous_Struct_220
+class Aws::S3::Types::FilterRule < Anonymous_Struct_235
   include Aws::Structure
 end
-class Anonymous_Struct_221 < Struct
+class Anonymous_Struct_236 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -1103,21 +1143,23 @@ class Anonymous_Struct_221 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::GetBucketAccelerateConfigurationOutput < Anonymous_Struct_221
+class Aws::S3::Types::GetBucketAccelerateConfigurationOutput < Anonymous_Struct_236
   include Aws::Structure
 end
-class Anonymous_Struct_222 < Struct
+class Anonymous_Struct_237 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketAccelerateConfigurationRequest < Anonymous_Struct_222
+class Aws::S3::Types::GetBucketAccelerateConfigurationRequest < Anonymous_Struct_237
   include Aws::Structure
 end
-class Anonymous_Struct_223 < Struct
+class Anonymous_Struct_238 < Struct
   def grants; end
   def grants=(_); end
   def owner; end
@@ -1127,21 +1169,23 @@ class Anonymous_Struct_223 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketAclOutput < Anonymous_Struct_223
+class Aws::S3::Types::GetBucketAclOutput < Anonymous_Struct_238
   include Aws::Structure
 end
-class Anonymous_Struct_224 < Struct
+class Anonymous_Struct_239 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketAclRequest < Anonymous_Struct_224
+class Aws::S3::Types::GetBucketAclRequest < Anonymous_Struct_239
   include Aws::Structure
 end
-class Anonymous_Struct_225 < Struct
+class Anonymous_Struct_240 < Struct
   def analytics_configuration; end
   def analytics_configuration=(_); end
   def self.[](*arg0); end
@@ -1149,12 +1193,14 @@ class Anonymous_Struct_225 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketAnalyticsConfigurationOutput < Anonymous_Struct_225
+class Aws::S3::Types::GetBucketAnalyticsConfigurationOutput < Anonymous_Struct_240
   include Aws::Structure
 end
-class Anonymous_Struct_226 < Struct
+class Anonymous_Struct_241 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def self.[](*arg0); end
@@ -1162,10 +1208,10 @@ class Anonymous_Struct_226 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketAnalyticsConfigurationRequest < Anonymous_Struct_226
+class Aws::S3::Types::GetBucketAnalyticsConfigurationRequest < Anonymous_Struct_241
   include Aws::Structure
 end
-class Anonymous_Struct_227 < Struct
+class Anonymous_Struct_242 < Struct
   def cors_rules; end
   def cors_rules=(_); end
   def self.[](*arg0); end
@@ -1173,21 +1219,23 @@ class Anonymous_Struct_227 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketCorsOutput < Anonymous_Struct_227
+class Aws::S3::Types::GetBucketCorsOutput < Anonymous_Struct_242
   include Aws::Structure
 end
-class Anonymous_Struct_228 < Struct
+class Anonymous_Struct_243 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketCorsRequest < Anonymous_Struct_228
+class Aws::S3::Types::GetBucketCorsRequest < Anonymous_Struct_243
   include Aws::Structure
 end
-class Anonymous_Struct_229 < Struct
+class Anonymous_Struct_244 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -1195,21 +1243,23 @@ class Anonymous_Struct_229 < Struct
   def server_side_encryption_configuration; end
   def server_side_encryption_configuration=(_); end
 end
-class Aws::S3::Types::GetBucketEncryptionOutput < Anonymous_Struct_229
+class Aws::S3::Types::GetBucketEncryptionOutput < Anonymous_Struct_244
   include Aws::Structure
 end
-class Anonymous_Struct_230 < Struct
+class Anonymous_Struct_245 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketEncryptionRequest < Anonymous_Struct_230
+class Aws::S3::Types::GetBucketEncryptionRequest < Anonymous_Struct_245
   include Aws::Structure
 end
-class Anonymous_Struct_231 < Struct
+class Anonymous_Struct_246 < Struct
   def inventory_configuration; end
   def inventory_configuration=(_); end
   def self.[](*arg0); end
@@ -1217,12 +1267,14 @@ class Anonymous_Struct_231 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketInventoryConfigurationOutput < Anonymous_Struct_231
+class Aws::S3::Types::GetBucketInventoryConfigurationOutput < Anonymous_Struct_246
   include Aws::Structure
 end
-class Anonymous_Struct_232 < Struct
+class Anonymous_Struct_247 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def self.[](*arg0); end
@@ -1230,10 +1282,10 @@ class Anonymous_Struct_232 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketInventoryConfigurationRequest < Anonymous_Struct_232
+class Aws::S3::Types::GetBucketInventoryConfigurationRequest < Anonymous_Struct_247
   include Aws::Structure
 end
-class Anonymous_Struct_233 < Struct
+class Anonymous_Struct_248 < Struct
   def rules; end
   def rules=(_); end
   def self.[](*arg0); end
@@ -1241,21 +1293,23 @@ class Anonymous_Struct_233 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLifecycleConfigurationOutput < Anonymous_Struct_233
+class Aws::S3::Types::GetBucketLifecycleConfigurationOutput < Anonymous_Struct_248
   include Aws::Structure
 end
-class Anonymous_Struct_234 < Struct
+class Anonymous_Struct_249 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLifecycleConfigurationRequest < Anonymous_Struct_234
+class Aws::S3::Types::GetBucketLifecycleConfigurationRequest < Anonymous_Struct_249
   include Aws::Structure
 end
-class Anonymous_Struct_235 < Struct
+class Anonymous_Struct_250 < Struct
   def rules; end
   def rules=(_); end
   def self.[](*arg0); end
@@ -1263,21 +1317,23 @@ class Anonymous_Struct_235 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLifecycleOutput < Anonymous_Struct_235
+class Aws::S3::Types::GetBucketLifecycleOutput < Anonymous_Struct_250
   include Aws::Structure
 end
-class Anonymous_Struct_236 < Struct
+class Anonymous_Struct_251 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLifecycleRequest < Anonymous_Struct_236
+class Aws::S3::Types::GetBucketLifecycleRequest < Anonymous_Struct_251
   include Aws::Structure
 end
-class Anonymous_Struct_237 < Struct
+class Anonymous_Struct_252 < Struct
   def location_constraint; end
   def location_constraint=(_); end
   def self.[](*arg0); end
@@ -1285,21 +1341,23 @@ class Anonymous_Struct_237 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLocationOutput < Anonymous_Struct_237
+class Aws::S3::Types::GetBucketLocationOutput < Anonymous_Struct_252
   include Aws::Structure
 end
-class Anonymous_Struct_238 < Struct
+class Anonymous_Struct_253 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLocationRequest < Anonymous_Struct_238
+class Aws::S3::Types::GetBucketLocationRequest < Anonymous_Struct_253
   include Aws::Structure
 end
-class Anonymous_Struct_239 < Struct
+class Anonymous_Struct_254 < Struct
   def logging_enabled; end
   def logging_enabled=(_); end
   def self.[](*arg0); end
@@ -1307,21 +1365,23 @@ class Anonymous_Struct_239 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLoggingOutput < Anonymous_Struct_239
+class Aws::S3::Types::GetBucketLoggingOutput < Anonymous_Struct_254
   include Aws::Structure
 end
-class Anonymous_Struct_240 < Struct
+class Anonymous_Struct_255 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketLoggingRequest < Anonymous_Struct_240
+class Aws::S3::Types::GetBucketLoggingRequest < Anonymous_Struct_255
   include Aws::Structure
 end
-class Anonymous_Struct_241 < Struct
+class Anonymous_Struct_256 < Struct
   def metrics_configuration; end
   def metrics_configuration=(_); end
   def self.[](*arg0); end
@@ -1329,12 +1389,14 @@ class Anonymous_Struct_241 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketMetricsConfigurationOutput < Anonymous_Struct_241
+class Aws::S3::Types::GetBucketMetricsConfigurationOutput < Anonymous_Struct_256
   include Aws::Structure
 end
-class Anonymous_Struct_242 < Struct
+class Anonymous_Struct_257 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def self.[](*arg0); end
@@ -1342,21 +1404,23 @@ class Anonymous_Struct_242 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketMetricsConfigurationRequest < Anonymous_Struct_242
+class Aws::S3::Types::GetBucketMetricsConfigurationRequest < Anonymous_Struct_257
   include Aws::Structure
 end
-class Anonymous_Struct_243 < Struct
+class Anonymous_Struct_258 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketNotificationConfigurationRequest < Anonymous_Struct_243
+class Aws::S3::Types::GetBucketNotificationConfigurationRequest < Anonymous_Struct_258
   include Aws::Structure
 end
-class Anonymous_Struct_244 < Struct
+class Anonymous_Struct_259 < Struct
   def policy; end
   def policy=(_); end
   def self.[](*arg0); end
@@ -1364,21 +1428,23 @@ class Anonymous_Struct_244 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketPolicyOutput < Anonymous_Struct_244
+class Aws::S3::Types::GetBucketPolicyOutput < Anonymous_Struct_259
   include Aws::Structure
 end
-class Anonymous_Struct_245 < Struct
+class Anonymous_Struct_260 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketPolicyRequest < Anonymous_Struct_245
+class Aws::S3::Types::GetBucketPolicyRequest < Anonymous_Struct_260
   include Aws::Structure
 end
-class Anonymous_Struct_246 < Struct
+class Anonymous_Struct_261 < Struct
   def policy_status; end
   def policy_status=(_); end
   def self.[](*arg0); end
@@ -1386,21 +1452,23 @@ class Anonymous_Struct_246 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketPolicyStatusOutput < Anonymous_Struct_246
+class Aws::S3::Types::GetBucketPolicyStatusOutput < Anonymous_Struct_261
   include Aws::Structure
 end
-class Anonymous_Struct_247 < Struct
+class Anonymous_Struct_262 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketPolicyStatusRequest < Anonymous_Struct_247
+class Aws::S3::Types::GetBucketPolicyStatusRequest < Anonymous_Struct_262
   include Aws::Structure
 end
-class Anonymous_Struct_248 < Struct
+class Anonymous_Struct_263 < Struct
   def replication_configuration; end
   def replication_configuration=(_); end
   def self.[](*arg0); end
@@ -1408,21 +1476,23 @@ class Anonymous_Struct_248 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketReplicationOutput < Anonymous_Struct_248
+class Aws::S3::Types::GetBucketReplicationOutput < Anonymous_Struct_263
   include Aws::Structure
 end
-class Anonymous_Struct_249 < Struct
+class Anonymous_Struct_264 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketReplicationRequest < Anonymous_Struct_249
+class Aws::S3::Types::GetBucketReplicationRequest < Anonymous_Struct_264
   include Aws::Structure
 end
-class Anonymous_Struct_250 < Struct
+class Anonymous_Struct_265 < Struct
   def payer; end
   def payer=(_); end
   def self.[](*arg0); end
@@ -1430,21 +1500,23 @@ class Anonymous_Struct_250 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketRequestPaymentOutput < Anonymous_Struct_250
+class Aws::S3::Types::GetBucketRequestPaymentOutput < Anonymous_Struct_265
   include Aws::Structure
 end
-class Anonymous_Struct_251 < Struct
+class Anonymous_Struct_266 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketRequestPaymentRequest < Anonymous_Struct_251
+class Aws::S3::Types::GetBucketRequestPaymentRequest < Anonymous_Struct_266
   include Aws::Structure
 end
-class Anonymous_Struct_252 < Struct
+class Anonymous_Struct_267 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -1452,21 +1524,23 @@ class Anonymous_Struct_252 < Struct
   def tag_set; end
   def tag_set=(_); end
 end
-class Aws::S3::Types::GetBucketTaggingOutput < Anonymous_Struct_252
+class Aws::S3::Types::GetBucketTaggingOutput < Anonymous_Struct_267
   include Aws::Structure
 end
-class Anonymous_Struct_253 < Struct
+class Anonymous_Struct_268 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketTaggingRequest < Anonymous_Struct_253
+class Aws::S3::Types::GetBucketTaggingRequest < Anonymous_Struct_268
   include Aws::Structure
 end
-class Anonymous_Struct_254 < Struct
+class Anonymous_Struct_269 < Struct
   def mfa_delete; end
   def mfa_delete=(_); end
   def self.[](*arg0); end
@@ -1476,21 +1550,23 @@ class Anonymous_Struct_254 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::GetBucketVersioningOutput < Anonymous_Struct_254
+class Aws::S3::Types::GetBucketVersioningOutput < Anonymous_Struct_269
   include Aws::Structure
 end
-class Anonymous_Struct_255 < Struct
+class Anonymous_Struct_270 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketVersioningRequest < Anonymous_Struct_255
+class Aws::S3::Types::GetBucketVersioningRequest < Anonymous_Struct_270
   include Aws::Structure
 end
-class Anonymous_Struct_256 < Struct
+class Anonymous_Struct_271 < Struct
   def error_document; end
   def error_document=(_); end
   def index_document; end
@@ -1504,21 +1580,23 @@ class Anonymous_Struct_256 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketWebsiteOutput < Anonymous_Struct_256
+class Aws::S3::Types::GetBucketWebsiteOutput < Anonymous_Struct_271
   include Aws::Structure
 end
-class Anonymous_Struct_257 < Struct
+class Anonymous_Struct_272 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetBucketWebsiteRequest < Anonymous_Struct_257
+class Aws::S3::Types::GetBucketWebsiteRequest < Anonymous_Struct_272
   include Aws::Structure
 end
-class Anonymous_Struct_258 < Struct
+class Anonymous_Struct_273 < Struct
   def grants; end
   def grants=(_); end
   def owner; end
@@ -1530,12 +1608,14 @@ class Anonymous_Struct_258 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetObjectAclOutput < Anonymous_Struct_258
+class Aws::S3::Types::GetObjectAclOutput < Anonymous_Struct_273
   include Aws::Structure
 end
-class Anonymous_Struct_259 < Struct
+class Anonymous_Struct_274 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def request_payer; end
@@ -1547,10 +1627,10 @@ class Anonymous_Struct_259 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::GetObjectAclRequest < Anonymous_Struct_259
+class Aws::S3::Types::GetObjectAclRequest < Anonymous_Struct_274
   include Aws::Structure
 end
-class Anonymous_Struct_260 < Struct
+class Anonymous_Struct_275 < Struct
   def legal_hold; end
   def legal_hold=(_); end
   def self.[](*arg0); end
@@ -1558,12 +1638,14 @@ class Anonymous_Struct_260 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetObjectLegalHoldOutput < Anonymous_Struct_260
+class Aws::S3::Types::GetObjectLegalHoldOutput < Anonymous_Struct_275
   include Aws::Structure
 end
-class Anonymous_Struct_261 < Struct
+class Anonymous_Struct_276 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def request_payer; end
@@ -1575,10 +1657,10 @@ class Anonymous_Struct_261 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::GetObjectLegalHoldRequest < Anonymous_Struct_261
+class Aws::S3::Types::GetObjectLegalHoldRequest < Anonymous_Struct_276
   include Aws::Structure
 end
-class Anonymous_Struct_262 < Struct
+class Anonymous_Struct_277 < Struct
   def object_lock_configuration; end
   def object_lock_configuration=(_); end
   def self.[](*arg0); end
@@ -1586,21 +1668,23 @@ class Anonymous_Struct_262 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetObjectLockConfigurationOutput < Anonymous_Struct_262
+class Aws::S3::Types::GetObjectLockConfigurationOutput < Anonymous_Struct_277
   include Aws::Structure
 end
-class Anonymous_Struct_263 < Struct
+class Anonymous_Struct_278 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetObjectLockConfigurationRequest < Anonymous_Struct_263
+class Aws::S3::Types::GetObjectLockConfigurationRequest < Anonymous_Struct_278
   include Aws::Structure
 end
-class Anonymous_Struct_264 < Struct
+class Anonymous_Struct_279 < Struct
   def accept_ranges; end
   def accept_ranges=(_); end
   def body; end
@@ -1670,12 +1754,14 @@ class Anonymous_Struct_264 < Struct
   def website_redirect_location; end
   def website_redirect_location=(_); end
 end
-class Aws::S3::Types::GetObjectOutput < Anonymous_Struct_264
+class Aws::S3::Types::GetObjectOutput < Anonymous_Struct_279
   include Aws::Structure
 end
-class Anonymous_Struct_265 < Struct
+class Anonymous_Struct_280 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def if_match; end
   def if_match=(_); end
   def if_modified_since; end
@@ -1717,10 +1803,10 @@ class Anonymous_Struct_265 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::GetObjectRequest < Anonymous_Struct_265
+class Aws::S3::Types::GetObjectRequest < Anonymous_Struct_280
   include Aws::Structure
 end
-class Anonymous_Struct_266 < Struct
+class Anonymous_Struct_281 < Struct
   def retention; end
   def retention=(_); end
   def self.[](*arg0); end
@@ -1728,12 +1814,14 @@ class Anonymous_Struct_266 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetObjectRetentionOutput < Anonymous_Struct_266
+class Aws::S3::Types::GetObjectRetentionOutput < Anonymous_Struct_281
   include Aws::Structure
 end
-class Anonymous_Struct_267 < Struct
+class Anonymous_Struct_282 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def request_payer; end
@@ -1745,10 +1833,10 @@ class Anonymous_Struct_267 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::GetObjectRetentionRequest < Anonymous_Struct_267
+class Aws::S3::Types::GetObjectRetentionRequest < Anonymous_Struct_282
   include Aws::Structure
 end
-class Anonymous_Struct_268 < Struct
+class Anonymous_Struct_283 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -1758,12 +1846,14 @@ class Anonymous_Struct_268 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::GetObjectTaggingOutput < Anonymous_Struct_268
+class Aws::S3::Types::GetObjectTaggingOutput < Anonymous_Struct_283
   include Aws::Structure
 end
-class Anonymous_Struct_269 < Struct
+class Anonymous_Struct_284 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -1773,10 +1863,10 @@ class Anonymous_Struct_269 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::GetObjectTaggingRequest < Anonymous_Struct_269
+class Aws::S3::Types::GetObjectTaggingRequest < Anonymous_Struct_284
   include Aws::Structure
 end
-class Anonymous_Struct_270 < Struct
+class Anonymous_Struct_285 < Struct
   def body; end
   def body=(_); end
   def request_charged; end
@@ -1786,12 +1876,14 @@ class Anonymous_Struct_270 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetObjectTorrentOutput < Anonymous_Struct_270
+class Aws::S3::Types::GetObjectTorrentOutput < Anonymous_Struct_285
   include Aws::Structure
 end
-class Anonymous_Struct_271 < Struct
+class Anonymous_Struct_286 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def request_payer; end
@@ -1801,10 +1893,10 @@ class Anonymous_Struct_271 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetObjectTorrentRequest < Anonymous_Struct_271
+class Aws::S3::Types::GetObjectTorrentRequest < Anonymous_Struct_286
   include Aws::Structure
 end
-class Anonymous_Struct_272 < Struct
+class Anonymous_Struct_287 < Struct
   def public_access_block_configuration; end
   def public_access_block_configuration=(_); end
   def self.[](*arg0); end
@@ -1812,21 +1904,23 @@ class Anonymous_Struct_272 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetPublicAccessBlockOutput < Anonymous_Struct_272
+class Aws::S3::Types::GetPublicAccessBlockOutput < Anonymous_Struct_287
   include Aws::Structure
 end
-class Anonymous_Struct_273 < Struct
+class Anonymous_Struct_288 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::GetPublicAccessBlockRequest < Anonymous_Struct_273
+class Aws::S3::Types::GetPublicAccessBlockRequest < Anonymous_Struct_288
   include Aws::Structure
 end
-class Anonymous_Struct_274 < Struct
+class Anonymous_Struct_289 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -1834,10 +1928,10 @@ class Anonymous_Struct_274 < Struct
   def tier; end
   def tier=(_); end
 end
-class Aws::S3::Types::GlacierJobParameters < Anonymous_Struct_274
+class Aws::S3::Types::GlacierJobParameters < Anonymous_Struct_289
   include Aws::Structure
 end
-class Anonymous_Struct_275 < Struct
+class Anonymous_Struct_290 < Struct
   def grantee; end
   def grantee=(_); end
   def permission; end
@@ -1847,10 +1941,10 @@ class Anonymous_Struct_275 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Grant < Anonymous_Struct_275
+class Aws::S3::Types::Grant < Anonymous_Struct_290
   include Aws::Structure
 end
-class Anonymous_Struct_276 < Struct
+class Anonymous_Struct_291 < Struct
   def display_name; end
   def display_name=(_); end
   def email_address; end
@@ -1866,21 +1960,23 @@ class Anonymous_Struct_276 < Struct
   def uri; end
   def uri=(_); end
 end
-class Aws::S3::Types::Grantee < Anonymous_Struct_276
+class Aws::S3::Types::Grantee < Anonymous_Struct_291
   include Aws::Structure
 end
-class Anonymous_Struct_277 < Struct
+class Anonymous_Struct_292 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::HeadBucketRequest < Anonymous_Struct_277
+class Aws::S3::Types::HeadBucketRequest < Anonymous_Struct_292
   include Aws::Structure
 end
-class Anonymous_Struct_278 < Struct
+class Anonymous_Struct_293 < Struct
   def accept_ranges; end
   def accept_ranges=(_); end
   def cache_control; end
@@ -1944,12 +2040,14 @@ class Anonymous_Struct_278 < Struct
   def website_redirect_location; end
   def website_redirect_location=(_); end
 end
-class Aws::S3::Types::HeadObjectOutput < Anonymous_Struct_278
+class Aws::S3::Types::HeadObjectOutput < Anonymous_Struct_293
   include Aws::Structure
 end
-class Anonymous_Struct_279 < Struct
+class Anonymous_Struct_294 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def if_match; end
   def if_match=(_); end
   def if_modified_since; end
@@ -1979,10 +2077,10 @@ class Anonymous_Struct_279 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::HeadObjectRequest < Anonymous_Struct_279
+class Aws::S3::Types::HeadObjectRequest < Anonymous_Struct_294
   include Aws::Structure
 end
-class Anonymous_Struct_280 < Struct
+class Anonymous_Struct_295 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -1990,10 +2088,10 @@ class Anonymous_Struct_280 < Struct
   def suffix; end
   def suffix=(_); end
 end
-class Aws::S3::Types::IndexDocument < Anonymous_Struct_280
+class Aws::S3::Types::IndexDocument < Anonymous_Struct_295
   include Aws::Structure
 end
-class Anonymous_Struct_281 < Struct
+class Anonymous_Struct_296 < Struct
   def display_name; end
   def display_name=(_); end
   def id; end
@@ -2003,10 +2101,10 @@ class Anonymous_Struct_281 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Initiator < Anonymous_Struct_281
+class Aws::S3::Types::Initiator < Anonymous_Struct_296
   include Aws::Structure
 end
-class Anonymous_Struct_282 < Struct
+class Anonymous_Struct_297 < Struct
   def compression_type; end
   def compression_type=(_); end
   def csv; end
@@ -2020,10 +2118,10 @@ class Anonymous_Struct_282 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::InputSerialization < Anonymous_Struct_282
+class Aws::S3::Types::InputSerialization < Anonymous_Struct_297
   include Aws::Structure
 end
-class Anonymous_Struct_283 < Struct
+class Anonymous_Struct_298 < Struct
   def destination; end
   def destination=(_); end
   def filter; end
@@ -2043,10 +2141,10 @@ class Anonymous_Struct_283 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::InventoryConfiguration < Anonymous_Struct_283
+class Aws::S3::Types::InventoryConfiguration < Anonymous_Struct_298
   include Aws::Structure
 end
-class Anonymous_Struct_284 < Struct
+class Anonymous_Struct_299 < Struct
   def s3_bucket_destination; end
   def s3_bucket_destination=(_); end
   def self.[](*arg0); end
@@ -2054,10 +2152,10 @@ class Anonymous_Struct_284 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::InventoryDestination < Anonymous_Struct_284
+class Aws::S3::Types::InventoryDestination < Anonymous_Struct_299
   include Aws::Structure
 end
-class Anonymous_Struct_285 < Struct
+class Anonymous_Struct_300 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2067,10 +2165,10 @@ class Anonymous_Struct_285 < Struct
   def sses3; end
   def sses3=(_); end
 end
-class Aws::S3::Types::InventoryEncryption < Anonymous_Struct_285
+class Aws::S3::Types::InventoryEncryption < Anonymous_Struct_300
   include Aws::Structure
 end
-class Anonymous_Struct_286 < Struct
+class Anonymous_Struct_301 < Struct
   def prefix; end
   def prefix=(_); end
   def self.[](*arg0); end
@@ -2078,10 +2176,10 @@ class Anonymous_Struct_286 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::InventoryFilter < Anonymous_Struct_286
+class Aws::S3::Types::InventoryFilter < Anonymous_Struct_301
   include Aws::Structure
 end
-class Anonymous_Struct_287 < Struct
+class Anonymous_Struct_302 < Struct
   def account_id; end
   def account_id=(_); end
   def bucket; end
@@ -2097,10 +2195,10 @@ class Anonymous_Struct_287 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::InventoryS3BucketDestination < Anonymous_Struct_287
+class Aws::S3::Types::InventoryS3BucketDestination < Anonymous_Struct_302
   include Aws::Structure
 end
-class Anonymous_Struct_288 < Struct
+class Anonymous_Struct_303 < Struct
   def frequency; end
   def frequency=(_); end
   def self.[](*arg0); end
@@ -2108,10 +2206,10 @@ class Anonymous_Struct_288 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::InventorySchedule < Anonymous_Struct_288
+class Aws::S3::Types::InventorySchedule < Anonymous_Struct_303
   include Aws::Structure
 end
-class Anonymous_Struct_289 < Struct
+class Anonymous_Struct_304 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2119,10 +2217,10 @@ class Anonymous_Struct_289 < Struct
   def type; end
   def type=(_); end
 end
-class Aws::S3::Types::JSONInput < Anonymous_Struct_289
+class Aws::S3::Types::JSONInput < Anonymous_Struct_304
   include Aws::Structure
 end
-class Anonymous_Struct_290 < Struct
+class Anonymous_Struct_305 < Struct
   def record_delimiter; end
   def record_delimiter=(_); end
   def self.[](*arg0); end
@@ -2130,10 +2228,10 @@ class Anonymous_Struct_290 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::JSONOutput < Anonymous_Struct_290
+class Aws::S3::Types::JSONOutput < Anonymous_Struct_305
   include Aws::Structure
 end
-class Anonymous_Struct_291 < Struct
+class Anonymous_Struct_306 < Struct
   def events; end
   def events=(_); end
   def filter; end
@@ -2147,10 +2245,10 @@ class Anonymous_Struct_291 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::LambdaFunctionConfiguration < Anonymous_Struct_291
+class Aws::S3::Types::LambdaFunctionConfiguration < Anonymous_Struct_306
   include Aws::Structure
 end
-class Anonymous_Struct_292 < Struct
+class Anonymous_Struct_307 < Struct
   def rules; end
   def rules=(_); end
   def self.[](*arg0); end
@@ -2158,10 +2256,10 @@ class Anonymous_Struct_292 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::LifecycleConfiguration < Anonymous_Struct_292
+class Aws::S3::Types::LifecycleConfiguration < Anonymous_Struct_307
   include Aws::Structure
 end
-class Anonymous_Struct_293 < Struct
+class Anonymous_Struct_308 < Struct
   def date; end
   def date=(_); end
   def days; end
@@ -2173,10 +2271,10 @@ class Anonymous_Struct_293 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::LifecycleExpiration < Anonymous_Struct_293
+class Aws::S3::Types::LifecycleExpiration < Anonymous_Struct_308
   include Aws::Structure
 end
-class Anonymous_Struct_294 < Struct
+class Anonymous_Struct_309 < Struct
   def abort_incomplete_multipart_upload; end
   def abort_incomplete_multipart_upload=(_); end
   def expiration; end
@@ -2200,10 +2298,10 @@ class Anonymous_Struct_294 < Struct
   def transitions; end
   def transitions=(_); end
 end
-class Aws::S3::Types::LifecycleRule < Anonymous_Struct_294
+class Aws::S3::Types::LifecycleRule < Anonymous_Struct_309
   include Aws::Structure
 end
-class Anonymous_Struct_295 < Struct
+class Anonymous_Struct_310 < Struct
   def prefix; end
   def prefix=(_); end
   def self.[](*arg0); end
@@ -2213,10 +2311,10 @@ class Anonymous_Struct_295 < Struct
   def tags; end
   def tags=(_); end
 end
-class Aws::S3::Types::LifecycleRuleAndOperator < Anonymous_Struct_295
+class Aws::S3::Types::LifecycleRuleAndOperator < Anonymous_Struct_310
   include Aws::Structure
 end
-class Anonymous_Struct_296 < Struct
+class Anonymous_Struct_311 < Struct
   def and; end
   def and=(_); end
   def prefix; end
@@ -2228,10 +2326,10 @@ class Anonymous_Struct_296 < Struct
   def tag; end
   def tag=(_); end
 end
-class Aws::S3::Types::LifecycleRuleFilter < Anonymous_Struct_296
+class Aws::S3::Types::LifecycleRuleFilter < Anonymous_Struct_311
   include Aws::Structure
 end
-class Anonymous_Struct_297 < Struct
+class Anonymous_Struct_312 < Struct
   def analytics_configuration_list; end
   def analytics_configuration_list=(_); end
   def continuation_token; end
@@ -2245,23 +2343,25 @@ class Anonymous_Struct_297 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListBucketAnalyticsConfigurationsOutput < Anonymous_Struct_297
+class Aws::S3::Types::ListBucketAnalyticsConfigurationsOutput < Anonymous_Struct_312
   include Aws::Structure
 end
-class Anonymous_Struct_298 < Struct
+class Anonymous_Struct_313 < Struct
   def bucket; end
   def bucket=(_); end
   def continuation_token; end
   def continuation_token=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListBucketAnalyticsConfigurationsRequest < Anonymous_Struct_298
+class Aws::S3::Types::ListBucketAnalyticsConfigurationsRequest < Anonymous_Struct_313
   include Aws::Structure
 end
-class Anonymous_Struct_299 < Struct
+class Anonymous_Struct_314 < Struct
   def continuation_token; end
   def continuation_token=(_); end
   def inventory_configuration_list; end
@@ -2275,23 +2375,25 @@ class Anonymous_Struct_299 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListBucketInventoryConfigurationsOutput < Anonymous_Struct_299
+class Aws::S3::Types::ListBucketInventoryConfigurationsOutput < Anonymous_Struct_314
   include Aws::Structure
 end
-class Anonymous_Struct_300 < Struct
+class Anonymous_Struct_315 < Struct
   def bucket; end
   def bucket=(_); end
   def continuation_token; end
   def continuation_token=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListBucketInventoryConfigurationsRequest < Anonymous_Struct_300
+class Aws::S3::Types::ListBucketInventoryConfigurationsRequest < Anonymous_Struct_315
   include Aws::Structure
 end
-class Anonymous_Struct_301 < Struct
+class Anonymous_Struct_316 < Struct
   def continuation_token; end
   def continuation_token=(_); end
   def is_truncated; end
@@ -2305,23 +2407,25 @@ class Anonymous_Struct_301 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListBucketMetricsConfigurationsOutput < Anonymous_Struct_301
+class Aws::S3::Types::ListBucketMetricsConfigurationsOutput < Anonymous_Struct_316
   include Aws::Structure
 end
-class Anonymous_Struct_302 < Struct
+class Anonymous_Struct_317 < Struct
   def bucket; end
   def bucket=(_); end
   def continuation_token; end
   def continuation_token=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListBucketMetricsConfigurationsRequest < Anonymous_Struct_302
+class Aws::S3::Types::ListBucketMetricsConfigurationsRequest < Anonymous_Struct_317
   include Aws::Structure
 end
-class Anonymous_Struct_303 < Struct
+class Anonymous_Struct_318 < Struct
   def buckets; end
   def buckets=(_); end
   def owner; end
@@ -2331,10 +2435,10 @@ class Anonymous_Struct_303 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListBucketsOutput < Anonymous_Struct_303
+class Aws::S3::Types::ListBucketsOutput < Anonymous_Struct_318
   include Aws::Structure
 end
-class Anonymous_Struct_304 < Struct
+class Anonymous_Struct_319 < Struct
   def bucket; end
   def bucket=(_); end
   def common_prefixes; end
@@ -2364,16 +2468,18 @@ class Anonymous_Struct_304 < Struct
   def uploads; end
   def uploads=(_); end
 end
-class Aws::S3::Types::ListMultipartUploadsOutput < Anonymous_Struct_304
+class Aws::S3::Types::ListMultipartUploadsOutput < Anonymous_Struct_319
   include Aws::Structure
 end
-class Anonymous_Struct_305 < Struct
+class Anonymous_Struct_320 < Struct
   def bucket; end
   def bucket=(_); end
   def delimiter; end
   def delimiter=(_); end
   def encoding_type; end
   def encoding_type=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key_marker; end
   def key_marker=(_); end
   def max_uploads; end
@@ -2387,10 +2493,10 @@ class Anonymous_Struct_305 < Struct
   def upload_id_marker; end
   def upload_id_marker=(_); end
 end
-class Aws::S3::Types::ListMultipartUploadsRequest < Anonymous_Struct_305
+class Aws::S3::Types::ListMultipartUploadsRequest < Anonymous_Struct_320
   include Aws::Structure
 end
-class Anonymous_Struct_306 < Struct
+class Anonymous_Struct_321 < Struct
   def common_prefixes; end
   def common_prefixes=(_); end
   def delete_markers; end
@@ -2422,17 +2528,19 @@ class Anonymous_Struct_306 < Struct
   def versions; end
   def versions=(_); end
 end
-class Aws::S3::Types::ListObjectVersionsOutput < Anonymous_Struct_306
+class Aws::S3::Types::ListObjectVersionsOutput < Anonymous_Struct_321
   def versions_delete_markers; end
   include Aws::Structure
 end
-class Anonymous_Struct_307 < Struct
+class Anonymous_Struct_322 < Struct
   def bucket; end
   def bucket=(_); end
   def delimiter; end
   def delimiter=(_); end
   def encoding_type; end
   def encoding_type=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key_marker; end
   def key_marker=(_); end
   def max_keys; end
@@ -2446,10 +2554,10 @@ class Anonymous_Struct_307 < Struct
   def version_id_marker; end
   def version_id_marker=(_); end
 end
-class Aws::S3::Types::ListObjectVersionsRequest < Anonymous_Struct_307
+class Aws::S3::Types::ListObjectVersionsRequest < Anonymous_Struct_322
   include Aws::Structure
 end
-class Anonymous_Struct_308 < Struct
+class Anonymous_Struct_323 < Struct
   def common_prefixes; end
   def common_prefixes=(_); end
   def contents; end
@@ -2475,16 +2583,18 @@ class Anonymous_Struct_308 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListObjectsOutput < Anonymous_Struct_308
+class Aws::S3::Types::ListObjectsOutput < Anonymous_Struct_323
   include Aws::Structure
 end
-class Anonymous_Struct_309 < Struct
+class Anonymous_Struct_324 < Struct
   def bucket; end
   def bucket=(_); end
   def delimiter; end
   def delimiter=(_); end
   def encoding_type; end
   def encoding_type=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def marker; end
   def marker=(_); end
   def max_keys; end
@@ -2498,10 +2608,10 @@ class Anonymous_Struct_309 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ListObjectsRequest < Anonymous_Struct_309
+class Aws::S3::Types::ListObjectsRequest < Anonymous_Struct_324
   include Aws::Structure
 end
-class Anonymous_Struct_310 < Struct
+class Anonymous_Struct_325 < Struct
   def common_prefixes; end
   def common_prefixes=(_); end
   def contents; end
@@ -2531,10 +2641,10 @@ class Anonymous_Struct_310 < Struct
   def start_after; end
   def start_after=(_); end
 end
-class Aws::S3::Types::ListObjectsV2Output < Anonymous_Struct_310
+class Aws::S3::Types::ListObjectsV2Output < Anonymous_Struct_325
   include Aws::Structure
 end
-class Anonymous_Struct_311 < Struct
+class Anonymous_Struct_326 < Struct
   def bucket; end
   def bucket=(_); end
   def continuation_token; end
@@ -2543,6 +2653,8 @@ class Anonymous_Struct_311 < Struct
   def delimiter=(_); end
   def encoding_type; end
   def encoding_type=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def fetch_owner; end
   def fetch_owner=(_); end
   def max_keys; end
@@ -2558,10 +2670,10 @@ class Anonymous_Struct_311 < Struct
   def start_after; end
   def start_after=(_); end
 end
-class Aws::S3::Types::ListObjectsV2Request < Anonymous_Struct_311
+class Aws::S3::Types::ListObjectsV2Request < Anonymous_Struct_326
   include Aws::Structure
 end
-class Anonymous_Struct_312 < Struct
+class Anonymous_Struct_327 < Struct
   def abort_date; end
   def abort_date=(_); end
   def abort_rule_id; end
@@ -2595,12 +2707,14 @@ class Anonymous_Struct_312 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::ListPartsOutput < Anonymous_Struct_312
+class Aws::S3::Types::ListPartsOutput < Anonymous_Struct_327
   include Aws::Structure
 end
-class Anonymous_Struct_313 < Struct
+class Anonymous_Struct_328 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def max_parts; end
@@ -2616,10 +2730,10 @@ class Anonymous_Struct_313 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::ListPartsRequest < Anonymous_Struct_313
+class Aws::S3::Types::ListPartsRequest < Anonymous_Struct_328
   include Aws::Structure
 end
-class Anonymous_Struct_314 < Struct
+class Anonymous_Struct_329 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2631,10 +2745,10 @@ class Anonymous_Struct_314 < Struct
   def target_prefix; end
   def target_prefix=(_); end
 end
-class Aws::S3::Types::LoggingEnabled < Anonymous_Struct_314
+class Aws::S3::Types::LoggingEnabled < Anonymous_Struct_329
   include Aws::Structure
 end
-class Anonymous_Struct_315 < Struct
+class Anonymous_Struct_330 < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
@@ -2644,10 +2758,10 @@ class Anonymous_Struct_315 < Struct
   def value; end
   def value=(_); end
 end
-class Aws::S3::Types::MetadataEntry < Anonymous_Struct_315
+class Aws::S3::Types::MetadataEntry < Anonymous_Struct_330
   include Aws::Structure
 end
-class Anonymous_Struct_316 < Struct
+class Anonymous_Struct_331 < Struct
   def event_threshold; end
   def event_threshold=(_); end
   def self.[](*arg0); end
@@ -2657,10 +2771,10 @@ class Anonymous_Struct_316 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::Metrics < Anonymous_Struct_316
+class Aws::S3::Types::Metrics < Anonymous_Struct_331
   include Aws::Structure
 end
-class Anonymous_Struct_317 < Struct
+class Anonymous_Struct_332 < Struct
   def prefix; end
   def prefix=(_); end
   def self.[](*arg0); end
@@ -2670,10 +2784,10 @@ class Anonymous_Struct_317 < Struct
   def tags; end
   def tags=(_); end
 end
-class Aws::S3::Types::MetricsAndOperator < Anonymous_Struct_317
+class Aws::S3::Types::MetricsAndOperator < Anonymous_Struct_332
   include Aws::Structure
 end
-class Anonymous_Struct_318 < Struct
+class Anonymous_Struct_333 < Struct
   def filter; end
   def filter=(_); end
   def id; end
@@ -2683,10 +2797,10 @@ class Anonymous_Struct_318 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::MetricsConfiguration < Anonymous_Struct_318
+class Aws::S3::Types::MetricsConfiguration < Anonymous_Struct_333
   include Aws::Structure
 end
-class Anonymous_Struct_319 < Struct
+class Anonymous_Struct_334 < Struct
   def and; end
   def and=(_); end
   def prefix; end
@@ -2698,10 +2812,10 @@ class Anonymous_Struct_319 < Struct
   def tag; end
   def tag=(_); end
 end
-class Aws::S3::Types::MetricsFilter < Anonymous_Struct_319
+class Aws::S3::Types::MetricsFilter < Anonymous_Struct_334
   include Aws::Structure
 end
-class Anonymous_Struct_320 < Struct
+class Anonymous_Struct_335 < Struct
   def initiated; end
   def initiated=(_); end
   def initiator; end
@@ -2719,7 +2833,7 @@ class Anonymous_Struct_320 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::MultipartUpload < Anonymous_Struct_320
+class Aws::S3::Types::MultipartUpload < Anonymous_Struct_335
   include Aws::Structure
 end
 class Aws::S3::Types::NoSuchBucket < Aws::EmptyStructure
@@ -2728,7 +2842,7 @@ class Aws::S3::Types::NoSuchKey < Aws::EmptyStructure
 end
 class Aws::S3::Types::NoSuchUpload < Aws::EmptyStructure
 end
-class Anonymous_Struct_321 < Struct
+class Anonymous_Struct_336 < Struct
   def noncurrent_days; end
   def noncurrent_days=(_); end
   def self.[](*arg0); end
@@ -2736,10 +2850,10 @@ class Anonymous_Struct_321 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::NoncurrentVersionExpiration < Anonymous_Struct_321
+class Aws::S3::Types::NoncurrentVersionExpiration < Anonymous_Struct_336
   include Aws::Structure
 end
-class Anonymous_Struct_322 < Struct
+class Anonymous_Struct_337 < Struct
   def noncurrent_days; end
   def noncurrent_days=(_); end
   def self.[](*arg0); end
@@ -2749,10 +2863,10 @@ class Anonymous_Struct_322 < Struct
   def storage_class; end
   def storage_class=(_); end
 end
-class Aws::S3::Types::NoncurrentVersionTransition < Anonymous_Struct_322
+class Aws::S3::Types::NoncurrentVersionTransition < Anonymous_Struct_337
   include Aws::Structure
 end
-class Anonymous_Struct_323 < Struct
+class Anonymous_Struct_338 < Struct
   def lambda_function_configurations; end
   def lambda_function_configurations=(_); end
   def queue_configurations; end
@@ -2764,10 +2878,10 @@ class Anonymous_Struct_323 < Struct
   def topic_configurations; end
   def topic_configurations=(_); end
 end
-class Aws::S3::Types::NotificationConfiguration < Anonymous_Struct_323
+class Aws::S3::Types::NotificationConfiguration < Anonymous_Struct_338
   include Aws::Structure
 end
-class Anonymous_Struct_324 < Struct
+class Anonymous_Struct_339 < Struct
   def cloud_function_configuration; end
   def cloud_function_configuration=(_); end
   def queue_configuration; end
@@ -2779,10 +2893,10 @@ class Anonymous_Struct_324 < Struct
   def topic_configuration; end
   def topic_configuration=(_); end
 end
-class Aws::S3::Types::NotificationConfigurationDeprecated < Anonymous_Struct_324
+class Aws::S3::Types::NotificationConfigurationDeprecated < Anonymous_Struct_339
   include Aws::Structure
 end
-class Anonymous_Struct_325 < Struct
+class Anonymous_Struct_340 < Struct
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -2790,10 +2904,10 @@ class Anonymous_Struct_325 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::NotificationConfigurationFilter < Anonymous_Struct_325
+class Aws::S3::Types::NotificationConfigurationFilter < Anonymous_Struct_340
   include Aws::Structure
 end
-class Anonymous_Struct_326 < Struct
+class Anonymous_Struct_341 < Struct
   def etag; end
   def etag=(_); end
   def key; end
@@ -2811,12 +2925,12 @@ class Anonymous_Struct_326 < Struct
   def storage_class; end
   def storage_class=(_); end
 end
-class Aws::S3::Types::Object < Anonymous_Struct_326
+class Aws::S3::Types::Object < Anonymous_Struct_341
   include Aws::Structure
 end
 class Aws::S3::Types::ObjectAlreadyInActiveTierError < Aws::EmptyStructure
 end
-class Anonymous_Struct_327 < Struct
+class Anonymous_Struct_342 < Struct
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -2826,10 +2940,10 @@ class Anonymous_Struct_327 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::ObjectIdentifier < Anonymous_Struct_327
+class Aws::S3::Types::ObjectIdentifier < Anonymous_Struct_342
   include Aws::Structure
 end
-class Anonymous_Struct_328 < Struct
+class Anonymous_Struct_343 < Struct
   def object_lock_enabled; end
   def object_lock_enabled=(_); end
   def rule; end
@@ -2839,10 +2953,10 @@ class Anonymous_Struct_328 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ObjectLockConfiguration < Anonymous_Struct_328
+class Aws::S3::Types::ObjectLockConfiguration < Anonymous_Struct_343
   include Aws::Structure
 end
-class Anonymous_Struct_329 < Struct
+class Anonymous_Struct_344 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2850,10 +2964,10 @@ class Anonymous_Struct_329 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::ObjectLockLegalHold < Anonymous_Struct_329
+class Aws::S3::Types::ObjectLockLegalHold < Anonymous_Struct_344
   include Aws::Structure
 end
-class Anonymous_Struct_330 < Struct
+class Anonymous_Struct_345 < Struct
   def mode; end
   def mode=(_); end
   def retain_until_date; end
@@ -2863,10 +2977,10 @@ class Anonymous_Struct_330 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ObjectLockRetention < Anonymous_Struct_330
+class Aws::S3::Types::ObjectLockRetention < Anonymous_Struct_345
   include Aws::Structure
 end
-class Anonymous_Struct_331 < Struct
+class Anonymous_Struct_346 < Struct
   def default_retention; end
   def default_retention=(_); end
   def self.[](*arg0); end
@@ -2874,12 +2988,12 @@ class Anonymous_Struct_331 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ObjectLockRule < Anonymous_Struct_331
+class Aws::S3::Types::ObjectLockRule < Anonymous_Struct_346
   include Aws::Structure
 end
 class Aws::S3::Types::ObjectNotInActiveTierError < Aws::EmptyStructure
 end
-class Anonymous_Struct_332 < Struct
+class Anonymous_Struct_347 < Struct
   def etag; end
   def etag=(_); end
   def is_latest; end
@@ -2901,10 +3015,10 @@ class Anonymous_Struct_332 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::ObjectVersion < Anonymous_Struct_332
+class Aws::S3::Types::ObjectVersion < Anonymous_Struct_347
   include Aws::Structure
 end
-class Anonymous_Struct_333 < Struct
+class Anonymous_Struct_348 < Struct
   def s3; end
   def s3=(_); end
   def self.[](*arg0); end
@@ -2912,10 +3026,10 @@ class Anonymous_Struct_333 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::OutputLocation < Anonymous_Struct_333
+class Aws::S3::Types::OutputLocation < Anonymous_Struct_348
   include Aws::Structure
 end
-class Anonymous_Struct_334 < Struct
+class Anonymous_Struct_349 < Struct
   def csv; end
   def csv=(_); end
   def json; end
@@ -2925,10 +3039,10 @@ class Anonymous_Struct_334 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::OutputSerialization < Anonymous_Struct_334
+class Aws::S3::Types::OutputSerialization < Anonymous_Struct_349
   include Aws::Structure
 end
-class Anonymous_Struct_335 < Struct
+class Anonymous_Struct_350 < Struct
   def display_name; end
   def display_name=(_); end
   def id; end
@@ -2938,12 +3052,12 @@ class Anonymous_Struct_335 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Owner < Anonymous_Struct_335
+class Aws::S3::Types::Owner < Anonymous_Struct_350
   include Aws::Structure
 end
 class Aws::S3::Types::ParquetInput < Aws::EmptyStructure
 end
-class Anonymous_Struct_336 < Struct
+class Anonymous_Struct_351 < Struct
   def etag; end
   def etag=(_); end
   def last_modified; end
@@ -2957,10 +3071,10 @@ class Anonymous_Struct_336 < Struct
   def size; end
   def size=(_); end
 end
-class Aws::S3::Types::Part < Anonymous_Struct_336
+class Aws::S3::Types::Part < Anonymous_Struct_351
   include Aws::Structure
 end
-class Anonymous_Struct_337 < Struct
+class Anonymous_Struct_352 < Struct
   def is_public; end
   def is_public=(_); end
   def self.[](*arg0); end
@@ -2968,10 +3082,10 @@ class Anonymous_Struct_337 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PolicyStatus < Anonymous_Struct_337
+class Aws::S3::Types::PolicyStatus < Anonymous_Struct_352
   include Aws::Structure
 end
-class Anonymous_Struct_338 < Struct
+class Anonymous_Struct_353 < Struct
   def bytes_processed; end
   def bytes_processed=(_); end
   def bytes_returned; end
@@ -2983,10 +3097,10 @@ class Anonymous_Struct_338 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Progress < Anonymous_Struct_338
+class Aws::S3::Types::Progress < Anonymous_Struct_353
   include Aws::Structure
 end
-class Anonymous_Struct_339 < Struct
+class Anonymous_Struct_354 < Struct
   def details; end
   def details=(_); end
   def event_type; end
@@ -2996,10 +3110,10 @@ class Anonymous_Struct_339 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ProgressEvent < Anonymous_Struct_339
+class Aws::S3::Types::ProgressEvent < Anonymous_Struct_354
   include Aws::Structure
 end
-class Anonymous_Struct_340 < Struct
+class Anonymous_Struct_355 < Struct
   def block_public_acls; end
   def block_public_acls=(_); end
   def block_public_policy; end
@@ -3013,23 +3127,25 @@ class Anonymous_Struct_340 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PublicAccessBlockConfiguration < Anonymous_Struct_340
+class Aws::S3::Types::PublicAccessBlockConfiguration < Anonymous_Struct_355
   include Aws::Structure
 end
-class Anonymous_Struct_341 < Struct
+class Anonymous_Struct_356 < Struct
   def accelerate_configuration; end
   def accelerate_configuration=(_); end
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketAccelerateConfigurationRequest < Anonymous_Struct_341
+class Aws::S3::Types::PutBucketAccelerateConfigurationRequest < Anonymous_Struct_356
   include Aws::Structure
 end
-class Anonymous_Struct_342 < Struct
+class Anonymous_Struct_357 < Struct
   def access_control_policy; end
   def access_control_policy=(_); end
   def acl; end
@@ -3038,6 +3154,8 @@ class Anonymous_Struct_342 < Struct
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def grant_full_control; end
   def grant_full_control=(_); end
   def grant_read; end
@@ -3053,14 +3171,16 @@ class Anonymous_Struct_342 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketAclRequest < Anonymous_Struct_342
+class Aws::S3::Types::PutBucketAclRequest < Anonymous_Struct_357
   include Aws::Structure
 end
-class Anonymous_Struct_343 < Struct
+class Anonymous_Struct_358 < Struct
   def analytics_configuration; end
   def analytics_configuration=(_); end
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def self.[](*arg0); end
@@ -3068,29 +3188,33 @@ class Anonymous_Struct_343 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketAnalyticsConfigurationRequest < Anonymous_Struct_343
+class Aws::S3::Types::PutBucketAnalyticsConfigurationRequest < Anonymous_Struct_358
   include Aws::Structure
 end
-class Anonymous_Struct_344 < Struct
+class Anonymous_Struct_359 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
   def cors_configuration; end
   def cors_configuration=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketCorsRequest < Anonymous_Struct_344
+class Aws::S3::Types::PutBucketCorsRequest < Anonymous_Struct_359
   include Aws::Structure
 end
-class Anonymous_Struct_345 < Struct
+class Anonymous_Struct_360 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -3098,12 +3222,14 @@ class Anonymous_Struct_345 < Struct
   def server_side_encryption_configuration; end
   def server_side_encryption_configuration=(_); end
 end
-class Aws::S3::Types::PutBucketEncryptionRequest < Anonymous_Struct_345
+class Aws::S3::Types::PutBucketEncryptionRequest < Anonymous_Struct_360
   include Aws::Structure
 end
-class Anonymous_Struct_346 < Struct
+class Anonymous_Struct_361 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def inventory_configuration; end
@@ -3113,12 +3239,14 @@ class Anonymous_Struct_346 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketInventoryConfigurationRequest < Anonymous_Struct_346
+class Aws::S3::Types::PutBucketInventoryConfigurationRequest < Anonymous_Struct_361
   include Aws::Structure
 end
-class Anonymous_Struct_347 < Struct
+class Anonymous_Struct_362 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def lifecycle_configuration; end
   def lifecycle_configuration=(_); end
   def self.[](*arg0); end
@@ -3126,14 +3254,16 @@ class Anonymous_Struct_347 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketLifecycleConfigurationRequest < Anonymous_Struct_347
+class Aws::S3::Types::PutBucketLifecycleConfigurationRequest < Anonymous_Struct_362
   include Aws::Structure
 end
-class Anonymous_Struct_348 < Struct
+class Anonymous_Struct_363 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def lifecycle_configuration; end
   def lifecycle_configuration=(_); end
   def self.[](*arg0); end
@@ -3141,27 +3271,31 @@ class Anonymous_Struct_348 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketLifecycleRequest < Anonymous_Struct_348
+class Aws::S3::Types::PutBucketLifecycleRequest < Anonymous_Struct_363
   include Aws::Structure
 end
-class Anonymous_Struct_349 < Struct
+class Anonymous_Struct_364 < Struct
   def bucket; end
   def bucket=(_); end
   def bucket_logging_status; end
   def bucket_logging_status=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketLoggingRequest < Anonymous_Struct_349
+class Aws::S3::Types::PutBucketLoggingRequest < Anonymous_Struct_364
   include Aws::Structure
 end
-class Anonymous_Struct_350 < Struct
+class Anonymous_Struct_365 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def id; end
   def id=(_); end
   def metrics_configuration; end
@@ -3171,12 +3305,14 @@ class Anonymous_Struct_350 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketMetricsConfigurationRequest < Anonymous_Struct_350
+class Aws::S3::Types::PutBucketMetricsConfigurationRequest < Anonymous_Struct_365
   include Aws::Structure
 end
-class Anonymous_Struct_351 < Struct
+class Anonymous_Struct_366 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def notification_configuration; end
   def notification_configuration=(_); end
   def self.[](*arg0); end
@@ -3184,14 +3320,16 @@ class Anonymous_Struct_351 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketNotificationConfigurationRequest < Anonymous_Struct_351
+class Aws::S3::Types::PutBucketNotificationConfigurationRequest < Anonymous_Struct_366
   include Aws::Structure
 end
-class Anonymous_Struct_352 < Struct
+class Anonymous_Struct_367 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def notification_configuration; end
   def notification_configuration=(_); end
   def self.[](*arg0); end
@@ -3199,16 +3337,18 @@ class Anonymous_Struct_352 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketNotificationRequest < Anonymous_Struct_352
+class Aws::S3::Types::PutBucketNotificationRequest < Anonymous_Struct_367
   include Aws::Structure
 end
-class Anonymous_Struct_353 < Struct
+class Anonymous_Struct_368 < Struct
   def bucket; end
   def bucket=(_); end
   def confirm_remove_self_bucket_access; end
   def confirm_remove_self_bucket_access=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def policy; end
   def policy=(_); end
   def self.[](*arg0); end
@@ -3216,14 +3356,16 @@ class Anonymous_Struct_353 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketPolicyRequest < Anonymous_Struct_353
+class Aws::S3::Types::PutBucketPolicyRequest < Anonymous_Struct_368
   include Aws::Structure
 end
-class Anonymous_Struct_354 < Struct
+class Anonymous_Struct_369 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def replication_configuration; end
   def replication_configuration=(_); end
   def self.[](*arg0); end
@@ -3233,14 +3375,16 @@ class Anonymous_Struct_354 < Struct
   def token; end
   def token=(_); end
 end
-class Aws::S3::Types::PutBucketReplicationRequest < Anonymous_Struct_354
+class Aws::S3::Types::PutBucketReplicationRequest < Anonymous_Struct_369
   include Aws::Structure
 end
-class Anonymous_Struct_355 < Struct
+class Anonymous_Struct_370 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def request_payment_configuration; end
   def request_payment_configuration=(_); end
   def self.[](*arg0); end
@@ -3248,14 +3392,16 @@ class Anonymous_Struct_355 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutBucketRequestPaymentRequest < Anonymous_Struct_355
+class Aws::S3::Types::PutBucketRequestPaymentRequest < Anonymous_Struct_370
   include Aws::Structure
 end
-class Anonymous_Struct_356 < Struct
+class Anonymous_Struct_371 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -3263,14 +3409,16 @@ class Anonymous_Struct_356 < Struct
   def tagging; end
   def tagging=(_); end
 end
-class Aws::S3::Types::PutBucketTaggingRequest < Anonymous_Struct_356
+class Aws::S3::Types::PutBucketTaggingRequest < Anonymous_Struct_371
   include Aws::Structure
 end
-class Anonymous_Struct_357 < Struct
+class Anonymous_Struct_372 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def mfa; end
   def mfa=(_); end
   def self.[](*arg0); end
@@ -3280,14 +3428,16 @@ class Anonymous_Struct_357 < Struct
   def versioning_configuration; end
   def versioning_configuration=(_); end
 end
-class Aws::S3::Types::PutBucketVersioningRequest < Anonymous_Struct_357
+class Aws::S3::Types::PutBucketVersioningRequest < Anonymous_Struct_372
   include Aws::Structure
 end
-class Anonymous_Struct_358 < Struct
+class Anonymous_Struct_373 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -3295,10 +3445,10 @@ class Anonymous_Struct_358 < Struct
   def website_configuration; end
   def website_configuration=(_); end
 end
-class Aws::S3::Types::PutBucketWebsiteRequest < Anonymous_Struct_358
+class Aws::S3::Types::PutBucketWebsiteRequest < Anonymous_Struct_373
   include Aws::Structure
 end
-class Anonymous_Struct_359 < Struct
+class Anonymous_Struct_374 < Struct
   def request_charged; end
   def request_charged=(_); end
   def self.[](*arg0); end
@@ -3306,10 +3456,10 @@ class Anonymous_Struct_359 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutObjectAclOutput < Anonymous_Struct_359
+class Aws::S3::Types::PutObjectAclOutput < Anonymous_Struct_374
   include Aws::Structure
 end
-class Anonymous_Struct_360 < Struct
+class Anonymous_Struct_375 < Struct
   def access_control_policy; end
   def access_control_policy=(_); end
   def acl; end
@@ -3318,6 +3468,8 @@ class Anonymous_Struct_360 < Struct
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def grant_full_control; end
   def grant_full_control=(_); end
   def grant_read; end
@@ -3339,10 +3491,10 @@ class Anonymous_Struct_360 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::PutObjectAclRequest < Anonymous_Struct_360
+class Aws::S3::Types::PutObjectAclRequest < Anonymous_Struct_375
   include Aws::Structure
 end
-class Anonymous_Struct_361 < Struct
+class Anonymous_Struct_376 < Struct
   def request_charged; end
   def request_charged=(_); end
   def self.[](*arg0); end
@@ -3350,14 +3502,16 @@ class Anonymous_Struct_361 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutObjectLegalHoldOutput < Anonymous_Struct_361
+class Aws::S3::Types::PutObjectLegalHoldOutput < Anonymous_Struct_376
   include Aws::Structure
 end
-class Anonymous_Struct_362 < Struct
+class Anonymous_Struct_377 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def legal_hold; end
@@ -3371,10 +3525,10 @@ class Anonymous_Struct_362 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::PutObjectLegalHoldRequest < Anonymous_Struct_362
+class Aws::S3::Types::PutObjectLegalHoldRequest < Anonymous_Struct_377
   include Aws::Structure
 end
-class Anonymous_Struct_363 < Struct
+class Anonymous_Struct_378 < Struct
   def request_charged; end
   def request_charged=(_); end
   def self.[](*arg0); end
@@ -3382,14 +3536,16 @@ class Anonymous_Struct_363 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutObjectLockConfigurationOutput < Anonymous_Struct_363
+class Aws::S3::Types::PutObjectLockConfigurationOutput < Anonymous_Struct_378
   include Aws::Structure
 end
-class Anonymous_Struct_364 < Struct
+class Anonymous_Struct_379 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def object_lock_configuration; end
   def object_lock_configuration=(_); end
   def request_payer; end
@@ -3401,10 +3557,10 @@ class Anonymous_Struct_364 < Struct
   def token; end
   def token=(_); end
 end
-class Aws::S3::Types::PutObjectLockConfigurationRequest < Anonymous_Struct_364
+class Aws::S3::Types::PutObjectLockConfigurationRequest < Anonymous_Struct_379
   include Aws::Structure
 end
-class Anonymous_Struct_365 < Struct
+class Anonymous_Struct_380 < Struct
   def etag; end
   def etag=(_); end
   def expiration; end
@@ -3428,10 +3584,10 @@ class Anonymous_Struct_365 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::PutObjectOutput < Anonymous_Struct_365
+class Aws::S3::Types::PutObjectOutput < Anonymous_Struct_380
   include Aws::Structure
 end
-class Anonymous_Struct_366 < Struct
+class Anonymous_Struct_381 < Struct
   def acl; end
   def acl=(_); end
   def body; end
@@ -3452,6 +3608,8 @@ class Anonymous_Struct_366 < Struct
   def content_md5=(_); end
   def content_type; end
   def content_type=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def expires; end
   def expires=(_); end
   def grant_full_control; end
@@ -3497,10 +3655,10 @@ class Anonymous_Struct_366 < Struct
   def website_redirect_location; end
   def website_redirect_location=(_); end
 end
-class Aws::S3::Types::PutObjectRequest < Anonymous_Struct_366
+class Aws::S3::Types::PutObjectRequest < Anonymous_Struct_381
   include Aws::Structure
 end
-class Anonymous_Struct_367 < Struct
+class Anonymous_Struct_382 < Struct
   def request_charged; end
   def request_charged=(_); end
   def self.[](*arg0); end
@@ -3508,16 +3666,18 @@ class Anonymous_Struct_367 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutObjectRetentionOutput < Anonymous_Struct_367
+class Aws::S3::Types::PutObjectRetentionOutput < Anonymous_Struct_382
   include Aws::Structure
 end
-class Anonymous_Struct_368 < Struct
+class Anonymous_Struct_383 < Struct
   def bucket; end
   def bucket=(_); end
   def bypass_governance_retention; end
   def bypass_governance_retention=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def request_payer; end
@@ -3531,10 +3691,10 @@ class Anonymous_Struct_368 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::PutObjectRetentionRequest < Anonymous_Struct_368
+class Aws::S3::Types::PutObjectRetentionRequest < Anonymous_Struct_383
   include Aws::Structure
 end
-class Anonymous_Struct_369 < Struct
+class Anonymous_Struct_384 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -3542,14 +3702,16 @@ class Anonymous_Struct_369 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::PutObjectTaggingOutput < Anonymous_Struct_369
+class Aws::S3::Types::PutObjectTaggingOutput < Anonymous_Struct_384
   include Aws::Structure
 end
-class Anonymous_Struct_370 < Struct
+class Anonymous_Struct_385 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -3561,14 +3723,16 @@ class Anonymous_Struct_370 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::PutObjectTaggingRequest < Anonymous_Struct_370
+class Aws::S3::Types::PutObjectTaggingRequest < Anonymous_Struct_385
   include Aws::Structure
 end
-class Anonymous_Struct_371 < Struct
+class Anonymous_Struct_386 < Struct
   def bucket; end
   def bucket=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def public_access_block_configuration; end
   def public_access_block_configuration=(_); end
   def self.[](*arg0); end
@@ -3576,10 +3740,10 @@ class Anonymous_Struct_371 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::PutPublicAccessBlockRequest < Anonymous_Struct_371
+class Aws::S3::Types::PutPublicAccessBlockRequest < Anonymous_Struct_386
   include Aws::Structure
 end
-class Anonymous_Struct_372 < Struct
+class Anonymous_Struct_387 < Struct
   def events; end
   def events=(_); end
   def filter; end
@@ -3593,10 +3757,10 @@ class Anonymous_Struct_372 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::QueueConfiguration < Anonymous_Struct_372
+class Aws::S3::Types::QueueConfiguration < Anonymous_Struct_387
   include Aws::Structure
 end
-class Anonymous_Struct_373 < Struct
+class Anonymous_Struct_388 < Struct
   def event; end
   def event=(_); end
   def events; end
@@ -3610,10 +3774,10 @@ class Anonymous_Struct_373 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::QueueConfigurationDeprecated < Anonymous_Struct_373
+class Aws::S3::Types::QueueConfigurationDeprecated < Anonymous_Struct_388
   include Aws::Structure
 end
-class Anonymous_Struct_374 < Struct
+class Anonymous_Struct_389 < Struct
   def event_type; end
   def event_type=(_); end
   def payload; end
@@ -3623,10 +3787,10 @@ class Anonymous_Struct_374 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::RecordsEvent < Anonymous_Struct_374
+class Aws::S3::Types::RecordsEvent < Anonymous_Struct_389
   include Aws::Structure
 end
-class Anonymous_Struct_375 < Struct
+class Anonymous_Struct_390 < Struct
   def host_name; end
   def host_name=(_); end
   def http_redirect_code; end
@@ -3642,10 +3806,10 @@ class Anonymous_Struct_375 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Redirect < Anonymous_Struct_375
+class Aws::S3::Types::Redirect < Anonymous_Struct_390
   include Aws::Structure
 end
-class Anonymous_Struct_376 < Struct
+class Anonymous_Struct_391 < Struct
   def host_name; end
   def host_name=(_); end
   def protocol; end
@@ -3655,10 +3819,10 @@ class Anonymous_Struct_376 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::RedirectAllRequestsTo < Anonymous_Struct_376
+class Aws::S3::Types::RedirectAllRequestsTo < Anonymous_Struct_391
   include Aws::Structure
 end
-class Anonymous_Struct_377 < Struct
+class Anonymous_Struct_392 < Struct
   def role; end
   def role=(_); end
   def rules; end
@@ -3668,10 +3832,10 @@ class Anonymous_Struct_377 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ReplicationConfiguration < Anonymous_Struct_377
+class Aws::S3::Types::ReplicationConfiguration < Anonymous_Struct_392
   include Aws::Structure
 end
-class Anonymous_Struct_378 < Struct
+class Anonymous_Struct_393 < Struct
   def delete_marker_replication; end
   def delete_marker_replication=(_); end
   def destination; end
@@ -3695,10 +3859,10 @@ class Anonymous_Struct_378 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::ReplicationRule < Anonymous_Struct_378
+class Aws::S3::Types::ReplicationRule < Anonymous_Struct_393
   include Aws::Structure
 end
-class Anonymous_Struct_379 < Struct
+class Anonymous_Struct_394 < Struct
   def prefix; end
   def prefix=(_); end
   def self.[](*arg0); end
@@ -3708,10 +3872,10 @@ class Anonymous_Struct_379 < Struct
   def tags; end
   def tags=(_); end
 end
-class Aws::S3::Types::ReplicationRuleAndOperator < Anonymous_Struct_379
+class Aws::S3::Types::ReplicationRuleAndOperator < Anonymous_Struct_394
   include Aws::Structure
 end
-class Anonymous_Struct_380 < Struct
+class Anonymous_Struct_395 < Struct
   def and; end
   def and=(_); end
   def prefix; end
@@ -3723,10 +3887,10 @@ class Anonymous_Struct_380 < Struct
   def tag; end
   def tag=(_); end
 end
-class Aws::S3::Types::ReplicationRuleFilter < Anonymous_Struct_380
+class Aws::S3::Types::ReplicationRuleFilter < Anonymous_Struct_395
   include Aws::Structure
 end
-class Anonymous_Struct_381 < Struct
+class Anonymous_Struct_396 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -3736,10 +3900,10 @@ class Anonymous_Struct_381 < Struct
   def time; end
   def time=(_); end
 end
-class Aws::S3::Types::ReplicationTime < Anonymous_Struct_381
+class Aws::S3::Types::ReplicationTime < Anonymous_Struct_396
   include Aws::Structure
 end
-class Anonymous_Struct_382 < Struct
+class Anonymous_Struct_397 < Struct
   def minutes; end
   def minutes=(_); end
   def self.[](*arg0); end
@@ -3747,10 +3911,10 @@ class Anonymous_Struct_382 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ReplicationTimeValue < Anonymous_Struct_382
+class Aws::S3::Types::ReplicationTimeValue < Anonymous_Struct_397
   include Aws::Structure
 end
-class Anonymous_Struct_383 < Struct
+class Anonymous_Struct_398 < Struct
   def payer; end
   def payer=(_); end
   def self.[](*arg0); end
@@ -3758,10 +3922,10 @@ class Anonymous_Struct_383 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::RequestPaymentConfiguration < Anonymous_Struct_383
+class Aws::S3::Types::RequestPaymentConfiguration < Anonymous_Struct_398
   include Aws::Structure
 end
-class Anonymous_Struct_384 < Struct
+class Anonymous_Struct_399 < Struct
   def enabled; end
   def enabled=(_); end
   def self.[](*arg0); end
@@ -3769,10 +3933,10 @@ class Anonymous_Struct_384 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::RequestProgress < Anonymous_Struct_384
+class Aws::S3::Types::RequestProgress < Anonymous_Struct_399
   include Aws::Structure
 end
-class Anonymous_Struct_385 < Struct
+class Anonymous_Struct_400 < Struct
   def request_charged; end
   def request_charged=(_); end
   def restore_output_path; end
@@ -3782,12 +3946,14 @@ class Anonymous_Struct_385 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::RestoreObjectOutput < Anonymous_Struct_385
+class Aws::S3::Types::RestoreObjectOutput < Anonymous_Struct_400
   include Aws::Structure
 end
-class Anonymous_Struct_386 < Struct
+class Anonymous_Struct_401 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def request_payer; end
@@ -3801,10 +3967,10 @@ class Anonymous_Struct_386 < Struct
   def version_id; end
   def version_id=(_); end
 end
-class Aws::S3::Types::RestoreObjectRequest < Anonymous_Struct_386
+class Aws::S3::Types::RestoreObjectRequest < Anonymous_Struct_401
   include Aws::Structure
 end
-class Anonymous_Struct_387 < Struct
+class Anonymous_Struct_402 < Struct
   def days; end
   def days=(_); end
   def description; end
@@ -3824,10 +3990,10 @@ class Anonymous_Struct_387 < Struct
   def type; end
   def type=(_); end
 end
-class Aws::S3::Types::RestoreRequest < Anonymous_Struct_387
+class Aws::S3::Types::RestoreRequest < Anonymous_Struct_402
   include Aws::Structure
 end
-class Anonymous_Struct_388 < Struct
+class Anonymous_Struct_403 < Struct
   def condition; end
   def condition=(_); end
   def redirect; end
@@ -3837,10 +4003,10 @@ class Anonymous_Struct_388 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::RoutingRule < Anonymous_Struct_388
+class Aws::S3::Types::RoutingRule < Anonymous_Struct_403
   include Aws::Structure
 end
-class Anonymous_Struct_389 < Struct
+class Anonymous_Struct_404 < Struct
   def abort_incomplete_multipart_upload; end
   def abort_incomplete_multipart_upload=(_); end
   def expiration; end
@@ -3862,10 +4028,10 @@ class Anonymous_Struct_389 < Struct
   def transition; end
   def transition=(_); end
 end
-class Aws::S3::Types::Rule < Anonymous_Struct_389
+class Aws::S3::Types::Rule < Anonymous_Struct_404
   include Aws::Structure
 end
-class Anonymous_Struct_390 < Struct
+class Anonymous_Struct_405 < Struct
   def filter_rules; end
   def filter_rules=(_); end
   def self.[](*arg0); end
@@ -3873,10 +4039,10 @@ class Anonymous_Struct_390 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::S3KeyFilter < Anonymous_Struct_390
+class Aws::S3::Types::S3KeyFilter < Anonymous_Struct_405
   include Aws::Structure
 end
-class Anonymous_Struct_391 < Struct
+class Anonymous_Struct_406 < Struct
   def access_control_list; end
   def access_control_list=(_); end
   def bucket_name; end
@@ -3898,10 +4064,10 @@ class Anonymous_Struct_391 < Struct
   def user_metadata; end
   def user_metadata=(_); end
 end
-class Aws::S3::Types::S3Location < Anonymous_Struct_391
+class Aws::S3::Types::S3Location < Anonymous_Struct_406
   include Aws::Structure
 end
-class Anonymous_Struct_392 < Struct
+class Anonymous_Struct_407 < Struct
   def key_id; end
   def key_id=(_); end
   def self.[](*arg0); end
@@ -3909,12 +4075,12 @@ class Anonymous_Struct_392 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::SSEKMS < Anonymous_Struct_392
+class Aws::S3::Types::SSEKMS < Anonymous_Struct_407
   include Aws::Structure
 end
 class Aws::S3::Types::SSES3 < Aws::EmptyStructure
 end
-class Anonymous_Struct_393 < Struct
+class Anonymous_Struct_408 < Struct
   def end; end
   def end=(_); end
   def self.[](*arg0); end
@@ -3924,10 +4090,10 @@ class Anonymous_Struct_393 < Struct
   def start; end
   def start=(_); end
 end
-class Aws::S3::Types::ScanRange < Anonymous_Struct_393
+class Aws::S3::Types::ScanRange < Anonymous_Struct_408
   include Aws::Structure
 end
-class Anonymous_Struct_394 < Struct
+class Anonymous_Struct_409 < Struct
   def payload; end
   def payload=(_); end
   def self.[](*arg0); end
@@ -3935,12 +4101,14 @@ class Anonymous_Struct_394 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::SelectObjectContentOutput < Anonymous_Struct_394
+class Aws::S3::Types::SelectObjectContentOutput < Anonymous_Struct_409
   include Aws::Structure
 end
-class Anonymous_Struct_395 < Struct
+class Anonymous_Struct_410 < Struct
   def bucket; end
   def bucket=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def expression; end
   def expression=(_); end
   def expression_type; end
@@ -3966,10 +4134,10 @@ class Anonymous_Struct_395 < Struct
   def sse_customer_key_md5; end
   def sse_customer_key_md5=(_); end
 end
-class Aws::S3::Types::SelectObjectContentRequest < Anonymous_Struct_395
+class Aws::S3::Types::SelectObjectContentRequest < Anonymous_Struct_410
   include Aws::Structure
 end
-class Anonymous_Struct_396 < Struct
+class Anonymous_Struct_411 < Struct
   def expression; end
   def expression=(_); end
   def expression_type; end
@@ -3983,10 +4151,10 @@ class Anonymous_Struct_396 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::SelectParameters < Anonymous_Struct_396
+class Aws::S3::Types::SelectParameters < Anonymous_Struct_411
   include Aws::Structure
 end
-class Anonymous_Struct_397 < Struct
+class Anonymous_Struct_412 < Struct
   def kms_master_key_id; end
   def kms_master_key_id=(_); end
   def self.[](*arg0); end
@@ -3996,10 +4164,10 @@ class Anonymous_Struct_397 < Struct
   def sse_algorithm; end
   def sse_algorithm=(_); end
 end
-class Aws::S3::Types::ServerSideEncryptionByDefault < Anonymous_Struct_397
+class Aws::S3::Types::ServerSideEncryptionByDefault < Anonymous_Struct_412
   include Aws::Structure
 end
-class Anonymous_Struct_398 < Struct
+class Anonymous_Struct_413 < Struct
   def rules; end
   def rules=(_); end
   def self.[](*arg0); end
@@ -4007,10 +4175,10 @@ class Anonymous_Struct_398 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ServerSideEncryptionConfiguration < Anonymous_Struct_398
+class Aws::S3::Types::ServerSideEncryptionConfiguration < Anonymous_Struct_413
   include Aws::Structure
 end
-class Anonymous_Struct_399 < Struct
+class Anonymous_Struct_414 < Struct
   def apply_server_side_encryption_by_default; end
   def apply_server_side_encryption_by_default=(_); end
   def self.[](*arg0); end
@@ -4018,10 +4186,10 @@ class Anonymous_Struct_399 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::ServerSideEncryptionRule < Anonymous_Struct_399
+class Aws::S3::Types::ServerSideEncryptionRule < Anonymous_Struct_414
   include Aws::Structure
 end
-class Anonymous_Struct_400 < Struct
+class Anonymous_Struct_415 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -4029,10 +4197,10 @@ class Anonymous_Struct_400 < Struct
   def sse_kms_encrypted_objects; end
   def sse_kms_encrypted_objects=(_); end
 end
-class Aws::S3::Types::SourceSelectionCriteria < Anonymous_Struct_400
+class Aws::S3::Types::SourceSelectionCriteria < Anonymous_Struct_415
   include Aws::Structure
 end
-class Anonymous_Struct_401 < Struct
+class Anonymous_Struct_416 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -4040,10 +4208,10 @@ class Anonymous_Struct_401 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::SseKmsEncryptedObjects < Anonymous_Struct_401
+class Aws::S3::Types::SseKmsEncryptedObjects < Anonymous_Struct_416
   include Aws::Structure
 end
-class Anonymous_Struct_402 < Struct
+class Anonymous_Struct_417 < Struct
   def bytes_processed; end
   def bytes_processed=(_); end
   def bytes_returned; end
@@ -4055,10 +4223,10 @@ class Anonymous_Struct_402 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::Stats < Anonymous_Struct_402
+class Aws::S3::Types::Stats < Anonymous_Struct_417
   include Aws::Structure
 end
-class Anonymous_Struct_403 < Struct
+class Anonymous_Struct_418 < Struct
   def details; end
   def details=(_); end
   def event_type; end
@@ -4068,10 +4236,10 @@ class Anonymous_Struct_403 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::StatsEvent < Anonymous_Struct_403
+class Aws::S3::Types::StatsEvent < Anonymous_Struct_418
   include Aws::Structure
 end
-class Anonymous_Struct_404 < Struct
+class Anonymous_Struct_419 < Struct
   def data_export; end
   def data_export=(_); end
   def self.[](*arg0); end
@@ -4079,10 +4247,10 @@ class Anonymous_Struct_404 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::StorageClassAnalysis < Anonymous_Struct_404
+class Aws::S3::Types::StorageClassAnalysis < Anonymous_Struct_419
   include Aws::Structure
 end
-class Anonymous_Struct_405 < Struct
+class Anonymous_Struct_420 < Struct
   def destination; end
   def destination=(_); end
   def output_schema_version; end
@@ -4092,10 +4260,10 @@ class Anonymous_Struct_405 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::StorageClassAnalysisDataExport < Anonymous_Struct_405
+class Aws::S3::Types::StorageClassAnalysisDataExport < Anonymous_Struct_420
   include Aws::Structure
 end
-class Anonymous_Struct_406 < Struct
+class Anonymous_Struct_421 < Struct
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -4105,10 +4273,10 @@ class Anonymous_Struct_406 < Struct
   def value; end
   def value=(_); end
 end
-class Aws::S3::Types::Tag < Anonymous_Struct_406
+class Aws::S3::Types::Tag < Anonymous_Struct_421
   include Aws::Structure
 end
-class Anonymous_Struct_407 < Struct
+class Anonymous_Struct_422 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -4116,10 +4284,10 @@ class Anonymous_Struct_407 < Struct
   def tag_set; end
   def tag_set=(_); end
 end
-class Aws::S3::Types::Tagging < Anonymous_Struct_407
+class Aws::S3::Types::Tagging < Anonymous_Struct_422
   include Aws::Structure
 end
-class Anonymous_Struct_408 < Struct
+class Anonymous_Struct_423 < Struct
   def grantee; end
   def grantee=(_); end
   def permission; end
@@ -4129,10 +4297,10 @@ class Anonymous_Struct_408 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::TargetGrant < Anonymous_Struct_408
+class Aws::S3::Types::TargetGrant < Anonymous_Struct_423
   include Aws::Structure
 end
-class Anonymous_Struct_409 < Struct
+class Anonymous_Struct_424 < Struct
   def events; end
   def events=(_); end
   def filter; end
@@ -4146,10 +4314,10 @@ class Anonymous_Struct_409 < Struct
   def topic_arn; end
   def topic_arn=(_); end
 end
-class Aws::S3::Types::TopicConfiguration < Anonymous_Struct_409
+class Aws::S3::Types::TopicConfiguration < Anonymous_Struct_424
   include Aws::Structure
 end
-class Anonymous_Struct_410 < Struct
+class Anonymous_Struct_425 < Struct
   def event; end
   def event=(_); end
   def events; end
@@ -4163,10 +4331,10 @@ class Anonymous_Struct_410 < Struct
   def topic; end
   def topic=(_); end
 end
-class Aws::S3::Types::TopicConfigurationDeprecated < Anonymous_Struct_410
+class Aws::S3::Types::TopicConfigurationDeprecated < Anonymous_Struct_425
   include Aws::Structure
 end
-class Anonymous_Struct_411 < Struct
+class Anonymous_Struct_426 < Struct
   def date; end
   def date=(_); end
   def days; end
@@ -4178,10 +4346,10 @@ class Anonymous_Struct_411 < Struct
   def storage_class; end
   def storage_class=(_); end
 end
-class Aws::S3::Types::Transition < Anonymous_Struct_411
+class Aws::S3::Types::Transition < Anonymous_Struct_426
   include Aws::Structure
 end
-class Anonymous_Struct_412 < Struct
+class Anonymous_Struct_427 < Struct
   def copy_part_result; end
   def copy_part_result=(_); end
   def copy_source_version_id; end
@@ -4201,10 +4369,10 @@ class Anonymous_Struct_412 < Struct
   def ssekms_key_id; end
   def ssekms_key_id=(_); end
 end
-class Aws::S3::Types::UploadPartCopyOutput < Anonymous_Struct_412
+class Aws::S3::Types::UploadPartCopyOutput < Anonymous_Struct_427
   include Aws::Structure
 end
-class Anonymous_Struct_413 < Struct
+class Anonymous_Struct_428 < Struct
   def bucket; end
   def bucket=(_); end
   def copy_source; end
@@ -4225,6 +4393,10 @@ class Anonymous_Struct_413 < Struct
   def copy_source_sse_customer_key=(_); end
   def copy_source_sse_customer_key_md5; end
   def copy_source_sse_customer_key_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
+  def expected_source_bucket_owner; end
+  def expected_source_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def part_number; end
@@ -4244,10 +4416,10 @@ class Anonymous_Struct_413 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::UploadPartCopyRequest < Anonymous_Struct_413
+class Aws::S3::Types::UploadPartCopyRequest < Anonymous_Struct_428
   include Aws::Structure
 end
-class Anonymous_Struct_414 < Struct
+class Anonymous_Struct_429 < Struct
   def etag; end
   def etag=(_); end
   def request_charged; end
@@ -4265,10 +4437,10 @@ class Anonymous_Struct_414 < Struct
   def ssekms_key_id; end
   def ssekms_key_id=(_); end
 end
-class Aws::S3::Types::UploadPartOutput < Anonymous_Struct_414
+class Aws::S3::Types::UploadPartOutput < Anonymous_Struct_429
   include Aws::Structure
 end
-class Anonymous_Struct_415 < Struct
+class Anonymous_Struct_430 < Struct
   def body; end
   def body=(_); end
   def bucket; end
@@ -4277,6 +4449,8 @@ class Anonymous_Struct_415 < Struct
   def content_length=(_); end
   def content_md5; end
   def content_md5=(_); end
+  def expected_bucket_owner; end
+  def expected_bucket_owner=(_); end
   def key; end
   def key=(_); end
   def part_number; end
@@ -4296,10 +4470,10 @@ class Anonymous_Struct_415 < Struct
   def upload_id; end
   def upload_id=(_); end
 end
-class Aws::S3::Types::UploadPartRequest < Anonymous_Struct_415
+class Aws::S3::Types::UploadPartRequest < Anonymous_Struct_430
   include Aws::Structure
 end
-class Anonymous_Struct_416 < Struct
+class Anonymous_Struct_431 < Struct
   def mfa_delete; end
   def mfa_delete=(_); end
   def self.[](*arg0); end
@@ -4309,10 +4483,10 @@ class Anonymous_Struct_416 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::S3::Types::VersioningConfiguration < Anonymous_Struct_416
+class Aws::S3::Types::VersioningConfiguration < Anonymous_Struct_431
   include Aws::Structure
 end
-class Anonymous_Struct_417 < Struct
+class Anonymous_Struct_432 < Struct
   def error_document; end
   def error_document=(_); end
   def index_document; end
@@ -4326,7 +4500,7 @@ class Anonymous_Struct_417 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::S3::Types::WebsiteConfiguration < Anonymous_Struct_417
+class Aws::S3::Types::WebsiteConfiguration < Anonymous_Struct_432
   include Aws::Structure
 end
 class Aws::S3::Types::SelectObjectContentEventStream < Enumerator
@@ -4355,8 +4529,7 @@ class Aws::S3::Plugins::Accelerate::OptionHandler < Seahorse::Client::Handler
 end
 class Aws::S3::Plugins::Accelerate::AccelerateHandler < Seahorse::Client::Handler
   def call(context); end
-  def use_accelerate_endpoint(context); end
-  def use_combined_accelerate_dualstack_endpoint(context); end
+  def use_accelerate_endpoint(context, dualstack); end
   def validate_bucket_name!(bucket_name); end
 end
 class Aws::S3::Plugins::Dualstack < Seahorse::Client::Plugin
@@ -4622,10 +4795,10 @@ class Aws::S3::Client < Seahorse::Client::Base
   def waiter(waiter_name, options = nil); end
   def waiter_names; end
   def waiters; end
-  include Anonymous_Module_418
+  include Anonymous_Module_433
   include Aws::ClientStubs
 end
-module Anonymous_Module_418
+module Anonymous_Module_433
   def abort_multipart_upload(*args, &block); end
   def complete_multipart_upload(*args, &block); end
   def copy_object(*args, &block); end
@@ -5305,6 +5478,7 @@ class Aws::S3::Encryption::Client
   def client; end
   def config(*args, &block); end
   def delete_object(*args, &block); end
+  def deprecated_initialize(options = nil); end
   def envelope_location; end
   def envelope_options(params); end
   def extract_client(options); end
@@ -5313,7 +5487,7 @@ class Aws::S3::Encryption::Client
   def extract_suffix(options); end
   def get_object(params = nil, &block); end
   def head_object(*args, &block); end
-  def initialize(options = nil); end
+  def initialize(*args, &block); end
   def instruction_file_suffix; end
   def key_provider; end
   def kms_client(options); end
@@ -5324,8 +5498,9 @@ end
 class Aws::S3::Encryption::DecryptHandler < Seahorse::Client::Handler
   def apply_cse_user_agent(context); end
   def attach_http_event_listeners(context); end
-  def authenticated_decrypter(context, cipher); end
-  def body_contains_auth_tag?(context); end
+  def auth_tag_length(envelope); end
+  def authenticated_decrypter(context, cipher, envelope); end
+  def body_contains_auth_tag?(envelope); end
   def call(context); end
   def decryption_cipher(context); end
   def envelope_from_instr_file(context); end
@@ -5337,7 +5512,7 @@ class Aws::S3::Encryption::DecryptHandler < Seahorse::Client::Handler
 end
 class Aws::S3::Encryption::DefaultCipherProvider
   def decode64(str); end
-  def decryption_cipher(envelope); end
+  def decryption_cipher(envelope, options = nil); end
   def encode64(str); end
   def encrypt(data); end
   def encryption_cipher; end
@@ -5371,7 +5546,6 @@ class Aws::S3::Encryption::IODecrypter
   def finalize; end
   def initialize(cipher, io); end
   def io; end
-  def size; end
   def write(chunk); end
 end
 class Aws::S3::Encryption::IOAuthDecrypter
@@ -5386,8 +5560,9 @@ module Aws::S3::Encryption::KeyProvider
   def key_for(materials_description); end
 end
 class Aws::S3::Encryption::KmsCipherProvider
+  def build_encryption_context(cek_alg, options = nil); end
   def decode64(str); end
-  def decryption_cipher(envelope); end
+  def decryption_cipher(envelope, options = nil); end
   def encode64(str); end
   def encryption_cipher; end
   def initialize(options = nil); end
@@ -5405,6 +5580,8 @@ module Aws::S3::Encryption::Utils
   def self.aes_encryption_cipher(block_mode, key = nil, iv = nil); end
   def self.cipher_size(key); end
   def self.decrypt(key, data); end
+  def self.decrypt_aes_gcm(key, data, auth_data); end
+  def self.decrypt_rsa(key, enc_data); end
   def self.encrypt(key, data); end
 end
 class Aws::S3::Encryption::DefaultKeyProvider
@@ -5426,20 +5603,28 @@ class Aws::S3::EncryptionV2::Client
   def extract_client(options); end
   def extract_key_provider(options); end
   def extract_location(options); end
+  def extract_security_profile(options); end
   def extract_suffix(options); end
   def get_object(params = nil, &block); end
   def head_object(*args, &block); end
   def initialize(options = nil); end
   def instruction_file_suffix; end
   def key_provider; end
+  def kms_allow_decrypt_with_any_cmk; end
+  def kms_any_cmk_mode(params); end
   def kms_client(options); end
   def put_object(params = nil); end
+  def security_profile; end
+  def security_profile_from_params(params); end
+  def validate_params(options); end
+  def validate_security_profile(security_profile); end
   extend Aws::Deprecations
   extend Forwardable
 end
 class Aws::S3::EncryptionV2::DecryptHandler < Seahorse::Client::Handler
   def apply_cse_user_agent(context); end
   def attach_http_event_listeners(context); end
+  def auth_tag_length(envelope); end
   def authenticated_decrypter(context, cipher, envelope); end
   def body_contains_auth_tag?(envelope); end
   def call(context); end
@@ -5462,6 +5647,9 @@ class Aws::S3::EncryptionV2::DefaultCipherProvider
   def envelope_key(cipher); end
   def initialize(options = nil); end
   def materials_description; end
+  def validate_cek(content_encryption_schema); end
+  def validate_key_wrap(key_wrap_schema, key); end
+  def validate_options(options); end
 end
 class Aws::S3::EncryptionV2::EncryptHandler < Seahorse::Client::Handler
   def apply_cse_user_agent(context); end
@@ -5474,6 +5662,12 @@ end
 class Aws::S3::EncryptionV2::Errors::DecryptionError < RuntimeError
 end
 class Aws::S3::EncryptionV2::Errors::EncryptionError < RuntimeError
+end
+class Aws::S3::EncryptionV2::Errors::LegacyDecryptionError < Aws::S3::EncryptionV2::Errors::DecryptionError
+  def initialize(*args); end
+end
+class Aws::S3::EncryptionV2::Errors::CEKAlgMismatchError < Aws::S3::EncryptionV2::Errors::DecryptionError
+  def initialize(*args); end
 end
 class Aws::S3::EncryptionV2::IOEncrypter
   def close; end
@@ -5508,6 +5702,10 @@ class Aws::S3::EncryptionV2::KmsCipherProvider
   def encode64(str); end
   def encryption_cipher(options = nil); end
   def initialize(options = nil); end
+  def validate_cek(content_encryption_schema); end
+  def validate_key_for_encryption; end
+  def validate_key_wrap(key_wrap_schema); end
+  def validate_kms_key(kms_key_id); end
 end
 class Aws::S3::EncryptionV2::Materials
   def description; end
@@ -5524,7 +5722,6 @@ module Aws::S3::EncryptionV2::Utils
   def self.decrypt(key, data); end
   def self.decrypt_aes_gcm(key, data, auth_data); end
   def self.decrypt_rsa(key, enc_data); end
-  def self.encrypt(key, data); end
   def self.encrypt_aes_gcm(key, data, auth_data); end
   def self.encrypt_rsa(key, data, auth_data); end
 end
@@ -5553,6 +5750,7 @@ class Aws::S3::FileUploader
   def multipart_threshold; end
   def open_file(source); end
   def put_object(source, options); end
+  def single_part_progress(progress_callback); end
   def upload(source, options = nil); end
 end
 class Aws::S3::FileDownloader
@@ -5598,16 +5796,22 @@ class Aws::S3::MultipartFileUploader
   def initiate_upload(options); end
   def part_size(total_size, part_size, offset); end
   def upload(source, options = nil); end
-  def upload_in_threads(pending, completed); end
+  def upload_in_threads(pending, completed, options); end
   def upload_part_opts(options); end
   def upload_parts(upload_id, source, options); end
 end
 class Aws::S3::MultipartFileUploader::PartList
   def clear!; end
   def initialize(parts = nil); end
+  def part_sizes; end
   def push(part); end
   def shift; end
+  def size; end
   def to_a; end
+end
+class Aws::S3::MultipartFileUploader::MultipartProgress
+  def call(part_number, bytes_read); end
+  def initialize(parts, progress_callback); end
 end
 class Aws::S3::MultipartStreamUploader
   def abort_upload(upload_id, options, errors); end

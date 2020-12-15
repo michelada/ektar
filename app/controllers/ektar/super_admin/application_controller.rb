@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 
 module Ektar
   class SuperAdmin::ApplicationController < ResourcefulController

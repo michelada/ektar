@@ -1,4 +1,4 @@
-# typed: strict
+# typed: ignore
 # frozen_string_literal: true
 
 module Ektar
@@ -11,10 +11,9 @@ module Ektar
     has_rich_text :description
     T.unsafe(self).monetize :price_cents
 
-    validates :name, uniqueness: true
-    validates_presence_of :name
-    validates_presence_of :price_cents
-    validates_presence_of :trial
+    validates :name, presence: true, uniqueness: true
+    validates :trial, numericality: {only_integer: true, allow_nil: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 90}
+    validates :price, numericality: {greater_than_or_equal_to: 0}
 
     pg_search_scope :search_full, against: :name,
                                   using: {tsearch: {prefix: true, any_word: true}}

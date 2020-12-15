@@ -1,0 +1,6 @@
+<div class="field is-label">
+  <label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
+</div>
+<div class="field has-addons is-select" data-target="remote-form.date">
+  <%= form.date_select attribute_name, options, input_html %>
+</div>

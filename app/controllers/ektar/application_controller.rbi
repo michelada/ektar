@@ -1,4 +1,4 @@
-# typed: strong
+# typed: ignore
 module Ektar
   module ApplicationHelper
     def model_name; end

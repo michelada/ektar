@@ -1,4 +1,4 @@
-# typed: true
+# typed: ignore
 require "ektar/engine"
 require "activerecord/postgres_enum"
 require "money-rails"

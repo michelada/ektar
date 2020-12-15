@@ -12,7 +12,7 @@ module Ektar
     end
 
     def create?
-      user&.super_admin?
+      false
     end
 
     def new?
@@ -20,7 +20,7 @@ module Ektar
     end
 
     def update?
-      user&.super_admin?
+      false
     end
 
     def edit?

@@ -1,4 +1,4 @@
-# typed: strict
+# typed: ignore
 
 module Ektar
   class ResourcefulController < ApplicationController
@@ -20,6 +20,7 @@ module Ektar
     class_attribute :find_by, instance_writer: false
     class_attribute :policy_class, instance_writer: false
     class_attribute :namespace, instance_writer: false
+    class_attribute :form_url, instance_writer: false
 
     # +resourceful+ method helps you define the actions that will be included on your controller. It also lets you
     # specify the attributes that must be shown in some views, such as +show+, +index+, +new+ and +edit+
@@ -97,17 +98,18 @@ module Ektar
     sig do
       params(
         list_attributes: T.nilable(T::Array[Symbol]),
-        form_attributes: T.nilable(T::Hash[Symbol, T.untyped]),
+        form_attributes: T.nilable(T::Hash[Symbol, T.any(Symbol, T::Hash[Symbol, T.untyped])]),
         show_attributes: T.nilable(T::Array[Symbol]),
         resource_class: T.untyped,
         only: T.nilable(T.any(T::Array[Symbol], Symbol)),
         except: T.nilable(T.any(T::Array[Symbol], Symbol)),
         find_by: Symbol,
         policy_class: T.nilable(Class),
-        namespace: T.nilable(Module)
+        namespace: T.nilable(T.any(Module, Symbol)),
+        form_url: T.nilable(String)
       ).void
     end
-    def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id, policy_class: nil, namespace: nil)
+    def self.resourceful(list_attributes: nil, form_attributes: nil, show_attributes: nil, resource_class: nil, only: nil, except: nil, find_by: :id, policy_class: nil, namespace: nil, form_url: nil)
       self.list_attributes = list_attributes
       self.form_attributes = select_to_proc(form_attributes)
       self.show_attributes = show_attributes
@@ -115,6 +117,7 @@ module Ektar
       self.find_by = find_by
       self.policy_class = policy_class
       self.namespace = namespace
+      self.form_url = form_url
 
       only_actions = Array(only).compact
       except_actions = Array(except).compact
@@ -136,7 +139,7 @@ module Ektar
       end
     end
 
-    sig { params(form_attributes: T.nilable(T::Hash[Symbol, T.untyped])).returns(T.nilable(T::Hash[Symbol, T.untyped])) }
+    sig { params(form_attributes: T.nilable(T::Hash[Symbol, T.any(Symbol, T::Hash[Symbol, T.untyped])])).returns(T.nilable(T::Hash[Symbol, T.any(Symbol, T::Hash[Symbol, T.untyped])])) }
     def self.select_to_proc(form_attributes)
       return nil if form_attributes.nil?
 
@@ -305,7 +308,7 @@ module Ektar
           end
         else
           respond_to do |format|
-            format.json { render json: object }
+            format.json { render json: {resource: object, flash: flash.notice, location: options[:location]} }
             format.html { redirect_to options[:location] }
           end
         end
@@ -314,7 +317,7 @@ module Ektar
 
     helper_method :namespace, :resource_class, :new_resource_path, :edit_resource_path, :collection_path, :resource_path,
       :link_attribute, :delete_confirmation, :list_attributes, :form_attributes, :show_attributes, :allow_delete?, :allow_edit?,
-      :set_resource_ivar
+      :set_resource_ivar, :form_url
 
     private
 
