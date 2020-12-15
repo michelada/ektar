@@ -137,6 +137,16 @@ form {
   resize: none;
 }
 
+.input_number {
+  text-align: right;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .no-upload {
   .trix-button-group--file-tools {
     display: none;
@@ -152,5 +162,17 @@ form {
 }
 
 .field.is-one-quarter {
+  width: 25%;
+}
+
+.control.is-three-quarters {
+  width: 75%;
+}
+
+.control.is-half {
+  width: 50%;
+}
+
+.control.is-one-quarter {
   width: 25%;
 }

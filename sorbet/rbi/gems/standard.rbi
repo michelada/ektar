@@ -7,11 +7,11 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/standard/all/standard.rbi
 #
-# standard-0.4.7
+# standard-0.6.1
 
 module RuboCop
 end
-class RuboCop::Cop::Lint::AssignmentInCondition < RuboCop::Cop::Cop
+class RuboCop::Cop::Lint::AssignmentInCondition < RuboCop::Cop::Base
 end
 module Standard
 end
@@ -99,7 +99,6 @@ end
 class Standard::DetectsFixability
   def call(offenses); end
   def cop_instance(cop_name); end
-  def safe?(cop); end
 end
 class Standard::Formatter < RuboCop::Formatter::BaseFormatter
   def auto_correct_option_provided?; end
@@ -111,6 +110,7 @@ class Standard::Formatter < RuboCop::Formatter::BaseFormatter
   def print_fix_suggestion_once(offenses); end
   def print_header_once; end
   def print_todo_warning; end
+  def self.fixable_error_message(command); end
   def should_suggest_fix?(offenses); end
   def started(_target_files); end
 end

@@ -20,9 +20,9 @@ Ektar::Engine.routes.draw do
   namespace :super_admin do
     root to: "super_admin/organizations#index"
 
-    resources :organizations, path: I18n.t("routes.organizations")
-    resources :plans, path: I18n.t("routes.plans")
-    resources :users, path: I18n.t("routes.users")
+    resources :organizations, path: I18n.t("routes.organizations"), only: [:index, :show, :destroy]
+    resources :plans, path: I18n.t("routes.plans"), except: [:show]
+    resources :users, path: I18n.t("routes.users"), except: [:edit, :update]
   end
 
   namespace :admin do

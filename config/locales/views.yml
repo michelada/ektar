@@ -1,6 +1,6 @@
 es:
-  true_value: Sí
-  false_value: No
+  yes_value: "Sí"
+  no_value: "No"
 
   navbar:
     add_org: Agregar organizacion

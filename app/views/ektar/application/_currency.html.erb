@@ -1,4 +1,4 @@
-<% currency = Money::Currency.table.keys.map {|currency| currency.to_s.upcase} %>
+<% currency = ["USD", "MXN"] %>
 
 <label class="label"><%= resource_class.human_attribute_name(attribute_name) %></label>
 <% error = form.object.errors[attribute_name].first %>

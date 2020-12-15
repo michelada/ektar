@@ -15,4 +15,9 @@ namespace :ektar do
     puts "Compiling assets"
     Rake::Task["ektar:webpacker:compile"].invoke
   end
+
+  desc "Copy over the migration and configure ektar"
+  task "install" do
+    Rails::Command.invoke :generate, ["ektar:install"]
+  end
 end

@@ -20,7 +20,7 @@
 
   <div class="level-right">
     <div class="level-item">
-      <% if !super_admin? && signed_in_admin_user? %>
+      <% if policy(resource_class).new? %>
         <%= link_to new_title, new_resource_path, class: "button is-primary" %>
       <% end %>
     </div>

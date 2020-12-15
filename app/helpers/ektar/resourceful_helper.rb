@@ -1,4 +1,4 @@
-# typed: strict
+# typed: false
 # frozen_string_literal: true
 
 module Ektar
@@ -26,7 +26,7 @@ module Ektar
 
     sig { params(attribute_name: T.untyped, options: T::Hash[T.untyped, T.untyped]).returns(T.untyped) }
     def options_for_input(attribute_name, options)
-      input_attributes(attribute_name).merge(options)
+      input_attributes(attribute_name).deep_merge(options)
     end
   end
 end
