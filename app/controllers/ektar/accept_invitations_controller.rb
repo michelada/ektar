@@ -40,6 +40,9 @@ module Ektar
         user.update_column(:reset_password_token, reset_password_token) if new_user
       end
 
+      Rails.logger.debug ">>> USER: #{user.inspect}"
+      Rails.logger.debug ">>> INVITATION: #{invitation.inspect}"
+      Rails.logger.debug ">>> #{redirect_path_after_accept(token_to_url(reset_password_token))}"
       redirect_to redirect_path_after_accept(token_to_url(reset_password_token))
     end
 
