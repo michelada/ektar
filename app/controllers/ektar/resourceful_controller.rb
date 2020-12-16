@@ -325,7 +325,9 @@ module Ektar
     def current_policy
       return nil if policy_class.nil?
       @current_policy = T.let(@current_policy, T.nilable(ApplicationPolicy))
-      @current_policy ||= policy_class.new(current_user, current_organization)
+      @current_policy ||= begin
+        policy_class.new(current_user, current_organization)
+      end
     end
   end
 end
