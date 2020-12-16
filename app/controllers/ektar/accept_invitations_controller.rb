@@ -37,10 +37,13 @@ module Ektar
 
         user.reload
         reset_password_token = generate_reset_password_token(user.global_id)
-        user.update_column(:reset_password_token, reset_password_token) if new_user
+        if new_user
+          user.update_column(:reset_password_token, reset_password_token)
+        else
+          reset_password_token = user.reset_password_token
+        end
       end
 
-      Rails.logger.info ">>> TOKEN : #{token_to_url(reset_password_token)}"
       redirect_to redirect_path_after_accept(token_to_url(reset_password_token))
     end
 

@@ -45,12 +45,9 @@ module Ektar
     sig { void }
     def verify_and_load_user!
       @token ||= params[:token] || params[:reset_password_token]
-      Rails.logger.info ">>> TOKEN : #{token_from_url(@token)}"
       @global_id ||= verify_reset_password_token_from_url(@token)
-      Rails.logger.info ">>> GLOBAL ID : #{@global_id}"
 
       @resource = load_user(@global_id, token_from_url(@token))
-      Rails.logger.info ">>> RESOURCE: #{@resource}"
       if @resource.blank?
         redirect_to(redirect_path_on_failure, alert: t("flash.edit.passwords.alert_invalid_token"))
       end
@@ -60,7 +57,6 @@ module Ektar
     def verify_token!
       @token ||= params[:token] || params[:reset_password_token]
       @global_id ||= verify_reset_password_token_from_url(@token)
-      Rails.logger.info ">>> GLOBAL ID (2): #{@global_id}"
 
       if @global_id.blank?
         redirect_to(redirect_path_on_failure, alert: t("flash.edit.passwords.alert_invalid_token"))
