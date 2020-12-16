@@ -45,6 +45,7 @@ module Ektar
     sig { void }
     def verify_and_load_user!
       @token ||= params[:token] || params[:reset_password_token]
+      Rails.logger.info ">>> TOKEN : #{token_from_url(@token)}"
       @global_id ||= verify_reset_password_token_from_url(@token)
 
       @resource = load_user(@global_id, token_from_url(@token))
