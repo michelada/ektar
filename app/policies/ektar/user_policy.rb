@@ -16,7 +16,7 @@ module Ektar
     end
 
     def destroy?
-      resource = organization if organization.present? && resource.blank?
+      @resource ||= organization if organization.present?
       return false if user == resource
 
       (super_admin? || admin_membership?) && (user != resource && user_membership?)
