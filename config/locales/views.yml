@@ -7,6 +7,11 @@ es:
     add_user: Agregar usuario
 
   ektar:
+    accept_invitations:
+      new:
+        title: Aceptar invitación
+        info: "Estás a punto de aceptar la invitación y unirte a %{organization}."
+
     reset_passwords:
       new:
         title: Restablecer contraseña

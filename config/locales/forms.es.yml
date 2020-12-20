@@ -1,6 +1,6 @@
 es:
   form:
-    submit: 
+    submit:
       save: "Guardar"
     back: "Regresar"
     cancel: "Cancelar"
@@ -18,6 +18,9 @@ es:
     reset_passwords:
       submit: Enviar instrucciones
       go_home: Ir al Inicio
+
+    accept_invitations:
+      submit: Aceptar invitación
 
     passwords:
       submit: Actualizar contraseña

@@ -15,7 +15,8 @@ Ektar::Engine.routes.draw do
   patch I18n.t("routes.password"), to: "passwords#update", as: :passwords
 
   get I18n.t("routes.registration"), to: "registrations#new", as: :new_registrations
-  get I18n.t("routes.accept_invitation"), to: "accept_invitations#new", as: :accept_invitations
+  get I18n.t("routes.accept_invitation"), to: "accept_invitations#new", as: :new_accept_invitations
+  patch I18n.t("routes.accept_invitation"), to: "accept_invitations#update", as: :accept_invitations
 
   namespace :super_admin do
     root to: "super_admin/organizations#index"
