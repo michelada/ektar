@@ -58,7 +58,7 @@ module ActionMailbox::InboundEmail::CustomFinderMethods
   def find_by_id!(id); end
 end
 
-class ActionMailbox::InboundEmail < ActiveRecord::Base
+class ActionMailbox::InboundEmail < ActionMailbox::Record
   include ActionMailbox::InboundEmail::EnumInstanceMethods
   include ActionMailbox::InboundEmail::GeneratedAssociationMethods
   extend ActionMailbox::InboundEmail::CustomFinderMethods

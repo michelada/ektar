@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/rake/all/rake.rbi
 #
-# rake-13.0.1
+# rake-13.0.2
 
 module Rake
   def self.each_dir_parent(dir); end
@@ -109,6 +109,8 @@ class Rake::FileList
   def combination(*args, &block); end
   def compact!(*args, &block); end
   def compact(*args, &block); end
+  def compact_blank!(*args, &block); end
+  def compact_blank(*args, &block); end
   def concat(*args, &block); end
   def count(*args, &block); end
   def cycle(*args, &block); end
@@ -162,8 +164,6 @@ class Rake::FileList
   def gsub!(pat, rep); end
   def gsub(pat, rep); end
   def import(array); end
-  def in_groups(*args, &block); end
-  def in_groups_of(*args, &block); end
   def include(*filenames); end
   def include?(*args, &block); end
   def including(*args, &block); end
@@ -172,7 +172,6 @@ class Rake::FileList
   def index_with(*args, &block); end
   def initialize(*patterns); end
   def inject(*args, &block); end
-  def inquiry(*args, &block); end
   def insert(*args, &block); end
   def inspect(*args, &block); end
   def intersection(*args, &block); end
@@ -199,6 +198,7 @@ class Rake::FileList
   def partition(&block); end
   def pathmap(spec = nil, &block); end
   def permutation(*args, &block); end
+  def pick(*args, &block); end
   def pluck(*args, &block); end
   def pop(*args, &block); end
   def prepend(*args, &block); end
@@ -241,7 +241,6 @@ class Rake::FileList
   def sort(*args, &block); end
   def sort_by!(*args, &block); end
   def sort_by(*args, &block); end
-  def split(*args, &block); end
   def sub!(pat, rep); end
   def sub(pat, rep); end
   def sum(*args, &block); end

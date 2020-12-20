@@ -460,14 +460,14 @@ end
 class Rack::Chunked::TrailerBody < Rack::Chunked::Body
   def yield_trailers; end
 end
+class Rack::Runtime
+  def call(env); end
+  def initialize(app, name = nil); end
+end
 class Rack::BodyProxy
   def close; end
   def closed?; end
   def initialize(body, &block); end
   def method_missing(method_name, *args, &block); end
   def respond_to_missing?(method_name, include_all = nil); end
-end
-class Rack::Runtime
-  def call(env); end
-  def initialize(app, name = nil); end
 end

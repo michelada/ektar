@@ -1,4 +1,4 @@
-# typed: strict
+# typed: true
 # frozen_string_literal: true
 
 require "pg_search"
@@ -9,7 +9,7 @@ module Ektar
 
     self.abstract_class = true
 
-    sig { returns(TrueClass) }
+    sig { void }
     def debug_caller
       code_caller = caller.select { |c| c.include?("ektar") }[0..1] || []
       Rails.logger.debug "\e[31mDEBUG [#{code_caller[0]&.split(" ")&.last}] #{code_caller[1]}\033[0m"

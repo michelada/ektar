@@ -15,51 +15,51 @@ end
 module MoneyRails::Configuration
   def add_rate(**, &&); end
   def amount_column; end
-  def amount_column=(obj); end
+  def amount_column=(val); end
   def configure; end
   def currency_column; end
-  def currency_column=(obj); end
+  def currency_column=(val); end
   def default_bank(**, &&); end
   def default_bank=(arg); end
   def default_currency; end
   def default_currency=(currency_name); end
   def default_format; end
-  def default_format=(obj); end
+  def default_format=(val); end
   def include_validations; end
-  def include_validations=(obj); end
+  def include_validations=(val); end
   def locale_backend(**, &&); end
   def locale_backend=(arg); end
   def no_cents_if_whole; end
-  def no_cents_if_whole=(obj); end
+  def no_cents_if_whole=(val); end
   def preserve_user_input; end
-  def preserve_user_input=(obj); end
+  def preserve_user_input=(val); end
   def raise_error_on_money_parsing; end
-  def raise_error_on_money_parsing=(obj); end
+  def raise_error_on_money_parsing=(val); end
   def register_currency=(currency_options); end
   def rounding_mode=(mode); end
   def self.amount_column; end
-  def self.amount_column=(obj); end
+  def self.amount_column=(val); end
   def self.currency_column; end
-  def self.currency_column=(obj); end
+  def self.currency_column=(val); end
   def self.default_format; end
-  def self.default_format=(obj); end
+  def self.default_format=(val); end
   def self.include_validations; end
-  def self.include_validations=(obj); end
+  def self.include_validations=(val); end
   def self.no_cents_if_whole; end
-  def self.no_cents_if_whole=(obj); end
+  def self.no_cents_if_whole=(val); end
   def self.preserve_user_input; end
-  def self.preserve_user_input=(obj); end
+  def self.preserve_user_input=(val); end
   def self.raise_error_on_money_parsing; end
-  def self.raise_error_on_money_parsing=(obj); end
+  def self.raise_error_on_money_parsing=(val); end
   def self.sign_before_symbol; end
-  def self.sign_before_symbol=(obj); end
+  def self.sign_before_symbol=(val); end
   def self.symbol; end
-  def self.symbol=(obj); end
+  def self.symbol=(val); end
   def set_currency_column_for_default_currency!; end
   def sign_before_symbol; end
-  def sign_before_symbol=(obj); end
+  def sign_before_symbol=(val); end
   def symbol; end
-  def symbol=(obj); end
+  def symbol=(val); end
 end
 class Money
   def self.orig_default_formatting_rules; end
@@ -110,6 +110,9 @@ module MoneyRails::ActiveRecord::Monetizable::ClassMethods
   def monetized_attributes; end
   def register_currency(currency_name); end
   def track_monetized_attribute(name, value); end
+end
+class ActiveSupport::TestCase < Minitest::Test
+  include ActiveSupport::CurrentAttributes::TestHelper
 end
 class ActiveRecord::Base
   extend MoneyRails::ActiveRecord::Monetizable::ClassMethods

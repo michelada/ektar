@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/standard/all/standard.rbi
 #
-# standard-0.6.1
+# standard-0.10.2
 
 module RuboCop
 end

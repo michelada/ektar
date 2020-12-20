@@ -13,7 +13,7 @@ module Bundler
 end
 module Bundler::Audit
 end
-class Anonymous_Struct_434 < Struct
+class Anonymous_Struct_451 < Struct
   def cve; end
   def cve=(_); end
   def cvss_v2; end
@@ -45,7 +45,7 @@ class Anonymous_Struct_434 < Struct
   def url; end
   def url=(_); end
 end
-class Bundler::Audit::Advisory < Anonymous_Struct_434
+class Bundler::Audit::Advisory < Anonymous_Struct_451
   def criticality; end
   def cve_id; end
   def ghsa_id; end

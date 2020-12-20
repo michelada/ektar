@@ -91,7 +91,7 @@ module ActionText::RichText::CustomFinderMethods
   def find_by_id!(id); end
 end
 
-class ActionText::RichText < ActiveRecord::Base
+class ActionText::RichText < ActionText::Record
   include ActionText::RichText::GeneratedAttributeMethods
   include ActionText::RichText::GeneratedAssociationMethods
   extend ActionText::RichText::CustomFinderMethods
