@@ -1,4 +1,4 @@
-# typed: true
+# typed: ignore
 module Ektar
   class ApplicationMailer < ActionMailer::Base
     before_action :url_options

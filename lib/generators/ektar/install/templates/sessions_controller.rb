@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 # frozen_string_literal: true
 
 load Ektar::Engine.root.join("app", "controllers", "ektar", "sessions_controller.rb")

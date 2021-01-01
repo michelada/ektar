@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 class RailsFrameworks < ActiveRecord::Migration[6.0]
   create_table :active_storage_blobs, if_not_exists: true do |t|
     t.string :key, null: false

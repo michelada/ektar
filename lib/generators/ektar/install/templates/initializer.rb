@@ -1,4 +1,4 @@
-# typed: strict
+# typed: ignore
 Ektar.configure do |config|
   config.title = "My Application"
   config.session_name = "_remember_me"

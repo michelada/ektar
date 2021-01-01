@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 require_dependency "ektar/application_controller"
 
 module Ektar

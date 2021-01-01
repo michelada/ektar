@@ -1,4 +1,4 @@
-# typed: strict
+# typed: ignore
 Ektar.configure do |config|
   config.title = "Dummy Administration"
   config.organization_username = "manager"

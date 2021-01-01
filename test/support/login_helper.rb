@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 module LoginHelper
   COOKIE_NAME = "_dummy_remember_me"
 

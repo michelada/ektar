@@ -1,4 +1,4 @@
-# typed: strict
+# typed: ignore
 # Load the Rails application.
 require_relative "application"
 

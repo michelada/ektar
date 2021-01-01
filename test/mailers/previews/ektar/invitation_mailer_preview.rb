@@ -1,4 +1,4 @@
-# typed: true
+# typed: ignore
 
 module Ektar
   # Preview all emails at http://localhost:3000/rails/mailers/invitation_mailer

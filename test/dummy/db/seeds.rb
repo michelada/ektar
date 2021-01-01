@@ -1,2 +1,2 @@
-# typed: false
+# typed: ignore
 Ektar::Engine.load_seed

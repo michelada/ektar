@@ -1,4 +1,4 @@
-# typed: strict
+# typed: ignore
 
 SorbetRails.configure do |config|
   config.enabled_gem_plugins = [

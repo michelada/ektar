@@ -1,4 +1,4 @@
-# typed: true
+# typed: ignore
 module Ektar
   class InvitationMailer < ApplicationMailer
     sig { void }
