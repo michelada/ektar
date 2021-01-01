@@ -188,5 +188,3 @@ module Ektar
 end
 module Ektar::Admin
 end
-module Ektar::SuperAdmin
-end

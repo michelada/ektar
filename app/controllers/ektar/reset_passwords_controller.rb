@@ -36,7 +36,7 @@ module Ektar
 
     sig { returns(ActionController::Parameters) }
     def secure_params
-      params.require_typed(:user, TA[ActionController::Parameters].new).permit([:email, :password, :password_confirmation], memberships_attributes: [{organization_attributes: [:name]}])
+      params.require(:user).permit([:email, :password, :password_confirmation], memberships_attributes: [{organization_attributes: [:name]}])
     end
   end
 end

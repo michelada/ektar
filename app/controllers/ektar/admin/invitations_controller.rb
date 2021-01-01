@@ -64,7 +64,7 @@ module Ektar
 
       sig { returns(ActionController::Parameters) }
       def invitation_params
-        params.require_typed(:invitation, TA[ActionController::Parameters].new).permit(T.must(form_attributes).keys)
+        params.require(:invitation).permit(T.must(form_attributes).keys)
       end
     end
   end

@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/brakeman/all/brakeman.rbi
 #
-# brakeman-4.10.0
+# brakeman-4.10.1
 
 module Brakeman
   def self.add_external_checks(options); end

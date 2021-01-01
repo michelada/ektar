@@ -24466,6 +24466,10 @@ class BigDecimal
   include ::ActiveSupport::NumericWithFormat
   def clone(); end
 
+  def n_significant_digits(); end
+
+  def precision(); end
+
   def to_digits(); end
   EXCEPTION_NaN = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
@@ -24481,26 +24485,6 @@ class Binding
   def clone(); end
 
   def irb(); end
-end
-
-class BooleanString
-end
-
-class BooleanString
-  def self.===(other); end
-end
-
-module BooleanStringImpl
-  def _is_a_boolean_string?(); end
-
-  def instance_of?(type); end
-
-  def is_a?(type); end
-
-  def kind_of?(type); end
-end
-
-module BooleanStringImpl
 end
 
 module Brakeman
@@ -27434,6 +27418,7 @@ end
 class Delegator
   include ::ActiveSupport::Tryable
   RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
 end
 
 class DidYouMean::ClassNameChecker
@@ -27446,13 +27431,6 @@ class DidYouMean::ClassNameChecker
   def initialize(exception); end
 
   def scopes(); end
-end
-
-class DidYouMean::CorrectElement
-  def call(names, element); end
-end
-
-class DidYouMean::CorrectElement
 end
 
 module DidYouMean::Correctable
@@ -27509,20 +27487,23 @@ class DidYouMean::NullChecker
   def initialize(*_); end
 end
 
-class DidYouMean::ParseDimensions
-  def call(); end
-
-  def initialize(dictionary, separator); end
-end
-
-class DidYouMean::ParseDimensions
-end
-
 class DidYouMean::PlainFormatter
   def message_for(corrections); end
 end
 
 class DidYouMean::PlainFormatter
+end
+
+class DidYouMean::RequirePathChecker
+  def corrections(); end
+
+  def initialize(exception); end
+
+  def path(); end
+end
+
+class DidYouMean::RequirePathChecker
+  def self.requireables(); end
 end
 
 class DidYouMean::TreeSpellChecker
@@ -27532,11 +27513,21 @@ class DidYouMean::TreeSpellChecker
 
   def dictionary(); end
 
+  def dictionary_without_leaves(); end
+
   def dimensions(); end
+
+  def find_leaves(path); end
 
   def initialize(dictionary:, separator: T.unsafe(nil), augment: T.unsafe(nil)); end
 
+  def plausible_dimensions(input); end
+
+  def possible_paths(states); end
+
   def separator(); end
+
+  def tree_depth(); end
 end
 
 class DidYouMean::TreeSpellChecker
@@ -27622,6 +27613,45 @@ module ERB::Util
   def self.json_escape(s); end
 
   def self.unwrapped_html_escape(s); end
+end
+
+module Ektar::ApplicationController::HelperMethods
+  include ::ActionController::Base::HelperMethods
+  include ::Pundit::Helper
+  def collection(*args, &block); end
+
+  def current_organization(*args, &block); end
+
+  def current_user(*args, &block); end
+
+  def ektar(*args, &block); end
+
+  def policy(*args, &block); end
+
+  def pundit_policy_scope(*args, &block); end
+
+  def pundit_user(*args, &block); end
+
+  def resource(*args, &block); end
+
+  def select_options(*args, &block); end
+
+  def super_admin?(*args, &block); end
+
+  def user_signed_in?(*args, &block); end
+end
+
+module Ektar::ApplicationController::HelperMethods
+end
+
+class Ektar::ApplicationController::ResourceResponse
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Ektar::ApplicationController
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Ektar::ApplicationJob
@@ -30095,26 +30125,6 @@ class Integer
   GMP_VERSION = ::T.let(nil, ::T.untyped)
 end
 
-class IntegerString
-end
-
-class IntegerString
-  def self.===(other); end
-end
-
-module IntegerStringImpl
-  def _is_a_integer_string?(); end
-
-  def instance_of?(type); end
-
-  def is_a?(type); end
-
-  def kind_of?(type); end
-end
-
-module IntegerStringImpl
-end
-
 module JMESPath
   VERSION = ::T.let(nil, ::T.untyped)
 end
@@ -30203,6 +30213,14 @@ class JMESPath::Token
 end
 
 class JSON::Ext::Generator::State
+  def escape_slash(); end
+
+  def escape_slash=(escape_slash); end
+
+  def escape_slash?(); end
+end
+
+class JSON::Ext::Generator::State
   def self.from_state(_); end
 end
 
@@ -30215,6 +30233,16 @@ JSON::Parser = JSON::Ext::Parser
 JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
+
+module JSON
+  def self.create_fast_state(); end
+
+  def self.create_pretty_state(); end
+
+  def self.load_file(filespec, opts=T.unsafe(nil)); end
+
+  def self.load_file!(filespec, opts=T.unsafe(nil)); end
+end
 
 module Kernel
   include ::ActiveSupport::ForkTracker::CoreExtPrivate
@@ -33859,12 +33887,16 @@ class Net::HTTP
   ENVIRONMENT_VARIABLE_IS_MULTIUSER_SAFE = ::T.let(nil, ::T.untyped)
 end
 
+Net::HTTP::ProxyMod = Net::HTTP::ProxyDelta
+
 class Net::HTTPAlreadyReported
   HAS_BODY = ::T.let(nil, ::T.untyped)
 end
 
 class Net::HTTPAlreadyReported
 end
+
+Net::HTTPClientError::EXCEPTION_TYPE = Net::HTTPServerException
 
 Net::HTTPClientErrorCode = Net::HTTPClientError
 
@@ -33931,6 +33963,8 @@ end
 class Net::HTTPRangeNotSatisfiable
 end
 
+Net::HTTPRedirection::EXCEPTION_TYPE = Net::HTTPRetriableError
+
 Net::HTTPRedirectionCode = Net::HTTPRedirection
 
 Net::HTTPRequestURITooLarge = Net::HTTPURITooLong
@@ -33939,17 +33973,15 @@ Net::HTTPResponceReceiver = Net::HTTPResponse
 
 Net::HTTPRetriableCode = Net::HTTPRedirection
 
+Net::HTTPServerError::EXCEPTION_TYPE = Net::HTTPFatalError
+
 Net::HTTPServerErrorCode = Net::HTTPServerError
 
 Net::HTTPSession = Net::HTTP
 
-class Net::HTTPSuccess
-end
+Net::HTTPSuccess::EXCEPTION_TYPE = Net::HTTPError
 
-Net::HTTPSuccessCode::EXCEPTION_TYPE = Net::HTTPError
-
-class Net::HTTPSuccess
-end
+Net::HTTPSuccessCode = Net::HTTPSuccess
 
 class Net::HTTPURITooLong
   HAS_BODY = ::T.let(nil, ::T.untyped)
@@ -34590,6 +34622,103 @@ module OpenSSL
 end
 
 class OpenStruct
+  def __id__!(); end
+
+  def __send__!(*_); end
+
+  def class!(); end
+
+  def clone!(*_); end
+
+  def define_singleton_method!(*_); end
+
+  def delete_field!(name); end
+
+  def dig!(name, *names); end
+
+  def display!(*_); end
+
+  def dup!(); end
+
+  def each_pair!(); end
+
+  def encode_with(coder); end
+
+  def encode_with!(coder); end
+
+  def enum_for!(*_); end
+
+  def extend!(mod, *args); end
+
+  def freeze!(); end
+
+  def hash!(); end
+
+  def init_with(coder); end
+
+  def init_with!(coder); end
+
+  def inspect!(); end
+
+  def instance_eval!(*_); end
+
+  def instance_exec!(*_); end
+
+  def instance_variable_get!(_); end
+
+  def instance_variable_set!(_, _1); end
+
+  def instance_variables!(); end
+
+  def itself!(); end
+
+  def marshal_dump!(); end
+
+  def method!(_); end
+
+  def methods!(*_); end
+
+  def object_id!(); end
+
+  def private_methods!(*_); end
+
+  def protected_methods!(*_); end
+
+  def public_method!(_); end
+
+  def public_methods!(*_); end
+
+  def public_send!(*_); end
+
+  def remove_instance_variable!(_); end
+
+  def send!(*_); end
+
+  def singleton_class!(); end
+
+  def singleton_method!(_); end
+
+  def singleton_methods!(*_); end
+
+  def taint!(); end
+
+  def tap!(); end
+
+  def then!(); end
+
+  def to_enum!(*_); end
+
+  def to_h!(&block); end
+
+  def to_s!(); end
+
+  def trust!(); end
+
+  def untaint!(); end
+
+  def untrust!(); end
+
+  def yield_self!(); end
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
@@ -36606,6 +36735,40 @@ class Parlour::ConflictResolver
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
+module Parlour::Conversion
+end
+
+class Parlour::Conversion::Converter
+  def add_warning(*args, &blk); end
+
+  def warnings(*args, &blk); end
+end
+
+class Parlour::Conversion::Converter
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Conversion::RbiToRbs
+  def convert_all(*args, &blk); end
+
+  def convert_object(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def rbs_gen(*args, &blk); end
+end
+
+class Parlour::Conversion::RbiToRbs
+end
+
+module Parlour::Conversion
+end
+
 module Parlour::Debugging
 end
 
@@ -36641,6 +36804,68 @@ module Parlour::Debugging
   def self.name_for_debug_caller(*args, &blk); end
 end
 
+class Parlour::DetachedRbiGenerator
+  def detached!(*args, &blk); end
+end
+
+class Parlour::DetachedRbiGenerator
+end
+
+class Parlour::DetachedRbsGenerator
+  def detached!(*args, &blk); end
+end
+
+class Parlour::DetachedRbsGenerator
+end
+
+class Parlour::Generator
+  def current_plugin(*args, &blk); end
+
+  def current_plugin=(current_plugin); end
+
+  def initialize(*args, &blk); end
+
+  def options(*args, &blk); end
+end
+
+class Parlour::Generator
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Options
+  def break_params(*args, &blk); end
+
+  def indented(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def sort_namespaces(*args, &blk); end
+
+  def tab_size(*args, &blk); end
+end
+
+class Parlour::Options
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::ParseError
+  def buffer(*args, &blk); end
+
+  def initialize(buffer, range); end
+
+  def range(*args, &blk); end
+end
+
+class Parlour::ParseError
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 class Parlour::Plugin
   def generate(*args, &blk); end
 
@@ -36666,13 +36891,7 @@ class Parlour::Plugin
 end
 
 class Parlour::RbiGenerator
-  def current_plugin(*args, &blk); end
-
-  def current_plugin=(current_plugin); end
-
-  def initialize(*args, &blk); end
-
-  def options(*args, &blk); end
+  def initialize(**hash); end
 
   def rbi(*args, &blk); end
 
@@ -36694,6 +36913,8 @@ class Parlour::RbiGenerator::Attribute
   def class_attribute(*args, &blk); end
 
   def kind(*args, &blk); end
+
+  def type(*args, &blk); end
 end
 
 class Parlour::RbiGenerator::Attribute
@@ -36710,6 +36931,8 @@ end
 
 class Parlour::RbiGenerator::Constant
   def ==(*args, &blk); end
+
+  def eigen_constant(); end
 
   def value(*args, &blk); end
 end
@@ -36764,6 +36987,8 @@ class Parlour::RbiGenerator::Method
 end
 
 class Parlour::RbiGenerator::ModuleNamespace
+  def abstract(*args, &blk); end
+
   def interface(*args, &blk); end
 end
 
@@ -36772,6 +36997,8 @@ end
 
 class Parlour::RbiGenerator::Namespace
   def add_comment_to_next_child(*args, &blk); end
+
+  def aliases(*args, &blk); end
 
   def children(*args, &blk); end
 
@@ -36807,6 +37034,8 @@ class Parlour::RbiGenerator::Namespace
 
   def create_module(*args, &blk); end
 
+  def create_struct_class(*args, &blk); end
+
   def create_type_alias(*args, &blk); end
 
   def extends(*args, &blk); end
@@ -36816,31 +37045,23 @@ class Parlour::RbiGenerator::Namespace
   def includes(*args, &blk); end
 
   def path(*args, &blk); end
+
+  def sealed(*args, &blk); end
+
+  def type_aliases(*args, &blk); end
 end
 
 class Parlour::RbiGenerator::Namespace
 end
 
-class Parlour::RbiGenerator::Options
-  def break_params(*args, &blk); end
-
-  def indented(*args, &blk); end
-
-  def initialize(*args, &blk); end
-
-  def tab_size(*args, &blk); end
-end
-
-class Parlour::RbiGenerator::Options
-  extend ::T::Sig
-  extend ::T::Private::Methods::MethodHooks
-  extend ::T::Private::Methods::SingletonMethodHooks
-end
+Parlour::RbiGenerator::Options = Parlour::Options
 
 class Parlour::RbiGenerator::Parameter
   def ==(*args, &blk); end
 
   def default(*args, &blk); end
+
+  def generalize_from_rbi!(*args, &blk); end
 
   def initialize(*args, &blk); end
 
@@ -36865,6 +37086,433 @@ class Parlour::RbiGenerator::Parameter
 end
 
 class Parlour::RbiGenerator::RbiObject
+  def generalize_from_rbi!(*args, &blk); end
+
+  def generate_rbi(*args, &blk); end
+
+  def generator(*args, &blk); end
+
+  def merge_into_self(*args, &blk); end
+
+  def mergeable?(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::RbiObject
+end
+
+class Parlour::RbiGenerator::StructClassNamespace
+  def props(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::StructClassNamespace
+end
+
+class Parlour::RbiGenerator::StructProp
+  def ==(*args, &blk); end
+
+  def array(*args, &blk); end
+
+  def default(*args, &blk); end
+
+  def dont_store(*args, &blk); end
+
+  def enum(*args, &blk); end
+
+  def factory(*args, &blk); end
+
+  def foreign(*args, &blk); end
+
+  def generalize_from_rbi!(*args, &blk); end
+
+  def immutable(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def name(*args, &blk); end
+
+  def optional(*args, &blk); end
+
+  def override(*args, &blk); end
+
+  def redaction(*args, &blk); end
+
+  def to_prop_call(*args, &blk); end
+
+  def type(*args, &blk); end
+  EXTRA_PROPERTIES = ::T.let(nil, ::T.untyped)
+end
+
+class Parlour::RbiGenerator::StructProp
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbiGenerator::TypeAlias
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::TypeAlias
+end
+
+class Parlour::RbiGenerator
+end
+
+class Parlour::RbsGenerator
+  def initialize(**hash); end
+
+  def rbs(*args, &blk); end
+
+  def root(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Arbitrary
+  def ==(*args, &blk); end
+
+  def code(*args, &blk); end
+
+  def code=(code); end
+end
+
+class Parlour::RbsGenerator::Arbitrary
+end
+
+class Parlour::RbsGenerator::Attribute
+  def kind(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Attribute
+end
+
+class Parlour::RbsGenerator::Block
+  def ==(*args, &blk); end
+
+  def generate_rbs(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def required(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Block
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbsGenerator::ClassNamespace
+  def superclass(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::ClassNamespace
+end
+
+class Parlour::RbsGenerator::Constant
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Constant
+end
+
+class Parlour::RbsGenerator::Extend
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Extend
+end
+
+class Parlour::RbsGenerator::Include
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Include
+end
+
+class Parlour::RbsGenerator::InterfaceNamespace
+end
+
+class Parlour::RbsGenerator::InterfaceNamespace
+end
+
+class Parlour::RbsGenerator::Method
+  def ==(*args, &blk); end
+
+  def class_method(*args, &blk); end
+
+  def signatures(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Method
+end
+
+class Parlour::RbsGenerator::MethodSignature
+  def ==(*args, &blk); end
+
+  def block(*args, &blk); end
+
+  def generate_rbs(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def parameters(*args, &blk); end
+
+  def return_type(*args, &blk); end
+
+  def type_parameters(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::MethodSignature
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbsGenerator::ModuleNamespace
+end
+
+class Parlour::RbsGenerator::ModuleNamespace
+end
+
+class Parlour::RbsGenerator::Namespace
+  def add_comment_to_next_child(*args, &blk); end
+
+  def aliases(*args, &blk); end
+
+  def children(*args, &blk); end
+
+  def constants(*args, &blk); end
+
+  def create_arbitrary(code:, &block); end
+
+  def create_attr(*args, &blk); end
+
+  def create_attr_accessor(*args, &blk); end
+
+  def create_attr_reader(*args, &blk); end
+
+  def create_attr_writer(*args, &blk); end
+
+  def create_attribute(*args, &blk); end
+
+  def create_class(*args, &blk); end
+
+  def create_constant(*args, &blk); end
+
+  def create_extend(*args, &blk); end
+
+  def create_extends(*args, &blk); end
+
+  def create_include(*args, &blk); end
+
+  def create_includes(*args, &blk); end
+
+  def create_interface(*args, &blk); end
+
+  def create_method(*args, &blk); end
+
+  def create_module(*args, &blk); end
+
+  def create_type_alias(*args, &blk); end
+
+  def extends(*args, &blk); end
+
+  def includes(*args, &blk); end
+
+  def path(*args, &blk); end
+
+  def type_aliases(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Namespace
+end
+
+class Parlour::RbsGenerator::Parameter
+  def ==(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def kind(*args, &blk); end
+
+  def name(*args, &blk); end
+
+  def name_without_kind(*args, &blk); end
+
+  def required(*args, &blk); end
+
+  def to_rbs_param(*args, &blk); end
+
+  def type(*args, &blk); end
+  PREFIXES = ::T.let(nil, ::T.untyped)
+  RBS_KEYWORDS = ::T.let(nil, ::T.untyped)
+end
+
+class Parlour::RbsGenerator::Parameter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbsGenerator::RbsObject
+  def generate_rbs(*args, &blk); end
+
+  def generator(*args, &blk); end
+
+  def merge_into_self(*args, &blk); end
+
+  def mergeable?(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::RbsObject
+end
+
+class Parlour::RbsGenerator::TypeAlias
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::TypeAlias
+end
+
+class Parlour::RbsGenerator
+end
+
+module Parlour::TypeLoader
+end
+
+module Parlour::TypeLoader
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.load_file(*args, &blk); end
+
+  def self.load_project(*args, &blk); end
+
+  def self.load_source(*args, &blk); end
+end
+
+class Parlour::TypeParser
+  def ast(*args, &blk); end
+
+  def ast=(ast); end
+
+  def body_has_modifier?(*args, &blk); end
+
+  def body_includes_and_extends(*args, &blk); end
+
+  def constant_names(*args, &blk); end
+
+  def generator(*args, &blk); end
+
+  def generator=(generator); end
+
+  def initialize(*args, &blk); end
+
+  def node_to_s(*args, &blk); end
+
+  def parse_all(*args, &blk); end
+
+  def parse_err(*args, &blk); end
+
+  def parse_method_into_methods(*args, &blk); end
+
+  def parse_node_to_type(*args, &blk); end
+
+  def parse_path_to_object(*args, &blk); end
+
+  def parse_sig_into_methods(*args, &blk); end
+
+  def parse_sig_into_sig(*args, &blk); end
+
+  def previous_sibling_sig_node?(*args, &blk); end
+
+  def sig_node?(*args, &blk); end
+
+  def unknown_node_errors(*args, &blk); end
+
+  def warning(*args, &blk); end
+
+  def zip_by(*args, &blk); end
+end
+
+class Parlour::TypeParser::IntermediateSig
+  def abstract(); end
+
+  def abstract=(val); end
+
+  def final(); end
+
+  def final=(val); end
+
+  def initialize(*args, &blk); end
+
+  def overridable(); end
+
+  def overridable=(val); end
+
+  def override(); end
+
+  def override=(val); end
+
+  def params(); end
+
+  def params=(val); end
+
+  def return_type(); end
+
+  def return_type=(val); end
+
+  def type_parameters(); end
+
+  def type_parameters=(val); end
+end
+
+class Parlour::TypeParser::IntermediateSig
+  def self.inherited(s); end
+end
+
+class Parlour::TypeParser::NodePath
+  def child(*args, &blk); end
+
+  def indices(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def parent(*args, &blk); end
+
+  def sibling(*args, &blk); end
+
+  def traverse(*args, &blk); end
+end
+
+class Parlour::TypeParser::NodePath
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::TypeParser
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.from_source(*args, &blk); end
+
+  def self.parse_single_type(*args, &blk); end
+end
+
+class Parlour::TypedObject
   def add_comment(*args, &blk); end
 
   def add_comments(*args, &blk); end
@@ -36873,34 +37521,230 @@ class Parlour::RbiGenerator::RbiObject
 
   def describe(*args, &blk); end
 
-  def generate_rbi(*args, &blk); end
+  def generate_comments(*args, &blk); end
 
   def generated_by(*args, &blk); end
 
-  def generator(*args, &blk); end
-
   def initialize(*args, &blk); end
-
-  def merge_into_self(*args, &blk); end
-
-  def mergeable?(*args, &blk); end
 
   def name(*args, &blk); end
 end
 
-class Parlour::RbiGenerator::RbiObject
-  extend ::T::Helpers
+class Parlour::TypedObject
   extend ::T::Sig
+  extend ::T::Helpers
   extend ::T::Private::Abstract::Hooks
   extend ::T::InterfaceWrapper::Helpers
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
-class Parlour::RbiGenerator
+module Parlour::Types
+  TypeLike = ::T.let(nil, ::T.untyped)
+end
+
+class Parlour::Types::Array
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Array
+end
+
+class Parlour::Types::Boolean
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Boolean
+end
+
+class Parlour::Types::Class
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::Types::Class
+end
+
+class Parlour::Types::Enumerable
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Enumerable
+end
+
+class Parlour::Types::Enumerator
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Enumerator
+end
+
+class Parlour::Types::Generic
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+
+  def type_params(*args, &blk); end
+end
+
+class Parlour::Types::Generic
+end
+
+class Parlour::Types::Hash
+  def ==(*args, &blk); end
+
+  def key(*args, &blk); end
+
+  def value(*args, &blk); end
+end
+
+class Parlour::Types::Hash
+end
+
+class Parlour::Types::Intersection
+  def ==(*args, &blk); end
+
+  def types(*args, &blk); end
+end
+
+class Parlour::Types::Intersection
+end
+
+class Parlour::Types::Nilable
+  def ==(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::Types::Nilable
+end
+
+class Parlour::Types::Proc
+  def ==(*args, &blk); end
+
+  def parameters(*args, &blk); end
+
+  def return_type(*args, &blk); end
+end
+
+class Parlour::Types::Proc::Parameter
+  def ==(*args, &blk); end
+
+  def default(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def name(*args, &blk); end
+
+  def type(*args, &blk); end
+end
+
+class Parlour::Types::Proc::Parameter
   extend ::T::Sig
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Types::Proc
+end
+
+class Parlour::Types::Range
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Range
+end
+
+class Parlour::Types::Raw
+  def ==(*args, &blk); end
+
+  def str(*args, &blk); end
+end
+
+class Parlour::Types::Raw
+end
+
+class Parlour::Types::Record
+  def ==(*args, &blk); end
+
+  def keys_to_types(*args, &blk); end
+end
+
+class Parlour::Types::Record
+end
+
+class Parlour::Types::Self
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Self
+end
+
+class Parlour::Types::Set
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Set
+end
+
+class Parlour::Types::SingleElementCollection
+  def collection_name(*args, &blk); end
+
+  def element(*args, &blk); end
+end
+
+class Parlour::Types::SingleElementCollection
+end
+
+class Parlour::Types::Tuple
+  def ==(*args, &blk); end
+
+  def types(*args, &blk); end
+end
+
+class Parlour::Types::Tuple
+end
+
+class Parlour::Types::Type
+  def describe(*args, &blk); end
+
+  def generate_rbi(*args, &blk); end
+
+  def generate_rbs(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def to_type(*args, &blk); end
+end
+
+class Parlour::Types::Type
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.to_type(*args, &blk); end
+end
+
+class Parlour::Types::Union
+  def ==(*args, &blk); end
+
+  def types(*args, &blk); end
+end
+
+class Parlour::Types::Union
+end
+
+class Parlour::Types::Untyped
+  def ==(*args, &blk); end
+end
+
+class Parlour::Types::Untyped
+end
+
+module Parlour::Types
 end
 
 module Parlour
@@ -36938,12 +37782,22 @@ class Parser::Lexer::Literal
   TYPES = ::T.let(nil, ::T.untyped)
 end
 
+class Parser::MaxNumparamStack
+  ORDINARY_PARAMS = ::T.let(nil, ::T.untyped)
+end
+
 module Parser::Meta
   NODE_TYPES = ::T.let(nil, ::T.untyped)
 end
 
 class Parser::Rewriter
   DEPRECATION_WARNING = ::T.let(nil, ::T.untyped)
+end
+
+class Parser::Ruby24
+  Racc_arg = ::T.let(nil, ::T.untyped)
+  Racc_debug_parser = ::T.let(nil, ::T.untyped)
+  Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
 end
 
 class Parser::Ruby27
@@ -37297,6 +38151,10 @@ class PgSearchPlugin
 end
 
 class PgSearchPlugin
+end
+
+module Polyfill
+  VERSION = ::T.let(nil, ::T.untyped)
 end
 
 class Proc
@@ -41006,8 +41864,6 @@ end
 
 class Resolv::DNS
   def extract_resources(msg, name, typeclass); end
-
-  def getname(address); end
   RequestID = ::T.let(nil, ::T.untyped)
   RequestIDMutex = ::T.let(nil, ::T.untyped)
 end
@@ -44957,10 +45813,81 @@ class SorbetRails::Config
   def extra_helper_includes=(extra_helper_includes); end
 
   def initialize(&blk); end
+
+  def job_generator_class(*args, &blk); end
+
+  def job_generator_class=(job_generator_class); end
+
+  def mailer_generator_class(*args, &blk); end
+
+  def mailer_generator_class=(mailer_generator_class); end
 end
 
 class SorbetRails::Config
   extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::JobRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def job_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::JobRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::JobRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::MailerRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def mailer_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::MailerRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::MailerRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::ModelColumnUtils
+  def active_record_type_to_sorbet_type(*args, &blk); end
+
+  def attribute_has_unconditional_presence_validation?(*args, &blk); end
+
+  def model_class(*args, &blk); end
+
+  def nilable_column?(*args, &blk); end
+
+  def time_zone_aware_column?(*args, &blk); end
+
+  def type_for_column_def(*args, &blk); end
+end
+
+module SorbetRails::ModelColumnUtils
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end
@@ -44996,11 +45923,7 @@ class SorbetRails::ModelPlugins::ActiveRecordAssoc
 end
 
 class SorbetRails::ModelPlugins::ActiveRecordAttribute
-  def active_record_type_to_sorbet_type(*args, &blk); end
-
-  def time_zone_aware_column?(*args, &blk); end
-
-  def type_for_column_def(*args, &blk); end
+  def generate_enum_methods(*args, &blk); end
 
   def value_type_for_attr_writer(*args, &blk); end
 end
@@ -45012,22 +45935,6 @@ class SorbetRails::ModelPlugins::ActiveRecordEnum
 end
 
 class SorbetRails::ModelPlugins::ActiveRecordEnum
-end
-
-class SorbetRails::ModelPlugins::ActiveRecordFactoryMethods
-  def add_factory_method(*args, &blk); end
-end
-
-class SorbetRails::ModelPlugins::ActiveRecordFactoryMethods
-end
-
-class SorbetRails::ModelPlugins::ActiveRecordFinderMethods
-  def create_finder_method_pair(*args, &blk); end
-
-  def create_finder_methods_for(*args, &blk); end
-end
-
-class SorbetRails::ModelPlugins::ActiveRecordFinderMethods
 end
 
 class SorbetRails::ModelPlugins::ActiveRecordNamedScope
@@ -45059,6 +45966,7 @@ end
 
 class SorbetRails::ModelPlugins::Base
   include ::SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
   def available_classes(*args, &blk); end
 end
 
@@ -45072,7 +45980,6 @@ class SorbetRails::ModelPlugins::CustomFinderMethods
 end
 
 class SorbetRails::ModelPlugins::EnumerableCollections
-  def create_enumerable_methods_for(*args, &blk); end
 end
 
 class SorbetRails::ModelPlugins::EnumerableCollections
@@ -45092,6 +45999,7 @@ end
 
 class SorbetRails::ModelRbiFormatter
   include ::SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
   def available_classes(*args, &blk); end
 
   def generate_base_rbi(*args, &blk); end
@@ -45111,23 +46019,32 @@ class SorbetRails::ModelRbiFormatter
 end
 
 module SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
   def add_relation_query_method(*args, &blk); end
 
   def exists_class_method?(*args, &blk); end
 
   def exists_instance_method?(*args, &blk); end
 
+  def habtm_class?(*args, &blk); end
+
   def model_assoc_proxy_class_name(*args, &blk); end
 
   def model_assoc_relation_class_name(*args, &blk); end
-
-  def model_class(*args, &blk); end
 
   def model_class_name(*args, &blk); end
 
   def model_module_name(*args, &blk); end
 
+  def model_query_methods_returning_assoc_relation_module_name(*args, &blk); end
+
+  def model_query_methods_returning_relation_module_name(*args, &blk); end
+
   def model_relation_class_name(*args, &blk); end
+
+  def model_relation_type_alias(*args, &blk); end
+
+  def model_relation_type_class_name(*args, &blk); end
 end
 
 module SorbetRails::ModelUtils
@@ -45143,6 +46060,57 @@ class SorbetRails::Railtie
 end
 
 class SorbetRails::Railtie
+end
+
+module SorbetRails::SorbetUtils
+  include ::Kernel
+  include ::ActiveSupport::ForkTracker::CoreExtPrivate
+  include ::ActiveSupport::ForkTracker::CoreExt
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def default(); end
+
+  def default=(val); end
+
+  def initialize(*args, &blk); end
+
+  def kind(); end
+
+  def name(); end
+
+  def prefix(); end
+
+  def prefix=(val); end
+
+  def suffix(); end
+
+  def suffix=(val); end
+
+  def type_str(); end
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def self.inherited(s); end
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+module SorbetRails::SorbetUtils
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.extract_default_value_for_params!(*args, &blk); end
+
+  def self.get_ordered_parameters_with_type(*args, &blk); end
+
+  def self.node_to_s(*args, &blk); end
+
+  def self.parameters_from_method_def(*args, &blk); end
 end
 
 module SorbetRails::Utils
@@ -45436,8 +46404,6 @@ end
 
 class String
   include ::JSON::Ext::Generator::GeneratorMethods::String
-  include ::IntegerStringImpl
-  include ::BooleanStringImpl
   def shellescape(); end
 
   def shellsplit(); end
@@ -45683,31 +46649,21 @@ class TrueClass
   include ::JSON::Ext::Generator::GeneratorMethods::TrueClass
 end
 
-module URI
-  include ::URI::RFC2396_REGEXP
+module TypeCoerce::Configuration
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class TypeCoerce::Converter
+  PRIMITIVE_TYPES = ::T.let(nil, ::T.untyped)
 end
 
 class URI::FTP
   def buffer_open(buf, proxy, options); end
 end
 
-class URI::FTP
-  def self.new2(user, password, host, port, path, typecode=T.unsafe(nil), arg_check=T.unsafe(nil)); end
-end
-
 class URI::File
-  def check_password(user); end
-
-  def check_user(user); end
-
-  def check_userinfo(user); end
-
-  def set_userinfo(v); end
   COMPONENT = ::T.let(nil, ::T.untyped)
   DEFAULT_PORT = ::T.let(nil, ::T.untyped)
-end
-
-class URI::File
 end
 
 class URI::GID
@@ -45748,71 +46704,16 @@ class URI::HTTP
   def buffer_open(buf, proxy, options); end
 end
 
-class URI::LDAP
-  def attributes(); end
-
-  def attributes=(val); end
-
-  def dn(); end
-
-  def dn=(val); end
-
-  def extensions(); end
-
-  def extensions=(val); end
-
-  def filter(); end
-
-  def filter=(val); end
-
-  def initialize(*arg); end
-
-  def scope(); end
-
-  def scope=(val); end
-
-  def set_attributes(val); end
-
-  def set_dn(val); end
-
-  def set_extensions(val); end
-
-  def set_filter(val); end
-
-  def set_scope(val); end
-end
-
-class URI::MailTo
-  def initialize(*arg); end
-end
-
 URI::Parser = URI::RFC2396_Parser
 
 URI::REGEXP = URI::RFC2396_REGEXP
 
-class URI::RFC2396_Parser
-  def initialize(opts=T.unsafe(nil)); end
-end
-
 class URI::RFC3986_Parser
-  def join(*uris); end
-
-  def parse(uri); end
-
-  def regexp(); end
-
-  def split(uri); end
   RFC3986_relative_ref = ::T.let(nil, ::T.untyped)
-end
-
-module URI::Util
-  def self.make_components_hash(klass, array_hash); end
 end
 
 module URI
   extend ::URI::Escape
-  def self.get_encoding(label); end
-
   def self.open(name, *rest, &block); end
 
   def self.parser(); end

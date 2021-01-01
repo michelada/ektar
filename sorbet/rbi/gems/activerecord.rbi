@@ -5746,10 +5746,7 @@ module Ektar
 end
 module Ektar::SuperAdmin
 end
-class Ektar::SuperAdmin::PlansController < ApplicationController
-  def _layout(lookup_context, formats); end
-  def self._wrapper_options; end
-  def self.middleware_stack; end
+class Ektar::SuperAdmin::PlansController < Ektar::ApplicationController
 end
 module Ektar::Plan::GeneratedAttributeMethods
 end
@@ -5804,10 +5801,7 @@ class Ektar::Plan::ActiveRecord_AssociationRelation < ActiveRecord::AssociationR
   include ActiveRecord::Delegation::ClassSpecificRelation
   include Ektar::Plan::GeneratedRelationMethods
 end
-class Ektar::SuperAdmin::UsersController < ApplicationController
-  def _layout(lookup_context, formats); end
-  def self._wrapper_options; end
-  def self.middleware_stack; end
+class Ektar::SuperAdmin::UsersController < Ektar::ApplicationController
   extend T::Sig
   include Pagy::Backend
 end

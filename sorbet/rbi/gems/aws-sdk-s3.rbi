@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/aws-sdk-s3/all/aws-sdk-s3.rbi
 #
-# aws-sdk-s3-1.86.2
+# aws-sdk-s3-1.87.0
 
 module Aws::S3
 end

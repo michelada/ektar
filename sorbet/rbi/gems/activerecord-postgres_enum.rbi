@@ -7,19 +7,20 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/activerecord-postgres_enum/all/activerecord-postgres_enum.rbi
 #
-# activerecord-postgres_enum-0.6.0
+# activerecord-postgres_enum-1.5.0
 
 module ActiveRecord
 end
 module ActiveRecord::PostgresEnum
 end
 module ActiveRecord::PostgresEnum::PostgreSQLAdapter
-  def add_enum_value(name, value, after: nil, before: nil); end
-  def create_enum(name, values); end
-  def drop_enum(name); end
+  def add_enum_value(name, value, after: nil, before: nil, if_not_exists: nil); end
+  def create_enum(name, values, force: nil, if_not_exists: nil); end
+  def drop_enum(name, cascade: nil, if_exists: nil); end
   def enums; end
   def migration_keys; end
   def prepare_column_options(column, types); end
+  def remove_enum_value(name, value); end
   def rename_enum(name, new_name); end
   def rename_enum_value(name, existing_value, new_value); end
   def rename_enum_value_supported?; end
@@ -62,7 +63,7 @@ module ActiveRecord::ConnectionAdapters::PostgreSQL::OID
 end
 class ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Enum < ActiveModel::Type::Value
   def enum_name; end
-  def initialize(options = nil); end
+  def initialize(enum_name:, **kwargs); end
 end
 class ActiveRecord::ConnectionAdapters::PostgreSQL::OID::TypeMapInitializer
 end
