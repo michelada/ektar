@@ -33,7 +33,7 @@ module Ektar
 
         respond_to do |format|
           format.json { render json: {errors: @resource.errors, flash: flash.alert || flash.notice, localtion: request.path}, status: :unprocessable_entity }
-          format.html { render :new }
+          format.html { render :new, status: :unprocessable_entity }
         end
       end
     end

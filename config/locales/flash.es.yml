@@ -50,6 +50,7 @@ es:
       passwords:
         mismatch_confirmation: La contraseña y su confirmación no son iguales
         notice: Su contraseña fue actualizada
+        alert: Hay un problema para actualizar su contraseña
 
     destroy:
       notice: "Actualizado"

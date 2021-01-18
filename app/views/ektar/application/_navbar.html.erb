@@ -46,7 +46,9 @@
             <% current_user.memberships.each do |membership| %>
               <%= link_to ektar.select_organization_path(current_organization, organization_id: membership.organization.global_id), method: :put, class: "navbar-item" do %>
                 <span class="icon has-text-orange">
-                  <img src="<%= asset_pack_path('media/images/organization-icon.svg') %>" width=".875em" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width=".875em">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
                 </span>
                 <strong><%= membership.organization.name %></strong>
               <% end %>

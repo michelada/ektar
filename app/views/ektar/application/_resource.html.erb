@@ -1,15 +1,14 @@
 <tr data-id="<%= resource.id %>">
   <% list_attributes.each do |attribute| %>
-    <td>
+    <% value = resource[attribute] %>
+    <td class="<%= value.is_a?(String) ? "has-text-left" : "has-text-right" %>">
       <% if attribute == link_attribute %>
-        <%= link_to attribute_value(resource[attribute]), resource_path(resource) %>
+        <%= link_to attribute_value(value), resource_path(resource) %>
       <% else %>
-        <%= attribute_value(resource[attribute] || resource.send(attribute)) %>
+        <%= attribute_value(value || resource.send(attribute)) %>
       <% end %>
     </td>
   <% end %>
 
-  <% if current_user&.super_admin? || signed_in_admin_user? %>
-    <%= render partial: "actions", locals: { resource: resource } %>
-  <% end %>
+  <%= render partial: "actions", locals: { resource: resource } %>
 </tr>

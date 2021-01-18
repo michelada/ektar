@@ -5,7 +5,7 @@
 <% control_classes = css_classes.split(" ").select{|klass| ["upload", "no-upload", "basic-toolbar"].include?(klass)}.join(" ") %>
 
 <div class="control <%= control_classes %>">
-  <%= form.rich_text_area attribute_name, input_attributes(attribute_name, :textarea, input_html.delete(:class)).deep_merge(input_html)%>
+  <%= form.rich_text_area attribute_name, input_attributes(attribute_name, :textarea, "#{input_html.delete(:class)} trix-content").deep_merge(input_html)%>
   <% if error.present? %>
     <p class="help is-danger"><%= error %><p/>
   <% end %>

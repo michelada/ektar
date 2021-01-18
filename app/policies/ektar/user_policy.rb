@@ -3,20 +3,23 @@
 
 module Ektar
   class UserPolicy < ApplicationPolicy
-    def index?
+    def index?(current_organization = nil)
+      swap_resource!(current_organization)
       super_admin? || admin_membership?
     end
 
-    def new?
+    def new?(current_organization = nil)
+      swap_resource!(current_organization)
       super_admin? || admin_membership?
     end
 
-    def show?
+    def show?(current_organization = nil)
+      swap_resource!(current_organization)
       super_admin? || admin_membership?
     end
 
-    def destroy?
-      @resource ||= organization if organization.present?
+    def destroy?(current_organization = nil)
+      swap_resource!(current_organization)
       return false if user == resource
 
       (super_admin? || admin_membership?) && (user != resource && user_membership?)

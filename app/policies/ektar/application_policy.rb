@@ -12,31 +12,41 @@ module Ektar
       @resource = resource
     end
 
-    def index?
+    def index?(current_organization = nil)
+      swap_resource!(current_organization)
+
       false
     end
 
-    def show?
+    def show?(current_organization = nil)
+      swap_resource!(current_organization)
+
       false
     end
 
-    def create?
+    def create?(current_organization = nil)
+      swap_resource!(current_organization)
+
       false
     end
 
-    def new?
-      create?
+    def new?(current_organization = nil)
+      create?(current_organization)
     end
 
-    def update?
+    def update?(current_organization = nil)
+      swap_resource!(current_organization)
+
       false
     end
 
-    def edit?
-      update?
+    def edit?(current_organization = nil)
+      update?(current_organization)
     end
 
-    def destroy?
+    def destroy?(current_organization = nil)
+      swap_resource!(current_organization)
+
       false
     end
 
@@ -73,6 +83,15 @@ module Ektar
     def super_admin?
       @super_admin ||= user&.super_admin? if @super_admin.nil?
       @super_admin
+    end
+
+    protected
+
+    def swap_resource!(current_organization)
+      if !@organization.is_a?(Ektar::Organization) && current_organization.present?
+        @resource = @organization
+        @organization = current_organization
+      end
     end
   end
 end

@@ -20,7 +20,7 @@
 
   <div class="level-right">
     <div class="level-item">
-      <% if policy(resource_class).new? %>
+      <% if policy(resource_class).new?(current_organization) %>
         <%= link_to new_title, new_resource_path, class: "button is-primary" %>
       <% end %>
     </div>

@@ -28,6 +28,9 @@ es:
         password_confirmation: Confirmación de contraseña
 
     application:
+      image:
+        change_image: Cambiar imagen
+        new_image: Nueva imagen
       navbar:
         admin: Administrador
         logout: Cerrar sesión

@@ -2,6 +2,7 @@
 
 @import "~bulma/bulma";
 @import "trix/dist/trix";
+@import "./actiontext";
 @import "~notyf/notyf.min";
 
 .has-margin-top-1 {
@@ -153,6 +154,17 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.form-column {
+  margin: 0 auto;
+}
+
+.is-grouped {
+  justify-content: flex-end !important;
+  padding-top: 1rem;
+  border-top: 1px solid lightgray;
+  margin-top: 1rem;
+}
+
 .field.is-three-quarters {
   width: 75%;
 }
@@ -175,4 +187,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .control.is-one-quarter {
   width: 25%;
+}
+
+.h-32 {
+  height: 32rem;
+}
+
+.h-45 {
+  height: 45rem;
 }

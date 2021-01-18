@@ -51,6 +51,11 @@ To run linters execute:
 $ bundle exec lefthook run pre-commit
 ```
 
+Compile assets with
+```bash
+  $ bin/rails app:ektar:webpacker:clean_webpack_output_folder app:ektar:webpacker:compile
+```
+
 ## Contributing
 Contribution directions go here.
 

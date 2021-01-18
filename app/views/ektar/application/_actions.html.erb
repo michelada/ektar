@@ -1,8 +1,8 @@
 <td class="has-text-right">
-  <% if allow_edit?(resource) %>
+  <% if policy(resource).edit?(current_organization) %>
     <%= link_to edit_action, edit_resource_path(resource), class: "button is-info" %>
   <% end %>
-  <% if allow_delete?(resource) %>
+  <% if policy(resource).destroy?(current_organization) %>
     <%= link_to delete_action, resource_path(resource), class: "button is-danger",
       method: :delete, data: { confirm: delete_confirmation(resource) } %>
   <% end %>
