@@ -2,7 +2,9 @@
 
 <div class="<%= input_html.fetch(:class, 'field-image') %>" data-max-size="<%= input_html.fetch(:"data-max-size", 4000) %>" data-target="photo.background" data-controller="photo" data-image="<%= photo_url(form.object, field: attribute_name) %>" data-validation="<%= t("errors.attributes.#{form.object.model_name.i18n_key}.#{attribute_name}.oversize", default: t("errors.attributes.image.oversize")) %>">
   <a class="button is-medium" data-target="photo.button" data-action="photo#choose">
-    <%= image_tag asset_pack_path("media/images/photo.svg"), class: "icon is-medium" %>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="icon is-medium">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
     <span data-target="photo.buttonText" data-change="<%= t('.change_image') %>" data-new="<%= t('.new_image') %>"></span>
   </a>
   <%= form.file_field attribute_name, multiple: false, direct_upload: true, class: "is-hidden", data: { target: "photo.image",  action: "change->photo#changeImage" }, accept: ".jpg,.jpeg,.png" %>

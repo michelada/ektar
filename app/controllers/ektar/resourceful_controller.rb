@@ -288,7 +288,7 @@ module Ektar
         if invalid_resource
           respond_to do |format|
             format.json { render json: {errors: object.errors, flash: flash.alert || flash.alert.now, location: options[:location]}, status: :unprocessable_entity }
-            format.html { render object.persisted? ? :edit : :new }
+            format.html { render object.persisted? ? :edit : :new, status: :unprocessable_entity }
           end
         elsif success.code.present?
           success.code.call
@@ -304,7 +304,7 @@ module Ektar
           respond_to do |format|
             format.json { render json: {errors: object.errors, flash: flash.alert || flash.alert.now, location: options[:location]}, status: :unprocessable_entity } unless options[:action] == :destroy
             format.json { head :no_content } if options[:action] == :destroy
-            format.html { render object.persisted? ? :edit : :new }
+            format.html { render object.persisted? ? :edit : :new, status: :unprocessable_entity }
           end
         else
           respond_to do |format|
