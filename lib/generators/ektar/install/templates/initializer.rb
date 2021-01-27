@@ -7,5 +7,6 @@ Ektar.configure do |config|
   config.root_app_path = "/"
   config.rails_root = Rails.root
   config.session_domain = :all
+  config.admin_path = "/admin"
 end
 
