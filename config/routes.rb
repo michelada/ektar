@@ -26,7 +26,7 @@ Ektar::Engine.routes.draw do
     resources :users, path: I18n.t("routes.users"), except: [:edit, :update]
   end
 
-  namespace :admin do
+  namespace :admin, path: Ektar.configuration.admin_path do
     resources :users, path: I18n.t("routes.users"), only: [:new, :index, :destroy]
     resources :invitations, path: I18n.t("routes.invitations"), only: [:new, :create]
     resources :select_plan, only: [:new, :create]
