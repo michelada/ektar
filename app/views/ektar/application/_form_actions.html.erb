@@ -1,0 +1,8 @@
+<div class="field is-grouped">
+  <div class="control">
+    <%= link_to t("form.back"), collection_path, class: "button is-text", data: {target: "remote-form.cancelButton", action: "click->entries#onClose"} %>
+  </div>
+  <div class="control">
+    <%= form.submit t("form.submit.save"), class: "button is-link", data: {target: "remote-form.submitButton", "disable-with": t("form.submit.save")} %>
+  </div>
+</div>
