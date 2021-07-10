@@ -6,6 +6,8 @@ module Ektar
   class RegistrationsController < ResourcefulController
     extend T::Sig
 
+    layout "ektar/users"
+
     resourceful(form_attributes: {email: :input, password: :password, password_confirmation: :password},
                 find_by: :global_id,
                 only: [:new, :create],
@@ -15,8 +17,6 @@ module Ektar
     def new
       @resource = T.let(Ektar::User.new, T.nilable(Ektar::User))
       @resource.memberships.build.build_organization if @resource.present?
-
-      render :new, layout: "ektar/users"
     end
 
     sig { void }
@@ -38,7 +38,7 @@ module Ektar
         redirect_to ektar.new_admin_select_plan_path
       else
         @resource.memberships.build(role: "admin").build_organization if @resource.memberships.empty?
-        render :new, layout: "ektar/users"
+        render :new
       end
     end
 

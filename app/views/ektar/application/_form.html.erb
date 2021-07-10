@@ -2,7 +2,7 @@
   <div class="column is-half form-column">
     <% form_params = {local: false, data: {controller: "remote-form", target: "remote-form.form entries.form", action: "submit->remote-form#didSubmit ajax:error->remote-form#formError"}} %>
     <% form_params[:url] = form_url if form_url.present? %>
-    <%= form_with(model: [namespace, resource].compact, **form_params) do |form| %>
+    <%= form_with(model: [namespace&.to_sym, resource].compact, **form_params) do |form| %>
 
       <div class="container" data-target="remote-form.notification">
       </div>
@@ -24,15 +24,7 @@
         </div>
       </div>
 
-      <div class="field is-grouped">
-        <div class="control">
-          <%= link_to t("form.back"), collection_path, class: "button is-text", data: {target: "remote-form.cancelButton", action: "click->entries#onClose"} %>
-        </div>
-        <div class="control">
-          <%= form.submit t("form.submit.save"), class: "button is-link", data: {target: "remote-form.submitButton", "disable-with": t("form.submit.save")} %>
-        </div>
-      </div>
-
+      <%= render partial: "form_actions", locals: {form: form} %>
     <% end %>
   </div>
 </div>
